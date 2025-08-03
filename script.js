@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (clickEnabled) {
     ball.classList.add("expanded");
     instruction.textContent = "So what I do is change distracted users to engaged users!";
-    instruction.style.fontSize = "2rem";
+    instruction.style.fontSize = "1.5rem";
     instruction.style.lineHeight = "1";
     instruction.style.color = "black";
 
