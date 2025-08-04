@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const ball = document.getElementById("ball");
   const instruction = document.getElementById("instruction");
+  const drop = document.getElementById("dropCircle");
 
   let moveCount = 0;
   let clickEnabled = false;
@@ -11,11 +12,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const messages = ["Too slow", "Nope", "You're getting there", "Okay, this is sad"];
 
-  // Initial setup
+  // Setup initial state
   ball.style.display = "flex";
   instruction.textContent = "View";
 
-  // Start movement detection after short delay
+  // Enable movement after slight delay
   setTimeout(() => {
     movementAllowed = true;
     console.log("🟢 Movement now allowed.");
@@ -63,6 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
     lastMoveTime = Date.now();
   }
 
+  // 🧠 Cursor detection near the ball
   document.addEventListener("mousemove", (e) => {
     if (!movementAllowed || clickEnabled) return;
 
@@ -79,21 +81,23 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Initial bounce
   ball.classList.add("bounce");
   setTimeout(() => {
     ball.classList.remove("bounce");
   }, 300);
 
-  // ⬇️ EXPAND on click
-    ball.addEventListener("click", () => {
-  if (clickEnabled) {
+  // 💥 EXPAND ON CLICK
+  ball.addEventListener("click", () => {
+    if (!clickEnabled) return;
+
     ball.classList.add("expanded");
     instruction.textContent = "So what I do is change distracted users to engaged users!";
     instruction.style.fontSize = "1.5rem";
     instruction.style.lineHeight = "1";
     instruction.style.color = "black";
 
-    // After expansion, listen for mouse leaving the ball
+    // 🌀 On mouse leave, trigger shrink and disappear
     ball.addEventListener("mouseleave", () => {
       ball.classList.remove("expanded");
       ball.classList.add("shrinking");
@@ -101,18 +105,25 @@ document.addEventListener("DOMContentLoaded", () => {
       setTimeout(() => {
         ball.classList.remove("shrinking");
         ball.classList.add("disappear");
-      }, 400); // wait for shrink-to-normal before shrinking to dot
+      }, 400);
 
-      // Final removal and drop circle animation
+      // 🎯 Final ball removal and drop-circle entry
       setTimeout(() => {
         ball.style.display = "none";
 
-        const drop = document.getElementById("dropCircle");
         drop.classList.add("animate");
-      }, 800); // match timing with disappear animation
+        drop.style.pointerEvents = "auto";
 
-    }, { once: true }); // 🟡 Ensure this only triggers once
-  }
-});
-
+        // Only activate scroll after animation
+        setTimeout(() => {
+          drop.addEventListener("click", () => {
+            const workSection = document.getElementById("work");
+            if (workSection) {
+              workSection.scrollIntoView({ behavior: "smooth" });
+            }
+          }, { once: true });
+        }, 1000);
+      }, 1000);
+    }, { once: true });
+  });
 });
