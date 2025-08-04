@@ -9,13 +9,7 @@
 </head>
 <body>
 
-  <svg width="0" height="0">
-    <filter id="liquid-distort">
-      <feTurbulence type="turbulence" baseFrequency="0.008" numOctaves="1" result="turbulence"/>
-      <feDisplacementMap in2="turbulence" in="SourceGraphic" scale="10" xChannelSelector="R" yChannelSelector="G"/>
-    </filter>
-  </svg>
-
+  <!-- ✅ HERO SECTION START -->
   <section id="hero">
     <div class="nav-vertical-line"></div>
 
@@ -46,14 +40,14 @@
       <a href="#resume">Resume</a>
     </div>
   </section>
+  <!-- ✅ HERO SECTION END -->
 
-  <!-- Projects section -->
+  <!-- 🔽 Projects Section START -->
   <section id="work" class="projects-section">
     <div class="project-card" id="project1">
       <div class="default-label">01</div>
       <div class="project-hover">
         <img src="assets/project1.jpg" alt="Project 1">
-        <div class="image-overlay"></div>
         <div class="project-info">
           <h3>Project One</h3>
           <p>Brief description of the project.</p>
@@ -65,7 +59,6 @@
       <div class="default-label">02</div>
       <div class="project-hover">
         <img src="assets/project2.jpg" alt="Project 2">
-        <div class="image-overlay"></div>
         <div class="project-info">
           <h3>Project Two</h3>
           <p>Brief description of the project.</p>
@@ -77,10 +70,9 @@
       <div class="default-label">03</div>
       <div class="project-hover">
         <img src="assets/sketchcover.png" alt="Project 3">
-        <div class="image-overlay"></div>
         <div class="project-info">
           <h3>Sketches</h3>
-          <p>Looking into the different emotions through a pencil</p>
+          <p>Looking into the different emotions using a pencil</p>
         </div>
       </div>
     </div>
@@ -89,10 +81,9 @@
       <div class="default-label">04</div>
       <div class="project-hover">
         <img src="assets/project4.jpg" alt="Project 4">
-        <div class="image-overlay"></div>
         <div class="project-info">
           <h3>Illustrations</h3>
-          <p>Just looking the world in a funny way with some digital tools</p>
+          <p>Looking at life funny using digital tools</p>
         </div>
       </div>
     </div>
@@ -101,7 +92,6 @@
       <div class="default-label">05</div>
       <div class="project-hover">
         <img src="assets/project5.jpg" alt="Project 5">
-        <div class="image-overlay"></div>
         <div class="project-info">
           <h3>Project Five</h3>
           <p>Brief description of the project.</p>
@@ -109,8 +99,8 @@
       </div>
     </div>
   </section>
+  <!-- 🔼 Projects Section END -->
 
-  <!-- ✅ Add your external JS here -->
-  <script src="main.js"></script>
+  <script src="script.js" defer></script>
 </body>
 </html>
