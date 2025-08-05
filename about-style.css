@@ -1,0 +1,119 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Migra', serif;
+  background: radial-gradient(circle at center, #161515 0%, #2c2a2a 100%);
+  color: rgb(241, 228, 228);
+}
+
+.about-section {
+  padding: 5rem 4rem 5rem 6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 6rem;
+  margin-right: 160px; /* Leaves space for right nav */
+}
+
+.about-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4rem;
+  align-items: center;
+}
+
+.about-text {
+  flex: 1;
+  max-width: 600px;
+}
+
+.about-text h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.about-text p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+}
+
+.about-image {
+  flex: 1;
+  max-width: 400px;
+  position: relative;
+}
+
+.about-image img {
+  width: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.quad-images {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.quad {
+  position: absolute;
+  width: 48%;
+  border-radius: 10px;
+}
+
+.top-left     { top: 0; left: 0; }
+.top-right    { top: 0; right: 0; }
+.bottom-left  { bottom: 0; left: 0; }
+.bottom-right { bottom: 0; right: 0; }
+
+/* ========== Fixed Right-side Nav (reuse from index.css) ========== */
+.side-nav {
+  position: fixed;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  z-index: 1000;
+}
+
+.side-nav a {
+  padding: 12px 20px;
+  border: 2px solid rgb(241, 228, 228);
+  background-color: transparent;
+  color: rgb(241, 228, 228);
+  text-decoration: none;
+  font-family: 'Migra', serif;
+  font-weight: 700;
+  font-size: 1rem;
+  text-align: center;
+  min-width: 100px;
+  transition: all 0.3s ease;
+}
+
+.side-nav a:hover,
+.side-nav a.active {
+  background-color: rgb(241, 228, 228);
+  color: #0f0f0f;
+}
+
+.nav-vertical-line {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 80px;
+  width: 2px;
+  background-color: white;
+  opacity: 0.3;
+  z-index: 500;
+}
+
+footer {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1rem;
+  border-top: 1px solid #333;
+  margin-top: 4rem;
+}
