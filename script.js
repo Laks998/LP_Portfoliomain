@@ -11,11 +11,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const messages = ["Too slow", "Nope", "You're getting there", "Okay, this is sad"];
 
-  // Initial setup
   ball.style.display = "flex";
   instruction.textContent = "View";
 
-  // Start movement detection after short delay
   setTimeout(() => {
     movementAllowed = true;
     console.log("🟢 Movement now allowed.");
@@ -33,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const randomLeft = Math.floor(Math.random() * (maxLeft - padding)) + padding;
     const randomTop = Math.floor(Math.random() * (maxTop - padding)) + padding;
 
-    return { top: `${randomTop}px`, left: `${randomTop}px` };
+    return { top: `${randomTop}px`, left: `${randomLeft}px` };
   }
 
   function moveBallToNextPosition() {
@@ -85,25 +83,25 @@ document.addEventListener("DOMContentLoaded", () => {
     ball.classList.remove("bounce");
   }, 300);
 
-  // ✅ Handle click to expand and drop
+  // ✅ Handle click to expand and wait for mouse leave
   ball.addEventListener("click", () => {
     if (!clickEnabled) return;
 
-    // Step 1: Expand and show text
+    // Expand and show message
     ball.classList.add("expanded");
     instruction.textContent = "So what I do is change distracted users to engaged users!";
     instruction.style.fontSize = "1.5rem";
     instruction.style.lineHeight = "1";
     instruction.style.color = "black";
 
-    // Step 2: Shrink to original after a delay
-    setTimeout(() => {
+    // 👇 Only when mouse leaves, begin the shrink + drop sequence
+    const handleMouseLeave = () => {
       instruction.textContent = "";
       ball.classList.remove("expanded");
       ball.classList.remove("clickable");
       ball.classList.add("back-to-original");
 
-      // Step 3: Drop as arrow
+      // Shrink delay
       setTimeout(() => {
         ball.classList.remove("back-to-original");
 
@@ -118,24 +116,18 @@ document.addEventListener("DOMContentLoaded", () => {
         ball.innerHTML = "↓";
         ball.classList.add("arrow-drop");
 
-        // ✅ Final Step: Scroll to #projects after drop
-        // ✅ Final Step: Make arrow scroll when clicked
-setTimeout(() => {
-  const projectsSection = document.getElementById("work");
-  if (!projectsSection) return;
+        // 👇 Only scroll when user clicks the arrow
+        ball.addEventListener("click", function scrollToProjects() {
+          const projectsSection = document.getElementById("work");
+          if (projectsSection) {
+            projectsSection.scrollIntoView({ behavior: "smooth" });
+          }
+          ball.removeEventListener("click", scrollToProjects);
+        });
+      }, 700);
+    };
 
-  // ⬇️ You can remove this if you only want scroll on click
-  // projectsSection.scrollIntoView({ behavior: "smooth" });
-
-  // ✅ Now allow clicking ↓ to scroll
-  ball.addEventListener("click", () => {
-    projectsSection.scrollIntoView({ behavior: "smooth" });
-  }, { once: true });
-}, 1000);
- // ⏱ wait for drop animation
-
-      }, 700); // wait for shrink to original
-
-    }, 1500); // time user sees expanded state
+    // Attach mouseleave handler
+    ball.addEventListener("mouseleave", handleMouseLeave, { once: true });
   });
 });

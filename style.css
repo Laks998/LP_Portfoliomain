@@ -97,7 +97,7 @@ body {
   text-align: center;
   pointer-events: none;
   user-select: none;
-  font-family: 'Migra', serif;
+  font-family: 'Space Grotesk', sans-serif;
   transition: font-size 0.6s ease, color 0.6s ease;
   display: flex;
   align-items: center;
@@ -154,13 +154,14 @@ body {
 }
 
 #name-label .taglines {
+  font-family: 'Space Grotesk', sans-serif;
   position: absolute;
   top: 62%;         /* 🟡 Shift vertically - tweak if needed */
   left: 53rem;      /* 🟡 Horizontal offset to go under "MI" */
-  font-size: 1.1rem;
+  font-size: .9rem;
   font-weight: 400;
   color: rgb(241, 228, 228);
-  line-height: 1.8;
+  line-height: 2;
   text-align: left;
   opacity: 1;
 }
@@ -188,7 +189,7 @@ body {
   background-color: transparent; /* 🟡 Make background transparent by default */
   color: rgb(241, 228, 228);      /* 🟡 White text */
   text-decoration: none;
-  font-family: 'Migra', serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
   font-size: 1rem;
   text-align: center;
@@ -413,12 +414,14 @@ body {
 }
 
 .project-info h3 {
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 4rem;
   font-weight: 700;
   margin: 0;
 }
 
 .project-info p {
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 1.2rem;
   font-weight: 400;
   margin: 0;
