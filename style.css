@@ -127,7 +127,7 @@ body {
 #name-label {
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: 45%;
   transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
@@ -154,14 +154,21 @@ body {
 }
 
 #name-label .taglines {
-  margin-top: 2rem;
-  font-size: 1.2rem;
+  position: absolute;
+  top: 62%;         /* 🟡 Shift vertically - tweak if needed */
+  left: 53rem;      /* 🟡 Horizontal offset to go under "MI" */
+  font-size: 1.1rem;
   font-weight: 400;
   color: rgb(241, 228, 228);
-  line-height: 2;
+  line-height: 1.8;
   text-align: left;
-  opacity: 1; /* Full white */
+  opacity: 1;
 }
+
+.name-block {
+  position: relative;
+}
+
 
 /* ========== NAVIGATION ========== */
 .side-nav {
