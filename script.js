@@ -33,8 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const randomLeft = Math.floor(Math.random() * (maxLeft - padding)) + padding;
     const randomTop = Math.floor(Math.random() * (maxTop - padding)) + padding;
 
-    // ✅ FIXED: use backticks for template literals
-    return { top: `${randomTop}px`, left: `${randomLeft}px` };
+    return { top: `${randomTop}px`, left: `${randomTop}px` };
   }
 
   function moveBallToNextPosition() {
@@ -86,34 +85,57 @@ document.addEventListener("DOMContentLoaded", () => {
     ball.classList.remove("bounce");
   }, 300);
 
-  // ⬇️ EXPAND on click
+  // ✅ Handle click to expand and drop
   ball.addEventListener("click", () => {
     if (!clickEnabled) return;
 
+    // Step 1: Expand and show text
     ball.classList.add("expanded");
     instruction.textContent = "So what I do is change distracted users to engaged users!";
     instruction.style.fontSize = "1.5rem";
     instruction.style.lineHeight = "1";
     instruction.style.color = "black";
 
-    // After expansion, listen for mouse leaving the ball
-    ball.addEventListener("mouseleave", () => {
+    // Step 2: Shrink to original after a delay
+    setTimeout(() => {
+      instruction.textContent = "";
       ball.classList.remove("expanded");
-      ball.classList.add("shrinking");
+      ball.classList.remove("clickable");
+      ball.classList.add("back-to-original");
 
+      // Step 3: Drop as arrow
       setTimeout(() => {
-        ball.classList.remove("shrinking");
-        ball.classList.add("disappear");
-      }, 400); // wait for shrink-to-normal before shrinking to dot
+        ball.classList.remove("back-to-original");
 
-      // Final removal and drop circle animation
-      setTimeout(() => {
-        ball.style.display = "none";
+        const hero = document.getElementById("hero");
+        const heroTop = hero.getBoundingClientRect().top + window.scrollY;
+        const heroHeight = hero.offsetHeight;
+        const ballHeight = 140;
+        const padding = 30;
+        const dropDistance = heroTop + heroHeight - ballHeight - padding;
 
-        const drop = document.getElementById("dropCircle");
-        drop.classList.add("animate");
-      }, 800); // match timing with disappear animation
+        ball.style.setProperty('--dropDistance', `${dropDistance}px`);
+        ball.innerHTML = "↓";
+        ball.classList.add("arrow-drop");
 
-    }, { once: true });
+        // ✅ Final Step: Scroll to #projects after drop
+        // ✅ Final Step: Make arrow scroll when clicked
+setTimeout(() => {
+  const projectsSection = document.getElementById("work");
+  if (!projectsSection) return;
+
+  // ⬇️ You can remove this if you only want scroll on click
+  // projectsSection.scrollIntoView({ behavior: "smooth" });
+
+  // ✅ Now allow clicking ↓ to scroll
+  ball.addEventListener("click", () => {
+    projectsSection.scrollIntoView({ behavior: "smooth" });
+  }, { once: true });
+}, 1000);
+ // ⏱ wait for drop animation
+
+      }, 700); // wait for shrink to original
+
+    }, 1500); // time user sees expanded state
   });
 });

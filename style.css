@@ -241,6 +241,38 @@ body {
   transition: transform 0.4s ease, opacity 0.4s ease;
 }
 
+/* Step 1: Animate scale down with easing */
+@keyframes smoothShrink {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(0.3);
+    opacity: 0.8;
+  }
+}
+
+.ball.shrinking {
+  animation: smoothShrink 0.8s ease-in-out forwards;
+}
+
+/* Step 2: Shrink to dot and fade out */
+@keyframes shrinkToDot {
+  0% {
+    transform: translate(-50%, -50%) scale(0.3);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(0.05);
+    opacity: 0;
+  }
+}
+
+.ball.disappear {
+  animation: shrinkToDot 0.5s ease-out forwards;
+}
+
 
 .drop-circle {
   position: absolute;
@@ -410,3 +442,46 @@ body {
   overflow: hidden;
   background: radial-gradient(circle at center, #161515 0%, #2c2a2a 100%);
 }
+
+.ball.back-to-original {
+  width: 140px;
+  height: 140px;
+  background: white !important;
+  color: black !important;
+  transition: width 0.6s ease, height 0.6s ease, background 0.6s ease;
+}
+
+.ball.arrow-drop {
+  font-size: 3rem;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-shadow: none;
+
+  /* 🔥 ADD THIS: triggers dropFromHere animation */
+  animation: dropFromHere 1s ease-out forwards;
+}
+
+
+@keyframes dropFromHere {
+  0% {
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  70% {
+    top: var(--dropDistance);
+    transform: translate(-50%, 0) scale(1.1);
+  }
+  85% {
+    top: calc(var(--dropDistance) + 20px);
+    transform: translate(-50%, 0) scale(0.95);
+  }
+  100% {
+    top: calc(var(--dropDistance) + 10px);
+    transform: translate(-50%, 0) scale(1);
+  }
+}
+
+
+
