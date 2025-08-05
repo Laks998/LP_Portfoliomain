@@ -130,4 +130,60 @@ document.addEventListener("DOMContentLoaded", () => {
     // Attach mouseleave handler
     ball.addEventListener("mouseleave", handleMouseLeave, { once: true });
   });
+
+const projectCards = document.querySelectorAll('.project-card');
+
+projectCards.forEach(card => {
+  card.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    const rect = card.getBoundingClientRect();
+    const scrollY = window.scrollY;
+
+    // Clone the entire card
+    const clone = card.cloneNode(true);
+    clone.classList.add('project-card-clone');
+
+    // Set initial styles
+    clone.style.position = 'absolute';
+    clone.style.top = (rect.top + scrollY) + 'px';
+    clone.style.left = rect.left + 'px';
+    clone.style.width = rect.width + 'px';
+    clone.style.height = rect.height + 'px';
+    clone.style.margin = '0';
+    clone.style.zIndex = '9999';
+    clone.style.transition = 'all 0.9s ease-in-out';
+    clone.style.borderRadius = '0';
+
+    // Overlay to hold the clone
+    const overlay = document.createElement('div');
+    overlay.classList.add('project-overlay');
+    overlay.style.position = 'fixed';
+    overlay.style.top = 0;
+    overlay.style.left = 0;
+    overlay.style.width = '100vw';
+    overlay.style.height = '100vh';
+    overlay.style.zIndex = '9998';
+    overlay.style.background = 'transparent'; // ✅ keeps the context
+    overlay.style.pointerEvents = 'none';
+
+    document.body.appendChild(overlay);
+    document.body.appendChild(clone);
+
+    // Animate to fullscreen
+    requestAnimationFrame(() => {
+      clone.style.top = scrollY + 'px';
+      clone.style.left = '0';
+      clone.style.width = '100vw';
+      clone.style.height = '100vh';
+    });
+
+    // Navigate after animation
+    setTimeout(() => {
+      const projectId = card.getAttribute('data-project');
+      window.location.href = `projects/${projectId}.html`;
+    }, 1000);
+  });
+});
+
 });

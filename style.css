@@ -507,4 +507,72 @@ body {
   }
 }
 
+/* Fullscreen Project View Overlay */
+.project-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: black; /* can be transparent if preferred */
+  z-index: 9999;
+  pointer-events: none; /* prevent blocking */
+}
 
+
+.project-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.project-overlay img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s ease;
+}
+
+.project-card-clone {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  font-size: 4rem;
+  font-weight: 800;
+  font-family: 'Migra', serif;
+  color: white;
+  background-color: #000;
+  overflow: hidden;
+  
+}
+
+.project-card-clone img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  opacity: 0.5;
+}
+
+.project-card-clone .project-info {
+  z-index: 1;
+  text-align: right;
+  color: white;
+  padding: 1.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.project-card-clone,
+.project-overlay {
+  pointer-events: none;
+}
+
+.project-card-clone .project-hover {
+  opacity: 1 !important;
+}
