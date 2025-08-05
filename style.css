@@ -328,17 +328,16 @@ body {
 /* ========== PROJECTS SECTION ========== */
 .projects-section {
   display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  padding: 80px 40px;
   justify-content: center;
+  padding: 80px 0;
   background: radial-gradient(circle at center, #161515 0%, #2c2a2a 100%);
 }
 
+
 .project-card {
   position: relative;
-  width: calc(50% - 30px); /* 🟢 2 per row */
-  aspect-ratio: 16 / 16;
+  width: 100%;
+  aspect-ratio: 1 / 1;
   background-color: #000000;
   color: white;
   overflow: hidden;
@@ -351,6 +350,14 @@ body {
   font-weight: 800;
   font-family: 'Migra', serif;
   border-radius: 0;
+}
+
+.project-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);  /* 3 columns */
+  gap: 30px;
+  width: 50%;
+  max-width: 900px;
 }
 
 
@@ -415,14 +422,14 @@ body {
 
 .project-info h3 {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 4rem;
+  font-size: 2rem;
   font-weight: 700;
   margin: 0;
 }
 
 .project-info p {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 1.2rem;
+  font-size: .8rem;
   font-weight: 400;
   margin: 0;
   opacity: 1; /* ✅ Full opacity */
@@ -486,5 +493,18 @@ body {
   }
 }
 
+@media (max-width: 900px) {
+  .project-cards {
+    grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
+    width: 80%;
+  }
+}
+
+@media (max-width: 600px) {
+  .project-cards {
+    grid-template-columns: 1fr; /* Stack */
+    width: 90%;
+  }
+}
 
 
