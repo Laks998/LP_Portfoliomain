@@ -33,7 +33,7 @@ body {
   font-weight: bold;
   font-size: 0.5rem;
   text-align: center;
-  color: #ded0d0;
+  color: #EB676C;
   text-shadow: 0 1px 1px #302e2e;
 
   box-shadow:
@@ -51,7 +51,7 @@ body {
 
 /* Hover inverts */
 .ball.clickable:hover {
-  background: rgba(255, 255, 255, 0.829);
+  background: #EB676C;
   color: black;
   text-shadow: none;
 }
@@ -62,7 +62,7 @@ body {
   width: 420px;         /* 140 * 3 */
   height: 420px;
   transform: translate(-50%, -50%);
-  background: rgb(228, 217, 217) !important;
+  background: #EB676C !important;
   color: rgb(36, 35, 35) !important;
   text-shadow: none !important;
   z-index: 10;
@@ -84,7 +84,7 @@ body {
 
 /* Lock-in inversion after click */
 .ball.inverted {
-  background: rgba(230, 225, 225, 0.79) !important;
+  background: #EB676C !important;
   color: rgb(48, 46, 46) !important;
   text-shadow: none !important;
 }
@@ -158,7 +158,7 @@ body {
   position: absolute;
   top: 62%;         /* 🟡 Shift vertically - tweak if needed */
   left: 53rem;      /* 🟡 Horizontal offset to go under "MI" */
-  font-size: .9rem;
+  font-size: 1rem;
   font-weight: 400;
   color: rgb(241, 228, 228);
   line-height: 2;
@@ -187,7 +187,7 @@ body {
   padding: 12px 20px;
   border: 2px solid rgb(241, 228, 228);
   background-color: transparent; /* 🟡 Make background transparent by default */
-  color: rgb(241, 228, 228);      /* 🟡 White text */
+  color: #EB676C;      /* 🟡 White text */
   text-decoration: none;
   font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
@@ -200,7 +200,7 @@ body {
 
 .side-nav a:hover {
   background-color: rgb(241, 228, 228); /* 🔁 On hover: filled white */
-  color: #0f0f0f;                       /* 🔁 Text becomes black */
+  color: #eb676b78;                       /* 🔁 Text becomes black */
   cursor: pointer;
 }
 
@@ -282,7 +282,7 @@ body {
   transform: translateX(-50%);
   width: 80px;
   height: 80px;
-  background: rgb(221, 214, 214);
+  background: #EB676C;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -416,7 +416,7 @@ body {
 .project-card .project-info {
   position: relative;
   z-index: 2; /* ✅ Ensure text is above image */
-  color: white;
+  color: #EB676C;
   text-align: right;
 }
 
@@ -456,7 +456,7 @@ body {
 .ball.back-to-original {
   width: 140px;
   height: 140px;
-  background: white !important;
+  background: #EB676C;
   color: black !important;
   transition: width 0.6s ease, height 0.6s ease, background 0.6s ease;
 }

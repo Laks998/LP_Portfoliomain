@@ -84,52 +84,54 @@ document.addEventListener("DOMContentLoaded", () => {
   }, 300);
 
   // ✅ Handle click to expand and wait for mouse leave
-  ball.addEventListener("click", () => {
-    if (!clickEnabled) return;
+  let ballExpanded = false;
 
-    // Expand and show message
+ball.addEventListener("click", () => {
+  if (!clickEnabled) return;
+
+  if (!ballExpanded) {
+    // First click: Expand and show message
     ball.classList.add("expanded");
     instruction.textContent = "So what I do is change distracted users to engaged users!";
     instruction.style.fontSize = "1.5rem";
     instruction.style.lineHeight = "1";
     instruction.style.color = "black";
 
-    // 👇 Only when mouse leaves, begin the shrink + drop sequence
-    const handleMouseLeave = () => {
-      instruction.textContent = "";
-      ball.classList.remove("expanded");
-      ball.classList.remove("clickable");
-      ball.classList.add("back-to-original");
+    ballExpanded = true;
+  } else {
+    // Second click: Shrink, transform, drop arrow
+    instruction.textContent = "";
+    ball.classList.remove("expanded", "clickable");
+    ball.classList.add("back-to-original");
 
-      // Shrink delay
-      setTimeout(() => {
-        ball.classList.remove("back-to-original");
+    setTimeout(() => {
+      ball.classList.remove("back-to-original");
 
-        const hero = document.getElementById("hero");
-        const heroTop = hero.getBoundingClientRect().top + window.scrollY;
-        const heroHeight = hero.offsetHeight;
-        const ballHeight = 140;
-        const padding = 30;
-        const dropDistance = heroTop + heroHeight - ballHeight - padding;
+      const hero = document.getElementById("hero");
+      const heroTop = hero.getBoundingClientRect().top + window.scrollY;
+      const heroHeight = hero.offsetHeight;
+      const ballHeight = 140;
+      const padding = 30;
+      const dropDistance = heroTop + heroHeight - ballHeight - padding;
 
-        ball.style.setProperty('--dropDistance', `${dropDistance}px`);
-        ball.innerHTML = "↓";
-        ball.classList.add("arrow-drop");
+      ball.style.setProperty('--dropDistance', `${dropDistance}px`);
+      ball.innerHTML = "↓";
+      ball.classList.add("arrow-drop");
 
-        // 👇 Only scroll when user clicks the arrow
-        ball.addEventListener("click", function scrollToProjects() {
-          const projectsSection = document.getElementById("work");
-          if (projectsSection) {
-            projectsSection.scrollIntoView({ behavior: "smooth" });
-          }
-          ball.removeEventListener("click", scrollToProjects);
-        });
-      }, 700);
-    };
+      // 👇 Click on arrow triggers scroll
+      ball.addEventListener("click", function scrollToProjects() {
+        const projectsSection = document.getElementById("work");
+        if (projectsSection) {
+          projectsSection.scrollIntoView({ behavior: "smooth" });
+        }
+        ball.removeEventListener("click", scrollToProjects);
+      });
+    }, 700);
 
-    // Attach mouseleave handler
-    ball.addEventListener("mouseleave", handleMouseLeave, { once: true });
-  });
+    ballExpanded = false;
+  }
+});
+
 
 const projectCards = document.querySelectorAll('.project-card');
 
