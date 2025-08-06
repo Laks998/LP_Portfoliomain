@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!ballExpanded && !arrowReady) {
       // First click: Expand
       ball.classList.add("expanded");
-      instruction.textContent = "So what I do is change distracted users to engaged users!";
+      instruction.textContent = "I change distracted users to engaged users!";
       instruction.style.fontSize = "1.5rem";
       instruction.style.lineHeight = "1";
       instruction.style.color = "black";
