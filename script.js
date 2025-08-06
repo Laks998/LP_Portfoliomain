@@ -3,6 +3,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const ball = document.getElementById("ball");
   const instruction = document.getElementById("instruction");
+  const startBtn = document.getElementById("startTimeline");
+  const timelineBall = document.getElementById("timeline-ball");
+  const milestones = [...document.querySelectorAll(".milestone")];
 
   let moveCount = 0;
   let clickEnabled = false;
@@ -10,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let movementAllowed = false;
   let ballExpanded = false;
   let arrowReady = false;
+  let currentStep = -1;
 
   const messages = ["Too slow", "Nope", "You're getting there", "Okay, this is sad"];
 
@@ -79,243 +83,142 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Initial bounce
   ball.classList.add("bounce");
   setTimeout(() => {
     ball.classList.remove("bounce");
   }, 300);
 
-  // ✅ Handle click to expand, then shrink/drop on second click
+  function dropToArrow() {
+    instruction.textContent = "";
+    ball.classList.remove("expanded", "clickable");
+    ball.classList.add("back-to-original");
+
+    setTimeout(() => {
+      ball.classList.remove("back-to-original");
+
+      const hero = document.getElementById("hero");
+      const heroTop = hero.getBoundingClientRect().top + window.scrollY;
+      const heroHeight = hero.offsetHeight;
+      const ballHeight = 140;
+      const padding = 30;
+      const dropDistance = heroTop + heroHeight - ballHeight - padding;
+
+      ball.style.setProperty('--dropDistance', `${dropDistance}px`);
+      ball.innerHTML = "↓";
+      ball.classList.add("arrow-drop");
+
+      arrowReady = true;
+      ballExpanded = false;
+
+      ball.addEventListener("click", function scrollToTimeline() {
+        const timelineSection = document.getElementById("timeline-section");
+        if (timelineSection) {
+          timelineSection.scrollIntoView({ behavior: "smooth" });
+        }
+        ball.removeEventListener("click", scrollToTimeline);
+      });
+
+    }, 700);
+  }
+
   ball.addEventListener("click", () => {
     if (!clickEnabled && !arrowReady) return;
 
     if (!ballExpanded && !arrowReady) {
-      // First click: Expand
       ball.classList.add("expanded");
       instruction.textContent = "I change distracted users to engaged users!";
       instruction.style.fontSize = "1.5rem";
       instruction.style.lineHeight = "1";
       instruction.style.color = "black";
-
       ballExpanded = true;
 
-    } else if (ballExpanded) {
-      // Second click: Shrink + drop arrow
-      instruction.textContent = "";
-      ball.classList.remove("expanded", "clickable");
-      ball.classList.add("back-to-original");
-
       setTimeout(() => {
-        ball.classList.remove("back-to-original");
-
-        const hero = document.getElementById("hero");
-        const heroTop = hero.getBoundingClientRect().top + window.scrollY;
-        const heroHeight = hero.offsetHeight;
-        const ballHeight = 140;
-        const padding = 30;
-        const dropDistance = heroTop + heroHeight - ballHeight - padding;
-
-        ball.style.setProperty('--dropDistance', `${dropDistance}px`);
-        ball.innerHTML = "↓";
-        ball.classList.add("arrow-drop");
-
-        arrowReady = true;
-        ballExpanded = false;
-
-        // Add scroll-to-project click
-        ball.addEventListener("click", function scrollToTimeline() {
-  const timelineSection = document.getElementById("timeline-section");
-  if (timelineSection) {
-    timelineSection.scrollIntoView({ behavior: "smooth" });
-  }
-  ball.removeEventListener("click", scrollToTimeline);
-});
-
-
-      }, 700);
+        if (ballExpanded) dropToArrow();
+      }, 2500);
+    } else if (ballExpanded) {
+      dropToArrow();
     }
   });
 
-  // ✅ Make arrow reappear clickable when Hero is back in view
   const heroSection = document.getElementById("hero");
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting && arrowReady) {
-        // Hero is visible again — restore clickable arrow
         ball.innerHTML = "↓";
         ball.classList.add("arrow-drop", "clickable");
         ball.classList.remove("expanded");
 
         ball.addEventListener("click", function scrollToTimelineAgain() {
-  const timelineSection = document.getElementById("timeline-section");
-  if (timelineSection) {
-    timelineSection.scrollIntoView({ behavior: "smooth" });
-  }
-  ball.removeEventListener("click", scrollToTimelineAgain);
-});
-
+          const timelineSection = document.getElementById("timeline-section");
+          if (timelineSection) {
+            timelineSection.scrollIntoView({ behavior: "smooth" });
+          }
+          ball.removeEventListener("click", scrollToTimelineAgain);
+        });
       }
     });
   }, { threshold: 0.6 });
 
   observer.observe(heroSection);
 
-  // ✅ Card → Fullscreen Transition
-  const projectCards = document.querySelectorAll('.project-card');
+  // ✅ Timeline Logic FIXED & included
+  function resetTimeline() {
+    currentStep = -1;
+    timelineBall.style.left = "10%";
+    timelineBall.style.top = "70%";
+    timelineBall.innerHTML = "";
 
-  projectCards.forEach(card => {
-    card.addEventListener('click', (e) => {
-      e.preventDefault();
+    milestones.forEach(m => m.classList.remove("reached"));
 
-      const rect = card.getBoundingClientRect();
-      const scrollY = window.scrollY;
+    startBtn.innerHTML = `View my journey`;
+    startBtn.disabled = false;
+    startBtn.classList.remove("end-state", "started", "restart");
+  }
 
-      const clone = card.cloneNode(true);
-      clone.classList.add('project-card-clone');
+  startBtn.addEventListener("click", () => {
+    if (startBtn.classList.contains("restart")) {
+      resetTimeline();
+      return;
+    }
 
-      clone.style.position = 'absolute';
-      clone.style.top = (rect.top + scrollY) + 'px';
-      clone.style.left = rect.left + 'px';
-      clone.style.width = rect.width + 'px';
-      clone.style.height = rect.height + 'px';
-      clone.style.margin = '0';
-      clone.style.zIndex = '9999';
-      clone.style.transition = 'all 0.9s ease-in-out';
-      clone.style.borderRadius = '0';
+    currentStep++;
 
-      const overlay = document.createElement('div');
-      overlay.classList.add('project-overlay');
-      overlay.style.position = 'fixed';
-      overlay.style.top = 0;
-      overlay.style.left = 0;
-      overlay.style.width = '100vw';
-      overlay.style.height = '100vh';
-      overlay.style.zIndex = '9998';
-      overlay.style.background = 'transparent';
-      overlay.style.pointerEvents = 'none';
-
-      document.body.appendChild(overlay);
-      document.body.appendChild(clone);
-
-      requestAnimationFrame(() => {
-        clone.style.top = scrollY + 'px';
-        clone.style.left = '0';
-        clone.style.width = '100vw';
-        clone.style.height = '100vh';
-      });
+    if (currentStep >= milestones.length) {
+      startBtn.disabled = true;
+      startBtn.innerHTML = `That’s me! Unless you have something better for me to move from here, ofcourse`;
+      startBtn.classList.add("end-state");
 
       setTimeout(() => {
-        const projectId = card.getAttribute('data-project');
-        window.location.href = `projects/${projectId}.html`;
-      }, 1000);
-    });
-  });
+        startBtn.innerHTML = `Start again`;
+        startBtn.disabled = false;
+        startBtn.classList.add("restart");
+      }, 2000);
 
-  // ✅ LOGO click scrolls to top of HERO section
-const logoLink = document.getElementById("logo-link");
-if (logoLink) {
-  logoLink.addEventListener("click", (e) => {
-    e.preventDefault();
-    const heroSection = document.getElementById("hero");
-    if (heroSection) {
-      heroSection.scrollIntoView({ behavior: "smooth" });
+      return;
+    }
+
+    const milestone = milestones[currentStep];
+    const left = milestone.parentElement.style.left;
+    const top = milestone.parentElement.style.top;
+
+    const label = milestone.dataset.label;
+    const year = milestone.parentElement.querySelector('.milestone-label')?.textContent || "";
+
+    timelineBall.style.left = left;
+    timelineBall.style.top = top;
+
+    timelineBall.innerHTML = `
+      <div class="timeline-label">${label}</div>
+      <div class="timeline-year">${year}</div>
+    `;
+
+    milestone.classList.add("reached");
+
+    if (currentStep === 0) {
+      startBtn.innerHTML = `And then? <i class="fa-solid fa-arrow-right"></i>`;
+      startBtn.classList.add("started");
     }
   });
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  const navLinks = document.querySelectorAll('.side-nav a');
-  const workSection = document.getElementById('work');
-  const heroSection = document.getElementById('hero');
-
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        navLinks.forEach(link => link.classList.remove('active'));
-
-        if (entry.target.id === 'work') {
-          document.querySelector('.side-nav a[href*="#work"]').classList.add('active');
-        } else if (entry.target.id === 'hero') {
-          document.querySelector('.side-nav a[href*="#hero"]').classList.add('active');
-        }
-      }
-    });
-  }, {
-    threshold: 0.6
-  });
-
-  if (workSection) observer.observe(workSection);
-  if (heroSection) observer.observe(heroSection);
-});
-
-
-// ✅ TIMELINE BALL MOVEMENT LOGIC
-const startBtn = document.getElementById("startTimeline");
-const timelineBall = document.getElementById("timeline-ball");
-const milestones = [...document.querySelectorAll(".milestone")];
-let currentStep = -1;
-
-function resetTimeline() {
-  currentStep = -1;
-  timelineBall.style.left = "10%";
-  timelineBall.style.top = "70%";
-  timelineBall.innerHTML = "";
-
-  milestones.forEach(m => m.classList.remove("reached"));
-
-  startBtn.innerHTML = `View my journey`;
-  startBtn.disabled = false;
-  startBtn.classList.remove("end-state", "started", "restart");
-}
-
-startBtn.addEventListener("click", () => {
-  // Restart mode
-  if (startBtn.classList.contains("restart")) {
-    resetTimeline();
-    return;
-  }
-
-  currentStep++;
-
-  if (currentStep >= milestones.length) {
-    startBtn.disabled = true;
-    startBtn.innerHTML = `That’s me! Unless you have something better for me to move from here, ofcourse`;
-    startBtn.classList.add("end-state");
-
-    // Show restart after 2s
-    setTimeout(() => {
-      startBtn.innerHTML = `Start again`;
-      startBtn.disabled = false;
-      startBtn.classList.add("restart");
-    }, 2000);
-
-    return;
-  }
-
-  const milestone = milestones[currentStep];
-  const left = milestone.parentElement.style.left;
-  const top = milestone.parentElement.style.top;
-
-  const label = milestone.dataset.label;
-  const year = milestone.parentElement.querySelector('.milestone-label')?.textContent || "";
-
-  timelineBall.style.left = left;
-  timelineBall.style.top = top;
-
-  timelineBall.innerHTML = `
-    <div class="timeline-label">${label}</div>
-    <div class="timeline-year">${year}</div>
-  `;
-
-  milestone.classList.add("reached");
-
-  if (currentStep === 0) {
-    startBtn.innerHTML = `And then? <i class="fa-solid fa-arrow-right"></i>`;
-    startBtn.classList.add("started");
-  }
-});
-
-
 
 });
