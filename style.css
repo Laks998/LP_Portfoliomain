@@ -706,80 +706,890 @@ body {
 }
 
 
-/* Timeline Section Styles */
-.timeline-section {
-  height: 100vh;  /* same height as hero */
-  width: 100%;
+#timeline-section {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
   background: radial-gradient(circle at center, #161515 0%, #2c2a2a 100%);
+  overflow: hidden;
+}
+
+.timeline-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.timeline-path {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-family: 'Migra', serif;
+  color: rgb(241, 228, 228);
+  background: radial-gradient(circle at center, #161515 0%, #2c2a2a 100%);
+}
+
+/* ========== BALL ========== */
+.ball {
+  width: 140px;
+  height: 140px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 4rem;
-  box-sizing: border-box;
+  cursor: pointer;
+
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #353333, #4b4a4a);
+  background-image: url('assets/rough_ball_stroke.png');
+  background-repeat: no-repeat;
+  background-size: 110% 110%;
+  background-position: center;
+
+  font-family: 'Migra', serif;
+  font-weight: bold;
+  font-size: 0.5rem;
+  text-align: center;
+  color: #EB676C;
+  text-shadow: 0 1px 1px #302e2e;
+
+  box-shadow:
+    0 25px 40px rgba(0, 0, 0, 0.7),
+    0 10px 20px rgba(0, 0, 0, 0.5);
+
+  transition:
+    top 0.5s ease,
+    left 0.5s ease,
+    box-shadow 0.3s ease,
+    transform 0.4s ease,
+    background 0.4s ease,
+    color 0.4s ease;
 }
 
-.timeline-wrapper {
+/* Hover inverts */
+.ball.clickable:hover {
+  background: #EB676C;
+  color: black;
+  text-shadow: none;
+}
+
+
+/* Stays inverted + expands */
+.ball.expanded {
+  width: 420px;         /* 140 * 3 */
+  height: 420px;
+  transform: translate(-50%, -50%);
+  background: #EB676C !important;
+  color: rgb(36, 35, 35) !important;
+  text-shadow: none !important;
+  z-index: 10;
+  transition:
+    width 0.6s ease,
+    height 0.6s ease,
+    background 0.6s ease,
+    color 0.6s ease;
+}
+
+
+.ball.clickable {
+  animation: pulse 1.5s ease-in-out infinite;
+  box-shadow:
+    0 30px 50px rgba(0, 0, 0, 0.75),
+    0 12px 25px rgba(0, 0, 0, 0.6);
+}
+
+
+/* Lock-in inversion after click */
+.ball.inverted {
+  background: #EB676C !important;
+  color: rgb(48, 46, 46) !important;
+  text-shadow: none !important;
+}
+
+/* ========== TEXT ========== */
+#instruction {
+  font-size: 1rem;
+  line-height: 1.5;
+  width: 90%;
+  text-align: center;
+  pointer-events: none;
+  user-select: none;
+  font-family: 'Space Grotesk', sans-serif;
+  transition: font-size 0.6s ease, color 0.6s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* ========== ANIMATIONS ========== */
+@keyframes pulse {
+  0%   { box-shadow: 0 15px 20px rgba(0, 0, 0, 0.3); }
+  50%  { box-shadow: 0 20px 25px rgba(0, 0, 0, 0.4); }
+  100% { box-shadow: 0 15px 20px rgba(0, 0, 0, 0.3); }
+}
+
+@keyframes bounce {
+  0%   { transform: scale(1) translate(-50%, -50%); }
+  30%  { transform: scale(1.05, 0.95) translate(-50%, -52%); }
+  60%  { transform: scale(0.98, 1.02) translate(-50%, -48%); }
+  100% { transform: scale(1) translate(-50%, -50%); }
+}
+
+.bounce {
+  animation: bounce 0.5s ease;
+}
+
+/* ========== LABELS ========== */
+#name-label {
+  position: absolute;
+  top: 50%;
+  left: 45%;
+  transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 3rem;
-  width: 100%;
-  max-width: 1000px;
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
 }
 
-.timeline-label {
+.name-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Ensures all lines align left */
+}
+
+#name-label .line {
+  font-family: 'Migra', serif;
+  font-size: 18rem;
+  font-weight: 1000;
+  color: white;
+  white-space: nowrap;
+  line-height: .5;
+  opacity: 0.1; /* Only the name is low opacity now */
+}
+
+#name-label .taglines {
+  font-family: 'Space Grotesk', sans-serif;
+  position: absolute;
+  top: 62%;         /* 🟡 Shift vertically - tweak if needed */
+  left: 53rem;      /* 🟡 Horizontal offset to go under "MI" */
+  font-size: 1rem;
+  font-weight: 400;
+  color: rgb(241, 228, 228);
+  line-height: 2;
+  text-align: left;
+  opacity: 1;
+}
+
+.name-block {
+  position: relative;
+}
+
+
+/* ========== NAVIGATION ========== */
+.side-nav {
+  position: fixed;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  z-index: 1000;
+}
+
+.side-nav a {
+  padding: 12px 20px;
+  border: 2px solid #EB676C;
+  background-color: transparent; /* 🟡 Make background transparent by default */
+  color: #EB676C;      /* 🟡 White text */
+  text-decoration: none;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  text-align: center;
+  min-width: 100px;
+  border-radius: 0;
+  transition: all 0.3s ease;
+}
+
+/* ✅ Force override box styles specifically for the logo link */
+.side-nav a.logo-nav {
+  padding: 0 !important;
+  border: none !important;
+  background: none !important;
+  min-width: auto !important;
+}
+
+
+.side-nav a:hover {
+  background-color: #EB676C; /* 🔁 On hover: filled white */
+  color: #000000;                       /* 🔁 Text becomes black */
+  cursor: pointer;
+}
+
+.side-nav a.active {
+  background-color: #EB676C;
+  color: black;
+  font-weight: bold;
+}
+
+
+.nav-vertical-line {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 80px; /* Adjust based on your nav’s distance from the right */
+  width: 2px;
+  background-color: white;
+  opacity: 0.3;
+  z-index: 500; /* Above background, but below nav buttons */
+}
+
+
+/* ========== UTILITY ========== */
+.hidden {
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.visible {
+  opacity: 2;
+  margin-top: 20px;
+  text-align: center;
+  transition: opacity 1s ease;
+}
+
+/* Step 1: Shrink back to normal size */
+.ball.shrinking {
+  transform: translate(-50%, -50%) scale(1);
+  transition: transform 1s ease;
+}
+
+/* Step 2: Shrink to dot and fade out */
+.ball.disappear {
+  transform: translate(-50%, -50%) scale(0.05);
+  opacity: 0;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+/* Step 1: Animate scale down with easing */
+@keyframes smoothShrink {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(0.3);
+    opacity: 0.8;
+  }
+}
+
+.ball.shrinking {
+  animation: smoothShrink 0.8s ease-in-out forwards;
+}
+
+/* Step 2: Shrink to dot and fade out */
+@keyframes shrinkToDot {
+  0% {
+    transform: translate(-50%, -50%) scale(0.3);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(0.05);
+    opacity: 0;
+  }
+}
+
+.ball.disappear {
+  animation: shrinkToDot 0.5s ease-out forwards;
+}
+
+
+.drop-circle {
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 80px;
+  background: #EB676C;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 999;
+}
+
+.drop-circle .arrow {
+  font-size: 2rem;
+  color: black;
+}
+
+/* Trigger the drop with animation */
+.drop-circle.animate {
+  animation: dropAndBounce 1s ease-out forwards;
+  opacity: 1;
+  z-index: 10000; /* Make sure it's above everything */
+  pointer-events: auto; /* Allow clicks */
+}
+
+
+@keyframes dropAndBounce {
+  0% {
+    top: -100px;
+    transform: translateX(-50%) scale(1);
+  }
+  70% {
+    top: calc(100vh - 100px); /* 80px height + 20px padding */
+    transform: translateX(-50%) scale(1.1);
+  }
+  85% {
+    top: calc(100vh - 80px);  /* bounce up a bit */
+    transform: translateX(-50%) scale(0.95);
+  }
+  100% {
+    top: calc(100vh - 90px);  /* settle slightly above the bottom */
+    transform: translateX(-50%) scale(1);
+  }
+}
+
+/* ========== PROJECTS SECTION ========== */
+.projects-section {
+  background: radial-gradient(circle at center, #161515 0%, #2c2a2a 100%);
+  padding: 6rem;
+  display: flex;
+  justify-content: center;
+}
+
+
+.project-card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2.5 / 2;
+  background-color: #000000;
+  color: white;
+  overflow: hidden;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  align-items: left;
+  justify-content: left;
+  font-size: 3rem;
+  font-weight: 800;
+  font-family: 'Migra', serif;
+  border-radius: 0;
+  
+}
+
+.project-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px; /* <— reduced gap */
+  flex: 1;
+  max-width: none;
+  background: none !important;
+  max-width: 1000px;     /* ✅ Lock the grid size */
+  width: 100%;
+  margin: 0 auto;         /* ✅ Center it */
+  padding-right: 60px;    /* ✅ Leave space from right nav */
+  box-sizing: border-box;
+}
+
+
+.project-card .default-label {
+  position: absolute;
+  font-size: 3rem;
+  font-weight: bold;
+  color: #EB676C;
+  z-index: 1;
+  pointer-events: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.project-card:hover .default-label {
+  opacity: 0; /* Hide it on hover */
+}
+
+/* Hover Reveal */
+.project-card .project-hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #000;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  display: flex;
+  align-items: flex-end; /* Align text to bottom */
+  justify-content: flex-end; /* Align text to right */
+  padding: 1.5rem;
+  box-sizing: border-box;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.project-card:hover .project-hover {
+  opacity: 1;
+}
+
+.project-card .project-hover img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  opacity: 0.5; /* ✅ Half-visible image */
+  z-index: 0;
+}
+
+.project-card .project-info {
+  position: relative;
+  z-index: 2; /* ✅ Ensure text is above image */
+  color: #e6d8d8;
+  text-align: right;
+}
+
+.project-info h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.project-info p {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .8rem;
+  font-weight: 400;
+  margin: 0;
+  opacity: 1; /* ✅ Full opacity */
+}
+
+
+
+/* Responsive */
+@media (max-width: 768px) {
+  .project-card {
+    width: 80%; /* Stack in one column on small screens */
+  }
+}
+
+
+#hero {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  background: radial-gradient(circle at center, #161515 0%, #2c2a2a 100%);
+}
+
+.ball.back-to-original {
+  width: 140px;
+  height: 140px;
+  background: #EB676C;
+  color: black !important;
+  transition: width 0.6s ease, height 0.6s ease, background 0.6s ease;
+}
+
+.ball.arrow-drop {
+  font-size: 3rem;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-shadow: none;
+
+  /* 🔥 ADD THIS: triggers dropFromHere animation */
+  animation: dropFromHere 1s ease-out forwards;
+}
+
+
+@keyframes dropFromHere {
+  0% {
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  70% {
+    top: var(--dropDistance);
+    transform: translate(-50%, 0) scale(1.1);
+  }
+  85% {
+    top: calc(var(--dropDistance) + 20px);
+    transform: translate(-50%, 0) scale(0.95);
+  }
+  100% {
+    top: calc(var(--dropDistance) + 10px);
+    transform: translate(-50%, 0) scale(1);
+  }
+}
+
+@media (max-width: 900px) {
+  .project-cards {
+    grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
+    width: 80%;
+  }
+}
+
+@media (max-width: 600px) {
+  .project-cards {
+    grid-template-columns: 1fr; /* Stack */
+    width: 90%;
+  }
+}
+
+/* Fullscreen Project View Overlay */
+.project-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: black; /* can be transparent if preferred */
+  z-index: 9999;
+  pointer-events: none; /* prevent blocking */
+}
+
+
+.project-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.project-overlay img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s ease;
+}
+
+.project-card-clone {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  font-size: 4rem;
+  font-weight: 800;
+  font-family: 'Migra', serif;
+  color: white;
+  background-color: #000;
+  overflow: hidden;
+  
+}
+
+.project-card-clone img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  opacity: 0.5;
+}
+
+.project-card-clone .project-info {
+  z-index: 1;
+  text-align: right;
+  color: white;
+  padding: 1.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.project-card-clone,
+.project-overlay {
+  pointer-events: none;
+}
+
+.project-card-clone .project-hover {
+  opacity: 1 !important;
+}
+
+/* ✅ Remove box styles from logo link */
+.logo-nav {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ✅ Style the image itself */
+.logo-image {
+  width: 50px;
+  height: auto;
+  object-fit: contain;
+  filter: brightness(85%);
+  transition: transform 0.3s ease;
+  display: block;
+}
+
+.logo-image:hover {
+  transform: scale(1.1);
+}
+
+.work-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12rem;
+  font-weight: 1000;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  color: #EB676C;
+  opacity: 0.15;
+  user-select: none;
+  pointer-events: none;
+  line-height: 1;
+}
+
+@media (max-width: 768px) {
+  .work-label {
+    display: none;
+  }
+
+  .projects-wrapper {
+    flex-direction: column;
+    padding: .5rem;
+  }
+}
+
+.projects-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1600px;
+}
+
+
+.projects-inner {
+  display: flex;
+  align-items: flex-start;
+  gap: 4rem;
+  width: 100%;
+  max-width: 1400px; /* Optional constraint */
+  display: flex;
+  align-items: stretch;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Centered social icons in hero */
+#hero .social-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+#hero .icon {
+  width: 38px;
+  height: 38px;
+  border: 1px solid #EB676C;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s, transform 0.3s;
+  text-decoration: none;
+}
+
+#hero .icon svg {
+  width: 20px;
+  height: 20px;
+  stroke: #EB676C;
+}
+
+#hero .icon:hover {
+  background: #EB676C;
+  transform: scale(1.1);
+}
+
+#hero .icon:hover svg {
+  stroke: black;
+}
+
+
+#timeline-section {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(circle at center, #161515 0%, #2c2a2a 100%);
+  overflow: hidden;
+}
+
+.timeline-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.timeline-path {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.timeline-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* ⬅ pushes elements to top & bottom */
+  align-items: center;
+  padding: 3rem 2rem;
+  box-sizing: border-box;
+  z-index: 5;
+}
+
+
+/* Stops */
+
+
+.timeline-title {
   font-family: 'Space Grotesk', sans-serif;
   font-size: 12rem;
   font-weight: 1000;
   color: #EB676C;
   opacity: 0.15;
   user-select: none;
-}
-
-.timeline-track {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  position: relative;
-  height: 10px;
-  background: #3b3b3b;
-  border-radius: 5px;
-}
-
-.timeline-point {
-  width: 14px;
-  height: 14px;
-  background: #EB676C;
-  border-radius: 50%;
-  position: relative;
+  
+  position: absolute;
+  top: 5%;                   /* Aligns it near the top of the screen */
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  white-space: nowrap;
   z-index: 1;
 }
 
-.timeline-point::after {
-  content: attr(data-label);
+
+/* Ball */
+#timeline-ball {
   position: absolute;
-  top: 25px;
-  left: 50%;
-  transform: translateX(-50%);
-  color: #eee;
+  top: 70%;        /* Default position */
+  left: 10%;       /* Start far right */
+  transform: translate(-50%, -50%);
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: #00000072;
+  color: #EB676C;
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.85rem;
-  white-space: nowrap;
+  font-weight: 700;
+  font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  z-index: 10;
+  transition: top 1s ease, left 1s ease;
+  flex-direction: column; /* 👈 stack label and year vertically */
+  align-items: center;
+  text-align: center;
 }
 
-.timeline-ball {
+
+/* Stops */
+.milestone {
   position: absolute;
-  top: -22px;
-  left: 0%;
-  transform: translateX(-50%);
-  background: #EB676C;
-  color: black;
-  font-weight: bold;
-  font-family: 'Space Grotesk', sans-serif;
-  padding: 0.5rem 1rem;
-  border-radius: 50px;
-  transition: left 0.6s ease;
-  z-index: 2;
-  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.3;
+  transition: background 0.5s;
 }
+
+.milestone.reached {
+  background: #EB676C;
+  opacity: 1;
+}
+
+.timeline-start-btn {
+  margin-top: 2rem;
+  padding: 0.8rem 1.6rem;
+  font-size: 1rem;
+  font-family: 'Space Grotesk', sans-serif;
+  background: transparent;         /* border-only style */
+  color: white;
+  border: 1px solid white;
+  cursor: pointer;
+  border-radius: 0px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;                         /* space between text and icon */
+}
+
+.timeline-start-btn i {
+  font-size: 1.2rem;
+}
+
+.timeline-start-btn:hover {
+  background: white;
+  color: black;
+}
+
+
+.milestone-wrapper {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translate(-50%, -50%);
+}
+
+.milestone-label {
+  display: none;
+}
+
+.timeline-label {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #EB676C;
+  margin-bottom: 0.2rem;
+}
+
+.timeline-year {
+  font-size: 0.8rem;
+  color: #ffffff;
+  opacity: 0.8;
+}
+
+.timeline-start-btn.restart {
+  background: none;
+  color: white;
+  border: 1px solid white;
+}
+
+.timeline-start-btn.restart:hover {
+  background: white;
+  color: black;
+}
+
+

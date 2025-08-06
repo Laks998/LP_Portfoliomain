@@ -247,16 +247,73 @@ document.addEventListener("DOMContentLoaded", () => {
   if (heroSection) observer.observe(heroSection);
 });
 
-  // 🟢 TIMELINE BALL MOVEMENT
-  const timelinePoints = document.querySelectorAll(".timeline-point");
-  const timelineBall = document.getElementById("timelineBall");
 
-  timelinePoints.forEach((point) => {
-    point.addEventListener("click", () => {
-      const offset = point.offsetLeft - 20; // Slight left adjustment
-      timelineBall.style.transform = `translateX(${offset}px)`;
-      timelineBall.textContent = point.dataset.label;
-    });
-  });
+// ✅ TIMELINE BALL MOVEMENT LOGIC
+const startBtn = document.getElementById("startTimeline");
+const timelineBall = document.getElementById("timeline-ball");
+const milestones = [...document.querySelectorAll(".milestone")];
+let currentStep = -1;
+
+function resetTimeline() {
+  currentStep = -1;
+  timelineBall.style.left = "10%";
+  timelineBall.style.top = "70%";
+  timelineBall.innerHTML = "";
+
+  milestones.forEach(m => m.classList.remove("reached"));
+
+  startBtn.innerHTML = `View my journey`;
+  startBtn.disabled = false;
+  startBtn.classList.remove("end-state", "started", "restart");
+}
+
+startBtn.addEventListener("click", () => {
+  // Restart mode
+  if (startBtn.classList.contains("restart")) {
+    resetTimeline();
+    return;
+  }
+
+  currentStep++;
+
+  if (currentStep >= milestones.length) {
+    startBtn.disabled = true;
+    startBtn.innerHTML = `That’s me! ✅`;
+    startBtn.classList.add("end-state");
+
+    // Show restart after 2s
+    setTimeout(() => {
+      startBtn.innerHTML = `Start again`;
+      startBtn.disabled = false;
+      startBtn.classList.add("restart");
+    }, 2000);
+
+    return;
+  }
+
+  const milestone = milestones[currentStep];
+  const left = milestone.parentElement.style.left;
+  const top = milestone.parentElement.style.top;
+
+  const label = milestone.dataset.label;
+  const year = milestone.parentElement.querySelector('.milestone-label')?.textContent || "";
+
+  timelineBall.style.left = left;
+  timelineBall.style.top = top;
+
+  timelineBall.innerHTML = `
+    <div class="timeline-label">${label}</div>
+    <div class="timeline-year">${year}</div>
+  `;
+
+  milestone.classList.add("reached");
+
+  if (currentStep === 0) {
+    startBtn.innerHTML = `And then? <i class="fa-solid fa-arrow-right"></i>`;
+    startBtn.classList.add("started");
+  }
+});
+
+
 
 });

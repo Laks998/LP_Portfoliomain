@@ -9,6 +9,8 @@
 
 <!-- Space Grotesk -->
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
 
 </head>
 <body>
@@ -77,19 +79,57 @@
   </section>
   <!-- ✅ HERO SECTION END -->
 
-<!-- 🌟 TIMELINE SECTION -->
-<section id="timeline" class="timeline-section">
+  
+<!-- 🟨 TIMELINE SECTION START -->
+<section id="timeline-section">
+  <div class="timeline-title">TIMELINE</div>
+
   <div class="timeline-wrapper">
-    <div class="timeline-label">TIMELINE</div>
-    <div class="timeline-track">
-      <div class="timeline-ball" id="timelineBall">Start</div>
-      <div class="timeline-point" data-label="B.Arch"></div>
-      <div class="timeline-point" data-label="Clearisk"></div>
-      <div class="timeline-point" data-label="Sportscove"></div>
-      <div class="timeline-point" data-label="Now"></div>
+    <div class="timeline-container">
+      <div class="timeline-path">
+
+        <!-- Only milestone-wrapper directly inside timeline-path -->
+        <div class="milestone-wrapper" style="left: 10%; top: 70%;">
+          <div class="milestone" data-label="B.Arch" data-year="2015"></div>
+          <div class="milestone-label">2015</div>
+        </div>
+        <div class="milestone-wrapper" style="left: 22%; top: 90%;">
+          <div class="milestone" data-label="Transition" data-year="2020"></div>
+          <div class="milestone-label">2020</div>
+        </div>
+        <div class="milestone-wrapper" style="left: 36%; top: 40%;">
+          <div class="milestone" data-label="Clearisk" data-year="2021"></div>
+          <div class="milestone-label">2021</div>
+        </div>
+        <div class="milestone-wrapper" style="left: 50%; top: 35%;">
+          <div class="milestone" data-label="Freelancing" data-year="2022"></div>
+          <div class="milestone-label">2022</div>
+        </div>
+        <div class="milestone-wrapper" style="left: 72%; top: 30%;">
+          <div class="milestone" data-label="MSc HCI" data-year="2023"></div>
+          <div class="milestone-label">2023</div>
+        </div>
+        <div class="milestone-wrapper" style="left: 84%; top: 25%;">
+          <div class="milestone" data-label="Consultcraft" data-year="2025"></div>
+          <div class="milestone-label">2025</div>
+        </div>
+
+      </div>
+
+      <div id="timeline-ball"></div>
     </div>
+
+    <button id="startTimeline" class="timeline-start-btn">
+  View my Journey <i class="fa-solid fa-arrow-right"></i>
+</button>
+
+
   </div>
 </section>
+
+
+<!-- 🟨 TIMELINE SECTION END -->
+
 
 <!-- 🔽 Projects Section START -->
 <section id="work" class="projects-section">
