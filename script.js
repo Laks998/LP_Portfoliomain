@@ -247,5 +247,16 @@ document.addEventListener("DOMContentLoaded", () => {
   if (heroSection) observer.observe(heroSection);
 });
 
+  // 🟢 TIMELINE BALL MOVEMENT
+  const timelinePoints = document.querySelectorAll(".timeline-point");
+  const timelineBall = document.getElementById("timelineBall");
+
+  timelinePoints.forEach((point) => {
+    point.addEventListener("click", () => {
+      const offset = point.offsetLeft - 20; // Slight left adjustment
+      timelineBall.style.transform = `translateX(${offset}px)`;
+      timelineBall.textContent = point.dataset.label;
+    });
+  });
 
 });
