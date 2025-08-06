@@ -140,3 +140,15 @@ footer {
 .logo-image:hover {
   transform: scale(1.1);
 }
+
+.quad {
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.quad.visible {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 2;
+}

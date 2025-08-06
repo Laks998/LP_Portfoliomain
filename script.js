@@ -222,4 +222,30 @@ if (logoLink) {
   });
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+  const navLinks = document.querySelectorAll('.side-nav a');
+  const workSection = document.getElementById('work');
+  const heroSection = document.getElementById('hero');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => link.classList.remove('active'));
+
+        if (entry.target.id === 'work') {
+          document.querySelector('.side-nav a[href*="#work"]').classList.add('active');
+        } else if (entry.target.id === 'hero') {
+          document.querySelector('.side-nav a[href*="#hero"]').classList.add('active');
+        }
+      }
+    });
+  }, {
+    threshold: 0.6
+  });
+
+  if (workSection) observer.observe(workSection);
+  if (heroSection) observer.observe(heroSection);
+});
+
+
 });

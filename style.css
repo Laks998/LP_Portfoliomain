@@ -213,6 +213,13 @@ body {
   cursor: pointer;
 }
 
+.side-nav a.active {
+  background-color: white;
+  color: black;
+  font-weight: bold;
+}
+
+
 .nav-vertical-line {
   position: fixed;
   top: 0;

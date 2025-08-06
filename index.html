@@ -13,6 +13,16 @@
 </head>
 <body>
 
+  <!-- ✅ Updated Side Nav with Logo as First Item -->
+  <div class="side-nav">
+    <a href="#hero" id="logo-link" class="logo-nav">
+      <img src="assets/logo.png" alt="Home Logo" class="logo-image" />
+    </a>
+    <a href="#work">Work</a>
+    <a href="about.html">About</a>
+    <a href="assets/Resume_LP.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
+  </div>
+
   <!-- ✅ HERO SECTION START -->
   <section id="hero">
     <div class="nav-vertical-line"></div>
@@ -33,21 +43,6 @@
         </div>
       </div>
     </div>
-
-    <!-- ✅ LOGO as home -->
-<!-- ✅ LOGO as Home (scrolls to top) -->
-
-
-<!-- Existing Side Nav -->
-<!-- ✅ Updated Side Nav with Logo as First Item -->
-<div class="side-nav">
-  <a href="#hero" id="logo-link" class="logo-nav">
-    <img src="assets/logo.png" alt="Home Logo" class="logo-image" />
-  </a>
-  <a href="#work">Work</a>
-  <a href="about.html">About</a>
-  <a href="assets/Resume_LP.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
-</div>
 
 
   </section>
@@ -136,6 +131,51 @@
   </div> <!-- End .projects-wrapper -->
 </section>
 <!-- 🔼 Projects Section END -->
+
+
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const navLinks = document.querySelectorAll(".side-nav a");
+    const currentPath = window.location.pathname;
+
+    // About page case
+    if (currentPath.includes("about.html")) {
+      navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href").includes("about")) {
+          link.classList.add("active");
+        }
+      });
+      return;
+    }
+
+    // Scroll sections
+    const sections = {
+      hero: document.querySelector("#hero"),
+      work: document.querySelector("#work"),
+    };
+
+    function getActiveSection() {
+      const scrollY = window.scrollY + window.innerHeight / 2;
+      const workTop = sections.work.offsetTop;
+      return scrollY >= workTop ? "work" : "hero";
+    }
+
+    function updateActiveNav() {
+      const activeId = getActiveSection();
+      console.log("Active Section:", activeId); // 🔍 Debug log
+      navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === `#${activeId}`) {
+          link.classList.add("active");
+        }
+      });
+    }
+
+    updateActiveNav();
+    window.addEventListener("scroll", updateActiveNav);
+  });
+  </script>
 
   <script src="script.js" defer></script>
 </body>
