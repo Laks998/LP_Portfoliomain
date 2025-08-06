@@ -82,7 +82,7 @@ body {
 
 .side-nav a {
   padding: 12px 20px;
-  border: 2px solid rgb(241, 228, 228);
+  border: 2px solid #EB676C;
   background-color: transparent;
   color: #EB676C;
   text-decoration: none;
@@ -96,8 +96,8 @@ body {
 
 .side-nav a:hover,
 .side-nav a.active {
-  background-color: rgb(241, 228, 228);
-  color: #0f0f0f;
+  background-color: #EB676C;
+  color: #000000;
 }
 
 .nav-vertical-line {
