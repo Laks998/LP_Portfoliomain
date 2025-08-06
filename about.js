@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
       revealedCount++;
     }
   }
+  
 
   // Trigger reveals based on scroll position
   window.addEventListener('scroll', () => {

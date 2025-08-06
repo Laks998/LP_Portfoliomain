@@ -198,6 +198,15 @@ body {
   transition: all 0.3s ease;
 }
 
+/* ✅ Force override box styles specifically for the logo link */
+.side-nav a.logo-nav {
+  padding: 0 !important;
+  border: none !important;
+  background: none !important;
+  min-width: auto !important;
+}
+
+
 .side-nav a:hover {
   background-color: rgb(241, 228, 228); /* 🔁 On hover: filled white */
   color: #eb676b78;                       /* 🔁 Text becomes black */
@@ -365,7 +374,7 @@ body {
   position: absolute;
   font-size: 3rem;
   font-weight: bold;
-  color: white;
+  color: #EB676C;
   z-index: 1;
   pointer-events: none;
   top: 50%;
@@ -416,7 +425,7 @@ body {
 .project-card .project-info {
   position: relative;
   z-index: 2; /* ✅ Ensure text is above image */
-  color: #EB676C;
+  color: #e6d8d8;
   text-align: right;
 }
 
@@ -576,3 +585,27 @@ body {
 .project-card-clone .project-hover {
   opacity: 1 !important;
 }
+
+/* ✅ Remove box styles from logo link */
+.logo-nav {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ✅ Style the image itself */
+.logo-image {
+  width: 50px;
+  height: auto;
+  object-fit: contain;
+  filter: brightness(85%);
+  transition: transform 0.3s ease;
+  display: block;
+}
+
+.logo-image:hover {
+  transform: scale(1.1);
+}
+

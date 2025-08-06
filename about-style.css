@@ -77,13 +77,14 @@ body {
   flex-direction: column;
   gap: 20px;
   z-index: 1000;
+  align-items: center;
 }
 
 .side-nav a {
   padding: 12px 20px;
   border: 2px solid rgb(241, 228, 228);
   background-color: transparent;
-  color: rgb(241, 228, 228);
+  color: #EB676C;
   text-decoration: none;
   font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
@@ -116,4 +117,26 @@ footer {
   font-size: 1rem;
   border-top: 1px solid #333;
   margin-top: 4rem;
+}
+
+/* Remove box styles for just the logo */
+.side-nav a.logo-nav {
+  padding: 0 !important;
+  border: none !important;
+  background: none !important;
+  min-width: auto !important;
+}
+
+/* Logo image styles */
+.logo-image {
+  width: 50px;
+  height: auto;
+  object-fit: contain;
+  filter: brightness(85%);
+  transition: transform 0.3s ease;
+  display: block;
+}
+
+.logo-image:hover {
+  transform: scale(1.1);
 }
