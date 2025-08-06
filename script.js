@@ -123,13 +123,14 @@ document.addEventListener("DOMContentLoaded", () => {
         ballExpanded = false;
 
         // Add scroll-to-project click
-        ball.addEventListener("click", function scrollToProjects() {
-          const projectsSection = document.getElementById("work");
-          if (projectsSection) {
-            projectsSection.scrollIntoView({ behavior: "smooth" });
-          }
-          ball.removeEventListener("click", scrollToProjects);
-        });
+        ball.addEventListener("click", function scrollToTimeline() {
+  const timelineSection = document.getElementById("timeline-section");
+  if (timelineSection) {
+    timelineSection.scrollIntoView({ behavior: "smooth" });
+  }
+  ball.removeEventListener("click", scrollToTimeline);
+});
+
 
       }, 700);
     }
@@ -146,13 +147,14 @@ document.addEventListener("DOMContentLoaded", () => {
         ball.classList.add("arrow-drop", "clickable");
         ball.classList.remove("expanded");
 
-        ball.addEventListener("click", function scrollToProjectsAgain() {
-          const projectsSection = document.getElementById("work");
-          if (projectsSection) {
-            projectsSection.scrollIntoView({ behavior: "smooth" });
-          }
-          ball.removeEventListener("click", scrollToProjectsAgain);
-        });
+        ball.addEventListener("click", function scrollToTimelineAgain() {
+  const timelineSection = document.getElementById("timeline-section");
+  if (timelineSection) {
+    timelineSection.scrollIntoView({ behavior: "smooth" });
+  }
+  ball.removeEventListener("click", scrollToTimelineAgain);
+});
+
       }
     });
   }, { threshold: 0.6 });
@@ -278,7 +280,7 @@ startBtn.addEventListener("click", () => {
 
   if (currentStep >= milestones.length) {
     startBtn.disabled = true;
-    startBtn.innerHTML = `That’s me! ✅`;
+    startBtn.innerHTML = `That’s me! Unless you have something better for me to move from here, ofcourse`;
     startBtn.classList.add("end-state");
 
     // Show restart after 2s
