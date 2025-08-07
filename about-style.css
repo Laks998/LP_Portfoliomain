@@ -6,6 +6,16 @@ body {
   color: rgb(241, 228, 228);
 }
 
+.site-footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: #aaa;
+  font-size: 0.875rem;
+  border-top: 1px solid #333;
+  margin-top: 4rem;
+}
+
+
 .about-section {
   padding: 5rem 4rem 5rem 6rem;
   display: flex;
