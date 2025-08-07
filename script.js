@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const startBtn = document.getElementById("startTimeline");
   const timelineBall = document.getElementById("timeline-ball");
   const milestones = [...document.querySelectorAll(".milestone")];
+  
 
   let moveCount = 0;
   let clickEnabled = false;
@@ -165,8 +166,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // ✅ Timeline Logic FIXED & included
   function resetTimeline() {
     currentStep = -1;
-    timelineBall.style.left = "10%";
-    timelineBall.style.top = "70%";
+    timelineBall.style.left = "8%";
+    timelineBall.style.top = "75%";
     timelineBall.innerHTML = "";
 
     milestones.forEach(m => m.classList.remove("reached"));
@@ -275,7 +276,6 @@ projectCards.forEach(card => {
     }, 1000);
   });
 });
-
 
 
 });
