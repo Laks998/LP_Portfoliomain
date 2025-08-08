@@ -2,37 +2,43 @@
 body {
   margin: 0;
   font-family: 'Space Grotesk', sans-serif;
-  background: #0a0a0a;
+  background: radial-gradient(circle at center, #161515 0%, #2c2a2a 100%);
   color: #f1f1f1;
   line-height: 1.8;
   overflow-x: hidden;
 }
 
+/* Container with scroll animation */
 .project-detail {
   max-width: 1000px;
   margin: 100px auto;
   padding: 0 20px;
+}
+
+/* Scroll-in animation for individual sections */
+.project-detail > section {
   opacity: 0;
   transform: translateY(50px);
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-.project-detail.visible {
+.project-detail > section.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Headings */
+/* Project Title */
 .project-title {
   font-family: 'Migra', serif;
   font-size: 3.5rem;
-  background: linear-gradient(to right, #ff7b00, #ffd000);
+  background: linear-gradient(to right, #c15b5e, #EB676C);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 60px;
   text-align: center;
 }
 
+/* Section Headings */
 section h2 {
   font-size: 2rem;
   margin-top: 60px;
@@ -47,10 +53,10 @@ section h2::before {
   left: 0;
   width: 60px;
   height: 3px;
-  background: linear-gradient(90deg, #ff7b00, #ffd000);
+  background: linear-gradient(to right, #c15b5e, #EB676C);
 }
 
-/* Paragraphs & Lists */
+/* Paragraphs, Lists, Quotes */
 section p,
 section ul,
 section blockquote {
@@ -59,6 +65,7 @@ section blockquote {
   color: #cccccc;
 }
 
+/* List Items */
 section ul {
   list-style: none;
   padding-left: 0;
@@ -74,20 +81,20 @@ section ul li::before {
   content: "•";
   position: absolute;
   left: 0;
-  color: #ff9500;
+  color: #EB676C;
 }
 
 /* Blockquotes */
 blockquote {
   font-style: italic;
   font-size: 1.2rem;
-  border-left: 4px solid #ff7b00;
+  border-left: 4px solid #EB676C;
   padding-left: 16px;
-  color: #ffcc80;
+  color: #EB676C;
   margin-top: 30px;
 }
 
-/* Back Link */
+/* Back Link Button */
 .back-link {
   display: inline-block;
   margin-top: 80px;
@@ -106,13 +113,13 @@ blockquote {
   transform: scale(1.05);
 }
 
-/* Final Design Placeholder */
+/* Final Section Divider */
 section:last-of-type {
   border-top: 1px solid #333;
   padding-top: 40px;
 }
 
-/* Responsive */
+/* Responsive Typography */
 @media (max-width: 768px) {
   .project-title {
     font-size: 2.5rem;
@@ -121,9 +128,4 @@ section:last-of-type {
   section h2 {
     font-size: 1.6rem;
   }
-}
-
-.project-detail.visible {
-  opacity: 1;
-  transform: translateY(0);
 }

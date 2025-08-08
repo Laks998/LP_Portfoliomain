@@ -10,6 +10,7 @@ body {
 }
 
 .site-footer {
+  font-family: 'Space Grotesk', sans-serif;
   text-align: center;
   padding: 2rem 1rem;
   color: #aaa;
@@ -798,7 +799,7 @@ body {
   position: absolute;
   width: 16px;
   height: 16px;
-  background: white;
+  background: rgb(35, 34, 34);
   border-radius: 50%;
   opacity: 0.3;
   transition: background 0.5s;
@@ -815,7 +816,7 @@ body {
   font-size: 1rem;
   font-family: 'Space Grotesk', sans-serif;
   background: transparent;         /* border-only style */
-  color: white;
+  color: #EB676C;
   border: 1px solid white;
   cursor: pointer;
   border-radius: 0px;
@@ -830,7 +831,7 @@ body {
 }
 
 .timeline-start-btn:hover {
-  background: white;
+  background: #EB676C;
   color: black;
 }
 
@@ -862,12 +863,12 @@ body {
 
 .timeline-start-btn.restart {
   background: none;
-  color: white;
+  color: #EB676C;
   border: 1px solid white;
 }
 
 .timeline-start-btn.restart:hover {
-  background: white;
+  background: #EB676C;
   color: black;
 }
 
