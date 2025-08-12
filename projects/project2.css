@@ -129,3 +129,93 @@ section:last-of-type {
     font-size: 1.6rem;
   }
 }
+
+#design-process-animation {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  margin: 2rem auto;
+  height: 220px;
+  font-family: 'Space Grotesk', sans-serif;
+  user-select: none;
+}
+
+/* SVG container fills */
+#design-process-animation svg {
+  width: 100%;
+  height: 220px;
+  overflow: visible;
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none; /* So clicks pass through */
+}
+
+/* Animate stroke dashoffset to reveal path */
+#zigzag-path {
+  animation: drawZigzag 3s forwards ease-in-out;
+}
+
+/* Stage box container */
+.stage {
+  position: absolute;
+  top: var(--pos-y);
+  left: var(--pos-x);
+  cursor: pointer;
+  outline-offset: 4px;
+}
+
+/* The main rectangular box for stage name */
+.stage-box {
+  background: #8f4345;
+  color: white;
+  font-weight: 700;
+  padding: 0.8rem 1.2rem;
+  border-radius: 6px;
+  box-shadow: 0 5px 8px rgba(0,0,0,0.15);
+  font-size: 1rem;
+  text-align: center;
+  user-select: none;
+  transition: background-color 0.3s ease;
+  width: 130px;
+}
+
+/* Show detail list on focus or hover */
+.stage:hover .stage-box,
+.stage:focus .stage-box {
+  background-color: #EB676C;
+}
+
+/* Details below box */
+.stage-details {
+  margin-top: 0.4rem;
+  background: #e7f0fc;
+  border-radius: 4px;
+  padding: 0.5rem 0.7rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  font-size: 0.9rem;
+  color: #333;
+  max-width: 140px;
+  list-style: decimal inside;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
+  user-select: text;
+}
+
+/* Show details when parent stage is hovered or focused */
+.stage:hover .stage-details,
+.stage:focus .stage-details {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Keyframe for drawing zigzag line */
+@keyframes drawZigzag {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+

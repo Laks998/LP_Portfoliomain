@@ -64,10 +64,68 @@
       </ul>
     </section>
 
-    <section>
-      <h2>Design Process</h2>
-      <p>Our design process started with user research, where we identified major stakeholder roles and mapped their responsibilities.</p>
+<section>
+  <h2>Design Process</h2>
+  <p>Our design process started with user research, where we identified major stakeholder roles and mapped their responsibilities.</p>
 
+  <!-- Animated design process container -->
+  <div id="design-process-animation" aria-label="Animated design process timeline" role="list">
+    <svg viewBox="0 0 1000 220" aria-hidden="true" preserveAspectRatio="none">
+      <!-- Zigzag path -->
+      <path id="zigzag-path" fill="none" stroke="#204060" stroke-width="8" stroke-linejoin="round"
+            stroke-dasharray="1200" stroke-dashoffset="1200"
+            d="M 30 110 H 190 V 40 H 350 V 180 H 510 V 40 H 670 V 180 H 830 V 110 H 970" />
+    </svg>
+
+    <!-- Stages with titles and details -->
+    <div class="stage" style="--pos-x: 110px; --pos-y: 90px;" role="listitem" tabindex="0" aria-describedby="desc-research">
+      <div class="stage-box">RESEARCH</div>
+      <ul id="desc-research" class="stage-details" hidden>
+        <li>User Research</li>
+        <li>User Interview</li>
+        <li>Define user challenges</li>
+        <li>Define user goals</li>
+      </ul>
+    </div>
+
+    <div class="stage" style="--pos-x: 270px; --pos-y: 20px;" role="listitem" tabindex="0" aria-describedby="desc-empathise">
+      <div class="stage-box">EMPATHISE</div>
+      <ul id="desc-empathise" class="stage-details" hidden>
+        <li>User persona</li>
+        <li>Empathy Mapping</li>
+      </ul>
+    </div>
+
+    <div class="stage" style="--pos-x: 430px; --pos-y: 160px;" role="listitem" tabindex="0" aria-describedby="desc-ideate">
+      <div class="stage-box">IDEATE</div>
+      <ul id="desc-ideate" class="stage-details" hidden>
+        <li>Brainstorming</li>
+        <li>Card sorting</li>
+        <li>Information</li>
+      </ul>
+    </div>
+
+    <div class="stage" style="--pos-x: 590px; --pos-y: 20px;" role="listitem" tabindex="0" aria-describedby="desc-design">
+      <div class="stage-box">DESIGN</div>
+      <ul id="desc-design" class="stage-details" hidden>
+        <li>Wireframes</li>
+        <li>UI Elements</li>
+        <li>Final screens</li>
+      </ul>
+    </div>
+
+    <div class="stage" style="--pos-x: 750px; --pos-y: 160px;" role="listitem" tabindex="0" aria-describedby="desc-test">
+      <div class="stage-box">TEST</div>
+      <ul id="desc-test" class="stage-details" hidden>
+        <li>Prototype</li>
+        <li>User Testing</li>
+        <li>Learning and iterations</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+    <section>
       <div class="subsection">
         <h3>User Research – Roles and Functions</h3>
         <p>
