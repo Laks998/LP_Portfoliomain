@@ -29,12 +29,19 @@ body {
 
 /* Project Title */
 .project-title {
-  font-family: 'Migra', serif;
-  font-size: 3.5rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 4rem;
   background: linear-gradient(to right, #c15b5e, #EB676C);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 60px;
+  text-align: center;
+}
+
+.project-title .sub {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 1rem;
   text-align: center;
 }
 

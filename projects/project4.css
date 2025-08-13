@@ -40,16 +40,18 @@ body {
 }
 .p4-header h1 {
   margin: 0;
-  font-family: 'Migra', serif;
-  font-size: clamp(2rem, 3.6vw, 3.5rem);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 4rem; /* ~64px if root font-size is 16px */
+  font-weight: 2000; /* bold */
   background: linear-gradient(to right, #c15b5e, var(--accent));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
 .p4-header .sub {
   margin-top: 6px;
   color: var(--muted);
-  font-size: 1.05rem;
+  font-size: 1rem;
 }
 
 /* Flipbook wrapper */
@@ -58,7 +60,7 @@ body {
   justify-content: center;
   align-items: center;
   gap: 16px;
-  margin-top: 22px;
+  margin-top: 32px;
 }
 
 
@@ -84,7 +86,7 @@ body {
   position: absolute;
   top: 0; bottom: 0;
   width: 50%;
-  background-color:  #EB676C; /* light pink base */
+  background-color:  #e88386; /* light pink base */
 
   /* Polka dots with staggered rows */
   background-image:
@@ -119,12 +121,24 @@ body {
 /* Pages inside a sheet */
 .page {
   position: absolute;
-  top: 0; bottom: 0;
+  top: 0;
+  bottom: 0;
   width: 50%;
   overflow: hidden;
   background: var(--paper);
   backface-visibility: hidden;
+  border: 1px solid rgba(0,0,0,0.05); /* paper edge outline */
 }
+
+.page.right.front,
+.page.left.back {
+  background: linear-gradient(to right, #fff, #f8f8f8 98%);
+}
+
+.page.left.back {
+  background: linear-gradient(to left, #fff, #f8f8f8 98%);
+}
+
 
 /* RIGHT page (front of sheet) */
 .page.right {
@@ -146,6 +160,20 @@ body {
     0 2px 8px rgba(0,0,0,.08);
   transform: rotateY(180deg); /* because it is the back side of the sheet */
 }
+
+.sheet {
+  transform-style: preserve-3d;
+  transition: transform .9s cubic-bezier(.2,.8,.2,1);
+}
+
+.sheet.flipping .right.front {
+  box-shadow: inset -40px 0 40px rgba(0,0,0,0.25);
+}
+
+.sheet.flipping .left.back {
+  box-shadow: inset 40px 0 40px rgba(0,0,0,0.25);
+}
+
 
 /* Images fill page, keep proportion */
 .page img {
@@ -235,11 +263,16 @@ body {
 .book { cursor: grab; }
 .book:active { cursor: grabbing; }
 
-.flip-hint {
-  text-align: center;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 1rem;
-  color: rgba(255, 255, 255, 0.7);
-  margin-top: 2rem;
-  letter-spacing: 0.5px;
+.page.hint {
+  transform-origin: left center;
+  animation: demoFlip 1.2s ease-in-out 1; /* runs once */
+}
+
+@keyframes demoFlip {
+  0%   { transform: rotateY(0deg); }
+  50%  { transform: rotateY(-90deg); }  /* halfway flipped */
+  100% { transform: rotateY(0deg); }    /* back to start */
+}
+.page.hint.animate-flip {
+  animation: demoFlip 1.2s ease-in-out 1;
 }

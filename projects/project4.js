@@ -182,3 +182,23 @@
 
   updateUI();
 })();
+
+window.addEventListener('load', () => {
+  const hintPage = document.querySelector('.page.hint');
+  if (hintPage) {
+    hintPage.classList.add('animate-flip');
+  }
+});
+
+const bg = document.querySelector('.bg-animation');
+let angle = 0;
+
+function rotateBg() {
+  angle += 0.02; // slower = smaller number
+  bg.style.transform = `translate(-50%, -50%) rotate(${angle}rad)`;
+  requestAnimationFrame(rotateBg);
+}
+
+rotateBg();
+
+

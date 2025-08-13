@@ -39,3 +39,15 @@ document.querySelectorAll('#design-process-animation .stage').forEach(stage => {
   stage.setAttribute('aria-expanded', 'false');
 });
 
+// --- Flipbook hint fade-out on first interaction ---
+const book = document.getElementById('book');
+const flipHint = document.querySelector('.flip-hint-animation');
+
+if (book && flipHint) {
+  book.addEventListener('pointerdown', () => {
+    flipHint.style.transition = 'opacity 0.5s ease';
+    flipHint.style.opacity = '0';
+    // Optional: remove from DOM after fading
+    setTimeout(() => flipHint.remove(), 500);
+  }, { once: true }); // triggers only once
+}
