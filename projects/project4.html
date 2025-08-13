@@ -14,68 +14,127 @@
 <body>
 
   <main class="project4">
+    <a href="../index.html#projects" class="back-link">← Back to Home</a>
     <header class="p4-header">
-      <h1>Sketches</h1>
-      <p class="sub">Emotions through my pencil</p>
+      <h1>SketchBook</h1>
+      <p class="sub">The different emotions through my pencil</p>
     </header>
 
     <!-- Flipbook -->
     <section class="flipbook-wrap" aria-label="Sketchbook" role="region">
-      <button class="nav prev" aria-label="Previous pages" disabled>‹</button>
+      <button class="nav prev" aria-label="Previous pages" disabled style="display:none;">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+          <path d="M11 3L5 8L11 13" stroke="white" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
 
       <div class="book" id="book" aria-live="polite">
         <div class="sheets">
 
-          <!-- Sheet 1: front right = sketch1, back left = sketch2 -->
+          <!-- Sheet 1 -->
           <div class="sheet" id="sheet-1" data-sheet="1" aria-label="Sheet 1">
-            <!-- RIGHT PAGE (front) -->
             <div class="page right front">
-              <img src="../assets/sketch1.png" alt="Sketch 1"/>
+              <img src="../assets/sketch1.JPG" alt="Sketch 1" />
             </div>
-
-            <!-- LEFT PAGE (back of sheet) -->
             <div class="page left back">
-              <img src="../assets/sketch2.png" alt="Sketch 2"/>
+              <img src="../assets/sketch2.JPG" alt="Sketch 2" />
             </div>
           </div>
 
-          <!-- Sheet 2: front right = sketch3, back left = sketch4 -->
+          <!-- Sheet 2 -->
           <div class="sheet" id="sheet-2" data-sheet="2" aria-label="Sheet 2">
             <div class="page right front">
-              <img src="../assets/sketch3.png" alt="Sketch 3"/>
+              <img src="../assets/sketch3.JPG" alt="Sketch 3" />
             </div>
             <div class="page left back">
-              <img src="../assets/sketch4.png" alt="Sketch 4"/>
+              <img src="../assets/sketch4.JPG" alt="Sketch 4" />
             </div>
           </div>
 
-          <!-- Sheet 3: front right = sketch5, back left = sketch6 -->
+          <!-- Sheet 3 -->
           <div class="sheet" id="sheet-3" data-sheet="3" aria-label="Sheet 3">
             <div class="page right front">
-              <img src="../assets/sketch5.png" alt="Sketch 5"/>
+              <img src="../assets/sketch5.png" alt="Sketch 5" />
             </div>
             <div class="page left back">
-              <img src="../assets/sketch6.png" alt="Sketch 6"/>
+              <img src="../assets/sketch6.JPG" alt="Sketch 6" />
             </div>
           </div>
 
-          <!-- Static left “cover” page -->
+          <!-- Sheet 4 -->
+          <div class="sheet" id="sheet-4" data-sheet="4" aria-label="Sheet 4">
+            <div class="page right front">
+              <img src="../assets/sketch7.JPG" alt="Sketch 7" />
+            </div>
+            <div class="page left back">
+              <img src="../assets/sketch8.JPG" alt="Sketch 8" />
+            </div>
+          </div>
+
+          <!-- Sheet 5 -->
+          <div class="sheet" id="sheet-5" data-sheet="5" aria-label="Sheet 5">
+            <div class="page right front">
+              <img src="../assets/sketch9.JPG" alt="Sketch 9" />
+            </div>
+            <div class="page left back">
+              <img src="../assets/sketch10.JPG" alt="Sketch 10" />
+            </div>
+          </div>
+
+          <!-- Sheet 6 -->
+          <div class="sheet" id="sheet-6" data-sheet="6" aria-label="Sheet 6">
+            <div class="page right front">
+              <img src="../assets/sketch11.JPG" alt="Sketch 11" />
+            </div>
+            <div class="page left back">
+              <img src="../assets/sketch12.JPG" alt="Sketch 12" />
+            </div>
+          </div>
+
+          <!-- Sheet 7 -->
+          <div class="sheet" id="sheet-6" data-sheet="6" aria-label="Sheet 6">
+            <div class="page right front">
+              <img src="../assets/sketch13.JPG" alt="Sketch 11" />
+            </div>
+            <div class="page left back">
+              <img src="../assets/sketch14.JPG" alt="Sketch 12" />
+            </div>
+          </div>
+
+          <!-- Sheet 8 -->
+          <div class="sheet" id="sheet-6" data-sheet="6" aria-label="Sheet 6">
+            <div class="page right front">
+              <img src="../assets/sketch15.JPG" alt="Sketch 11" />
+            </div>
+            <div class="page left back">
+              <img src="../assets/sketch16.JPG" alt="Sketch 12" />
+            </div>
+          </div>
+
+          <!-- Covers -->
           <div class="cover left-cover" aria-hidden="true"></div>
-          <!-- Static right “back-cover” page (visible at end) -->
           <div class="cover right-cover" aria-hidden="true"></div>
 
         </div>
       </div>
 
-      <button class="nav next" aria-label="Next pages">›</button>
+      <button class="nav next" aria-label="Next pages" style="display:none;">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+          <path d="M5 3L11 8L5 13" stroke="white" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
     </section>
 
-    <p class="hint">Tip: use ← / → keys or swipe to flip.</p>
-  </main>
+  <!-- Drag-to-flip helper text -->
+<p class="flip-hint">Drag to flip</p>
 
-  <footer class="site-footer">
-    <p>&copy; 2025 Lakshmi Pratap. All rights reserved.</p>
-  </footer>
+</section>
+
+  </main>
 
   <script src="project4.js" defer></script>
 </body>
