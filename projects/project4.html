@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sketches – LP Portfolio</title>
+
+  <!-- Fonts (match your site) -->
+  <link href="https://fonts.googleapis.com/css2?family=Migra&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="project4.css"/>
+</head>
+<body>
+
+  <main class="project4">
+    <header class="p4-header">
+      <h1>Sketches</h1>
+      <p class="sub">Emotions through my pencil</p>
+    </header>
+
+    <!-- Flipbook -->
+    <section class="flipbook-wrap" aria-label="Sketchbook" role="region">
+      <button class="nav prev" aria-label="Previous pages" disabled>‹</button>
+
+      <div class="book" id="book" aria-live="polite">
+        <div class="sheets">
+
+          <!-- Sheet 1: front right = sketch1, back left = sketch2 -->
+          <div class="sheet" id="sheet-1" data-sheet="1" aria-label="Sheet 1">
+            <!-- RIGHT PAGE (front) -->
+            <div class="page right front">
+              <img src="../assets/sketch1.png" alt="Sketch 1"/>
+            </div>
+
+            <!-- LEFT PAGE (back of sheet) -->
+            <div class="page left back">
+              <img src="../assets/sketch2.png" alt="Sketch 2"/>
+            </div>
+          </div>
+
+          <!-- Sheet 2: front right = sketch3, back left = sketch4 -->
+          <div class="sheet" id="sheet-2" data-sheet="2" aria-label="Sheet 2">
+            <div class="page right front">
+              <img src="../assets/sketch3.png" alt="Sketch 3"/>
+            </div>
+            <div class="page left back">
+              <img src="../assets/sketch4.png" alt="Sketch 4"/>
+            </div>
+          </div>
+
+          <!-- Sheet 3: front right = sketch5, back left = sketch6 -->
+          <div class="sheet" id="sheet-3" data-sheet="3" aria-label="Sheet 3">
+            <div class="page right front">
+              <img src="../assets/sketch5.png" alt="Sketch 5"/>
+            </div>
+            <div class="page left back">
+              <img src="../assets/sketch6.png" alt="Sketch 6"/>
+            </div>
+          </div>
+
+          <!-- Static left “cover” page -->
+          <div class="cover left-cover" aria-hidden="true"></div>
+          <!-- Static right “back-cover” page (visible at end) -->
+          <div class="cover right-cover" aria-hidden="true"></div>
+
+        </div>
+      </div>
+
+      <button class="nav next" aria-label="Next pages">›</button>
+    </section>
+
+    <p class="hint">Tip: use ← / → keys or swipe to flip.</p>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2025 Lakshmi Pratap. All rights reserved.</p>
+  </footer>
+
+  <script src="project4.js" defer></script>
+</body>
+
+<footer class="site-footer">
+  <p>&copy; 2025 Lakshmi Pratap. All rights reserved.</p>
+</footer>
+
+</html>

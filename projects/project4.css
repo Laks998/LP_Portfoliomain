@@ -1,0 +1,212 @@
+/* Layout + theme to match your site */
+:root {
+  --bg: radial-gradient(circle at center, #161515 0%, #2c2a2a 100%);
+  --text: #f1f1f1;
+  --muted: #cfcfcf;
+  --accent: #EB676C;
+  --paper: #faf8f2;
+  --shadow: rgba(0,0,0,.35);
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: 'Space Grotesk', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+
+.site-footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: #aaa;
+  font-size: 0.875rem;
+  border-top: 1px solid #333;
+  margin-top: 4rem;
+}
+
+/* Reuse your side-nav look (adjust if needed) */
+
+.project4 {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 100px 100px 100px 100px; /* left padding to make room for side-nav */
+}
+
+.p4-header {
+  text-align: center;
+  margin: 40px 0 10px;
+}
+.p4-header h1 {
+  margin: 0;
+  font-family: 'Migra', serif;
+  font-size: clamp(2rem, 3.6vw, 3.5rem);
+  background: linear-gradient(to right, #c15b5e, var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.p4-header .sub {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+/* Flipbook wrapper */
+.flipbook-wrap {
+  display: grid;
+  grid-template-columns: 64px 1fr 64px;
+  align-items: center;
+  gap: 16px;
+  margin-top: 22px;
+}
+
+/* Book */
+.book {
+  width: min(90vw, 900px);
+  margin: 0 auto;
+  perspective: 2200px;
+}
+
+.book-page img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Fit without cropping */
+  object-position: center; /* Center the image */
+  display: block;
+  background-color: #fffaf4; /* Matches your book background */
+  padding: 10px; /* Optional: to give breathing space */
+  box-sizing: border-box;
+}
+
+/* Keep aspect ratio ~ landscape notebook (w:h ≈ 3:2) */
+.sheets {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  background: transparent;
+  filter: drop-shadow(0 20px 40px var(--shadow));
+}
+
+/* Covers (static background pages) */
+.cover {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 50%;
+  background: repeating-linear-gradient(
+    90deg,
+    #ffffff,
+    #ffffff 2px,
+    #f7f3ea 2px,
+    #f7f3ea 8px
+  );
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,.06);
+  z-index: 0;
+}
+.left-cover  { left: 0;  border-radius: 8px 0 0 8px; }
+.right-cover { right: 0; border-radius: 0 8px 8px 0; }
+
+/* Each SHEET (a physical folio with a front-right and back-left) */
+.sheet {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transition: transform .9s cubic-bezier(.2,.8,.2,1);
+  z-index: 10; /* will be adjusted via JS for proper stacking */
+}
+
+/* Pages inside a sheet */
+.page {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 50%;
+  overflow: hidden;
+  background: var(--paper);
+  backface-visibility: hidden;
+}
+
+/* RIGHT page (front of sheet) */
+.page.right {
+  right: 0;
+  transform-origin: left center;
+  border-radius: 0 8px 8px 0;
+  box-shadow:
+    inset 8px 0 16px rgba(0,0,0,.06),
+    0 2px 8px rgba(0,0,0,.08);
+}
+
+/* LEFT page (back of sheet) */
+.page.left {
+  left: 0;
+  transform-origin: right center;
+  border-radius: 8px 0 0 8px;
+  box-shadow:
+    inset -8px 0 16px rgba(0,0,0,.06),
+    0 2px 8px rgba(0,0,0,.08);
+  transform: rotateY(180deg); /* because it is the back side of the sheet */
+}
+
+/* Images fill page, keep proportion */
+.page img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* fills the page */
+  object-position: 40% 5%; /* 40% from left, 20% from top */
+}
+
+
+
+/* FLIP state: rotate the entire sheet so its back-left shows */
+.sheet.flipped {
+  transform: rotateY(-180deg);
+}
+
+/* Add subtle hinge shadow while flipping */
+.sheet:not(.flipped) .right.front::after,
+.sheet.flipped .left.back::after {
+  content: "";
+  position: absolute; top: 0; bottom: 0; width: 14px;
+  left: -14px; /* pulled under the spine */
+  background: linear-gradient(to right, rgba(0,0,0,.18), rgba(0,0,0,0));
+  pointer-events: none;
+}
+
+/* Nav buttons */
+.nav {
+  appearance: none; border: none; cursor: pointer;
+  width: 56px; height: 56px; border-radius: 50%;
+  background: rgba(255,255,255,.08);
+  color: #fff; font-size: 32px; line-height: 56px;
+  display: grid; place-items: center;
+  transition: transform .2s ease, background .2s ease, opacity .2s ease;
+}
+.nav:hover { transform: translateY(-1px); background: rgba(255,255,255,.16); }
+.nav:disabled { opacity: .4; cursor: not-allowed; }
+
+.hint {
+  text-align: center;
+  color: var(--muted);
+  margin-top: 14px;
+  font-size: .95rem;
+}
+
+/* Footer */
+.site-footer {
+  text-align: center;
+  color: #bdbdbd;
+  padding: 40px 20px 60px;
+}
+
+/* Responsive tweaks */
+@media (max-width: 760px) {
+  .flipbook-wrap { grid-template-columns: 48px 1fr 48px; }
+  .nav { width: 44px; height: 44px; font-size: 26px; line-height: 44px; }
+  .project4 { padding-left: 100px; }
+}
+
+/* Optional: disable side-nav writing-mode on small screens */
+@media (max-width: 540px) {
+  .side-nav { width: 64px; }
+  .side-nav a { writing-mode: horizontal-tb; transform: none; }
+  .project4 { padding-left: 84px; }
+}
