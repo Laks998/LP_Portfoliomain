@@ -219,3 +219,16 @@ section:last-of-type {
   }
 }
 
+.image-gallery {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+}
+
+.image-gallery img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
