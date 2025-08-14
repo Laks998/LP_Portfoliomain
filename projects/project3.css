@@ -277,3 +277,20 @@ section.visible {
 .plan-step {
   position: relative;
 }
+
+.images-row {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.images-row img {
+  width: 100%;
+  max-width: 1500px; /* make much larger */
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 0px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease;
+}
+
