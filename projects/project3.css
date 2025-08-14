@@ -1,0 +1,279 @@
+/* ===== Base Styles ===== */
+body {
+  margin: 0;
+  font-family: 'Space Grotesk', sans-serif;
+  background: radial-gradient(circle at center, #161515 0%, #2c2a2a 100%);
+  color: #f1f1f1;
+  line-height: 1.8;
+  overflow-x: hidden;
+}
+
+/* ===== Container ===== */
+.project-detail,
+.project-content {
+  max-width: 1000px;
+  margin: 100px auto;
+  padding: 0 20px;
+}
+
+/* ===== Hero Section ===== */
+.project-hero {
+  text-align: center;
+  padding: 4rem 1rem;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.project-hero.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.back-button {
+  display: inline-block;
+  margin-bottom: 2rem;
+  padding: 0.6rem 1.2rem;
+  border: 2px solid #fff;
+  border-radius: 8px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.3s;
+}
+
+/* Make sure its container allows left alignment */
+.back-button-container {
+  text-align: left; /* Or flexbox: justify-content: flex-start; */
+}
+
+.back-button:hover {
+  background: #ffffff;
+  color: #000;
+  transform: scale(1.05);
+}
+
+
+.project-title {
+  font-size: 4rem;
+  background: linear-gradient(to right, #c15b5e, #EB676C);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.5rem;
+}
+
+.project-subtitle {
+  font-size: 1.1rem;
+  color: #ccc;
+  max-width: 600px;
+  margin: 0 auto;
+}
+/* ===== Make H3 match Clearisk H2 styling ===== */
+.project-content h3,
+section h3,
+.project-overview .overview-card h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-top: 60px; /* match h2 spacing */
+  margin-bottom: 1rem; /* give more breathing space */
+  color: #ffffff;
+  position: relative;
+  line-height: 1.2;
+  padding-bottom: 0.3rem; /* space for underline */
+}
+
+.project-content h3::before,
+section h3::before,
+.project-overview .overview-card h3::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(to right, #c15b5e, #EB676C);
+}
+
+
+/* responsive adjustment (match project2 behavior) */
+@media (max-width: 768px) {
+  .project-content h3,
+  section h3,
+  .project-overview .overview-card h3 {
+    font-size: 1.6rem;
+  }
+}
+
+/* ===== Section Styling ===== */
+.project-content h2 {
+  font-size: 2rem;
+  margin-top: 60px;
+  color: #ffffff;
+  position: relative;
+}
+
+.project-content h2::before {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(to right, #c15b5e, #EB676C);
+}
+
+/* ===== Paragraphs and Lists ===== */
+.project-content p,
+.project-content ul,
+.project-content ol,
+.project-content blockquote {
+  margin-top: 20px;
+  font-size: 1.05rem;
+  color: #cccccc;
+}
+
+.project-content ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.project-content ul li {
+  margin-bottom: 10px;
+  padding-left: 20px;
+  position: relative;
+}
+
+.project-content ul li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #EB676C;
+}
+
+/* ===== Blockquotes ===== */
+.project-content blockquote {
+  font-style: italic;
+  font-size: 1.2rem;
+  border-left: 4px solid #EB676C;
+  padding-left: 16px;
+  color: #EB676C;
+  margin-top: 30px;
+}
+
+/* ===== Images ===== */
+.screen {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.screen img {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease;
+}
+
+.screen img:hover {
+  transform: scale(1.02);
+}
+
+/* ===== Animation Fade-in ===== */
+section {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .project-title {
+    font-size: 2.5rem;
+  }
+  .project-content h2 {
+    font-size: 1.6rem;
+  }
+}
+
+/* Container for the plan of action */
+.plan-of-action {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+  margin: 3rem 0;
+  flex-wrap: wrap;
+}
+
+/* Each step button */
+.plan-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  color: #fff;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.plan-step:hover {
+  transform: scale(1.05);
+  color: #ffcb4c;
+}
+
+/* Step circle */
+.plan-step .circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 3px solid #ffcb4c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  background: #222;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.plan-step:hover .circle {
+  background: #ffcb4c;
+  color: #000;
+  border-color: #ffcb4c;
+}
+
+/* Step label */
+.plan-step span {
+  font-size: 0.95rem;
+  max-width: 100px;
+  line-height: 1.4;
+}
+
+/* Connector lines between steps */
+.plan-of-action .plan-step:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 40px; /* half of circle height */
+  left: calc(100% + 0.5rem);
+  width: 60px;
+  height: 3px;
+  background: #ffcb4c;
+}
+
+/* Positioning lines correctly */
+.plan-of-action {
+  position: relative;
+}
+
+.plan-step {
+  position: relative;
+}
