@@ -239,6 +239,7 @@ body {
 .back-link {
   display: inline-block;
   margin-top: 50px;
+  margin-left: 30px;  /* 👈 pushes it away from left edge */
   text-decoration: none;
   font-weight: bold;
   color: #fff;
@@ -247,6 +248,7 @@ body {
   border-radius: 8px;
   transition: background 0.3s, color 0.3s, transform 0.3s;
 }
+
 
 .back-link:hover {
   background: #ffffff;
