@@ -168,11 +168,12 @@ section h3::before,
 
 .screen img {
   width: 100%;
-  max-width: 500px;
+  max-width: 1200px; /* instead of 500px */
   border-radius: 10px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
   transition: transform 0.3s ease;
 }
+
 
 .screen img:hover {
   transform: scale(1.02);
@@ -268,6 +269,12 @@ section.visible {
   height: 3px;
   background: #ffcb4c;
 }
+@media (max-width: 768px) {
+  .plan-of-action .plan-step::after {
+    display: none;
+  }
+}
+
 
 /* Positioning lines correctly */
 .plan-of-action {
@@ -293,3 +300,107 @@ section.visible {
   transition: transform 0.3s ease;
 }
 
+/* Two-column layout */
+/* Two-column section with image + text */
+.two-column-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+  margin: 3rem 0;
+}
+
+.two-column-section .image-column {
+  display: flex;
+  justify-content: center;
+}
+
+.two-column-section .image-column img {
+  width: 100%;
+  max-width: 600px; /* increase for readability */
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease;
+}
+
+.two-column-section .image-column img:hover {
+  transform: scale(1.03);
+}
+
+.two-column-section .text-column {
+  max-width: 600px;
+}
+
+.two-column-section h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.two-column-section p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.two-column-section ul {
+  margin-bottom: 1.2rem;
+  padding-left: 1.2rem;
+}
+
+.two-column-section ul strong {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+/* Mobile layout */
+@media (max-width: 768px) {
+  .two-column-section {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .two-column-section .text-column {
+    margin-top: 1.5rem;
+  }
+}
+
+/* Note box */
+.note-section {
+  background: #222;
+  border-left: 4px solid #ffcb4c;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin: 2rem 0;
+  font-style: italic;
+}
+
+/* Centered text */
+.centered-text {
+  text-align: center;
+  max-width: 800px;
+  margin: 2rem auto;
+}
+
+
+/* Big image */
+.large-image img {
+  width: 100%;
+  max-width: 1200px;
+  margin: 2rem auto;
+  display: block;
+  border-radius: 12px;
+}
+
+section.fade-section {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+section.fade-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+section {
+  opacity: 1 !important;
+  transform: none !important;
+}
