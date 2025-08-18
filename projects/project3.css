@@ -2,7 +2,7 @@
 body {
   margin: 0;
   font-family: 'Space Grotesk', sans-serif;
-  background: radial-gradient(circle at center, #161515 0%, #2c2a2a 100%);
+  background: linear-gradient(to bottom, #000000 0%, #2c2a2a 100%);
   color: #f1f1f1;
   line-height: 1.8;
   overflow-x: hidden;
@@ -18,56 +18,70 @@ body {
 
 /* ===== Hero Section ===== */
 .project-hero {
+  position: relative;
+  height: 100vh; /* full screen hero */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
-  padding: 4rem 1rem;
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  color: #EB676C;
+  overflow: hidden;
 }
 
-.project-hero.visible {
-  opacity: 1;
-  transform: translateY(0);
+.project-hero .hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* makes sure the image covers the hero area */
+  z-index: -1; /* pushes it behind the text + back button */
 }
 
-.back-button {
-  display: inline-block;
-  margin-bottom: 2rem;
-  padding: 0.6rem 1.2rem;
-  border: 2px solid #fff;
-  border-radius: 8px;
-  color: #fff;
+.project-hero .back-link {
+  position: absolute;
+  top: 50px;
+  left: 270px;
   text-decoration: none;
-  font-size: 0.9rem;
-  transition: background 0.3s ease, color 0.3s ease, transform 0.3s;
+  font-weight: bold;
+  color: #EB676C;
+  border: 2px solid #EB676C;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.4); /* optional, for readability */
+  transition: background 0.3s, color 0.3s, transform 0.3s;
 }
 
-/* Make sure its container allows left alignment */
-.back-button-container {
-  text-align: left; /* Or flexbox: justify-content: flex-start; */
-}
-
-.back-button:hover {
-  background: #ffffff;
+.project-hero .back-link:hover {
+  background: #EB676C;
   color: #000;
   transform: scale(1.05);
 }
 
-
-.project-title {
-  font-size: 4rem;
-  background: linear-gradient(to right, #c15b5e, #EB676C);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 0.5rem;
+.project-hero .hero-text {
+  position: absolute;
+  bottom: 2rem;   /* distance from bottom */
+  right: 2rem;    /* distance from right */
+  z-index: 2;
+  text-align: right;
+  color: #EB676C;
 }
 
-.project-subtitle {
-  font-size: 1.1rem;
-  color: #ccc;
-  max-width: 600px;
-  margin: 0 auto;
+.project-hero .project-title {
+  font-size: 2rem;
+  font-weight: 1000;
+  line-height: 0.9; /* tighter or looser */
+  margin: 0;
+  -webkit-text-fill-color: #EB676C;
 }
+
+.project-hero .sub {
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+  color: #ddd;
+}
+
 /* ===== Make H3 match Clearisk H2 styling ===== */
 .project-content h3,
 section h3,

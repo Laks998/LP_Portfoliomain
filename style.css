@@ -448,13 +448,14 @@ body {
 .project-card .project-info {
   position: relative;
   z-index: 2; /* ✅ Ensure text is above image */
-  color: #e6d8d8;
+  color: #ffffff;
   text-align: right;
 }
 
 .project-info h3 {
   font-family: 'Space Grotesk', sans-serif;
   font-size: 2rem;
+  color: #EB676C;
   font-weight: 700;
   margin: 0;
 }
