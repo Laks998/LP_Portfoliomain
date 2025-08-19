@@ -1,157 +1,45 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Space Grotesk', sans-serif;
-  background: radial-gradient(circle at center, #161515 0%, #2c2a2a 100%);
-  color: rgb(241, 228, 228);
-}
-
-.site-footer {
-  text-align: center;
-  padding: 2rem 1rem;
-  color: #aaa;
-  font-size: 0.875rem;
-  border-top: 1px solid #333;
-  margin-top: 4rem;
-}
-
-
-.about-section {
-  padding: 5rem 4rem 5rem 6rem;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  gap: 6rem;
-  margin-right: 160px; /* Leaves space for right nav */
+  justify-content: center;
+  align-items: center;
+  background: black;
+  color: white;
+  font-family: 'Space Grotesk', sans-serif;
+  text-align: center; /* ✅ Center text inside container */
 }
 
-.about-container {
+.profile-container {
   display: flex;
-  flex-wrap: wrap;
-  gap: 4rem;
+  flex-direction: column;
   align-items: center;
 }
 
-.about-text {
-  flex: 1;
-  max-width: 600px;
-}
-
-.about-text h2 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
-
-.about-text p {
-  font-size: 1.2rem;
-  line-height: 1.8;
-}
-
-.about-image {
-  flex: 1;
-  max-width: 400px;
-  position: relative;
-}
-
-.about-image img {
-  width: 100%;
-  border-radius: 12px;
+.profile-img {
+  width: 70vmin;  /* keeps circle responsive */
+  height: 70vmin;
+  border-radius: 50%;
   object-fit: cover;
+  border: 4px solid white;
+  margin-bottom: 20px; /* space between image and text */
 }
 
-.quad-images {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+.typewriter {
+  font-size: 2rem;
+  white-space: nowrap;
+  border-right: 2px solid white;
+  overflow: hidden;
+  animation: typing 3s steps(30, end), blink 0.7s infinite;
 }
 
-.quad {
-  position: absolute;
-  width: 48%;
-  border-radius: 10px;
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
 }
 
-.top-left     { top: 0; left: 0; }
-.top-right    { top: 0; right: 0; }
-.bottom-left  { bottom: 0; left: 0; }
-.bottom-right { bottom: 0; right: 0; }
-
-/* ========== Fixed Right-side Nav (reuse from index.css) ========== */
-.side-nav {
-  position: fixed;
-  right: 40px;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  z-index: 1000;
-  align-items: center;
-}
-
-.side-nav a {
-  padding: 12px 20px;
-  border: 2px solid #EB676C;
-  background-color: transparent;
-  color: #EB676C;
-  text-decoration: none;
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 700;
-  font-size: 1rem;
-  text-align: center;
-  min-width: 100px;
-  transition: all 0.3s ease;
-}
-
-.side-nav a:hover,
-.side-nav a.active {
-  background-color: #EB676C;
-  color: #000000;
-}
-
-.nav-vertical-line {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  right: 80px; /* Adjust based on your nav’s distance from the right */
-  width: 2px;
-  background-color: white;
-  opacity: 0.3;
-  z-index: 500; /* Above background, but below nav buttons */
-}
-
-
-/* Remove box styles for just the logo */
-.side-nav a.logo-nav {
-  padding: 0 !important;
-  border: none !important;
-  background: none !important;
-  min-width: auto !important;
-}
-
-/* Logo image styles */
-.logo-image {
-  width: 50px;
-  height: auto;
-  object-fit: contain;
-  filter: brightness(85%);
-  transition: transform 0.3s ease;
-  display: block;
-}
-
-.logo-image:hover {
-  transform: scale(1.1);
-}
-
-.quad {
-  opacity: 0;
-  transform: scale(0.8);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.quad.visible {
-  opacity: 1;
-  transform: scale(1);
-  z-index: 2;
+@keyframes blink {
+  50% { border-color: transparent }
 }
