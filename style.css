@@ -217,17 +217,30 @@ body {
 }
 
 
+/* Water-fill for side nav (no pseudo-element, no reflow) */
+.side-nav a {
+  position: relative;
+  border: 2px solid #EB676C;
+  color: #EB676C;
+  background-color: transparent;
+  background-image: linear-gradient(#EB676C, #EB676C);
+  background-size: 100% 0%;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: color 0.3s ease, background-size 0.38s ease-in-out;
+}
+
 .side-nav a:hover {
-  background-color: #EB676C; /* 🔁 On hover: filled white */
-  color: #000000;                       /* 🔁 Text becomes black */
-  cursor: pointer;
+  background-size: 100% 100%;  /* animate upward */
+  color: #000000;
 }
 
 .side-nav a.active {
-  background-color: #EB676C;
+  background-size: 100% 100%;
   color: black;
   font-weight: bold;
 }
+
 
 
 .nav-vertical-line {
@@ -690,6 +703,7 @@ body {
 }
 
 #hero .icon {
+  position: relative;
   width: 38px;
   height: 38px;
   border: 1px solid #EB676C;
@@ -697,25 +711,45 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.3s, transform 0.3s;
+  overflow: hidden; /* important so the fill stays inside */
+  transition: transform 0.3s;
   text-decoration: none;
 }
 
+/* Create the filling effect */
+#hero .icon::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0%; /* start empty */
+  background: #EB676C;
+  transition: height 0.4s ease-in-out; /* controls speed + smoothness */
+  z-index: 0; /* sit behind the svg */
+}
+
+/* Fill on hover */
+#hero .icon:hover::after {
+  height: 100%; /* fills up */
+}
+
 #hero .icon svg {
+  position: relative; /* keep icon above the fill */
+  z-index: 1;
   width: 20px;
   height: 20px;
   stroke: #EB676C;
+  transition: stroke 0.3s;
 }
 
 #hero .icon:hover {
-  background: #EB676C;
   transform: scale(1.1);
 }
 
 #hero .icon:hover svg {
   stroke: black;
 }
-
 
 #timeline-section {
   position: relative;
