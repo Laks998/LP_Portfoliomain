@@ -217,7 +217,7 @@ document.addEventListener("DOMContentLoaded", () => {
     milestone.classList.add("reached");
 
     if (currentStep === 0) {
-      startBtn.innerHTML = `And then? <i class="fa-solid fa-arrow-right"></i>`;
+      startBtn.innerHTML = `And then?</i>`;
       startBtn.classList.add("started");
     }
   });
@@ -277,5 +277,28 @@ projectCards.forEach(card => {
   });
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+  const taglines = document.querySelectorAll(".taglines div");
+  let delay = 0;
+
+  taglines.forEach((line, index) => {
+    const text = line.textContent;
+    line.textContent = ""; // clear
+    setTimeout(() => {
+      line.style.opacity = 1;
+      let i = 0;
+      const typing = setInterval(() => {
+        line.textContent += text.charAt(i);
+        i++;
+        if (i === text.length) {
+          clearInterval(typing);
+          line.style.borderRight = "none"; // remove cursor after typing
+        }
+      }, 100); // typing speed per letter
+    }, delay);
+
+    delay += text.length * 100 + 800; // time for typing + pause before next line
+  });
+});
 
 });

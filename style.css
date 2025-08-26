@@ -171,7 +171,7 @@ body {
   font-size: 1rem;
   font-weight: 400;
   color: rgb(241, 228, 228);
-  line-height: 2;
+  line-height: 1;
   text-align: left;
   opacity: 1;
 }
@@ -179,6 +179,56 @@ body {
 .name-block {
   position: relative;
 }
+
+.taglines div {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: rgb(241, 228, 228);
+  line-height: 2;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0; /* start hidden */
+  opacity: 0; /* invisible until animated */
+}
+
+@keyframes typing {
+  from { width: 0; opacity: 1; }
+  to { width: 100%; opacity: 1; }
+}
+
+/* Apply typing effect */
+.taglines div {
+  overflow: hidden;           /* Ensures text reveals like typing */
+  white-space: nowrap;
+  display: inline-block;
+  animation: typing 2s steps(30, end) forwards;
+}
+
+/* Stagger them so they come in sequence */
+.taglines div:nth-child(1) {
+  animation-delay: 0s; /* starts immediately */
+  animation-duration: 2.5s;
+}
+
+.taglines div:nth-child(2) {
+  animation-delay: 3s; /* 2.5s typing + 0.5s pause */
+  animation-duration: 1.2s;
+}
+
+.taglines div:nth-child(3) {
+  animation-delay: 4.5s; /* 3s + 1.2s typing + 0.3s pause */
+  animation-duration: 1.6s;
+}
+
+.taglines div:nth-child(4) {
+  animation-delay: 6.5s; /* 4.5s + 1.6s typing + 0.4s pause */
+  animation-duration: 2s;
+}
+
+
+
 
 
 /* ========== NAVIGATION ========== */
@@ -852,7 +902,7 @@ body {
   font-family: 'Space Grotesk', sans-serif;
   background: transparent;         /* border-only style */
   color: #EB676C;
-  border: 1px solid white;
+  border: 1px solid #EB676C;
   cursor: pointer;
   border-radius: 0px;
   transition: all 0.3s ease;
@@ -899,7 +949,7 @@ body {
 .timeline-start-btn.restart {
   background: none;
   color: #EB676C;
-  border: 1px solid white;
+  border: 1px solid #EB676C;
 }
 
 .timeline-start-btn.restart:hover {
