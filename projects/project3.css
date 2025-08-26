@@ -8,6 +8,17 @@ body {
   overflow-x: hidden;
 }
 
+.site-footer {
+  font-family: 'Space Grotesk', sans-serif;
+  text-align: center;
+  padding: 2rem 1rem;
+  color: #aaa;
+  font-size: 0.875rem;
+  border-top: 1px solid #333;
+  margin-top: 4rem;
+}
+
+
 /* ===== Container ===== */
 .project-detail,
 .project-content {
@@ -39,22 +50,54 @@ body {
   z-index: -1; /* pushes it behind the text + back button */
 }
 
-.project-hero .back-link {
-  position: absolute;
-  top: 50px;
-  left: 270px;
+.bottom-back-link {
+  display: inline-block;
+  margin: 40px auto;         
   text-decoration: none;
   font-weight: bold;
   color: #EB676C;
   border: 2px solid #EB676C;
   padding: 10px 16px;
-  border-radius: 8px;
-  background: rgba(0, 0, 0, 0.4); /* optional, for readability */
-  transition: background 0.3s, color 0.3s, transform 0.3s;
+  border-radius: 0px;
+
+  /* vertical fill setup */
+  background: linear-gradient(to top, #EB676C 0%, #EB676C 100%);
+  background-size: 100% 0%;
+  background-repeat: no-repeat;
+  background-position: bottom center;
+
+  transition: background-size 0.4s ease, color 0.4s ease, transform 0.3s;
+}
+
+.bottom-back-link:hover {
+  background-size: 100% 100%;  /* fills upward */
+  color: #000;
+  transform: scale(1.05);
+}
+
+/* same adjustment for hero back link */
+.project-hero .back-link {
+  position: absolute;
+  top: 50px;
+  left: 270px;
+  z-index: 2; 
+  text-decoration: none;
+  font-weight: bold;
+  color: #EB676C;
+  border: 2px solid #EB676C;
+  padding: 10px 16px;
+  border-radius: 0px;
+
+  background: linear-gradient(to top, #EB676C 0%, #EB676C 100%);
+  background-size: 100% 0%;
+  background-repeat: no-repeat;
+  background-position: bottom center;
+
+  transition: background-size 0.4s ease, color 0.4s ease, transform 0.3s;
 }
 
 .project-hero .back-link:hover {
-  background: #EB676C;
+  background-size: 100% 100%;
   color: #000;
   transform: scale(1.05);
 }

@@ -36,7 +36,7 @@ body {
 
 .p4-header {
   text-align: center;
-  margin: -60px 0 10px;
+  margin: 30px 0 10px;
 }
 .p4-header h1 {
   margin: 0;
@@ -59,8 +59,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 16px;
-  margin-top: 32px;
+  gap: 10px;
+  margin-top: 50px;
 }
 
 
@@ -237,24 +237,31 @@ body {
 }
 
 .back-link {
-  display: inline-block;
-  margin-top: 50px;
-  margin-left: 30px;  /* 👈 pushes it away from left edge */
+  position: absolute;
+  top: 50px;
+  left: 270px;
+  z-index: 2; 
   text-decoration: none;
   font-weight: bold;
   color: #EB676C;
   border: 2px solid #EB676C;
   padding: 10px 16px;
-  border-radius: 8px;
-  transition: background 0.3s, color 0.3s, transform 0.3s;
+  border-radius: 0px;
+
+  background: linear-gradient(to top, #EB676C 0%, #EB676C 100%);
+  background-size: 100% 0%;
+  background-repeat: no-repeat;
+  background-position: bottom center;
+
+  transition: background-size 0.4s ease, color 0.4s ease, transform 0.3s;
 }
 
-
 .back-link:hover {
-  background: #EB676C;
+  background-size: 100% 100%;
   color: #000;
   transform: scale(1.05);
 }
+
 
 /* smoother GPU compositing and no text/image selection while dragging */
 .sheet { will-change: transform; }
