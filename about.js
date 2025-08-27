@@ -1,11 +1,10 @@
-// Simple fade-in on scroll
 document.addEventListener("DOMContentLoaded", () => {
-  const fadeEls = document.querySelectorAll(".fade-in");
+  const fadeEls = document.querySelectorAll(".fade-in, .about-block");
 
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
+        entry.target.classList.add("visible"); // apply immediately
       }
     });
   }, { threshold: 0.2 });
