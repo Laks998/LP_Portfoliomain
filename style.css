@@ -899,6 +899,7 @@ body {
   margin-top: 2rem;
   padding: 0.8rem 1.6rem;
   font-size: 1rem;
+  font-weight: 700;
   font-family: 'Space Grotesk', sans-serif;
   background: transparent;         /* border-only style */
   color: #EB676C;
@@ -934,7 +935,7 @@ body {
 }
 
 .timeline-label {
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: bold;
   color: #EB676C;
   margin-bottom: 0.2rem;
