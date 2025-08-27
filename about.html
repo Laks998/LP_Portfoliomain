@@ -2,22 +2,91 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About - LP Portfolio</title>
+  <title>About | Lakshmi Pratap</title>
   <link rel="stylesheet" href="about-style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Migra&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="assets/logo.png">
+
+<!-- Space Grotesk -->
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
 </head>
 <body>
-  <div class="about-container">
-    <!-- Scroll body -->
-    <div class="scroll-wrapper">
-      <div class="scroll-top"></div>
-      <img src="assets/profile2.png" alt="Profile Scroll" class="scroll-img">
-      <div class="scroll-bottom"></div>
-    </div>
 
-    <!-- Typewriter text -->
-    <h1 class="typewriter-text"></h1>
-  </div>
+  <!-- SIDE NAV -->
+  <nav class="side-nav">
+    <a href="index.html" class="logo-nav">
+      <img src="assets/logo.png" alt="Logo" class="logo-image">
+    </a>
+    <a href="../index.html#work">Work</a>
+    <a href="about.html" class="active">About</a>
+    <a href="assets/Resume_LP.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
+    
+  </nav>
+  <div class="nav-vertical-line"></div>
+
+  <!-- ABOUT CONTENT -->
+  <main class="about-container">
+    <section class="about-intro fade-in">
+      <h1 class="about-heading">Beyond the Resume</h1>
+      <p>
+        A few things you won’t find in my CV, project work, or timeline. This portfolio is my very first coding project. I built it entirely from scratch in one month,
+        with <strong>zero prior HTML, CSS, or JavaScript experience</strong>.  
+        Every page here is custom. A mix of my design instincts and vibe coding
+      </p>
+    </section>
+
+    <section class="about-story fade-in">
+      <h2 class="about-subheading">Beyond the Resume</h2>
+      <p>
+        A few things you won’t find in my CV, project work, or timeline:
+      </p>
+
+      <div class="about-block">
+        <h3>Learning Fast</h3>
+        <p>
+          I taught myself After Effects from scratch in <strong>two weeks</strong>
+          and created a <em>Save the Date</em> wedding video.
+        </p>
+        <video controls class="about-video">
+          <source src="assets/save_the_date.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <div class="about-block">
+        <h3>Going Viral</h3>
+        <p>
+          I made a wedding reel on Instagram that reached
+          <strong>4.4 million views</strong>.
+        </p>
+      </div>
+
+      <div class="about-block">
+        <h3>Creative Detours</h3>
+        <p>
+          During COVID, I ran a small art account where I sketched consistently for a few months.
+          Later, I tried embroidery and even some singing.
+          You can peek at my sketches here:
+          <a href="https://instagram.com/YOUR_ART_ACCOUNT" target="_blank" class="link">Instagram</a>.
+        </p>
+      </div>
+
+      <div class="about-block">
+        <h3>Now</h3>
+        <p>
+          These days, I’m deeply into <strong>animation</strong> —
+          bringing together my UX/UI background with motion and storytelling.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <p>&copy; 2025 Lakshmi Pratap. All rights reserved.</p>
+  </footer>
 
   <script src="about.js"></script>
 </body>
