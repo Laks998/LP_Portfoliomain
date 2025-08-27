@@ -40,7 +40,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  color: white;
+  color: #EB676C;
   z-index: 2;
 }
 
@@ -67,17 +67,6 @@ body {
   height: 100%;
   background: rgba(0,0,0,0.4); /* darken image */
   z-index: 1;
-}
-
-
-
-.about-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 4rem 2rem;
-  font-family: 'Space Grotesk', sans-serif;
-  text-align: center;
-  line-height: 1.8;
 }
 
 
@@ -166,88 +155,101 @@ body {
   margin: 3rem 0 1rem;
 }
 
-.about-block {
-  margin-bottom: 2.5rem;
+/* ABOUT CONTAINER */
+.about-container {
+  max-width: 1200px;     /* give more room since now it’s side by side */
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  font-family: 'Space Grotesk', sans-serif;
+  line-height: 1.8;
+  text-align: left;      /* 🔄 changed from center */
 }
 
-.about-block h3 {
-  color: #EB676C;
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
-}
-
-.about-video {
-  width: 100%;
-  max-width: 280px;   /* narrower like a phone */
-  aspect-ratio: 9 / 16;
-  margin-top: 1rem;
-  border: 2px solid #333;
-  border-radius: 0.5rem;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.5);
-  object-fit: cover; /* keep correct crop */
-}
-
-
-/* ========== ABOUT BLOCK LAYOUT ========== */
-.about-story {
-  margin-top: 4rem;
-  display: flex;
-  flex-direction: column;
-  gap: 5rem;
-}
-
-/* Alternate layout for each block */
+/* ABOUT BLOCK */
 .about-block {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 3rem;
-  text-align: left;
-  justify-content: space-between;
-  flex-wrap: nowrap;   /* 🚫 prevents items from dropping below */
+  margin-bottom: 2rem;
 }
 
-
-.about-block.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
+/* Alternate layout */
 .about-block:nth-child(even) {
   flex-direction: row-reverse;
 }
 
-/* Text */
-.about-block h3 {
-  color: #EB676C;
-  font-size: 6rem;
-  font-weight: 700;     /* max supported weight */
-  line-height: 1;       /* tighter line spacing */
-  letter-spacing: -1px; /* tighten letters */
-  margin-bottom: 0.5rem;
+/* TEXT */
+.about-text {
+  flex: 1;
 }
 
+.about-text h3 {
+  color: #EB676C;
+  font-size: 6rem;  /* 🔄 smaller than 6rem so it pairs well with paragraph */
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1;
+}
 
-.about-block p {
-  max-width: 380px;
-  line-height: 1.7;
+.about-text p {
+  max-width: 480px;
+  line-height: 1.6;
   font-size: 1rem;
   color: #ddd;
-  margin-top: 0.5rem;   /* tighten spacing */
 }
 
-/* Media (img & video) */
-.about-block img,
-.about-block video {
-  max-width: 350px;
-  border-radius: 0rem;
+/* MEDIA */
+.about-media {
+  flex: 1;
+  height: 90vh;   /* 🔑 make container slightly shorter than screen */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.about-media video {
+  height: 100%;          /* fill the container height */
+  width: auto;           /* scale width automatically */
+  max-width: 100%;
   border: 2px solid #333;
+  border-radius: 0.5rem;
   box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+
+  object-fit: cover;     /* crop edges instead of shrinking */
+  object-position: center;  /* 🔑 centers video → crops a bit from both top & bottom */
 }
 
-.about-block img:hover,
-.about-block video:hover {
+
+
+.about-media img {
+  width: 100%;
+  max-width: 550px;   /* 🔑 bigger than before */
+  height: auto;       /* keep proportions */
+  border: 2px solid #333;
+  border-radius: 0.5rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+  transition: transform 0.3s ease;
+}
+
+
+.about-media img:hover,
+.about-media video:hover {
   transform: scale(1.05);
+}
+
+/* RESPONSIVE STACK */
+@media (max-width: 768px) {
+  .about-block {
+    flex-direction: column;
+    text-align: center;
+  }
+  .about-text, .about-media {
+    flex: unset;
+  }
+  .about-text p {
+    max-width: 100%;
+  }
 }
 
 
