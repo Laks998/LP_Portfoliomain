@@ -141,8 +141,6 @@ body {
   font-weight: bold;
 }
 
-
-
 .nav-vertical-line {
   position: fixed;
   top: 0;
@@ -203,10 +201,12 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 2rem;
+  gap: 3rem;
   text-align: left;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  flex-wrap: nowrap;   /* 🚫 prevents items from dropping below */
 }
+
 
 .about-block.visible {
   opacity: 1;
@@ -220,15 +220,20 @@ body {
 /* Text */
 .about-block h3 {
   color: #EB676C;
-  font-size: 1.5rem;
+  font-size: 6rem;
+  font-weight: 700;     /* max supported weight */
+  line-height: 1;       /* tighter line spacing */
+  letter-spacing: -1px; /* tighten letters */
   margin-bottom: 0.5rem;
 }
+
 
 .about-block p {
   max-width: 380px;
   line-height: 1.7;
   font-size: 1rem;
   color: #ddd;
+  margin-top: 0.5rem;   /* tighten spacing */
 }
 
 /* Media (img & video) */
