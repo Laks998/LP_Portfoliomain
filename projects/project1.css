@@ -164,3 +164,47 @@ body {
   right: -30%;               /* stop more to the right */
   opacity: 1;
 }
+
+/* SECTION-SPECIFIC OVERLAY POSITIONING */
+
+/* Section 2: Tab Bar */
+.tabbar-section .overlay-media {
+  top: 25%;
+  right: -90%;
+  width: 60%;
+}
+.tabbar-section.show-overlay .overlay-media {
+  top: 50%;
+  right: -30%;
+  opacity: 1;
+}
+
+/* Section 3: Buttons */
+.buttons-section .overlay-media {
+  top: 30%;
+  right: -95%;
+  width: 65%;
+}
+.buttons-section.show-overlay .overlay-media {
+  top: 10%;
+  right: -25%;
+  opacity: 1;
+}
+
+.colours-section .overlay-media {
+  position: absolute;
+  top: 10%;           /* adjust vertical position */
+  right: -90%;        /* start hidden */
+  width: 30%;         /* scale down proportionally */
+  height: auto;       /* keep aspect ratio */
+  opacity: 0;
+  transition: all 0.8s ease;
+}
+
+.colours-section.show-overlay .overlay-media {
+  top: 25%;        /* higher on screen */
+  right: -70%;      /* move more left */
+  opacity: 1;
+}
+
+
