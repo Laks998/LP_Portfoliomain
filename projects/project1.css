@@ -55,11 +55,16 @@ body {
 }
 
 
+.bottom-link-wrapper {
+  position: relative;
+  margin-bottom: 150px;  /* container for absolute positioning */
+}
+
 .bottom-back-link {
-  bottom: 50px;
-  left: 270px;
+  position: absolute;  /* positions relative to the container */
+  bottom: 50px;         /* 50px from bottom of container */
+  left: 270px;          /* 270px from left of container */
   display: inline-block;
-  margin: 40px auto;         
   text-decoration: none;
   font-weight: bold;
   color: #EB676C;
@@ -67,7 +72,6 @@ body {
   padding: 10px 16px;
   border-radius: 0px;
 
-  /* vertical fill setup */
   background: linear-gradient(to top, #EB676C 0%, #EB676C 100%);
   background-size: 100% 0%;
   background-repeat: no-repeat;
@@ -75,6 +79,7 @@ body {
 
   transition: background-size 0.4s ease, color 0.4s ease, transform 0.3s;
 }
+
 
 .bottom-back-link:hover {
   background-size: 100% 100%;  /* fills upward */
@@ -114,6 +119,7 @@ body {
   margin: 60px auto;
   max-width: 900px;
   text-align: center;
+  margin-bottom: 150px;
 }
 
 .ds-text {
@@ -124,10 +130,11 @@ body {
   position: relative;
   display: inline-block;
   width: 100%;
-  max-width: 1200px;
+  max-width: none;      /* allow full width */
   aspect-ratio: 16/9;
-  overflow: hidden;
+  overflow: visible;    /* no cropping */
 }
+
 
 .main-media {
   width: 85%;              /* shrink main image slightly */
@@ -142,7 +149,7 @@ body {
   position: absolute;
   top: 25%;                /* a bit higher */
   right: -90%;             /* start hidden further out */
-  width: 65%;              /* slightly smaller overlay */
+  width: 60%;             /* slightly smaller overlay */
   height: auto;
   border-radius: 0px;
   box-shadow: 0 8px 30px rgba(0,0,0,0.4);
@@ -153,6 +160,7 @@ body {
 
 /* Active (scroll into view) */
 .ds-media.show-overlay .overlay-media {
-  right: 5%;               /* stop more to the right */
+  top: 50%;
+  right: -30%;               /* stop more to the right */
   opacity: 1;
 }
