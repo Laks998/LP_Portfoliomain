@@ -1,8 +1,16 @@
-// Small pulse effect on "Coming Soon"
-const text = document.getElementById("mainText");
-if (text) {
-  setInterval(() => {
-    text.style.transform = "scale(1.05)";
-    setTimeout(() => (text.style.transform = "scale(1)"), 300);
-  }, 2000);
-}
+document.addEventListener("DOMContentLoaded", () => {
+  const videos = document.querySelectorAll(".overlay-media");
+
+  videos.forEach(video => {
+    const container = video.closest(".ds-media");
+
+    container.addEventListener("mouseenter", () => {
+      video.currentTime = 0;
+      video.play();
+    });
+
+    container.addEventListener("mouseleave", () => {
+      video.pause();
+    });
+  });
+});

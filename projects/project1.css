@@ -1,71 +1,8 @@
-
 body {
   margin: 0;
   font-family: 'Space Grotesk', sans-serif;
-  background: linear-gradient(to bottom, #000000 0%, #2c2a2a 100%);
+  background: #000;
   color: #f1f1f1;
-  line-height: 1.8;
-  overflow-x: hidden;
-}
-
-.project-hero .back-link {
-  position: absolute;
-  top: 50px;
-  left: 270px;
-  z-index: 2; 
-  text-decoration: none;
-  font-weight: bold;
-  color: #EB676C;
-  border: 2px solid #EB676C;
-  padding: 10px 16px;
-  border-radius: 0px;
-
-  background: linear-gradient(to top, #EB676C 0%, #EB676C 100%);
-  background-size: 100% 0%;
-  background-repeat: no-repeat;
-  background-position: bottom center;
-
-  transition: background-size 0.4s ease, color 0.4s ease, transform 0.3s;
-}
-
-.project-hero .back-link:hover {
-  background-size: 100% 100%;
-  color: #000;
-  transform: scale(1.05);
-}
-
-/* Center the message */
-.coming-soon {
-  flex: 1;                            /* fill remaining height */
-  display: grid;
-  place-items: center;                /* perfect centering */
-  text-align: center;
-  padding: 2rem;
-}
-
-.bottom-back-link {
-  display: inline-block;
-  margin: 40px auto;         
-  text-decoration: none;
-  font-weight: bold;
-  color: #EB676C;
-  border: 2px solid #EB676C;
-  padding: 10px 16px;
-  border-radius: 0px;
-
-  /* vertical fill setup */
-  background: linear-gradient(to top, #EB676C 0%, #EB676C 100%);
-  background-size: 100% 0%;
-  background-repeat: no-repeat;
-  background-position: bottom center;
-
-  transition: background-size 0.4s ease, color 0.4s ease, transform 0.3s;
-}
-
-.bottom-back-link:hover {
-  background-size: 100% 100%;  /* fills upward */
-  color: #000;
-  transform: scale(1.05);
 }
 
 .project-hero {
@@ -109,24 +46,104 @@ body {
   color: #ddd;
 }
 
-.coming-soon h1 {
-  font-size: clamp(2rem, 6vw, 4rem);
-  letter-spacing: .15em;
-  text-transform: uppercase;
-  animation: fadeIn 1.2s ease-in-out both;
+
+.bottom-back-link {
+  bottom: 50px;
+  left: 270px;
+  display: inline-block;
+  margin: 40px auto;         
+  text-decoration: none;
+  font-weight: bold;
+  color: #EB676C;
+  border: 2px solid #EB676C;
+  padding: 10px 16px;
+  border-radius: 0px;
+
+  /* vertical fill setup */
+  background: linear-gradient(to top, #EB676C 0%, #EB676C 100%);
+  background-size: 100% 0%;
+  background-repeat: no-repeat;
+  background-position: bottom center;
+
+  transition: background-size 0.4s ease, color 0.4s ease, transform 0.3s;
 }
 
-/* Footer */
+.bottom-back-link:hover {
+  background-size: 100% 100%;  /* fills upward */
+  color: #000;
+  transform: scale(1.05);
+}
+
+/* same adjustment for hero back link */
+.project-hero .back-link {
+  position: absolute;
+  top: 50px;
+  left: 270px;
+  z-index: 2; 
+  text-decoration: none;
+  font-weight: bold;
+  color: #EB676C;
+  border: 2px solid #EB676C;
+  padding: 10px 16px;
+  border-radius: 0px;
+
+  background: linear-gradient(to top, #EB676C 0%, #EB676C 100%);
+  background-size: 100% 0%;
+  background-repeat: no-repeat;
+  background-position: bottom center;
+
+  transition: background-size 0.4s ease, color 0.4s ease, transform 0.3s;
+}
+
+.project-hero .back-link:hover {
+  background-size: 100% 100%;
+  color: #000;
+  transform: scale(1.05);
+}
+
+/* DS Sections */
+.ds-section {
+  margin: 60px auto;
+  max-width: 900px;
+  text-align: center;
+}
+
+.ds-text {
+  margin-bottom: 20px;
+}
+
+.ds-media {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.main-media {
+  width: 100%;
+  border-radius: 12px;
+}
+
+.overlay-media {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.ds-media:hover .overlay-media {
+  opacity: 1;
+}
+
 .site-footer {
   text-align: center;
-  padding: 2rem 1rem;
-  color: #aaa;
-  font-size: 0.875rem;
+  padding: 20px;
+  font-size: 0.9rem;
+  color: #888;
   border-top: 1px solid #333;
-}
-
-/* simple fade animation */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(12px); }
-  to   { opacity: 1; transform: translateY(0); }
 }
