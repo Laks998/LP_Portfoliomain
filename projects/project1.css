@@ -1,14 +1,11 @@
-/* Page base */
-* { box-sizing: border-box; }
-html, body { height: 100%; }
 
 body {
   margin: 0;
   font-family: 'Space Grotesk', sans-serif;
   background: linear-gradient(to bottom, #000000 0%, #2c2a2a 100%);
   color: #f1f1f1;
-  display: flex;
-  flex-direction: column;
+  line-height: 1.8;
+  overflow-x: hidden;
 }
 
 .project-hero .back-link {
@@ -71,6 +68,46 @@ body {
   transform: scale(1.05);
 }
 
+.project-hero {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* full screen height */
+  overflow: hidden;
+}
+
+.project-hero .hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.5);
+  z-index: 1;
+}
+
+.project-hero .hero-text {
+  position: absolute;
+  bottom: 2rem;   /* distance from bottom */
+  right: 2rem;    /* distance from right */
+  z-index: 2;
+  text-align: right;
+  color: #EB676C;
+}
+
+.project-hero .project-title {
+  font-size: 2rem;
+  font-weight: 1000;
+  line-height: 0.9; /* tighter or looser */
+  margin: 0;
+  -webkit-text-fill-color: #EB676C;
+}
+
+.project-hero .sub {
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+  color: #ddd;
+}
 
 .coming-soon h1 {
   font-size: clamp(2rem, 6vw, 4rem);
