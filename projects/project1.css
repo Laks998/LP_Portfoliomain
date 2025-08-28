@@ -11,21 +11,16 @@ body {
   flex-direction: column;
 }
 
-/* Back link */
-.project-hero {
-  position: fixed;
-  top: 50px;      /* adjust vertical position */
-  left: 270px;     /* adjust horizontal position */
-  z-index: 0;
-}
-
 .project-hero .back-link {
-  display: inline-block;
+  position: absolute;
+  top: 50px;
+  left: 270px;
+  z-index: 2; 
   text-decoration: none;
   font-weight: bold;
   color: #EB676C;
   border: 2px solid #EB676C;
-  padding: 12px 18px;
+  padding: 10px 16px;
   border-radius: 0px;
 
   background: linear-gradient(to top, #EB676C 0%, #EB676C 100%);
@@ -42,8 +37,6 @@ body {
   transform: scale(1.05);
 }
 
-
-
 /* Center the message */
 .coming-soon {
   flex: 1;                            /* fill remaining height */
@@ -52,6 +45,32 @@ body {
   text-align: center;
   padding: 2rem;
 }
+
+.bottom-back-link {
+  display: inline-block;
+  margin: 40px auto;         
+  text-decoration: none;
+  font-weight: bold;
+  color: #EB676C;
+  border: 2px solid #EB676C;
+  padding: 10px 16px;
+  border-radius: 0px;
+
+  /* vertical fill setup */
+  background: linear-gradient(to top, #EB676C 0%, #EB676C 100%);
+  background-size: 100% 0%;
+  background-repeat: no-repeat;
+  background-position: bottom center;
+
+  transition: background-size 0.4s ease, color 0.4s ease, transform 0.3s;
+}
+
+.bottom-back-link:hover {
+  background-size: 100% 100%;  /* fills upward */
+  color: #000;
+  transform: scale(1.05);
+}
+
 
 .coming-soon h1 {
   font-size: clamp(2rem, 6vw, 4rem);
