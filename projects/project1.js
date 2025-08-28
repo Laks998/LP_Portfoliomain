@@ -1,16 +1,21 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const videos = document.querySelectorAll(".overlay-media");
-
-  videos.forEach(video => {
-    const container = video.closest(".ds-media");
-
-    container.addEventListener("mouseenter", () => {
-      video.currentTime = 0;
-      video.play();
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show-overlay");
+        const video = entry.target.querySelector(".overlay-media");
+        video.currentTime = 0;
+        video.play();
+      } else {
+        entry.target.classList.remove("show-overlay");
+        const video = entry.target.querySelector(".overlay-media");
+        video.pause();
+        video.currentTime = 0;
+      }
     });
+  }, { threshold: 0.5 });
 
-    container.addEventListener("mouseleave", () => {
-      video.pause();
-    });
+  document.querySelectorAll(".ds-media").forEach(media => {
+    observer.observe(media);
   });
 });
