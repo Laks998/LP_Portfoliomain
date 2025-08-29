@@ -1,3 +1,4 @@
+
 // Small pulse effect on "Coming Soon"
 const text = document.getElementById("mainText");
 if (text) {
