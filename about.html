@@ -5,12 +5,9 @@
   <title>About | Lakshmi Pratap</title>
   <link rel="stylesheet" href="about-style.css">
   <link href="https://fonts.googleapis.com/css2?family=Migra&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="assets/logo.png">
-
-<!-- Space Grotesk -->
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 <body>
 
@@ -22,81 +19,74 @@
     <a href="../index.html#work">Work</a>
     <a href="about.html" class="active">About</a>
     <a href="assets/Resume_LP.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
-    
   </nav>
   <div class="nav-vertical-line"></div>
 
+  <!-- HERO -->
   <section class="about-hero">
-      <img src="assets/your-image.jpg" alt="Hero Image" class="about-hero-img">
-      <div class="about-hero-text">
-        <h1>BEYOND THE RESUME</h1>
-        <p>A few things you won’t find in my CV, projects, or timeline. This portfolio is my very first coding project. I built it entirely from scratch in one month,
-        with <strong>zero prior HTML, CSS, or JavaScript experience</strong>.  
-        Every page here is custom. A mix of my design instincts and vibe coding</p>
-      </div>
+    <img src="assets/your-image.jpg" alt="Hero Image" class="about-hero-img">
+    <div class="about-hero-text">
+      <h1 data-animate="glitch">BEYOND<br>THE RESUME</h1>
+      <p data-animate="fade">
+        A few things you won’t find in my CV, projects, or timeline. 
+      </p>
+    </div>
   </section>
-  <!-- ABOUT CONTENT -->
+
+  <!-- MAIN CONTENT -->
   <main class="about-container">
 
-  <div class="about-block">
-    <div class="about-text">
-      <h3>LEARNING FAST</h3>
-      <p>
-        I taught myself After Effects from scratch in <strong>two weeks</strong>
-        and created a <em>Save the Date</em> wedding video.
-      </p>
+    <div class="about-block" data-animate="slide-left">
+      <div class="about-text">
+        <h3>THE<br><span class="outline">NOW</span></h3>
+        <p>These days, I’m deeply into <strong>vibe coding and Animation</strong> This portfolio is my very first coding project(Second in the same month if you include the one I made and immediately thought it wasn't very "me"). I built it entirely from scratch in one month,
+        with <strong>zero prior HTML, CSS, or JavaScript experience</strong>.  
+        Every page here is custom. A mix of my design instincts and vibe coding.</p>
+      </div>
+      <div class="about-media circle-frame">
+        <img src="assets/about-image.jpg" alt="About me illustration">
+      </div>
     </div>
-    <div class="about-media">
-      <video controls class="about-video">
-        <source src="assets/savethedate.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-    </div>
-  </div>
 
-  <div class="about-block">
-    <div class="about-text">
-      <h3>Going Viral</h3>
-      <p>
-        I made a wedding reel on Instagram that reached
-        <strong>4.5 million views</strong>.
-      </p>
-    </div>
-    <div class="about-media">
-      <img src="assets/reel.jpg" alt="About me illustration">
-    </div>
-  </div>
+    <div class="about-block" data-animate="slide-right">
+      <div class="about-text">
+        <h3>LEARNING<br><span class="outline">FAST</span></h3>
+        <p>I taught myself After Effects from scratch in <strong>two weeks</strong>
+        and created a <em>Save the Date</em> wedding video.</p>
+      </div>
+      <div class="about-media skew-frame">
+        <video class="about-video" muted playsinline>
+          <source src="assets/savethedate.mp4" type="video/mp4">
+        </video>
 
-  <div class="about-block">
-    <div class="about-text">
-      <h3>Creative Detours</h3>
-      <p>
-        During COVID, I ran a small art account where I sketched consistently for a few months.
+      </div>
+    </div>
+
+    <div class="about-block" data-animate="slide-left">
+      <div class="about-text">
+        <h3>GOING<br><span class="outline">VIRAL</span></h3>
+        <p>I made a wedding reel on Instagram that reached <strong>4.5 million views</strong>.</p>
+      </div>
+      <div class="about-media circle-frame">
+        <img src="assets/reel.jpg" alt="About me illustration">
+      </div>
+    </div>
+
+    <div class="about-block" data-animate="slide-right">
+      <div class="about-text">
+        <h3>CREATIVE<br><span class="outline">DETOURS</span></h3>
+        <p>During COVID, I ran a small art account where I sketched consistently for a few months.
         Later, I tried embroidery and even some singing.
         You can peek at my sketches here:
         <a href="https://instagram.com/quic_art" target="_blank" class="link">Instagram</a>.
-      </p>
+        </p>
+      </div>
+      <div class="about-media skew-frame">
+        <img src="assets/quickart.jpg" alt="About me illustration">
+      </div>
     </div>
-    <div class="about-media">
-      <img src="assets/quickart.jpg" alt="About me illustration">
-    </div>
-  </div>
 
-  <div class="about-block">
-    <div class="about-text">
-      <h3>Now</h3>
-      <p>
-        These days, I’m deeply into <strong>animation</strong> —
-        bringing together my UX/UI background with motion and storytelling.
-      </p>
-    </div>
-    <div class="about-media">
-      <img src="assets/about-image.jpg" alt="About me illustration">
-    </div>
-  </div>
-
-</main>
-
+  </main>
 
   <!-- FOOTER -->
   <footer class="site-footer">

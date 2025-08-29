@@ -1,14 +1,13 @@
-/* ========== ABOUT PAGE ========== */
+/* Base */
 body {
   margin: 0;
-  padding: 0;
-  min-height: 100vh;
-  overflow-x: hidden;
   font-family: 'Migra', serif;
-  color: rgb(241, 228, 228);
+  color: #f1e4e4;
   background: radial-gradient(circle at center, #161515 0%, #2c2a2a 100%);
+  overflow-x: hidden;
 }
 
+/* Footer */
 .site-footer {
   font-family: 'Space Grotesk', sans-serif;
   text-align: center;
@@ -19,58 +18,55 @@ body {
   margin-top: 4rem;
 }
 
-/* ========== HERO SECTION ========== */
+/* Hero */
 .about-hero {
   position: relative;
-  width: 100%;
-  height: 100vh; /* fills the full screen height */
+  height: 100vh;
   overflow: hidden;
-  background: radial-gradient(circle at center, #161515 0%, #2c2a2a 100%);
 }
 
 .about-hero-img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* ensures the image covers the whole screen */
+  object-fit: cover;
+  filter: brightness(60%);
 }
 
 .about-hero-text {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  color: #EB676C;
+  bottom: 15%;
+  left: 10%;
   z-index: 2;
 }
 
 .about-hero-text h1 {
-  font-size: 3rem;
-  line-height: 1.8;
-  margin: 0;
+  font-size: 5rem;
+  line-height: 1.1;
+  font-family: 'Migra', serif;
+  color: #EB676C;
+  animation: glitch 2s infinite;
 }
 
 .about-hero-text p {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 1rem;
-  line-height: 1.8;
+  color: #fff;
+  font-size: 1.1rem;
+  max-width: 600px;
   margin-top: 1rem;
+  line-height: 1.8;
 }
 
-/* Optional dark overlay for better text visibility */
-.about-hero::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.4); /* darken image */
-  z-index: 1;
+/* Glitch effect */
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(2px, -2px); }
+  60% { transform: translate(-1px, 1px); }
+  80% { transform: translate(1px, -1px); }
+  100% { transform: translate(0); }
 }
 
-
-
+/* Side nav */
 .side-nav {
   position: fixed;
   right: 40px;
@@ -85,8 +81,8 @@ body {
 .side-nav a {
   padding: 12px 20px;
   border: 2px solid #EB676C;
-  background-color: transparent; /* 🟡 Make background transparent by default */
-  color: #EB676C;      /* 🟡 White text */
+  background-color: transparent;
+  color: #EB676C;
   text-decoration: none;
   font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
@@ -97,7 +93,6 @@ body {
   transition: all 0.3s ease;
 }
 
-/* ✅ Force override box styles specifically for the logo link */
 .side-nav a.logo-nav {
   padding: 0 !important;
   border: none !important;
@@ -105,8 +100,6 @@ body {
   min-width: auto !important;
 }
 
-
-/* Water-fill for side nav (no pseudo-element, no reflow) */
 .side-nav a {
   position: relative;
   border: 2px solid #EB676C;
@@ -120,7 +113,7 @@ body {
 }
 
 .side-nav a:hover {
-  background-size: 100% 100%;  /* animate upward */
+  background-size: 100% 100%;
   color: #000000;
 }
 
@@ -128,149 +121,6 @@ body {
   background-size: 100% 100%;
   color: black;
   font-weight: bold;
-}
-
-.nav-vertical-line {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  right: 80px; /* Adjust based on your nav’s distance from the right */
-  width: 2px;
-  background-color: white;
-  opacity: 0.3;
-  z-index: 500; /* Above background, but below nav buttons */
-}
-
-.about-heading {
-  font-family: 'Migra', serif;
-  font-size: 4rem;
-  color: #EB676C;
-  margin-bottom: 2rem;
-  text-align: center;
-}
-
-.about-subheading {
-  font-size: 2rem;
-  color: white;
-  margin: 3rem 0 1rem;
-}
-
-/* ABOUT CONTAINER */
-.about-container {
-  max-width: 1200px;     /* give more room since now it’s side by side */
-  margin: 0 auto;
-  padding: 4rem 2rem;
-  font-family: 'Space Grotesk', sans-serif;
-  line-height: 1.8;
-  text-align: left;      /* 🔄 changed from center */
-}
-
-/* ABOUT BLOCK */
-.about-block {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 3rem;
-  margin-bottom: 2rem;
-}
-
-/* Alternate layout */
-.about-block:nth-child(even) {
-  flex-direction: row-reverse;
-}
-
-/* TEXT */
-.about-text {
-  flex: 1;
-}
-
-.about-text h3 {
-  color: #EB676C;
-  font-size: 6rem;  /* 🔄 smaller than 6rem so it pairs well with paragraph */
-  font-weight: 700;
-  margin-bottom: 1rem;
-  line-height: 1;
-}
-
-.about-text p {
-  max-width: 480px;
-  line-height: 1.6;
-  font-size: 1rem;
-  color: #ddd;
-}
-
-/* MEDIA */
-.about-media {
-  flex: 1;
-  height: 90vh;   /* 🔑 make container slightly shorter than screen */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.about-media video {
-  height: 100%;          /* fill the container height */
-  width: auto;           /* scale width automatically */
-  max-width: 100%;
-  border: 2px solid #333;
-  border-radius: 0.5rem;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.5);
-
-  object-fit: cover;     /* crop edges instead of shrinking */
-  object-position: center;  /* 🔑 centers video → crops a bit from both top & bottom */
-}
-
-
-
-.about-media img {
-  width: 100%;
-  max-width: 550px;   /* 🔑 bigger than before */
-  height: auto;       /* keep proportions */
-  border: 2px solid #333;
-  border-radius: 0.5rem;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.5);
-  transition: transform 0.3s ease;
-}
-
-
-.about-media img:hover,
-.about-media video:hover {
-  transform: scale(1.05);
-}
-
-/* RESPONSIVE STACK */
-@media (max-width: 768px) {
-  .about-block {
-    flex-direction: column;
-    text-align: center;
-  }
-  .about-text, .about-media {
-    flex: unset;
-  }
-  .about-text p {
-    max-width: 100%;
-  }
-}
-
-
-.link {
-  color: #EB676C;
-  text-decoration: underline;
-  transition: color 0.3s;
-}
-.link:hover {
-  color: white;
-}
-
-/* Fade in animation */
-.fade-in {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 1s ease, transform 1s ease;
-}
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 .logo-nav {
@@ -281,7 +131,6 @@ body {
   align-items: center;
 }
 
-/* ✅ Style the image itself */
 .logo-image {
   width: 50px;
   height: auto;
@@ -293,4 +142,144 @@ body {
 
 .logo-image:hover {
   transform: scale(1.1);
+}
+
+.nav-vertical-line {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 80px;
+  width: 2px;
+  background-color: white;
+  opacity: 0.3;
+  z-index: 500;
+}
+
+/* About content */
+.about-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+/* Blocks */
+.about-block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 4rem;
+  opacity: 0;
+  transform: translateY(40px);
+  padding-right: 80px; 
+}
+
+.about-block:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+.about-text h3 {
+  font-size: 6rem;
+  line-height: 0.9;
+  color: #EB676C;
+  margin: 0 0 1rem;
+}
+
+.about-text .outline {
+  -webkit-text-stroke: 2px #EB676C;
+  color: transparent;
+}
+
+.about-text p {
+  font-size: 1.1rem;
+  color: #ddd;
+  line-height: 1.7;
+  max-width: 480px;
+}
+
+/* Media styling */
+.about-media img,
+.about-media video {
+  width: 100%;
+  max-width: 550px;
+  border: 3px solid #333;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+  transition: transform 0.3s;
+  transform: scale(0.85);
+  transform-origin: center;
+}
+
+.about-media img:hover,
+.about-media video:hover {
+  transform: scale(1.0);
+}
+
+/* Link */
+.link {
+  color: #EB676C;
+  text-decoration: underline;
+}
+.link:hover {
+  color: white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .about-block {
+    flex-direction: column !important;
+    text-align: center;
+  }
+  .about-text h3 {
+    font-size: 3.5rem;
+  }
+  .about-media img, .about-media video {
+    max-width: 100%;
+  }
+}
+
+/* Video styling */
+.about-video {
+  width: 90%;
+  max-width: 600px;
+  border-radius: 12px;
+  display: block;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* let default controls exist but hide with opacity */
+.about-video::-webkit-media-controls {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.about-video:hover::-webkit-media-controls {
+  opacity: 1;
+}
+
+/* Optional wrapper for custom volume/play button */
+.video-container {
+  position: relative;
+  display: inline-block;
+}
+
+.volume-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  z-index: 5;
+}
+.volume-btn:hover {
+  background: rgba(255,255,255,0.2);
 }
