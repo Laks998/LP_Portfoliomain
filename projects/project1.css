@@ -193,7 +193,7 @@ body {
 
 .colours-section .overlay-media {
   position: absolute;
-  top: 10%;           /* adjust vertical position */
+  top: 50%;           /* adjust vertical position */
   right: -90%;        /* start hidden */
   width: 30%;         /* scale down proportionally */
   height: auto;       /* keep aspect ratio */
@@ -219,7 +219,7 @@ body {
   opacity: 1;
 }
 
-/* Section 5: Forms */
+/* Section 5: Searchfield */
 .searchfield-section .overlay-media {
   top: 15%;
   right: -85%;
