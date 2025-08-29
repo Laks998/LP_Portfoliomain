@@ -283,3 +283,38 @@ body {
 .volume-btn:hover {
   background: rgba(255,255,255,0.2);
 }
+
+/* Say Hi section */
+.about-sayhi {
+  text-align: center;
+  padding: 4rem 2rem;
+  font-family: 'Space Grotesk', sans-serif;
+  background: #1c1b1b;
+  border-top: 1px solid #333;
+  border-bottom: 1px solid #333;
+  margin-top: 2rem;
+}
+
+.sayhi-text {
+  font-size: 1.0rem;
+  color: #eee;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.sayhi-text .highlight {
+  color: #EB676C;
+  font-weight: 600;
+}
+
+.sayhi-email a {
+  color: #EB676C;
+  font-size: 1.0rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.sayhi-email a:hover {
+  color: white;
+}
