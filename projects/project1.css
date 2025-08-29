@@ -248,5 +248,46 @@ body {
   opacity: 1;
 }
 
+/* Colours section */
+.colours-section .ds-media {
+  --overlay-width: 30%;
+  --overlay-top: 10%;
+  --overlay-right: -90%;
+}
+
+/* Tab Bar */
+.tabbar-section .ds-media {
+  --overlay-width: 60%;
+  --overlay-top: 25%;
+  --overlay-right: -90%;
+}
+
+/* Buttons */
+.buttons-section .ds-media {
+  --overlay-width: 65%;
+  --overlay-top: 30%;
+  --overlay-right: -95%;
+}
+
+/* Textfields */
+.textfields-section .ds-media {
+  --overlay-width: 60%;
+  --overlay-top: 20%;
+  --overlay-right: -90%;
+}
+
+/* Searchfield */
+.searchfield-section .ds-media {
+  --overlay-width: 50%;
+  --overlay-top: 15%;
+  --overlay-right: -85%;
+}
+
+/* Font */
+.font-section .ds-media {
+  --overlay-width: 50%;
+  --overlay-top: 20%;
+  --overlay-right: -90%;
+}
 
 
