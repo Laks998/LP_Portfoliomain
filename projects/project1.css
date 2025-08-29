@@ -207,4 +207,46 @@ body {
   opacity: 1;
 }
 
+/* Section 4: textfields */
+.textfields-section .overlay-media {
+  top: 20%;
+  right: -90%;
+  width: 60%;
+}
+.textfields-section.show-overlay .overlay-media {
+  top: 50%;
+  right: -30%;
+  opacity: 1;
+}
+
+/* Section 5: Forms */
+.searchfield-section .overlay-media {
+  top: 15%;
+  right: -85%;
+  width: 50%;
+  opacity: 0;
+  transition: all 0.8s ease;
+}
+
+.searchfield-section.show-overlay .overlay-media {
+  top: 45%;
+  right: -25%;
+  opacity: 1;
+}
+
+/* Section 6: Font */
+.font-section .overlay-media {
+  top: 20%;
+  right: -90%;
+  width: 50%;
+  opacity: 0;
+  transition: all 0.8s ease;
+}
+.font-section.show-overlay .overlay-media {
+  top: 45%;
+  right: -30%;
+  opacity: 1;
+}
+
+
 
