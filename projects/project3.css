@@ -112,7 +112,7 @@ body {
 }
 
 .project-hero .project-title {
-  font-size: 2rem;
+  font-size: 3rem;
   font-weight: 1000;
   line-height: 0.9; /* tighter or looser */
   margin: 0;
@@ -129,11 +129,13 @@ body {
 .project-content h3,
 section h3,
 .project-overview .overview-card h3 {
-  font-size: 2rem;
+  font-size: 1.5rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
   font-weight: 700;
   margin-top: 60px; /* match h2 spacing */
   margin-bottom: 1rem; /* give more breathing space */
-  color: #ffffff;
+  color: #EB676C;
   position: relative;
   line-height: 1.2;
   padding-bottom: 0.3rem; /* space for underline */
@@ -163,9 +165,11 @@ section h3::before,
 
 /* ===== Section Styling ===== */
 .project-content h2 {
-  font-size: 2rem;
+  font-size: 3rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
   margin-top: 60px;
-  color: #ffffff;
+  color: #EB676C;
   position: relative;
 }
 
@@ -254,7 +258,9 @@ section.visible {
     font-size: 2.5rem;
   }
   .project-content h2 {
-    font-size: 1.6rem;
+    font-size: 3rem;
+    letter-spacing: .15em;
+    text-transform: uppercase;
   }
 }
 
@@ -389,7 +395,9 @@ section.visible {
 }
 
 .two-column-section h2 {
-  font-size: 1.8rem;
+  font-size: 3rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
   margin-bottom: 1rem;
 }
 
@@ -460,4 +468,25 @@ section.fade-section.visible {
 section {
   opacity: 1 !important;
   transform: none !important;
+}
+
+h2 {
+  font-family: 'Space Grotesk', sans-serif; /* force font */
+  font-weight: 800; /* or whatever you want */
+  font-size: 3rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: #EB676C;
+  position: relative;
+  margin-top: 60px;
+}
+
+h2::before {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(to right, #c15b5e, #EB676C);
 }
