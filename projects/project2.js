@@ -190,3 +190,242 @@ if (book && flipHint) {
   });
 })();
 
+(function () {
+  const wrapper = document.querySelector('.roles-wrapper2');
+  if (!wrapper) return; // nothing to do if no section on this page
+
+  const carousel = wrapper.querySelector('.roles-carousel2');
+  const cardNodes = Array.from(carousel.querySelectorAll('.role-card2'));
+  const leftBtn = wrapper.querySelector('.scroll-arrow2.left');
+  const rightBtn = wrapper.querySelector('.scroll-arrow2.right');
+  const scrollViewBtn = document.getElementById('scrollViewBtn2');
+  const gridViewBtn = document.getElementById('gridViewBtn2');
+
+  if (!cardNodes.length) return;
+
+  // wait until images are loaded so dimensions are accurate
+  const imgs = carousel.querySelectorAll('img.role-card-img2');
+  const waitForImages = () => new Promise(resolve => {
+    let count = 0;
+    imgs.forEach(img => {
+      if (img.complete) {
+        count++;
+      } else {
+        img.addEventListener('load', () => {
+          count++;
+          if (count === imgs.length) resolve();
+        }, { once: true });
+      }
+    });
+    if (count === imgs.length) resolve();
+  });
+
+  let index = 0;
+  const GAP = parseFloat(getComputedStyle(carousel).getPropertyValue('--card-gap')) || 20;
+
+  function getCardWidth() {
+    return cardNodes[0].getBoundingClientRect().width;
+  }
+  function getWrapWidth() {
+    return wrapper.getBoundingClientRect().width;
+  }
+
+  function applyClasses() {
+    cardNodes.forEach((card, i) => {
+      card.classList.remove('active', 'prev', 'next');
+      if (i === index) card.classList.add('active');
+      else if (i === ((index - 1 + cardNodes.length) % cardNodes.length)) card.classList.add('prev');
+      else if (i === ((index + 1) % cardNodes.length)) card.classList.add('next');
+    });
+  }
+
+  function centerOnIndex() {
+    if (wrapper.classList.contains('grid-view')) {
+      carousel.style.transform = 'none';
+      return;
+    }
+
+    const cardW = getCardWidth();
+    const wrapW = getWrapWidth();
+    const offset = (wrapW / 2) - (cardW / 2) - index * (cardW + GAP);
+    carousel.style.transform = `translateX(${offset}px)`;
+
+    if (leftBtn) leftBtn.disabled = (index === 0);
+    if (rightBtn) rightBtn.disabled = (index === cardNodes.length - 1);
+  }
+
+  function goTo(i) {
+    index = Math.max(0, Math.min(cardNodes.length - 1, i));
+    applyClasses();
+    centerOnIndex();
+  }
+
+  function go(delta) {
+    goTo(index + delta);
+  }
+
+  waitForImages().then(() => {
+    applyClasses();
+    requestAnimationFrame(centerOnIndex);
+  });
+
+  leftBtn && leftBtn.addEventListener('click', () => go(-1));
+  rightBtn && rightBtn.addEventListener('click', () => go(1));
+
+  cardNodes.forEach((card, i) => card.addEventListener('click', () => { if (i !== index) goTo(i); }));
+
+  wrapper.addEventListener('keydown', (e) => {
+    if (wrapper.classList.contains('grid-view')) return;
+    if (e.key === 'ArrowLeft') go(-1);
+    if (e.key === 'ArrowRight') go(1);
+  });
+
+  scrollViewBtn && scrollViewBtn.addEventListener('click', () => {
+    wrapper.classList.remove('grid-view');
+    scrollViewBtn.classList.add('active');
+    gridViewBtn && gridViewBtn.classList.remove('active');
+    if (window.innerWidth > 680) {
+      leftBtn && (leftBtn.style.display = 'block');
+      rightBtn && (rightBtn.style.display = 'block');
+    }
+    requestAnimationFrame(centerOnIndex);
+  });
+
+  gridViewBtn && gridViewBtn.addEventListener('click', () => {
+    wrapper.classList.add('grid-view');
+    gridViewBtn.classList.add('active');
+    scrollViewBtn && scrollViewBtn.classList.remove('active');
+    leftBtn && (leftBtn.style.display = 'none');
+    rightBtn && (rightBtn.style.display = 'none');
+    carousel.style.transform = 'none';
+  });
+
+  let resizeTimer = null;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      centerOnIndex();
+    }, 120);
+  });
+})();
+
+//New ONe//
+
+(function () {
+  const wrapper = document.querySelector('.roles-wrapper2');
+  if (!wrapper) return; // nothing to do if no section on this page
+
+  const carousel = wrapper.querySelector('.roles-carousel2');
+  const cardNodes = Array.from(carousel.querySelectorAll('.role-card2'));
+  const leftBtn = wrapper.querySelector('.scroll-arrow2.left');
+  const rightBtn = wrapper.querySelector('.scroll-arrow2.right');
+  const scrollViewBtn = document.getElementById('scrollViewBtn2');
+  const gridViewBtn = document.getElementById('gridViewBtn2');
+
+  if (!cardNodes.length) return;
+
+  // wait until images are loaded so dimensions are accurate
+  const imgs = carousel.querySelectorAll('img.role-card-img2');
+  const waitForImages = () => new Promise(resolve => {
+    let count = 0;
+    imgs.forEach(img => {
+      if (img.complete) {
+        count++;
+      } else {
+        img.addEventListener('load', () => {
+          count++;
+          if (count === imgs.length) resolve();
+        }, { once: true });
+      }
+    });
+    if (count === imgs.length) resolve();
+  });
+
+  let index = 0;
+  const GAP = parseFloat(getComputedStyle(carousel).getPropertyValue('--card-gap')) || 20;
+
+  function getCardWidth() {
+    return cardNodes[0].getBoundingClientRect().width;
+  }
+  function getWrapWidth() {
+    return wrapper.getBoundingClientRect().width;
+  }
+
+  function applyClasses() {
+    cardNodes.forEach((card, i) => {
+      card.classList.remove('active', 'prev', 'next');
+      if (i === index) card.classList.add('active');
+      else if (i === ((index - 1 + cardNodes.length) % cardNodes.length)) card.classList.add('prev');
+      else if (i === ((index + 1) % cardNodes.length)) card.classList.add('next');
+    });
+  }
+
+  function centerOnIndex() {
+    if (wrapper.classList.contains('grid-view')) {
+      carousel.style.transform = 'none';
+      return;
+    }
+
+    const cardW = getCardWidth();
+    const wrapW = getWrapWidth();
+    const offset = (wrapW / 2) - (cardW / 2) - index * (cardW + GAP);
+    carousel.style.transform = `translateX(${offset}px)`;
+
+    if (leftBtn) leftBtn.disabled = (index === 0);
+    if (rightBtn) rightBtn.disabled = (index === cardNodes.length - 1);
+  }
+
+  function goTo(i) {
+    index = Math.max(0, Math.min(cardNodes.length - 1, i));
+    applyClasses();
+    centerOnIndex();
+  }
+
+  function go(delta) {
+    goTo(index + delta);
+  }
+
+  waitForImages().then(() => {
+    applyClasses();
+    requestAnimationFrame(centerOnIndex);
+  });
+
+  leftBtn && leftBtn.addEventListener('click', () => go(-1));
+  rightBtn && rightBtn.addEventListener('click', () => go(1));
+
+  cardNodes.forEach((card, i) => card.addEventListener('click', () => { if (i !== index) goTo(i); }));
+
+  wrapper.addEventListener('keydown', (e) => {
+    if (wrapper.classList.contains('grid-view')) return;
+    if (e.key === 'ArrowLeft') go(-1);
+    if (e.key === 'ArrowRight') go(1);
+  });
+
+  scrollViewBtn && scrollViewBtn.addEventListener('click', () => {
+    wrapper.classList.remove('grid-view');
+    scrollViewBtn.classList.add('active');
+    gridViewBtn && gridViewBtn.classList.remove('active');
+    if (window.innerWidth > 680) {
+      leftBtn && (leftBtn.style.display = 'block');
+      rightBtn && (rightBtn.style.display = 'block');
+    }
+    requestAnimationFrame(centerOnIndex);
+  });
+
+  gridViewBtn && gridViewBtn.addEventListener('click', () => {
+    wrapper.classList.add('grid-view');
+    gridViewBtn.classList.add('active');
+    scrollViewBtn && scrollViewBtn.classList.remove('active');
+    leftBtn && (leftBtn.style.display = 'none');
+    rightBtn && (rightBtn.style.display = 'none');
+    carousel.style.transform = 'none';
+  });
+
+  let resizeTimer = null;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      centerOnIndex();
+    }, 120);
+  });
+})();
