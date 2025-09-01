@@ -150,19 +150,25 @@ html, body {
   margin-left: 0;          /* stick to the left */
 }
 
-.overlay-media {
-  position: absolute;
-  top: 25%;
-  right: 0;          /* keep it aligned */
-  transform: translateX(200%);  /* offscreen */
-  transition: all 0.8s ease;
-  opacity: 0;
-}
-
-.ds-media.show-overlay .overlay-media {
-  transform: translateX(0);     /* slide into place */
-  opacity: 1;
-}
+.overlay-media { 
+  position: absolute; 
+  top: 25%; /* a bit higher */ 
+  right: -90%; /* start hidden further out */ 
+  width: 60%; /* slightly smaller overlay */ 
+  height: auto; 
+  border-radius: 0px; 
+  box-shadow: 0 8px 30px rgba(0,0,0,0.4); 
+  opacity: 0; 
+  transition: all 0.8s ease; 
+  pointer-events: none; 
+  
+  } /* Active (scroll into view) */ 
+  
+  .ds-media.show-overlay .overlay-media { 
+    top: 50%; 
+    right: -30%; /* stop more to the right */ 
+    opacity: 1; 
+  }
 
 /* SECTION-SPECIFIC OVERLAY POSITIONING */
 
