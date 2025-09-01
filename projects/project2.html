@@ -102,14 +102,53 @@
           <li><strong>TPRS Admin</strong></li>
         </ol>
 
-        <!-- Table image -->
-        <div class="image-gallery large">
-          <figure>
-            <img src="../assets/rolestable.png" alt="User research roles table" />
-          </figure>
-        </div>
-      </div>
+    
     </section>
+
+        <!-- Table image -->
+        <!-- Roles section: character carousel -->
+  <section class="roles-section" id="rolesSection">
+    <!-- view toggle -->
+    <div class="view-toggle" aria-hidden="false">
+      <button id="scrollViewBtn" class="active" aria-pressed="true" title="Carousel view">📜</button>
+      <button id="gridViewBtn" aria-pressed="false" title="Grid view">🔲</button>
+    </div>
+
+    <div class="roles-wrapper" tabindex="0" aria-label="Roles character carousel">
+      <button class="scroll-arrow left" aria-label="Previous role">‹</button>
+
+      <div class="roles-carousel" role="list" aria-live="polite">
+        <!-- repeat this block for each PNG card -->
+        <div class="role-card" role="listitem">
+          <img class="role-card-img" src="../assets/managercard.png" alt="Manager role card">
+        </div>
+
+        <div class="role-card" role="listitem">
+          <img class="role-card-img" src="../assets/systemadmincard.png" alt="System Admin role card">
+        </div>
+
+        <div class="role-card" role="listitem">
+          <img class="role-card-img" src="../assets/treasurycard.png" alt="Treasury role card">
+        </div>
+
+        <div class="role-card" role="listitem">
+          <img class="role-card-img" src="../assets/compliancecard.png" alt="Compliance role card">
+        </div>
+
+        <div class="role-card" role="listitem">
+          <img class="role-card-img" src="../assets/partneradmincard.png" alt="Partner Admin role card">
+        </div>
+
+        <div class="role-card" role="listitem">
+          <img class="role-card-img" src="../assets/tprsadmincard.png" alt="TPRS Admin role card">
+        </div>
+        <!-- end repeat -->
+      </div>
+
+      <button class="scroll-arrow right" aria-label="Next role">›</button>
+    </div>
+  </section>
+
 
     <section>
       <h3>Qualitative Analysis</h3>

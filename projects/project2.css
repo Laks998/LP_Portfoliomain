@@ -55,6 +55,13 @@ section h2::before {
   background: linear-gradient(to right, #c15b5e, #EB676C);
 }
 
+section h3 {
+  font-size: 1rem;
+  margin-top: 60px;
+  color: #EB676C;
+  position: relative;
+}
+
 /* Paragraphs, Lists, Quotes */
 section p,
 section ul,
@@ -226,4 +233,174 @@ section:last-of-type {
   max-width: 100%;
   height: auto;
   border-radius: 8px; /* optional, for soft corners */
+}
+
+
+/* ---------- Roles: character carousel + grid toggle ---------- */
+.roles-section {
+  margin: 40px 0;
+  color: #fff;
+  position: relative;
+}
+
+/* Toggle buttons */
+.view-toggle {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+.view-toggle button {
+  background: none;
+  border: 0px solid #EB676C;
+  color: #EB676C;
+  padding: 6px 10px;
+  border-radius: 0;
+  cursor: pointer;
+  transition: all 0.22s ease;
+}
+.view-toggle button.active,
+.view-toggle button:hover {
+  background: #EB676C;
+  color: #000;
+}
+
+/* Wrapper and track */
+.roles-wrapper {
+  position: relative;
+  overflow: hidden;
+  max-width: 1100px;
+  margin: 0 auto;
+  outline: none; /* for keyboard focus you can style later */
+}
+
+/* card gap variable used by JS centering math */
+.roles-carousel {
+  --card-gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: var(--card-gap);
+  transition: transform 600ms cubic-bezier(.2,.9,.3,1);
+  will-change: transform;
+  padding: 30px 0; /* breathing room */
+}
+
+/* each card container (keeps layout consistent) */
+.role-card {
+  flex: 0 0 auto;
+  width: var(--card-width, 340px); /* JS reads actual width */
+  max-width: 80vw;
+  box-sizing: border-box;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+
+}
+
+
+/* actual image */
+.role-card-img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 0px;
+  transition: transform 450ms ease, opacity 450ms ease, filter 450ms ease;
+  transform-origin: center center;
+  cursor: pointer;
+  box-shadow: 0 6px 30px rgba(0,0,0,0.45);
+  opacity: 0.45;
+  transform: scale(0.78);
+  filter: saturate(.9) brightness(.95);
+  image-rendering: -webkit-optimize-contrast; /* helps keep edges sharp */
+}
+
+/* Focus styles: centered card */
+.role-card.active .role-card-img {
+  transform: scale(1);
+  opacity: 1;
+  filter: none;
+  z-index: 3;
+}
+.role-card.prev .role-card-img,
+.role-card.next .role-card-img {
+  transform: scale(0.5);
+  opacity: 0.25;
+  filter: none;
+  z-index: 2;
+}
+
+/* smaller neighbors beyond prev/next */
+.role-card:not(.active):not(.prev):not(.next) .role-card-img {
+  transform: scale(0.50);
+  opacity: 0.25;
+  filter: grayscale(.25) brightness(.85);
+  z-index: 1;
+}
+
+/* arrows */
+/* Replace existing .scroll-arrow rules with this to force perfect circles */
+.scroll-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;                /* fixed square size -> makes it round */
+  height: 44px;
+  display: inline-flex;       /* center content perfectly */
+  align-items: center;
+  justify-content: center;
+  padding: 0;                 /* important: remove extra horizontal padding */
+  box-sizing: border-box;
+
+  background: #EB676C;
+  border: none;
+  color: #000000;
+  font-size: 20px;            /* adjust arrow glyph size */
+  line-height: 1;
+  cursor: pointer;
+  border-radius: 50%;         /* makes it circular */
+  z-index: 10;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+  transition: transform .14s ease, opacity .14s ease, box-shadow .14s ease;
+}
+
+/* Positioning */
+.scroll-arrow.left  { left: 12px;  }
+.scroll-arrow.right { right: 12px; }
+
+/* Press / active feedback */
+.scroll-arrow:active { transform: translateY(-50%) scale(.96); }
+
+/* Disabled state */
+.scroll-arrow[disabled] {
+  opacity: .35;
+  cursor: default;
+  transform: translateY(-50%) scale(.98);
+}
+
+/* Small screens: hide arrows (touch swipe) */
+@media (max-width: 680px) {
+  .scroll-arrow { display: none !important; }
+}
+
+
+/* Grid view overrides */
+.roles-wrapper.grid-view .roles-carousel {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  justify-items: center;
+  transform: none !important; /* kill carousel centering */
+  padding: 0; /* reset extra padding */
+}
+
+.roles-wrapper.grid-view .role-card {
+  width: 100% !important;
+  max-width: none !important;
+}
+
+.roles-wrapper.grid-view .role-card-img {
+  transform: none !important;
+  opacity: 1 !important;
+  filter: none !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
 }
