@@ -295,4 +295,29 @@ html, body {
   --overlay-right: -90%;
 }
 
+#design-system-image {
+  text-align: center;
+  margin: 40px 0;
+}
 
+#design-system-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px; /* optional, for soft corners */
+}
+section h2 {
+  text-align: center;
+  font-size: 3rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  margin-top: 60px;
+  color: #EB676C;
+  position: relative;
+}
+
+section p {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 1.05rem;
+  color: #cccccc;
+}
