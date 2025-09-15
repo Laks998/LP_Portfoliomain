@@ -301,6 +301,7 @@ html, body {
 }
 
 #design-system-image img {
+  max-width: 900px;
   max-width: 100%;
   height: auto;
   border-radius: 8px; /* optional, for soft corners */
@@ -317,7 +318,7 @@ section h2 {
 
 section p {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 10px;
   font-size: 1.05rem;
   color: #cccccc;
 }
