@@ -1,3 +1,4 @@
+/* Fonts */
 body {
   margin: 0;
   font-family: 'Space Grotesk', sans-serif;
@@ -119,206 +120,140 @@ html, body {
   transform: scale(1.05);
 }
 
-/* DS Sections */
-.ds-section {
-  margin: 60px auto;
+/* Case study layout */
+.case-study {
   max-width: 900px;
-  text-align: center;
-  margin-bottom: 150px;
+  margin: 0 auto;
+  padding: 100px 20px 60px; /* padding-top accounts for back button */
 }
 
-.ds-text {
+.case-study section {
+  margin-bottom: 80px;
+}
+
+h1, h2, h3 {
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+p {
   margin-bottom: 20px;
 }
 
+ul {
+  margin: 0 0 20px 20px;
+}
+
+.case-img, .hero-img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  margin-top: 12px;
+}
+
+/* Flow comparison layout */
+.flow-comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.flow-comparison h3 {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Design system / media overlay */
 .ds-media {
   position: relative;
-  display: inline-block;
-  width: 100%;
-  max-width: none;      /* allow full width */
-  aspect-ratio: 16/9;
-  overflow: visible;    /* no cropping */
+  max-width: 700px;
+  margin: 20px auto;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 
-
-.main-media {
-  width: 85%;              /* shrink main image slightly */
-  height: auto;
-  border-radius: 0%;
-  object-fit: contain;
+.overlay-media {
   display: block;
-  margin-left: 0;          /* stick to the left */
+  width: 100%;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-.overlay-media { 
-  position: absolute; 
-  top: 25%; /* a bit higher */ 
-  right: -90%; /* start hidden further out */ 
-  width: 60%; /* slightly smaller overlay */ 
-  height: auto; 
-  border-radius: 0px; 
-  box-shadow: 0 8px 30px rgba(0,0,0,0.4); 
-  opacity: 0; 
-  transition: all 0.8s ease; 
-  pointer-events: none; 
-  
-  } /* Active (scroll into view) */ 
-  
-  .ds-media.show-overlay .overlay-media { 
-    top: 50%; 
-    right: -30%; /* stop more to the right */ 
-    opacity: 1; 
+.ds-media.show-overlay .overlay-media {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .flow-comparison {
+    grid-template-columns: 1fr;
   }
 
-/* SECTION-SPECIFIC OVERLAY POSITIONING */
-
-/* Section 2: Tab Bar */
-.tabbar-section .overlay-media {
-  top: 25%;
-  right: -90%;
-  width: 60%;
-}
-.tabbar-section.show-overlay .overlay-media {
-  top: 50%;
-  right: -30%;
-  opacity: 1;
+  .back-button {
+    top: 12px;
+    left: 12px;
+    font-size: 0.85rem;
+    padding: 5px 10px;
+  }
 }
 
-/* Section 3: Buttons */
-.buttons-section .overlay-media {
-  top: 30%;
-  right: -95%;
-  width: 65%;
-}
-.buttons-section.show-overlay .overlay-media {
-  top: 10%;
-  right: -25%;
-  opacity: 1;
-}
-
-.colours-section .overlay-media {
-  position: absolute;
-  top: 50%;           /* adjust vertical position */
-  right: -90%;        /* start hidden */
-  width: 30%;         /* scale down proportionally */
-  height: auto;       /* keep aspect ratio */
-  opacity: 0;
-  transition: all 0.8s ease;
-}
-
-.colours-section.show-overlay .overlay-media {
-  top: 25%;        /* higher on screen */
-  right: -70%;      /* move more left */
-  opacity: 1;
-}
-
-/* Section 4: textfields */
-.textfields-section .overlay-media {
-  top: 20%;
-  right: -90%;
-  width: 60%;
-}
-.textfields-section.show-overlay .overlay-media {
-  top: 50%;
-  right: -30%;
-  opacity: 1;
-}
-
-/* Section 5: Searchfield */
-.searchfield-section .overlay-media {
-  top: 15%;
-  right: -85%;
-  width: 50%;
-  opacity: 0;
-  transition: all 0.8s ease;
-}
-
-.searchfield-section.show-overlay .overlay-media {
-  top: 45%;
-  right: -25%;
-  opacity: 1;
-}
-
-/* Section 6: Font */
-.font-section .overlay-media {
-  top: 20%;
-  right: -90%;
-  width: 50%;
-  opacity: 0;
-  transition: all 0.8s ease;
-}
-.font-section.show-overlay .overlay-media {
-  top: 45%;
-  right: -30%;
-  opacity: 1;
-}
-
-/* Colours section */
-.colours-section .ds-media {
-  --overlay-width: 30%;
-  --overlay-top: 10%;
-  --overlay-right: -90%;
-}
-
-/* Tab Bar */
-.tabbar-section .ds-media {
-  --overlay-width: 60%;
-  --overlay-top: 25%;
-  --overlay-right: -90%;
-}
-
-/* Buttons */
-.buttons-section .ds-media {
-  --overlay-width: 65%;
-  --overlay-top: 30%;
-  --overlay-right: -95%;
-}
-
-/* Textfields */
-.textfields-section .ds-media {
-  --overlay-width: 60%;
-  --overlay-top: 20%;
-  --overlay-right: -90%;
-}
-
-/* Searchfield */
-.searchfield-section .ds-media {
-  --overlay-width: 50%;
-  --overlay-top: 15%;
-  --overlay-right: -85%;
-}
-
-/* Font */
-.font-section .ds-media {
-  --overlay-width: 50%;
-  --overlay-top: 20%;
-  --overlay-right: -90%;
-}
-
-#design-system-image {
+/* Centered text sections */
+.centered-text {
   text-align: center;
+  max-width: 700px;
+  margin: 60px auto 40px;
+}
+
+.centered-text h1, .centered-text h2 {
+  font-size: 3rem;
+  color: #EB676C;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.centered-text p {
+  font-size: 1.2rem;
+  color: #ddd;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+/* Visual blocks */
+.visual-block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 40px 0;
 }
 
-#design-system-image img {
-  max-width: 900px;
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px; /* optional, for soft corners */
-}
-section h2 {
-  text-align: center;
-  font-size: 3rem;
-  letter-spacing: .15em;
-  text-transform: uppercase;
-  margin-top: 60px;
-  color: #EB676C;
-  position: relative;
+.visual-block img, .visual-block video {
+  max-width: 90%;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.4);
 }
 
-section p {
+/* Story text blocks */
+.story-text {
   text-align: center;
-  margin-top: 10px;
-  font-size: 1.05rem;
-  color: #cccccc;
+  max-width: 700px;
+  margin: 20px auto 60px;
+  font-size: 1.1rem;
+  color: #ccc;
+  line-height: 1.8;
+}
+
+/* Role list improvement */
+.role-list {
+  max-width: 700px;
+  margin: 0 auto 60px;
+  padding-left: 20px;
+  font-size: 1.1rem;
+  color: #ccc;
+  line-height: 1.8;
 }
