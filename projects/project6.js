@@ -1,35 +1,27 @@
-// Scroll reveal animations
-document.addEventListener("DOMContentLoaded", () => {
-  const sections = document.querySelectorAll(".case-study section");
-
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.2 });
-
-  sections.forEach(section => {
-    section.classList.add("hidden");
-    observer.observe(section);
-  });
-});
-
-// Optional: simple image zoom on click
-document.addEventListener("click", e => {
-  if (e.target.closest(".img-grid img")) {
-    const src = e.target.getAttribute("src");
-    const modal = document.createElement("div");
-    modal.classList.add("img-modal");
-    modal.innerHTML = `
-      <div class="img-modal-content">
-        <img src="${src}" alt="zoomed image">
-      </div>
-    `;
-    document.body.appendChild(modal);
-
-    modal.addEventListener("click", () => modal.remove());
+// Create animated neural network background
+function createNeuralNetwork() {
+  const network = document.getElementById('neural-network');
+  const nodeCount = 20;
+  
+  for (let i = 0; i < nodeCount; i++) {
+    const node = document.createElement('div');
+    node.className = 'node';
+    node.style.left = Math.random() * 100 + '%';
+    node.style.top = Math.random() * 100 + '%';
+    node.style.animationDelay = Math.random() * 3 + 's';
+    network.appendChild(node);
+    
+    // Create connections
+    if (i < nodeCount - 1) {
+      const connection = document.createElement('div');
+      connection.className = 'connection';
+      connection.style.left = Math.random() * 100 + '%';
+      connection.style.top = Math.random() * 100 + '%';
+      connection.style.width = Math.random() * 200 + 50 + 'px';
+      connection.style.transform = 'rotate(' + Math.random() * 360 + 'deg)';
+      connection.style.animationDelay = Math.random() * 4 + 's';
+      network.appendChild(connection);
+    }
   }
-});
+}
+
