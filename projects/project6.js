@@ -278,3 +278,45 @@ document.addEventListener('DOMContentLoaded', () => {
   // Add floating animation to neural network after initial load
   setTimeout(addFloatingAnimation, 2000);
 });
+
+// Add to your existing script.js file
+
+// Method Flow Interactive Steps
+function initMethodFlowInteraction() {
+  const flowSteps = document.querySelectorAll('.flow-step');
+  const sections = {
+    'Literature Review': '.foundation',
+    'User Interviews': '.methodology .interviews-section',
+    'VR Development': '.technical-implementation',
+    'Testing & Analysis': '.testing-results'
+  };
+  
+  flowSteps.forEach(step => {
+    step.style.cursor = 'pointer';
+    step.addEventListener('click', () => {
+      // Remove active class from all steps
+      flowSteps.forEach(s => s.classList.remove('active'));
+      // Add active class to clicked step
+      step.classList.add('active');
+      
+      // Scroll to corresponding section
+      const stepText = step.textContent.trim();
+      const targetSelector = sections[stepText];
+      const targetSection = document.querySelector(targetSelector);
+      
+      if (targetSection) {
+        targetSection.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    });
+  });
+}
+
+// Add this to your DOMContentLoaded event listener
+document.addEventListener("DOMContentLoaded", () => {
+  // ... your existing initialization code ...
+  initMethodFlowInteraction();
+});
+
