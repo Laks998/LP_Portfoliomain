@@ -1,148 +1,663 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sketches| Lakshmi Pratap</title>
-
-  <!-- Fonts (match your site) -->
-  <link href="https://fonts.googleapis.com/css2?family=Migra&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VR & Dualism | Lakshmi Pratap</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="project4.css">
   <link rel="icon" type="image/png" href="../assets/logo.png">
-
-  <link rel="stylesheet" href="project4.css"/>
 </head>
 <body>
-  <div class="bg-animation"></div>
-  <main class="project4">
+
+  <header class="project-hero">
+    <img src="../assets/covervr2.png" alt="VR Dualism Research" class="hero-bg" />
     <a href="../index.html#work" class="back-link">← Back to Work</a>
-    <header class="p4-header">
-      <h1>SKETCHBOOK</h1>
-      <p class="sub">The different emotions through my pencil</p>
-    </header>
 
-    <!-- Flipbook -->
-    <section class="flipbook-wrap" aria-label="Sketchbook" role="region">
-      <button class="nav prev" aria-label="Previous pages" disabled style="display:none;">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-            xmlns="http://www.w3.org/2000/svg">
-          <path d="M11 3L5 8L11 13" stroke="white" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </button>
+    <div class="hero-text">
+      <h1 class="project-title">VR & DUALISM</h1>
+      <p class="sub">Making René Descartes' 17th-century philosophy tangible through controlled VR experiences</p>
+      <div class="hero-stats">
+        <span class="stat">4 months research</span>
+        <span class="stat">13 participants</span>
+        <span class="stat">Philosophy + VR</span>
+      </div>
+    </div>
 
-      <div class="book" id="book" aria-live="polite">
-        <div class="sheets">
+    <div class="scroll-indicator">
+      <div class="scroll-arrow"></div>
+    </div>
+  </header>
 
-          <!-- Sheet 1 -->
-          <div class="sheet" id="sheet-1" data-sheet="1" aria-label="Sheet 1">
-            <div class="page right front hint">
-              <img src="../assets/sketch1.JPG" alt="Sketch 1" />
+  <main class="case-study">
+
+    <!-- Project Overview -->
+    <section class="project-overview fade-in">
+      <div class="overview-grid">
+        <div class="overview-item">
+          <h3>Role</h3>
+          <p>Researcher, VR Developer, UX Researcher</p>
+        </div>
+        <div class="overview-item">
+          <h3>Duration</h3>
+          <p>4 months (March - June 2024)</p>
+        </div>
+        <div class="overview-item">
+          <h3>Institution</h3>
+          <p>University of Nottingham</p>
+        </div>
+        <div class="overview-item">
+          <h3>Degree</h3>
+          <p>MSc Human Computer Interaction</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- The Question -->
+    <section class="intro fade-in">
+      <div class="centered-text">
+        <h1>The Central Question</h1>
+        <p>Can Virtual Reality technology create controlled experiences of <strong>mind-body dualism</strong> that validate Cartesian philosophy through lived experience rather than abstract theory?</p>
+      </div>
+      
+      <div class="visual-block">
+        <div class="concept-visualization">
+          <div class="mind-body-split">
+            <div class="concept-image">
+              <img src="../assets/dualism.png" alt="René Descartes portrait representing mind-body dualism concept" class="dualism-image">
             </div>
-            <div class="page left back">
-              <img src="../assets/sketch2.JPG" alt="Sketch 2" />
+            <div class="mind-side">
+              <h4>MIND</h4>
+              <p>Conscious, thinking, immaterial</p>
+            </div>
+            <div class="separation-line"></div>
+            <div class="body-side">
+              <h4>BODY</h4>
+              <p>Physical, material, mechanical</p>
             </div>
           </div>
-
-
-          <!-- Sheet 2 -->
-          <div class="sheet" id="sheet-2" data-sheet="2" aria-label="Sheet 2">
-            <div class="page right front">
-              <img src="../assets/sketch3.JPG" alt="Sketch 3" />
-            </div>
-            <div class="page left back">
-              <img src="../assets/sketch4.JPG" alt="Sketch 4" />
-            </div>
-          </div>
-
-          <!-- Sheet 3 -->
-          <div class="sheet" id="sheet-3" data-sheet="3" aria-label="Sheet 3">
-            <div class="page right front">
-              <img src="../assets/sketch5.jpeg" alt="Sketch 5" />
-            </div>
-            <div class="page left back">
-              <img src="../assets/sketch6.JPG" alt="Sketch 6" />
-            </div>
-          </div>
-
-          <!-- Sheet 4 -->
-          <div class="sheet" id="sheet-4" data-sheet="4" aria-label="Sheet 4">
-            <div class="page right front">
-              <img src="../assets/sketch7.JPG" alt="Sketch 7" />
-            </div>
-            <div class="page left back">
-              <img src="../assets/sketch8.JPG" alt="Sketch 8" />
-            </div>
-          </div>
-
-          <!-- Sheet 5 -->
-          <div class="sheet" id="sheet-5" data-sheet="5" aria-label="Sheet 5">
-            <div class="page right front">
-              <img src="../assets/sketch9.JPG" alt="Sketch 9" />
-            </div>
-            <div class="page left back">
-              <img src="../assets/sketch10.JPG" alt="Sketch 10" />
-            </div>
-          </div>
-
-          <!-- Sheet 6 -->
-          <div class="sheet" id="sheet-6" data-sheet="6" aria-label="Sheet 6">
-            <div class="page right front">
-              <img src="../assets/sketch11.JPG" alt="Sketch 11" />
-            </div>
-            <div class="page left back">
-              <img src="../assets/sketch12.JPG" alt="Sketch 12" />
-            </div>
-          </div>
-
-          <!-- Sheet 7 -->
-          <div class="sheet" id="sheet-6" data-sheet="6" aria-label="Sheet 6">
-            <div class="page right front">
-              <img src="../assets/sketch13.JPG" alt="Sketch 11" />
-            </div>
-            <div class="page left back">
-              <img src="../assets/sketch14.JPG" alt="Sketch 12" />
-            </div>
-          </div>
-
-          <!-- Sheet 8 -->
-          <div class="sheet" id="sheet-6" data-sheet="6" aria-label="Sheet 6">
-            <div class="page right front">
-              <img src="../assets/sketch15.JPG" alt="Sketch 11" />
-            </div>
-            <div class="page left back">
-              <img src="../assets/sketch16.JPG" alt="Sketch 12" />
-            </div>
-          </div>
-
-          <!-- Covers -->
-          <div class="cover left-cover" aria-hidden="true"></div>
-          <div class="cover right-cover" aria-hidden="true"></div>
-
         </div>
       </div>
 
-      <button class="nav next" aria-label="Next pages" style="display:none;">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-            xmlns="http://www.w3.org/2000/svg">
-          <path d="M5 3L11 8L5 13" stroke="white" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </button>
+      <div class="story-text">
+        <p>René Descartes proposed in 1641 that <strong>"mind and body are distinct, separable entities"</strong>. I took this 17th-century theory and used modern VR technology to make people actually <em>feel</em> this separation. The result? Fear turns out to be one hell of a philosophical teacher.</p>
+      </div>
     </section>
 
-  <!-- Drag-to-flip helper text -->
-<!--<p class="flip-hint">Drag to flip</p>-->
+    <!-- Theoretical Foundation -->
+    <section class="foundation fade-in">
+      <div class="centered-text">
+        <h2>Theoretical Foundation</h2>
+        <p>Building on centuries of philosophy, modern psychology, and cutting-edge VR research</p>
+      </div>
+      
+      <div class="foundation-pillars">
+        <div class="pillar">
+          <h3>Cartesian Philosophy</h3>
+          <p>René Descartes' fundamental assertion: <em>"I think, therefore I am"</em> - mind and body as distinct entities</p>
+          <ul>
+            <li>Modern support from Chalmers' "philosophical zombies" concept</li>
+            <li>Swinburne's soul-based defense of personal identity</li>
+            <li>Educational applications through rubber hand illusion experiments</li>
+            <li>Medical influence in psychosomatic medicine approaches</li>
+          </ul>
+        </div>
+        
+        <div class="pillar">
+          <h3>Dissociation Psychology</h3>
+          <p>Psychological states characterized by detachment from reality, mirroring dualistic separation</p>
+          <div class="dissociation-triggers">
+            <div class="trigger">
+              <strong>Stress & Sleep Deprivation:</strong>
+              <span>96% of military survival training subjects reported dissociative symptoms</span>
+            </div>
+            <div class="trigger">
+              <strong>Emotional Intensity:</strong>
+              <span>Fear, awe, and extreme emotions trigger altered body perception</span>
+            </div>
+            <div class="trigger">
+              <strong>Trauma & PTSD:</strong>
+              <span>Neural correlates show specific brain activity patterns during dissociation</span>
+            </div>
+            <div class="trigger">
+              <strong>Altered States:</strong>
+              <span>Meditation, hypnosis, and substances induce voluntary mind-body separation</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="pillar">
+          <h3>VR & Consciousness</h3>
+          <p>Virtual Reality as a laboratory for exploring abstract philosophical concepts</p>
+          <ul>
+            <li>Out-of-body experience induction through visual-tactile feedback</li>
+            <li>Body ownership illusions via avatar embodiment</li>
+            <li>Sensory conflict creating spatial disorientation</li>
+            <li>Place illusion leading to dissociative behaviors</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-</section>
+    <!-- Cultural Context - Movies -->
+    <section class="cultural-context fade-in">
+      <div class="centered-text">
+        <h2>Dualism in Popular Movies</h2>
+        <p>Billion-dollar movies prove that audiences worldwide accept and understand mind-body separation</p>
+      </div>
+
+      <div class="movies-showcase">
+        <div class="movie-card">
+          <div class="movie-poster">
+            <img src="/assets/matrix.png" alt="The Matrix Poster">
+          </div>
+          <div class="movie-content">
+            <h3>The Matrix (1999)</h3>
+            <p>Humans live entire lives in simulated reality while physical bodies remain dormant in pods - the ultimate expression of mind existing independently from body.</p>
+            <div class="dualism-connection">Mind operates in pure virtual space, completely detached from physical form</div>
+          </div>
+        </div>
+
+        <div class="movie-card">
+          <div class="movie-poster">
+            <img src="/assets/avatar.png" alt="Avatar Poster">
+          </div>
+          <div class="movie-content">
+            <h3>Avatar (2009)</h3>
+            <p>Consciousness transfer into alien bodies while maintaining human identity and self-awareness - demonstrating mind's independence from physical form.</p>
+            <div class="dualism-connection">Identity and consciousness persist across different physical bodies</div>
+          </div>
+        </div>
+
+        <div class="movie-card">
+          <div class="movie-poster">
+            <img src="/assets/divergent.png" alt="Divergent Poster">
+          </div>
+          <div class="movie-content">
+            <h3>Divergent (2014)</h3>
+            <p>Fear simulations so immersive that characters' minds disconnect from physical reality, forgetting their bodies during virtual experiences.</p>
+            <div class="dualism-connection">Fear-induced mind-body separation in virtual environments</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cultural-insight">
+        <p>These films' combined box office success of over <strong>$4 billion</strong> demonstrates widespread cultural acceptance of dualistic concepts, providing the foundation for VR-based philosophical exploration.</p>
+      </div>
+    </section>
+
+
+    <!-- Research Methodology -->
+    <section class="methodology fade-in">
+      <div class="centered-text">
+        <h2>Research Methodology</h2>
+        <p>A systematic approach combining philosophy, psychology, and technology</p>
+      </div>
+      
+      <div class="method-flow">
+        <div class="flow-step active">Literature Review</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">User Interviews</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">VR Development</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Testing & Analysis</div>
+      </div>
+
+      <!-- User Interviews Deep Dive -->
+      <div class="interviews-section">
+        <h3>User Interviews: Uncovering Natural Dissociation</h3>
+        <div class="interview-stats">
+          <div class="stat-card">
+            <span class="big-number">8</span>
+            <span class="stat-label">Initial Participants</span>
+          </div>
+          <div class="stat-card">
+            <span class="big-number">20</span>
+            <span class="stat-label">Minutes Each</span>
+          </div>
+          <div class="stat-card">
+            <span class="big-number">6</span>
+            <span class="stat-label">Core Themes</span>
+          </div>
+        </div>
+
+        <!-- Thematic Analysis Results -->
+        <div class="themes-grid">
+          <div class="theme-card">
+            <div class="theme-number">01</div>
+            <h4>Environment Preferences</h4>
+            <p>Natural settings and extreme environments for maximum immersion. Participants wanted realistic replications of real-world locations.</p>
+            <div class="quote">"You could recreate real places and give users the feeling of being there. That would be immersive."</div>
+          </div>
+          
+          <div class="theme-card">
+            <div class="theme-number">02</div>
+            <h4>Control & Autonomy</h4>
+            <p>External control paradoxically increased presence - when systems moved users without input, immersion deepened.</p>
+            <div class="quote">"The entity will correct me to urge my hand in the right direction... that made it more realistic"</div>
+          </div>
+          
+          <div class="theme-card">
+            <div class="theme-number">03</div>
+            <h4>Sensory Realism</h4>
+            <p>High-quality graphics, spatial audio, and environmental details crucial for maintaining presence.</p>
+            <div class="quote">"If the sound doesn't match the visual, I start imagining how the visual should look"</div>
+          </div>
+          
+          <div class="theme-card">
+            <div class="theme-number">04</div>
+            <h4>Emotional Intensity</h4>
+            <p>Sleep paralysis, stress-induced dissociation, and fear responses consistently triggered mind-body separation.</p>
+            <div class="quote">"I would wake up feeling like I was being choked... I couldn't move. It was very scary."</div>
+          </div>
+          
+          <div class="theme-card">
+            <div class="theme-number">05</div>
+            <h4>Height & Motion</h4>
+            <p>Vertical elevation and physical movement sensations consistently mentioned as powerful immersion triggers.</p>
+            <div class="quote">"Motion plays a big role in immersion"</div>
+          </div>
+          
+          <div class="theme-card">
+            <div class="theme-number">06</div>
+            <h4>Social Interaction</h4>
+            <p>Shared virtual experiences enhanced sense of presence and reality.</p>
+            <div class="quote">"Gaming, especially with social interaction, can make the experience feel very real"</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technical Implementation -->
+    <section class="technical-implementation fade-in">
+      <div class="centered-text">
+        <h2>Building the Experience</h2>
+        <p>From philosophy student to VR developer - learning Unity and C# while conducting research</p>
+      </div>
+
+      <div class="tech-showcase">
+        <div class="tech-item">
+          <div class="tech-poster">
+            <img src="/assets/unityimg.png" alt="Unity Logo">
+          </div>
+          <div class="tech-content">
+            <h3>Unity 2022.3.19f1</h3>
+            <p>Primary development environment chosen for VR compatibility and 3D environment creation</p>
+            <div class="tech-details">
+              <span class="detail">C# scripting for interaction systems</span>
+              <span class="detail">3D asset pipeline integration</span>
+              <span class="detail">Meta Quest Pro SDK compatibility</span>
+              <span class="detail">Real-time rendering optimization</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tech-item">
+          <div class="tech-poster">
+            <img src="/assets/vrimg.png" alt="Meta Quest Pro VR Headset">
+          </div>
+          <div class="tech-content">
+            <h3>Meta Quest Pro</h3>
+            <p>High-resolution wireless VR headset selected for superior visual fidelity and tracking</p>
+            <div class="tech-details">
+              <span class="detail">2160 x 2160 per eye resolution</span>
+              <span class="detail">Inside-out tracking system</span>
+              <span class="detail">Wireless freedom for natural movement</span>
+              <span class="detail">Advanced processing power</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- My Development Journey -->
+      <div class="development-journey">
+        <h3>My Development Journey</h3>
+        <div class="journey-timeline">
+          <div class="journey-step">
+            <h4>Self-Taught Coding</h4>
+            <p>Learned Unity and C# programming through YouTube tutorials and documentation while conducting research</p>
+          </div>
+          <div class="journey-step">
+            <h4>Environment Building</h4>
+            <p>Designed and constructed the elevator VR environment from scratch using Unity's 3D tools</p>
+          </div>
+          <div class="journey-step">
+            <h4>User Testing</h4>
+            <p>Conducted pilot tests and iterations based on user feedback to refine the experience</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- VR Environment Design -->
+    <section class="vr-environment fade-in">
+      <div class="centered-text">
+        <h2>The VR Experience</h2>
+        <p>A meticulously designed elevator scenario engineered to trigger fear-induced dissociation</p>
+      </div>
+      
+      <div class="environment-showcase">
+        <!-- Physical Setup -->
+        <div class="setup-section">
+          <h3>Physical Environment Setup</h3>
+          <div class="setup-details">
+            <div class="setup-item">
+              <h4>Room Conditions</h4>
+              <p>Darkened, quiet library study room with eliminated distractions</p>
+            </div>
+            <div class="setup-item">
+              <h4>Chair Positioning</h4>
+              <p>Real chair height matched exactly with virtual elevator seat for seamless transition</p>
+            </div>
+            <div class="setup-item">
+              <h4>Pre-Session Protocol</h4>
+              <p>30-second relaxation period before VR initiation to optimize mental state</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- VR Environment Sequence -->
+        <div class="sequence-visualization">
+          <h3>The Experience Sequence</h3>
+          <div class="sequence-steps">
+            
+            <div class="sequence-step">
+              <div class="step-visual">
+                <img src="/assets/seq1.png" alt="Confined Entry">
+              </div>
+              <div class="step-content">
+                <h4>01. Confined Entry</h4>
+                <p>Participant begins seated in dimly lit elevator interior with heavy metallic door sounds</p>
+                <div class="technical-note">Eye-level camera positioning for seamless real-virtual transition</div>
+              </div>
+            </div>
+
+            <div class="sequence-step">
+              <div class="step-visual">
+                <img src="/assets/seq2.png" alt="Ascending Tension">
+              </div>
+              <div class="step-content">
+                <h4>02. Ascending Tension</h4>
+                <p>Slow upward movement with creaking sounds, brick wall movement providing elevation cues</p>
+                <div class="technical-note">Visual-vestibular conflict to enhance height sensation</div>
+              </div>
+            </div>
+
+            <div class="sequence-step">
+              <div class="step-visual">
+                <img src="/assets/seq3.png" alt="Dramatic Reveal">
+              </div>
+              <div class="step-content">
+                <h4>03. Dramatic Reveal</h4>
+                <p>Doors open to panoramic 360-degree cityscape - transition from confined to infinite space</p>
+                <div class="technical-note">High-resolution real-city imagery for authentic height perception</div>
+              </div>
+            </div>
+
+            <div class="sequence-step">
+              <div class="step-visual">
+                <img src="/assets/seq4.png" alt="External Control">
+              </div>
+              <div class="step-content">
+                <h4>04. External Control</h4>
+                <p>Camera moves autonomously into open air - user experiences out-of-body movement</p>
+                <div class="technical-note">Pre-programmed movement to enhance mind-body detachment</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+      <div class="visual-block">
+        <img src="../assets/unityfile.png" alt="VR environment progression from elevator to city view" class="case-img">
+      </div>
+    </section>
+
+    <!-- Testing Protocol & Results -->
+    <section class="testing-results fade-in">
+      <div class="centered-text">
+        <h2>Testing & Results</h2>
+        <p>What happened when people experienced controlled mind-body separation</p>
+      </div>
+      
+      <!-- Pilot Study -->
+      <div class="pilot-study">
+        <h3>Pilot Study Insights</h3>
+        <div class="pilot-feedback-grid">
+          <div class="feedback-card negative">
+            <h4>Issues Identified</h4>
+            <ul>
+              <li>Height perception failed with tunnel view</li>
+              <li>Basic textures appeared artificial</li>
+              <li>Static camera reduced engagement</li>
+            </ul>
+          </div>
+          
+          <div class="feedback-card positive">
+            <h4>Improvements Made</h4>
+            <ul>
+              <li>Replaced with realistic cityscape panorama</li>
+              <li>Added dynamic camera movements</li>
+              <li>Enhanced lighting and contrast systems</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Final Testing Results -->
+      <div class="results-showcase">
+        <h3>Final Testing Results (n=5)</h3>
+        
+        <div class="results-grid">
+          <div class="result-card major">
+            <div class="result-number">100%</div>
+            <div class="result-label">Reported Physical Sensations</div>
+            <div class="result-subtitle">Despite conscious awareness of VR</div>
+          </div>
+          
+          <div class="result-card major">
+            <div class="result-number">80%</div>
+            <div class="result-label">Mind-Body Detachment</div>
+            <div class="result-subtitle">Felt separation during peak fear</div>
+          </div>
+          
+          <div class="result-card">
+            <div class="result-number">5-7</div>
+            <div class="result-label">Minutes Optimal Duration</div>
+            <div class="result-subtitle">For complete body forgetting</div>
+          </div>
+          
+          <div class="result-card">
+            <div class="result-number">2-3</div>
+            <div class="result-label">Current Experience Length</div>
+            <div class="result-subtitle">Limited by safety protocols</div>
+          </div>
+        </div>
+
+        <!-- Key Findings -->
+        <div class="key-findings">
+          <div class="finding-card">
+            <h4>Emotion-Driven Dissociation Validated</h4>
+            <p>Participants reported strongest mind-body separation during peak emotional intensity</p>
+            <div class="participant-quote">"When I looked straight down, my fear increased exponentially. It's like when your tummy kind of drops"</div>
+          </div>
+          
+          <div class="finding-card">
+            <h4>Duration Impact Discovered</h4>
+            <p>Longer exposure would enhance body forgetting and increase dissociation depth</p>
+            <div class="participant-quote">"If it was like five or six minutes, I would have forgotten that I was even sitting in a room"</div>
+          </div>
+          
+          <div class="finding-card">
+            <h4>External Control Effectiveness</h4>
+            <p>Autonomous movement created out-of-body sensations without user discomfort</p>
+            <div class="participant-quote">"I knew it wasn't real, but I was still being cautious to bend over because of the fear"</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Design Framework -->
+    <section class="design-framework fade-in">
+      <div class="centered-text">
+        <h2>Design Framework</h2>
+        <p>A comprehensive guide for creating VR experiences that induce mind-body dualism</p>
+      </div>
+      
+      <div class="framework-categories">
+        <div class="framework-section">
+          <h3>Physical Environment Requirements</h3>
+          <div class="requirement-grid">
+            <div class="req-item">
+              <h4>Environmental Control</h4>
+              <ul>
+                <li>Dimly lit, isolated testing space</li>
+                <li>Comfortable seating aligned with virtual camera</li>
+                <li>Elimination of external distractions</li>
+                <li>30-60 second relaxation period</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="framework-section">
+          <h3>Virtual Environment Specifications</h3>
+          <div class="requirement-grid">
+            <div class="req-item">
+              <h4>Visual Design</h4>
+              <ul>
+                <li>High-resolution assets with realistic textures</li>
+                <li>360-degree real-world imagery for authenticity</li>
+                <li>Dynamic lighting transitions</li>
+                <li>Clear depth perception cues</li>
+              </ul>
+            </div>
+            
+            <div class="req-item">
+              <h4>Audio System</h4>
+              <ul>
+                <li>Synchronized spatial audio</li>
+                <li>Layered soundscape progression</li>
+                <li>Environmental audio cues</li>
+                <li>Strategic silence moments</li>
+              </ul>
+            </div>
+            
+            <div class="req-item">
+              <h4>Interaction Design</h4>
+              <ul>
+                <li>Pre-programmed autonomous movement</li>
+                <li>External control phases</li>
+                <li>Emotional intensity building</li>
+                <li>Safety protocols with withdrawal options</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Applications & Impact -->
+    <section class="applications fade-in">
+      <div class="centered-text">
+        <h2>Real-World Applications</h2>
+        <p>How this research could transform multiple fields</p>
+      </div>
+      
+      <div class="applications-grid">
+        <div class="app-domain">
+          <div class="domain-header">
+            <div class="domain-icon">🎓</div>
+            <h3>Academic Research</h3>
+          </div>
+          <ul>
+            <li><strong>Consciousness Studies:</strong> Empirical investigation of altered states and awareness</li>
+            <li><strong>Philosophy Education:</strong> Making abstract concepts experientially accessible</li>
+            <li><strong>Neuroscience Integration:</strong> Real-time brain monitoring during dissociation</li>
+            <li><strong>Cross-Cultural Studies:</strong> How beliefs influence dualistic experiences</li>
+          </ul>
+        </div>
+        
+        <div class="app-domain">
+          <div class="domain-header">
+            <div class="domain-icon">🏥</div>
+            <h3>Therapeutic Applications</h3>
+          </div>
+          <ul>
+            <li><strong>Exposure Therapy:</strong> Safe environments for treating phobias</li>
+            <li><strong>PTSD Treatment:</strong> Graduated exposure to trigger situations</li>
+            <li><strong>Dissociation Research:</strong> Understanding and treating disorders</li>
+            <li><strong>Mindfulness Training:</strong> Enhanced meditation practices</li>
+          </ul>
+        </div>
+        
+        <div class="app-domain">
+          <div class="domain-header">
+            <div class="domain-icon">🔬</div>
+            <h3>Scientific Research</h3>
+          </div>
+          <ul>
+            <li><strong>Biometric Integration:</strong> Heart rate, EEG monitoring</li>
+            <li><strong>Personalized Experiences:</strong> Adaptive VR based on profiles</li>
+            <li><strong>Longitudinal Studies:</strong> Long-term belief change tracking</li>
+            <li><strong>Ethical Frameworks:</strong> Guidelines for consciousness-altering VR</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Research Impact -->
+    <section class="impact fade-in">
+      <div class="centered-text">
+        <h2>Research Impact</h2>
+        <p>Bridging centuries of philosophy with cutting-edge technology</p>
+      </div>
+      
+      <div class="impact-statement">
+        <blockquote>
+          "This research successfully demonstrates that Virtual Reality can serve as a bridge between abstract philosophical theory and lived experience, establishing a new methodology for investigating consciousness and mind-body relationships through controlled technological intervention."
+        </blockquote>
+      </div>
+
+      <div class="contributions-grid">
+        <div class="contribution-card">
+          <h4>Methodological Innovation</h4>
+          <p>First systematic study combining thematic analysis of dissociative experiences with VR environment design for philosophical exploration</p>
+        </div>
+        
+        <div class="contribution-card">
+          <h4>Interdisciplinary Bridge</h4>
+          <p>Successfully connected philosophy, psychology, and technology in practical research methodology</p>
+        </div>
+        
+        <div class="contribution-card">
+          <h4>Empirical Validation</h4>
+          <p>Demonstrated that abstract philosophical concepts can be studied through controlled technological experiences</p>
+        </div>
+      </div>
+
+      <div class="personal-reflection">
+        <h3>Personal Journey</h3>
+        <p>This dissertation challenged me to bridge centuries-old philosophical theory with cutting-edge technology while maintaining scientific rigor. Despite technical limitations and learning to code from scratch, the research successfully established VR as a legitimate tool for consciousness studies.</p>
+        
+        <p>The project's significance lies not just in its findings, but in demonstrating that complex philosophical questions can be approached through experiential methodology. By making Cartesian dualism tangible rather than theoretical, this work opens new pathways for philosophical education, therapeutic intervention, and consciousness research.</p>
+      </div>
+    </section>
 
   </main>
 
-  <script src="project4.js" defer></script>
+  <div class="bottom-link-wrapper">
+    <a href="../index.html#work" class="bottom-back-link">← Back to Work</a>
+  </div>
+
+  <footer class="site-footer">
+    <p>&copy; 2025 Lakshmi Pratap. All rights reserved.</p>
+  </footer>
+
+  <script src="project4.js"></script>
 </body>
-
-<footer class="site-footer">
-  <p>&copy; 2025 Lakshmi Pratap. All rights reserved.</p>
-</footer>
-
 </html>

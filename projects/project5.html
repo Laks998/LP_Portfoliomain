@@ -3,42 +3,141 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ILLUSTRATIONS| Lakshmi Pratap</title>
+  <title>Sketches| Lakshmi Pratap</title>
 
-  <!-- Fonts -->
+  <!-- Fonts (match your site) -->
   <link href="https://fonts.googleapis.com/css2?family=Migra&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="../assets/logo.png">
 
-  <!-- CSS -->
   <link rel="stylesheet" href="project5.css"/>
 </head>
 <body>
-  <div class="project5">
+  <div class="bg-animation"></div>
+  <main class="project4">
     <a href="../index.html#work" class="back-link">← Back to Work</a>
-    <header class="p5-header">
-      <h1>ILLUSTRATIONS</h1>
-      <p class="sub">Seeing the world in 2D using digital tools</p>
+    <header class="p4-header">
+      <h1>SKETCHBOOK</h1>
+      <p class="sub">The different emotions through my pencil</p>
     </header>
-  </div>
 
-  <main>
-  <section class="project5-gallery">
-    <div class="spiral-gallery">
-      <img src="../assets/illus1.jpg" alt="Illustration 1" />
-      <img src="../assets/illus2.jpg" alt="Illustration 2" />
-      <img src="../assets/illus3.jpg" alt="Illustration 3" />
-      <img src="../assets/illus4.png" alt="Illustration 4" />
-      <img src="../assets/illus5.jpg" alt="Illustration 5" />
-      <img src="../assets/illus6.jpg" alt="Illustration 6" />
-      <img src="../assets/illus7.png" alt="Illustration 7" />
-      <img src="../assets/05project.png" alt="Illustration 8" />
-    </div>
-  </section>
-</main>
+    <!-- Flipbook -->
+    <section class="flipbook-wrap" aria-label="Sketchbook" role="region">
+      <button class="nav prev" aria-label="Previous pages" disabled style="display:none;">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+          <path d="M11 3L5 8L11 13" stroke="white" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+      <div class="book" id="book" aria-live="polite">
+        <div class="sheets">
+
+          <!-- Sheet 1 -->
+          <div class="sheet" id="sheet-1" data-sheet="1" aria-label="Sheet 1">
+            <div class="page right front hint">
+              <img src="../assets/sketch1.JPG" alt="Sketch 1" />
+            </div>
+            <div class="page left back">
+              <img src="../assets/sketch2.JPG" alt="Sketch 2" />
+            </div>
+          </div>
 
 
-  <!-- JS -->
+          <!-- Sheet 2 -->
+          <div class="sheet" id="sheet-2" data-sheet="2" aria-label="Sheet 2">
+            <div class="page right front">
+              <img src="../assets/sketch3.JPG" alt="Sketch 3" />
+            </div>
+            <div class="page left back">
+              <img src="../assets/sketch4.JPG" alt="Sketch 4" />
+            </div>
+          </div>
+
+          <!-- Sheet 3 -->
+          <div class="sheet" id="sheet-3" data-sheet="3" aria-label="Sheet 3">
+            <div class="page right front">
+              <img src="../assets/sketch5.jpeg" alt="Sketch 5" />
+            </div>
+            <div class="page left back">
+              <img src="../assets/sketch6.JPG" alt="Sketch 6" />
+            </div>
+          </div>
+
+          <!-- Sheet 4 -->
+          <div class="sheet" id="sheet-4" data-sheet="4" aria-label="Sheet 4">
+            <div class="page right front">
+              <img src="../assets/sketch7.JPG" alt="Sketch 7" />
+            </div>
+            <div class="page left back">
+              <img src="../assets/sketch8.JPG" alt="Sketch 8" />
+            </div>
+          </div>
+
+          <!-- Sheet 5 -->
+          <div class="sheet" id="sheet-5" data-sheet="5" aria-label="Sheet 5">
+            <div class="page right front">
+              <img src="../assets/sketch9.JPG" alt="Sketch 9" />
+            </div>
+            <div class="page left back">
+              <img src="../assets/sketch10.JPG" alt="Sketch 10" />
+            </div>
+          </div>
+
+          <!-- Sheet 6 -->
+          <div class="sheet" id="sheet-6" data-sheet="6" aria-label="Sheet 6">
+            <div class="page right front">
+              <img src="../assets/sketch11.JPG" alt="Sketch 11" />
+            </div>
+            <div class="page left back">
+              <img src="../assets/sketch12.JPG" alt="Sketch 12" />
+            </div>
+          </div>
+
+          <!-- Sheet 7 -->
+          <div class="sheet" id="sheet-6" data-sheet="6" aria-label="Sheet 6">
+            <div class="page right front">
+              <img src="../assets/sketch13.JPG" alt="Sketch 11" />
+            </div>
+            <div class="page left back">
+              <img src="../assets/sketch14.JPG" alt="Sketch 12" />
+            </div>
+          </div>
+
+          <!-- Sheet 8 -->
+          <div class="sheet" id="sheet-6" data-sheet="6" aria-label="Sheet 6">
+            <div class="page right front">
+              <img src="../assets/sketch15.JPG" alt="Sketch 11" />
+            </div>
+            <div class="page left back">
+              <img src="../assets/sketch16.JPG" alt="Sketch 12" />
+            </div>
+          </div>
+
+          <!-- Covers -->
+          <div class="cover left-cover" aria-hidden="true"></div>
+          <div class="cover right-cover" aria-hidden="true"></div>
+
+        </div>
+      </div>
+
+      <button class="nav next" aria-label="Next pages" style="display:none;">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+          <path d="M5 3L11 8L5 13" stroke="white" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </section>
+
+  <!-- Drag-to-flip helper text -->
+<!--<p class="flip-hint">Drag to flip</p>-->
+
+</section>
+
+  </main>
+
   <script src="project5.js" defer></script>
 </body>
 
