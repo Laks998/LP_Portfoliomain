@@ -25,8 +25,14 @@ function createNeuralNetwork() {
   }
 }
 
-// Intersection Observer for scroll animations
-function initScrollAnimations() {
+document.addEventListener("DOMContentLoaded", () => {
+  
+  // Initialize all functionality
+  initHeroParallax();
+  initScrollToTop();
+  initEasterEgg();
+
+  function initScrollAnimations() {
   const sections = document.querySelectorAll('section');
   const observer = new IntersectionObserver(
     (entries) => {
@@ -44,32 +50,187 @@ function initScrollAnimations() {
   });
 }
 
-// Parallax effect for hero
-function initParallax() {
-  window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const hero = document.querySelector('.hero');
-    if (hero) {
-      hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-    }
-  });
-}
 
-// Smooth scroll for navigation
-function initSmoothScroll() {
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        target.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        });
+  // Hero parallax effect
+  function initHeroParallax() {
+      const hero = document.querySelector('.project-hero');
+      const heroImg = document.querySelector('.hero-bg');
+      const heroText = document.querySelector('.hero-text');
+      
+      if (!hero || !heroImg || !heroText) return;
+      
+      window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const rate = scrolled * -0.5;
+        const textRate = scrolled * 0.2;
+        
+        if (scrolled < window.innerHeight) {
+          heroImg.style.transform = `translateY(${rate}px)`;
+          heroText.style.transform = `translateY(${textRate}px)`;
+        }
+      });
+    }
+
+    // Add typing effect to hero title
+  function initTypingEffect() {
+    const title = document.querySelector('.project-title');
+    if (!title) return;
+    
+    const text = title.textContent;
+    title.textContent = '';
+    title.style.borderRight = '3px solid #EB676C';
+    
+    let i = 0;
+    const typeWriter = () => {
+      if (i < text.length) {
+        title.textContent += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, 150);
+      } else {
+        setTimeout(() => {
+          title.style.borderRight = 'none';
+        }, 1000);
+      }
+    };
+    
+    // Start typing effect after page load
+    setTimeout(typeWriter, 500);
+  }
+  
+  // Initialize typing effect
+  initTypingEffect();
+
+  initKeyboardNavigation();
+  
+  // Add scroll-to-top functionality
+  function initScrollToTop() {
+    const scrollBtn = document.createElement('button');
+    scrollBtn.innerHTML = '↑';
+    scrollBtn.className = 'scroll-to-top';
+    scrollBtn.setAttribute('aria-label', 'Scroll to top');
+    document.body.appendChild(scrollBtn);
+    
+    // Add CSS for scroll-to-top button
+    const scrollStyle = document.createElement('style');
+    scrollStyle.textContent = `
+      .scroll-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background: #EB676C;
+        color: #000;
+        border: none;
+        border-radius: 50%;
+        font-size: 20px;
+        font-weight: bold;
+        cursor: pointer;
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(20px);
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(235, 103, 108, 0.3);
+      }
+      
+      .scroll-to-top.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+      
+      .scroll-to-top:hover {
+        background: #FF8A8A;
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(235, 103, 108, 0.4);
+      }
+      
+      .scroll-to-top:active {
+        transform: translateY(0);
+      }
+    `;
+    document.head.appendChild(scrollStyle);
+    
+    // Show/hide button based on scroll position
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        scrollBtn.classList.add('show');
+      } else {
+        scrollBtn.classList.remove('show');
       }
     });
-  });
-}
+    
+    // Smooth scroll to top
+    scrollBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  }
+  
+  initScrollToTop();
+
+  // Add easter egg - Konami code
+  function initEasterEgg() {
+    const konamiCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
+    let userInput = [];
+    
+    document.addEventListener('keydown', (e) => {
+      userInput.push(e.keyCode);
+      
+      if (userInput.length > konamiCode.length) {
+        userInput.shift();
+      }
+      
+      if (userInput.join(',') === konamiCode.join(',')) {
+        activateEasterEgg();
+        userInput = [];
+      }
+    });
+    
+    function activateEasterEgg() {
+      document.body.style.animation = 'rainbow 2s ease infinite';
+      
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes rainbow {
+          0% { filter: hue-rotate(0deg); }
+          100% { filter: hue-rotate(360deg); }
+        }
+      `;
+      document.head.appendChild(style);
+      
+      setTimeout(() => {
+        document.body.style.animation = '';
+        style.remove();
+      }, 5000);
+      
+      // Show message
+      const message = document.createElement('div');
+      message.textContent = '🎨 Designer mode activated! 🎨';
+      message.style.cssText = `
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: #EB676C;
+        color: #000;
+        padding: 20px 40px;
+        border-radius: 10px;
+        font-weight: bold;
+        z-index: 10000;
+        animation: bounce 1s ease;
+      `;
+      document.body.appendChild(message);
+      
+      setTimeout(() => message.remove(), 3000);
+    }
+  }
+  
+  initEasterEgg();
+});
 
 // Add hover effects to cards
 function initCardHoverEffects() {
@@ -84,6 +245,7 @@ function initCardHoverEffects() {
     });
   });
 }
+
 
 // Counter animation for statistics
 function animateCounters() {
@@ -115,30 +277,6 @@ function animateCounters() {
   counters.forEach(counter => observer.observe(counter));
 }
 
-// Add typing effect to hero subtitle
-function typeWriter(element, text, speed = 50) {
-  let i = 0;
-  element.textContent = '';
-  function type() {
-    if (i < text.length) {
-      element.textContent += text.charAt(i);
-      i++;
-      setTimeout(type, speed);
-    }
-  }
-  type();
-}
-
-// Initialize typing effect
-function initTypingEffect() {
-  setTimeout(() => {
-    const subtitle = document.querySelector('.hero-subtitle');
-    if (subtitle) {
-      const originalText = subtitle.textContent;
-      typeWriter(subtitle, originalText, 80);
-    }
-  }, 1500);
-}
 
 // Add floating animation to background nodes
 function addFloatingAnimation() {
@@ -319,4 +457,5 @@ document.addEventListener("DOMContentLoaded", () => {
   // ... your existing initialization code ...
   initMethodFlowInteraction();
 });
+
 

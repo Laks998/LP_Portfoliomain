@@ -430,215 +430,209 @@ if (book && flipHint) {
   });
 })();
 
-
-
+document.addEventListener("DOMContentLoaded", () => {
   
-  // Add loading screen
-  function initLoadingScreen() {
-    const loader = document.createElement('div');
-    loader.className = 'page-loader';
-    loader.innerHTML = `
-      <div class="loader-content">
-        <div class="loader-logo">CLEARISK DASHBOARD</div>
-        <div class="loader-bar">
-          <div class="loader-progress"></div>
-        </div>
-        <div class="loader-text">A little heavy, sorry</div>
-      </div>
-    `;
-    document.body.prepend(loader);
+  // Initialize all functionality
+  initHeroParallax();
+  initScrollToTop();
+  initEasterEgg();
+
+  function initScrollAnimations() {
+  const sections = document.querySelectorAll('section');
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
+
+  sections.forEach(section => {
+    observer.observe(section);
+  });
+}
+
+
+  // Hero parallax effect
+  function initHeroParallax() {
+      const hero = document.querySelector('.project-hero');
+      const heroImg = document.querySelector('.hero-bg');
+      const heroText = document.querySelector('.hero-text');
+      
+      if (!hero || !heroImg || !heroText) return;
+      
+      window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const rate = scrolled * -0.5;
+        const textRate = scrolled * 0.2;
+        
+        if (scrolled < window.innerHeight) {
+          heroImg.style.transform = `translateY(${rate}px)`;
+          heroText.style.transform = `translateY(${textRate}px)`;
+        }
+      });
+    }
+
+    // Add typing effect to hero title
+  function initTypingEffect() {
+    const title = document.querySelector('.project-title');
+    if (!title) return;
     
-    // Add CSS for loader
-    const loaderStyle = document.createElement('style');
-    loaderStyle.textContent = `
-      .page-loader {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(135deg, #000, #1a1a1a);
-        z-index: 10000;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: opacity 0.5s ease, visibility 0.5s ease;
-      }
-      
-      .page-loader.fade-out {
-        opacity: 0;
-        visibility: hidden;
-      }
-      
-      .loader-content {
-        text-align: center;
-        color: #f1f1f1;
-      }
-      
-      .loader-logo {
-        font-size: 2.5rem;
-        font-weight: 900;
-        color: #EB676C;
-        margin-bottom: 30px;
-        letter-spacing: 0.1em;
-        animation: pulse 2s ease-in-out infinite;
-      }
-      
-      .loader-bar {
-        width: 200px;
-        height: 3px;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 2px;
-        margin: 20px auto;
-        overflow: hidden;
-      }
-      
-      .loader-progress {
-        height: 100%;
-        background: linear-gradient(90deg, #EB676C, #FF8A8A);
-        width: 0%;
-        border-radius: 2px;
-        animation: loading 2s ease-in-out;
-      }
-      
-      .loader-text {
-        margin-top: 20px;
-        font-size: 0.9rem;
-        color: #888;
-        animation: fadeInOut 2s ease-in-out infinite;
-      }
-      
-      @keyframes loading {
-        0% { width: 0%; }
-        100% { width: 100%; }
-      }
-      
-      @keyframes fadeInOut {
-        0%, 100% { opacity: 0.5; }
-        50% { opacity: 1; }
-      }
-    `;
-    document.head.appendChild(loaderStyle);
+    const text = title.textContent;
+    title.textContent = '';
+    title.style.borderRight = '3px solid #EB676C';
     
-    // Hide loader after content loads
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        loader.classList.add('fade-out');
-        setTimeout(() => loader.remove(), 500);
-      }, 1000);
-    });
-    
-    // Fallback: hide loader after 3 seconds
-    setTimeout(() => {
-      if (loader.parentNode) {
-        loader.classList.add('fade-out');
-        setTimeout(() => loader.remove(), 500);
+    let i = 0;
+    const typeWriter = () => {
+      if (i < text.length) {
+        title.textContent += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, 150);
+      } else {
+        setTimeout(() => {
+          title.style.borderRight = 'none';
+        }, 1000);
       }
-    }, 3000);
+    };
+    
+    // Start typing effect after page load
+    setTimeout(typeWriter, 500);
   }
   
-  initLoadingScreen();
+  // Initialize typing effect
+  initTypingEffect();
+
+  initKeyboardNavigation();
   
-  // Add performance monitoring
-  function initPerformanceMonitoring() {
-    // Monitor page load time
-    window.addEventListener('load', () => {
-      const perfData = performance.timing;
-      const pageLoadTime = perfData.loadEventEnd - perfData.navigationStart;
-      
-      console.log(`⚡ Page loaded in ${pageLoadTime}ms`);
-      
-      // Log other performance metrics
-      if ('connection' in navigator) {
-        console.log(`🌐 Connection: ${navigator.connection.effectiveType}`);
+  // Add scroll-to-top functionality
+  function initScrollToTop() {
+    const scrollBtn = document.createElement('button');
+    scrollBtn.innerHTML = '↑';
+    scrollBtn.className = 'scroll-to-top';
+    scrollBtn.setAttribute('aria-label', 'Scroll to top');
+    document.body.appendChild(scrollBtn);
+    
+    // Add CSS for scroll-to-top button
+    const scrollStyle = document.createElement('style');
+    scrollStyle.textContent = `
+      .scroll-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background: #EB676C;
+        color: #000;
+        border: none;
+        border-radius: 50%;
+        font-size: 20px;
+        font-weight: bold;
+        cursor: pointer;
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(20px);
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(235, 103, 108, 0.3);
       }
       
-      // Monitor scroll performance
-      let scrollTimeout;
-      window.addEventListener('scroll', () => {
-        clearTimeout(scrollTimeout);
-        scrollTimeout = setTimeout(() => {
-          const scrollTop = window.pageYOffset;
-          const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-          const scrollPercent = (scrollTop / docHeight) * 100;
-          
-          if (scrollPercent > 50 && !sessionStorage.getItem('scrolled50')) {
-            sessionStorage.setItem('scrolled50', 'true');
-            console.log('📊 User scrolled past 50% of content');
-          }
-        }, 100);
+      .scroll-to-top.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+      
+      .scroll-to-top:hover {
+        background: #FF8A8A;
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(235, 103, 108, 0.4);
+      }
+      
+      .scroll-to-top:active {
+        transform: translateY(0);
+      }
+    `;
+    document.head.appendChild(scrollStyle);
+    
+    // Show/hide button based on scroll position
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        scrollBtn.classList.add('show');
+      } else {
+        scrollBtn.classList.remove('show');
+      }
+    });
+    
+    // Smooth scroll to top
+    scrollBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
       });
     });
   }
   
-  initPerformanceMonitoring();
-  
-  // Add accessibility improvements
-  function initAccessibility() {
-    // Add skip to content link
-    const skipLink = document.createElement('a');
-    skipLink.href = '#main-content';
-    skipLink.textContent = 'Skip to main content';
-    skipLink.className = 'skip-link';
-    document.body.prepend(skipLink);
+  initScrollToTop();
+
+  // Add easter egg - Konami code
+  function initEasterEgg() {
+    const konamiCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
+    let userInput = [];
     
-    // Add id to main content
-    const mainContent = document.querySelector('.case-study');
-    if (mainContent) {
-      mainContent.id = 'main-content';
-    }
-    
-    // Add CSS for skip link
-    const skipStyle = document.createElement('style');
-    skipStyle.textContent = `
-      .skip-link {
-        position: absolute;
-        top: -100px;
-        left: 20px;
-        background: #EB676C;
-        color: #000;
-        padding: 10px 20px;
-        text-decoration: none;
-        border-radius: 5px;
-        z-index: 10001;
-        transition: top 0.3s ease;
-        font-weight: 600;
+    document.addEventListener('keydown', (e) => {
+      userInput.push(e.keyCode);
+      
+      if (userInput.length > konamiCode.length) {
+        userInput.shift();
       }
       
-      .skip-link:focus {
-        top: 20px;
+      if (userInput.join(',') === konamiCode.join(',')) {
+        activateEasterEgg();
+        userInput = [];
       }
-    `;
-    document.head.appendChild(skipStyle);
-    
-    // Add ARIA labels to interactive elements
-    const tabBtns = document.querySelectorAll('.tab-btn');
-    tabBtns.forEach((btn, index) => {
-      btn.setAttribute('role', 'tab');
-      btn.setAttribute('aria-selected', index === 0 ? 'true' : 'false');
     });
     
-    // Add reduced motion support
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    
-    if (prefersReducedMotion.matches) {
-      document.documentElement.style.setProperty('--animation-duration', '0.01ms');
+    function activateEasterEgg() {
+      document.body.style.animation = 'rainbow 2s ease infinite';
       
-      const reducedMotionStyle = document.createElement('style');
-      reducedMotionStyle.textContent = `
-        *, *::before, *::after {
-          animation-duration: 0.01ms !important;
-          animation-iteration-count: 1 !important;
-          transition-duration: 0.01ms !important;
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes rainbow {
+          0% { filter: hue-rotate(0deg); }
+          100% { filter: hue-rotate(360deg); }
         }
       `;
-      document.head.appendChild(reducedMotionStyle);
+      document.head.appendChild(style);
+      
+      setTimeout(() => {
+        document.body.style.animation = '';
+        style.remove();
+      }, 5000);
+      
+      // Show message
+      const message = document.createElement('div');
+      message.textContent = '🎨 Designer mode activated! 🎨';
+      message.style.cssText = `
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: #EB676C;
+        color: #000;
+        padding: 20px 40px;
+        border-radius: 10px;
+        font-weight: bold;
+        z-index: 10000;
+        animation: bounce 1s ease;
+      `;
+      document.body.appendChild(message);
+      
+      setTimeout(() => message.remove(), 3000);
     }
   }
   
-  initAccessibility();
-  
-  console.log('🎨 Sportscove portfolio initialized successfully!');
-  console.log('✨ Features loaded: Animations, Videos, Tabs, Parallax, Progress, Cursor, Navigation');
-  console.log('🚀 Ready for an amazing user experience!');
-  
+  initEasterEgg();
+});
