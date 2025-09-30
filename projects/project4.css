@@ -93,7 +93,7 @@
 
 /* Typography */
 h1, h2, h3, h4 {
-  font-weight: 700;
+  font-weight: 300;
   margin-bottom: 16px;
   color: #f1f1f1;
 }
@@ -144,8 +144,8 @@ p {
 }
 
 .overview-item p {
-  font-size: 1.3rem;
-  font-weight: 500;
+  font-size: 1rem;
+  font-weight: 300;
   color: #f1f1f1;
   margin: 0;
 }
@@ -165,7 +165,7 @@ p {
 }
 
 .centered-text p {
-  font-size: 1.3rem;
+  font-size: 1rem;
   color: #ddd;
   line-height: 1.7;
   margin-bottom: 0;
@@ -241,7 +241,7 @@ p {
 
 .mind-side p, .body-side p {
   color: #ddd;
-  font-size: 1.1rem;
+  font-size: 1rem;
   margin: 0;
 }
 
@@ -310,7 +310,7 @@ p {
 
 .pillar > p {
   color: #ddd;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.2rem;
   font-style: italic;
 }
 
@@ -433,7 +433,7 @@ p {
 
 .cultural-insight p {
   color: #ddd;
-  font-size: 1.1rem;
+  font-size: 1rem;
   margin: 0;
   line-height: 1.7;
 }
@@ -467,7 +467,7 @@ p {
   color: #EB676C;
   padding: 1rem 2rem;
   border: 1px solid rgba(235, 103, 108, 0.3);
-  font-weight: 600;
+  font-weight: 300;
   transition: all 0.3s ease;
 }
 
@@ -478,7 +478,7 @@ p {
 
 .flow-arrow {
   color: #EB676C;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: bold;
 }
 
@@ -764,7 +764,7 @@ p {
 .step-content h4 {
   color: #EB676C;
   margin-bottom: 0.8rem;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 .step-content p {

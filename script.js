@@ -1,12 +1,60 @@
 document.addEventListener("DOMContentLoaded", () => {
   console.log("✅ Script loaded!");
 
+  // ========== NAVIGATION ACTIVE STATE ==========
+  const navLinks = document.querySelectorAll(".side-nav a");
+  const currentPath = window.location.pathname;
+
+  // About page case
+  if (currentPath.includes("about.html")) {
+    navLinks.forEach(link => {
+      link.classList.remove("active");
+      if (link.getAttribute("href").includes("about")) {
+        link.classList.add("active");
+      }
+    });
+    return;
+  }
+
+  // Timeline page case
+  if (currentPath.includes("timeline.html")) {
+    navLinks.forEach(link => {
+      link.classList.remove("active");
+      if (link.getAttribute("href").includes("timeline")) {
+        link.classList.add("active");
+      }
+    });
+    return;
+  }
+
+  // Scroll sections
+  const sections = {
+    hero: document.querySelector("#hero"),
+    work: document.querySelector("#work"),
+  };
+
+  function getActiveSection() {
+    const scrollY = window.scrollY + window.innerHeight / 2;
+    const workTop = sections.work.offsetTop;
+    return scrollY >= workTop ? "work" : "hero";
+  }
+
+  function updateActiveNav() {
+    const activeId = getActiveSection();
+    navLinks.forEach(link => {
+      link.classList.remove("active");
+      if (link.getAttribute("href") === `#${activeId}`) {
+        link.classList.add("active");
+      }
+    });
+  }
+
+  updateActiveNav();
+  window.addEventListener("scroll", updateActiveNav);
+
+  // ========== BALL INTERACTIONS ==========
   const ball = document.getElementById("ball");
   const instruction = document.getElementById("instruction");
-  const startBtn = document.getElementById("startTimeline");
-  const timelineBall = document.getElementById("timeline-ball");
-  const milestones = [...document.querySelectorAll(".milestone")];
-  
 
   let moveCount = 0;
   let clickEnabled = false;
@@ -14,7 +62,6 @@ document.addEventListener("DOMContentLoaded", () => {
   let movementAllowed = false;
   let ballExpanded = false;
   let arrowReady = false;
-  let currentStep = -1;
 
   const messages = ["Too slow", "Nope", "You're getting there", "Okay, this is sad"];
 
@@ -111,12 +158,12 @@ document.addEventListener("DOMContentLoaded", () => {
       arrowReady = true;
       ballExpanded = false;
 
-      ball.addEventListener("click", function scrollToTimeline() {
-        const timelineSection = document.getElementById("timeline-section");
-        if (timelineSection) {
-          timelineSection.scrollIntoView({ behavior: "smooth" });
+      ball.addEventListener("click", function scrollToWork() {
+        const workSection = document.getElementById("work");
+        if (workSection) {
+          workSection.scrollIntoView({ behavior: "smooth" });
         }
-        ball.removeEventListener("click", scrollToTimeline);
+        ball.removeEventListener("click", scrollToWork);
       });
 
     }, 700);
@@ -150,12 +197,12 @@ document.addEventListener("DOMContentLoaded", () => {
         ball.classList.add("arrow-drop", "clickable");
         ball.classList.remove("expanded");
 
-        ball.addEventListener("click", function scrollToTimelineAgain() {
-          const timelineSection = document.getElementById("timeline-section");
-          if (timelineSection) {
-            timelineSection.scrollIntoView({ behavior: "smooth" });
+        ball.addEventListener("click", function scrollToWorkAgain() {
+          const workSection = document.getElementById("work");
+          if (workSection) {
+            workSection.scrollIntoView({ behavior: "smooth" });
           }
-          ball.removeEventListener("click", scrollToTimelineAgain);
+          ball.removeEventListener("click", scrollToWorkAgain);
         });
       }
     });
@@ -163,127 +210,101 @@ document.addEventListener("DOMContentLoaded", () => {
 
   observer.observe(heroSection);
 
-  // ✅ Timeline Logic FIXED & included
-  function resetTimeline() {
-    currentStep = -1;
-    timelineBall.style.left = "8%";
-    timelineBall.style.top = "75%";
-    timelineBall.innerHTML = "";
+  // ========== CARD → FULLSCREEN TRANSITION ==========
+  const projectCards = document.querySelectorAll('.project-card');
 
-    milestones.forEach(m => m.classList.remove("reached"));
-
-    startBtn.innerHTML = `View my journey`;
-    startBtn.disabled = false;
-    startBtn.classList.remove("end-state", "started", "restart");
-  }
-
-  startBtn.addEventListener("click", () => {
-    if (startBtn.classList.contains("restart")) {
-      resetTimeline();
-      return;
-    }
-
-    currentStep++;
-
-    if (currentStep >= milestones.length) {
-      startBtn.disabled = true;
-      startBtn.innerHTML = `That’s me! Unless you have something better for me to move from here, ofcourse`;
-      startBtn.classList.add("end-state");
-
-      setTimeout(() => {
-        startBtn.innerHTML = `Start again`;
-        startBtn.disabled = false;
-        startBtn.classList.add("restart");
-      }, 2000);
-
-      return;
-    }
-
-    const milestone = milestones[currentStep];
-    const left = milestone.parentElement.style.left;
-    const top = milestone.parentElement.style.top;
-
-    const label = milestone.dataset.label;
-    const year = milestone.parentElement.querySelector('.milestone-label')?.textContent || "";
-
-    timelineBall.style.left = left;
-    timelineBall.style.top = top;
-
-    timelineBall.innerHTML = `
-      <div class="timeline-label">${label}</div>
-      <div class="timeline-year">${year}</div>
-    `;
-
-    milestone.classList.add("reached");
-
-    if (currentStep === 0) {
-      startBtn.innerHTML = `And then?</i>`;
-      startBtn.classList.add("started");
-    }
-  });
-
-// ✅ Card → Fullscreen Transition Logic
-const projectCards = document.querySelectorAll('.project-card');
-
-projectCards.forEach(card => {
-  card.addEventListener('click', (e) => {
-    e.preventDefault();
-
-    const rect = card.getBoundingClientRect();
-    const scrollY = window.scrollY;
-
-    const clone = card.cloneNode(true);
-    clone.classList.add('project-card-clone');
-
-    // Style the clone
-    clone.style.position = 'absolute';
-    clone.style.top = (rect.top + scrollY) + 'px';
-    clone.style.left = rect.left + 'px';
-    clone.style.width = rect.width + 'px';
-    clone.style.height = rect.height + 'px';
-    clone.style.margin = '0';
-    clone.style.zIndex = '9999';
-    clone.style.transition = 'all 0.9s ease-in-out';
-    clone.style.borderRadius = '0';
-
-    // Optional transparent overlay
-    const overlay = document.createElement('div');
-    overlay.classList.add('project-overlay');
-    overlay.style.position = 'fixed';
-    overlay.style.top = 0;
-    overlay.style.left = 0;
-    overlay.style.width = '100vw';
-    overlay.style.height = '100vh';
-    overlay.style.zIndex = '9998';
-    overlay.style.background = 'transparent';
-    overlay.style.pointerEvents = 'none';
-
-    document.body.appendChild(overlay);
-    document.body.appendChild(clone);
-
-    // Animate to full screen
-    requestAnimationFrame(() => {
-      clone.style.top = scrollY + 'px';
-      clone.style.left = '0';
-      clone.style.width = '100vw';
-      clone.style.height = '100vh';
-    });
-
-    // Navigate after animation
+  // Add staggered fade-in animation
+  projectCards.forEach((card, index) => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(20px)';
+    
     setTimeout(() => {
-      const projectId = card.getAttribute('data-project');
-      window.location.href = `projects/${projectId}.html`;
-    }, 1000);
+      card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      card.style.opacity = '1';
+      card.style.transform = 'translateY(0)';
+    }, 100 * index);
   });
-});
 
-document.addEventListener("DOMContentLoaded", () => {
+  projectCards.forEach(card => {
+    card.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      const rect = card.getBoundingClientRect();
+      const scrollY = window.scrollY;
+
+      const clone = card.cloneNode(true);
+      clone.classList.add('project-card-clone');
+
+      // Style the clone
+      clone.style.position = 'absolute';
+      clone.style.top = (rect.top + scrollY) + 'px';
+      clone.style.left = rect.left + 'px';
+      clone.style.width = rect.width + 'px';
+      clone.style.height = rect.height + 'px';
+      clone.style.margin = '0';
+      clone.style.zIndex = '9999';
+      clone.style.transition = 'all 0.9s ease-in-out';
+
+      // Optional transparent overlay
+      const overlay = document.createElement('div');
+      overlay.style.position = 'fixed';
+      overlay.style.top = 0;
+      overlay.style.left = 0;
+      overlay.style.width = '100vw';
+      overlay.style.height = '100vh';
+      overlay.style.zIndex = '9998';
+      overlay.style.background = 'transparent';
+      overlay.style.pointerEvents = 'none';
+
+      document.body.appendChild(overlay);
+      document.body.appendChild(clone);
+
+      // Animate to full screen
+      requestAnimationFrame(() => {
+        clone.style.top = scrollY + 'px';
+        clone.style.left = '0';
+        clone.style.width = '100vw';
+        clone.style.height = '100vh';
+      });
+
+      // Navigate after animation
+      setTimeout(() => {
+        const projectId = card.getAttribute('data-project');
+        window.location.href = `projects/${projectId}.html`;
+      }, 1000);
+    });
+  });
+
+  // ========== CATEGORY FILTERING ==========
+  const categoryBtns = document.querySelectorAll('.category-btn');
+  const allProjectCards = document.querySelectorAll('.project-card');
+
+  categoryBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const category = btn.dataset.category;
+
+      // Update active button
+      categoryBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      // Show/hide projects based on category
+      allProjectCards.forEach(card => {
+        if (card.classList.contains(`category-${category}`)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // ========== TAGLINE TYPING ANIMATION ==========
   const taglines = document.querySelectorAll(".taglines div");
   let delay = 0;
 
   taglines.forEach((line, index) => {
     const text = line.textContent;
-    line.textContent = ""; // clear
+    line.textContent = "";
     setTimeout(() => {
       line.style.opacity = 1;
       let i = 0;
@@ -292,13 +313,12 @@ document.addEventListener("DOMContentLoaded", () => {
         i++;
         if (i === text.length) {
           clearInterval(typing);
-          line.style.borderRight = "none"; // remove cursor after typing
+          line.style.borderRight = "none";
         }
-      }, 100); // typing speed per letter
+      }, 100);
     }, delay);
 
-    delay += text.length * 100 + 800; // time for typing + pause before next line
+    delay += text.length * 100 + 800;
   });
-});
 
 });

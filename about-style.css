@@ -78,6 +78,17 @@ body {
   z-index: 1000;
 }
 
+.side-nav {
+  position: fixed;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  z-index: 1000;
+}
+
 .side-nav a {
   padding: 12px 20px;
   border: 2px solid #EB676C;
@@ -85,11 +96,10 @@ body {
   color: #EB676C;
   text-decoration: none;
   font-family: 'Space Grotesk', sans-serif;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 1rem;
   text-align: center;
   min-width: 100px;
-  border-radius: 0;
   transition: all 0.3s ease;
 }
 
@@ -144,16 +154,6 @@ body {
   transform: scale(1.1);
 }
 
-.nav-vertical-line {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  right: 80px;
-  width: 2px;
-  background-color: white;
-  opacity: 0.3;
-  z-index: 500;
-}
 
 /* About content */
 .about-container {

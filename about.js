@@ -40,3 +40,54 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+    const navLinks = document.querySelectorAll(".side-nav a");
+    const currentPath = window.location.pathname;
+
+    // About page case
+    if (currentPath.includes("about.html")) {
+      navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href").includes("about")) {
+          link.classList.add("active");
+        }
+      });
+      return;
+    }
+
+    // Timeline page case
+    if (currentPath.includes("story.html")) {
+      navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href").includes("story")) {
+          link.classList.add("active");
+        }
+      });
+      return;
+    }
+
+    // Scroll sections
+    const sections = {
+      hero: document.querySelector("#hero"),
+      work: document.querySelector("#work"),
+    };
+
+    function getActiveSection() {
+      const scrollY = window.scrollY + window.innerHeight / 2;
+      const workTop = sections.work.offsetTop;
+      return scrollY >= workTop ? "work" : "hero";
+    }
+
+    function updateActiveNav() {
+      const activeId = getActiveSection();
+      navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === `#${activeId}`) {
+          link.classList.add("active");
+        }
+      });
+    }
+
+    updateActiveNav();
+    window.addEventListener("scroll", updateActiveNav);
+  });

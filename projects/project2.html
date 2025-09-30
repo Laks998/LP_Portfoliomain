@@ -3,292 +3,452 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Clearisk Dashboard| Lakshmi Pratap</title>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Migra&display=swap" rel="stylesheet">
+  <title>Clearisk Dashboard | Lakshmi Pratap</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="project2.css" />
   <link rel="icon" type="image/png" href="../assets/logo.png">
 </head>
 
 <body>
-  <header class="project-hero">
-    <img src="../assets/02project.jpeg" alt="Sportscove App" class="hero-bg" />
-    <a href="../index.html#work" class="back-link">← Back to Work</a>
-
-    <div class="hero-text">
-      <h1 class="project-title">CX DASHBOARD</h1>
-      <p class="sub">Designing a user role based custom Dashboard</p>
-      <div class="hero-stats">
-        <span class="stat">B2B</span>
-        <span class="stat">6 User Roles</span>
-      </div>
-    </div>
-
-    <div class="scroll-indicator">
-      <div class="scroll-arrow"></div>
-    </div>
-  </header>
-
-  <main class="project-detail">
   
-    <section>
-      <h2>About the Company</h2>
-      <p>Clearisk is a derivative trading platform offering comprehensive trade processing and client management solutions. The platform addresses key operational and technological challenges that brokers of all types face. Founded by seasoned F&O professionals, Clearisk's team brings over 25 years of experience operating and clearing major exchanges and broking firms from Chicago to London.</p>
-      <p>Clearisk provides a range of features, including Data Input, Setup & Processing, Reporting & Analytics, Reconciliation, Client Management, and Integrations.</p>
-      <blockquote>"Broker in a Box"</blockquote>
+  <!-- Progress bar -->
+  <div class="read-progress"></div>
+
+  <!-- Back link -->
+  <a href="../index.html#work" class="back-link">← Back to Work</a>
+
+  <!-- Main content -->
+  <main class="project-content">
+
+    <!-- Hero -->
+    <section class="project-hero-section">
+      <div class="hero-content">
+        <div class="project-meta">November 2021 - October 2022 · Clearisk</div>
+        <h1 class="project-title">CX Dashboard</h1>
+        <p class="project-subtitle">Designing a role-based custom dashboard for a B2B fintech platform—creating personalized experiences for six different user types</p>
+        <div class="hero-image-wrapper">
+          <img src="../assets/02project.jpeg" alt="CX Dashboard overview" class="hero-image">
+        </div>
+      </div>
     </section>
 
-    <section>
-      <h2>My Role</h2>
-      <p>I started my journey with Clearisk as a UX/UI designer in November 2021. At that time, their applications (CX Portal and Client Portal) were in the early stages and had not yet been launched to users, with only high-priority features available. While a basic design system was already established, the remaining features were still in development. I worked on modifying and enhancing a few existing features and began designing new ones. 
-</p>
-      <p>For this B2B product, the dashboard had not been created yet. We started by having a few of our team members, as well as some potential users from the partner company, try out different features. We quickly realized the need and importance of a dashboard.
-</p>
-      <p>As the solo designer, I was responsible for everything from identifying needs, gathering and evaluating user requirements, and interviewing users to creating flows and designs.
-</p>
-    </section>
-
-    <section>
-      <h2>How Did I Start?</h2>
-      <p>I needed to first get to know the product features much better to know what was expected of the feature. I used the following ways to get to know the product better</p>
-      <ul>
-        <li><strong>Internal resources:</strong>  Asked around the internal team about the working of different user groups, their connectivity/flow and intersection points</li>
-        <li><strong>External resources:</strong>  Used resources from the internet to find more information on the domain and the competitors (As it was a B2B product, not a lot of competitor products were accessible to outsiders due to privacy issues)</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Business Problem Statement</h2>
-      <p>The dashboard is an important feature for Clearisk and its stakeholders for different reasons like</p>
-      <ul>
-        <li>To increase application engagement by reducing reliance on E-mail, Slack, and other platforms</li>
-        <li>Overview at the beginning of the day for employees to plan the day and prioritise tasks.</li>
-        <li>Ability to have customized data for the different roles without overwhelming them with unnecessary information.</li>
-        <li>A summary of their weekly work completed and pending to get an idea of the total amount of work completed and if there is any pending work that needs to be addressed.</li>
-        <li>Quick access to the areas that require attention without having to go to individual menu options to check for them.</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Solution with Hypothesis</h2>
-      <p>Understanding the following factors to know how the Dashboard should be displayed:</p>
-      <ul>
-        <li><strong>Users and Stakeholders:</strong> The different users accessing Clearisk and their expectations from the application and the stakeholder requirements.</li>
-        <li><strong>Roles and Permissions:</strong> The different roles and their working in the application and the Modules/functions contained in it.</li>
-        <li><strong>Current workflow:</strong> Understanding the current workflow(on their own and with other employees in different roles) and identifying what parts of the process are currently dependent on other products like Emails and Slack for each user type.</li>
-        <li><strong>Efficiency:</strong> Data that requires attention should have quick access from the dashboard without having to go to individual menu options to check for it.</li>
-        <li><strong>Present Painpoints:</strong>  The parts with issues and shortcomings that disrupt the smooth working of the task flow presently to find how to resolve it with the dashboard.</li>
-        <li><strong>Needs, wants and desires:</strong> What information cannot be ignored, what elements would make the application a good one, and what luxury features would elevate the application to the next level for each role?</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Design Process</h2>
+    <!-- Context -->
+    <section class="project-section context-section">
+      <div class="section-content">
+        <h2>Context</h2>
         <p>
-          Our design process started with user research, where we identified major stakeholder roles and mapped their responsibilities.
+          Clearisk is a derivative trading platform offering comprehensive trade processing and client management 
+          solutions. Founded by seasoned F&O professionals with over 25 years of experience, Clearisk provides 
+          features including data input, setup & processing, reporting & analytics, reconciliation, client management, 
+          and integrations—essentially a "broker in a box."
         </p>
-
-        <!-- Replace animation with an image -->
-        <div id="design-process-image">
-          <img src="../assets/deisgnprocess.png" alt="Design process illustration" />
+        <div class="project-details">
+          <div class="detail-item">
+            <div class="detail-label">Role</div>
+            <div class="detail-value">UX Designer (solo)</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Timeline</div>
+            <div class="detail-value">11 months</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Platform</div>
+            <div class="detail-value">B2B Web Application</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">User Roles</div>
+            <div class="detail-value">6 different stakeholder types</div>
+          </div>
         </div>
+      </div>
     </section>
 
-    <section>
-      <div class="subsection">
-        <h3>User Research – Roles and Functions</h3>
+    <!-- My Role -->
+    <section class="project-section role-section">
+      <div class="section-content">
+        <h2>My Role</h2>
         <p>
-          The major stakeholders of the product fall under six categories, each serving distinct roles and having permissions to different parts of the app:
+          I joined Clearisk as a UX/UI designer in November 2021 when their applications (CX Portal and Client Portal) 
+          were in early stages. While a basic design system existed, most features were still in development. The dashboard 
+          hadn't been created yet.
         </p>
-        <ol>
-          <li><strong>Manager</strong></li>
-          <li><strong>System Admin</strong></li>
-          <li><strong>Treasury</strong></li>
-          <li><strong>Compliance</strong></li>
-          <li><strong>Partner Admin</strong></li>
-          <li><strong>TPRS Admin</strong></li>
-        </ol>
-
-    
-    </section>
-
-        <!-- Table image -->
-        <!-- Roles section: character carousel -->
-  <section class="roles-section" id="rolesSection">
-    <!-- view toggle -->
-    <div class="view-toggle" aria-hidden="false">
-      <button id="scrollViewBtn" class="active" aria-pressed="true" title="Carousel view">📜</button>
-      <button id="gridViewBtn" aria-pressed="false" title="Grid view">🔲</button>
-    </div>
-
-    <div class="roles-wrapper" tabindex="0" aria-label="Roles character carousel">
-      <button class="scroll-arrow left" aria-label="Previous role">‹</button>
-
-      <div class="roles-carousel" role="list" aria-live="polite">
-        <!-- repeat this block for each PNG card -->
-        <div class="role-card" role="listitem">
-          <img class="role-card-img" src="../assets/managercard.png" alt="Manager role card">
-        </div>
-
-        <div class="role-card" role="listitem">
-          <img class="role-card-img" src="../assets/systemadmincard.png" alt="System Admin role card">
-        </div>
-
-        <div class="role-card" role="listitem">
-          <img class="role-card-img" src="../assets/treasurycard.png" alt="Treasury role card">
-        </div>
-
-        <div class="role-card" role="listitem">
-          <img class="role-card-img" src="../assets/compliancecard.png" alt="Compliance role card">
-        </div>
-
-        <div class="role-card" role="listitem">
-          <img class="role-card-img" src="../assets/partneradmincard.png" alt="Partner Admin role card">
-        </div>
-
-        <div class="role-card" role="listitem">
-          <img class="role-card-img" src="../assets/tprsadmincard.png" alt="TPRS Admin role card">
-        </div>
-        <!-- end repeat -->
-      </div>
-
-      <button class="scroll-arrow right" aria-label="Next role">›</button>
-    </div>
-  </section>
-
-
-    <section>
-      <h3>Qualitative Analysis</h3>
-      <p>I conducted an interview with one user from each major role and asked them a semi-structured set of questions to know the basic requirements of each of the roles and then I could spread out into the common parts and specific parts of the design</p>
-      <ul>
-        <li><strong>Interview duration:</strong> 20 mins each</li>
-        <li><strong>Participants:</strong> 5</li>
-        <li><strong>Number of questions:</strong> 10</li>
-        <li><strong>Question Type:</strong> Open-ended</li>
-      </ul>
-    </section>
-
-    <section>
-        <h3>User Interview Results</h3>
         <p>
-          The responses from the different roles and the analysis
+          After having team members and potential users from partner companies try different features, we quickly realized 
+          the need and importance of a centralized dashboard.
         </p>
-    </section>
-    
-    <section class="roles-section2" id="rolesSectionTwo">
-      <!-- View toggle -->
-      <div class="view-toggle2" aria-hidden="false">
-        <button id="scrollViewBtn2" class="active" aria-pressed="true" title="Scroll view">📜</button>
-        <button id="gridViewBtn2" aria-pressed="false" title="Grid view">🔲</button>
+        <p>
+          As the solo designer, I was responsible for:
+        </p>
+        <div class="responsibility-list">
+          <div class="responsibility-item">Identifying needs and gathering requirements</div>
+          <div class="responsibility-item">Conducting user interviews</div>
+          <div class="responsibility-item">Creating user flows and information architecture</div>
+          <div class="responsibility-item">Designing for six different user roles</div>
+          <div class="responsibility-item">Building the complete dashboard system</div>
+        </div>
       </div>
+    </section>
 
-      <!-- Roles wrapper -->
-      <div class="roles-wrapper2" tabindex="0" aria-label="Roles character carousel">
-        <button class="scroll-arrow2 left" aria-label="Previous role">‹</button>
-
-        <div class="roles-carousel2" role="list" aria-live="polite">
-          <div class="role-card2" role="listitem">
-            <img class="role-card-img2" src="../assets/response1.png" alt="Role 1 card">
+    <!-- Design Process Overview -->
+    <section class="project-section design-process-overview">
+      <div class="section-content">
+        <h2>Design Process</h2>
+        <p>
+          My approach to designing the dashboard followed a user-centered methodology, ensuring each decision 
+          was backed by research and validated with real users.
+        </p>
+      </div>
+      
+      <div class="process-flow">
+        <div class="process-stage">
+          <div class="stage-number">01</div>
+          <div class="stage-content">
+            <h3>Discover</h3>
+            <div class="stage-activities">
+              <span class="activity">Stakeholder interviews</span>
+              <span class="activity">Product understanding</span>
+              <span class="activity">Competitor research</span>
+              <span class="activity">Domain learning</span>
+            </div>
           </div>
-          <div class="role-card2" role="listitem">
-            <img class="role-card-img2" src="../assets/response2.png" alt="Role 2 card">
-          </div>
-          <div class="role-card2" role="listitem">
-            <img class="role-card-img2" src="../assets/response3.png" alt="Role 3 card">
-          </div>
-          <div class="role-card2" role="listitem">
-            <img class="role-card-img2" src="../assets/response4.png" alt="Role 4 card">
-          </div>
-          <div class="role-card2" role="listitem">
-            <img class="role-card-img2" src="../assets/response5.png" alt="Role 5 card">
-          </div>
-          <!-- Add more cards as needed -->
+          <div class="stage-arrow">→</div>
         </div>
 
-        <button class="scroll-arrow2 right" aria-label="Next role">›</button>
+        <div class="process-stage">
+          <div class="stage-number">02</div>
+          <div class="stage-content">
+            <h3>Research</h3>
+            <div class="stage-activities">
+              <span class="activity">User interviews (5 participants)</span>
+              <span class="activity">Role mapping</span>
+              <span class="activity">Workflow analysis</span>
+              <span class="activity">Pain point identification</span>
+            </div>
+          </div>
+          <div class="stage-arrow">→</div>
+        </div>
+
+        <div class="process-stage">
+          <div class="stage-number">03</div>
+          <div class="stage-content">
+            <h3>Synthesize</h3>
+            <div class="stage-activities">
+              <span class="activity">Persona creation</span>
+              <span class="activity">Empathy mapping</span>
+              <span class="activity">Information architecture</span>
+              <span class="activity">User needs prioritization</span>
+            </div>
+          </div>
+          <div class="stage-arrow">→</div>
+        </div>
+
+        <div class="process-stage">
+          <div class="stage-number">04</div>
+          <div class="stage-content">
+            <h3>Design</h3>
+            <div class="stage-activities">
+              <span class="activity">Wireframing</span>
+              <span class="activity">Layout design (Z-pattern)</span>
+              <span class="activity">Role-based customization</span>
+              <span class="activity">Visual design</span>
+            </div>
+          </div>
+          <div class="stage-arrow">→</div>
+        </div>
+
+        <div class="process-stage">
+          <div class="stage-number">05</div>
+          <div class="stage-content">
+            <h3>Validate</h3>
+            <div class="stage-activities">
+              <span class="activity">Prototype testing</span>
+              <span class="activity">Feedback collection</span>
+              <span class="activity">Iteration</span>
+              <span class="activity">Final refinement</span>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-
-    <section>
-      <h3>Persona</h3>
-      <p>I created personas based on the interview of the different roles with their key characteristics, goals, frustrations and motivations to understand the users and their feelings towards the feature.</p>
-    </section>
-
-    <section>
-      <div class="image-gallery large">
-        <figure>
-          <img src="../assets/persona.png" alt="User interview analysis table" />
-        </figure>
+    <!-- Problem -->
+    <section class="project-section problem-section">
+      <div class="section-content">
+        <h2>The Problem</h2>
+        <p>
+          Users were relying heavily on external tools like email and Slack to manage their work. There was no centralized 
+          place to get an overview of tasks, priorities, or pending work.
+        </p>
+        <div class="problem-list">
+          <div class="problem-item">
+            <div class="problem-number">01</div>
+            <div class="problem-content">
+              <h3>Low Application Engagement</h3>
+              <p>Heavy reliance on email, Slack, and other platforms instead of the main application</p>
+            </div>
+          </div>
+          <div class="problem-item">
+            <div class="problem-number">02</div>
+            <div class="problem-content">
+              <h3>No Overview or Prioritization</h3>
+              <p>Employees couldn't plan their day or prioritize tasks at the beginning of each workday</p>
+            </div>
+          </div>
+          <div class="problem-item">
+            <div class="problem-number">03</div>
+            <div class="problem-content">
+              <h3>Information Overload Risk</h3>
+              <p>Different roles needed customized data without being overwhelmed by irrelevant information</p>
+            </div>
+          </div>
+          <div class="problem-item">
+            <div class="problem-number">04</div>
+            <div class="problem-content">
+              <h3>Inefficient Navigation</h3>
+              <p>No quick access to areas requiring attention—users had to navigate through multiple menus</p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section>
-      <h3>Empathy Mapping</h3>
-      <div class="image-gallery large">
-        <figure>
-          <img src="../assets/empathy.png" alt="User interview analysis table" />
-        </figure>
+    <!-- Approach -->
+    <section class="project-section approach-section">
+      <div class="section-content">
+        <h2>My Approach</h2>
+        <p>
+          I started by deeply understanding the product, the different user roles, and their workflows.
+        </p>
+        <div class="approach-steps">
+          <div class="approach-step">
+            <div class="step-marker">01</div>
+            <div class="step-content">
+              <h3>Product Understanding</h3>
+              <p>Asked the internal team about different user groups, their connectivity/flow, and intersection points. Researched the domain and competitors online</p>
+            </div>
+          </div>
+          <div class="approach-step">
+            <div class="step-marker">02</div>
+            <div class="step-content">
+              <h3>User Research</h3>
+              <p>Identified six major stakeholder roles and mapped their responsibilities, permissions, and workflows</p>
+            </div>
+          </div>
+          <div class="approach-step">
+            <div class="step-marker">03</div>
+            <div class="step-content">
+              <h3>User Interviews</h3>
+              <p>Conducted semi-structured interviews with one user from each major role (5 participants, 20 mins each, 10 open-ended questions)</p>
+            </div>
+          </div>
+          <div class="approach-step">
+            <div class="step-marker">04</div>
+            <div class="step-content">
+              <h3>Analysis & Synthesis</h3>
+              <p>Created personas, empathy maps, and information architecture to understand user needs and pain points</p>
+            </div>
+          </div>
+          <div class="approach-step">
+            <div class="step-marker">05</div>
+            <div class="step-content">
+              <h3>Design & Iteration</h3>
+              <p>Designed role-specific dashboards using Z-pattern principles and iterating based on feedback</p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section>
-      <h3>Information Architecture</h3>
-      <p>
-        I created a combined IA for all the roles to understand the different sections required 
-        and what sections are common and what needs to be customised. Also, to know what the 
-        customisations should be.
-      </p>
-
-      <div class="image-gallery large">
-        <figure>
-          <img src="../assets/infoarch.png" alt="Information architecture diagram" />
-        </figure>
+    <!-- User Roles -->
+    <section class="project-section roles-section">
+      <div class="section-content">
+        <h2>Understanding the Users</h2>
+        <p>
+          The major stakeholders fall under six categories, each with distinct roles and permissions:
+        </p>
+        <div class="roles-grid">
+          <div class="role-item">
+            <div class="role-number">01</div>
+            <div class="role-name">Manager</div>
+          </div>
+          <div class="role-item">
+            <div class="role-number">02</div>
+            <div class="role-name">System Admin</div>
+          </div>
+          <div class="role-item">
+            <div class="role-number">03</div>
+            <div class="role-name">Treasury</div>
+          </div>
+          <div class="role-item">
+            <div class="role-number">04</div>
+            <div class="role-name">Compliance</div>
+          </div>
+          <div class="role-item">
+            <div class="role-number">05</div>
+            <div class="role-name">Partner Admin</div>
+          </div>
+          <div class="role-item">
+            <div class="role-number">06</div>
+            <div class="role-name">TPRS Admin</div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section>
-
-      <h3>Zoning/Placement of Sections – Z-Pattern</h3>
-      <p>The Z- the pattern is the visual route of a human eye when viewing content on a page. people scan from the top left to the top right, forming an imaginary horizontal line. Next, down and to the left side of the visible page, in an imaginary diagonal line and then to the right.</p>
-      <ul>
-        <li><strong>Top Left:</strong> Overview</li>
-        <li><strong>Top Right:</strong> Applications requiring action</li>
-        <li><strong>Bottom Left:</strong> Activity timeline</li>
-        <li><strong>Bottom Right:</strong> Team Attendance</li>
-      </ul>
-
-      <div class="image-gallery large">
-        <figure>
-          <img src="../assets/zpattern.png" alt="Information architecture diagram" />
-        </figure>
+    <!-- Role Cards - Single Image -->
+    <section class="project-section carousel-section">
+      <div class="section-content">
+        <h3>Detailed Role Breakdown</h3>
+        <p>Each role has specific responsibilities, access permissions, and dashboard requirements:</p>
+        <div class="single-image-wrapper">
+          <img src="../assets/rolestable.png" alt="Detailed role breakdown table" class="single-image">
+        </div>
       </div>
-
     </section>
 
-    <section>
-  <h2>Final Design</h2>
-  <p>These are the final screens I created after considering all the points from the UX research and user requirements.</p>
+    <!-- Interview Results - Single Image -->
+    <section class="project-section interview-section">
+      <div class="section-content">
+        <h2>Interview Insights</h2>
+        <p>
+          Responses from different roles revealed common patterns and role-specific needs:
+        </p>
+        <div class="single-image-wrapper">
+          <img src="../assets/interviewanalysis.png" alt="Interview insights table" class="single-image">
+        </div>
+      </div>
+    </section>
 
-  <div class="image-gallery">
-    <figure>
-      <img src="../assets/dashboardfinal.png" alt="Final Dashboard Screen 1">
-    </figure>
-    <!-- Add more images as needed -->
-  </div>
-</section>
+    <!-- Persona -->
+    <section class="project-section persona-section">
+      <div class="section-content">
+        <h2>Persona</h2>
+        <p>
+          I created personas based on the interview of the different roles with their key characteristics, goals, 
+          frustrations and motivations to understand the users and their feelings towards the feature.
+        </p>
+        <div class="persona-image-wrapper">
+          <img src="../assets/persona.png" alt="User personas" class="persona-image">
+        </div>
+      </div>
+    </section>
 
-<div>
-  <a href="../index.html#work" class="bottom-back-link">← Back to Work</a>
-</div>
+    <!-- Empathy Mapping -->
+    <section class="project-section empathy-section">
+      <div class="section-content">
+        <h2>Empathy Mapping</h2>
+        <div class="empathy-image-wrapper">
+          <img src="../assets/empathy.png" alt="Empathy maps" class="empathy-image">
+        </div>
+      </div>
+    </section>
+
+    <!-- Information Architecture -->
+    <section class="project-section ia-section">
+      <div class="section-content">
+        <h2>Information Architecture</h2>
+        <p>
+          I created a combined IA for all the roles to understand the different sections required and what sections 
+          are common and what needs to be customised. Also, to know what the customisations should be.
+        </p>
+        <div class="ia-image-wrapper">
+          <img src="../assets/infoarch.png" alt="Information architecture" class="ia-image">
+        </div>
+      </div>
+    </section>
+
+    <!-- Z-Pattern -->
+    <section class="project-section zpattern-section">
+      <div class="section-content">
+        <h2>Zoning/Placement of Sections – Z-Pattern</h2>
+        <p>
+          The Z-pattern is the visual route of a human eye when viewing content on a page. People scan from the top 
+          left to the top right, forming an imaginary horizontal line. Next, down and to the left side of the visible 
+          page, in an imaginary diagonal line and then to the right.
+        </p>
+        <div class="z-pattern-list">
+          <div class="z-item">
+            <span class="z-label">Top Left:</span>
+            <span class="z-value">Overview</span>
+          </div>
+          <div class="z-item">
+            <span class="z-label">Top Right:</span>
+            <span class="z-value">Applications requiring action</span>
+          </div>
+          <div class="z-item">
+            <span class="z-label">Bottom Left:</span>
+            <span class="z-value">Activity timeline</span>
+          </div>
+          <div class="z-item">
+            <span class="z-label">Bottom Right:</span>
+            <span class="z-value">Team attendance</span>
+          </div>
+        </div>
+        <div class="zpattern-image-wrapper">
+          <img src="../assets/zpattern.png" alt="Z-pattern layout" class="zpattern-image">
+        </div>
+      </div>
+    </section>
+
+    <!-- Final Design -->
+    <section class="project-section final-section">
+      <div class="section-content">
+        <h2>Final Design</h2>
+        <p>
+          The final dashboard screens after considering all points from UX research and user requirements. Each role 
+          gets a customized view showing only relevant information and quick access to their most important tasks.
+        </p>
+        <div class="final-image-wrapper">
+          <img src="../assets/dashboardfinal.png" alt="Final dashboard screens" class="final-image">
+        </div>
+      </div>
+    </section>
+
+    <!-- Learnings -->
+    <section class="project-section learnings-section">
+      <div class="section-content">
+        <h2>Key Learnings</h2>
+        <div class="learning-list">
+          <div class="learning-item">
+            <p>
+              <strong>Role-based design is complex:</strong> Designing for six different user types required careful 
+              balance between consistency and customization.
+            </p>
+          </div>
+          <div class="learning-item">
+            <p>
+              <strong>User interviews are invaluable:</strong> Direct conversations with users from each role revealed 
+              needs that weren't obvious from stakeholder requirements alone.
+            </p>
+          </div>
+          <div class="learning-item">
+            <p>
+              <strong>Domain knowledge matters:</strong> Understanding fintech and trading workflows was essential to 
+              designing an effective dashboard.
+            </p>
+          </div>
+          <div class="learning-item">
+            <p>
+              <strong>Information hierarchy is critical:</strong> Users needed to see the most important information 
+              first without being overwhelmed by everything else.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
 
   </main>
 
+  <!-- Bottom back link wrapper -->
+  <div class="bottom-link-wrapper">
+    <a href="../index.html#work" class="footer-back-link">← Back to Work</a>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>&copy; 2025 Lakshmi Pratap. All rights reserved.</p>
+  </footer>
+
   <script src="project2.js"></script>
 </body>
-
-<footer class="site-footer">
-  <p>&copy; 2025 Lakshmi Pratap. All rights reserved.</p>
-</footer>
-
 </html>
