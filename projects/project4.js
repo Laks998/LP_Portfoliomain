@@ -1,4 +1,4 @@
-// project4.js - Redesigned to match project2 style
+// project4.js - UX-focused version
 
 document.addEventListener('DOMContentLoaded', () => {
   
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   
   // Add hover effects to images
-  const images = document.querySelectorAll('.sequence-image img, .movie-poster img, .unity-image img');
+  const images = document.querySelectorAll('.flow-image img, .unity-showcase img');
   
   images.forEach(img => {
     img.addEventListener('mouseenter', () => {
@@ -95,10 +95,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
   
-  // Theme cards animation
-  const themeCards = document.querySelectorAll('.theme-card');
+  // Insight cards animation
+  const insightCards = document.querySelectorAll('.insight-card');
   
-  themeCards.forEach((card, index) => {
+  insightCards.forEach((card, index) => {
     card.style.opacity = '0';
     card.style.transform = 'translateY(30px)';
     
@@ -117,14 +117,14 @@ document.addEventListener('DOMContentLoaded', () => {
     cardObserver.observe(card);
   });
   
-  // Result cards animation
-  const resultCards = document.querySelectorAll('.result-card');
+  // Result metrics animation
+  const resultMetrics = document.querySelectorAll('.result-metric');
   
-  resultCards.forEach((card, index) => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(20px)';
+  resultMetrics.forEach((metric, index) => {
+    metric.style.opacity = '0';
+    metric.style.transform = 'translateY(20px)';
     
-    const resultObserver = new IntersectionObserver((entries) => {
+    const metricObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           setTimeout(() => {
@@ -136,17 +136,17 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }, { threshold: 0.5 });
     
-    resultObserver.observe(card);
+    metricObserver.observe(metric);
   });
   
-  // Movie cards animation
-  const movieCards = document.querySelectorAll('.movie-card');
+  // Flow cards animation
+  const flowCards = document.querySelectorAll('.flow-card');
   
-  movieCards.forEach((card, index) => {
+  flowCards.forEach((card, index) => {
     card.style.opacity = '0';
     card.style.transform = 'translateY(20px)';
     
-    const movieObserver = new IntersectionObserver((entries) => {
+    const flowObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           setTimeout(() => {
@@ -158,17 +158,17 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }, { threshold: 0.3 });
     
-    movieObserver.observe(card);
+    flowObserver.observe(card);
   });
   
-  // Sequence cards animation
-  const sequenceCards = document.querySelectorAll('.sequence-card');
+  // Takeaway cards animation
+  const takeawayCards = document.querySelectorAll('.takeaway-card');
   
-  sequenceCards.forEach((card, index) => {
+  takeawayCards.forEach((card, index) => {
     card.style.opacity = '0';
     card.style.transform = 'translateY(20px)';
     
-    const seqObserver = new IntersectionObserver((entries) => {
+    const takeawayObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           setTimeout(() => {
@@ -180,24 +180,40 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }, { threshold: 0.3 });
     
-    seqObserver.observe(card);
+    takeawayObserver.observe(card);
   });
   
   // Counter animation for stats
-  const statNumbers = document.querySelectorAll('.stat-number');
+  const statNumbers = document.querySelectorAll('.stat-number, .metric-number');
   
   const animateCounter = (element) => {
-    const target = parseInt(element.textContent);
-    let current = 0;
-    const increment = target / 30;
-    const timer = setInterval(() => {
-      current += increment;
-      if (current >= target) {
-        current = target;
-        clearInterval(timer);
-      }
-      element.textContent = Math.floor(current);
-    }, 50);
+    const text = element.textContent;
+    // Handle cases like "100%" or "5-7" or "2-3"
+    if (text.includes('%')) {
+      const target = parseInt(text);
+      let current = 0;
+      const increment = target / 30;
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          current = target;
+          clearInterval(timer);
+        }
+        element.textContent = Math.floor(current) + '%';
+      }, 50);
+    } else if (!text.includes('-') && !isNaN(parseInt(text))) {
+      const target = parseInt(text);
+      let current = 0;
+      const increment = target / 30;
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          current = target;
+          clearInterval(timer);
+        }
+        element.textContent = Math.floor(current);
+      }, 50);
+    }
   };
   
   const statsObserver = new IntersectionObserver((entries) => {
@@ -224,7 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log(`📝 Word count: ${wordCount} words`);
   }
   
-  console.log('✨ VR & Dualism project page loaded');
-  console.log('🎯 Focus: Philosophy meets VR technology');
+  console.log('✨ VR Experience Design project loaded');
+  console.log('🎯 UX research → design → test → iterate');
   
 });
