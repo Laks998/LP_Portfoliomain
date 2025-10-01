@@ -1,31 +1,90 @@
-// about.js - About Page Interactions
+// about.js - Dynamic About Page Interactions
 
 document.addEventListener("DOMContentLoaded", () => {
   
-  // ===== SCROLL ANIMATIONS =====
+  // ===== SCROLL-TRIGGERED ANIMATIONS =====
+  const scrollElements = document.querySelectorAll("[data-scroll]");
   const sections = document.querySelectorAll(".about-section");
   
-  const sectionObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-        }
-      });
-    },
-    {
-      threshold: 0.15,
-      rootMargin: "0px 0px -80px 0px",
-    }
-  );
+  const observerOptions = {
+    threshold: 0.2,
+    rootMargin: "0px 0px -100px 0px",
+  };
   
-  sections.forEach((section) => {
-    sectionObserver.observe(section);
+  const scrollObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+      }
+    });
+  }, observerOptions);
+  
+  scrollElements.forEach((el) => scrollObserver.observe(el));
+  sections.forEach((section) => scrollObserver.observe(section));
+  
+  // ===== NUMBER COUNTER ANIMATION =====
+  const statNumber = document.querySelector("[data-count]");
+  
+  if (statNumber) {
+    const target = parseFloat(statNumber.getAttribute("data-count"));
+    let hasAnimated = false;
+    
+    const counterObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasAnimated) {
+            hasAnimated = true;
+            animateNumber(entry.target, target);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+    
+    counterObserver.observe(statNumber);
+  }
+  
+  function animateNumber(element, target) {
+    let current = 0;
+    const increment = target / 60;
+    const duration = 2000;
+    const stepTime = duration / 60;
+    
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= target) {
+        current = target;
+        clearInterval(timer);
+      }
+      element.textContent = current.toFixed(1);
+    }, stepTime);
+  }
+  
+  // ===== PARALLAX SCROLL EFFECTS =====
+  const floatingShapes = document.querySelectorAll(".floating-shape");
+  const sectionBadges = document.querySelectorAll(".section-badge");
+  
+  window.addEventListener("scroll", () => {
+    const scrolled = window.pageYOffset;
+    
+    floatingShapes.forEach((shape, index) => {
+      const speed = 0.3 + index * 0.1;
+      shape.style.transform = `translateY(${scrolled * speed}px)`;
+    });
+    
+    sectionBadges.forEach((badge) => {
+      const rect = badge.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        const scrollPercent = (window.innerHeight - rect.top) / window.innerHeight;
+        badge.style.transform = `translateY(${scrollPercent * 50}px)`;
+      }
+    });
   });
   
   // ===== VIDEO PLAYER CONTROLS =====
   const videoPlayer = document.querySelector(".video-player");
   const video = document.querySelector(".main-video");
+  const centerPlayBtn = document.querySelector(".center-play-btn");
   const playPauseBtn = document.querySelector(".play-pause-btn");
   const progressContainer = document.querySelector(".progress-container");
   const progressBar = document.querySelector(".progress-bar");
@@ -37,10 +96,6 @@ document.addEventListener("DOMContentLoaded", () => {
   
   if (video && videoPlayer) {
     
-    // Play/Pause
-    playPauseBtn.addEventListener("click", togglePlayPause);
-    video.addEventListener("click", togglePlayPause);
-    
     function togglePlayPause() {
       if (video.paused) {
         video.play();
@@ -51,21 +106,28 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
     
-    // Update progress bar
+    if (centerPlayBtn) {
+      centerPlayBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        togglePlayPause();
+      });
+    }
+    
+    playPauseBtn.addEventListener("click", togglePlayPause);
+    video.addEventListener("click", togglePlayPause);
+    
     video.addEventListener("timeupdate", updateProgress);
     
     function updateProgress() {
       const percent = (video.currentTime / video.duration) * 100;
       progressBar.style.width = `${percent}%`;
       
-      // Update time displays
       currentTimeDisplay.textContent = formatTime(video.currentTime);
       if (!isNaN(video.duration)) {
         durationDisplay.textContent = formatTime(video.duration);
       }
     }
     
-    // Seek functionality
     progressContainer.addEventListener("click", seek);
     
     function seek(e) {
@@ -74,7 +136,6 @@ document.addEventListener("DOMContentLoaded", () => {
       video.currentTime = percent * video.duration;
     }
     
-    // Volume toggle
     volumeBtn.addEventListener("click", toggleMute);
     
     function toggleMute() {
@@ -86,7 +147,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
     
-    // Fullscreen
     fullscreenBtn.addEventListener("click", toggleFullscreen);
     
     function toggleFullscreen() {
@@ -105,21 +165,19 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
     
-    // Format time helper
     function formatTime(seconds) {
       const mins = Math.floor(seconds / 60);
       const secs = Math.floor(seconds % 60);
       return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
     }
     
-    // Show/hide controls on mouse movement
     let controlsTimeout;
     
     videoPlayer.addEventListener("mousemove", () => {
       videoControls.classList.add("show");
       clearTimeout(controlsTimeout);
       
-      if (!video.paused) {
+      if (videoPlayer.classList.contains("playing")) {
         controlsTimeout = setTimeout(() => {
           videoControls.classList.remove("show");
         }, 2000);
@@ -127,89 +185,103 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     
     videoPlayer.addEventListener("mouseleave", () => {
-      if (!video.paused) {
+      if (videoPlayer.classList.contains("playing")) {
         videoControls.classList.remove("show");
       }
     });
     
-    // Keep controls visible when paused
     video.addEventListener("pause", () => {
       videoControls.classList.add("show");
+      clearTimeout(controlsTimeout);
     });
     
-    // Keyboard controls
+    video.addEventListener("play", () => {
+      controlsTimeout = setTimeout(() => {
+        videoControls.classList.remove("show");
+      }, 2000);
+    });
+    
     document.addEventListener("keydown", (e) => {
       if (e.target.tagName !== "INPUT" && e.target.tagName !== "TEXTAREA") {
-        if (e.code === "Space" && videoPlayer.matches(":hover")) {
-          e.preventDefault();
-          togglePlayPause();
+        const videoInView = videoPlayer.getBoundingClientRect();
+        const isVideoVisible = videoInView.top < window.innerHeight && videoInView.bottom > 0;
+        
+        if (isVideoVisible) {
+          if (e.code === "Space") {
+            e.preventDefault();
+            togglePlayPause();
+          } else if (e.key === "m" || e.key === "M") {
+            e.preventDefault();
+            toggleMute();
+          } else if (e.key === "f" || e.key === "F") {
+            e.preventDefault();
+            toggleFullscreen();
+          }
         }
       }
     });
     
-    // Autoplay when in viewport
     const videoObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            // Don't autoplay, just make ready
-            video.load();
-          } else {
-            if (!video.paused) {
-              video.pause();
-              videoPlayer.classList.remove("playing");
-            }
+          if (!entry.isIntersecting && videoPlayer.classList.contains("playing")) {
+            video.pause();
+            videoPlayer.classList.remove("playing");
           }
         });
       },
-      { threshold: 0.5 }
+      { threshold: 0.3 }
     );
     
     videoObserver.observe(videoPlayer);
   }
   
-  // ===== STAT NUMBER ANIMATION =====
-  const statLarge = document.querySelector(".stat-large");
+  // ===== IMAGE HOVER TILT EFFECT =====
+  const imageFloats = document.querySelectorAll(".image-float, .viral-image");
   
-  if (statLarge) {
-    const statObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && !entry.target.hasAttribute("data-animated")) {
-            entry.target.setAttribute("data-animated", "true");
-            animateStatNumber(entry.target);
-          }
-        });
-      },
-      { threshold: 0.5 }
-    );
-    
-    statObserver.observe(statLarge);
-  }
-  
-  function animateStatNumber(element) {
-    const text = element.textContent;
-    if (text.includes("M")) {
-      const target = parseFloat(text);
-      let current = 0;
-      const increment = target / 40;
+  imageFloats.forEach((img) => {
+    img.addEventListener("mousemove", (e) => {
+      const rect = img.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
       
-      const timer = setInterval(() => {
-        current += increment;
-        if (current >= target) {
-          current = target;
-          clearInterval(timer);
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      
+      const rotateX = (y - centerY) / 20;
+      const rotateY = (centerX - x) / 20;
+      
+      img.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+    });
+    
+    img.addEventListener("mouseleave", () => {
+      img.style.transform = "";
+    });
+  });
+  
+  // ===== CARD STACK HOVER EFFECT =====
+  const cards = document.querySelectorAll(".card");
+  
+  cards.forEach((card) => {
+    card.addEventListener("mouseenter", () => {
+      cards.forEach((c) => {
+        if (c !== card) {
+          c.style.filter = "brightness(0.7)";
         }
-        element.textContent = current.toFixed(1) + "M";
-      }, 40);
-    }
-  }
+      });
+    });
+    
+    card.addEventListener("mouseleave", () => {
+      cards.forEach((c) => {
+        c.style.filter = "";
+      });
+    });
+  });
   
   // ===== ACTIVE NAV STATE =====
   const navLinks = document.querySelectorAll(".side-nav a");
   const currentPath = window.location.pathname;
   
-  // About page
   if (currentPath.includes("about.html")) {
     navLinks.forEach((link) => {
       link.classList.remove("active");
@@ -217,45 +289,13 @@ document.addEventListener("DOMContentLoaded", () => {
         link.classList.add("active");
       }
     });
-    return;
-  }
-  
-  // Career Story page
-  if (currentPath.includes("story.html")) {
+  } else if (currentPath.includes("story.html")) {
     navLinks.forEach((link) => {
       link.classList.remove("active");
       if (link.getAttribute("href").includes("story")) {
         link.classList.add("active");
       }
     });
-    return;
-  }
-  
-  // Main page scroll sections
-  const mainSections = {
-    hero: document.querySelector("#hero"),
-    work: document.querySelector("#work"),
-  };
-  
-  function getActiveSection() {
-    const scrollY = window.scrollY + window.innerHeight / 2;
-    const workTop = mainSections.work?.offsetTop || 0;
-    return scrollY >= workTop ? "work" : "hero";
-  }
-  
-  function updateActiveNav() {
-    const activeId = getActiveSection();
-    navLinks.forEach((link) => {
-      link.classList.remove("active");
-      if (link.getAttribute("href") === `#${activeId}`) {
-        link.classList.add("active");
-      }
-    });
-  }
-  
-  if (mainSections.hero && mainSections.work) {
-    updateActiveNav();
-    window.addEventListener("scroll", updateActiveNav);
   }
   
   // ===== SMOOTH SCROLL =====
@@ -272,27 +312,84 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
   
-  // ===== CONTACT SECTION ANIMATION =====
-  const contactSection = document.querySelector(".contact-section");
+  // ===== EMAIL LINK RIPPLE EFFECT =====
+  const emailLink = document.querySelector(".email-link");
   
-  if (contactSection) {
-    const contactObserver = new IntersectionObserver(
+  if (emailLink) {
+    emailLink.addEventListener("click", (e) => {
+      const ripple = document.createElement("span");
+      ripple.style.position = "absolute";
+      ripple.style.width = "20px";
+      ripple.style.height = "20px";
+      ripple.style.background = "rgba(255, 255, 255, 0.5)";
+      ripple.style.borderRadius = "50%";
+      ripple.style.left = `${e.offsetX}px`;
+      ripple.style.top = `${e.offsetY}px`;
+      ripple.style.transform = "translate(-50%, -50%)";
+      ripple.style.animation = "ripple 0.6s ease-out";
+      
+      emailLink.appendChild(ripple);
+      
+      setTimeout(() => {
+        ripple.remove();
+      }, 600);
+    });
+  }
+  
+  // Add ripple animation
+  const style = document.createElement("style");
+  style.textContent = `
+    @keyframes ripple {
+      to {
+        width: 100px;
+        height: 100px;
+        opacity: 0;
+      }
+    }
+  `;
+  document.head.appendChild(style);
+  
+  // ===== SOCIAL CARD MAGNETIC EFFECT =====
+  const socialCards = document.querySelectorAll(".social-card");
+  
+  socialCards.forEach((card) => {
+    card.addEventListener("mousemove", (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      
+      card.style.transform = `translateY(-8px) translate(${x * 0.1}px, ${y * 0.1}px)`;
+    });
+    
+    card.addEventListener("mouseleave", () => {
+      card.style.transform = "";
+    });
+  });
+  
+  // ===== FEATURE HIGHLIGHT REVEAL =====
+  const featureHighlight = document.querySelector(".feature-highlight");
+  
+  if (featureHighlight) {
+    const highlightObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.style.opacity = "1";
-            entry.target.style.transform = "translateY(0)";
-            entry.target.style.transition = "all 0.8s ease";
+            entry.target.style.opacity = "0";
+            entry.target.style.transform = "translateY(20px)";
+            setTimeout(() => {
+              entry.target.style.transition = "all 0.6s ease";
+              entry.target.style.opacity = "1";
+              entry.target.style.transform = "translateY(0)";
+            }, 300);
           }
         });
       },
-      { threshold: 0.2 }
+      { threshold: 0.5 }
     );
     
-    contactSection.style.opacity = "0";
-    contactSection.style.transform = "translateY(30px)";
-    contactObserver.observe(contactSection);
+    highlightObserver.observe(featureHighlight);
   }
   
-  console.log("✨ About page loaded");
+  console.log("✨ Dynamic About page loaded");
+  console.log("🎨 Layouts: Offset, Diagonal, Spotlight, Cards, Immersive");
 });

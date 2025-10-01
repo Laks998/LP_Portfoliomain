@@ -24,159 +24,200 @@
 
   <!-- HERO -->
   <section class="about-hero">
+    <div class="hero-bg">
+      <div class="floating-shape shape-1"></div>
+      <div class="floating-shape shape-2"></div>
+      <div class="floating-shape shape-3"></div>
+    </div>
     <div class="hero-content">
-      <span class="hero-label">beyond the resume</span>
-      <h1 class="hero-title">the creative bits</h1>
-      <p class="hero-subtitle">where professional meets personal, and side projects come to life</p>
+      <div class="hero-text">
+        <span class="hero-label">beyond the resume</span>
+        <h1 class="hero-title">
+          <span class="word">the</span>
+          <span class="word">creative</span>
+          <span class="word accent-word">bits</span>
+        </h1>
+        <p class="hero-subtitle">where professional meets personal, and side projects come to life</p>
+      </div>
     </div>
   </section>
 
   <!-- MAIN CONTENT -->
   <main class="about-main">
 
-    <!-- Vibe Coding -->
-    <section class="about-section" data-section="1">
-      <div class="section-grid">
-        <div class="content-area">
-          <div class="section-number">01</div>
-          <h2 class="section-title">vibe coding</h2>
-          <div class="section-text">
+    <!-- Vibe Coding - Offset Layout -->
+    <section class="about-section layout-offset-right" data-section="1">
+      <div class="section-badge">01</div>
+      <div class="content-wrapper">
+        <div class="text-column">
+          <h2 class="section-title" data-scroll>
+            <span class="title-line">vibe</span>
+            <span class="title-line">coding</span>
+          </h2>
+          <div class="section-text" data-scroll>
             <p>These days, I'm deeply into <strong>vibe coding</strong>. This portfolio is my very first coding project—built entirely from scratch in one month, with <strong>zero prior HTML, CSS, or JavaScript experience</strong>.</p>
             <p>Every page here is custom, made with a mix of design instincts and learning as I go. Second portfolio attempt, if you include the one I scrapped for not feeling "me" enough.</p>
           </div>
         </div>
-        <div class="media-area">
-          <div class="media-container">
+        <div class="image-column">
+          <div class="image-float" data-scroll>
             <img src="assets/vibecoding.png" alt="Coding setup">
+            <div class="image-label">first project</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Quippy Widget -->
-    <section class="about-section" data-section="2">
-      <div class="section-grid reverse">
-        <div class="content-area">
-          <div class="section-number">02</div>
-          <h2 class="section-title">building quippy</h2>
+    <!-- Quippy - Split Diagonal -->
+    <section class="about-section layout-diagonal" data-section="2">
+      <div class="section-badge">02</div>
+      <div class="diagonal-split">
+        <div class="diagonal-image" data-scroll>
+          <img src="assets/quippy.png" alt="Quippy widget">
+          <div class="image-badge">coming soon</div>
+        </div>
+        <div class="diagonal-content" data-scroll>
+          <h2 class="section-title">
+            <span class="title-line">building</span>
+            <span class="title-line accent-text">quippy</span>
+          </h2>
           <div class="section-text">
             <p>My first LinkedIn post in years announced <strong>Quippy</strong>—a desktop widget I'm building. The idea came from constantly jumping to Google for small tasks: looking up words, converting currencies, quick calculations, checking time zones.</p>
-            <p>With Quippy, you type <strong>"?" or "Alt+Q"</strong> → highlight any text → get instant results without leaving what you're doing. Your own little Google, right at your fingertips.</p>
+            <div class="feature-highlight">
+              <div class="feature-icon">?</div>
+              <div class="feature-desc">
+                <p>Type <strong>"?" or "Alt+Q"</strong> → highlight any text → get instant results without leaving what you're doing.</p>
+              </div>
+            </div>
             <p class="note">Currently browser-only, but I'm vibe coding it into life right after finishing this portfolio.</p>
           </div>
         </div>
-        <div class="media-area">
-          <div class="media-container">
-            <img src="assets/quippy.png" alt="Quippy widget concept">
-          </div>
-        </div>
       </div>
     </section>
 
-    <!-- Going Viral -->
-    <section class="about-section" data-section="3">
-      <div class="section-grid">
-        <div class="content-area">
-          <div class="section-number">03</div>
-          <h2 class="section-title">going viral</h2>
-          <div class="section-text">
-            <p>I made a wedding reel on Instagram that reached <strong>4.5 million views</strong>.</p>
-            <div class="stats-box">
-              <div class="stat-large">4.5M</div>
-              <div class="stat-label">views on Instagram</div>
-            </div>
-            <p class="note">Turns out people really love weddings (and good editing)</p>
+    <!-- Going Viral - Center Spotlight -->
+    <section class="about-section layout-center" data-section="3">
+      <div class="section-badge">03</div>
+      <div class="center-spotlight" data-scroll>
+        <h2 class="section-title centered">
+          <span class="title-line">going</span>
+          <span class="title-line accent-text">viral</span>
+        </h2>
+        <div class="viral-showcase">
+          <div class="viral-stat">
+            <div class="stat-number" data-count="4.5">0</div>
+            <div class="stat-unit">million</div>
+            <div class="stat-label">views on instagram</div>
+          </div>
+          <div class="viral-image">
+            <img src="assets/reel.jpg" alt="Viral reel">
+            <div class="play-badge"><i class="fas fa-play"></i></div>
           </div>
         </div>
-        <div class="media-area">
-          <div class="media-container">
-            <img src="assets/reel.jpg" alt="Viral wedding reel">
-          </div>
-        </div>
+        <p class="insight-text" data-scroll>Turns out people really love weddings (and good editing)</p>
       </div>
     </section>
 
-    <!-- Creative Detours -->
-    <section class="about-section" data-section="4">
-      <div class="section-grid reverse">
-        <div class="content-area">
-          <div class="section-number">04</div>
-          <h2 class="section-title">creative detours</h2>
-          <div class="section-text">
-            <p>During COVID, I ran a small art account where I sketched consistently for a few months. Later tried embroidery and even some singing.</p>
-            <div class="link-box">
-              <span class="link-label">view my sketches</span>
-              <a href="https://instagram.com/quic_art" target="_blank" class="instagram-link">
-                <i class="fab fa-instagram"></i>
-                @quic_art
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="media-area">
-          <div class="media-container">
+    <!-- Creative Detours - Card Stack -->
+    <section class="about-section layout-cards" data-section="4">
+      <div class="section-badge">04</div>
+      <div class="cards-wrapper">
+        <div class="card-stack">
+          <div class="card card-image" data-scroll>
             <img src="assets/quickart.jpg" alt="Art sketches">
           </div>
+          <div class="card card-content" data-scroll>
+            <h2 class="section-title">
+              <span class="title-line">creative</span>
+              <span class="title-line accent-text">detours</span>
+            </h2>
+            <div class="section-text">
+              <p>During COVID, I ran a small art account where I sketched consistently for a few months. Later tried embroidery and even some singing.</p>
+              <div class="social-callout">
+                <span class="callout-label">view my sketches</span>
+                <a href="https://instagram.com/quic_art" target="_blank" class="insta-handle">
+                  <i class="fab fa-instagram"></i>
+                  @quic_art
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Video Section - Save the Date -->
-    <section class="about-section video-section" data-section="5">
-      <div class="section-grid centered">
-        <div class="content-area full-width">
-          <div class="section-number">05</div>
-          <h2 class="section-title">learning fast</h2>
-          <div class="section-text centered">
-            <p>I taught myself After Effects from scratch in <strong>two weeks</strong> and created this Save the Date wedding video.</p>
-          </div>
-          
+    <!-- Video - Full Width Immersive -->
+    <section class="about-section layout-immersive" data-section="5">
+      <div class="section-badge">05</div>
+      <div class="immersive-video" data-scroll>
+        <div class="video-intro">
+          <h2 class="section-title centered">
+            <span class="title-line">learning</span>
+            <span class="title-line accent-text">fast</span>
+          </h2>
+          <p>I taught myself After Effects from scratch in <strong>two weeks</strong> and created this Save the Date wedding video.</p>
+        </div>
+        
+        <div class="video-stage">
           <div class="video-player">
             <video class="main-video" playsinline>
               <source src="assets/savethedate.mp4" type="video/mp4">
             </video>
+            
+            <button class="center-play-btn" aria-label="Play video">
+              <i class="fas fa-play"></i>
+            </button>
+            
             <div class="video-controls">
-              <button class="play-pause-btn" aria-label="Play/Pause">
-                <i class="fas fa-play play-icon"></i>
-                <i class="fas fa-pause pause-icon"></i>
-              </button>
               <div class="progress-container">
                 <div class="progress-bar"></div>
               </div>
-              <div class="time-display">
-                <span class="current-time">0:00</span>
-                <span class="duration">0:00</span>
+              <div class="controls-row">
+                <button class="control-btn play-pause-btn" aria-label="Play/Pause">
+                  <i class="fas fa-play play-icon"></i>
+                  <i class="fas fa-pause pause-icon"></i>
+                </button>
+                <div class="time-display">
+                  <span class="current-time">0:00</span>
+                  <span>/</span>
+                  <span class="duration">0:00</span>
+                </div>
+                <button class="control-btn volume-btn" aria-label="Mute/Unmute">
+                  <i class="fas fa-volume-up volume-on"></i>
+                  <i class="fas fa-volume-mute volume-off"></i>
+                </button>
+                <button class="control-btn fullscreen-btn" aria-label="Fullscreen">
+                  <i class="fas fa-expand"></i>
+                </button>
               </div>
-              <button class="volume-btn" aria-label="Mute/Unmute">
-                <i class="fas fa-volume-up volume-on"></i>
-                <i class="fas fa-volume-mute volume-off"></i>
-              </button>
-              <button class="fullscreen-btn" aria-label="Fullscreen">
-                <i class="fas fa-expand"></i>
-              </button>
             </div>
           </div>
-          
         </div>
       </div>
     </section>
 
   </main>
 
-  <!-- CONTACT SECTION -->
+  <!-- CONTACT -->
   <section class="contact-section">
-    <div class="contact-wrapper">
-      <p class="contact-text">
+    <div class="contact-content" data-scroll>
+      <div class="contact-badge">let's connect</div>
+      <h2 class="contact-title">
         You've met both sides now.<br>
-        So while you're here, say <span class="highlight">hi!</span>
-      </p>
-      <a href="mailto:lakshmipwork@gmail.com" class="email-button">lakshmipwork@gmail.com</a>
-      <div class="social-links">
-        <a href="https://www.linkedin.com/in/lakshmi-pratap/" target="_blank" class="social-link">
+        So say <span class="highlight-word">hi!</span>
+      </h2>
+      <a href="mailto:lakshmipwork@gmail.com" class="email-link">
+        <span class="email-text">lakshmipwork@gmail.com</span>
+        <span class="email-arrow">→</span>
+      </a>
+      <div class="social-grid">
+        <a href="https://www.linkedin.com/in/lakshmi-pratap/" target="_blank" class="social-card">
           <i class="fab fa-linkedin-in"></i>
+          <span>LinkedIn</span>
         </a>
-        <a href="https://www.instagram.com/lakshmi_pratap/" target="_blank" class="social-link">
+        <a href="https://www.instagram.com/lakshmi_pratap/" target="_blank" class="social-card">
           <i class="fab fa-instagram"></i>
+          <span>Instagram</span>
         </a>
       </div>
     </div>
