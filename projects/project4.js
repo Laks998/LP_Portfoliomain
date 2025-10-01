@@ -1,4 +1,4 @@
-// project4.js - UX-focused version
+// project4.js - VR Experience Design
 
 document.addEventListener('DOMContentLoaded', () => {
   
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   
   // Add hover effects to images
-  const images = document.querySelectorAll('.flow-image img, .unity-showcase img');
+  const images = document.querySelectorAll('.flow-image img, .unity-showcase img, .movie-poster img, .concept-image');
   
   images.forEach(img => {
     img.addEventListener('mouseenter', () => {
@@ -95,10 +95,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
   
-  // Insight cards animation
-  const insightCards = document.querySelectorAll('.insight-card');
+  // Finding cards staggered animation
+  const findingCards = document.querySelectorAll('.finding-card');
   
-  insightCards.forEach((card, index) => {
+  findingCards.forEach((card, index) => {
     card.style.opacity = '0';
     card.style.transform = 'translateY(30px)';
     
@@ -161,6 +161,28 @@ document.addEventListener('DOMContentLoaded', () => {
     flowObserver.observe(card);
   });
   
+  // Movie cards animation
+  const movieCards = document.querySelectorAll('.movie-card');
+  
+  movieCards.forEach((card, index) => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateX(-30px)';
+    
+    const movieObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateX(0)';
+            entry.target.style.transition = 'all 0.6s ease';
+          }, index * 150);
+        }
+      });
+    }, { threshold: 0.2 });
+    
+    movieObserver.observe(card);
+  });
+  
   // Takeaway cards animation
   const takeawayCards = document.querySelectorAll('.takeaway-card');
   
@@ -183,12 +205,78 @@ document.addEventListener('DOMContentLoaded', () => {
     takeawayObserver.observe(card);
   });
   
+  // Validation cards animation
+  const validationCards = document.querySelectorAll('.validation-item');
+  
+  validationCards.forEach((card, index) => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(20px)';
+    
+    const validationObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            entry.target.style.transition = 'all 0.5s ease';
+          }, index * 100);
+        }
+      });
+    }, { threshold: 0.3 });
+    
+    validationObserver.observe(card);
+  });
+  
+  // Framework blocks animation
+  const frameworkBlocks = document.querySelectorAll('.framework-block');
+  
+  frameworkBlocks.forEach((block, index) => {
+    block.style.opacity = '0';
+    block.style.transform = 'translateY(20px)';
+    
+    const frameworkObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            entry.target.style.transition = 'all 0.6s ease';
+          }, index * 120);
+        }
+      });
+    }, { threshold: 0.2 });
+    
+    frameworkObserver.observe(block);
+  });
+  
+  // Impact cards animation
+  const impactCards = document.querySelectorAll('.impact-card');
+  
+  impactCards.forEach((card, index) => {
+    card.style.opacity = '0';
+    card.style.transform = 'scale(0.95)';
+    
+    const impactObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'scale(1)';
+            entry.target.style.transition = 'all 0.5s ease';
+          }, index * 80);
+        }
+      });
+    }, { threshold: 0.3 });
+    
+    impactObserver.observe(card);
+  });
+  
   // Counter animation for stats
   const statNumbers = document.querySelectorAll('.stat-number, .metric-number');
   
   const animateCounter = (element) => {
     const text = element.textContent;
-    // Handle cases like "100%" or "5-7" or "2-3"
+    // Handle cases like "100%" or "5-7" or "2-3" or "80%"
     if (text.includes('%')) {
       const target = parseInt(text);
       let current = 0;
@@ -229,6 +317,94 @@ document.addEventListener('DOMContentLoaded', () => {
     statsObserver.observe(stat);
   });
   
+  // Challenge items animation
+  const challengeItems = document.querySelectorAll('.challenge-item');
+  
+  challengeItems.forEach((item, index) => {
+    item.style.opacity = '0';
+    item.style.transform = 'translateY(20px)';
+    
+    const challengeObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            entry.target.style.transition = 'all 0.5s ease';
+          }, index * 100);
+        }
+      });
+    }, { threshold: 0.3 });
+    
+    challengeObserver.observe(item);
+  });
+  
+  // Process stages animation
+  const processStages = document.querySelectorAll('.process-stage');
+  
+  processStages.forEach((stage, index) => {
+    stage.style.opacity = '0';
+    stage.style.transform = 'translateX(-30px)';
+    
+    const processObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateX(0)';
+            entry.target.style.transition = 'all 0.6s ease';
+          }, index * 150);
+        }
+      });
+    }, { threshold: 0.3 });
+    
+    processObserver.observe(stage);
+  });
+  
+  // Tech items animation
+  const techItems = document.querySelectorAll('.tech-item');
+  
+  techItems.forEach((item, index) => {
+    item.style.opacity = '0';
+    item.style.transform = 'translateY(30px)';
+    
+    const techObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            entry.target.style.transition = 'all 0.5s ease';
+          }, index * 100);
+        }
+      });
+    }, { threshold: 0.3 });
+    
+    techObserver.observe(item);
+  });
+  
+  // Pilot cards animation
+  const pilotCards = document.querySelectorAll('.pilot-card');
+  
+  pilotCards.forEach((card, index) => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(20px)';
+    
+    const pilotObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            entry.target.style.transition = 'all 0.5s ease';
+          }, index * 100);
+        }
+      });
+    }, { threshold: 0.3 });
+    
+    pilotObserver.observe(card);
+  });
+  
   // Reading time estimator
   const content = document.querySelector('.project-content');
   if (content) {
@@ -240,7 +416,8 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log(`📝 Word count: ${wordCount} words`);
   }
   
+  // Log project load
   console.log('✨ VR Experience Design project loaded');
-  console.log('🎯 UX research → design → test → iterate');
+  console.log('🎯 Research → Design → Build → Test → Framework');
   
 });
