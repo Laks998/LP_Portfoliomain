@@ -117,6 +117,28 @@ document.addEventListener('DOMContentLoaded', () => {
     roleObserver.observe(item);
   });
   
+  // Feature cards animation
+  const featureCards = document.querySelectorAll('.feature-card');
+  
+  featureCards.forEach((card, index) => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(30px)';
+    
+    const featureObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            entry.target.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+          }, index * 80);
+        }
+      });
+    }, { threshold: 0.3 });
+    
+    featureObserver.observe(card);
+  });
+  
   // Reading time estimator
   const content = document.querySelector('.project-content');
   if (content) {
