@@ -9,49 +9,81 @@
 }
 
 * { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 html, body { height: 100%; }
 body {
   margin: 0;
   font-family: 'Space Grotesk', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
   color: var(--text);
   background: var(--bg);
+  overflow-x: hidden;
 }
 
-.site-footer {
-  text-align: center;
-  padding: 2rem 1rem;
-  color: #aaa;
-  font-size: 0.875rem;
-  border-top: 1px solid #333;
-  margin-top: 4rem;
+/* BACK LINK - Match project1/project6 */
+.back-link {
+  position: absolute;
+  top: 50px;
+  left: 270px;
+  z-index: 100;
+  display: inline-block;
+  text-decoration: none;
+  font-weight: bold;
+  color: var(--accent);
+  border: 2px solid var(--accent);
+  padding: 10px 16px;
+  border-radius: 0px;
+  overflow: hidden;
+  background: linear-gradient(to top, var(--accent) 0%, var(--accent) 100%);
+  background-size: 100% 0%;
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  transition: background-size 0.4s ease, color 0.4s ease, transform 0.3s;
 }
 
-/* Reuse your side-nav look (adjust if needed) */
+.back-link:hover {
+  background-size: 100% 100%;
+  color: #000;
+  transform: scale(1.05);
+}
 
 .project4 {
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 0 auto;
-  /*padding: 100px 100px 100px 100px;  left padding to make room for side-nav */
+  padding: 0 2rem;
 }
 
+/* HEADER - Match project1/project6 */
 .p4-header {
   text-align: center;
-  margin: 30px 0 10px;
+  padding: 10rem 2rem 4rem;
 }
+
 .p4-header h1 {
-  margin: 0;
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 4rem; /* ~64px if root font-size is 16px */
-  font-weight: 2000; /* bold */
-  background: linear-gradient(to right, #c15b5e, var(--accent));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-size: 4rem;
+  font-weight: 300;
+  letter-spacing: 4px;
+  text-transform: lowercase;
+  margin-bottom: 2rem;
+  color: var(--text);
+  line-height: 1.1;
+  opacity: 0;
+  animation: fadeIn 0.8s ease forwards 0.4s;
 }
 
 .p4-header .sub {
-  margin-top: 6px;
-  color: var(--muted);
-  font-size: 1rem;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 2rem;
+  font-weight: 400;
+  opacity: 0;
+  animation: fadeIn 0.8s ease forwards 0.2s;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
 }
 
 /* Flipbook wrapper */
@@ -61,8 +93,8 @@ body {
   align-items: center;
   gap: 10px;
   margin-top: 50px;
+  padding-bottom: 6rem;
 }
-
 
 /* Book */
 .book {
@@ -70,7 +102,6 @@ body {
   margin: 0 auto;
   perspective: 1800px;
 }
-
 
 /* Keep aspect ratio ~ landscape notebook (w:h ≈ 3:2) */
 .sheets {
@@ -86,28 +117,17 @@ body {
   position: absolute;
   top: 0; bottom: 0;
   width: 50%;
-  background-color:  #e88386; /* light pink base */
-
-  /* Polka dots with staggered rows */
-  background-image:
-    radial-gradient(circle, #2f2f2f 30%, transparent 31%);
-  background-size: 60px 60px;
-  background-position: 0 0, 30px 30px; /* stagger every other row */
-  background-repeat: repeat;
-
-  /* Two layers: one normal, one shifted */
+  background-color: #e88386;
   background-image:
     radial-gradient(circle, #2f2f2f 30%, transparent 31%),
     radial-gradient(circle, #2f2f2f 30%, transparent 31%);
   background-size: 60px 60px, 60px 60px;
   background-position: 0 0, 30px 30px;
-
   z-index: 0;
 }
 
 .left-cover  { left: 0;  border-radius: 8px 0 0 8px; }
 .right-cover { right: 0; border-radius: 0 8px 8px 0; }
-
 
 /* Each SHEET (a physical folio with a front-right and back-left) */
 .sheet {
@@ -115,7 +135,8 @@ body {
   inset: 0;
   transform-style: preserve-3d;
   transition: transform .9s cubic-bezier(.2,.8,.2,1);
-  z-index: 10; /* will be adjusted via JS for proper stacking */
+  z-index: 10;
+  will-change: transform;
 }
 
 /* Pages inside a sheet */
@@ -127,7 +148,7 @@ body {
   overflow: hidden;
   background: var(--paper);
   backface-visibility: hidden;
-  border: 1px solid rgba(0,0,0,0.05); /* paper edge outline */
+  border: 1px solid rgba(0,0,0,0.05);
 }
 
 .page.right.front,
@@ -138,7 +159,6 @@ body {
 .page.left.back {
   background: linear-gradient(to left, #fff, #f8f8f8 98%);
 }
-
 
 /* RIGHT page (front of sheet) */
 .page.right {
@@ -158,12 +178,7 @@ body {
   box-shadow:
     inset -8px 0 16px rgba(0,0,0,.06),
     0 2px 8px rgba(0,0,0,.08);
-  transform: rotateY(180deg); /* because it is the back side of the sheet */
-}
-
-.sheet {
-  transform-style: preserve-3d;
-  transition: transform .9s cubic-bezier(.2,.8,.2,1);
+  transform: rotateY(180deg);
 }
 
 .sheet.flipping .right.front {
@@ -174,15 +189,13 @@ body {
   box-shadow: inset 40px 0 40px rgba(0,0,0,0.25);
 }
 
-
 /* Images fill page, keep proportion */
 .page img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* fills the page */
-  object-position: 40% 5%; /* 40% from left, 20% from top */
+  object-fit: cover;
+  object-position: 40% 5%;
 }
-
 
 /* FLIP state: rotate the entire sheet so its back-left shows */
 .sheet.flipped {
@@ -194,7 +207,7 @@ body {
 .sheet.flipped .left.back::after {
   content: "";
   position: absolute; top: 0; bottom: 0; width: 14px;
-  left: -14px; /* pulled under the spine */
+  left: -14px;
   background: linear-gradient(to right, rgba(0,0,0,.18), rgba(0,0,0,0));
   pointer-events: none;
 }
@@ -204,84 +217,124 @@ body {
   appearance: none;
   border: none;
   cursor: pointer;
-  width: 44px;
-  height: 44px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.1);
+  border: 2px solid rgba(255,255,255,0.3);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
 }
 
 .nav svg {
   display: block;
 }
 
-.nav:hover { transform: translateY(-1px); background: rgba(255,255,255,.16); }
-.nav:disabled { opacity: .4; cursor: not-allowed; }
-
-
-/* Responsive tweaks */
-@media (max-width: 760px) {
-  .flipbook-wrap { grid-template-columns: 48px 1fr 48px; }
-  .nav { width: 44px; height: 44px; font-size: 26px; line-height: 44px; }
-  .project4 { padding-left: 100px; }
+.nav:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  transform: scale(1.1);
 }
 
-/* Optional: disable side-nav writing-mode on small screens */
-@media (max-width: 540px) {
-  .side-nav { width: 64px; }
-  .side-nav a { writing-mode: horizontal-tb; transform: none; }
-  .project4 { padding-left: 84px; }
+.nav:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
 }
 
-.back-link {
-  position: absolute;
-  top: 50px;
-  left: 270px;
-  z-index: 2; 
-  text-decoration: none;
-  font-weight: bold;
-  color: #EB676C;
-  border: 2px solid #EB676C;
-  padding: 10px 16px;
-  border-radius: 0px;
-
-  background: linear-gradient(to top, #EB676C 0%, #EB676C 100%);
-  background-size: 100% 0%;
-  background-repeat: no-repeat;
-  background-position: bottom center;
-
-  transition: background-size 0.4s ease, color 0.4s ease, transform 0.3s;
+/* Smoother GPU compositing and no text/image selection while dragging */
+.book, .sheet, .page, .page img {
+  user-select: none;
+  -webkit-user-select: none;
 }
 
-.back-link:hover {
-  background-size: 100% 100%;
-  color: #000;
-  transform: scale(1.05);
+.page img {
+  pointer-events: none;
 }
 
+/* Nice hand cursor */
+.book {
+  cursor: grab;
+}
 
-/* smoother GPU compositing and no text/image selection while dragging */
-.sheet { will-change: transform; }
-.book, .sheet, .page, .page img { user-select: none; -webkit-user-select: none; }
-.page img { pointer-events: none; } /* avoid image drag ghost */
+.book:active {
+  cursor: grabbing;
+}
 
-/* nice hand cursor */
-.book { cursor: grab; }
-.book:active { cursor: grabbing; }
-
+/* Hint animation */
 .page.hint {
   transform-origin: left center;
-  animation: demoFlip 1.2s ease-in-out 1; /* runs once */
+  animation: demoFlip 1.2s ease-in-out 1;
 }
 
 @keyframes demoFlip {
   0%   { transform: rotateY(0deg); }
-  50%  { transform: rotateY(-90deg); }  /* halfway flipped */
-  100% { transform: rotateY(0deg); }    /* back to start */
+  50%  { transform: rotateY(-90deg); }
+  100% { transform: rotateY(0deg); }
 }
+
 .page.hint.animate-flip {
   animation: demoFlip 1.2s ease-in-out 1;
+}
+
+/* FOOTER - Match other projects */
+.site-footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: #aaa;
+  font-size: 0.875rem;
+  border-top: 1px solid #333;
+  margin-top: 4rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .back-link {
+    top: 20px;
+    left: 20px;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+
+  .p4-header {
+    padding: 8rem 2rem 3rem;
+  }
+
+  .p4-header h1 {
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+  }
+
+  .flipbook-wrap {
+    gap: 10px;
+    padding-bottom: 4rem;
+  }
+
+  .nav {
+    width: 44px;
+    height: 44px;
+  }
+
+  .book {
+    width: min(85vw, 600px);
+  }
+}
+
+@media (max-width: 480px) {
+  .p4-header h1 {
+    font-size: 2rem;
+    letter-spacing: 0.1rem;
+  }
+
+  .book {
+    width: 90vw;
+  }
+
+  .nav {
+    width: 40px;
+    height: 40px;
+  }
 }
