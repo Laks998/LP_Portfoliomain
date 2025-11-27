@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quippy Browser Extension | Lakshmi Pratap</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="project0.css" />
+  <link rel="icon" type="image/png" href="../assets/logo.png">
+</head>
+
+<body>
+  
+  <!-- Progress bar -->
+  <div class="read-progress"></div>
+
+  <!-- Back link -->
+  <a href="../index.html#work" class="back-link">← Back to Work</a>
+
+  <!-- Main content -->
+  <main class="project-content">
+
+    <!-- Hero -->
+    <section class="project-hero-section">
+      <div class="hero-content">
+        <div class="project-meta">Personal Project · October 2024 - Present</div>
+        <h1 class="project-title">Quippy</h1>
+        <p class="project-subtitle">A lightweight Chrome extension that brings instant text conversions and lookups to your fingertips — select any text, press Ctrl+Shift+Q, and get answers without leaving your page</p>
+        <div class="live-badge">
+          <span class="badge-icon">✓</span>
+          <span class="badge-text">Live on Chrome Web Store</span>
+        </div>
+        <div class="hero-image-wrapper">
+          <video src="../assets/quipmainvid.mov" class="hero-image" autoplay loop muted playsinline>
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+    </section>
+
+    <!-- Overview -->
+    <section class="project-section overview-section">
+      <div class="section-content">
+        <h2>Project Vision</h2>
+        <p>
+          Quippy eliminates the friction of switching tabs for simple conversions and lookups. Select any text on any website — Gmail, Google Docs, Slack, or anywhere you work — press Ctrl+Shift+Q, and Quippy appears with instant results. It works seamlessly across all your browsing, keeping you in your flow without collecting any personal data.
+        </p>
+        <div class="project-details">
+          <div class="detail-item">
+            <div class="detail-label">Role</div>
+            <div class="detail-value">Product Design, UX Research, UI Design, Frontend Development, Testing</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Timeline</div>
+            <div class="detail-value">October 2024 - Present (3 months)</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Project Type</div>
+            <div class="detail-value">Personal Product · Browser Extension</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Tech Stack</div>
+            <div class="detail-value">HTML, CSS, JavaScript, Chrome Extension APIs</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Status</div>
+            <div class="detail-value">Live on Chrome Web Store</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Design Tools</div>
+            <div class="detail-value">Figma, AI-assisted development (ChatGPT, Claude)</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Background -->
+    <section class="project-section background-section">
+      <div class="section-content">
+        <h2>Is there a need for Quippy really?</h2>
+        <p>
+          During my daily work, I found myself constantly switching tabs to Google for simple tasks — converting currencies for international projects, checking timezones for meetings, translating phrases, looking up word meanings, or converting units. Each time meant breaking my flow, opening a new tab, typing in the search, and navigating back.
+        </p>
+        <p>
+          This friction added up. I participated in the Figma Makethon and created a prototype for a browser extension that could handle these common tasks instantly. The core idea: select any text on any page, press a keyboard shortcut, and get instant results right there — no tab switching, no context loss.
+        </p>
+        <p>
+          When I shared the prototype on LinkedIn, the response surprised me — people reached out asking if they could actually use it. That validation gave me the push to turn the concept into a real product during my career break. Armed with ChatGPT and Claude as coding partners, and my own design skills, I decided to build Quippy from the ground up.
+        </p>
+      </div>
+    </section>
+
+    <!-- The Problem -->
+    <section class="project-section issues-section">
+      <div class="section-content">
+        <h2>All the current problems</h2>
+        <p class="problem-intro">Through observation of my own workflow and conversations with potential users, I identified five key pain points that were consistently disrupting productivity:</p>
+        <div class="issue-list">
+          <div class="issue-item">
+            <div class="issue-marker">01</div>
+            <div class="issue-content">
+              <h4>Context Switching Disrupts Flow State</h4>
+              <p>Opening Google repeatedly breaks concentration and disrupts workflow, requiring mental effort to regain focus after each interruption</p>
+            </div>
+          </div>
+          <div class="issue-item">
+            <div class="issue-marker">02</div>
+            <div class="issue-content">
+              <h4>Multi-Step Process for Simple Tasks</h4>
+              <p>Simple conversions require multiple steps: new tab → type query → search → scan results → navigate back, wasting precious seconds repeatedly throughout the day</p>
+            </div>
+          </div>
+          <div class="issue-item">
+            <div class="issue-marker">03</div>
+            <div class="issue-content">
+              <h4>Lost Time Compounds</h4>
+              <p>These micro-interruptions add up — 30 seconds per lookup, 20+ times a day equals 10+ minutes of pure friction, not counting the cost of context switching</p>
+            </div>
+          </div>
+          <div class="issue-item">
+            <div class="issue-marker">04</div>
+            <div class="issue-content">
+              <h4>Fragmented Tool Ecosystem</h4>
+              <p>No quick way to access multiple conversion tools in one place — currency, timezone, units, translations all require different websites or apps</p>
+            </div>
+          </div>
+          <div class="issue-item">
+            <div class="issue-marker">05</div>
+            <div class="issue-content">
+              <h4>Existing Solutions Fall Short</h4>
+              <p>Existing solutions are either too complex with steep learning curves, don't cover enough use cases, or require leaving the current page</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- User Research -->
+    <section class="project-section research-section">
+      <div class="section-content">
+        <h2>Understanding User Needs</h2>
+        <p>
+          After the positive LinkedIn response to my initial prototype, I conducted structured user research to validate assumptions and understand what functions would be most valuable. I ran a survey that received 50+ responses from potential users across different professions — designers, developers, writers, marketers, and business professionals.
+        </p>
+        <p>
+          The survey revealed clear patterns in how people interrupt their workflow for basic information needs. Most respondents mentioned currency conversion, timezone checks, translations, and unit conversions as their top friction points. Many also wanted quick access to word definitions and synonyms while writing. The key insight was that people didn't want another complex tool with a learning curve — they wanted something fast, lightweight, unobtrusive, and universally accessible.
+        </p>
+        
+        <div class="insights-grid">
+          <div class="insight-card">
+            <h3>Top Requested Features</h3>
+            <div class="insight-list">
+              <div class="insight-point">Currency conversion for international work, shopping, and travel planning</div>
+              <div class="insight-point">Timezone conversion for coordinating meetings across countries</div>
+              <div class="insight-point">Quick translations without opening Google Translate</div>
+              <div class="insight-point">Unit conversions (temperature, area, volume, design units)</div>
+              <div class="insight-point">Word meanings and synonyms for writing tasks</div>
+              <div class="insight-point">Calculator for quick math without interrupting work</div>
+            </div>
+          </div>
+          
+          <div class="insight-card">
+            <h3>User Pain Points</h3>
+            <div class="insight-list">
+              <div class="insight-point">Tab switching breaks concentration and flow state</div>
+              <div class="insight-point">Existing tools require too many clicks to access</div>
+              <div class="insight-point">Need something that works across all websites uniformly</div>
+              <div class="insight-point">Want keyboard shortcuts for power users</div>
+              <div class="insight-point">Should be fast, lightweight, and not resource-heavy</div>
+              <div class="insight-point">Privacy concerns with tools that track usage data</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="research-callout">
+          <h4>Key Research Insight</h4>
+          <p>"I don't want to learn a new tool. I just want my simple tasks to happen instantly, wherever I am, without thinking about it." — Survey Respondent</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- UX Strategy & User Flows -->
+    <section class="project-section ux-strategy-section">
+      <div class="section-content">
+        <h2>UX Strategy & Core Interaction Model</h2>
+        <p>
+          Based on research insights, I defined the core interaction principle: <strong>zero friction, universal access, instant results.</strong> The extension needed to feel like a natural extension of the browser itself — not a separate tool you "use," but a capability that's just there when you need it.
+        </p>
+
+        <div class="ux-principle-grid">
+          <div class="ux-principle">
+            <h4>Context-Aware</h4>
+            <p>Automatically detects what you might need based on selected text (numbers suggest conversions, words suggest definitions)</p>
+          </div>
+          <div class="ux-principle">
+            <h4>Zero Learning Curve</h4>
+            <p>Select text → press shortcut → see results. No menus, settings, or configuration required to get started</p>
+          </div>
+          <div class="ux-principle">
+            <h4>Universal Compatibility</h4>
+            <p>Works identically across all websites — Gmail, Docs, Slack, LinkedIn, news sites, anywhere you browse</p>
+          </div>
+          <div class="ux-principle">
+            <h4>Privacy First</h4>
+            <p>No data collection, no tracking, no analytics. All conversions happen locally or through secure APIs</p>
+          </div>
+        </div>
+
+        <h3>User Flow Mapping</h3>
+        <p>
+          I mapped the complete user journey from discovery to habitual use, identifying every touchpoint and potential friction point. The goal was to make the extension invisible until needed, then instantly accessible.
+        </p>
+        
+        <div class="userflow-image-wrapper">
+          <img src="../assets/userflow.png" alt="Detailed user flow diagram showing interaction patterns">
+          <p class="image-caption">Complete user flow showing primary interaction pattern, edge cases, and error states</p>
+        </div>
+
+        <div class="flow-breakdown">
+          <h4>Core Flow: Text Selection to Result Display</h4>
+          <div class="flow-steps">
+            <div class="flow-step">
+              <div class="step-number">1</div>
+              <div class="step-content">
+                <h5>Selection</h5>
+                <p>User selects any text on any webpage using standard text selection (mouse drag or keyboard)</p>
+              </div>
+            </div>
+            <div class="flow-step">
+              <div class="step-number">2</div>
+              <div class="step-content">
+                <h5>Activation</h5>
+                <p>User presses Ctrl+Shift+Q (Cmd+Shift+Q on Mac) — a memorable, non-conflicting shortcut</p>
+              </div>
+            </div>
+            <div class="flow-step">
+              <div class="step-number">3</div>
+              <div class="step-content">
+                <h5>Context Detection</h5>
+                <p>Extension analyzes selected text and suggests most relevant function (e.g., numbers → currency, words → dictionary)</p>
+              </div>
+            </div>
+            <div class="flow-step">
+              <div class="step-number">4</div>
+              <div class="step-content">
+                <h5>Display</h5>
+                <p>Popup appears near selection with pre-filled input and suggested function, maintaining visual context</p>
+              </div>
+            </div>
+            <div class="flow-step">
+              <div class="step-number">5</div>
+              <div class="step-content">
+                <h5>Results</h5>
+                <p>Instant results displayed with option to switch functions, copy results, or dismiss</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="design-decision-card">
+          <h4>UX Design Decision: Keyboard-First Activation</h4>
+          <div class="decision-content">
+            <div class="decision-section">
+              <strong>Why keyboard shortcut instead of right-click menu?</strong>
+              <p>Right-click menus add friction — you need to move your mouse, find the option in a list, and click. A keyboard shortcut becomes muscle memory after 2-3 uses, making the action nearly instantaneous. Power users can activate Quippy without even thinking about it.</p>
+            </div>
+            <div class="decision-section">
+              <strong>Why Ctrl+Shift+Q specifically?</strong>
+              <ul>
+                <li><strong>Memorable:</strong> "Q" for "Quippy" and "Quick"</li>
+                <li><strong>Accessible:</strong> Easy to reach with left hand while right hand is on mouse</li>
+                <li><strong>Non-conflicting:</strong> Doesn't override existing browser or system shortcuts</li>
+                <li><strong>Cross-platform:</strong> Works consistently on Windows (Ctrl) and Mac (Cmd)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Design System -->
+    <section class="project-section design-system-section">
+      <div class="section-content">
+        <h2>Visual Design System</h2>
+        <p>
+          Before writing any code, I created a comprehensive design system in Figma. This system needed to feel professional and trustworthy while remaining lightweight and non-intrusive. The design had to work as an overlay on any website without clashing with existing page styles.
+        </p>
+
+        <div class="design-system-breakdown">
+          <h3>Design Decisions & Rationale</h3>
+
+          <div class="design-category">
+            <h4>Color Palette</h4>
+            <div class="design-detail">
+              <div class="design-image-slot">
+                <img src="../assets/p0colour.png" alt="Quippy color palette showing primary colors with hex codes and design rationale">
+              </div>
+              <p><strong>Rationale:</strong> Our design system leverages a purposeful set of color styles as the perfect starting point for any brand or project. The neutral base colors (white and grays) ensure readability on any website background, while the brand colors provide visual hierarchy and personality. We've added WCAG 2.2 contrast ratios to our color system so you can make sure you're designing with accessibility in mind. The blue accent provides trust and familiarity (common in productivity tools) without being aggressive, and the success/warning/error colors communicate system states clearly.</p>
+            </div>
+          </div>
+
+          <div class="design-category">
+            <h4>Typography</h4>
+            <div class="design-detail">
+              <div class="design-image-slot">
+                <img src="../assets/p0typography.png" alt="Quippy typography scale showing font family, sizes, and usage rationale">
+              </div>
+              <p><strong>Rationale:</strong> DM Sans was chosen for its exceptional legibility at small sizes and excellent number clarity (critical for conversions). The font offers multiple weights (Regular, Medium, Semibold, Bold) allowing for clear visual hierarchy across UI elements. The typography scale follows a modular system from Text Tiny (10px) to Text Title (20px), with consistent line heights (1.25-1.625rem) optimized for readability. Each text style serves a specific purpose: Title for emphasis, Subtitle for section headers, Body for main content, and Small/Tiny for metadata — ensuring consistent, accessible typography across the extension.</p>
+            </div>
+          </div>
+
+          <div class="design-category">
+            <h4>Spacing & Layout</h4>
+            <div class="design-detail">
+              <p><strong>8px Grid System:</strong> All spacing follows 8px increments (8, 16, 24, 32px) for visual rhythm and consistency</p>
+              <p><strong>Compact Design:</strong> Popup maximum width: 400px, optimized to show complete information without overwhelming the screen</p>
+              <p><strong>Rationale:</strong> Consistent spacing creates visual harmony. Compact dimensions ensure Quippy never obscures important content on the underlying webpage.</p>
+            </div>
+          </div>
+
+          <div class="design-category">
+            <h4>Component Design</h4>
+            <div class="design-detail">
+              <h5>Dropdown Function Selector</h5>
+              <p><strong>Design:</strong> Full-width dropdown with clear labels, grouped categories, and icons for each function</p>
+              <p><strong>Rationale:</strong> Dropdown provides access to all functions without overwhelming the interface. Grouping by category (Unit Conversions, Time Tools, Text Tools) helps users build a mental model. Icons provide visual anchors for faster scanning.</p>
+              
+              <h5>Input Field</h5>
+              <p><strong>Design:</strong> Pre-filled with selected text, fully editable, clear affordances (border, focus state)</p>
+              <p><strong>Rationale:</strong> Pre-filling reduces steps, but editability allows corrections without re-selecting text. Large click target (44px minimum) ensures mobile compatibility.</p>
+              
+              <h5>Results Display</h5>
+              <p><strong>Design:</strong> Large, prominent result text in green to show the solution mode, red incase of error and blue for any information, secondary information below</p>
+              <p><strong>Rationale:</strong> Hierarchy ensures the answer is immediately visible.</p>
+            </div>
+          </div>
+
+          <div class="design-category">
+            <h4>Microinteractions</h4>
+            <div class="design-detail">
+              <ul>
+                <li><strong>Smooth animations (200-300ms):</strong> Popup appears with subtle fade + scale for polish without slowing interaction</li>
+                <li><strong>Hover states:</strong> All interactive elements have clear hover feedback (color change, slight scale)</li>
+                <li><strong>Focus states:</strong> Keyboard navigation supported with visible focus rings for accessibility</li>
+                <li><strong>Loading indicators:</strong> API calls show spinner to set expectations during network requests</li>
+                <li><strong>Success confirmation:</strong> Copy button shows checkmark feedback for 1 second after click</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="design-decision-card">
+          <h4>🎨 UI Design Decision: Light Theme as Default</h4>
+          <div class="decision-content">
+            <div class="decision-section">
+              <strong>Why light theme instead of dark?</strong>
+              <p>Most productivity tools (Google Docs, Gmail, Slack in default mode) use light themes. Quippy's light interface blends naturally with these environments. A dark popup on a light page would create jarring contrast. Future versions will include dark mode that automatically matches system preferences.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Core Features with UX Rationale -->
+    <section class="project-section features-section">
+      <div class="section-content">
+        <h2>Core Features & UX Considerations</h2>
+        <p>
+          Based on user research, I designed 14 versatile functions covering the most common lookup and conversion tasks. Each feature was thoughtfully designed with specific UX considerations to maximize utility while minimizing complexity.
+        </p>
+        
+        <div class="features-grid-detailed">
+          <div class="feature-card-detailed">
+            <div class="feature-header">
+              <span class="feature-icon">🧮</span>
+              <h4>Maths</h4>
+            </div>
+            <p class="feature-description">Perform quick calculations on selected mathematical expressions without leaving your page.</p>
+            <div class="feature-ux">
+              <strong>UX Consideration:</strong>
+              <ul>
+                <li>Evaluates standard math operators: +, -, *, /, ^, %</li>
+                <li>Supports parentheses for complex expressions</li>
+                <li>Shows calculation history within session</li>
+                <li>Instantly evaluates expressions as you type</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="feature-card-detailed">
+            <div class="feature-header">
+              <span class="feature-icon">📖</span>
+              <h4>Meaning</h4>
+            </div>
+            <p class="feature-description">Get definitions, synonyms, antonyms, and usage examples for any English word.</p>
+            <div class="feature-ux">
+              <strong>UX Consideration:</strong>
+              <ul>
+                <li>Comprehensive results: definitions, synonyms, antonyms, example sentences</li>
+                <li>Part of speech clearly labeled (noun, verb, adjective)</li>
+                <li>Perfect for writers, students, non-native speakers</li>
+                <li>One-click access to word meanings without leaving your workflow</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="feature-card-detailed">
+            <div class="feature-header">
+              <span class="feature-icon">🌐</span>
+              <h4>Translate</h4>
+            </div>
+            <p class="feature-description">Translate text between 100+ languages. Smart detection switches to dictionary mode for English words.</p>
+            <div class="feature-ux">
+              <strong>UX Consideration:</strong>
+              <ul>
+                <li>Auto-detects source language to reduce steps</li>
+                <li>When translating TO English, automatically shows dictionary definitions instead</li>
+                <li>Manual toggle to switch between translation and dictionary modes</li>
+                <li>Uses Google Translate API for accuracy</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="feature-card-detailed">
+            <div class="feature-header">
+              <span class="feature-icon">⚖️</span>
+              <h4>Weight Conversion</h4>
+            </div>
+            <p class="feature-description">Convert pounds to kilograms, ounces to grams, and more metric/imperial weight units instantly.</p>
+            <div class="feature-ux">
+              <strong>UX Consideration:</strong>
+              <ul>
+                <li>Preset unit dropdowns organized by common use (metric first for global audience, imperial available)</li>
+                <li>Bidirectional conversion — swap units with one click</li>
+                <li>High precision for scientific use, but displays reasonable decimals for everyday use</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="feature-card-detailed">
+            <div class="feature-header">
+              <span class="feature-icon">📏</span>
+              <h4>Length Conversion</h4>
+            </div>
+            <p class="feature-description">Convert between meters, feet, inches, kilometers, miles, and other length units seamlessly.</p>
+            <div class="feature-ux">
+              <strong>UX Consideration:</strong>
+              <ul>
+                <li>Supports both metric (meters, centimeters) and imperial (feet, inches) systems</li>
+                <li>Smart unit detection from input text</li>
+                <li>Useful for international projects, travel planning, and technical specifications</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="feature-card-detailed">
+            <div class="feature-header">
+              <span class="feature-icon">📐</span>
+              <h4>Area Conversion</h4>
+            </div>
+            <p class="feature-description">Convert square feet, square meters, acres, hectares, and other area measurements.</p>
+            <div class="feature-ux">
+              <strong>UX Consideration:</strong>
+              <ul>
+                <li>Useful for real estate, design, and construction professionals</li>
+                <li>Clear unit labels (sq ft, sq m) prevent confusion between length and area</li>
+                <li>Handles large-scale measurements like acres and hectares</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="feature-card-detailed">
+            <div class="feature-header">
+              <span class="feature-icon">🫙</span>
+              <h4>Volume Conversion</h4>
+            </div>
+            <p class="feature-description">Convert liters, gallons, milliliters, cups, and other volume units instantly.</p>
+            <div class="feature-ux">
+              <strong>UX Consideration:</strong>
+              <ul>
+                <li>Supports both metric (liters) and imperial (gallons) systems</li>
+                <li>Includes cooking measurements (cups, tablespoons) for recipe use</li>
+                <li>Essential for cooking, chemistry, and everyday liquid measurements</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="feature-card-detailed">
+            <div class="feature-header">
+              <span class="feature-icon">💾</span>
+              <h4>Digital Unit Conversion</h4>
+            </div>
+            <p class="feature-description">Convert between bytes, kilobytes, megabytes, gigabytes, terabytes, and other digital storage units.</p>
+            <div class="feature-ux">
+              <strong>UX Consideration:</strong>
+              <ul>
+                <li>Handles both decimal (KB, MB, GB) and binary (KiB, MiB, GiB) units</li>
+                <li>Essential for developers, IT professionals, and anyone working with file sizes</li>
+                <li>Clear distinction between different unit systems</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="feature-card-detailed">
+            <div class="feature-header">
+              <span class="feature-icon">⏱️</span>
+              <h4>Duration Conversion</h4>
+            </div>
+            <p class="feature-description">Convert between hours, minutes, seconds, days, weeks — perfect for time calculations and project planning.</p>
+            <div class="feature-ux">
+              <strong>UX Consideration:</strong>
+              <ul>
+                <li>Automatically formats output to most readable unit (e.g., 90 minutes → 1.5 hours)</li>
+                <li>Useful for freelancers calculating billable hours</li>
+                <li>Supports complex duration formats</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="feature-card-detailed">
+            <div class="feature-header">
+              <span class="feature-icon">📅</span>
+              <h4>Date/Day Conversion</h4>
+            </div>
+            <p class="feature-description">Calculate days between dates, find dates in the future or past, and convert between date formats.</p>
+            <div class="feature-ux">
+              <strong>UX Consideration:</strong>
+              <ul>
+                <li>Calculate days between two dates instantly</li>
+                <li>Find what date it will be X days from now</li>
+                <li>Useful for deadline tracking, project planning, and date calculations</li>
+                <li>Handles various date input formats</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="feature-card-detailed">
+            <div class="feature-header">
+              <span class="feature-icon">🌍</span>
+              <h4>Timezone Conversion</h4>
+            </div>
+            <p class="feature-description">Check current time across different timezones. Supports country names, cities, and UTC offsets. Includes meeting time scheduler.</p>
+            <div class="feature-ux">
+              <strong>UX Consideration:</strong>
+              <ul>
+                <li>Displays full country names instead of codes (IN → India) for clarity</li>
+                <li>Parses multiple timezone formats: "PST", "UTC+5:30", "New York", "Japan"</li>
+                <li>Shows both current local time and target timezone time side-by-side</li>
+                <li>Meeting scheduler shows what time a specific hour is in multiple zones</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="feature-card-detailed">
+            <div class="feature-header">
+              <span class="feature-icon">💱</span>
+              <h4>Currency Conversion</h4>
+            </div>
+            <p class="feature-description">Convert between 150+ currencies with real-time exchange rates. Supports amounts with currency codes (e.g., "100 USD to EUR") or standalone numbers.</p>
+            <div class="feature-ux">
+              <strong>UX Consideration:</strong>
+              <ul>
+                <li>Real-time rates via API with caching to reduce network calls</li>
+                <li>Smart parsing handles various input formats: "100 USD", "$100", "100 dollars"</li>
+                <li>Shows exchange rate and last updated time for transparency</li>
+                <li>Remembers last used currency pair for faster repeat conversions</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="feature-card-detailed">
+            <div class="feature-header">
+              <span class="feature-icon">🌡️</span>
+              <h4>Temperature Conversion</h4>
+            </div>
+            <p class="feature-description">Convert between Celsius, Fahrenheit, and Kelvin with automatic unit detection.</p>
+            <div class="feature-ux">
+              <strong>UX Consideration:</strong>
+              <ul>
+                <li>Detects temperature units in text (25°C, 77°F) automatically</li>
+                <li>Shows all three scales simultaneously for quick reference</li>
+                <li>Essential for international communication and scientific work</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="feature-card-detailed">
+            <div class="feature-header">
+              <span class="feature-icon">🎨</span>
+              <h4>Design</h4>
+            </div>
+            <p class="feature-description">Convert between design units like pixels, points, ems, rems, and calculate screen dimensions and aspect ratios.</p>
+            <div class="feature-ux">
+              <strong>UX Consideration:</strong>
+              <ul>
+                <li>Converts between px, pt, em, rem for responsive design</li>
+                <li>Parses resolution formats: "1920x1080", "4K", "1080p"</li>
+                <li>Shows physical dimensions, PPI, and aspect ratio</li>
+                <li>Useful for responsive design and device testing</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="feature-highlight">
+          <h3>Universal Compatibility</h3>
+          <p>
+            Quippy works on <strong>every website</strong> — Gmail, Google Docs, Slack, LinkedIn, Twitter, news sites, documentation, and anywhere else you browse. The extension uses content scripts that inject seamlessly into any page without affecting site functionality. Select any text, and Quippy is ready to help.
+          </p>
+        </div>
+        
+        <div class="feature-highlight">
+          <h3>Privacy & Security by Design</h3>
+          <p>
+            Quippy <strong>doesn't collect any user data</strong>. All conversions happen locally or through secure third-party APIs (Google Translate, Exchange Rate API) using HTTPS. No tracking, no analytics, no storage of your queries or personal information. The extension only requests minimum necessary permissions: "activeTab" to interact with current page and "storage" for user preferences only.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Development -->
+    <section class="project-section development-section">
+      <div class="section-content">
+        <h2>Development & Implementation</h2>
+        <p>
+          With no prior experience in browser extension development, I approached this as a learning opportunity. Using ChatGPT and Claude as coding partners, I translated my Figma designs into functional code. This AI-assisted development process allowed me to focus on UX decisions while learning Chrome Extension APIs, JavaScript patterns, and best practices.
+        </p>
+
+        <div class="dev-approach">
+          <h4>Development Approach</h4>
+          <ul>
+            <li>Started with Chrome Extension Manifest V3 documentation to understand architecture</li>
+            <li>Built a minimal working prototype (one function) to prove the concept</li>
+            <li>Iteratively added features one at a time, testing each thoroughly</li>
+            <li>Used AI assistants to explain unfamiliar concepts and debug issues</li>
+            <li>Followed accessibility guidelines (WCAG 2.1) throughout development</li>
+          </ul>
+        </div>
+        
+        <div class="tech-stack">
+          <h3>Technical Implementation</h3>
+          <div class="tech-list">
+            <div class="tech-item">
+              <strong>Chrome Extension Manifest V3:</strong> Modern extension architecture with improved security and performance
+            </div>
+            <div class="tech-item">
+              <strong>Content Scripts:</strong> Injected into every webpage to detect text selection and display Quippy popup without affecting page functionality
+            </div>
+            <div class="tech-item">
+              <strong>Background Service Workers:</strong> Handle API calls, manage state, and coordinate between tabs efficiently
+            </div>
+            <div class="tech-item">
+              <strong>Local Storage:</strong> Stores user preferences (last used currencies, units) and caches API responses for performance
+            </div>
+            <div class="tech-item">
+              <strong>API Integration:</strong> Real-time data via ExchangeRate-API for currencies, Google Translate API for translations, Dictionary API for word definitions
+            </div>
+            <div class="tech-item">
+              <strong>Keyboard Event Handling:</strong> Custom implementation of Ctrl+Shift+Q / Cmd+Shift+Q that doesn't conflict with browser shortcuts
+            </div>
+            <div class="tech-item">
+              <strong>CSS Isolation:</strong> Shadow DOM prevents Quippy's styles from conflicting with host website styles and vice versa
+            </div>
+            <div class="tech-item">
+              <strong>Error Handling:</strong> Graceful fallbacks for network failures, invalid inputs, and API rate limits
+            </div>
+          </div>
+        </div>
+
+        <div class="design-decision-card">
+          <h4>⚙️ Technical Design Decision: Shadow DOM for Style Isolation</h4>
+          <div class="decision-content">
+            <div class="decision-section">
+              <strong>The Challenge:</strong>
+              <p>When Quippy injects into a webpage, CSS from the host site could interfere with Quippy's design, and vice versa. For example, if a site has a global style like "div { background: red; }", it could break Quippy's interface.</p>
+            </div>
+            <div class="decision-section">
+              <strong>The Solution:</strong>
+              <p>Use Shadow DOM to create an isolated CSS scope. Quippy's HTML and styles live in a shadow root that's protected from external styles. This ensures consistent appearance across all websites while preventing Quippy from accidentally affecting page layouts.</p>
+            </div>
+            <div class="decision-section">
+              <strong>Trade-off:</strong>
+              <p>Shadow DOM adds complexity, but guarantees reliability. Without it, Quippy could look different or broken on every website.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Testing & Issues -->
+    <section class="project-section testing-issues-section">
+      <div class="section-content">
+        <h2>Testing, Issues & Iterations</h2>
+        <p>
+          After implementing each feature, I conducted extensive testing in Chrome's developer mode and then used Quippy daily in my actual workflow across sites I frequent — Gmail, Slack, Google Docs, LinkedIn, news sites, and documentation. This real-world testing was invaluable, revealing UX issues that weren't apparent during controlled development.
+        </p>
+
+        <div class="testing-methodology">
+          <h4>Testing Approach</h4>
+          <ul>
+            <li><strong>Chrome Developer Mode:</strong> Loaded unpacked extension for rapid iteration and debugging</li>
+            <li><strong>Real-World Usage:</strong> Used Quippy as my primary tool for 2 weeks to experience actual pain points</li>
+            <li><strong>Cross-Site Testing:</strong> Verified functionality on 20+ different websites with varying layouts and CSS</li>
+            <li><strong>Edge Case Exploration:</strong> Deliberately tried unusual inputs to test error handling</li>
+            <li><strong>Performance Monitoring:</strong> Tracked load times, API response times, and memory usage</li>
+          </ul>
+        </div>
+        
+        <h3>Critical Issues Discovered & Resolved</h3>
+        <div class="issues-found">
+          <div class="found-issue">
+            <div class="issue-badge">UX Issue</div>
+            <div class="issue-title">Selected Text Workflow Needed Flexibility</div>
+            <div class="issue-description">
+              <strong>Problem:</strong> Users sometimes needed to modify the selected text slightly before running a conversion (e.g., removing extra characters, fixing typos, or adjusting numbers). The initial design locked the input field after selection.
+            </div>
+            <div class="issue-fix">
+              <strong>Solution:</strong> Made the input field pre-filled but fully editable. Users can now tweak the text before processing without re-selecting. This maintains the fast workflow (pre-filled saves time) while adding crucial flexibility.
+            </div>
+            <div class="issue-impact">
+              <strong>Impact:</strong> Reduced frustration for edge cases where selection wasn't perfect, increased utility without compromising speed.
+            </div>
+          </div>
+          
+          <div class="found-issue">
+            <div class="issue-badge">Usability Issue</div>
+            <div class="issue-title">Country Code Confusion in Timezone Feature</div>
+            <div class="issue-description">
+              <strong>Problem:</strong> Timezone feature initially showed country codes (IN, US, GB, JP) instead of country names. User testing revealed this caused confusion — people couldn't quickly scan for their desired timezone.
+            </div>
+            <div class="issue-fix">
+              <strong>Solution:</strong> Switched to displaying full country names ("India" instead of "IN") with optional abbreviations in smaller text. Made timezone dropdown searchable so users can type country names.
+            </div>
+            <div class="issue-impact">
+              <strong>Impact:</strong> Significantly improved scannability and reduced time to find desired timezone. Positive feedback from test users.
+            </div>
+          </div>
+          
+          <div class="found-issue">
+            <div class="issue-badge">Functional Bug</div>
+            <div class="issue-title">Translation vs. Dictionary Mode Conflict</div>
+            <div class="issue-description">
+              <strong>Problem:</strong> When translating to English, users expected word meanings and synonyms (dictionary lookup), not literal translations from other languages. The translation feature couldn't distinguish user intent.
+            </div>
+            <div class="issue-fix">
+              <strong>Solution:</strong> Implemented smart detection: when target language is English AND input is a single word, automatically switch to dictionary mode showing definitions, synonyms, antonyms. Added manual toggle for users who genuinely want translation to English.
+            </div>
+            <div class="issue-impact">
+              <strong>Impact:</strong> Merged two features (translation and dictionary) into one intuitive interface. Users no longer need to switch between functions manually.
+            </div>
+          </div>
+          
+          <div class="found-issue">
+            <div class="issue-badge">Feature Enhancement</div>
+            <div class="issue-title">Limited Dictionary Information</div>
+            <div class="issue-description">
+              <strong>Problem:</strong> Initial dictionary feature showed only basic definitions. Writers and students needed more comprehensive information: synonyms, antonyms, example sentences, parts of speech.
+            </div>
+            <div class="issue-fix">
+              <strong>Solution:</strong> Integrated Free Dictionary API which provides extensive data. Redesigned results layout to show definitions grouped by part of speech, with synonyms/antonyms in expandable sections, and real usage examples.
+            </div>
+            <div class="issue-impact">
+              <strong>Impact:</strong> Transformed dictionary from basic lookup to comprehensive reference tool. Eliminated need to open separate dictionary websites.
+            </div>
+          </div>
+          
+          <div class="found-issue">
+            <div class="issue-badge">Compatibility Issue</div>
+            <div class="issue-title">Keyboard Shortcut Platform Differences</div>
+            <div class="issue-description">
+              <strong>Problem:</strong> Windows uses Ctrl key, Mac uses Cmd key. Initial implementation only worked on Windows. Needed cross-platform compatibility without requiring users to configure shortcuts.
+            </div>
+            <div class="issue-fix">
+              <strong>Solution:</strong> Implemented platform detection using navigator.userAgent. Extension automatically uses Ctrl+Shift+Q on Windows/Linux and Cmd+Shift+Q on Mac. UI displays the correct shortcut for user's platform.
+            </div>
+            <div class="issue-impact">
+              <strong>Impact:</strong> Seamless experience across platforms. Mac users no longer excluded. Zero configuration required.
+            </div>
+          </div>
+          
+          <div class="found-issue">
+            <div class="issue-badge">Format Recognition</div>
+            <div class="issue-title">Timezone Format Parsing Gaps</div>
+            <div class="issue-description">
+              <strong>Problem:</strong> Gmail and calendar apps show timezones in formats like "8:30 PM UTC+5:30" but Quippy didn't recognize this common pattern. Users had to manually retype timezone information.
+            </div>
+            <div class="issue-fix">
+              <strong>Solution:</strong> Enhanced timezone parser to recognize multiple formats: UTC offsets (UTC+5:30), city names (New York), country names (India), timezone abbreviations (PST, IST), and mixed formats from email clients.
+            </div>
+            <div class="issue-impact">
+              <strong>Impact:</strong> Users can now select timezone strings directly from emails and convert them instantly, matching the original workflow inspiration.
+            </div>
+          </div>
+
+          <div class="found-issue">
+            <div class="issue-badge">Performance Issue</div>
+            <div class="issue-title">API Call Overhead for Currency Rates</div>
+            <div class="issue-description">
+              <strong>Problem:</strong> Making API call for every currency conversion created network delays (500-1000ms) and quickly hit rate limits.
+            </div>
+            <div class="issue-fix">
+              <strong>Solution:</strong> Implemented smart caching: fetch all currency rates once per hour and store in local storage. Conversions use cached rates with timestamp displayed. Reduced API calls from hundreds to ~24 per day.
+            </div>
+            <div class="issue-impact">
+              <strong>Impact:</strong> Instant conversions (0ms delay), better user experience, never hit rate limits, reduced server load.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final UI Screens -->
+    <section class="project-section final-screens-section">
+      <h2>Final Interface & Key Screens</h2>
+      <p class="screens-intro">Below are key screens showing Quippy in action across different functions and use cases.</p>
+      
+      <div class="screen-gallery">
+        <div class="screen">
+          <h3>Default State & Function Selection</h3>
+          <img src="../assets/q1image.png" alt="Default state showing function selector dropdown and input field">
+          <p class="screen-description">Initial state: dropdown for selecting function, pre-filled input with selected text, clean interface without clutter</p>
+        </div>
+        
+        <div class="screen">
+          <h3>Currency Conversion in Action</h3>
+          <img src="../assets/q2image.png" alt="Currency conversion showing real-time exchange rates">
+          <p class="screen-description">Currency converter with dropdown selectors for source/target currencies, real-time rate display, and copy button</p>
+        </div>
+        
+        <div class="screen">
+          <h3>Timezone Conversion & Meeting Scheduler</h3>
+          <img src="../assets/q3image.png" alt="Timezone conversion showing multiple timezones simultaneously">
+          <p class="screen-description">Timezone display showing current time in source, best meeting times and target zones with full country names for clarity</p>
+        </div>
+        
+        <div class="screen">
+          <h3>Translation & Dictionary Lookup</h3>
+          <video src="../assets/q4vid.mp4" class="screen-video" autoplay loop muted playsinline>
+            Your browser does not support the video tag.
+          </video>
+          <p class="screen-description">Smart translation/dictionary mode with auto-detection, showing definitions, synonyms, and example usage</p>
+        </div>
+        
+        <div class="screen">
+          <h3>Unit Conversions (Temperature, Area, Volume)</h3>
+          <video src="../assets/q5vid.mov" class="screen-video" autoplay loop muted playsinline>
+            Your browser does not support the video tag.
+          </video>
+          <p class="screen-description">Consistent unit conversion interface across different measurement types with bidirectional conversion</p>
+        </div>
+        
+        <div class="screen">
+          <h3>Utility Functions (Timer, Calculator)</h3>
+          <video src="../assets/q6vid.mov" class="screen-video" autoplay loop muted playsinline>
+            Your browser does not support the video tag.
+          </video>
+          <p class="screen-description">Additional utility functions maintaining same design language and interaction patterns</p>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Impact & Metrics -->
+    <section class="project-section impact-section">
+      <div class="section-content">
+        <h2>Launch & Impact</h2>
+        <p>
+          Quippy successfully launched on the Chrome Web Store in November 2024. The extension has been validated through real-world usage and is actively helping users eliminate workflow friction across various professions — designers, developers, writers, marketers, and business professionals.
+        </p>
+
+        <div class="impact-metrics">
+          <h4>Early Metrics & Feedback</h4>
+          <div class="metrics-grid">
+            <div class="metric-card">
+              <div class="metric-number">14</div>
+              <div class="metric-label">Core Functions</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-number">0ms</div>
+              <div class="metric-label">Load Time Impact</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-number">100%</div>
+              <div class="metric-label">Website Compatibility</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-number">Zero</div>
+              <div class="metric-label">Data Collection</div>
+            </div>
+          </div>
+        </div>
+        
+        <h3>What I Learned</h3>
+        <div class="learnings">
+          <div class="learning-item">
+            <strong>Design Systems Enable Speed:</strong> Creating a comprehensive design system in Figma before coding saved countless hours of indecision during development. Having typography, spacing, colors, and components pre-defined meant I could focus on functionality rather than visual decisions.
+          </div>
+          <div class="learning-item">
+            <strong>Real-World Testing is Irreplaceable:</strong> Controlled testing missed issues that only appeared during actual daily use. Using your own product reveals edge cases, workflow interruptions, and opportunities for improvement that you can't predict. I discovered 80% of UX improvements through real-world usage.
+          </div>
+          <div class="learning-item">
+            <strong>AI as Development Partner:</strong> Using ChatGPT and Claude as coding assistants allowed me to build complex functionality despite limited JavaScript experience. The key was asking specific questions, iterating quickly, and maintaining a clear vision of desired UX outcomes.
+          </div>
+          <div class="learning-item">
+            <strong>Simplicity Beats Features:</strong> I initially planned 20+ functions but realized fewer, well-executed features provide more value than many half-baked ones. Focusing on 14 core functions with excellent UX trumps adding marginally useful features.
+          </div>
+          <div class="learning-item">
+            <strong>Platform Constraints Shape Design:</strong> Chrome extension limitations (Shadow DOM, content script permissions, API restrictions) forced creative solutions that ultimately made the product better. Constraints drive innovation.
+          </div>
+          <div class="learning-item">
+            <strong>Context Awareness is Everything:</strong> The most successful features (translation/dictionary toggle, timezone format parsing) succeeded because they understood user context. Good UX anticipates needs rather than requiring explicit instruction.
+          </div>
+        </div>
+        
+        <h3>Future Enhancements</h3>
+        <p>Based on usage patterns and user feedback, I've identified the following roadmap:</p>
+        <div class="future-features">
+          <div class="future-item">
+            <strong>Personalization System:</strong> Remember user preferences for default currencies, units, languages, and frequently used functions for faster access
+          </div>
+          <div class="future-item">
+            <strong>Conversion History:</strong> Local history of recent conversions accessible via shortcut, enabling quick reference without re-converting
+          </div>
+          <div class="future-item">
+            <strong>Dark Mode:</strong> Automatic theme switching based on system preferences with manual override option
+          </div>
+          <div class="future-item">
+            <strong>Custom Themes:</strong> User-defined color schemes and font preferences for personalization
+          </div>
+          <div class="future-item">
+            <strong>Editable Results:</strong> Allow chaining conversions by making result text selectable and convertible
+          </div>
+          <div class="future-item">
+            <strong>Additional Conversions:</strong> Data storage (MB to GB), speed (mph to km/h), pressure, energy based on user requests
+          </div>
+          <div class="future-item">
+            <strong>Offline Mode:</strong> Essential conversions work without internet by including conversion tables locally
+          </div>
+          <div class="future-item">
+            <strong>Multi-Browser Support:</strong> Firefox, Edge, and Safari versions to reach broader audience
+          </div>
+          <div class="future-item">
+            <strong>API for Developers:</strong> Allow other extensions to integrate Quippy's conversion capabilities
+          </div>
+          <div class="future-item">
+            <strong>Keyboard Shortcuts:</strong> Additional shortcuts for power users to directly activate specific functions (e.g., Ctrl+Shift+C for currency)
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Conclusion -->
+    <section class="project-section conclusion-section">
+      <div class="section-content">
+        <h2>Reflection & Key Takeaways</h2>
+        <p>
+          Building Quippy from initial prototype to live Chrome Web Store product taught me the complete product lifecycle — from identifying a problem through user research, to designing thoughtful solutions, developing functional code, iterating based on testing, and finally launching to real users.
+        </p>
+        <p>
+          This project reinforced that good UX design isn't about adding features — it's about removing friction. Every design decision in Quippy aimed to eliminate one more step, one more click, one more moment of disruption between a user and their goal. The keyboard shortcut, pre-filled input, smart context detection, and universal compatibility all serve this singular purpose: make simple tasks feel effortless.
+        </p>
+        <p>
+          Most importantly, Quippy demonstrates that designers can build real products. With modern AI tools as development partners and a clear user-centered vision, the barrier between "designing" and "building" has never been lower. I use Quippy dozens of times daily, and each time I press Ctrl+Shift+Q instead of opening a new tab, I'm reminded why I built it. When you solve your own problem well, others benefit too.
+        </p>
+
+        <div class="final-cta">
+          <h4>Try Quippy</h4>
+          <p>Available now on the Chrome Web Store. Install it, select any text, press Ctrl+Shift+Q, and experience workflow without friction.</p>
+           <a href="https://chromewebstore.google.com/detail/quippy/bjoncincdhhnaacbohbhpaaneocdmckj" class="cta-button" target="_blank" rel="noopener noreferrer">View on Chrome Web Store →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Bottom back link wrapper -->
+  <div class="bottom-link-wrapper">
+    <a href="../index.html#work" class="footer-back-link">← Back to Work</a>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>&copy; 2025 Lakshmi Pratap. All rights reserved.</p>
+  </footer>
+
+  <script src="project0-enhanced.js"></script>
+</body>
+</html>
