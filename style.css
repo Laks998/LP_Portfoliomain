@@ -1,4 +1,3 @@
-
 body {
   margin: 0;
   padding: 0;
@@ -30,128 +29,19 @@ html {
   margin-top: 4rem;
 }
 
-/* ========== BALL ========== */
-.ball {
-  width: 140px;
-  height: 140px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-
-  border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, #353333, #4b4a4a);
-  background-image: url('assets/rough_ball_stroke.png');
-  background-repeat: no-repeat;
-  background-size: 110% 110%;
-  background-position: center;
-
-  font-family: 'Migra', serif;
-  font-weight: bold;
-  font-size: 0.5rem;
-  text-align: center;
-  color: #EB676C;
-  text-shadow: 0 1px 1px #302e2e;
-
-  box-shadow:
-    0 25px 40px rgba(0, 0, 0, 0.7),
-    0 10px 20px rgba(0, 0, 0, 0.5);
-
-  transition:
-    top 0.5s ease,
-    left 0.5s ease,
-    box-shadow 0.3s ease,
-    transform 0.4s ease,
-    background 0.4s ease,
-    color 0.4s ease;
-}
-
-/* Hover inverts */
-.ball.clickable:hover {
-  background: #EB676C;
-  color: black;
-  text-shadow: none;
-}
-
-/* Stays inverted + expands */
-.ball.expanded {
-  width: 420px;
-  height: 420px;
-  transform: translate(-50%, -50%);
-  background: #EB676C !important;
-  color: rgb(36, 35, 35) !important;
-  text-shadow: none !important;
-  z-index: 10;
-  transition:
-    width 0.6s ease,
-    height 0.6s ease,
-    background 0.6s ease,
-    color 0.6s ease;
-}
-
-.ball.clickable {
-  animation: pulse 1.5s ease-in-out infinite;
-  box-shadow:
-    0 30px 50px rgba(0, 0, 0, 0.75),
-    0 12px 25px rgba(0, 0, 0, 0.6);
-}
-
-/* Lock-in inversion after click */
-.ball.inverted {
-  background: #EB676C !important;
-  color: rgb(48, 46, 46) !important;
-  text-shadow: none !important;
-}
-
-/* ========== TEXT ========== */
-#instruction {
-  font-size: 1rem;
-  line-height: 1.5;
-  width: 90%;
-  text-align: center;
-  pointer-events: none;
-  user-select: none;
-  font-family: 'Space Grotesk', sans-serif;
-  transition: font-size 0.6s ease, color 0.6s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* ========== ANIMATIONS ========== */
-@keyframes pulse {
-  0%   { box-shadow: 0 15px 20px rgba(0, 0, 0, 0.3); }
-  50%  { box-shadow: 0 20px 25px rgba(0, 0, 0, 0.4); }
-  100% { box-shadow: 0 15px 20px rgba(0, 0, 0, 0.3); }
-}
-
-@keyframes bounce {
-  0%   { transform: scale(1) translate(-50%, -50%); }
-  30%  { transform: scale(1.05, 0.95) translate(-50%, -52%); }
-  60%  { transform: scale(0.98, 1.02) translate(-50%, -48%); }
-  100% { transform: scale(1) translate(-50%, -50%); }
-}
-
-.bounce {
-  animation: bounce 0.5s ease;
-}
-
 /* ========== LABELS ========== */
 #name-label {
   position: absolute;
-  top: 50%;
-  left: 45%;
+  top: 60%;
+  left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
   z-index: 0;
   pointer-events: none;
   user-select: none;
+  letter-spacing: 0.4px;
 }
 
 .name-block {
@@ -162,76 +52,42 @@ html {
 }
 
 #name-label .line {
-  font-family: 'Migra', serif;
-  font-size: 18rem;
-  font-weight: 1000;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 4rem;
+  font-weight: 100;
   color: white;
   white-space: nowrap;
-  line-height: .5;
-  opacity: 0.1;
+  line-height: .8;
+  opacity: 1;
+  letter-spacing: 0.4px;
 }
 
 #name-label .taglines {
   font-family: 'Space Grotesk', sans-serif;
-  position: absolute;
-  top: 62%;
-  left: 53rem;
+  top: 70%;
+  left: 40%;
   font-size: 1rem;
-  font-weight: 400;
+  font-weight: 200;
   color: rgb(241, 228, 228);
   line-height: 1;
   text-align: left;
   opacity: 1;
+  letter-spacing: 0.4px;
 }
 
 .taglines div {
   font-family: 'Space Grotesk', sans-serif;
   font-size: 1rem;
-  font-weight: 400;
+  font-weight: 200;
   color: rgb(241, 228, 228);
   line-height: 2;
   text-align: left;
   white-space: nowrap;
-  overflow: hidden;
-  width: 0;
-  opacity: 0;
 }
 
 .taglines em {
   color: #EB676C;
   font-weight: 400;
-}
-
-@keyframes typing {
-  from { width: 0; opacity: 1; }
-  to { width: 100%; opacity: 1; }
-}
-
-.taglines div {
-  overflow: hidden;
-  white-space: nowrap;
-  display: inline-block;
-  animation: typing 2s steps(30, end) forwards;
-}
-
-.taglines div:nth-child(1) {
-  animation-delay: 0s;
-  animation-duration: 2.5s;
-}
-
-.taglines div:nth-child(2) {
-  animation-delay: 3s;
-  animation-duration: 1.2s;
-}
-
-.taglines div:nth-child(3) {
-  animation-delay: 4.5s;
-  animation-duration: 1.6s;
-}
-
-.taglines div:nth-child(4) {
-  animation-delay: 6.5s;
-  animation-duration: 2s;
 }
 
 /* ========== NAVIGATION ========== */
@@ -303,36 +159,6 @@ html {
   transition: opacity 1s ease;
 }
 
-.ball.shrinking {
-  animation: smoothShrink 0.8s ease-in-out forwards;
-}
-
-@keyframes smoothShrink {
-  0% {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 1;
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(0.3);
-    opacity: 0.8;
-  }
-}
-
-.ball.disappear {
-  animation: shrinkToDot 0.5s ease-out forwards;
-}
-
-@keyframes shrinkToDot {
-  0% {
-    transform: translate(-50%, -50%) scale(0.3);
-    opacity: 0.8;
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(0.05);
-    opacity: 0;
-  }
-}
-
 /* ========== PROJECTS SECTION ========== */
 .projects-section {
   background: radial-gradient(circle at center, #161515 0%, #2c2a2a 100%);
@@ -346,7 +172,7 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 3rem;
+  gap: 4rem;
   width: 100%;
   max-width: 1200px;
   margin-right: 200px;
@@ -356,7 +182,7 @@ html {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
+  gap: 2rem;
   width: 100%;
   max-width: 800px;
   min-height: 550px;
@@ -426,7 +252,7 @@ html {
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
-  padding: 1.5rem;
+  padding: 2rem;
   box-sizing: border-box;
   border: 2px solid rgba(235, 103, 108, 0.3);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -437,7 +263,7 @@ html {
 .project-card::after {
   content: '';
   position: absolute;
-  top: -2px;
+  top: -4px;
   left: -2px;
   right: -2px;
   bottom: -2px;
@@ -556,43 +382,6 @@ html {
   background: radial-gradient(circle at center, #161515 0%, #2c2a2a 100%);
 }
 
-.ball.back-to-original {
-  width: 140px;
-  height: 140px;
-  background: #EB676C;
-  color: black !important;
-  transition: width 0.6s ease, height 0.6s ease, background 0.6s ease;
-}
-
-.ball.arrow-drop {
-  font-size: 3rem;
-  font-weight: 900;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-shadow: none;
-  animation: dropFromHere 1s ease-out forwards;
-}
-
-@keyframes dropFromHere {
-  0% {
-    top: 50%;
-    transform: translate(-50%, -50%) scale(1);
-  }
-  70% {
-    top: var(--dropDistance);
-    transform: translate(-50%, 0) scale(1.1);
-  }
-  85% {
-    top: calc(var(--dropDistance) + 20px);
-    transform: translate(-50%, 0) scale(0.95);
-  }
-  100% {
-    top: calc(var(--dropDistance) + 10px);
-    transform: translate(-50%, 0) scale(1);
-  }
-}
-
 .logo-nav {
   all: unset;
   cursor: pointer;
@@ -615,11 +404,14 @@ html {
 }
 
 #hero .social-icons {
+  position: absolute;
+  bottom: 85%;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 14px;
-  margin-top: 100px;
 }
 
 #hero .icon {
@@ -746,21 +538,6 @@ html {
     line-height: 1.8;
   }
   
-  /* Ball adjustments */
-  .ball {
-    width: 120px;
-    height: 120px;
-  }
-  
-  .ball.expanded {
-    width: 320px;
-    height: 320px;
-  }
-  
-  #instruction {
-    font-size: 0.9rem;
-  }
-  
   /* Navigation adjustments */
   .side-nav {
     position: fixed;
@@ -793,7 +570,7 @@ html {
   
   /* Social icons */
   #hero .social-icons {
-    margin-top: 60px;
+    bottom: 85%;
     gap: 12px;
   }
   
@@ -861,7 +638,7 @@ html {
 /* Mobile landscape and small phones */
 @media (max-width: 576px) {
   #name-label .line {
-    font-size: 5rem;
+    font-size: 4rem;
   }
   
   #name-label .taglines {
@@ -870,20 +647,6 @@ html {
   
   .taglines div {
     line-height: 1.6;
-  }
-  
-  .ball {
-    width: 100px;
-    height: 100px;
-  }
-  
-  .ball.expanded {
-    width: 280px;
-    height: 280px;
-  }
-  
-  #instruction {
-    font-size: 0.8rem;
   }
   
   .side-nav {
@@ -897,7 +660,7 @@ html {
   }
   
   #hero .social-icons {
-    margin-top: 40px;
+    bottom: 85%px;
     gap: 10px;
   }
   
@@ -943,20 +706,6 @@ html {
     font-size: 0.65rem;
   }
   
-  .ball {
-    width: 90px;
-    height: 90px;
-  }
-  
-  .ball.expanded {
-    width: 250px;
-    height: 250px;
-  }
-  
-  #instruction {
-    font-size: 0.75rem;
-  }
-  
   .side-nav a {
     padding: 6px 6px;
     font-size: 0.65rem;
@@ -980,21 +729,15 @@ html {
   }
   
   #name-label .line {
-    font-size: 6rem;
+    font-size: 4rem;
   }
   
   #name-label .taglines {
     font-size: 0.75rem;
   }
   
-  .ball {
-    width: 90px;
-    height: 90px;
-    top: 40%;
-  }
-  
   #hero .social-icons {
-    margin-top: 30px;
+    bottom: 85%;
   }
 }
 
@@ -1020,5 +763,34 @@ html {
   
   .project-info p {
     font-size: 0.8rem;
+  }
+}
+
+/* Lottie Animation */
+#lottie-animation {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 400px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Adjust for responsive */
+@media (max-width: 768px) {
+  #lottie-animation {
+    width: 300px;
+    height: 300px;
+    top: 25%;
+  }
+}
+
+@media (max-width: 576px) {
+  #lottie-animation {
+    width: 200px;
+    height: 200px;
+    top: 20%;
   }
 }
