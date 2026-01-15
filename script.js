@@ -14,6 +14,18 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // ========== SCROLL INDICATOR ==========
+  const scrollIndicator = document.querySelector('.scroll-indicator');
+  
+  if (scrollIndicator) {
+    scrollIndicator.addEventListener('click', () => {
+      const workSection = document.querySelector('#work');
+      if (workSection) {
+        workSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  }
+
   // ========== NAVIGATION ACTIVE STATE ==========
   const navLinks = document.querySelectorAll(".side-nav a");
   const currentPath = window.location.pathname;
