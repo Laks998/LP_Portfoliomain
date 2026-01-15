@@ -64,7 +64,7 @@ html {
 
 #name-label .taglines {
   font-family: 'Space Grotesk', sans-serif;
-  top: 70%;
+  top: 80%;
   left: 40%;
   font-size: 1rem;
   font-weight: 200;
@@ -769,28 +769,22 @@ html {
 /* Lottie Animation */
 #lottie-animation {
   position: absolute;
-  top: 30%;
-  left: 50%;
+  top: 40%;
+  left: 47.5%;
   transform: translate(-50%, -50%);
-  width: 400px;
-  height: 400px;
+  width: 500px;
+  height: 300px;
   z-index: 1;
   pointer-events: none;
 }
 
-/* Adjust for responsive */
-@media (max-width: 768px) {
-  #lottie-animation {
-    width: 300px;
-    height: 300px;
-    top: 25%;
-  }
-}
 
-@media (max-width: 576px) {
+/* Responsive */
+@media (max-width: 600px) {
   #lottie-animation {
-    width: 200px;
+    width: 350px;
     height: 200px;
-    top: 20%;
+    top: 40%;
   }
+  
 }
