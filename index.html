@@ -9,29 +9,33 @@
   <link href="https://fonts.googleapis.com/css2?family=Migra&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="assets/logo.png">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
-  <!-- Add Satoshi Font -->
   <link href="https://api.fonts.coollabs.io/css2?family=Satoshi:wght@300;400;500;700&display=swap" rel="stylesheet">
-  <!-- Space Grotesk -->
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 
 <body>
 
-  <!-- Side Nav with Logo -->
-  <div class="side-nav">
+  <!-- Hamburger Button -->
+  <button class="hamburger-btn" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <!-- Side Nav -->
+  <div class="side-nav" id="sideNav">
     <a href="#hero" id="logo-link" class="logo-nav">
       <img src="assets/logo.png" alt="Home Logo" class="logo-image" />
     </a>
     <a href="#work">Work</a>
     <a href="story.html">Career Story</a>
     <a href="about.html">About</a>
-    <a href="assets/LakshmiPratap_ProductDesign.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
+    <a href="assets/Resume_LP.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
   </div>
 
-  <!-- HERO SECTION START -->
+  <!-- HERO SECTION -->
   <section id="hero">
-
     <div id="lottie-animation"></div>
 
     <div id="name-label">
@@ -45,7 +49,6 @@
 
     <div class="social-icons">
       <a href="https://www.instagram.com/your_username/" target="_blank" class="icon">
-        <!-- Instagram Icon -->
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
@@ -54,7 +57,6 @@
         </svg>
       </a>
       <a href="https://www.linkedin.com/in/your-profile/" target="_blank" class="icon">
-        <!-- LinkedIn Icon -->
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
@@ -63,7 +65,6 @@
         </svg>
       </a>
       <a href="mailto:your@email.com" class="icon">
-        <!-- Mail Icon -->
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" />
@@ -77,91 +78,77 @@
         <path d="M12 5v14M19 12l-7 7-7-7"/>
       </svg>
     </div>
-
   </section>
-  <!-- HERO SECTION END -->
 
-  
-<!-- Projects Section START -->
-<section id="work" class="projects-section">
-  <div class="projects-wrapper">
-    
-    <!-- Vertical WORK Label -->
-    <div class="work-label">WORK</div>
+  <!-- Projects Section -->
+  <section id="work" class="projects-section">
+    <div class="projects-wrapper">
+      <div class="work-label">WORK</div>
 
-    <div class="projects-inner">
-      <!-- Category Navigation -->
-      <div class="category-nav">
-        <button class="category-btn active" data-category="uxd">Projects</button>
-        <button class="category-btn" data-category="sketchesandillustrations">Sketches & Illustrations</button>
+      <div class="projects-inner">
+        <div class="category-nav">
+          <button class="category-btn active" data-category="uxd">Projects</button>
+          <button class="category-btn" data-category="sketchesandillustrations">Sketches & Illustrations</button>
+        </div>
+
+        <div class="project-cards">
+          <div class="project-card category-uxd" data-project="project0">
+            <img src="assets/quippymain1.png" alt="Project 0">
+            <div class="project-info">
+              <h3>Quippy - Browser Extension</h3>
+              <p>Micro-Product Design</p>
+            </div>
+          </div>
+
+          <div class="project-card category-uxd" data-project="project1">
+            <img src="assets/01project.png" alt="Project 1">
+            <div class="project-info">
+              <h3>Sportscove App - Consultcraft</h3>
+              <p>UX Redesign + Complete UI</p>
+            </div>
+          </div>
+
+          <div class="project-card category-uxd" data-project="project2">
+            <img src="assets/02project.jpeg" alt="Project 2">
+            <div class="project-info">
+              <h3>CX Dashboard - Clearisk</h3>
+              <p>Feature Design UX+UI</p>
+            </div>
+          </div>
+
+          <div class="project-card category-uxd" data-project="project4">
+            <img src="assets/covervr2.png" alt="Project 4">
+            <div class="project-info">
+              <h3>VR Environment & Experience - UoN</h3>
+              <p>VR environment & experience design</p>
+            </div>
+          </div>
+
+          <div class="project-card category-sketchesandillustrations" data-project="project5" style="display: none;">
+            <img src="assets/sketch1.JPG" alt="Project 5">
+            <div class="project-info">
+              <h3>Sketchbook</h3>
+              <p>Emotions through my pencil</p>
+            </div>
+          </div>
+
+          <div class="project-card category-sketchesandillustrations" data-project="project6" style="display: none;">
+            <img src="assets/05project.png" alt="Project 6">
+            <div class="project-info">
+              <h3>Illustration</h3>
+              <p>Looking at life funny in 2D</p>
+            </div>
+          </div>
+        </div>
       </div>
+    </div>
+  </section>
 
-      <!-- Project Grid -->
-      <div class="project-cards">
-
-        <!-- UXD Projects -->
-        <div class="project-card category-uxd" id="project0" data-project="project0">
-          <img src="assets/quippymain1.jpeg" alt="Project 0">
-          <div class="project-info">
-            <h3>Quippy - Browser Extension</h3>
-            <p>Micro-Product Design</p>
-          </div>
-        </div>
-
-        <div class="project-card category-uxd" id="project1" data-project="project1">
-          <img src="assets/01project.png" alt="Project 1">
-          <div class="project-info">
-            <h3>Sportscove App - Consultcraft</h3>
-            <p>UX Redesign + Complete UI</p>
-          </div>
-        </div>
-
-        <div class="project-card category-uxd" id="project2" data-project="project2">
-          <img src="assets/02project.jpeg" alt="Project 2">
-          <div class="project-info">
-            <h3>CX Dashboard - Clearisk</h3>
-            <p>Feature Design UX+UI</p>
-          </div>
-        </div>
-
-        <div class="project-card category-uxd" id="project6" data-project="project4">
-          <img src="assets/covervr2.png" alt="Project 4">
-          <div class="project-info">
-            <h3>VR Environment & Experience - UoN</h3>
-            <p>VR environment & experience design</p>
-          </div>
-        </div>
-
-        <!-- Sketches Projects -->
-        <div class="project-card category-sketchesandillustrations" id="project4" data-project="project5" style="display: none;">
-          <img src="assets/sketch1.JPG" alt="Project 5">
-          <div class="project-info">
-            <h3>Sketchbook</h3>
-            <p>Emotions through my pencil</p>
-          </div>
-        </div>
-
-        <!-- Illustrations Projects -->
-        <div class="project-card category-sketchesandillustrations" id="project5" data-project="project6" style="display: none;">
-          <img src="assets/05project.png" alt="Project 6">
-          <div class="project-info">
-            <h3>Illustration</h3>
-            <p>Looking at life funny in 2D</p>
-          </div>
-        </div>
-
-      </div> <!-- End .project-cards -->
-
-    </div> <!-- End .projects-inner -->
-  </div> <!-- End .projects-wrapper -->
-</section>
-<!-- Projects Section END -->
+  <footer class="site-footer">
+    <p>&copy; 2025 Lakshmi Pratap. All rights reserved.</p>
+  </footer>
 
   <script src="script.js" defer></script>
 </body>
-
-<footer class="site-footer">
-  <p>&copy; 2025 Lakshmi Pratap. All rights reserved.</p>
-</footer>
 
 </html>

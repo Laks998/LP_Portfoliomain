@@ -1,10 +1,42 @@
 document.addEventListener("DOMContentLoaded", () => {
   console.log("✅ Script loaded!");
 
+  // ========== HAMBURGER MENU TOGGLE ==========
+  const hamburger = document.getElementById('hamburger');
+  const sideNav = document.getElementById('sideNav');
+  const navLinks = document.querySelectorAll('.side-nav a');
+
+  if (hamburger && sideNav) {
+    // Toggle hamburger menu
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      sideNav.classList.toggle('active');
+      document.body.style.overflow = sideNav.classList.contains('active') ? 'hidden' : '';
+    });
+
+    // Close menu when clicking on a link
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        sideNav.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!sideNav.contains(e.target) && !hamburger.contains(e.target) && sideNav.classList.contains('active')) {
+        hamburger.classList.remove('active');
+        sideNav.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+  }
+
   // ========== LOTTIE ANIMATION ==========
   const animationContainer = document.getElementById('lottie-animation');
   
-  if (animationContainer) {
+  if (animationContainer && typeof lottie !== 'undefined') {
     lottie.loadAnimation({
       container: animationContainer,
       renderer: 'svg',
@@ -27,12 +59,12 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ========== NAVIGATION ACTIVE STATE ==========
-  const navLinks = document.querySelectorAll(".side-nav a");
+  const allNavLinks = document.querySelectorAll(".side-nav a");
   const currentPath = window.location.pathname;
 
   // About page case
   if (currentPath.includes("about.html")) {
-    navLinks.forEach(link => {
+    allNavLinks.forEach(link => {
       link.classList.remove("active");
       if (link.getAttribute("href").includes("about")) {
         link.classList.add("active");
@@ -41,11 +73,11 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  // Timeline page case
-  if (currentPath.includes("timeline.html")) {
-    navLinks.forEach(link => {
+  // Story page case
+  if (currentPath.includes("story.html")) {
+    allNavLinks.forEach(link => {
       link.classList.remove("active");
-      if (link.getAttribute("href").includes("timeline")) {
+      if (link.getAttribute("href").includes("story")) {
         link.classList.add("active");
       }
     });
@@ -60,13 +92,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function getActiveSection() {
     const scrollY = window.scrollY + window.innerHeight / 2;
-    const workTop = sections.work.offsetTop;
+    const workTop = sections.work ? sections.work.offsetTop : 0;
     return scrollY >= workTop ? "work" : "hero";
   }
 
   function updateActiveNav() {
     const activeId = getActiveSection();
-    navLinks.forEach(link => {
+    allNavLinks.forEach(link => {
       link.classList.remove("active");
       if (link.getAttribute("href") === `#${activeId}`) {
         link.classList.add("active");
@@ -74,8 +106,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  updateActiveNav();
-  window.addEventListener("scroll", updateActiveNav);
+  if (sections.hero && sections.work) {
+    updateActiveNav();
+    window.addEventListener("scroll", updateActiveNav);
+  }
 
   // ========== CARD → FULLSCREEN TRANSITION ==========
   const projectCards = document.querySelectorAll('.project-card');
