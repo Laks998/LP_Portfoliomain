@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("scroll", updateActiveNav);
   }
 
-  // ========== CARD → FULLSCREEN TRANSITION ==========
+  // ========== PROJECT CARD CLICK ==========
   const projectCards = document.querySelectorAll('.project-card');
 
   // Add staggered fade-in animation
@@ -126,53 +126,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 100 * index);
   });
 
+  // Navigate to project page on click
   projectCards.forEach(card => {
     card.addEventListener('click', (e) => {
       e.preventDefault();
-
-      const rect = card.getBoundingClientRect();
-      const scrollY = window.scrollY;
-
-      const clone = card.cloneNode(true);
-      clone.classList.add('project-card-clone');
-
-      // Style the clone
-      clone.style.position = 'absolute';
-      clone.style.top = (rect.top + scrollY) + 'px';
-      clone.style.left = rect.left + 'px';
-      clone.style.width = rect.width + 'px';
-      clone.style.height = rect.height + 'px';
-      clone.style.margin = '0';
-      clone.style.zIndex = '9999';
-      clone.style.transition = 'all 0.9s ease-in-out';
-
-      // Optional transparent overlay
-      const overlay = document.createElement('div');
-      overlay.style.position = 'fixed';
-      overlay.style.top = 0;
-      overlay.style.left = 0;
-      overlay.style.width = '100vw';
-      overlay.style.height = '100vh';
-      overlay.style.zIndex = '9998';
-      overlay.style.background = 'transparent';
-      overlay.style.pointerEvents = 'none';
-
-      document.body.appendChild(overlay);
-      document.body.appendChild(clone);
-
-      // Animate to full screen
-      requestAnimationFrame(() => {
-        clone.style.top = scrollY + 'px';
-        clone.style.left = '0';
-        clone.style.width = '100vw';
-        clone.style.height = '100vh';
-      });
-
-      // Navigate after animation
-      setTimeout(() => {
-        const projectId = card.getAttribute('data-project');
-        window.location.href = `projects/${projectId}.html`;
-      }, 1000);
+      const projectId = card.getAttribute('data-project');
+      window.location.href = `projects/${projectId}.html`;
     });
   });
 
