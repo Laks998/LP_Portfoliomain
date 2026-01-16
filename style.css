@@ -41,7 +41,7 @@ html {
   z-index: 0;
   pointer-events: none;
   user-select: none;
-  letter-spacing: 0.4px;
+  letter-spacing: 2px;
 }
 
 .name-block {
@@ -59,7 +59,7 @@ html {
   white-space: nowrap;
   line-height: .8;
   opacity: 1;
-  letter-spacing: 0.4px;
+  letter-spacing: 2px;
 }
 
 #name-label .taglines {
@@ -72,7 +72,7 @@ html {
   line-height: 1;
   text-align: left;
   opacity: 1;
-  letter-spacing: 0.4px;
+  letter-spacing: 2px;
 }
 
 .taglines div {
