@@ -2,6 +2,38 @@
 
 document.addEventListener("DOMContentLoaded", () => {
   
+  // ========== HAMBURGER MENU TOGGLE ==========
+  const hamburger = document.getElementById('hamburger');
+  const sideNav = document.getElementById('sideNav');
+  const navLinks = document.querySelectorAll('.side-nav a');
+
+  if (hamburger && sideNav) {
+    // Toggle hamburger menu
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      sideNav.classList.toggle('active');
+      document.body.style.overflow = sideNav.classList.contains('active') ? 'hidden' : '';
+    });
+
+    // Close menu when clicking on a link
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        sideNav.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!sideNav.contains(e.target) && !hamburger.contains(e.target) && sideNav.classList.contains('active')) {
+        hamburger.classList.remove('active');
+        sideNav.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+  }
+  
   // ===== SCROLL-TRIGGERED ANIMATIONS =====
   const scrollElements = document.querySelectorAll("[data-scroll]");
   const sections = document.querySelectorAll(".about-section");
@@ -279,18 +311,18 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   
   // ===== ACTIVE NAV STATE =====
-  const navLinks = document.querySelectorAll(".side-nav a");
+  const allNavLinks = document.querySelectorAll(".side-nav a");
   const currentPath = window.location.pathname;
   
   if (currentPath.includes("about.html")) {
-    navLinks.forEach((link) => {
+    allNavLinks.forEach((link) => {
       link.classList.remove("active");
       if (link.getAttribute("href").includes("about")) {
         link.classList.add("active");
       }
     });
   } else if (currentPath.includes("story.html")) {
-    navLinks.forEach((link) => {
+    allNavLinks.forEach((link) => {
       link.classList.remove("active");
       if (link.getAttribute("href").includes("story")) {
         link.classList.add("active");
