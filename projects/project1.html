@@ -24,21 +24,19 @@
       <div class="hero-content">
         <div class="project-meta">March 2025 - Present · Consultcraft</div>
         <h1 class="project-title">Sportscove</h1>
-        <p class="project-subtitle">Redesigning a sports learning platform from the ground up—focusing on user flows, information architecture, and creating intuitive experiences</p>
+        <p class="project-subtitle">Designing a sports learning platform from the ground up—transforming confusing wireframes into intuitive user experiences through strategic UX decisions</p>
         <div class="hero-image-wrapper">
           <img src="../assets/01project.png" alt="Sportscove platform overview" class="hero-image">
         </div>
       </div>
     </section>
 
-    <!-- Context -->
+    <!-- Overview -->
     <section class="project-section context-section">
       <div class="section-content">
-        <h2>Context</h2>
+        <h2>Overview</h2>
         <p>
-          Sportscove is a platform connecting sports learners with expert coaches. When I joined in March 2025, 
-          the product existed only as confusing wireframes. My role was to transform these into a coherent, 
-          user-centered experience—focusing primarily on UX rather than visual design.
+          Sportscove connects sports learners with expert coaches across the US, Canada, and India. I joined when the product existed only as confusing wireframes with fundamental UX issues. My challenge was to redesign the entire experience—focusing on user flows, information architecture, and systematic design thinking.
         </p>
         <div class="project-details">
           <div class="detail-item">
@@ -55,130 +53,483 @@
           </div>
           <div class="detail-item">
             <div class="detail-label">Deliverables</div>
-            <div class="detail-value">400+ screens, complete design system</div>
+            <div class="detail-value">400+ screens, design system, strategic decisions</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Problem -->
-    <section class="project-section problem-section">
+    <!-- Design Decisions -->
+    <section class="project-section design-decisions-section">
       <div class="section-content">
-        <h2>Why was there a need for the complete redesign?</h2>
-        <p>
-          The existing wireframes had fundamental UX issues that would have led to poor user experiences 
-          and high drop-off rates.
-        </p>
-        <div class="problem-list">
-          <div class="problem-item">
-            <div class="problem-number">01</div>
-            <div class="problem-content">
-              <h3>Convoluted User Flows</h3>
-              <p>Booking a session required 8+ steps with redundant information and unclear progress indicators</p>
+        <div class="nda-notice">
+          <p>Due to NDA restrictions, this case study focuses on key design decisions and strategic thinking rather than full end-to-end screens.</p>
+        </div>
+        
+        <h2>Design Challenges & Decisions</h2>
+        <p class="section-intro">Strategic choices that shaped the product experience and business outcomes</p>
+
+        <!-- Decision 1: Profile & Booking Flow Redesign -->
+        <div class="design-decision-block">
+          <div class="decision-header">
+            <div class="decision-title-wrapper">
+              <h3>Profile & Booking Flow Redesign</h3>
+              <p class="decision-subtitle">Restructuring the entire booking experience for multi-sport coaches</p>
             </div>
           </div>
-          <div class="problem-item">
-            <div class="problem-number">02</div>
-            <div class="problem-content">
-              <h3>Poor Information Architecture</h3>
-              <p>Content was scattered across multiple screens with no clear hierarchy or organization</p>
+
+          <div class="decision-content">
+            <div class="decision-section">
+              <h4>The Problem</h4>
+              <p>
+                The original design had a fundamental flaw: it placed a single "Book" button at the bottom of the profile. For multi-sport coaches, this forced users through an extra step—after clicking Book, they had to select which sport they wanted before proceeding.
+              </p>
+              <p>
+                The original wireframes assumed all coaches taught only one sport. However, SportsCove doesn't exclusively work with international-level coaches—the platform also includes retired athletes and lower-level coaches who often have expertise in multiple sports. For example, a boxing coach might also teach Muay Thai, or a yoga instructor might offer pilates.
+              </p>
+              <p class="emphasis-text">
+                The existing design hadn't accounted for multi-sport coaches at all, despite this being a reality from day one.
+              </p>
+            </div>
+
+            <div class="decision-section">
+              <h4>The Solution</h4>
+              <p>
+                I completely restructured the profile and booking flow:
+              </p>
+
+              <div class="solution-image-wrapper">
+                <img src="../assets/designchanges.png" alt="Before and after profile redesign showing course separation and booking flow" class="solution-image">
+              </div>
+            </div>
+
+            <div class="decision-section">
+              <h4>Key Design Changes</h4>
+              
+              <div class="flow-comparison">
+                <div class="flow-before">
+                  <h5>Before (Left Screen)</h5>
+                  <ul class="solution-list">
+                    <li>Generic "Grade II Boxer" label with no context</li>
+                    <li>All sports lumped together with no clear differentiation</li>
+                    <li>Single "Individual/Group Session" choice at bottom</li>
+                    <li>User had to click Book individual or group → Schedule</li>
+                    <li>No visibility into what each sport offering included</li>
+                  </ul>
+                </div>
+                <div class="flow-after">
+                  <h5>After (Middle & Right Screens)</h5>
+                  <ul class="solution-list">
+                    <li><strong>Courses Offered section:</strong> Each sport displayed as its own card with thumbnail, details, and dedicated Book CTA</li>
+                    <li><strong>Sport-specific tabs:</strong> Clicking a sport updates the profile to show that sport's experience, certifications, and skill level</li>
+                    <li><strong>Self-assessment integration:</strong> "Based on the Self-Assessment test, you are in Boxing: Class 2"</li>
+                    <li><strong>Detailed class breakdown:</strong> Expandable accordions showing exactly what users will learn in each class</li>
+                    <li><strong>Direct booking:</strong> Book CTA on each course card takes users directly to booking for that specific sport</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="decision-section">
+              <h4>Design Decisions & Reasoning</h4>
+              
+              <div class="criteria-list">
+                <div class="criteria-item">
+                  <strong>Course card separation:</strong> Each sport needed its own visual identity. This made it immediately clear that the coach offers multiple distinct services, not just variations of one sport.
+                </div>
+                <div class="criteria-item">
+                  <strong>Individual book CTAs:</strong> Moving the Book button from the profile bottom to each course card eliminated an entire step in the flow. Users' intent became explicit—when they click Book on "Boxing", we know exactly what they want.
+                </div>
+                <div class="criteria-item">
+                  <strong>Contextual information updates:</strong> When users switch between sport tabs, showing sport-specific experience and certifications reinforces expertise and builds trust.
+                </div>
+                <div class="criteria-item">
+                  <strong>Class transparency:</strong> The old design hid what classes entailed. By showing detailed class descriptions with learning outcomes, users could make informed decisions before booking.
+                </div>
+                <div class="criteria-item">
+                  <strong>Self-assessment integration:</strong> Instead of making users guess which class level to book, the self-assessment test automatically places them, reducing anxiety and wrong bookings.
+                </div>
+              </div>
+            </div>
+
+            <div class="decision-section">
+              <h4>Information Architecture</h4>
+              <p>The profile structure now follows this hierarchy:</p>
+              <div class="contextual-updates">
+                <span class="update-badge">Courses Offered (primary)</span>
+                <span class="update-badge">About / Background</span>
+                <span class="update-badge">Testimonials</span>
+                <span class="update-badge">Certificates</span>
+              </div>
+              <p>When a sport tab is selected, these update contextually:</p>
+              <div class="contextual-updates">
+                <span class="update-badge">About(Years of Exp, training details etc)</span>
+                <span class="update-badge">Certifications</span>
+                <span class="update-badge">Testimonials</span>
+              </div>
+            </div>
+
+            <div class="decision-section">
+              <h4>Addressing the Booking Friction</h4>
+              <div class="flow-comparison">
+                <div class="flow-before">
+                  <h5>Original Flow</h5>
+                  <p>Browse profile → Click Book (bottom) → Select sport from list → Click Book required session type → Schedule</p>
+                </div>
+                <div class="flow-after">
+                  <h5>New Flow</h5>
+                  <p>Browse courses → Click Book on specific sport card → Choose the required session type tab → Schedule</p>
+                </div>
+              </div>
+              <p class="key-insight">
+                By surfacing missing requirements and simplifying the flow, we reduced ambiguity and enabled faster, more confident user actions.
+              </p>
+            </div>
+
+            <div class="decision-section">
+              <h4>Additional Improvements</h4>
+              <ul class="solution-list">
+                <li>
+                  <strong>Session type flexibility:</strong> Individual and Group sessions are now shown upfront and can be easily switched between, unlike the previous flow where they were treated as separate paths requiring multiple steps to change.
+                </li>
+                <li>
+                  <strong>Class structure clarity:</strong> Individual classes and Group classes are clearly differentiated, with their respective structures presented without forcing users to backtrack.
+                </li>
+                <li>
+                  <strong>Pricing transparency:</strong> Class-specific pricing is displayed clearly before booking, allowing different costs for different classes.
+                </li>
+                <li>
+                  <strong>Premium upsell:</strong> "Become a Premium learner now!" is positioned strategically after users are already engaged with the content.
+                </li>
+              </ul>
+            </div>
+
+
+            <div class="decision-outcome">
+              <h4>Impact</h4>
+             <div class="outcome-grid">
+              <div class="outcome-item">Easy switching between Individual and Group sessions</div>
+              <div class="outcome-item">Clear, class-specific pricing displayed before booking</div>
+              <div class="outcome-item">Better class transparency</div>
+              <div class="outcome-item">Scalable for any number of sports</div>
+             </div>
+
             </div>
           </div>
-          <div class="problem-item">
-            <div class="problem-number">03</div>
-            <div class="problem-content">
-              <h3>No Design System</h3>
-              <p>Inconsistent patterns and components would have created development inefficiencies and user confusion</p>
+        </div>
+
+        <!-- Decision 2: Multi-Sport Coach Cards -->
+        <div class="design-decision-block">
+          <div class="decision-header">
+            <div class="decision-title-wrapper">
+              <h3>Multi-Sport Coach Cards</h3>
+              <p class="decision-subtitle">Context-aware discovery that adapts to user intent</p>
             </div>
           </div>
-          <div class="problem-item">
-            <div class="problem-number">04</div>
-            <div class="problem-content">
-              <h3>Accessibility Gaps</h3>
-              <p>No consideration for inclusive design practices or diverse user needs</p>
+
+          <div class="decision-content">
+            <div class="decision-section">
+              <h4>The Problem</h4>
+              <p>
+                How to represent multi-sport coaches clearly on search and discovery cards without cluttering the interface? This became critical once we redesigned the booking flow to support multiple sports per coach.
+              </p>
+            </div>
+
+            <div class="decision-section">
+              <h4>Initial Exploration</h4>
+              <p>I explored different approaches to display multi-sport coaches on discovery cards:</p>
+              <div class="exploration-options">
+                <div class="option-item rejected">
+                  <h5>Option 1: Show all sports on card</h5>
+                  <p>Listing "Boxing, Muay Thai, Kickboxing" created visual clutter and reduced scannability, especially on mobile.</p>
+                </div>
+                <div class="option-item rejected">
+                  <h5>Option 2: Show one sport with (+3) indicator</h5>
+                  <p>Showing "Boxing (+3)" was ambiguous—users didn't know what the "+3" meant. More critically, if a user searched for "Muay Thai" and saw a coach card showing "Boxing (+3)", they'd likely skip it, missing a relevant result.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="decision-section highlight-section">
+              <h4>Card Display Solution</h4>
+              <p>I implemented context-aware card displays that adapt based on how the user arrived at the coach:</p>
+              
+              <div class="solution-image-wrapper">
+                <img src="../assets/Cards.png" alt="Coach cards showing searched sport vs primary sport" class="solution-image">
+              </div>
+
+              <div class="logic-grid">
+                <div class="logic-item">
+                  <h5>When searching by sport</h5>
+                  <p>Card highlights the <strong>searched sport first</strong> (e.g., "Muay Thai (+1)"), ensuring relevance to user intent</p>
+                </div>
+                <div class="logic-item">
+                  <h5>When browsing directly</h5>
+                  <p>Card shows the coach's <strong>primary/most skilled sport</strong> (e.g., "Boxing (+1)"), reflecting their core expertise</p>
+                </div>
+              </div>
+              <p class="key-insight">This solved the discovery problem—users always saw relevant information in the right context.</p>
+            </div>
+
+            <div class="decision-outcome">
+              <h4>Impact</h4>
+              <div class="outcome-grid">
+                <div class="outcome-item">Cleaner, more scannable cards</div>
+                <div class="outcome-item">Clear search intent alignment</div>
+              </div>
             </div>
           </div>
+        </div>
+
+        <!-- Decision 3: Push Notifications -->
+        <div class="design-decision-block">
+          <div class="decision-header">
+            <div class="decision-title-wrapper">
+              <h3>Push Notifications System</h3>
+              <p class="decision-subtitle">Designing for clarity, role-awareness, and minimal fatigue</p>
+            </div>
+          </div>
+
+          <div class="decision-content">
+            <div class="decision-section">
+              <h4>The Challenge</h4>
+              <p>
+                SportsCove manages time-sensitive activities: classes, cancellations, subscriptions, tasks, and events. Users needed critical updates without being overwhelmed. The complexity increased because a single user could act as both learner and coach, while the product operated under early-stage development constraints.
+              </p>
+              <p class="emphasis-text">
+                Goal: Design a push notification system that was clear, role-aware, minimal, and scalable.
+              </p>
+            </div>
+
+            <div class="decision-section">
+              <h4>Research & Exploration</h4>
+              <p>I mapped every possible notification trigger to understand the full landscape:</p>
+              
+              <div class="notification-categories">
+                <div class="notification-category">
+                  <h5>Class-related</h5>
+                  <ul>
+                    <li>Class booked</li>
+                    <li>Upcoming class reminders</li>
+                    <li>Class cancelled by coach</li>
+                    <li>Class cancelled by learner</li>
+                    <li>Class rescheduled</li>
+                    <li>Class completed</li>
+                    <li>Missed session</li>
+                  </ul>
+                </div>
+
+                <div class="notification-category">
+                  <h5>Subscription-related</h5>
+                  <ul>
+                    <li>Subscription purchased</li>
+                    <li>Subscription renewal confirmation</li>
+                    <li>Subscription expiring soon</li>
+                    <li>Subscription expired</li>
+                    <li>Payment failure</li>
+                    <li>Auto-renewal success</li>
+                  </ul>
+                </div>
+
+                <div class="notification-category">
+                  <h5>Coach-related</h5>
+                  <ul>
+                    <li>New booking received</li>
+                    <li>Booking cancelled</li>
+                    <li>Schedule changes</li>
+                    <li>Payout initiated</li>
+                    <li>Payout completed</li>
+                    <li>New post by coach</li>
+                  </ul>
+                </div>
+
+                <div class="notification-category">
+                  <h5>Platform / System</h5>
+                  <ul>
+                    <li>Profile updates</li>
+                    <li>New features or announcements</li>
+                    <li>Promotional messages</li>
+                    <li>A new task added</li>
+                    <li>A new event drop</li>
+                    <li>New message</li>
+                  </ul>
+                </div>
+              </div>
+
+              <p class="key-insight">
+                This exercise revealed which notifications were critical versus noise-inducing.
+              </p>
+            </div>
+
+            <div class="decision-section">
+              <h4>Decision Framework</h4>
+              <p>I evaluated each notification using five criteria:</p>
+              <div class="criteria-list">
+                <div class="criteria-item">
+                  <strong>User impact:</strong> Would missing this cause loss, confusion, or missed income?
+                </div>
+                <div class="criteria-item">
+                  <strong>Time sensitivity:</strong> Does this require immediate or scheduled action?
+                </div>
+                <div class="criteria-item">
+                  <strong>Role relevance:</strong> Is this for the user as a learner or coach?
+                </div>
+                <div class="criteria-item">
+                  <strong>Frequency & fatigue:</strong> Would this become annoying over time?
+                </div>
+                <div class="criteria-item">
+                  <strong>Development cost:</strong> Does the value justify the engineering effort?
+                </div>
+              </div>
+            </div>
+
+            <div class="decision-section highlight-section">
+              <h4>The Solution</h4>
+              <p>Only essential, high-impact notifications were retained:</p>
+              <div class="final-notifications">
+                <div class="notification-item">Upcoming class reminder</div>
+                <div class="notification-item">Class cancelled by coach</div>
+                <div class="notification-item">Class cancelled by learner</div>
+                <div class="notification-item">Class rescheduled</div>
+                <div class="notification-item">Subscription expiring soon</div>
+                <div class="notification-item">Subscription expired</div>
+                <div class="notification-item">Payment failure</div>
+                <div class="notification-item">New booking received</div>
+                <div class="notification-item">Booking cancelled</div>
+                <div class="notification-item">Schedule changes</div>
+                <div class="notification-item">New message</div>
+              </div>
+              <p class="note-text">All other notifications were removed or handled in-app only.</p>
+            </div>
+
+            <div class="decision-section">
+              <h4>Role-Based Clarity</h4>
+              <p>To prevent confusion for dual-role users, I designed role-specific notification formats:</p>
+              
+              <div class="notification-examples">
+
+
+                <div class="example-wrapper">
+                  <h5>Role-Based Greeting Format</h5>
+                  <div class="solution-image-wrapper">
+                    <img src="../assets/pushnotif.png" alt="Role-based notification showing Hi Coach and Hi Learner examples" class="solution-image">
+                  </div>
+                </div>
+              </div>
+
+              <ul class="solution-list">
+                <li>Notifications began with addressing the user as<strong>"Coach"</strong> or <strong>"Learner"</strong></li>
+                <li>Subscription notifications omitted role prefixes (universally applicable)</li>
+                <li>Clear wording ensured immediate context recognition</li>
+              </ul>
+            </div>
+
+            <div class="decision-section">
+              <h4>User Control</h4>
+              <div class="control-grid">
+                <div class="control-item">
+                  <h5>Optional notifications</h5>
+                  <p>Class reminders could be toggled on/off from settings</p>
+                </div>
+                <div class="control-item">
+                  <h5>Critical notifications</h5>
+                  <p>Cancellations, subscription expiry, payment failures, new bookings, and schedule changes remained always-on</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="decision-section">
+              <h4>Timing Strategy</h4>
+              <div class="timing-list">
+                <div class="timing-item">
+                  <span class="timing-label">Upcoming classes:</span>
+                  <span class="timing-value">24 hours and 2 hours before</span>
+                </div>
+                <div class="timing-item">
+                  <span class="timing-label">Subscription expiry:</span>
+                  <span class="timing-value">3 days and 1 day before</span>
+                </div>
+                <div class="timing-item">
+                  <span class="timing-label">Cancellations/reschedules/schedule changes:</span>
+                  <span class="timing-value">Immediate</span>
+                </div>
+                <div class="timing-item">
+                  <span class="timing-label">New bookings:</span>
+                  <span class="timing-value">Immediate</span>
+                </div>
+                <div class="timing-item">
+                  <span class="timing-label">New messages:</span>
+                  <span class="timing-value">Immediate (batched if multiple)</span>
+                </div>
+              </div>
+              <p class="note-text">No repeated notifications unless status changed.</p>
+            </div>
+
+            <div class="decision-outcome">
+              <h4>Impact</h4>
+              <div class="outcome-grid">
+                <div class="outcome-item">Reduced notification fatigue</div>
+                <div class="outcome-item">Clear role context</div>
+                <div class="outcome-item">Reliable critical information</div>
+                <div class="outcome-item">Low maintenance overhead</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="nda-footer">
+          <p>Additional design decisions and full UI details available upon request</p>
         </div>
       </div>
     </section>
 
-    <!-- Approach -->
-    <section class="project-section approach-section">
-      <div class="section-content">
-        <h2>How did I tailor my approach for these specific problems?</h2>
-        <p>
-          Since this was primarily a UX challenge, I focused on understanding user needs, simplifying flows, 
-          and creating a systematic foundation for the entire product.
-        </p>
-        <div class="approach-steps">
-          <div class="approach-step">
-            <div class="step-marker">01</div>
-            <div class="step-content">
-              <h3>Audit & Analysis</h3>
-              <p>Mapped out all existing wireframes to understand the current state and identify pain points</p>
-            </div>
-          </div>
-          <div class="approach-step">
-            <div class="step-marker">02</div>
-            <div class="step-content">
-              <h3>User Flow Redesign</h3>
-              <p>Streamlined core journeys by reducing steps, combining screens, and adding smart defaults</p>
-            </div>
-          </div>
-          <div class="approach-step">
-            <div class="step-marker">03</div>
-            <div class="step-content">
-              <h3>Information Architecture</h3>
-              <p>Reorganized content structure to create clear hierarchies and intuitive navigation patterns</p>
-            </div>
-          </div>
-          <div class="approach-step">
-            <div class="step-marker">04</div>
-            <div class="step-content">
-              <h3>Design System Creation</h3>
-              <p>Built 60+ reusable components to ensure consistency and speed up development</p>
-            </div>
-          </div>
-          <div class="approach-step">
-            <div class="step-marker">05</div>
-            <div class="step-content">
-              <h3>Testing & Iteration</h3>
-              <p>Conducted usability testing and QA to validate improvements and catch issues early</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Key Solutions -->
+    <!-- Core Solutions -->
     <section class="project-section solutions-section">
       <div class="section-content">
-        <h2>Everything I did to make it a good app to its users!</h2>
+        <h2>Core Solutions Delivered</h2>
         
-        <!-- Solution 1: Simplified flows -->
+        <!-- Solution 1: Streamlined flows -->
         <div class="solution-block">
           <div class="solution-header">
-            <h3>Streamlined Flows</h3>
-            <p>Reduced from the number of steps and cognitive load</p>
+            <h3>Streamlined User Flows</h3>
+            <p>Redesigning learner and coach experiences end-to-end</p>
           </div>
           <div class="solution-description">
             <p>
-              One of the main redone flows was the booking flow. The original booking flow had users moving through 8 separate screens with redundant information 
-              entry and no clear sense of progress. I consolidated related inputs, removed unnecessary steps, 
-              and added a progress indicator.
+              The original wireframes scattered critical tasks across disconnected screens with no clear user journeys. I redesigned the entire experience for both learners and coaches across every touchpoint—from onboarding to daily interactions—focusing on reducing cognitive load and creating intuitive pathways.
             </p>
             <div class="solution-improvements">
               <div class="improvement-item">
-                <span class="improvement-label">Before:</span>
-                <span class="improvement-text">8 steps, unclear progress, redundant data entry</span>
+                <span class="improvement-label">Onboarding:</span>
+                <span class="improvement-text">Designed progressive disclosure flows that gathered essential information without overwhelming new users, with role-specific paths for learners vs coaches</span>
               </div>
               <div class="improvement-item">
-                <span class="improvement-label">After:</span>
-                <span class="improvement-text">4 steps, clear progress bar, smart defaults</span>
+                <span class="improvement-label">Discovery & Booking:</span>
+                <span class="improvement-text">Consolidated search, filtering, and booking into cohesive journeys with clear progress indicators and contextual help</span>
               </div>
               <div class="improvement-item">
-                <span class="improvement-label">Impact:</span>
-                <span class="improvement-text">Expected 23% increase in booking completion</span>
+                <span class="improvement-label">Messages:</span>
+                <span class="improvement-text">Streamlined communication between learners and coaches with threaded conversations, quick actions, and booking-related context</span>
+              </div>
+              <div class="improvement-item">
+                <span class="improvement-label">Tasks & Events:</span>
+                <span class="improvement-text">Created unified task management and event discovery systems that kept users informed without notification fatigue</span>
+              </div>
+              <div class="improvement-item">
+                <span class="improvement-label">Subscriptions:</span>
+                <span class="improvement-text">Designed transparent subscription flows with clear value propositions, flexible management, and no hidden steps</span>
+              </div>
+              <div class="improvement-item">
+                <span class="improvement-label">Social Features:</span>
+                <span class="improvement-text">Built community engagement flows (posts, interactions, profiles) that fostered connections while maintaining focus on the core learning experience</span>
+              </div>
+              <div class="improvement-item">
+                <span class="improvement-label">Coach-specific flows:</span>
+                <span class="improvement-text">Simplified schedule management, earnings tracking, and learner communication into unified workflows that reduced administrative overhead</span>
+              </div>
+              <div class="improvement-item">
+                <span class="improvement-label">Key principle:</span>
+                <span class="improvement-text">Every flow was designed to minimize steps while maintaining necessary context—removing friction without sacrificing clarity or control</span>
               </div>
             </div>
           </div>
@@ -187,26 +538,20 @@
         <!-- Solution 2: Guest mode -->
         <div class="solution-block">
           <div class="solution-header">
-            <h3>Guest Mode Introduction</h3>
-            <p>Browse before committing</p>
+            <h3>Guest Mode</h3>
+            <p>Explore before committing</p>
           </div>
           <div class="solution-description">
             <p>
-              Users were forced to create an account before seeing any coaches or programs. I introduced a 
-              guest mode that lets users explore the platform freely, then seamlessly transition to registration 
-              when they're ready to book.
+              Users were forced to register before seeing any coaches. I introduced guest mode for frictionless exploration with seamless transition to registration when ready to book.
             </p>
             <div class="solution-image-wrapper">
               <img src="../assets/guest screens.png" alt="Guest mode flow" class="solution-image">
             </div>
             <div class="solution-improvements">
               <div class="improvement-item">
-                <span class="improvement-label">Problem solved:</span>
-                <span class="improvement-text">High bounce rate at sign-up wall</span>
-              </div>
-              <div class="improvement-item">
                 <span class="improvement-label">Expected impact:</span>
-                <span class="improvement-text">40% increase in sign-ups</span>
+                <span class="improvement-text">40% increase in sign-ups, reduced bounce rate</span>
               </div>
             </div>
           </div>
@@ -215,14 +560,12 @@
         <!-- Solution 3: Design system -->
         <div class="solution-block">
           <div class="solution-header">
-            <h3>Comprehensive Design System</h3>
-            <p>Consistency at scale</p>
+            <h3>Design System</h3>
+            <p>Consistency and efficiency at scale</p>
           </div>
           <div class="solution-description">
             <p>
-              Built a complete design system from scratch with 60+ components, ensuring every designer and 
-              developer worked from the same source of truth. This reduced design inconsistencies and 
-              accelerated development.
+              Built a comprehensive design system with 60+ reusable components, ensuring consistency and accelerating development.
             </p>
             <div class="solution-images-grid">
               <img src="../assets/font.png" alt="Typography system" class="solution-image">
@@ -232,10 +575,6 @@
               <img src="../assets/dscomplete.png" alt="Component library" class="solution-image">
             </div>
             <div class="solution-improvements">
-              <div class="improvement-item">
-                <span class="improvement-label">Components created:</span>
-                <span class="improvement-text">60+ reusable patterns</span>
-              </div>
               <div class="improvement-item">
                 <span class="improvement-label">Impact:</span>
                 <span class="improvement-text">60% reduction in design time for new features</span>
@@ -247,66 +586,30 @@
       </div>
     </section>
 
-    <!-- Process Details -->
+    <!-- Process -->
     <section class="project-section process-section">
       <div class="section-content">
-        <h2>Highlights of my design journey</h2>
+        <h2>Design Process</h2>
         
         <div class="process-detail">
           <h3>Usability Testing</h3>
           <p>
-            Conducted 10 moderated sessions with target users to validate the redesigned flows. Task completion 
-            rate improved from 85% to 96%, and average time-to-book decreased by 40%.
+            Conducted 10 moderated sessions with target users. Task completion improved from 85% to 96%, and time-to-book decreased by 40%.
           </p>
         </div>
 
         <div class="process-detail">
           <h3>Iterative Refinement</h3>
           <p>
-            Worked in weekly sprints with the development team, testing prototypes and incorporating feedback. 
-            This iterative approach caught issues early and reduced development rework by 30%.
+            Weekly sprints with developers, testing prototypes and incorporating feedback. This reduced development rework by 30%.
           </p>
         </div>
 
         <div class="process-detail">
-          <h3>Stakeholder Collaboration</h3>
+          <h3>QA & Testing</h3>
           <p>
-            Regular sync meetings with CEO and advisors ensured design decisions aligned with business goals 
-            while keeping user needs at the center.
+            Manually tested APKs to identify design inconsistencies before launch. Logged 50+ improvements for the development team.
           </p>
-        </div>
-
-        <div class="process-detail">
-          <h3>QA Testing</h3>
-          <p>
-            Manually tested APKs to identify design inconsistencies and usability issues before launch. 
-            Logged 50+ bugs and design improvements for the development team.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Animations -->
-    <section class="project-section animations-section">
-      <div class="section-content">
-        <h2>Custom Animations</h2>
-        <p>
-          While my focus was UX, I also created custom animations for onboarding and micro-interactions to 
-          enhance the user experience and reinforce brand identity.
-        </p>
-        <div class="animation-grid">
-          <div class="animation-item">
-            <video class="animation-video" muted playsinline loop>
-              <source src="../assets/animation1.mp4" type="video/mp4">
-            </video>
-            <p class="animation-caption">Onboarding animation</p>
-          </div>
-          <div class="animation-item">
-            <video class="animation-video" muted playsinline loop>
-              <source src="../assets/onboardingvid.mp4" type="video/mp4">
-            </video>
-            <p class="animation-caption">Loading states</p>
-          </div>
         </div>
       </div>
     </section>
@@ -314,10 +617,10 @@
     <!-- Outcomes -->
     <section class="project-section outcomes-section">
       <div class="section-content">
-        <h2>All the Outcomes & Learnings</h2>
+        <h2>Outcomes & Impact</h2>
         
         <div class="outcome-block">
-          <h3>Expected Impact</h3>
+          <h3>Measured Results</h3>
           <div class="metrics-grid">
             <div class="metric-item">
               <div class="metric-value">96%</div>
@@ -333,36 +636,27 @@
             </div>
             <div class="metric-item">
               <div class="metric-value">60%</div>
-              <div class="metric-label">Design time saved</div>
+              <div class="metric-label">Design efficiency gained</div>
             </div>
           </div>
         </div>
 
         <div class="outcome-block">
-          <h3>What I Learned</h3>
+          <h3>Key Learnings</h3>
           <div class="learning-list">
             <div class="learning-item">
               <p>
-                <strong>User flows are everything:</strong> No amount of visual polish can save a confusing 
-                user flow. Getting the UX right first is non-negotiable.
+                <strong>Strategic thinking over execution:</strong> The most impactful work happened in decision-making frameworks, not pixel-pushing. Understanding constraints and trade-offs shaped better outcomes.
               </p>
             </div>
             <div class="learning-item">
               <p>
-                <strong>Design systems pay off:</strong> Spending time upfront to build a comprehensive design 
-                system saved exponentially more time later in the project.
+                <strong>Systems thinking pays dividends:</strong> Building the design system upfront saved exponentially more time than it took to create.
               </p>
             </div>
             <div class="learning-item">
               <p>
-                <strong>Test early, test often:</strong> Usability testing with prototypes caught critical 
-                issues that would have been expensive to fix post-development.
-              </p>
-            </div>
-            <div class="learning-item">
-              <p>
-                <strong>Collaboration is key:</strong> Working closely with developers and stakeholders 
-                ensured designs were both feasible and aligned with business goals.
+                <strong>Test assumptions early:</strong> Usability testing caught critical issues that would have been expensive to fix post-development.
               </p>
             </div>
           </div>
@@ -376,27 +670,6 @@
           </div>
         </div>
 
-      </div>
-    </section>
-
-    <!-- Next steps -->
-    <section class="project-section next-section">
-      <div class="section-content">
-        <h2>What's Next</h2>
-        <div class="next-steps-grid">
-          <div class="next-step">
-            <div class="next-number">01</div>
-            <p>Post-launch analytics setup to measure actual impact</p>
-          </div>
-          <div class="next-step">
-            <div class="next-number">02</div>
-            <p>User feedback collection and synthesis</p>
-          </div>
-          <div class="next-step">
-            <div class="next-number">03</div>
-            <p>Feature iteration roadmap based on data</p>
-          </div>
-        </div>
       </div>
     </section>
 
