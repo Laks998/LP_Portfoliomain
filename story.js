@@ -52,26 +52,26 @@ document.addEventListener("DOMContentLoaded", () => {
   const allNavLinks = document.querySelectorAll(".side-nav a");
   const currentPath = window.location.pathname;
 
-  // About page case
-  if (currentPath.includes("about.html")) {
-    allNavLinks.forEach(link => {
-      link.classList.remove("active");
-      if (link.getAttribute("href").includes("about")) {
-        link.classList.add("active");
-      }
-    });
-    return;
-  }
-
-  // Story page case
+  // Story page case - set Career Story as active
   if (currentPath.includes("story.html")) {
     allNavLinks.forEach(link => {
       link.classList.remove("active");
-      if (link.getAttribute("href").includes("story")) {
+      const href = link.getAttribute("href");
+      if (href && href.includes("story")) {
         link.classList.add("active");
       }
     });
-    return;
+  }
+
+  // About page case
+  else if (currentPath.includes("about.html")) {
+    allNavLinks.forEach(link => {
+      link.classList.remove("active");
+      const href = link.getAttribute("href");
+      if (href && href.includes("about")) {
+        link.classList.add("active");
+      }
+    });
   }
 
   // ========== SMOOTH SCROLL FOR TIMELINE ==========

@@ -486,9 +486,15 @@ body {
     min-width: auto !important;
   }
 
-  /* Hide logo in mobile menu */
+  /* Show logo in mobile menu */
   .side-nav .logo-nav {
-    display: none !important;
+    display: flex !important;
+    width: auto !important;
+    padding: 0 !important;
+  }
+
+  .side-nav .logo-image {
+    width: 60px;
   }
 
   .about-container {
