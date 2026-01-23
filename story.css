@@ -66,13 +66,13 @@ html {
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
   z-index: 1000;
 }
 
 .side-nav a {
   padding: 12px 20px;
-  border: 2px solid #EB676C;
+  border: 2px solid #262424;
   background-color: transparent;
   color: #EB676C;
   text-decoration: none;
@@ -93,7 +93,7 @@ html {
 
 .side-nav a {
   position: relative;
-  border: 2px solid #EB676C;
+  border: 2px solid #262424;
   color: #EB676C;
   background-color: transparent;
   background-image: linear-gradient(#EB676C, #EB676C);
@@ -388,7 +388,7 @@ html {
 @media (max-width: 992px) {
   .side-nav {
     right: 20px;
-    gap: 15px;
+    gap: 10px;
   }
   
   .side-nav a {
@@ -429,7 +429,7 @@ html {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 30px;
+    gap: 10px;
     padding: 60px 30px;
     transform: none;
     transition: right 0.4s ease;
