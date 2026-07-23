@@ -85,7 +85,7 @@ html {
 }
 
 .side-nav a.logo-nav {
-  padding: 0 !important;
+  padding: 1 !important;
   border: none !important;
   background: none !important;
   min-width: auto !important;

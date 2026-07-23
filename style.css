@@ -41,7 +41,7 @@ html {
   z-index: 0;
   pointer-events: none;
   user-select: none;
-  letter-spacing: 2px;
+  letter-spacing: 5px;
 }
 
 .name-block {
@@ -54,12 +54,12 @@ html {
 #name-label .line {
   font-family: 'Space Grotesk', sans-serif;
   font-size: 4rem;
-  font-weight: 100;
+  font-weight: 50;
   color: white;
   white-space: nowrap;
   line-height: .8;
   opacity: 1;
-  letter-spacing: 2px;
+  letter-spacing: 5px;
 }
 
 #name-label .taglines {
@@ -72,7 +72,7 @@ html {
   line-height: 1;
   text-align: left;
   opacity: 1;
-  letter-spacing: 2px;
+  letter-spacing: 5px;
 }
 
 .taglines div {
@@ -156,7 +156,7 @@ html {
 }
 
 .side-nav a.logo-nav {
-  padding: 0 !important;
+  padding: 1 !important;
   border: none !important;
   background: none !important;
   min-width: auto !important;
@@ -293,7 +293,7 @@ html {
   justify-content: flex-end;
   padding: 2rem;
   box-sizing: border-box;
-  border: 2px solid rgba(235, 103, 108, 0.3);
+  border: 2px solid rgba(0, 0, 0, 0.3);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
   position: relative;
@@ -457,7 +457,7 @@ html {
   position: relative;
   width: 38px;
   height: 38px;
-  border: 1px solid #EB676C;
+  border: 1px solid #262424;
   border-radius: 50%;
   display: flex;
   align-items: center;

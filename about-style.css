@@ -105,7 +105,7 @@ body {
 }
 
 .side-nav a.logo-nav {
-  padding: 0 !important;
+  padding: 1 !important;
   border: none !important;
   background: none !important;
   min-width: auto !important;
@@ -490,7 +490,7 @@ body {
   .side-nav .logo-nav {
     display: flex !important;
     width: auto !important;
-    padding: 0 !important;
+    padding: 1 !important;
   }
 
   .side-nav .logo-image {
