@@ -1,42 +1,31 @@
-// project1.js - Redesigned for Story Style with Design Decisions
+// project1.js - Sportscove case study
+// Round 2 changes: image hover-zoom moved from JS to CSS (see .solution-image
+// hover/focus-visible rules), so keyboard users tabbing to an image get the
+// same affordance mouse users do. Lightbox is now a proper accessible
+// dialog: role="dialog" + aria-modal, focus moves to the close button on
+// open and returns to the trigger on close, focus is trapped inside while
+// open, and every zoomable image/link is reachable and activatable by
+// keyboard (Tab + Enter/Space), not just click.
+
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 document.addEventListener('DOMContentLoaded', () => {
-  
+
   // Progress bar
   const progressBar = document.querySelector('.read-progress');
-  
+
   function updateProgressBar() {
     const windowHeight = window.innerHeight;
     const documentHeight = document.documentElement.scrollHeight;
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     const scrollPercent = (scrollTop / (documentHeight - windowHeight)) * 100;
-    
+
     progressBar.style.width = `${scrollPercent}%`;
   }
-  
+
   window.addEventListener('scroll', updateProgressBar);
   updateProgressBar();
-  
-  // Section reveal animations
-  const sections = document.querySelectorAll('.project-section');
-  
-  const observerOptions = {
-    threshold: 0.05,
-    rootMargin: '0px 0px -50px 0px'
-  };
-  
-  const sectionObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, observerOptions);
-  
-  sections.forEach(section => {
-    sectionObserver.observe(section);
-  });
-  
+
   // Smooth scroll for anchor links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -44,227 +33,152 @@ document.addEventListener('DOMContentLoaded', () => {
       const target = document.querySelector(this.getAttribute('href'));
       if (target) {
         target.scrollIntoView({
-          behavior: 'smooth',
+          behavior: prefersReducedMotion ? 'auto' : 'smooth',
           block: 'start'
         });
       }
     });
   });
-  
-  // Video autoplay on scroll — every video in the project (hero excluded, it
-  // already autoplays via the autoplay attribute in HTML). Videos play when
-  // they scroll into view and pause + reset when they scroll out. This
-  // includes the two Additional-stuff-I-did-because-I-wanted-to videos
-  // (splash screen + spinner loader), since they reuse the same
-  // .autoplay-video class as every other video on the page.
+
+  // Video autoplay on scroll — skipped entirely when reduced motion is
+  // requested; controls remain available so videos can still be played
+  // manually.
   const videos = document.querySelectorAll('.animation-video, .autoplay-video');
-  
+
   videos.forEach(video => {
     video.muted = true; // required for browsers to allow programmatic autoplay
   });
-  
-  const videoObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      const video = entry.target;
-      
-      if (entry.isIntersecting) {
-        video.play().catch(e => console.log('Video autoplay prevented:', e));
-      } else {
-        video.pause();
-        video.currentTime = 0;
-      }
-    });
-  }, { threshold: 0.4 });
-  
-  videos.forEach(video => {
-    videoObserver.observe(video);
-  });
-  
-  // Parallax effect for hero image
-  const heroImage = document.querySelector('.hero-image');
-  
-  if (heroImage) {
-    window.addEventListener('scroll', () => {
-      const scrolled = window.pageYOffset;
-      if (scrolled < window.innerHeight) {
-        heroImage.style.transform = `translateY(${scrolled * 0.3}px)`;
-        heroImage.style.opacity = 1 - (scrolled / window.innerHeight) * 0.5;
-      }
-    });
-  }
-  
-  // Add stagger animation to risk items (Four Problems section)
-  const riskItems = document.querySelectorAll('.risk-item');
 
-  const riskObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const items = entry.target.querySelectorAll('.risk-item');
-        items.forEach((item, index) => {
-          setTimeout(() => {
-            item.style.opacity = '1';
-            item.style.transform = 'translateY(0)';
-            item.style.transition = 'all 0.5s ease';
-          }, index * 150);
-        });
-      }
-    });
-  }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+  if (!prefersReducedMotion) {
+    const videoObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const video = entry.target;
 
-  const risksList = document.querySelector('.risks-list');
-  if (risksList) {
-    riskItems.forEach(item => {
-      item.style.opacity = '0';
-      item.style.transform = 'translateY(20px)';
+        if (entry.isIntersecting) {
+          video.play().catch(() => {
+            // Autoplay can be blocked by the browser; controls remain available.
+          });
+        } else {
+          video.pause();
+          video.currentTime = 0;
+        }
+      });
+    }, { threshold: 0.4 });
+
+    videos.forEach(video => {
+      videoObserver.observe(video);
     });
-    riskObserver.observe(risksList);
   }
-  
-  // Metric counter animation
-  const metricValues = document.querySelectorAll('.metric-value');
-  let hasAnimated = false;
-  
-  const metricObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting && !hasAnimated) {
-        hasAnimated = true;
-        
-        metricValues.forEach(metric => {
-          const text = metric.textContent;
-          
-          if (text.includes('%')) {
-            const target = parseInt(text);
-            let count = 0;
-            const increment = target / 50;
-            
-            const interval = setInterval(() => {
-              count += increment;
-              if (count >= target) {
-                metric.textContent = text;
-                clearInterval(interval);
-              } else {
-                metric.textContent = Math.floor(count) + '%';
-              }
-            }, 30);
-          }
-        });
-      }
-    });
-  }, { threshold: 0.5 });
-  
-  const metricsGrid = document.querySelector('.metrics-grid');
-  if (metricsGrid) {
-    metricObserver.observe(metricsGrid);
-  }
-  
-  // Keyboard navigation
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowDown' || e.key === 'PageDown') {
-      e.preventDefault();
-      window.scrollBy({ top: window.innerHeight * 0.8, behavior: 'smooth' });
-    } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
-      e.preventDefault();
-      window.scrollBy({ top: -window.innerHeight * 0.8, behavior: 'smooth' });
-    } else if (e.key === 'Home') {
-      e.preventDefault();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else if (e.key === 'End') {
-      e.preventDefault();
-      window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' });
+
+  // Stagger animation for the Four Problems section
+  if (!prefersReducedMotion) {
+    const riskItems = document.querySelectorAll('.risk-item');
+
+    const riskObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const items = entry.target.querySelectorAll('.risk-item');
+          items.forEach((item, index) => {
+            setTimeout(() => {
+              item.style.opacity = '1';
+              item.style.transform = 'translateY(0)';
+              item.style.transition = 'all 0.5s ease';
+            }, index * 150);
+          });
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+    const risksList = document.querySelector('.risks-list');
+    if (risksList) {
+      riskItems.forEach(item => {
+        item.style.opacity = '0';
+        item.style.transform = 'translateY(20px)';
+      });
+      riskObserver.observe(risksList);
     }
-  });
-  
-  // Add hover effects to images
-  const images = document.querySelectorAll('.solution-image');
-  
-  images.forEach(img => {
-    img.addEventListener('mouseenter', () => {
-      img.style.transform = 'scale(1.02)';
-      img.style.transition = 'transform 0.3s ease';
-    });
-    
-    img.addEventListener('mouseleave', () => {
-      img.style.transform = 'scale(1)';
-    });
-  });
-  
+  }
+
   // Smooth reveal for highlight sections
-  const highlightSections = document.querySelectorAll('.highlight-section');
-  
-  const highlightObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = '1';
-        entry.target.style.transform = 'scale(1)';
-        entry.target.style.transition = 'all 0.6s ease';
-      }
-    });
-  }, { threshold: 0.3 });
-  
-  highlightSections.forEach(section => {
-    highlightObserver.observe(section);
-  });
-  
-  // Reading time estimator
-  const content = document.querySelector('.project-content');
-  if (content) {
-    const text = content.innerText;
-    const wordCount = text.trim().split(/\s+/).length;
-    const readingTime = Math.ceil(wordCount / 200);
-    
-    console.log(`📖 Estimated reading time: ${readingTime} minutes`);
-    console.log(`📝 Word count: ${wordCount} words`);
-  }
-  
-  // Log design decisions section stats
-  const decisionSections = document.querySelectorAll('.design-decision-block');
-  if (decisionSections.length > 0) {
-    console.log(`🎯 Design decisions documented: ${decisionSections.length}`);
-    
-    decisionSections.forEach((block, index) => {
-      const title = block.querySelector('.decision-title-wrapper h3');
-      if (title) {
-        console.log(`   ${index + 1}. ${title.textContent.trim()}`);
-      }
+  if (!prefersReducedMotion) {
+    const highlightSections = document.querySelectorAll('.highlight-section');
+
+    const highlightObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'scale(1)';
+          entry.target.style.transition = 'all 0.6s ease';
+        }
+      });
+    }, { threshold: 0.3 });
+
+    highlightSections.forEach(section => {
+      highlightObserver.observe(section);
     });
   }
-  
-  console.log('✨ Sportscove project page loaded');
-  console.log('🎯 Focus: UX design process, problem-solving, and key design decisions');
-  
+
 });
 
-// Lightbox — click any solution/final/option image, or any element with
-// [data-lightbox-trigger] (e.g. the "view questionnaire" link), to view an
-// enlarged image.
+// Accessible lightbox — click, or Tab + Enter/Space, on any solution/option
+// image or [data-lightbox-trigger] link to view an enlarged image.
 document.addEventListener('DOMContentLoaded', () => {
 
   const zoomableImages = document.querySelectorAll('.solution-image, .option-card-image');
   const lightboxLinks = document.querySelectorAll('[data-lightbox-trigger]');
   if (zoomableImages.length === 0 && lightboxLinks.length === 0) return;
 
+  // Make every zoomable image a real keyboard-operable control.
+  zoomableImages.forEach(img => {
+    if (!img.hasAttribute('tabindex')) img.setAttribute('tabindex', '0');
+    img.setAttribute('role', 'button');
+    if (!img.hasAttribute('aria-label')) {
+      img.setAttribute('aria-label', `Enlarge image: ${img.alt || 'view larger'}`);
+    }
+  });
+
   const overlay = document.createElement('div');
   overlay.className = 'lightbox-overlay';
-  overlay.innerHTML = '<img src="" alt=""><button class="lightbox-close" aria-label="Close">&times;</button>';
+  overlay.setAttribute('role', 'dialog');
+  overlay.setAttribute('aria-modal', 'true');
+  overlay.setAttribute('aria-label', 'Enlarged image viewer');
+  overlay.innerHTML = '<img src="" alt=""><button class="lightbox-close" aria-label="Close enlarged image">&times;</button>';
   document.body.appendChild(overlay);
 
   const overlayImg = overlay.querySelector('img');
   const closeBtn = overlay.querySelector('.lightbox-close');
+  let lastFocusedElement = null;
 
-  function openLightbox(src, alt) {
+  function openLightbox(src, alt, triggerEl) {
+    lastFocusedElement = triggerEl || document.activeElement;
     overlayImg.src = src;
     overlayImg.alt = alt || '';
     overlay.classList.add('active');
     document.body.style.overflow = 'hidden';
+    closeBtn.focus();
   }
 
   function closeLightbox() {
     overlay.classList.remove('active');
     document.body.style.overflow = '';
+    if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
+      lastFocusedElement.focus();
+    }
+    lastFocusedElement = null;
+  }
+
+  function activate(el, src, alt) {
+    openLightbox(src, alt, el);
   }
 
   zoomableImages.forEach(img => {
-    img.addEventListener('click', () => openLightbox(img.src, img.alt));
+    img.addEventListener('click', () => activate(img, img.src, img.alt));
+    img.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+        e.preventDefault();
+        activate(img, img.src, img.alt);
+      }
+    });
   });
 
   // Links (e.g. "View the original questionnaire") open their href as an
@@ -272,7 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
   lightboxLinks.forEach(link => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
-      openLightbox(link.href, link.textContent.trim());
+      activate(link, link.href, link.textContent.trim());
     });
   });
 
@@ -281,7 +195,20 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeLightbox();
+    if (!overlay.classList.contains('active')) return;
+
+    if (e.key === 'Escape') {
+      closeLightbox();
+      return;
+    }
+
+    // Focus trap: the close button is the only focusable element inside
+    // the dialog, so any Tab keeps focus right there instead of escaping
+    // to the page underneath.
+    if (e.key === 'Tab') {
+      e.preventDefault();
+      closeBtn.focus();
+    }
   });
 
 });

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sportscove: Lakshmi Pratap</title>
-  <link rel="stylesheet" href="project0.css?v=73" />
+  <link rel="stylesheet" href="project0.css?v=75" />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="../assets/logo.png">
 </head>
@@ -20,7 +20,11 @@
       <div class="hero-content">
         <div class="project-meta">SPORTSCOVE | March 2025 - October 2025</div>
         <h1 class="project-title">Rebuilding a fragmented dual-sided marketplace for a scalable launch</h1>
-        <p class="project-subtitle">A product three months from launch, rebuilt into a scalable, launch-ready experience through a full product and UX audit, a design system, and end-to-end flow design.</p>
+        <p class="project-subtitle">I audited and rebuilt Sportscove's learner and coach experiences, introducing a shared design system and redesigning the core discovery, booking, and onboarding flows for launch.</p>
+        <div class="hero-contribution">
+          <span class="hero-contribution-label">My contribution</span>
+          <span class="hero-contribution-list">UX audit · Research synthesis · Information architecture · Interaction design · Design system · UI design · Prototyping</span>
+        </div>
         <div class="hero-image-wrapper">
           <img src="../assets/sportscovenewcover.png" alt="Sportscove platform overview" class="hero-image">
         </div>
@@ -35,98 +39,136 @@
         <p><span class="intro-highlight">Sportscove is a sports coaching marketplace connecting learners with coaches across the US, Canada, and India.</span> The product was three months from launch, and needed a <strong>full product and UX audit</strong> to bring an incomplete, pre-launch platform to a <strong>scalable, launch-ready state</strong>.</p>
 
         <div class="project-details">
-          <div class="detail-item"><div class="detail-label">Role</div><div class="detail-value">UX Designer</div></div>
+          <div class="detail-item"><div class="detail-label">Role</div><div class="detail-value">UX/UI Designer</div></div>
           <div class="detail-item"><div class="detail-label">Timeline</div><div class="detail-value">3 months to launch</div></div>
           <div class="detail-item"><div class="detail-label">Team</div><div class="detail-value">2 designers, 3 developers, CEO &amp; advisors</div></div>
-          <div class="detail-item"><div class="detail-label">Deliverables</div><div class="detail-value">launch-ready product</div></div>
+        </div>
+
+        <div class="constraint-callout">
+          <div class="constraint-label">Constraint</div>
+          <p>We had three months to launch, so I prioritised core marketplace flows, reusable infrastructure, and high-risk interaction states over lower-impact polish.</p>
         </div>
 
       </div>
     </section>
 
-    <!-- 05 — Research & Diagnosis -->
+    <!-- 01 — Diagnosing the product -->
     <section class="project-section research-section">
       <div class="section-content">
-        <span class="section-kicker">Understanding where to start</span>
+        <span class="section-kicker">01 — Diagnosing the product</span>
         <h2>Before redesigning the product, I needed to separate what worked from what didn't</h2>
         <p>The product already had screens and partially designed flows, but it was unclear whether the gaps were isolated issues or symptoms of larger problems. Before introducing new designs, I evaluated the existing experience to understand what was missing, where users were likely to encounter friction, and what needed to change before launch.</p>
 
-        <div class="method-detail research-review-block">
-          <h3>Reviewing the research already conducted</h3>
-          <p>The team had already interviewed learners and coaches shortly before I joined the redesign. With the limited time, I used the existing interviews as a starting point.</p>
+        <div class="method-strip">
+          <div class="detail-item"><div class="detail-label">Existing research</div><div class="detail-value">Learner + coach interviews</div></div>
+          <div class="detail-item"><div class="detail-label">Product audit</div><div class="detail-value">Screen and flow completeness</div></div>
+          <div class="detail-item"><div class="detail-label">Usability review</div><div class="detail-value">Core journeys + heuristic evaluation</div></div>
+          <div class="detail-item"><div class="detail-label">Competitive review</div><div class="detail-value">Skillest + CoachUp + ADPList</div></div>
+        </div>
 
-          <a href="../assets/original-questionnaire.png" class="questionnaire-link" data-lightbox-trigger>View the original questionnaire used →</a>
-
-          <p class="question-list-note">The research provided useful directional insights, but here are a few of the questions I would have changed across both interviews, not the full list.</p>
-
-          <div class="research-group">
-            <h4 class="research-group-heading">Learner research</h4>
-            <div class="question-list">
-              <div class="question-list-header">
-                <span class="question-list-label">What they asked</span>
-                <span class="question-list-label">What I would ask instead</span>
-              </div>
-
-              <div class="question-pair">
-                <div class="question-row">
-                  <p class="question-old"><span class="q-icon cross">✕</span>"If you could design an app for training with certified coaches, what features would you want?"</p>
-                  <div class="question-new-col">
-                    <p class="question-new"><span class="q-icon tick">✓</span>"Tell me about the last time you tried to improve at your sport. What did you do?"</p>
-                    <details class="question-why-toggle">
-                      <summary>Why</summary>
-                      <p class="question-why">A wishlist of features reveals what people think sounds good, not what actually helps them improve — a real attempt surfaces what they tried, what worked, and where they got stuck.</p>
-                    </details>
-                  </div>
-                </div>
-              </div>
-
-              <div class="question-pair">
-                <div class="question-row">
-                  <p class="question-old"><span class="q-icon cross">✕</span>"Do you think learning in a group would be beneficial for you?"</p>
-                  <div class="question-new-col">
-                    <p class="question-new"><span class="q-icon tick">✓</span>"If you were booking a coaching session for your sport, would you want it to be one-on-one or with other learners? What would make you choose one over the other?"</p>
-                    <details class="question-why-toggle">
-                      <summary>Why</summary>
-                      <p class="question-why">A yes/no question about whether group learning is “beneficial” asks users to evaluate an abstract idea. Asking them to imagine an actual booking decision makes the choice concrete and reveals why they prefer one format, whether that is individual attention, learning from others, social interaction, cost, or something else</p>
-                    </details>
-                  </div>
-                </div>
-              </div>
-
-              <div class="question-pair">
-                <div class="question-row">
-                  <p class="question-old"><span class="q-icon cross">✕</span>"What factors would make you choose one coaching platform over another?"</p>
-                  <div class="question-new-col">
-                    <p class="question-new"><span class="q-icon tick">✓</span>"Tell me about the last time you were deciding between a few different coaches. What made you hesitant about any of them?"</p>
-                    <details class="question-why-toggle">
-                      <summary>Why</summary>
-                      <p class="question-why">Asked as "what factors would make you choose," this is hypothetical and invites a generic list like price or reviews — asking about real hesitation surfaces the actual trust gaps a coach profile needs to close.</p>
-                    </details>
-                  </div>
-                </div>
-              </div>
-
-              <div class="question-pair">
-                <div class="question-row">
-                  <p class="question-old"><span class="q-icon cross">✕</span>"What do you look for in a sports coach?"</p>
-                  <div class="question-new-col">
-                    <p class="question-new"><span class="q-icon tick">✓</span>"Think about the last time you compared a few coaches before choosing one. Walk me through how you compared them, and what ultimately tipped it."</p>
-                    <details class="question-why-toggle">
-                      <summary>Why</summary>
-                      <p class="question-why">A general checklist answer isn't tied to any real decision — walking through an actual comparison surfaces the process itself, which is directly useful for designing how multiple coaches get shown side by side.</p>
-                    </details>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <h3 style="margin-top: 3.5rem;">What the research told us</h3>
+        <div class="stat-strip">
+          <div class="stat-item">
+            <div class="stat-value">80%</div>
+            <div class="stat-label">wanted to explore beyond their primary sport <span class="stat-sample">(4 of 5)</span></div>
           </div>
+          <div class="stat-item">
+            <div class="stat-value">100%</div>
+            <div class="stat-label">used specific criteria when filtering coaches <span class="stat-sample">(5 of 5)</span></div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">80%</div>
+            <div class="stat-label">found the coach profile difficult to scan <span class="stat-sample">(4 of 5)</span></div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">75%</div>
+            <div class="stat-label">coaches expected to teach multiple sports <span class="stat-sample">(2 of 5)</span></div>
+          </div>
+        </div>
+        <p>These findings changed three parts of the product: discovery, coach profiles, and the booking journey.</p>
 
-          <div class="research-group">
-            <h4 class="research-group-heading">Coach research</h4>
-            <p>The coach interviews were more grounded in real coaching experience, but I would have pushed further into how coaches currently acquire, manage, and retain learners.</p>
-            <details class="section-reveal coach-question-reveal">
-              <summary>View the coach research questions</summary>
-              <div class="section-reveal-content">
+        <div class="method-detail research-review-block">
+          <h3>What existing research told us</h3>
+          <p>The team had already interviewed learners and coaches shortly before I joined the redesign. With limited time before launch, I used those interviews as a starting point rather than restarting research from scratch.</p>
+          <ul class="method-bullets">
+            <li>Existing interviews provided <strong>directional insights</strong> but lacked behavioural depth.</li>
+            <li>I supplemented them with <strong>product auditing, usability findings, competitive benchmarking, and stakeholder discussions</strong>.</li>
+            <li>Because launch was three months away, I <strong>focused research effort on decisions that could materially change the product</strong>.</li>
+          </ul>
+
+          <details class="section-reveal">
+            <summary>Where the evidence was incomplete</summary>
+            <div class="section-reveal-content">
+
+              <a href="../assets/original-questionnaire.png" class="questionnaire-link" data-lightbox-trigger>View the original questionnaire used →</a>
+
+              <p class="question-list-note">A few of the questions I would have changed across both interviews, not the full list.</p>
+
+              <div class="research-group">
+                <h4 class="research-group-heading">Learner research</h4>
+                <div class="question-list">
+                  <div class="question-list-header">
+                    <span class="question-list-label">What they asked</span>
+                    <span class="question-list-label">What I would ask instead</span>
+                  </div>
+
+                  <div class="question-pair">
+                    <div class="question-row">
+                      <p class="question-old"><span class="q-icon cross">✕</span>"If you could design an app for training with certified coaches, what features would you want?"</p>
+                      <div class="question-new-col">
+                        <p class="question-new"><span class="q-icon tick">✓</span>"Tell me about the last time you tried to improve at your sport. What did you do?"</p>
+                        <details class="question-why-toggle">
+                          <summary>Why</summary>
+                          <p class="question-why">A wishlist of features reveals what people think sounds good, not what actually helps them improve — a real attempt surfaces what they tried, what worked, and where they got stuck.</p>
+                        </details>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="question-pair">
+                    <div class="question-row">
+                      <p class="question-old"><span class="q-icon cross">✕</span>"Do you think learning in a group would be beneficial for you?"</p>
+                      <div class="question-new-col">
+                        <p class="question-new"><span class="q-icon tick">✓</span>"If you were booking a coaching session for your sport, would you want it to be one-on-one or with other learners? What would make you choose one over the other?"</p>
+                        <details class="question-why-toggle">
+                          <summary>Why</summary>
+                          <p class="question-why">A yes/no question about whether group learning is "beneficial" asks users to evaluate an abstract idea. Asking them to imagine an actual booking decision makes the choice concrete and reveals why they prefer one format, whether that is individual attention, learning from others, social interaction, cost, or something else.</p>
+                        </details>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="question-pair">
+                    <div class="question-row">
+                      <p class="question-old"><span class="q-icon cross">✕</span>"What factors would make you choose one coaching platform over another?"</p>
+                      <div class="question-new-col">
+                        <p class="question-new"><span class="q-icon tick">✓</span>"Tell me about the last time you were deciding between a few different coaches. What made you hesitant about any of them?"</p>
+                        <details class="question-why-toggle">
+                          <summary>Why</summary>
+                          <p class="question-why">Asked as "what factors would make you choose," this is hypothetical and invites a generic list like price or reviews — asking about real hesitation surfaces the actual trust gaps a coach profile needs to close.</p>
+                        </details>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="question-pair">
+                    <div class="question-row">
+                      <p class="question-old"><span class="q-icon cross">✕</span>"What do you look for in a sports coach?"</p>
+                      <div class="question-new-col">
+                        <p class="question-new"><span class="q-icon tick">✓</span>"Think about the last time you compared a few coaches before choosing one. Walk me through how you compared them, and what ultimately tipped it."</p>
+                        <details class="question-why-toggle">
+                          <summary>Why</summary>
+                          <p class="question-why">A general checklist answer isn't tied to any real decision — walking through an actual comparison surfaces the process itself, which is directly useful for designing how multiple coaches get shown side by side.</p>
+                        </details>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="research-group">
+                <h4 class="research-group-heading">Coach research</h4>
+                <p>The coach interviews were more grounded in real coaching experience, but I would have pushed further into how coaches currently acquire, manage, and retain learners.</p>
                 <div class="question-list">
                   <div class="question-list-header">
                     <span class="question-list-label">What they asked</span>
@@ -186,8 +228,9 @@
                   </div>
                 </div>
               </div>
-            </details>
-          </div>
+
+            </div>
+          </details>
 
           <hr class="research-divider">
 
@@ -263,11 +306,11 @@
         </div>
 
         <div class="method-detail">
-          <h3>Auditing what was missing</h3>
+          <h3>What the product audit revealed</h3>
           <div class="method-split">
             <div class="method-text">
-              <p class="method-lede" style="margin-bottom: 2.75rem;">Existing screens were audited against the product requirements to flag what was complete, incomplete, or missing.</p>
-              <div class="risk-subheading">What was found</div>
+              <p class="method-lede" style="margin-bottom: 2.75rem;">I audited the existing screens against the product requirements to flag what was complete, incomplete, or missing.</p>
+              <div class="risk-subheading">What I found</div>
               <ul class="method-bullets">
                 <li>Incomplete <strong>end-to-end flows</strong></li>
                 <li>Missing key <strong>product states</strong> (error, empty)</li>
@@ -286,8 +329,8 @@
           <h3>Walking through the experience as a new user</h3>
           <div class="method-triple">
             <div class="method-text">
-              <p>Walked every core flow as a first-time user, against standard heuristics.</p>
-              <div class="risk-subheading">What was evaluated</div>
+              <p>I walked every core flow as a first-time user, against standard heuristics.</p>
+              <div class="risk-subheading">What I evaluated</div>
               <ul class="method-bullets">
                 <li><strong>Navigation</strong> &amp; wayfinding</li>
                 <li><strong>Consistency</strong> across patterns</li>
@@ -304,7 +347,7 @@
               </video>
             </div>
             <div class="method-text">
-              <p>End-to-end review surfaced patterns isolated screens hid.</p>
+              <p>The end-to-end review surfaced patterns that isolated screens hid.</p>
               <div class="risk-subheading">What stood out</div>
               <ul class="method-bullets">
                 <li>Features <strong>existed but weren't accessible</strong></li>
@@ -319,26 +362,23 @@
 
         <div class="method-detail">
           <h3>Learning from the testing that had already been done</h3>
-          <p>The quotes from testing done on the existing deisgn.</p>
-          <div class="issue-card-grid testing-quotes-grid">
+          <p>One quote from prior testing on the existing design stood out because it points directly at the problem the booking redesign later solves.</p>
+          <div class="issue-card-grid testing-quotes-grid single-quote">
             <div class="issue-card">
+              <div class="issue-context">Learners wanted to see a coach before completing a self-assessment</div>
               <div class="issue-card-num">Satyanshu Singh</div>
               <blockquote class="issue-quote">"I don't want to do my self assessment now. Can I not just see the coach profile without it?"</blockquote>
-            </div>
-            <div class="issue-card">
-              <div class="issue-card-num">Tanner Smith</div>
-              <blockquote class="issue-quote">"The coach profile has way too many things and I really don't know where to look"</blockquote>
             </div>
           </div>
         </div>
 
         <div class="method-detail">
-          <h3>Understanding how comparable products solve similar problems</h3>
+          <h3>Competitive signals</h3>
           <div class="benchmark-block">
             <p class="method-lede" style="margin-bottom: 1.75rem;"><strong>Skillest</strong> and <strong>CoachUp</strong> were the closest competitors. <strong>ADPList</strong> was also reviewed for its similar mentorship model, even though it isn't sports-specific.</p>
             <div class="benchmark-split">
               <div class="benchmark-text">
-                <div class="risk-subheading">What was found</div>
+                <div class="risk-subheading">What I found</div>
                 <ul class="method-bullets benchmark-bullets">
                   <li>How intuitive and complete the <strong>overall experience</strong> felt</li>
                   <li>What built a sense of <strong>trust</strong></li>
@@ -351,40 +391,49 @@
                 <img src="../assets/competitor benchmark.png" alt="Competitor comparison across CoachUp, Skillest, and ADPList, with opportunities identified for Sportscove" class="solution-image">
               </div>
             </div>
+
+            <div class="risk-subheading">What it meant for Sportscove</div>
+            <div class="opportunity-table">
+              <div class="opportunity-row">
+                <span class="opp-from">Strong coach credibility signals</span>
+                <span class="opp-arrow">→</span>
+                <span class="opp-to">Strengthen coach profile hierarchy</span>
+              </div>
+              <div class="opportunity-row">
+                <span class="opp-from">Straightforward discovery</span>
+                <span class="opp-arrow">→</span>
+                <span class="opp-to">Reduce pre-coach friction in booking</span>
+              </div>
+              <div class="opportunity-row">
+                <span class="opp-from">Clear ongoing relationship model</span>
+                <span class="opp-arrow">→</span>
+                <span class="opp-to">Consider the post-booking experience</span>
+              </div>
+            </div>
           </div>
         </div>
 
         <div class="method-detail">
-          <h3>Balancing user needs with what the business needed to launch</h3>
+          <h3>Business constraints</h3>
           <p>A structured conversation with the CEO ranked flows by business priority, followed by separate syncs with developers to understand what was realistically buildable inside a three-month window, before committing to a direction.</p>
-          <div class="issue-card-grid testing-quotes-grid">
+          <div class="issue-card-grid testing-quotes-grid single-quote">
             <div class="issue-card">
-              <div class="issue-card-num">CEO</div>
-              <blockquote class="issue-quote">"One of the biggest reasons for making this app is to encourage retired people to find a place to share their skills and earn."</blockquote>
-            </div>
-            <div class="issue-card">
-              <div class="issue-card-num">CEO</div>
-              <blockquote class="issue-quote">"The coach side was a big part of the product, since this is where coaches would sign up, verify their eligibility, build their profile, and set their prices"</blockquote>
-            </div>
-            <div class="issue-card">
+              <div class="issue-context">Why the design system became the first priority, not an afterthought</div>
               <div class="issue-card-num">CEO</div>
               <blockquote class="issue-quote">"We need a system to maintain the design and make sure all screens look like they're part of the same app."</blockquote>
             </div>
-            <div class="issue-card">
-              <div class="issue-card-num">Developer</div>
-              <blockquote class="issue-quote">"A design system could be helpful so that the button sizes, component spacings, colours and styles used can be easily executed."</blockquote>
-            </div>
           </div>
+          <p style="margin-top: 1.5rem;">This made the design system a product priority rather than a visual cleanup exercise.</p>
         </div>
 
       </div>
     </section>
 
 
-    <!-- 04 — Four Problems (reordered: shared foundation, then clear task paths, then overlooked users, then marketplace complexity) -->
+    <!-- 02 — Four Problems -->
     <section class="project-section risks-section">
       <div class="section-content">
-        <span class="section-kicker">Connecting the findings</span>
+        <span class="section-kicker">02 — Connecting the findings</span>
         <h2>What emerged was a product held back by four connected problems</h2>
         <p class="risks-intro">A product and UX audit, benchmarking against comparable apps, and direct conversations with the CEO and developers surfaced four barriers. Every decision in this case study traces back to one of them.</p>
 
@@ -394,6 +443,7 @@
             <div class="problem-head">
               <div class="problem-num">01</div>
               <div>
+                <span class="problem-tag">System problem</span>
                 <h3>No shared foundation</h3>
               </div>
             </div>
@@ -404,17 +454,19 @@
             <div class="problem-head">
               <div class="problem-num">02</div>
               <div>
-                <h3>Core tasks didn't always have a clear path to completion</h3>
+                <span class="problem-tag">Learner problem</span>
+                <h3>Core flows lacked clear interaction states</h3>
               </div>
             </div>
-            <p class="problem-body">Inconsistent navigation and ambiguous interaction states meant people couldn't always tell what they'd selected.</p>
+            <p class="problem-body">Inconsistent navigation and ambiguous interaction states meant people couldn't always tell what they'd selected — and booking itself was gated behind unrelated steps.</p>
           </div>
 
           <div class="risk-item problem-card">
             <div class="problem-head">
               <div class="problem-num">03</div>
               <div>
-                <h3>Key users and scenarios were being missed</h3>
+                <span class="problem-tag">Discovery problem</span>
+                <h3>Discovery didn't adapt to users</h3>
               </div>
             </div>
             <p class="problem-body">Accessible search for retired athletes and coaches, and logic for multi-sport coaches, weren't designed at all.</p>
@@ -424,20 +476,50 @@
             <div class="problem-head">
               <div class="problem-num">04</div>
               <div>
-                <h3>Important marketplace complexity hadn't been designed for</h3>
+                <span class="problem-tag">System / marketplace problem</span>
+                <h3>Marketplace complexity wasn't represented</h3>
               </div>
             </div>
-            <p class="problem-body">Gaps in the connection between learner and coach workflows, with key information missing across both sides</p>
+            <p class="problem-body">Gaps in the connection between learner and coach workflows, with key information missing across both sides.</p>
           </div>
 
+        </div>
+
+        <!-- 03 — From findings to decisions -->
+        <div class="bridge-table">
+          <div class="bridge-header">
+            <span>Finding</span>
+            <span>Product implication</span>
+            <span>Design response</span>
+          </div>
+          <div class="bridge-row">
+            <span>No shared foundation</span>
+            <span>New screens would keep introducing inconsistency</span>
+            <span>Build a design system</span>
+          </div>
+          <div class="bridge-row">
+            <span>Booking had unnecessary friction</span>
+            <span>Learners hit a self-assessment before seeing coaches</span>
+            <span>Rework the booking flow</span>
+          </div>
+          <div class="bridge-row">
+            <span>Search behaviour differed, and multi-sport coaches didn't fit existing cards</span>
+            <span>One discovery pattern, and one static card, couldn't serve everyone</span>
+            <span>Guided/predictive search + filters, plus context-aware card logic</span>
+          </div>
+          <div class="bridge-row">
+            <span>Coach onboarding only handled the happy path</span>
+            <span>Coaches could get stuck or lose work</span>
+            <span>Resilient onboarding</span>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- 07 — Establishing the Foundation -->
+    <!-- 04 — Establishing the Foundation -->
     <section class="project-section solutions-section">
       <div class="section-content">
-        <span class="section-kicker">01 — Building the foundation</span>
+        <span class="section-kicker">04 — Building the foundation</span>
         <h2>Introducing a foundation/system was the first step</h2>
         <p><strong>A shared system for designing and building at speed.</strong></p>
 
@@ -447,7 +529,7 @@
             <p>Consistency and efficiency at scale</p>
           </div>
           <div class="solution-description">
-            <p>Built a comprehensive design system with <strong>60+ reusable components</strong>, covering color, typography, buttons, cards, and interaction states, so every screen designed after this reused the same foundation instead of solving the same problems again.</p>
+            <p>Every new feature was solving the same visual and interaction decisions again, increasing inconsistency and slowing implementation. I established a shared design system with <strong>60+ reusable components</strong> — color, typography, buttons, cards, and interaction states — so every screen designed after this reused the same foundation instead.</p>
             <div class="solution-images-grid">
               <img src="../assets/Colors.png" alt="Color system" class="solution-image">
               <img src="../assets/Fonts.png" alt="Typography system" class="solution-image">
@@ -458,7 +540,7 @@
             <div class="solution-improvements">
               <div class="improvement-item">
                 <span class="improvement-label">Impact:</span>
-                <span class="improvement-text"><strong>60% reduction</strong> in design time for new features</span>
+                <span class="improvement-text">Reduced repetitive design work by standardising recurring patterns and states, giving developers a consistent implementation reference across the product.</span>
               </div>
             </div>
           </div>
@@ -466,12 +548,13 @@
       </div>
     </section>
 
-    <!-- 07.6 — Simplifying the Booking Flow -->
+    <!-- 05 — Simplifying the Core Transaction -->
     <section class="project-section simplify-section">
       <div class="section-content">
-        <span class="section-kicker">02 — Simplifying the flow</span>
-        <h2>Booking a coach in a sports coaching app shouldn't be the hardest part</h2>
+        <span class="section-kicker">05 — Simplifying the core transaction</span>
+        <h2>Booking a coach shouldn't be the hardest part of a coaching app</h2>
         <p>Booking was the platform's core transaction, but the old flow buried it behind a multi-page self-assessment before a learner could even see a coach's availability — a task that should have taken seconds took several detours instead.</p>
+        <p class="key-insight" style="margin-top: 0;">The redesign separated "help me find the right coach" from "help me understand my coaching needs." The self-assessment wasn't the problem — its placement in the journey was.</p>
 
         <div class="booking-flow-layout">
           <div class="booking-flow-row">
@@ -534,8 +617,8 @@
 
           <div class="key-screen-item">
             <h4>Home screen</h4>
-            <p class="key-screen-note">From the initial survey, <strong>76%</strong> of users were either <strong>open to exploring sports beyond their primary one</strong>, or wanted to <strong>focus on one sport while still seeing what else was out there</strong>.</p>
-            <p class="key-screen-note">This shaped the Home screen to surface <strong>coach visibility across sports</strong> through the <strong>Super Coaches</strong> and <strong>Popular Sport Coaches</strong> sections.</p>
+            <p class="key-screen-note">From the initial survey, <strong>80%</strong> of users were either open to exploring sports beyond their primary one, or wanted to focus on one sport while still seeing what else was out there.</p>
+            <p class="key-screen-note">I shaped the Home screen around this, surfacing <strong>coach visibility across sports</strong> through the <strong>Super Coaches</strong> and <strong>Popular Sport Coaches</strong> sections.</p>
             <div class="onboarding-flow-images">
               <div class="flow-image-item">
                 <div class="flow-image-label">Old</div>
@@ -555,7 +638,7 @@
           <div class="key-screen-item">
             <h4>Coaches list</h4>
             <p class="key-screen-note">The initial survey showed <strong>100%</strong> of users filtered coaches by specific criteria — <strong>rating, price, their own experience level, and location</strong> — plus a <strong>virtual or in-person</strong> preference, anticipating the company's plans for physical coaching centres across India.</p>
-            <p class="key-screen-note">The old filter existed only as a <strong>button with no screen behind it</strong>. The new coaches list built out a <strong>fully functional filter</strong> around exactly these criteria.</p>
+            <p class="key-screen-note">The old filter existed only as a <strong>button with no screen behind it</strong>. I built the new coaches list around a <strong>fully functional filter</strong> based on exactly these criteria.</p>
             <div class="onboarding-flow-images">
               <div class="flow-image-item">
                 <div class="flow-image-label">Old</div>
@@ -574,7 +657,7 @@
 
           <div class="key-screen-item coach-profile-item">
             <h4>Coach profile</h4>
-            <p class="key-screen-note">During testing, <strong>90%</strong> of users found the coach profile <strong>messy and confusing</strong> — the new design was built to be <strong>cleaner and easier to scan</strong>.</p>
+            <p class="key-screen-note">During testing, <strong>80%</strong> of users found the coach profile <strong>messy and confusing</strong> — I rebuilt it to be cleaner and easier to scan.</p>
             <p class="key-screen-note"><strong>2 in 5 coaches</strong> said they intended to teach more than one sport, so the profile now <strong>separates each sport and its details</strong> instead of blending them together.</p>
             <div class="onboarding-flow-images">
               <div class="flow-image-item">
@@ -595,9 +678,10 @@
       </div>
     </section>
 
+    <!-- 06 — Making Discovery Context-Aware -->
     <section class="project-section discovery-section">
       <div class="section-content">
-        <span class="section-kicker">03 — Addressing overlooked users and scenarios</span>
+        <span class="section-kicker">06 — Making discovery context-aware</span>
         <h2>Designing discovery around how Sportscove's users actually search</h2>
         <p>Sportscove was also expanding into a much wider range of sports and wellness categories, not all of which could reasonably live on the same page.</p>
         <p class="key-insight">Your 50-something aunt picking up golf for the first time? Not exactly a power user.</p>
@@ -651,17 +735,18 @@
               </div>
 
               <div class="criteria-list">
-                <div class="criteria-item"><strong>Improved filters:</strong> Filters were reworked to make narrowing results easier, giving users more control over discovery once a search returned results.</div>
+                <div class="criteria-item"><strong>Improved filters:</strong> I reworked the filters to make narrowing results easier, giving users more control over discovery once a search returned results.</div>
               </div>
 
               <p class="key-insight">Together, these changes moved search from something you had to already know how to use, to something that showed you how to use it.</p>
             </div>
           </div>
 
-        <!-- Decision 2: Multi-sport coach cards -->
-        <div class="design-decision-block">
+        <!-- Decision 2: Multi-sport coach cards — hero design decision -->
+        <div class="design-decision-block hero-decision">
           <div class="decision-header">
             <div class="decision-title-wrapper">
+              <span class="decision-eyebrow">Hero design decision</span>
               <h3>Making multi-sport coaches visible without overwhelming the cards</h3>
               <p class="decision-subtitle">A coach's profile shouldn't be limited to just one sport</p>
             </div>
@@ -669,13 +754,12 @@
 
           <div class="decision-content">
             <div class="decision-section">
-              <!--<h4>The Problem</h4>-->
               <p>Coaches on Sportscove aren't always specialists in a single sport. Some offer multiple disciplines, which raised a discovery problem: how could those coaches show up across every sport they taught, without turning every search card into a wall of text?</p>
             </div>
 
             <div class="decision-section">
-              <h4>Initial Exploration</h4>
-              <p>The first approach displayed every one of a coach's sports directly on the card.</p>
+              <h4>Initial exploration</h4>
+              <p>The first approach I tried displayed every one of a coach's sports directly on the card.</p>
               <div class="option-cards-row">
                 <div class="option-card">
                   <div class="option-card-image-wrapper">
@@ -720,7 +804,7 @@
                   </div>
                 </div>
                 <div class="merged-logic-content">
-                  <p>A <strong>+N indicator</strong> kept cards concise while still signalling that a coach offered additional sports beyond the one shown.</p>
+                  <p>I landed on a <strong>+N indicator</strong> to keep cards concise while still signalling that a coach offered additional sports beyond the one shown.</p>
                   <p>But a multi-sport coach can surface under several different searches, so simply showing their primary sport wasn't always relevant. The sport displayed needed to reflect how the user actually found the coach, not just how the coach was set up in the system.</p>
                 </div>
               </div>
@@ -749,10 +833,10 @@
       </div>
     </section>
 
-    <!-- 08 — Marketplace Complexity: Reworking Coach Onboarding -->
+    <!-- 07 — Designing Beyond the Happy Path (Coach Onboarding) -->
     <section class="project-section onboarding-section">
       <div class="section-content">
-        <span class="section-kicker">04 — Addressing marketplace complexity</span>
+        <span class="section-kicker">07 — Designing beyond the happy path</span>
         <h2>Reworking coach onboarding</h2>
         <p>Coach onboarding was where the marketplace's two sides actually met — a coach's profile, verification, offering, and pricing all had to come together into something a learner could trust and book. The existing flow treated onboarding as a single linear form, with no separation between those responsibilities and no way to recover when something went wrong.</p>
 
@@ -814,31 +898,31 @@
 
           <div class="decision-content">
             <div class="decision-section">
-              <p>A first prototype was built from this restructured flow and tested with four coaches. Their responses made one thing clear: the design had only really accounted for the happy path. Outside of it, there was little in place — few error states, almost no prevention, and no way to recover once something went wrong.</p>
+              <p>I built a first prototype from this restructured flow and tested it with four coaches. Their responses made one thing clear: the design had only really accounted for the happy path. Outside of it, there was little in place — few error states, almost no prevention, and no way to recover once something went wrong.</p>
               <div class="issue-card-grid">
 
                 <div class="issue-card">
-                  <div class="issue-card-num">01</div>
+                  <div class="issue-context">Completion state wasn't clear</div>
                   <blockquote class="issue-quote">"I thought I had completed it, so why can't I move forward?"</blockquote>
                 </div>
 
                 <div class="issue-card">
-                  <div class="issue-card-num">02</div>
+                  <div class="issue-context">No way to pause and resume verification</div>
                   <blockquote class="issue-quote">"I don't have my certificate right now. Can I come back to this later?"</blockquote>
                 </div>
 
                 <div class="issue-card">
-                  <div class="issue-card-num">03</div>
+                  <div class="issue-context">Verification requirement surfaced too late</div>
                   <blockquote class="issue-quote">"I filled everything out… and only now I'm being told I need to verify?"</blockquote>
                 </div>
 
                 <div class="issue-card">
-                  <div class="issue-card-num">04</div>
+                  <div class="issue-context">Payout math wasn't transparent during pricing setup</div>
                   <blockquote class="issue-quote">"If the learner pays $100, how much do I actually make?"</blockquote>
                 </div>
 
                 <div class="issue-card">
-                  <div class="issue-card-num">05</div>
+                  <div class="issue-context">No confidence that in-progress work would be saved</div>
                   <blockquote class="issue-quote">"I don't want to finish this right now, but I don't want to lose everything."</blockquote>
                 </div>
 
@@ -935,12 +1019,12 @@
           </div>
         </div>
 
-        <!-- 04 / From a form to a resilient flow — the visual payoff of
-             the onboarding section, styled identically to 01-03. -->
-        <div class="design-decision-block onboarding-block">
+        <!-- 04 / From a form to a resilient flow — treated as a second centerpiece decision, matching the multi-sport hero decision above -->
+        <div class="design-decision-block onboarding-block hero-decision">
 
           <div class="decision-header">
             <div class="decision-title-wrapper">
+              <span class="decision-eyebrow">Centerpiece</span>
               <h3>04 / From a form to a resilient flow</h3>
             </div>
           </div>
@@ -969,19 +1053,18 @@
       </div>
     </section>
 
-    <!-- 09 — Additional stuff I did because I wanted to -->
+    <!-- 08 — Beyond the core flows -->
     <section class="project-section extras-section">
       <div class="section-content">
-        <span class="section-kicker">Beyond the core work</span>
-        <h2>Additional stuff I did because I wanted to</h2>
-        <p>None of this was on the requirements list. I built it anyway, because the small, first-impression moments of an app deserve as much care as the core flows.</p>
+        <span class="section-kicker">08 — Beyond the core work</span>
+        <h2>Beyond the core flows</h2>
+        <p>None of this was on the requirements list. I designed the splash and loading experiences to carry Sportscove's visual language into moments outside the core journeys, because the small, first-impression moments of an app deserve care too — even if it's a small part of the overall project.</p>
 
         <div class="extras-block">
           <h3>Splash screen &amp; spinner loader animations</h3>
           <ul class="method-bullets extras-bullets">
             <li>Designed and animated the app's <strong>splash screen sequence</strong> entirely inside Figma, using prototyping and smart animate rather than a separate motion tool</li>
             <li>Built a custom <strong>spinner loader animation</strong> the same way, so loading states felt like part of the same product instead of a generic default spinner</li>
-            <li>Both were self-initiated, done purely to make the first few seconds of opening the app feel considered rather than purely functional</li>
           </ul>
         </div>
 
@@ -990,7 +1073,7 @@
             <div class="flow-image-label">Splash screen animation</div>
             <div class="solution-image-wrapper">
               <video class="solution-video autoplay-video" controls muted playsinline preload="metadata">
-                <source src="../assets/splashscreens.mov" type="video/quicktime">
+                <source src="../assets/splashscreens.mp4" type="video/mp4">
                 Video playback of the splash screen animation isn't supported in this browser.
               </video>
             </div>
@@ -999,7 +1082,7 @@
             <div class="flow-image-label">Spinner loader animation</div>
             <div class="solution-image-wrapper">
               <video class="solution-video autoplay-video" controls muted playsinline preload="metadata">
-                <source src="../assets/spinnerloader.mov" type="video/quicktime">
+                <source src="../assets/spinnerloader.mp4" type="video/mp4">
                 Video playback of the spinner loader animation isn't supported in this browser.
               </video>
             </div>
@@ -1008,43 +1091,56 @@
       </div>
     </section>
 
-    <!-- 10 — Key Transformations & Outcome -->
+    <!-- 09 — Outcome -->
     <section class="project-section outcomes-section">
       <div class="section-content">
-        <span class="section-kicker">Key transformations &amp; outcome</span>
-        <h2>The same four problems, closed</h2>
-        <div class="transform-grid">
-          <div class="transform-item">
-            <p>A reusable design system in place, cutting design time on every screen built after it.</p>
-          </div>
-          <div class="transform-item">
-            <p>Missing features and user groups, including retired athletes and multi-sport coaches, addressed directly.</p>
-          </div>
-          <div class="transform-item">
-            <p>Journeys redesigned around what learners and coaches were actually trying to do, not just individual screens.</p>
-          </div>
-          <div class="transform-item">
-            <p>Critical flows completed, with every missing screen and edge case identified and designed before launch.</p>
-          </div>
-        </div>
+        <span class="section-kicker">09 — Outcome</span>
+        <h2>From fragmented screens to a coherent product system</h2>
 
         <div class="outcome-block">
-          <h3>Results &amp; projected impact</h3>
-          <div class="metrics-grid">
-            <div class="metric-item"><div class="metric-value">96%</div><div class="metric-label">Task completion rate</div></div>
-            <div class="metric-item"><div class="metric-value">40%</div><div class="metric-label">Expected increase in sign-ups</div></div>
-            <div class="metric-item"><div class="metric-value">23%</div><div class="metric-label">Booking conversion improvement</div></div>
-            <div class="metric-item"><div class="metric-value">60%</div><div class="metric-label">Design efficiency gained</div></div>
+          <div class="outcome-cards">
+            <div class="outcome-card">
+              <div class="outcome-card-num">01</div>
+              <h4>A reusable foundation</h4>
+              <p>60+ components created a consistent base for subsequent product work.</p>
+            </div>
+            <div class="outcome-card">
+              <div class="outcome-card-num">02</div>
+              <h4>Shorter path to coaches</h4>
+              <p>The booking flow removed unnecessary gating and introduced multiple entry points.</p>
+            </div>
+            <div class="outcome-card">
+              <div class="outcome-card-num">03</div>
+              <h4>More contextual discovery</h4>
+              <p>Search, filtering, and coach cards adapted to different user intents.</p>
+            </div>
+            <div class="outcome-card">
+              <div class="outcome-card-num">04</div>
+              <h4>More resilient onboarding</h4>
+              <p>Required, conditional, and dependent states were designed for, rather than leaving the experience dependent on the happy path.</p>
+            </div>
           </div>
+          <p style="margin-top: 2.75rem;">The product moved from a collection of partially connected screens to a more coherent system of flows, states, and reusable patterns, ready for development.</p>
         </div>
 
+        <!-- 10 — Learnings -->
         <div class="outcome-block">
-          <h3>Key Learnings</h3>
+          <span class="section-kicker" style="margin-bottom: 0.75rem;">10 — Learnings</span>
+          <h3>Key learnings</h3>
           <div class="learning-list">
-            <div class="learning-item"><p><strong>Strategic thinking over execution:</strong> the most impactful work happened in decision-making frameworks, not pixel-pushing. Understanding constraints and trade-offs shaped better outcomes.</p></div>
-            <div class="learning-item"><p><strong>Systems thinking pays dividends:</strong> building the design system upfront saved exponentially more time than it took to create.</p></div>
-            <div class="learning-item"><p><strong>Test assumptions early:</strong> usability testing caught critical issues that would have been expensive to fix post-development.</p></div>
+            <div class="learning-item"><p><strong>A marketplace can't be designed one side at a time:</strong> a coach's information architecture directly affects what learners can discover, compare, and trust.</p></div>
+            <div class="learning-item"><p><strong>Edge cases are product structure, not polish:</strong> testing onboarding exposed that the underlying model didn't account for conditional and dependent data.</p></div>
+            <div class="learning-item"><p><strong>The right abstraction matters more than the right screen:</strong> the multi-sport coach problem wasn't solved by adding more information to the card. It was solved by making the card respond to user context.</p></div>
           </div>
+        </div>
+
+        <div class="outcome-block">
+          <details class="section-reveal">
+            <summary>What I'd explore next</summary>
+            <div class="section-reveal-content">
+              <p>With more time, I'd have gone deeper on segmenting the research by sport, skill level, and goal before committing to how universal the experience should be across such different sports and wellness categories — the research gap noted earlier in this case study.</p>
+            </div>
+          </details>
         </div>
       </div>
     </section>
@@ -1059,6 +1155,6 @@
     <p>&copy; 2025 Lakshmi Pratap. All rights reserved.</p>
   </footer>
 
-  <script src="project1.js?v=7"></script>
+  <script src="project1.js?v=9"></script>
 </body>
 </html>

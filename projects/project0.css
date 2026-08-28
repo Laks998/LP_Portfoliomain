@@ -38,9 +38,15 @@ body {
   color: var(--text);
   background: var(--bg);
   overflow-x: hidden;
-  font-size: 15px;
-  line-height: 1.65;
+  font-size: 16px;
+  line-height: 1.68;
   letter-spacing: 0.2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 /* Progress Bar */
@@ -90,17 +96,9 @@ body {
   padding: 0 2rem;
 }
 
-/* Sections - much more breathing room between stages */
+/* Sections */
 .project-section {
   padding: 5.5rem 0;
-  opacity: 1;
-  transform: none;
-  transition: all 0.6s ease;
-}
-
-.project-section.visible {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 .section-content {
@@ -158,8 +156,35 @@ body {
   letter-spacing: 0.3px;
 }
 
+/* ===== Hero contribution line — "what I personally did," stated
+   plainly right under the subtitle, before any other section content. ===== */
+.hero-contribution {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  max-width: 700px;
+  margin: 0 auto;
+  padding-top: 2rem;
+  border-top: 1px solid var(--card-border);
+}
+
+.hero-contribution-label {
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.hero-contribution-list {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
 .hero-image-wrapper {
-  margin-top: 5rem;
+  margin-top: 4rem;
 }
 
 .hero-image {
@@ -170,13 +195,13 @@ body {
   box-shadow: 0 10px 40px rgba(0,0,0,0.3);
 }
 
-/* Typography - tight within a paragraph, generous around it */
+/* Typography */
 h2 {
   font-size: 2rem;
   font-weight: 300;
-  letter-spacing: 1.5px;
+  letter-spacing: 1px;
   line-height: 1.4;
-  text-transform: lowercase;
+  text-transform: none;
   margin-bottom: 2.75rem;
   color: var(--text);
 }
@@ -194,8 +219,8 @@ h2 {
 h3 {
   font-size: 1.2rem;
   font-weight: 400;
-  letter-spacing: 0.5px;
-  text-transform: lowercase;
+  letter-spacing: 0.3px;
+  text-transform: none;
   margin-bottom: 1.5rem;
   color: var(--text);
 }
@@ -216,11 +241,9 @@ h5 {
   color: var(--text);
 }
 
-/* Line-height tight (readable within a paragraph), margin-bottom generous
-   (separation from whatever follows: image, card, next paragraph) */
 p {
   font-size: 1rem;
-  line-height: 1.65;
+  line-height: 1.68;
   color: var(--muted);
   margin-bottom: 2.5rem;
   font-weight: 300;
@@ -230,13 +253,9 @@ p:last-child {
   margin-bottom: 0;
 }
 
-/* Accent-colored inline lead text */
 .intro-highlight {
   color: var(--accent);
 }
-
-/* ===== Challenges: speech-bubble reveal ===== */
-
 
 /* Context Section */
 .context-section {
@@ -253,7 +272,7 @@ p:last-child {
 
 .project-details {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 2.5rem 3.5rem;
   margin-top: 4rem;
   padding: 3rem 0;
@@ -279,9 +298,117 @@ p:last-child {
   font-size: 0.95rem;
   color: var(--text);
   font-weight: 300;
+  line-height: 1.55;
 }
 
-/* ===== Four Problems (risks) ===== */
+/* ===== Constraint callout ===== */
+.constraint-callout {
+  display: flex;
+  align-items: baseline;
+  gap: 1.25rem;
+  background: var(--decision-bg);
+  border: 1px solid var(--decision-border);
+  border-left: 3px solid var(--accent);
+  border-radius: 4px;
+  padding: 1.5rem 1.75rem;
+  margin-top: 2.5rem;
+}
+
+.constraint-label {
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.constraint-callout p {
+  margin: 0;
+  color: var(--text);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 600px) {
+  .constraint-callout {
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+}
+
+/* ===== Research method strip ===== */
+.method-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem 2rem;
+  margin-top: 2.5rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.method-strip .detail-item {
+  gap: 0.6rem;
+}
+
+@media (max-width: 768px) {
+  .method-strip {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ===== Research evidence stat strip ===== */
+.stat-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin: 0 0 2.5rem;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 1.5rem 1.25rem;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 4px;
+}
+
+.stat-value {
+  display: block;
+  font-size: 1.9rem;
+  font-weight: 300;
+  color: var(--accent);
+  margin-bottom: 0.6rem;
+  line-height: 1;
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.stat-sample {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.68rem;
+  font-style: italic;
+  color: var(--accent);
+  opacity: 0.85;
+}
+
+@media (max-width: 768px) {
+  .stat-strip {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ===== Four Problems — flattened editorial treatment =====
+   Deliberately lighter than the design-decision cards below: no card
+   background/border, just a numbered label and a bottom rule. Problems
+   are diagnosis; cards are reserved for solutions and outcomes, so the
+   two read as visually distinct categories. */
 .risks-section .risks-intro {
   margin-bottom: 3rem;
   font-size: 1.05rem;
@@ -291,22 +418,13 @@ p:last-child {
 .risks-list {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 2rem 2rem;
+  gap: 2.75rem 3rem;
 }
 
 .risk-item {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 4px;
-  padding: 2.25rem 2.25rem;
-  transition: all 0.3s ease;
+  padding: 0 0 1.75rem;
+  border-bottom: 1px solid var(--card-border);
 }
-
-.risk-item:hover {
-  background: var(--card-hover-bg);
-  border-color: var(--accent);
-}
-
 
 .risk-subheading {
   font-size: 0.7rem;
@@ -316,6 +434,69 @@ p:last-child {
   font-weight: 500;
   margin-top: 2.25rem;
   margin-bottom: 1rem;
+}
+
+/* ===== Finding → implication → design response bridge table ===== */
+.bridge-table {
+  margin-top: 3rem;
+  border: 1px solid var(--card-border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.bridge-header,
+.bridge-row {
+  display: grid;
+  grid-template-columns: 1.1fr 1.3fr 1fr;
+  gap: 1.5rem;
+}
+
+.bridge-header {
+  padding: 1rem 1.5rem;
+  background: var(--card-hover-bg);
+  font-size: 0.68rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.bridge-row {
+  padding: 1.1rem 1.5rem;
+  border-top: 1px solid var(--card-border);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.bridge-row span:last-child {
+  color: var(--text);
+}
+
+@media (max-width: 768px) {
+  .bridge-header {
+    display: none;
+  }
+
+  .bridge-row {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+  }
+
+  .bridge-row span:first-child {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .bridge-row span:nth-child(2)::before {
+    content: "→ ";
+    color: var(--accent);
+  }
+
+  .bridge-row span:last-child::before {
+    content: "→ ";
+    color: var(--accent);
+  }
 }
 
 
@@ -386,12 +567,43 @@ p:last-child {
   text-align: center;
 }
 
+/* Hover zoom moved from JS to CSS (with reduced-motion opt-out below);
+   focus-visible covers keyboard users tabbing to a zoomable image. */
 .solution-image {
   width: 100%;
   max-width: 100%;
   border-radius: 8px;
   opacity: 0.95;
   box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease;
+}
+
+.solution-image:hover,
+.solution-image:focus-visible,
+.option-card-image:hover,
+.option-card-image:focus-visible {
+  transform: scale(1.02);
+}
+
+.solution-image:focus-visible,
+.option-card-image:focus-visible,
+.questionnaire-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .solution-image,
+  .option-card-image {
+    transition: none;
+  }
+
+  .solution-image:hover,
+  .solution-image:focus-visible,
+  .option-card-image:hover,
+  .option-card-image:focus-visible {
+    transform: none;
+  }
 }
 
 .solution-images-grid {
@@ -473,12 +685,29 @@ p:last-child {
   border-bottom: 1px solid var(--card-border);
 }
 
+.decision-eyebrow {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--decision-bg);
+  border: 1px solid var(--decision-border);
+  border-radius: 20px;
+  padding: 0.3rem 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.hero-decision .decision-title-wrapper h3 {
+  font-size: 1.65rem;
+}
 
 .decision-title-wrapper h3 {
   font-size: 1.4rem;
   font-weight: 400;
   letter-spacing: 0.3px;
-  text-transform: lowercase;
+  text-transform: none;
   margin-bottom: 1rem;
   color: var(--text);
 }
@@ -641,15 +870,15 @@ p:last-child {
   margin-bottom: 1.5rem;
 }
 
-.metrics-grid {
+/* ===== Outcome cards ===== */
+.outcome-cards {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 1.75rem;
   margin-top: 2rem;
 }
 
-.metric-item {
-  text-align: center;
+.outcome-card {
   padding: 1.75rem;
   background: var(--card-bg);
   border: 1px solid var(--card-border);
@@ -657,27 +886,29 @@ p:last-child {
   transition: all 0.3s ease;
 }
 
-.metric-item:hover {
+.outcome-card:hover {
   background: var(--card-hover-bg);
   border-color: var(--accent);
 }
 
-.metric-value {
-  display: block;
-  font-size: 2.2rem;
-  font-weight: 300;
+.outcome-card-num {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
   color: var(--accent);
-  margin-bottom: 0.7rem;
-  line-height: 1;
+  margin-bottom: 0.9rem;
 }
 
-.metric-label {
-  display: block;
-  font-size: 0.8rem;
-  color: var(--muted);
+.outcome-card h4 {
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.outcome-card p {
+  font-size: 0.88rem;
   line-height: 1.6;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  margin: 0;
+  color: var(--muted);
 }
 
 .learning-list {
@@ -752,11 +983,9 @@ p:last-child {
 
 /* Responsive Design */
 @media (max-width: 1024px) {
-  .metrics-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
+  .outcome-cards {
+    grid-template-columns: 1fr 1fr;
   }
-
 
   .flow-comparison {
     grid-template-columns: 1fr;
@@ -786,6 +1015,10 @@ p:last-child {
   }
 
   .issue-card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .project-details {
     grid-template-columns: repeat(2, 1fr);
   }
 }
@@ -874,14 +1107,9 @@ p:last-child {
   }
 
 
-  .risk-item {
-    padding: 2rem 2.25rem;
-  }
-
-
   .risks-list {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 1.75rem;
   }
 
 
@@ -889,7 +1117,7 @@ p:last-child {
     grid-template-columns: 1fr;
   }
 
-  .metrics-grid {
+  .outcome-cards {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
@@ -917,6 +1145,10 @@ p:last-child {
 
   .decision-title-wrapper h3 {
     font-size: 1.25rem;
+  }
+
+  .hero-decision .decision-title-wrapper h3 {
+    font-size: 1.35rem;
   }
 
 
@@ -1033,10 +1265,6 @@ p:last-child {
     margin-bottom: 1.75rem;
   }
 
-  .metric-value {
-    font-size: 1.9rem;
-  }
-
   .improvement-item {
     flex-direction: column;
     gap: 0.5rem;
@@ -1059,23 +1287,18 @@ p:last-child {
     font-size: 1.05rem;
   }
 
-
-  .risk-item {
-    padding: 1.8rem 2rem;
-  }
-
   .problem-grid {
     grid-template-columns: 1fr;
   }
 
+  .stat-strip {
+    grid-template-columns: 1fr 1fr;
+  }
 
-  .transform-grid {
+  .method-strip {
     grid-template-columns: 1fr;
   }
 }
-
-/* ===== Evidence blocks ===== */
-
 
 /* ===== Research & Diagnosis method blocks ===== */
 .method-detail {
@@ -1134,12 +1357,7 @@ p:last-child {
   border: 1px solid var(--card-border);
 }
 
-/* ===== Booking flow layout (02 — Simplifying the flow) =====
-   Old and new session booking flows each get their own row: the video
-   on the left (matched to the same small phone-screen size used by the
-   .method-split-video videos elsewhere on the page, 220px wide) with
-   its own "User flow" image slot beside it, filling the remaining
-   width and matching the video's height. */
+/* ===== Booking flow layout ===== */
 .booking-flow-layout {
   display: flex;
   flex-direction: column;
@@ -1241,10 +1459,7 @@ p:last-child {
 }
 
 
-  /* ===== Key screens redesigned (02 — Simplifying the flow) =====
-   Repeated old/new screen pairs — Home screen, Coaches list, Coach
-   profile — each reusing the .onboarding-flow-images side-by-side
-   layout already used elsewhere on the page. */
+/* ===== Key screens redesigned ===== */
 .key-screens-block .key-screen-item {
   margin-top: 7rem;
 }
@@ -1278,11 +1493,6 @@ p:last-child {
   font-weight: 600;
 }
 
-/* Old/new screenshots here vary wildly in native size — the annotated
-   "new" versions are wider (side callouts) but the phone frame itself
-   should read at the same height as "old". Match height only (not a
-   width+height box) so width scales naturally per image; the annotation
-   callouts just extend sideways rather than shrinking the phone frame. */
 .key-screens-block .flow-image-item {
   flex: 0 0 auto;
   min-width: auto;
@@ -1290,6 +1500,7 @@ p:last-child {
 
 .key-screens-block .onboarding-flow-images {
   flex-wrap: wrap;
+  gap: clamp(3rem, 12vw, 16rem);
 }
 
 .key-screens-block .flow-image-item .solution-image-wrapper {
@@ -1308,9 +1519,6 @@ p:last-child {
   box-shadow: none;
 }
 
-/* Coach profile screens run longer top-to-bottom than Home screen or
-   Coaches list, so the shared 480px box shrinks them too much to read.
-   Scoped taller box just for this pair. */
 .coach-profile-item .flow-image-item .solution-image-wrapper {
   height: 720px;
 }
@@ -1399,7 +1607,7 @@ p:last-child {
   color: var(--muted);
 }
 
-/* ===== Competitive benchmarking: side-by-side, image wider than text ===== */
+/* ===== Competitive benchmarking ===== */
 .benchmark-block {
   margin-top: 0.5rem;
 }
@@ -1433,8 +1641,55 @@ p:last-child {
   max-width: 100%;
 }
 
-/* Home screen discovery split */
+/* ===== Competitor pattern → Sportscove opportunity table ===== */
+.opportunity-table {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin-top: 1.5rem;
+}
 
+.opportunity-row {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 1rem;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 4px;
+  padding: 1rem 1.4rem;
+  font-size: 0.86rem;
+  line-height: 1.5;
+}
+
+.opp-from {
+  color: var(--muted);
+}
+
+.opp-arrow {
+  color: var(--accent);
+}
+
+.opp-to {
+  color: var(--text);
+}
+
+@media (max-width: 600px) {
+  .opportunity-row {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+    text-align: left;
+  }
+
+  .opp-arrow {
+    display: none;
+  }
+
+  .opp-to::before {
+    content: "→ ";
+    color: var(--accent);
+  }
+}
 
 /* ===== Search features grid ===== */
 .search-features-grid {
@@ -1483,23 +1738,7 @@ p:last-child {
   color: var(--muted);
 }
 
-/* ===== Field-behavior pairs (03 / Designing beyond the happy path) =====
-   Two items per row — title, problem text, "Change" label, change text,
-   then media, in that order. Media reuses .search-feature-image and
-   .search-feature-video (same fixed max-width: 220px used in the
-   search-features-grid above) so every visual here renders at the same
-   size, screenshot or video alike.
-
-   Each item is `display: contents`, same trick as .search-feature above:
-   its 5 children (h4, p, .risk-subheading, p, .field-behavior-media)
-   become direct children of the grid, which is laid out with
-   grid-auto-flow: column across 5 explicit rows. That means "row 2"
-   (the problem paragraph) auto-sizes to whichever of the two items'
-   paragraph is taller, and everything below it — the Change label,
-   Change text, and the media — starts at that same shared row
-   position for BOTH items. Without this, media ends up at a different
-   vertical position per item whenever one item's text runs longer
-   than its pair's. */
+/* ===== Field-behavior pairs ===== */
 .field-behaviors-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -1564,15 +1803,7 @@ p:last-child {
   }
 }
 
-/* ===== Resilient-flow reveal (04 / From a form to a resilient flow) =====
-   This is the visual payoff of the onboarding section (01–03 restructured,
-   tested, and redesigned the individual behaviours). Its title uses the
-   exact same .decision-header/.decision-title-wrapper h3 structure as
-   '03 / Designing beyond the happy path', and the explanatory line below
-   it reuses .method-lede for the same reason. The pills, video, and
-   closing line stay centered underneath since they're a narrow block and
-   left-aligning those specifically would leave a big empty gap on the
-   right. */
+/* ===== Resilient-flow reveal ===== */
 .resilient-capabilities {
   display: flex;
   flex-wrap: wrap;
@@ -1634,15 +1865,7 @@ p:last-child {
   }
 }
 
-/* =====================================================================
-   Additional stuff I did because I wanted to (extras section) —
-   sits right after the onboarding "resilient flow" reveal and before
-   Key Transformations & Outcome. A short lede, a subheading with three
-   bullet points explaining the splash-screen and spinner-loader work
-   (built in Figma using prototyping/smart animate, self-initiated),
-   followed by the two videos side by side at the same 220px phone-frame
-   size used throughout the rest of the page (.method-split-video,
-   booking-flow-row videos, resilient-video-wrapper). ===== */
+/* ===== Beyond the core flows (extras section) ===== */
 .extras-section .section-content > p {
   margin-bottom: 3rem;
   font-size: 1.05rem;
@@ -1704,7 +1927,7 @@ p:last-child {
 }
 
 
-/* ===== Lightbox ===== */
+/* ===== Lightbox — accessible dialog ===== */
 .solution-image,
 .option-card-image {
   cursor: zoom-in;
@@ -1766,13 +1989,19 @@ p:last-child {
   background: rgba(255, 255, 255, 0.2);
 }
 
-/* ===== Four Problems cards (shortened form) ===== */
-.problem-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem 2rem;
+.lightbox-close:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .lightbox-overlay,
+  .lightbox-overlay img {
+    transition: none;
+  }
+}
+
+/* ===== Four Problems cards — tag + heading only now; card chrome removed above ===== */
 .problem-head {
   display: flex;
   gap: 1.25rem;
@@ -1794,6 +2023,15 @@ p:last-child {
   flex-shrink: 0;
 }
 
+.problem-tag {
+  display: inline-block;
+  font-size: 0.65rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
 
 .problem-head h3 {
   font-size: 1.2rem;
@@ -1808,38 +2046,9 @@ p:last-child {
   font-size: 0.92rem;
   line-height: 1.6;
   color: var(--muted);
-  margin-bottom: 1.1rem;
+  margin-bottom: 0;
 }
 
-
-/* ===== Key Transformations ===== */
-.transform-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-  margin-top: 3rem;
-  margin-bottom: 4rem;
-}
-
-.transform-item {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 4px;
-  padding: 1.75rem 2rem;
-  transition: all 0.3s ease;
-}
-
-.transform-item:hover {
-  background: var(--card-hover-bg);
-  border-color: var(--accent);
-}
-
-.transform-item p {
-  font-size: 0.92rem;
-  line-height: 1.6;
-  margin: 0;
-  color: var(--muted);
-}
 
 /* ===== Research review block ===== */
 .research-review-block p {
@@ -1883,8 +2092,6 @@ p:last-child {
   border-top: none;
 }
 
-/* Compact variant — used for consecutive reveal-only groups (research gap,
-   more time) that shouldn't get the full heading-group spacing/divider. */
 .research-group.research-group-compact {
   margin-top: 1.25rem;
   padding-top: 0;
@@ -1900,7 +2107,7 @@ p:last-child {
   font-size: 0.95rem;
   font-weight: 500;
   letter-spacing: 0.3px;
-  text-transform: lowercase;
+  text-transform: none;
   color: var(--text);
   margin-bottom: 1.25rem;
 }
@@ -1982,20 +2189,6 @@ p:last-child {
   color: var(--accent);
 }
 
-.research-review-block .question-group-why {
-  margin: 1rem 0 0;
-  font-size: 0.78rem;
-  line-height: 1.5;
-  color: var(--muted);
-  font-style: italic;
-}
-
-.research-review-block .question-group-why strong {
-  color: var(--text);
-  font-style: normal;
-  font-weight: 500;
-}
-
 .research-review-block .question-why-toggle {
   margin: 0.5rem 0 0;
   padding-left: 1.25rem;
@@ -2059,24 +2252,12 @@ p:last-child {
   font-style: italic;
 }
 
-/* ===== Coach research reveal — same pill component as .section-reveal,
-   just sized to match the two toggles further down (.research-group-compact
-   .section-reveal summary), so all three read as the same kind of control.
-   A .research-divider (thin rule + spacing) is placed between this group
-   and the next two so the coach-research toggle doesn't visually club
-   together with the "research gap" / "more time" pair. ===== */
-.research-review-block .coach-question-reveal > summary {
-  font-size: 0.78rem;
-  padding: 6px 14px;
-}
-
 .research-review-block .research-divider {
   border: none;
   border-top: 1px solid var(--card-border);
   margin: 3rem 0 2.25rem;
 }
 
-/* Sport/coach breadth funnels — replaced by .journey-map below, rules kept for reference */
 .funnel-group-label {
   display: block;
   font-size: 0.7rem;
@@ -2197,7 +2378,7 @@ p:last-child {
   color: var(--text);
 }
 
-/* ===== Process track — horizontal, evenly-spaced, centered steps ===== */
+/* ===== Process track ===== */
 .process-track {
   position: relative;
   display: flex;
@@ -2249,10 +2430,6 @@ p:last-child {
   font-size: 0.78rem;
 }
 
-/* Scoped to beat .method-detail h3's higher specificity, which was
-   overriding the font-size above and rendering these step titles at
-   1.35rem instead of the intended small size. !important added as a
-   safety net in case another rule elsewhere still wins on specificity. */
 .research-review-block .process-track-title {
   font-size: 0.7rem !important;
   margin: 0.4rem 0 0;
@@ -2291,7 +2468,7 @@ p:last-child {
   font-weight: 300;
 }
 
-/* ===== Merged multi-sport logic section — final card on the left, reasoning on the right ===== */
+/* ===== Merged multi-sport logic section ===== */
 .merged-logic-section .solution-image-wrapper {
   margin: 0;
 }
@@ -2335,10 +2512,7 @@ p:last-child {
   }
 }
 
-/* ===== Section reveal — click-to-open wrapper for whole content blocks =====
-   Generalized beyond .research-review-block (where this pattern started,
-   e.g. "The research gap I would have explored") so it can be reused
-   anywhere on the page — e.g. "Other screens worked on". */
+/* ===== Section reveal — click-to-open wrapper for whole content blocks ===== */
 .research-review-block .section-reveal,
 .section-reveal {
   margin-top: 0;
@@ -2400,7 +2574,7 @@ p:last-child {
 }
 
 /* =====================================================================
-   Coach Onboarding section (Problem 04 — marketplace complexity)
+   Coach Onboarding section
    ===================================================================== */
 
 .onboarding-block {
@@ -2421,7 +2595,7 @@ p:last-child {
 /* ----- Old vs new flow comparison (side-by-side images) ----- */
 .onboarding-flow-images {
   display: flex;
-  gap: 12rem;
+  gap: clamp(2rem, 8vw, 12rem);
   justify-content: center;
   margin: 2.5rem 0;
 }
@@ -2485,12 +2659,17 @@ p:last-child {
   font-weight: 500;
 }
 
-/* ----- 5-card testing grid ----- */
+/* ----- Testing quotes grid ----- */
 .issue-card-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.75rem;
   margin-top: 0.5rem;
+}
+
+.issue-card-grid.single-quote {
+  grid-template-columns: 1fr;
+  max-width: 480px;
 }
 
 .issue-card {
@@ -2500,7 +2679,7 @@ p:last-child {
   padding: 1.75rem;
   display: flex;
   flex-direction: column;
-  gap: 1.1rem;
+  gap: 0.9rem;
   transition: all 0.3s ease;
 }
 
@@ -2509,11 +2688,19 @@ p:last-child {
   background: var(--card-hover-bg);
 }
 
+.issue-context {
+  font-size: 0.72rem;
+  line-height: 1.4;
+  color: var(--accent);
+  font-weight: 500;
+}
+
 .issue-card-num {
   font-size: 0.7rem;
   letter-spacing: 1.5px;
-  color: var(--accent);
+  color: var(--muted);
   font-weight: 700;
+  text-transform: uppercase;
 }
 
 .issue-quote {
@@ -2530,17 +2717,6 @@ p:last-child {
   margin-right: auto;
 }
 
-/* Onboarding section videos ("First prototype" and "Final onboarding") —
-   resized to match the phone-frame video size used everywhere earlier in
-   the case study (.method-split-video and the booking-flow-row videos,
-   both 220px wide, cropped to a phone aspect ratio).
-   NOTE: this must be scoped as ".onboarding-block .onboarding-flow-video"
-   (two classes) rather than just ".onboarding-flow-video" (one class) —
-   the earlier ".onboarding-block .solution-image-wrapper" rule is also
-   two classes, and a single-class override loses that specificity fight
-   regardless of source order, which is why the previous attempt at this
-   (".final-onboarding-video { max-width: 220px }") never actually took
-   effect. */
 .onboarding-block .onboarding-flow-video {
   max-width: 220px;
   aspect-ratio: 9 / 19.5;
@@ -2551,9 +2727,6 @@ p:last-child {
   height: 100%;
   object-fit: cover;
 }
-
-/* ----- Final onboarding flow ----- */
-
 
 @media (max-width: 768px) {
   .onboarding-flow-images {
