@@ -1,4 +1,4 @@
-// project1.js - Redesigned for Story Style with Design Decisions
+// project0-enhanced.js - Comprehensive Quippy Extension Portfolio Page
 
 document.addEventListener('DOMContentLoaded', () => {
   
@@ -17,12 +17,12 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', updateProgressBar);
   updateProgressBar();
   
-  // Section reveal animations - FIXED
+  // Section reveal animations
   const sections = document.querySelectorAll('.project-section');
   
   const observerOptions = {
-    threshold: 0.05, // FIXED: Changed from 0.2 to 0.05 for earlier trigger
-    rootMargin: '0px 0px -50px 0px' // FIXED: Reduced from -100px
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
   };
   
   const sectionObserver = new IntersectionObserver((entries) => {
@@ -36,16 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
   sections.forEach(section => {
     sectionObserver.observe(section);
   });
-  
-  // FORCE VISIBILITY FOR DESIGN DECISIONS SECTION - EMERGENCY FIX
-  setTimeout(() => {
-    const designSection = document.querySelector('.design-decisions-section');
-    if (designSection) {
-      designSection.classList.add('visible');
-      designSection.style.opacity = '1';
-      designSection.style.transform = 'translateY(0)';
-    }
-  }, 100);
   
   // Smooth scroll for anchor links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -61,262 +51,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
   
-  // Video autoplay on scroll
-  const videos = document.querySelectorAll('.animation-video');
+  // Parallax effect for hero image/video
+  const heroMedia = document.querySelector('.hero-image');
   
-  const videoObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      const video = entry.target;
-      
-      if (entry.isIntersecting) {
-        video.play().catch(e => console.log('Video autoplay prevented:', e));
-      } else {
-        video.pause();
-        video.currentTime = 0;
-      }
-    });
-  }, { threshold: 0.5 });
-  
-  videos.forEach(video => {
-    videoObserver.observe(video);
-  });
-  
-  // Parallax effect for hero image
-  const heroImage = document.querySelector('.hero-image');
-  
-  if (heroImage) {
+  if (heroMedia) {
     window.addEventListener('scroll', () => {
       const scrolled = window.pageYOffset;
       if (scrolled < window.innerHeight) {
-        heroImage.style.transform = `translateY(${scrolled * 0.3}px)`;
-        heroImage.style.opacity = 1 - (scrolled / window.innerHeight) * 0.5;
+        heroMedia.style.transform = `translateY(${scrolled * 0.3}px)`;
+        heroMedia.style.opacity = 1 - (scrolled / window.innerHeight) * 0.5;
       }
     });
-  }
-  
-  // Add stagger animation to problem items
-  const problemItems = document.querySelectorAll('.problem-item');
-  
-  const problemObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const items = entry.target.querySelectorAll('.problem-item');
-        items.forEach((item, index) => {
-          setTimeout(() => {
-            item.style.opacity = '1';
-            item.style.transform = 'translateY(0)';
-            item.style.transition = 'all 0.5s ease';
-          }, index * 150);
-        });
-      }
-    });
-  }, { threshold: 0.3 });
-  
-  const problemList = document.querySelector('.problem-list');
-  if (problemList) {
-    // Set initial state
-    problemItems.forEach(item => {
-      item.style.opacity = '0';
-      item.style.transform = 'translateY(20px)';
-    });
-    problemObserver.observe(problemList);
-  }
-  
-  // Add stagger animation to approach steps
-  const approachSteps = document.querySelectorAll('.approach-step');
-  
-  const approachObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const steps = entry.target.querySelectorAll('.approach-step');
-        steps.forEach((step, index) => {
-          setTimeout(() => {
-            step.style.opacity = '1';
-            step.style.transform = 'translateY(0)';
-            step.style.transition = 'all 0.5s ease';
-          }, index * 150);
-        });
-      }
-    });
-  }, { threshold: 0.3 });
-  
-  const approachContainer = document.querySelector('.approach-steps');
-  if (approachContainer) {
-    // Set initial state
-    approachSteps.forEach(step => {
-      step.style.opacity = '0';
-      step.style.transform = 'translateY(20px)';
-    });
-    approachObserver.observe(approachContainer);
-  }
-  
-  // Metric counter animation
-  const metricValues = document.querySelectorAll('.metric-value');
-  let hasAnimated = false;
-  
-  const metricObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting && !hasAnimated) {
-        hasAnimated = true;
-        
-        metricValues.forEach(metric => {
-          const text = metric.textContent;
-          
-          // Only animate numeric values
-          if (text.includes('%')) {
-            const target = parseInt(text);
-            let count = 0;
-            const increment = target / 50;
-            
-            const interval = setInterval(() => {
-              count += increment;
-              if (count >= target) {
-                metric.textContent = text;
-                clearInterval(interval);
-              } else {
-                metric.textContent = Math.floor(count) + '%';
-              }
-            }, 30);
-          }
-        });
-      }
-    });
-  }, { threshold: 0.5 });
-  
-  const metricsGrid = document.querySelector('.metrics-grid');
-  if (metricsGrid) {
-    metricObserver.observe(metricsGrid);
-  }
-  
-  // Design Decision Blocks Animation - FIXED
-  const decisionBlocks = document.querySelectorAll('.design-decision-block');
-  
-  const decisionObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        // FIXED: Set visible immediately
-        entry.target.style.opacity = '1';
-        entry.target.style.transform = 'translateY(0)';
-        entry.target.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
-      }
-    });
-  }, { threshold: 0.05 }); // FIXED: Lower threshold
-  
-  decisionBlocks.forEach(block => {
-    block.style.opacity = '1'; // FIXED: Start visible
-    block.style.transform = 'translateY(0)'; // FIXED: No offset
-    decisionObserver.observe(block);
-  });
-  
-  // Animate notification categories on scroll
-  const notificationCategories = document.querySelectorAll('.notification-category');
-  
-  const categoryObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const categories = entry.target.parentElement.querySelectorAll('.notification-category');
-        categories.forEach((cat, index) => {
-          setTimeout(() => {
-            cat.style.opacity = '1';
-            cat.style.transform = 'translateY(0)';
-            cat.style.transition = 'all 0.5s ease';
-          }, index * 100);
-        });
-      }
-    });
-  }, { threshold: 0.3 });
-  
-  const notificationGrid = document.querySelector('.notification-categories');
-  if (notificationGrid) {
-    notificationCategories.forEach(cat => {
-      cat.style.opacity = '0';
-      cat.style.transform = 'translateY(20px)';
-    });
-    categoryObserver.observe(notificationGrid);
-  }
-  
-  // FIXED: Criteria items are now always visible (no animation) - this was causing the gap
-  // Animation code removed to prevent opacity: 0 issue
-  
-  // Animate final notifications
-  const notificationItems = document.querySelectorAll('.notification-item');
-  
-  const notificationObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const items = entry.target.parentElement.querySelectorAll('.notification-item');
-        items.forEach((item, index) => {
-          setTimeout(() => {
-            item.style.opacity = '1';
-            item.style.transform = 'scale(1)';
-            item.style.transition = 'all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
-          }, index * 100);
-        });
-      }
-    });
-  }, { threshold: 0.5 });
-  
-  const finalNotifications = document.querySelector('.final-notifications');
-  if (finalNotifications) {
-    notificationItems.forEach(item => {
-      item.style.opacity = '0';
-      item.style.transform = 'scale(0.8)';
-    });
-    notificationObserver.observe(finalNotifications);
-  }
-  
-  // Animate outcome items
-  const outcomeItems = document.querySelectorAll('.outcome-item');
-  
-  const outcomeObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const items = entry.target.querySelectorAll('.outcome-item');
-        items.forEach((item, index) => {
-          setTimeout(() => {
-            item.style.opacity = '1';
-            item.style.transform = 'translateY(0)';
-            item.style.transition = 'all 0.5s ease';
-          }, index * 120);
-        });
-      }
-    });
-  }, { threshold: 0.3 });
-  
-  document.querySelectorAll('.outcome-grid').forEach(grid => {
-    const items = grid.querySelectorAll('.outcome-item');
-    items.forEach(item => {
-      item.style.opacity = '0';
-      item.style.transform = 'translateY(20px)';
-    });
-    outcomeObserver.observe(grid);
-  });
-  
-  // Animate update badges
-  const updateBadges = document.querySelectorAll('.update-badge');
-  
-  const badgeObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const badges = entry.target.querySelectorAll('.update-badge');
-        badges.forEach((badge, index) => {
-          setTimeout(() => {
-            badge.style.opacity = '1';
-            badge.style.transform = 'translateY(0)';
-            badge.style.transition = 'all 0.4s ease';
-          }, index * 80);
-        });
-      }
-    });
-  }, { threshold: 0.5 });
-  
-  const contextualUpdates = document.querySelector('.contextual-updates');
-  if (contextualUpdates) {
-    updateBadges.forEach(badge => {
-      badge.style.opacity = '1';
-      badge.style.transform = 'translateY(10px)';
-    });
-    badgeObserver.observe(contextualUpdates);
   }
   
   // Keyboard navigation
@@ -336,80 +81,243 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
   
-  // Add hover effects to images
-  const images = document.querySelectorAll('.solution-image, .final-image');
+  // Add hover effects to images and videos
+  const mediaElements = document.querySelectorAll('.screen img, .screen-video, .userflow-image-wrapper img, .design-system-image img');
   
-  images.forEach(img => {
-    img.addEventListener('mouseenter', () => {
-      img.style.transform = 'scale(1.02)';
-      img.style.transition = 'transform 0.3s ease';
+  mediaElements.forEach(media => {
+    media.addEventListener('mouseenter', () => {
+      media.style.transform = 'scale(1.02)';
+      media.style.transition = 'transform 0.3s ease';
     });
     
-    img.addEventListener('mouseleave', () => {
-      img.style.transform = 'scale(1)';
+    media.addEventListener('mouseleave', () => {
+      media.style.transform = 'scale(1)';
     });
   });
   
-  // Smooth reveal for highlight sections
-  const highlightSections = document.querySelectorAll('.highlight-section');
+  // Insight cards animation
+  const insightCards = document.querySelectorAll('.insight-card');
   
-  const highlightObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = '1';
-        entry.target.style.transform = 'scale(1)';
-        entry.target.style.transition = 'all 0.6s ease';
-      }
-    });
-  }, { threshold: 0.3 });
-  
-  highlightSections.forEach(section => {
-    highlightObserver.observe(section);
-  });
-  
-  // Add pulse effect to decision icons on scroll
-  const decisionIcons = document.querySelectorAll('.decision-icon');
-  
-  const iconObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.animation = 'pulse 0.6s ease';
-        
-        setTimeout(() => {
-          entry.target.style.animation = '';
-        }, 600);
-      }
-    });
-  }, { threshold: 0.8 });
-  
-  decisionIcons.forEach(icon => {
-    iconObserver.observe(icon);
-  });
-  
-  // Add CSS animation keyframes dynamically
-  const style = document.createElement('style');
-  style.textContent = `
-    @keyframes pulse {
-      0%, 100% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.1);
-      }
-    }
+  insightCards.forEach((card, index) => {
+    const cardObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            entry.target.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+          }, index * 100);
+        }
+      });
+    }, { threshold: 0.3 });
     
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-  `;
-  document.head.appendChild(style);
+    cardObserver.observe(card);
+  });
+  
+  // UX Principle cards animation
+  const uxPrinciples = document.querySelectorAll('.ux-principle');
+  
+  uxPrinciples.forEach((card, index) => {
+    const principleObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            entry.target.style.transition = 'all 0.5s ease';
+          }, index * 80);
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    principleObserver.observe(card);
+  });
+  
+  // Flow steps animation
+  const flowSteps = document.querySelectorAll('.flow-step');
+  
+  flowSteps.forEach((step, index) => {
+    const stepObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateX(0)';
+            entry.target.style.transition = 'all 0.5s ease';
+          }, index * 100);
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    stepObserver.observe(step);
+  });
+  
+  // Feature cards detailed animation
+  const featureCardsDetailed = document.querySelectorAll('.feature-card-detailed');
+  
+  featureCardsDetailed.forEach((card, index) => {
+    const featureObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            entry.target.style.transition = 'all 0.5s ease';
+          }, index * 60);
+        }
+      });
+    }, { threshold: 0.3 });
+    
+    featureObserver.observe(card);
+  });
+  
+  // Issues found animation
+  const foundIssues = document.querySelectorAll('.found-issue');
+  
+  foundIssues.forEach((issue, index) => {
+    const issueObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            entry.target.style.transition = 'all 0.5s ease';
+          }, index * 100);
+        }
+      });
+    }, { threshold: 0.3 });
+    
+    issueObserver.observe(issue);
+  });
+  
+  // Learning items animation
+  const learningItems = document.querySelectorAll('.learning-item');
+  
+  learningItems.forEach((item, index) => {
+    const learningObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            entry.target.style.transition = 'all 0.5s ease';
+          }, index * 80);
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    learningObserver.observe(item);
+  });
+  
+  // Future items animation
+  const futureItems = document.querySelectorAll('.future-item');
+  
+  futureItems.forEach((item, index) => {
+    const futureObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            entry.target.style.transition = 'all 0.5s ease';
+          }, index * 60);
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    futureObserver.observe(item);
+  });
+  
+  // Metric cards animation
+  const metricCards = document.querySelectorAll('.metric-card');
+  
+  metricCards.forEach((card, index) => {
+    const metricObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'scale(1)';
+            entry.target.style.transition = 'all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)';
+          }, index * 100);
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    metricObserver.observe(card);
+  });
+  
+  // Design decision cards fade in
+  const designDecisionCards = document.querySelectorAll('.design-decision-card');
+  
+  designDecisionCards.forEach((card) => {
+    const decisionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+          entry.target.style.transition = 'all 0.6s ease';
+        }
+      });
+    }, { threshold: 0.3 });
+    
+    decisionObserver.observe(card);
+  });
+  
+  // IA items animation
+  const iaItems = document.querySelectorAll('.ia-item');
+  
+  iaItems.forEach((item, index) => {
+    const iaObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateX(0)';
+            entry.target.style.transition = 'all 0.5s ease';
+          }, index * 100);
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    iaObserver.observe(item);
+  });
+  
+  // Tech items animation
+  const techItems = document.querySelectorAll('.tech-item');
+  
+  techItems.forEach((item, index) => {
+    const techObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateX(0)';
+            entry.target.style.transition = 'all 0.4s ease';
+          }, index * 60);
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    techObserver.observe(item);
+  });
+  
+  // Design category fade in
+  const designCategories = document.querySelectorAll('.design-category');
+  
+  designCategories.forEach((category) => {
+    const categoryObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+          entry.target.style.transition = 'all 0.6s ease';
+        }
+      });
+    }, { threshold: 0.2 });
+    
+    categoryObserver.observe(category);
+  });
   
   // Reading time estimator
   const content = document.querySelector('.project-content');
@@ -422,20 +330,32 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log(`📝 Word count: ${wordCount} words`);
   }
   
-  // Log design decisions section stats
-  const decisionSections = document.querySelectorAll('.design-decision-block');
-  if (decisionSections.length > 0) {
-    console.log(`🎯 Design decisions documented: ${decisionSections.length}`);
+  // Live badge pulse animation
+  const liveBadge = document.querySelector('.live-badge');
+  if (liveBadge) {
+    setInterval(() => {
+      liveBadge.style.transform = 'scale(1.05)';
+      setTimeout(() => {
+        liveBadge.style.transform = 'scale(1)';
+      }, 200);
+    }, 3000);
+  }
+  
+  // CTA button hover effect
+  const ctaButton = document.querySelector('.cta-button');
+  if (ctaButton) {
+    ctaButton.addEventListener('mouseenter', () => {
+      ctaButton.style.transform = 'translateY(-4px) scale(1.05)';
+    });
     
-    decisionSections.forEach((block, index) => {
-      const title = block.querySelector('.decision-title-wrapper h3');
-      if (title) {
-        console.log(`   ${index + 1}. ${title.textContent.trim()}`);
-      }
+    ctaButton.addEventListener('mouseleave', () => {
+      ctaButton.style.transform = 'translateY(0) scale(1)';
     });
   }
   
-  console.log('✨ Sportscove project page loaded');
-  console.log('🎯 Focus: UX design process, problem-solving, and key design decisions');
+  console.log('✨ Enhanced Quippy project page loaded');
+  console.log('🎯 Focus: Comprehensive UX/UI case study');
+  console.log('🎨 Status: Live on Chrome Web Store');
+  console.log('📊 Sections: Research, UX Strategy, Design System, Development, Testing, Impact');
   
 });

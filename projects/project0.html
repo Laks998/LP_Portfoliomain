@@ -1,989 +1,1055 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Quippy Browser Extension | Lakshmi Pratap</title>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="project0.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sportscove: Lakshmi Pratap</title>
+  <link rel="stylesheet" href="project0.css?v=66" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="../assets/logo.png">
 </head>
-
 <body>
-  
-  <!-- Progress bar -->
-  <div class="read-progress"></div>
 
-  <!-- Back link -->
+  <div class="read-progress"></div>
   <a href="../index.html#work" class="back-link">← Back to Work</a>
 
-  <!-- Main content -->
   <main class="project-content">
 
     <!-- Hero -->
     <section class="project-hero-section">
       <div class="hero-content">
-        <div class="project-meta">Personal Project · October 2024 - Present</div>
-        <h1 class="project-title">Quippy</h1>
-        <p class="project-subtitle">A lightweight Chrome extension that brings instant text conversions and lookups to your fingertips. Select any text, press Ctrl+Shift+Q, and get answers without leaving your page</p>
-        <div class="live-badge">
-          <span class="badge-icon">✓</span>
-          <span class="badge-text">Live on Chrome Web Store</span>
-        </div>
+        <div class="project-meta">SPORTSCOVE | March 2025 - October 2025</div>
+        <h1 class="project-title">Rebuilding a fragmented dual-sided marketplace for a scalable launch</h1>
+        <p class="project-subtitle">A product three months from launch, rebuilt into a scalable, launch-ready experience through a full product and UX audit, a design system, and end-to-end flow design.</p>
         <div class="hero-image-wrapper">
-          <video src="../assets/quipmainvid.mov" class="hero-image" autoplay loop muted playsinline>
-            Your browser does not support the video tag.
-          </video>
+          <img src="../assets/sportscovenewcover.png" alt="Sportscove platform overview" class="hero-image">
         </div>
       </div>
     </section>
 
     <!-- Overview -->
-    <section class="project-section overview-section">
+    <section class="project-section context-section">
       <div class="section-content">
-        <h2>Project Vision</h2>
-        <p>
-          Quippy eliminates the friction of switching tabs for simple conversions and lookups. Select any text on any website. Gmail, Google Docs, Slack, or anywhere you work, press Ctrl+Shift+Q, and Quippy appears with instant results. It works seamlessly across all your browsing, keeping you in your flow without collecting any personal data.
-        </p>
+        <span class="section-kicker">Project overview</span>
+        <h2>A startup preparing to launch its first product on a tight deadline</h2>
+        <p><span class="intro-highlight">Sportscove is a sports coaching marketplace connecting learners with coaches across the US, Canada, and India.</span> The product was three months from launch, and needed a <strong>full product and UX audit</strong> to bring an incomplete, pre-launch platform to a <strong>scalable, launch-ready state</strong>.</p>
+
         <div class="project-details">
-          <div class="detail-item">
-            <div class="detail-label">Role</div>
-            <div class="detail-value">Product Design, UX Research, UI Design, Frontend Development, Testing</div>
-          </div>
-          <div class="detail-item">
-            <div class="detail-label">Timeline</div>
-            <div class="detail-value">October 2024 - Present (3 months)</div>
-          </div>
-          <div class="detail-item">
-            <div class="detail-label">Project Type</div>
-            <div class="detail-value">Personal Product · Browser Extension</div>
-          </div>
-          <div class="detail-item">
-            <div class="detail-label">Tech Stack</div>
-            <div class="detail-value">HTML, CSS, JavaScript, Chrome Extension APIs</div>
-          </div>
-          <div class="detail-item">
-            <div class="detail-label">Status</div>
-            <div class="detail-value">Live on Chrome Web Store</div>
-          </div>
-          <div class="detail-item">
-            <div class="detail-label">Design Tools</div>
-            <div class="detail-value">Figma, AI-assisted development (ChatGPT, Claude)</div>
-          </div>
+          <div class="detail-item"><div class="detail-label">Role</div><div class="detail-value">UX Designer</div></div>
+          <div class="detail-item"><div class="detail-label">Timeline</div><div class="detail-value">3 months to launch</div></div>
+          <div class="detail-item"><div class="detail-label">Team</div><div class="detail-value">2 designers, 3 developers, CEO &amp; advisors</div></div>
+          <div class="detail-item"><div class="detail-label">Deliverables</div><div class="detail-value">launch-ready product</div></div>
         </div>
+
       </div>
     </section>
 
-    <!-- Background -->
-    <section class="project-section background-section">
-      <div class="section-content">
-        <h2>Is there a need for Quippy really?</h2>
-        <p>
-          During my daily work, I found myself constantly switching tabs to Google for simple tasks like converting currencies for international projects, checking timezones for meetings, translating phrases, looking up word meanings, or converting units. Each time meant breaking my flow, opening a new tab, typing in the search, and navigating back.
-        </p>
-        <p>
-          This friction added up. I participated in the Figma Makethon and created a prototype for a browser extension that could handle these common tasks instantly. The core idea: select any text on any page, press a keyboard shortcut, and get instant results right there. No tab switching, no context loss.
-        </p>
-        <p>
-          When I shared the prototype on LinkedIn, the response surprised me. People reached out asking if they could actually use it. That validation gave me the push to turn the concept into a real product during my career break. Armed with ChatGPT and Claude as coding partners, and my own design skills, I decided to build Quippy from the ground up.
-        </p>
-      </div>
-    </section>
-
-    <!-- The Problem -->
-    <section class="project-section issues-section">
-      <div class="section-content">
-        <h2>All the current problems</h2>
-        <p class="problem-intro">Through observation of my own workflow and conversations with potential users, I identified five key pain points that were consistently disrupting productivity:</p>
-        <div class="issue-list">
-          <div class="issue-item">
-            <div class="issue-marker">01</div>
-            <div class="issue-content">
-              <h4>Context Switching Disrupts Flow State</h4>
-              <p>Opening Google repeatedly breaks concentration and disrupts workflow, requiring mental effort to regain focus after each interruption</p>
-            </div>
-          </div>
-          <div class="issue-item">
-            <div class="issue-marker">02</div>
-            <div class="issue-content">
-              <h4>Multi-Step Process for Simple Tasks</h4>
-              <p>Simple conversions require multiple steps: new tab → type query → search → scan results → navigate back, wasting precious seconds repeatedly throughout the day</p>
-            </div>
-          </div>
-          <div class="issue-item">
-            <div class="issue-marker">03</div>
-            <div class="issue-content">
-              <h4>Lost Time Compounds</h4>
-              <p>These micro-interruptions add up. 30 seconds per lookup, 20+ times a day equals 10+ minutes of pure friction, not counting the cost of context switching</p>
-            </div>
-          </div>
-          <div class="issue-item">
-            <div class="issue-marker">04</div>
-            <div class="issue-content">
-              <h4>Fragmented Tool Ecosystem</h4>
-              <p>No quick way to access multiple conversion tools in one place. Currency, timezone, units, translations all require different websites or apps</p>
-            </div>
-          </div>
-          <div class="issue-item">
-            <div class="issue-marker">05</div>
-            <div class="issue-content">
-              <h4>Existing Solutions Fall Short</h4>
-              <p>Existing solutions are either too complex with steep learning curves, don't cover enough use cases, or require leaving the current page</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- User Research -->
+    <!-- 05 — Research & Diagnosis -->
     <section class="project-section research-section">
       <div class="section-content">
-        <h2>Understanding User Needs</h2>
-        <p>
-          After the positive LinkedIn response to my initial prototype, I conducted structured user research to validate assumptions and understand what functions would be most valuable. I ran a survey that received 50+ responses from potential users across different professions like designers, developers, writers, marketers, and business professionals.
-        </p>
-        <p>
-          The survey revealed clear patterns in how people interrupt their workflow for basic information needs. Most respondents mentioned currency conversion, timezone checks, translations, and unit conversions as their top friction points. Many also wanted quick access to word definitions and synonyms while writing. The key insight was that people didn't want another complex tool with a learning curve. They wanted something fast, lightweight, unobtrusive, and universally accessible.
-        </p>
-        
-        <div class="insights-grid">
-          <div class="insight-card">
-            <h3>Top Requested Features</h3>
-            <div class="insight-list">
-              <div class="insight-point">Currency conversion for international work, shopping, and travel planning</div>
-              <div class="insight-point">Timezone conversion for coordinating meetings across countries</div>
-              <div class="insight-point">Quick translations without opening Google Translate</div>
-              <div class="insight-point">Unit conversions (temperature, area, volume, design units)</div>
-              <div class="insight-point">Word meanings and synonyms for writing tasks</div>
-              <div class="insight-point">Calculator for quick math without interrupting work</div>
+        <span class="section-kicker">Understanding where to start</span>
+        <h2>Before redesigning the product, I needed to separate what worked from what didn't</h2>
+        <p>The product already had screens and partially designed flows, but it was unclear whether the gaps were isolated issues or symptoms of larger problems. Before introducing new designs, I evaluated the existing experience to understand what was missing, where users were likely to encounter friction, and what needed to change before launch.</p>
+
+        <div class="method-detail research-review-block">
+          <h3>Reviewing the research already conducted</h3>
+          <p>The team had already interviewed learners and coaches shortly before I joined the redesign. With the limited time, I used the existing interviews as a starting point.</p>
+
+          <a href="../assets/original-questionnaire.png" class="questionnaire-link" data-lightbox-trigger>View the original questionnaire used →</a>
+
+          <p class="question-list-note">The research provided useful directional insights, but here are a few of the questions I would have changed across both interviews, not the full list.</p>
+
+          <div class="research-group">
+            <h4 class="research-group-heading">Learner research</h4>
+            <div class="question-list">
+              <div class="question-list-header">
+                <span class="question-list-label">What they asked</span>
+                <span class="question-list-label">What I would ask instead</span>
+              </div>
+
+              <div class="question-pair">
+                <div class="question-row">
+                  <p class="question-old"><span class="q-icon cross">✕</span>"If you could design an app for training with certified coaches, what features would you want?"</p>
+                  <div class="question-new-col">
+                    <p class="question-new"><span class="q-icon tick">✓</span>"Tell me about the last time you tried to improve at your sport. What did you do?"</p>
+                    <details class="question-why-toggle">
+                      <summary>Why</summary>
+                      <p class="question-why">A wishlist of features reveals what people think sounds good, not what actually helps them improve — a real attempt surfaces what they tried, what worked, and where they got stuck.</p>
+                    </details>
+                  </div>
+                </div>
+              </div>
+
+              <div class="question-pair">
+                <div class="question-row">
+                  <p class="question-old"><span class="q-icon cross">✕</span>"Do you think learning in a group would be beneficial for you?"</p>
+                  <div class="question-new-col">
+                    <p class="question-new"><span class="q-icon tick">✓</span>"If you were booking a coaching session for your sport, would you want it to be one-on-one or with other learners? What would make you choose one over the other?"</p>
+                    <details class="question-why-toggle">
+                      <summary>Why</summary>
+                      <p class="question-why">A yes/no question about whether group learning is “beneficial” asks users to evaluate an abstract idea. Asking them to imagine an actual booking decision makes the choice concrete and reveals why they prefer one format, whether that is individual attention, learning from others, social interaction, cost, or something else</p>
+                    </details>
+                  </div>
+                </div>
+              </div>
+
+              <div class="question-pair">
+                <div class="question-row">
+                  <p class="question-old"><span class="q-icon cross">✕</span>"What factors would make you choose one coaching platform over another?"</p>
+                  <div class="question-new-col">
+                    <p class="question-new"><span class="q-icon tick">✓</span>"Tell me about the last time you were deciding between a few different coaches. What made you hesitant about any of them?"</p>
+                    <details class="question-why-toggle">
+                      <summary>Why</summary>
+                      <p class="question-why">Asked as "what factors would make you choose," this is hypothetical and invites a generic list like price or reviews — asking about real hesitation surfaces the actual trust gaps a coach profile needs to close.</p>
+                    </details>
+                  </div>
+                </div>
+              </div>
+
+              <div class="question-pair">
+                <div class="question-row">
+                  <p class="question-old"><span class="q-icon cross">✕</span>"What do you look for in a sports coach?"</p>
+                  <div class="question-new-col">
+                    <p class="question-new"><span class="q-icon tick">✓</span>"Think about the last time you compared a few coaches before choosing one. Walk me through how you compared them, and what ultimately tipped it."</p>
+                    <details class="question-why-toggle">
+                      <summary>Why</summary>
+                      <p class="question-why">A general checklist answer isn't tied to any real decision — walking through an actual comparison surfaces the process itself, which is directly useful for designing how multiple coaches get shown side by side.</p>
+                    </details>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          
-          <div class="insight-card">
-            <h3>User Pain Points</h3>
-            <div class="insight-list">
-              <div class="insight-point">Tab switching breaks concentration and flow state</div>
-              <div class="insight-point">Existing tools require too many clicks to access</div>
-              <div class="insight-point">Need something that works across all websites uniformly</div>
-              <div class="insight-point">Want keyboard shortcuts for power users</div>
-              <div class="insight-point">Should be fast, lightweight, and not resource-heavy</div>
-              <div class="insight-point">Privacy concerns with tools that track usage data</div>
+
+          <div class="research-group">
+            <h4 class="research-group-heading">Coach research</h4>
+            <p>The coach interviews were more grounded in real coaching experience, but I would have pushed further into how coaches currently acquire, manage, and retain learners.</p>
+            <details class="section-reveal coach-question-reveal">
+              <summary>View the coach research questions</summary>
+              <div class="section-reveal-content">
+                <div class="question-list">
+                  <div class="question-list-header">
+                    <span class="question-list-label">What they asked</span>
+                    <span class="question-list-label">What I would ask instead</span>
+                  </div>
+
+                  <div class="question-pair">
+                    <div class="question-row">
+                      <p class="question-old"><span class="q-icon cross">✕</span>"What are your biggest challenges with virtual coaching?"</p>
+                      <div class="question-new-col">
+                        <p class="question-new"><span class="q-icon tick">✓</span>"Tell me about the last virtual session that didn't go as planned. What happened?"</p>
+                        <details class="question-why-toggle">
+                          <summary>Why</summary>
+                          <p class="question-why">"Biggest challenges" invites a general, abstract complaint — a specific session surfaces the real friction point and exactly how it played out.</p>
+                        </details>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="question-pair">
+                    <div class="question-row">
+                      <p class="question-old"><span class="q-icon cross">✕</span>"What factors would make you choose one coaching platform over another?"</p>
+                      <div class="question-new-col">
+                        <p class="question-new"><span class="q-icon tick">✓</span>"How do you currently find students, and what does that process look like from first contact to booking?"</p>
+                        <details class="question-why-toggle">
+                          <summary>Why</summary>
+                          <p class="question-why">Most coaches hadn't used a comparable platform, so comparing them was hypothetical — mapping their actual acquisition process reveals what a platform would genuinely need to support.</p>
+                        </details>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="question-pair">
+                    <div class="question-row">
+                      <p class="question-old"><span class="q-icon cross">✕</span>"What would your ideal sports coaching app look like?"</p>
+                      <div class="question-new-col">
+                        <p class="question-new"><span class="q-icon tick">✓</span>"What tools or workarounds do you currently use to manage your coaching?"</p>
+                        <details class="question-why-toggle">
+                          <summary>Why</summary>
+                          <p class="question-why">"Ideal app" invites wishlist thinking disconnected from reality — current workarounds reveal what's actually missing and what they're already solving for themselves.</p>
+                        </details>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="question-pair">
+                    <div class="question-row">
+                      <p class="question-old"><span class="q-icon cross">✕</span>"What tools would you like to see to bridge the gap between virtual and in-person coaching?"</p>
+                      <div class="question-new-col">
+                        <p class="question-new"><span class="q-icon tick">✓</span>"If you teach more than one sport, tell me how you decide what to offer a new student, and how each sport shows up when someone's looking for a coach."</p>
+                        <details class="question-why-toggle">
+                          <summary>Why</summary>
+                          <p class="question-why">Multi-sport coaching wasn't asked about at all, even though it later becomes a real design problem — how a coach's sports get shown on a card. Asking it here creates a direct line from research to that decision instead of the logic appearing out of nowhere.</p>
+                        </details>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </details>
+          </div>
+
+          <hr class="research-divider">
+
+          <div class="research-group research-group-compact">
+            <details class="section-reveal">
+              <summary>The research gap I would have explored</summary>
+              <div class="section-reveal-content">
+                <div class="journey-columns">
+                  <div class="journey-column">
+                    <span class="funnel-group-label">Learners</span>
+                    <div class="journey-path">
+                      <div class="journey-item"><div class="journey-item-inner"><span class="journey-num">1</span><span class="journey-text">Sport</span></div></div>
+                      <div class="journey-item"><div class="journey-item-inner"><span class="journey-num">2</span><span class="journey-text">Skill level</span></div></div>
+                      <div class="journey-item"><div class="journey-item-inner"><span class="journey-num">3</span><span class="journey-text">Goal</span></div></div>
+                      <div class="journey-item"><div class="journey-item-inner"><span class="journey-num">4</span><span class="journey-text">How they find coaches</span></div></div>
+                      <div class="journey-item"><div class="journey-item-inner"><span class="journey-num">5</span><span class="journey-text">How they compare</span></div></div>
+                      <div class="journey-item"><div class="journey-item-inner"><span class="journey-num">6</span><span class="journey-text">What builds trust</span></div></div>
+                      <div class="journey-item"><div class="journey-item-inner"><span class="journey-num">7</span><span class="journey-text">What happens after booking</span></div></div>
+                    </div>
+                  </div>
+
+                  <div class="journey-column">
+                    <span class="funnel-group-label">Coaches</span>
+                    <div class="journey-path">
+                      <div class="journey-item"><div class="journey-item-inner"><span class="journey-num">1</span><span class="journey-text">Sports taught</span></div></div>
+                      <div class="journey-item"><div class="journey-item-inner"><span class="journey-num">2</span><span class="journey-text">Learner types</span></div></div>
+                      <div class="journey-item"><div class="journey-item-inner"><span class="journey-num">3</span><span class="journey-text">How they find students</span></div></div>
+                      <div class="journey-item"><div class="journey-item-inner"><span class="journey-num">4</span><span class="journey-text">How they manage sessions</span></div></div>
+                      <div class="journey-item"><div class="journey-item-inner"><span class="journey-num">5</span><span class="journey-text">Marketplace frustrations</span></div></div>
+                      <div class="journey-item"><div class="journey-item-inner"><span class="journey-num">6</span><span class="journey-text">What would make the platform valuable</span></div></div>
+                    </div>
+                  </div>
+                </div>
+
+                <p style="margin-top: 1.25rem;">This would help answer a larger product question:</p>
+                <div class="research-gap-callout">
+                  <div class="research-gap-label">Larger product question</div>
+                  <p>Can one coaching experience work across sports, or does discovery and booking need to adapt to the learner's sport, skill level, and goal?</p>
+                </div>
+              </div>
+            </details>
+          </div>
+
+          <div class="research-group research-group-compact">
+            <details class="section-reveal">
+              <summary>What I would have done with more time</summary>
+              <div class="section-reveal-content">
+                <div class="process-track">
+                  <div class="process-track-step">
+                    <div class="process-track-marker">1</div>
+                    <h3 class="process-track-title">Survey</h3>
+                    <p class="process-track-desc">Identify patterns across sports and user types.</p>
+                  </div>
+                  <div class="process-track-step">
+                    <div class="process-track-marker">2</div>
+                    <h3 class="process-track-title">Interviews</h3>
+                    <p class="process-track-desc">Understand the behaviours and motivations behind those patterns.</p>
+                  </div>
+                  <div class="process-track-step">
+                    <div class="process-track-marker">3</div>
+                    <h3 class="process-track-title">Segmentation</h3>
+                    <p class="process-track-desc">Sport × Skill level × Goal × Coaching format</p>
+                  </div>
+                  <div class="process-track-step">
+                    <div class="process-track-marker">4</div>
+                    <h3 class="process-track-title">Product decisions</h3>
+                    <p class="process-track-desc">Use those findings to determine what should be universal across Sportscove and what should adapt to each type of user.</p>
+                  </div>
+                </div>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="method-detail">
+          <h3>Auditing what was missing</h3>
+          <div class="method-split">
+            <div class="method-text">
+              <p class="method-lede" style="margin-bottom: 2.75rem;">Existing screens were audited against the product requirements to flag what was complete, incomplete, or missing.</p>
+              <div class="risk-subheading">What was found</div>
+              <ul class="method-bullets">
+                <li>Incomplete <strong>end-to-end flows</strong></li>
+                <li>Missing key <strong>product states</strong> (error, empty)</li>
+                <li>Gaps in <strong>session, task, and account management</strong></li>
+                <li><strong>Subscription experience</strong> missing key scenarios</li>
+                <li>Limited consideration for different <strong>user types and contexts</strong> (new vs. returning, active subscriptions, past activity)</li>
+              </ul>
+            </div>
+            <div class="solution-image-wrapper method-split-image">
+              <img src="../assets/UXaudit.png" alt="UX audit table showing required screens, existing screens, status, and missing screens by product area" class="solution-image">
             </div>
           </div>
         </div>
 
-        <div class="research-callout">
-          <h4>Key Research Insight</h4>
-          <p>"I don't want to learn a new tool. I just want my simple tasks to happen instantly, wherever I am, without thinking about it." — Survey Respondent</p>
+        <div class="method-detail">
+          <h3>Walking through the experience as a new user</h3>
+          <div class="method-triple">
+            <div class="method-text">
+              <p>Walked every core flow as a first-time user, against standard heuristics.</p>
+              <div class="risk-subheading">What was evaluated</div>
+              <ul class="method-bullets">
+                <li><strong>Navigation</strong> &amp; wayfinding</li>
+                <li><strong>Consistency</strong> across patterns</li>
+                <li><strong>Error</strong> prevention &amp; recovery</li>
+                <li><strong>Feedback</strong> &amp; status visibility</li>
+                <li><strong>Task</strong> completion &amp; continuity</li>
+              </ul>
+            </div>
+            <div class="solution-image-wrapper method-split-video">
+              <video class="solution-video autoplay-video" controls muted playsinline preload="metadata">
+                <source src="../assets/old_flow.mp4" type="video/mp4">
+                <source src="../assets/old_flow.mov" type="video/quicktime">
+                Video playback of the old flow isn't supported in this browser.
+              </video>
+            </div>
+            <div class="method-text">
+              <p>End-to-end review surfaced patterns isolated screens hid.</p>
+              <div class="risk-subheading">What stood out</div>
+              <ul class="method-bullets">
+                <li>Features <strong>existed but weren't accessible</strong></li>
+                <li><strong>Inconsistent wording</strong> across interactions</li>
+                <li>Same entity <strong>displayed differently</strong></li>
+                <li>Key info placed <strong>before the decision</strong></li>
+                <li>Visual styling <strong>varied across flows</strong></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="method-detail">
+          <h3>Learning from the testing that had already been done</h3>
+          <p>The quotes from testing done on the existing design.</p>
+          <div class="issue-card-grid testing-quotes-grid">
+            <div class="issue-card">
+              <div class="issue-card-num">Satyanshu Singh</div>
+              <blockquote class="issue-quote">"I don't want to do my self assessemnt now. Can I not just see the coach profile without it?"</blockquote>
+            </div>
+            <div class="issue-card">
+              <div class="issue-card-num">Tanner Smith</div>
+              <blockquote class="issue-quote">"The coach profile has way too many things and I really don't know where to look"</blockquote>
+            </div>
+          </div>
+        </div>
+
+        <div class="method-detail">
+          <h3>Understanding how comparable products solve similar problems</h3>
+          <div class="benchmark-block">
+            <p class="method-lede" style="margin-bottom: 1.75rem;"><strong>Skillest</strong> and <strong>CoachUp</strong> were the closest competitors. <strong>ADPList</strong> was also reviewed for its similar mentorship model, even though it isn't sports-specific.</p>
+            <div class="benchmark-split">
+              <div class="benchmark-text">
+                <div class="risk-subheading">What was found</div>
+                <ul class="method-bullets benchmark-bullets">
+                  <li>How intuitive and complete the <strong>overall experience</strong> felt</li>
+                  <li>What built a sense of <strong>trust</strong></li>
+                  <li>How <strong>accessible</strong> the experience was for different users</li>
+                  <li>How well the platform supported <strong>ongoing use</strong>, not just a single transaction</li>
+                  <li>How balanced the experience was for <strong>both sides</strong> of the marketplace</li>
+                </ul>
+              </div>
+              <div class="solution-image-wrapper benchmark-image">
+                <img src="../assets/competitor benchmark.png" alt="Competitor comparison across CoachUp, Skillest, and ADPList, with opportunities identified for Sportscove" class="solution-image">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="method-detail">
+          <h3>Balancing user needs with what the business needed to launch</h3>
+          <p>A structured conversation with the CEO ranked flows by business priority, followed by separate syncs with developers to understand what was realistically buildable inside a three-month window, before committing to a direction.</p>
+          <div class="issue-card-grid testing-quotes-grid">
+            <div class="issue-card">
+              <div class="issue-card-num">Stakeholder</div>
+              <blockquote class="issue-quote">"One of the biggest reasons for making this app is to encourage retired people to find a place to share their skills and earn."</blockquote>
+            </div>
+            <div class="issue-card">
+              <div class="issue-card-num">Stakeholder</div>
+              <blockquote class="issue-quote">"The coach side was a big part of the product, since this is where coaches would sign up, verify their eligibility, build their profile, and set their prices"</blockquote>
+            </div>
+            <div class="issue-card">
+              <div class="issue-card-num">Stakeholder</div>
+              <blockquote class="issue-quote">"We need a system to maintain the design and make sure all screens look like they're part of the same app."</blockquote>
+            </div>
+            <div class="issue-card">
+              <div class="issue-card-num">Developer</div>
+              <blockquote class="issue-quote">"A design system could be helpful so that the button sizes, component spacings, colours and styles used can be easily executed."</blockquote>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- 04 — Four Problems (reordered: shared foundation, then clear task paths, then overlooked users, then marketplace complexity) -->
+    <section class="project-section risks-section">
+      <div class="section-content">
+        <span class="section-kicker">Connecting the findings</span>
+        <h2>What emerged was a product held back by four connected problems</h2>
+        <p class="risks-intro">A product and UX audit, benchmarking against comparable apps, and direct conversations with the CEO and developers surfaced four barriers. Every decision in this case study traces back to one of them.</p>
+
+        <div class="risks-list problem-grid">
+
+          <div class="risk-item problem-card">
+            <div class="problem-head">
+              <div class="problem-num">01</div>
+              <div>
+                <h3>No shared foundation</h3>
+              </div>
+            </div>
+            <p class="problem-body">No shared components, colors, or patterns existed, so every screen was designed from scratch.</p>
+          </div>
+
+          <div class="risk-item problem-card">
+            <div class="problem-head">
+              <div class="problem-num">02</div>
+              <div>
+                <h3>Core tasks didn't always have a clear path to completion</h3>
+              </div>
+            </div>
+            <p class="problem-body">Inconsistent navigation and ambiguous interaction states meant people couldn't always tell what they'd selected.</p>
+          </div>
+
+          <div class="risk-item problem-card">
+            <div class="problem-head">
+              <div class="problem-num">03</div>
+              <div>
+                <h3>Key users and scenarios were being missed</h3>
+              </div>
+            </div>
+            <p class="problem-body">Accessible search for retired athletes and coaches, and logic for multi-sport coaches, weren't designed at all.</p>
+          </div>
+
+          <div class="risk-item problem-card">
+            <div class="problem-head">
+              <div class="problem-num">04</div>
+              <div>
+                <h3>Important marketplace complexity hadn't been designed for</h3>
+              </div>
+            </div>
+            <p class="problem-body">Gaps in the connection between learner and coach workflows, with key information missing across both sides </p>
+          </div>
+
         </div>
       </div>
     </section>
 
-    <!-- UX Strategy & User Flows -->
-    <section class="project-section ux-strategy-section">
+    <!-- 07 — Establishing the Foundation -->
+    <section class="project-section solutions-section">
       <div class="section-content">
-        <h2>UX Strategy & Core Interaction Model</h2>
-        <p>
-          Based on research insights, I defined the core interaction principle: <strong>zero friction, universal access, instant results.</strong> The extension needed to feel like a natural extension of the browser itself — not a separate tool you "use," but a capability that's just there when you need it.
-        </p>
+        <span class="section-kicker">01 — Building the foundation</span>
+        <h2>Introducing a foundation/system was the first step</h2>
+        <p><strong>A shared system for designing and building at speed.</strong></p>
 
-        <div class="ux-principle-grid">
-          <div class="ux-principle">
-            <h4>Context-Aware</h4>
-            <p>Automatically detects what you might need based on selected text (numbers suggest conversions, words suggest definitions)</p>
+        <div class="solution-block">
+          <div class="solution-header">
+            <h3>Design System</h3>
+            <p>Consistency and efficiency at scale</p>
           </div>
-          <div class="ux-principle">
-            <h4>Zero Learning Curve</h4>
-            <p>Select text → press shortcut → see results. No menus, settings, or configuration required to get started</p>
-          </div>
-          <div class="ux-principle">
-            <h4>Universal Compatibility</h4>
-            <p>Works identically across all websites. Gmail, Docs, Slack, LinkedIn, news sites, anywhere you browse</p>
-          </div>
-          <div class="ux-principle">
-            <h4>Privacy First</h4>
-            <p>No data collection, no tracking, no analytics. All conversions happen locally or through secure APIs</p>
-          </div>
-        </div>
-
-        <h3>User Flow Mapping</h3>
-        <p>
-          I mapped the complete user journey from discovery to habitual use, identifying every touchpoint and potential friction point. The goal was to make the extension invisible until needed, then instantly accessible.
-        </p>
-        
-        <div class="userflow-image-wrapper">
-          <img src="../assets/userflow.png" alt="Detailed user flow diagram showing interaction patterns">
-          <p class="image-caption">Complete user flow showing primary interaction pattern, edge cases, and error states</p>
-        </div>
-
-        <div class="flow-breakdown">
-          <h4>Core Flow: Text Selection to Result Display</h4>
-          <div class="flow-steps">
-            <div class="flow-step">
-              <div class="step-number">1</div>
-              <div class="step-content">
-                <h5>Selection</h5>
-                <p>User selects any text on any webpage using standard text selection (mouse drag or keyboard)</p>
-              </div>
+          <div class="solution-description">
+            <p>Built a comprehensive design system with <strong>60+ reusable components</strong>, covering color, typography, buttons, cards, and interaction states, so every screen designed after this reused the same foundation instead of solving the same problems again.</p>
+            <div class="solution-images-grid">
+              <img src="../assets/Colors.png" alt="Color system" class="solution-image">
+              <img src="../assets/Fonts.png" alt="Typography system" class="solution-image">
             </div>
-            <div class="flow-step">
-              <div class="step-number">2</div>
-              <div class="step-content">
-                <h5>Activation</h5>
-                <p>User presses Ctrl+Shift+Q (Cmd+Shift+Q on Mac), a memorable, non-conflicting shortcut</p>
-              </div>
+            <div class="solution-image-wrapper">
+              <img src="../assets/dscomplete.png" alt="Component library" class="solution-image">
             </div>
-            <div class="flow-step">
-              <div class="step-number">3</div>
-              <div class="step-content">
-                <h5>Context Detection</h5>
-                <p>Extension analyzes selected text and suggests most relevant function (e.g., numbers → currency, words → dictionary)</p>
-              </div>
-            </div>
-            <div class="flow-step">
-              <div class="step-number">4</div>
-              <div class="step-content">
-                <h5>Display</h5>
-                <p>Popup appears near selection with pre-filled input and suggested function, maintaining visual context</p>
-              </div>
-            </div>
-            <div class="flow-step">
-              <div class="step-number">5</div>
-              <div class="step-content">
-                <h5>Results</h5>
-                <p>Instant results displayed with option to switch functions, copy results, or dismiss</p>
+            <div class="solution-improvements">
+              <div class="improvement-item">
+                <span class="improvement-label">Impact:</span>
+                <span class="improvement-text"><strong>60% reduction</strong> in design time for new features</span>
               </div>
             </div>
           </div>
         </div>
+      </div>
+    </section>
 
-        <div class="design-decision-card">
-          <h4>UX Design Decision: Keyboard-First Activation</h4>
+    <!-- 07.6 — Simplifying the Booking Flow -->
+    <section class="project-section simplify-section">
+      <div class="section-content">
+        <span class="section-kicker">02 — Simplifying the flow</span>
+        <h2>Booking a coach in a sports coaching app shouldn't be the hardest part</h2>
+        <p>Booking was the platform's core transaction, but the old flow buried it behind a multi-page self-assessment before a learner could even see a coach's availability — a task that should have taken seconds took several detours instead.</p>
+
+        <div class="booking-flow-layout">
+          <div class="booking-flow-row">
+            <div class="flow-image-item">
+              <div class="flow-image-label">Old session booking flow</div>
+              <div class="solution-image-wrapper">
+                <video class="solution-video autoplay-video" controls muted playsinline preload="metadata">
+                  <source src="../assets/old_flow.mp4" type="video/mp4">
+                  <source src="../assets/old-session-booking.mov" type="video/quicktime">
+                  Video playback of the old session booking flow isn't supported in this browser.
+                </video>
+              </div>
+            </div>
+            <div class="booking-flow-userflow">
+              <div class="flow-image-label">User flow</div>
+              <div class="solution-image-wrapper">
+                <img src="../assets/Bookingflowold.png" alt="Old user flow diagram" class="solution-image">
+              </div>
+              <div class="userflow-points-label">Not working</div>
+              <ul class="userflow-points">
+                <li>Cluttered screens</li>
+                <li>Blocked path to coach</li>
+                <li>Sports split across 2 screens</li>
+                <li>No direct coach access</li>
+                <li>No skip option</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="booking-flow-row">
+            <div class="flow-image-item">
+              <div class="flow-image-label new">New session booking flow</div>
+              <div class="solution-image-wrapper">
+                <video class="solution-video autoplay-video" controls muted playsinline preload="metadata">
+                  <source src="../assets/newbookingflow.mp4" type="video/mp4">
+                  <source src="../assets/new-session-booking.mov" type="video/quicktime">
+                  Video playback of the new session booking flow isn't supported in this browser.
+                </video>
+              </div>
+            </div>
+            <div class="booking-flow-userflow">
+              <div class="flow-image-label new">User flow</div>
+              <div class="solution-image-wrapper">
+                <img src="../assets/Bookingflownew.png" alt="New user flow diagram" class="solution-image">
+              </div>
+              <div class="userflow-points-label new">What changed</div>
+              <ul class="userflow-points accent">
+                <li>Self-assessment as banner</li>
+                <li>Multiple entry points</li>
+                <li>Visual cleanup</li>
+                <li>Sports in 1 screen</li>
+                <li>Filters added</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="method-detail key-screens-block" style="margin-top: 4.5rem; padding-top: 3rem;">
+          <h3>Key screens redesigned</h3>
+
+          <div class="key-screen-item">
+            <h4>Home screen</h4>
+            <p class="key-screen-note">From the initial survey, <strong>76%</strong> of users were either <strong>open to exploring sports beyond their primary one</strong>, or wanted to <strong>focus on one sport while still seeing what else was out there</strong>.</p>
+            <p class="key-screen-note">This shaped the Home screen to surface <strong>coach visibility across sports</strong> through the <strong>Super Coaches</strong> and <strong>Popular Sport Coaches</strong> sections.</p>
+            <div class="onboarding-flow-images">
+              <div class="flow-image-item">
+                <div class="flow-image-label">Old</div>
+                <div class="solution-image-wrapper">
+                  <img src="../assets/Homepageold.png" alt="Old home screen" class="solution-image">
+                </div>
+              </div>
+              <div class="flow-image-item">
+                <div class="flow-image-label new">New</div>
+                <div class="solution-image-wrapper">
+                  <img src="../assets/Homepagenew.png" alt="New home screen" class="solution-image">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="key-screen-item">
+            <h4>Coaches list</h4>
+            <p class="key-screen-note">The initial survey showed <strong>100%</strong> of users filtered coaches by specific criteria — <strong>rating, price, their own experience level, and location</strong> — plus a <strong>virtual or in-person</strong> preference, anticipating the company's plans for physical coaching centres across India.</p>
+            <p class="key-screen-note">The old filter existed only as a <strong>button with no screen behind it</strong>. The new coaches list built out a <strong>fully functional filter</strong> around exactly these criteria.</p>
+            <div class="onboarding-flow-images">
+              <div class="flow-image-item">
+                <div class="flow-image-label">Old</div>
+                <div class="solution-image-wrapper">
+                  <img src="../assets/oldcoacheslist.png" alt="Old coaches list" class="solution-image">
+                </div>
+              </div>
+              <div class="flow-image-item">
+                <div class="flow-image-label new">New</div>
+                <div class="solution-image-wrapper">
+                  <img src="../assets/newcoacheslist.png" alt="New coaches list" class="solution-image">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="key-screen-item coach-profile-item">
+            <h4>Coach profile</h4>
+            <p class="key-screen-note">During testing, <strong>90%</strong> of users found the coach profile <strong>messy and confusing</strong> — the new design was built to be <strong>cleaner and easier to scan</strong>.</p>
+            <p class="key-screen-note"><strong>2 in 5 coaches</strong> said they intended to teach more than one sport, so the profile now <strong>separates each sport and its details</strong> instead of blending them together.</p>
+            <div class="onboarding-flow-images">
+              <div class="flow-image-item">
+                <div class="flow-image-label">Old</div>
+                <div class="solution-image-wrapper">
+                  <img src="../assets/coachprofileold.png" alt="Old coach profile" class="solution-image">
+                </div>
+              </div>
+              <div class="flow-image-item">
+                <div class="flow-image-label new">New</div>
+                <div class="solution-image-wrapper">
+                  <img src="../assets/Coachprofilenew.png" alt="New coach profile" class="solution-image">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="project-section discovery-section">
+      <div class="section-content">
+        <span class="section-kicker">03 — Addressing overlooked users and scenarios</span>
+        <h2>Designing discovery around how Sportscove's users actually search</h2>
+        <p>Sportscove was also expanding into a much wider range of sports and wellness categories, not all of which could reasonably live on the same page.</p>
+        <p class="key-insight">Your 50-something aunt picking up golf for the first time? Not exactly a power user.</p>
+
+        <!-- Decision 1: Search -->
+        <div class="design-decision-block">
+          <div class="decision-header">
+            <div class="decision-title-wrapper">
+              <h3>Making search easier for everyone</h3>
+            </div>
+          </div>
+
+            <div class="decision-section">
+
+              <div class="search-features-grid">
+                <div class="search-feature">
+                  <div class="search-feature-label">Guided search</div>
+                  <div class="search-feature-desc">
+                    The search prompt dynamically rotates through examples, "Search Boxing," "Search Tennis," "Search Yoga," showing users what they can search for instead of leaving the field blank and open-ended.
+                  </div>
+                  <div class="search-feature-media">
+                    <video class="search-feature-video autoplay-video" controls muted playsinline preload="metadata">
+                      <source src="../assets/Guidedsearch.mp4" type="video/mp4">
+                      Video playback of guided search isn't supported in this browser.
+                    </video>
+                  </div>
+                </div>
+
+                <div class="search-feature">
+                  <div class="search-feature-label">Predictive suggestions</div>
+                  <div class="search-feature-desc">
+                    Relevant sports appear as soon as a user starts typing. Typing "Box" surfaces Boxing, grouped under its category, without needing the full word.
+                  </div>
+                  <div class="search-feature-media">
+                    <img src="../assets/Predictivesuggestions.png" alt="Search field showing 'Box' typed in with Boxing surfaced as a predictive suggestion under a Combat category" class="search-feature-image">
+                  </div>
+                </div>
+
+                <div class="search-feature">
+                  <div class="search-feature-label">Voice search</div>
+                  <div class="search-feature-desc">
+                    A microphone option lets users search without typing at all, paired with example phrases and an instructional prompt so the feature is easy to discover, not just available.
+                  </div>
+                  <div class="search-feature-media">
+                    <video class="search-feature-video autoplay-video" controls muted playsinline preload="metadata">
+                      <source src="../assets/voicesearching.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+              </div>
+
+              <div class="criteria-list">
+                <div class="criteria-item"><strong>Improved filters:</strong> Filters were reworked to make narrowing results easier, giving users more control over discovery once a search returned results.</div>
+              </div>
+
+              <p class="key-insight">Together, these changes moved search from something you had to already know how to use, to something that showed you how to use it.</p>
+            </div>
+          </div>
+
+        <!-- Decision 2: Multi-sport coach cards -->
+        <div class="design-decision-block">
+          <div class="decision-header">
+            <div class="decision-title-wrapper">
+              <h3>Making multi-sport coaches visible without overwhelming the cards</h3>
+              <p class="decision-subtitle">A coach's profile shouldn't be limited to just one sport</p>
+            </div>
+          </div>
+
           <div class="decision-content">
             <div class="decision-section">
-              <strong>Why keyboard shortcut instead of right-click menu?</strong>
-              <p>Right-click menus add friction. You need to move your mouse, find the option in a list, and click. A keyboard shortcut becomes muscle memory after 2-3 uses, making the action nearly instantaneous. Power users can activate Quippy without even thinking about it.</p>
+              <!--<h4>The Problem</h4>-->
+              <p>Coaches on Sportscove aren't always specialists in a single sport. Some offer multiple disciplines, which raised a discovery problem: how could those coaches show up across every sport they taught, without turning every search card into a wall of text?</p>
             </div>
+
             <div class="decision-section">
-              <strong>Why Ctrl+Shift+Q specifically?</strong>
-              <ul>
-                <li><strong>Memorable:</strong> "Q" for "Quippy" and "Quick"</li>
-                <li><strong>Accessible:</strong> Easy to reach with left hand while right hand is on mouse</li>
-                <li><strong>Non-conflicting:</strong> Doesn't override existing browser or system shortcuts</li>
-                <li><strong>Cross-platform:</strong> Works consistently on Windows (Ctrl) and Mac (Cmd)</li>
-              </ul>
+              <h4>Initial Exploration</h4>
+              <p>The first approach displayed every one of a coach's sports directly on the card.</p>
+              <div class="option-cards-row">
+                <div class="option-card">
+                  <div class="option-card-image-wrapper">
+                    <img src="../assets/card  option 1.png" alt="Coach card option 1 showing Boxing and Yoga tags" class="option-card-image">
+                  </div>
+                  <div class="option-card-label">Option 1</div>
+                  <p class="option-card-note">Works when both sports have short names, but doesn't hold up once a coach teaches more.</p>
+                </div>
+                <div class="option-card">
+                  <div class="option-card-image-wrapper">
+                    <img src="../assets/card  option 2.png" alt="Coach card option 2 showing Boxing and Muay Thai tags" class="option-card-image">
+                  </div>
+                  <div class="option-card-label">Option 1 (With a longer sport name)</div>
+                  <p class="option-card-note">A longer sport name like "Muay Thai" still fits, but only just, leaving no room to add a third.</p>
+                </div>
+                <div class="option-card">
+                  <div class="option-card-image-wrapper">
+                    <img src="../assets/card  option 3.png" alt="Coach card option 3 showing Boxing and a truncated Muay Thai tag" class="option-card-image">
+                  </div>
+                  <div class="option-card-label">Option 2</div>
+                  <p class="option-card-note">The tag truncated with an ellipsis is readable but the looks less polished.</p>
+                </div>
+              </div>
+              <div class="exploration-options">
+                <div class="option-item rejected">
+                  <h5>Showing every sport</h5>
+                  <p>This made the information explicit, but became visually heavy for coaches with several sports or longer sport names, hurting scannability, especially on mobile.</p>
+                </div>
+              </div>
             </div>
+
+            <div class="decision-section highlight-section merged-logic-section">
+              <h4>A simpler card, with smarter logic</h4>
+              <div class="merged-logic-layout">
+                <div class="merged-logic-visual">
+                  <div class="solution-image-wrapper">
+                    <img src="../assets/coach-card-before-after.png" alt="Coach card before and after, showing the shift to a single sport plus a +N indicator" class="solution-image">
+                  </div>
+                </div>
+                <div class="merged-logic-content">
+                  <p>A <strong>+N indicator</strong> kept cards concise while still signalling that a coach offered additional sports beyond the one shown.</p>
+                  <p>But a multi-sport coach can surface under several different searches, so simply showing their primary sport wasn't always relevant. The sport displayed needed to reflect how the user actually found the coach, not just how the coach was set up in the system.</p>
+                </div>
+              </div>
+
+              <div class="solution-image-wrapper">
+                <img src="../assets/coach-card-logic-flow.png" alt="Flow diagram showing context-aware logic for which sport displays first on a coach card" class="solution-image">
+              </div>
+
+              <div class="flow-comparison">
+                <div class="flow-before">
+                  <h5>Homepage / no sport selected</h5>
+                  <p>Primary sport shown → years of experience for primary sport</p>
+                </div>
+                <div class="flow-after">
+                  <h5>Search: Muay Thai</h5>
+                  <p>Muay Thai shown first → years of experience for Muay Thai → remaining sports → +N</p>
+                </div>
+              </div>
+
+              <p class="key-insight">The card became context-aware: what it showed depended on user intent, not just coach data.</p>
+            </div>
+
           </div>
         </div>
+
       </div>
     </section>
 
-    <!-- Design System -->
-    <section class="project-section design-system-section">
+    <!-- 08 — Marketplace Complexity: Reworking Coach Onboarding -->
+    <section class="project-section onboarding-section">
       <div class="section-content">
-        <h2>Visual Design System</h2>
-        <p>
-          Before writing any code, I created a comprehensive design system in Figma. This system needed to feel professional and trustworthy while remaining lightweight and non-intrusive. The design had to work as an overlay on any website without clashing with existing page styles.
-        </p>
+        <span class="section-kicker">04 — Addressing marketplace complexity</span>
+        <h2>Reworking coach onboarding</h2>
+        <p>Coach onboarding was where the marketplace's two sides actually met — a coach's profile, verification, offering, and pricing all had to come together into something a learner could trust and book. The existing flow treated onboarding as a single linear form, with no separation between those responsibilities and no way to recover when something went wrong.</p>
 
-        <div class="design-system-breakdown">
-          <h3>Design Decisions & Rationale</h3>
-
-          <div class="design-category">
-            <h4>Color Palette</h4>
-            <div class="design-detail">
-              <div class="design-image-slot">
-                <img src="../assets/p0colour.png" alt="Quippy color palette showing primary colors with hex codes and design rationale">
-              </div>
-              <p><strong>Rationale:</strong> Our design system leverages a purposeful set of color styles as the perfect starting point for any brand or project. The neutral base colors (white and grays) ensure readability on any website background, while the brand colors provide visual hierarchy and personality. We have added WCAG 2.2 contrast ratios to our color system so you can make sure you're designing with accessibility in mind. The blue accent provides trust and familiarity (common in productivity tools) without being aggressive, and the success/warning/error colors communicate system states clearly.</p>
+        <!-- 01 / Reorganising the flow -->
+        <div class="design-decision-block onboarding-block">
+          <div class="decision-header">
+            <div class="decision-title-wrapper">
+              <h3>01 / Redoing the IA</h3>
             </div>
           </div>
 
-          <div class="design-category">
-            <h4>Typography</h4>
-            <div class="design-detail">
-              <div class="design-image-slot">
-                <img src="../assets/p0typography.png" alt="Quippy typography scale showing font family, sizes, and usage rationale">
-              </div>
-              <p><strong>Rationale:</strong> DM Sans was chosen for its exceptional legibility at small sizes and excellent number clarity (critical for conversions). The font offers multiple weights (Regular, Medium, Semibold, Bold) allowing for clear visual hierarchy across UI elements. The typography scale follows a modular system from Text Tiny (10px) to Text Title (20px), with consistent line heights (1.25-1.625rem) optimized for readability. Each text style serves a specific purpose: Title for emphasis, Subtitle for section headers, Body for main content, and Small/Tiny for metadata — ensuring consistent, accessible typography across the extension.</p>
-            </div>
-          </div>
-
-          <div class="design-category">
-            <h4>Spacing & Layout</h4>
-            <div class="design-detail">
-              <p><strong>8px Grid System:</strong> All spacing follows 8px increments (8, 16, 24, 32px) for visual rhythm and consistency</p>
-              <p><strong>Compact Design:</strong> Popup maximum width: 400px, optimized to show complete information without overwhelming the screen</p>
-              <p><strong>Rationale:</strong> Consistent spacing creates visual harmony. Compact dimensions ensure Quippy never obscures important content on the underlying webpage.</p>
-            </div>
-          </div>
-
-          <div class="design-category">
-            <h4>Component Design</h4>
-            <div class="design-detail">
-              <h5>Dropdown Function Selector</h5>
-              <p><strong>Design:</strong> Full-width dropdown with clear labels, grouped categories, and icons for each function</p>
-              <p><strong>Rationale:</strong> Dropdown provides access to all functions without overwhelming the interface. Grouping by category (Unit Conversions, Time Tools, Text Tools) helps users build a mental model. Icons provide visual anchors for faster scanning.</p>
-              
-              <h5>Input Field</h5>
-              <p><strong>Design:</strong> Pre-filled with selected text, fully editable, clear affordances (border, focus state)</p>
-              <p><strong>Rationale:</strong> Pre-filling reduces steps, but editability allows corrections without re-selecting text. Large click target (44px minimum) ensures mobile compatibility.</p>
-              
-              <h5>Results Display</h5>
-              <p><strong>Design:</strong> Large, prominent result text in green to show the solution mode, red incase of error and blue for any information, secondary information below</p>
-              <p><strong>Rationale:</strong> Hierarchy ensures the answer is immediately visible.</p>
-            </div>
-          </div>
-
-          <div class="design-category">
-            <h4>Microinteractions</h4>
-            <div class="design-detail">
-              <ul>
-                <li><strong>Smooth animations (200-300ms):</strong> Popup appears with subtle fade + scale for polish without slowing interaction</li>
-                <li><strong>Hover states:</strong> All interactive elements have clear hover feedback (color change, slight scale)</li>
-                <li><strong>Focus states:</strong> Keyboard navigation supported with visible focus rings for accessibility</li>
-                <li><strong>Loading indicators:</strong> API calls show spinner to set expectations during network requests</li>
-                <li><strong>Success confirmation:</strong> Copy button shows checkmark feedback for 1 second after click</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div class="design-decision-card">
-          <h4>🎨 UI Design Decision: Light Theme as Default</h4>
           <div class="decision-content">
             <div class="decision-section">
-              <strong>Why light theme instead of dark?</strong>
-              <p>Most productivity tools (Google Docs, Gmail, Slack in default mode) use light themes. Quippy's light interface blends naturally with these environments. A dark popup on a light page would create jarring contrast. Future versions will include dark mode that automatically matches system preferences.</p>
+              <p>I started by restructuring the existing onboarding into a clearer journey, separating profile, verification, offering and availability.</p>
+
+              <div class="onboarding-flow-images">
+                <div class="flow-image-item">
+                  <div class="flow-image-label">Old</div>
+                  <div class="solution-image-wrapper">
+                    <img src="../assets/old coach onboard.png" alt="Old coach onboarding flow: Profile, Verification, Course, Start Coaching" class="solution-image">
+                  </div>
+                </div>
+                <div class="flow-image-item">
+                  <div class="flow-image-label new">New</div>
+                  <div class="solution-image-wrapper">
+                    <img src="../assets/New coach onboard.png" alt="New coach onboarding flow: Pick Sport, Profile, Verification, Course, Schedule, Go Live" class="solution-image">
+                  </div>
+                </div>
+              </div>
+
+              <div class="flow-callouts">
+                <div class="flow-callout">
+                  <span class="callout-before">Mixed responsibilities</span>
+                  <span class="callout-arrow">→</span>
+                  <span class="callout-after">Clear stages</span>
+                </div>
+                <div class="flow-callout">
+                  <span class="callout-before">Profile-focused</span>
+                  <span class="callout-arrow">→</span>
+                  <span class="callout-after">Marketplace-focused</span>
+                </div>
+                <div class="flow-callout">
+                  <span class="callout-before">Linear setup</span>
+                  <span class="callout-arrow">→</span>
+                  <span class="callout-after">Coach readiness</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+
+        <!-- 02 / Testing exposed the gaps -->
+        <div class="design-decision-block onboarding-block">
+          <div class="decision-header">
+            <div class="decision-title-wrapper">
+              <h3>02 / Testing exposed the gaps</h3>
+            </div>
+          </div>
+
+          <div class="decision-content">
+            <div class="decision-section">
+              <p>A first prototype was built from this restructured flow and tested with four coaches. Their responses made one thing clear: the design had only really accounted for the happy path. Outside of it, there was little in place — few error states, almost no prevention, and no way to recover once something went wrong.</p>
+              <div class="issue-card-grid">
+
+                <div class="issue-card">
+                  <div class="issue-card-num">01</div>
+                  <blockquote class="issue-quote">"I thought I had completed it, so why can't I move forward?"</blockquote>
+                </div>
+
+                <div class="issue-card">
+                  <div class="issue-card-num">02</div>
+                  <blockquote class="issue-quote">"I don't have my certificate right now. Can I come back to this later?"</blockquote>
+                </div>
+
+                <div class="issue-card">
+                  <div class="issue-card-num">03</div>
+                  <blockquote class="issue-quote">"I filled everything out… and only now I'm being told I need to verify?"</blockquote>
+                </div>
+
+                <div class="issue-card">
+                  <div class="issue-card-num">04</div>
+                  <blockquote class="issue-quote">"If the learner pays $100, how much do I actually make?"</blockquote>
+                </div>
+
+                <div class="issue-card">
+                  <div class="issue-card-num">05</div>
+                  <blockquote class="issue-quote">"I don't want to finish this right now, but I don't want to lose everything."</blockquote>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 03 / Designing beyond the happy path -->
+        <div class="design-decision-block onboarding-block">
+          <div class="decision-header">
+            <div class="decision-title-wrapper">
+              <h3>03 / Designing beyond the happy path</h3>
+            </div>
+          </div>
+
+          <div class="decision-content">
+
+            <div class="decision-section">
+              <p class="method-lede">The first flow only mapped the happy path. A closer pass over the form — and testing with real coaches — surfaced the edge cases it hadn't accounted for.</p>
+              <div class="solution-image-wrapper edge-case-map-image">
+                <img src="../assets/profilesetupflow.png" alt="Profile setup fields mapped against required, limit, conditional, and dependent-data behaviours" class="solution-image">
+              </div>
+            </div>
+
+            <div class="field-behaviors-grid">
+
+              <div class="field-behavior-item">
+                <h4>Required fields</h4>
+                <p>Users could reach the end of onboarding without completing required fields, only discovering what was missing at submission.</p>
+                <div class="risk-subheading">Change</div>
+                <p>Required fields now have <strong>inline validation</strong>, with the flow <strong>automatically scrolling to the first incomplete field</strong>.</p>
+                <div class="field-behavior-media">
+                  <img src="../assets/inlineerror.png" alt="Inline validation message with the flow scrolled to the first incomplete field" class="search-feature-image">
+                </div>
+              </div>
+
+              <div class="field-behavior-item">
+                <h4>Content limits</h4>
+                <p>The About and Training Style fields had a 200-word limit, but users weren't aware when they reached it.</p>
+                <div class="risk-subheading">Change</div>
+                <p>The fields <strong>stop accepting text after 200 words</strong> and provide <strong>immediate feedback</strong> — "200-word limit reached. Additional text not added."</p>
+                <div class="field-behavior-media">
+                  <video class="search-feature-video autoplay-video" controls muted playsinline preload="metadata">
+                    <source src="../assets/wordlimit.mp4" type="video/mp4">
+                    Video playback of the word-limit behaviour isn't supported in this browser.
+                  </video>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="field-behaviors-grid">
+
+              <div class="field-behavior-item">
+                <h4>Conditional fields</h4>
+                <p>Selecting "Other" as an affiliation required additional information, but the original flow didn't account for it.</p>
+                <div class="risk-subheading">Change</div>
+                <p>The form <strong>dynamically reveals a new field</strong> when "Other" is selected.</p>
+                <div class="field-behavior-media">
+                  <img src="../assets/additionalfiled.png" alt="Additional field appearing after selecting Other as an affiliation" class="search-feature-image">
+                </div>
+              </div>
+
+              <div class="field-behavior-item">
+                <h4>Dependent data</h4>
+                <p>City was dependent on country, but changing the country could leave an outdated city selected.</p>
+                <div class="risk-subheading">Change</div>
+                <p>Changing the country now <strong>clears the existing city</strong> so the selection <strong>always stays valid</strong>.</p>
+                <div class="field-behavior-media">
+                  <video class="search-feature-video autoplay-video" controls muted playsinline preload="metadata">
+                    <source src="../assets/countrycity.mp4" type="video/mp4">
+                    Video playback of the country/city dependency isn't supported in this browser.
+                  </video>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="decision-section">
+              <details class="section-reveal">
+                <summary>Other screens worked on</summary>
+                <div class="section-reveal-content">
+                  <div class="solution-images-grid">
+                    <img src="../assets/pickasport.png" alt="Pick a sport screen" class="solution-image">
+                    <img src="../assets/createsyllabus1.png" alt="Create syllabus screen, step 1" class="solution-image">
+                    <img src="../assets/createsyllabus2.png" alt="Create syllabus screen, step 2" class="solution-image">
+                    <img src="../assets/addschedule.png" alt="Add schedule screen" class="solution-image">
+                  </div>
+                </div>
+              </details>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 04 / From a form to a resilient flow — the visual payoff of
+             the onboarding section, not another decision-block. -->
+        <div class="design-decision-block onboarding-block resilient-reveal">
+
+          <span class="section-kicker">04 / From a form to a resilient flow</span>
+          <h3 class="resilient-headline">A flow that doesn't fall apart<br>when the happy path ends.</h3>
+
+          <div class="resilient-capabilities">
+            <span class="cap">Required fields</span>
+            <span class="cap">Conditional fields</span>
+            <span class="cap">Content limits</span>
+            <span class="cap">Dependent data</span>
+            <span class="cap">Save &amp; return</span>
+          </div>
+
+          <div class="resilient-video-wrapper">
+            <video class="search-feature-video autoplay-video" controls muted playsinline preload="metadata">
+              <source src="../assets/coachonboardfinal.mp4" type="video/mp4">
+              <source src="../assets/final-onboarding.mov" type="video/quicktime">
+              Video playback of the final onboarding flow isn't supported in this browser.
+            </video>
+          </div>
+
+          <p class="resilient-takeaway">The best flows aren't the ones without edge cases.<br>They're the ones built to survive them.</p>
+
+        </div>
+
       </div>
     </section>
 
-    <!-- Core Features with UX Rationale -->
-    <section class="project-section features-section">
+    <!-- 09 — Additional stuff I did because I wanted to -->
+    <section class="project-section extras-section">
       <div class="section-content">
-        <h2>Core Features & UX Considerations</h2>
-        <p>
-          Based on user research, I designed 14 versatile functions covering the most common lookup and conversion tasks. Each feature was thoughtfully designed with specific UX considerations to maximize utility while minimizing complexity.
-        </p>
-        
-        <div class="features-grid-detailed">
-          <div class="feature-card-detailed">
-            <div class="feature-header">
-              <span class="feature-icon">🧮</span>
-              <h4>Maths</h4>
-            </div>
-            <p class="feature-description">Perform quick calculations on selected mathematical expressions without leaving your page.</p>
-            <div class="feature-ux">
-              <strong>UX Consideration:</strong>
-              <ul>
-                <li>Evaluates standard math operators: +, -, *, /, ^, %</li>
-                <li>Supports parentheses for complex expressions</li>
-                <li>Shows calculation history within session</li>
-                <li>Instantly evaluates expressions as you type</li>
-              </ul>
-            </div>
-          </div>
+        <span class="section-kicker">Beyond the core work</span>
+        <h2>Additional stuff I did because I wanted to</h2>
+        <p>None of this was on the requirements list. I built it anyway, because the small, first-impression moments of an app deserve as much care as the core flows.</p>
 
-          <div class="feature-card-detailed">
-            <div class="feature-header">
-              <span class="feature-icon">📖</span>
-              <h4>Meaning</h4>
-            </div>
-            <p class="feature-description">Get definitions, synonyms, antonyms, and usage examples for any English word.</p>
-            <div class="feature-ux">
-              <strong>UX Consideration:</strong>
-              <ul>
-                <li>Comprehensive results: definitions, synonyms, antonyms, example sentences</li>
-                <li>Part of speech clearly labeled (noun, verb, adjective)</li>
-                <li>Perfect for writers, students, non-native speakers</li>
-                <li>One-click access to word meanings without leaving your workflow</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="feature-card-detailed">
-            <div class="feature-header">
-              <span class="feature-icon">🌐</span>
-              <h4>Translate</h4>
-            </div>
-            <p class="feature-description">Translate text between 100+ languages. Smart detection switches to dictionary mode for English words.</p>
-            <div class="feature-ux">
-              <strong>UX Consideration:</strong>
-              <ul>
-                <li>Auto-detects source language to reduce steps</li>
-                <li>When translating TO English, automatically shows dictionary definitions instead</li>
-                <li>Manual toggle to switch between translation and dictionary modes</li>
-                <li>Uses Google Translate API for accuracy</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="feature-card-detailed">
-            <div class="feature-header">
-              <span class="feature-icon">⚖️</span>
-              <h4>Weight Conversion</h4>
-            </div>
-            <p class="feature-description">Convert pounds to kilograms, ounces to grams, and more metric/imperial weight units instantly.</p>
-            <div class="feature-ux">
-              <strong>UX Consideration:</strong>
-              <ul>
-                <li>Preset unit dropdowns organized by common use (metric first for global audience, imperial available)</li>
-                <li>Bidirectional conversion — swap units with one click</li>
-                <li>High precision for scientific use, but displays reasonable decimals for everyday use</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="feature-card-detailed">
-            <div class="feature-header">
-              <span class="feature-icon">📏</span>
-              <h4>Length Conversion</h4>
-            </div>
-            <p class="feature-description">Convert between meters, feet, inches, kilometers, miles, and other length units seamlessly.</p>
-            <div class="feature-ux">
-              <strong>UX Consideration:</strong>
-              <ul>
-                <li>Supports both metric (meters, centimeters) and imperial (feet, inches) systems</li>
-                <li>Smart unit detection from input text</li>
-                <li>Useful for international projects, travel planning, and technical specifications</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="feature-card-detailed">
-            <div class="feature-header">
-              <span class="feature-icon">📐</span>
-              <h4>Area Conversion</h4>
-            </div>
-            <p class="feature-description">Convert square feet, square meters, acres, hectares, and other area measurements.</p>
-            <div class="feature-ux">
-              <strong>UX Consideration:</strong>
-              <ul>
-                <li>Useful for real estate, design, and construction professionals</li>
-                <li>Clear unit labels (sq ft, sq m) prevent confusion between length and area</li>
-                <li>Handles large-scale measurements like acres and hectares</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="feature-card-detailed">
-            <div class="feature-header">
-              <span class="feature-icon">🫙</span>
-              <h4>Volume Conversion</h4>
-            </div>
-            <p class="feature-description">Convert liters, gallons, milliliters, cups, and other volume units instantly.</p>
-            <div class="feature-ux">
-              <strong>UX Consideration:</strong>
-              <ul>
-                <li>Supports both metric (liters) and imperial (gallons) systems</li>
-                <li>Includes cooking measurements (cups, tablespoons) for recipe use</li>
-                <li>Essential for cooking, chemistry, and everyday liquid measurements</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="feature-card-detailed">
-            <div class="feature-header">
-              <span class="feature-icon">💾</span>
-              <h4>Digital Unit Conversion</h4>
-            </div>
-            <p class="feature-description">Convert between bytes, kilobytes, megabytes, gigabytes, terabytes, and other digital storage units.</p>
-            <div class="feature-ux">
-              <strong>UX Consideration:</strong>
-              <ul>
-                <li>Handles both decimal (KB, MB, GB) and binary (KiB, MiB, GiB) units</li>
-                <li>Essential for developers, IT professionals, and anyone working with file sizes</li>
-                <li>Clear distinction between different unit systems</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="feature-card-detailed">
-            <div class="feature-header">
-              <span class="feature-icon">⏱️</span>
-              <h4>Duration Conversion</h4>
-            </div>
-            <p class="feature-description">Convert between hours, minutes, seconds, days, weeks — perfect for time calculations and project planning.</p>
-            <div class="feature-ux">
-              <strong>UX Consideration:</strong>
-              <ul>
-                <li>Automatically formats output to most readable unit (e.g., 90 minutes → 1.5 hours)</li>
-                <li>Useful for freelancers calculating billable hours</li>
-                <li>Supports complex duration formats</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="feature-card-detailed">
-            <div class="feature-header">
-              <span class="feature-icon">📅</span>
-              <h4>Date/Day Conversion</h4>
-            </div>
-            <p class="feature-description">Calculate days between dates, find dates in the future or past, and convert between date formats.</p>
-            <div class="feature-ux">
-              <strong>UX Consideration:</strong>
-              <ul>
-                <li>Calculate days between two dates instantly</li>
-                <li>Find what date it will be X days from now</li>
-                <li>Useful for deadline tracking, project planning, and date calculations</li>
-                <li>Handles various date input formats</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="feature-card-detailed">
-            <div class="feature-header">
-              <span class="feature-icon">🌍</span>
-              <h4>Timezone Conversion</h4>
-            </div>
-            <p class="feature-description">Check current time across different timezones. Supports country names, cities, and UTC offsets. Includes meeting time scheduler.</p>
-            <div class="feature-ux">
-              <strong>UX Consideration:</strong>
-              <ul>
-                <li>Displays full country names instead of codes (IN → India) for clarity</li>
-                <li>Parses multiple timezone formats: "PST", "UTC+5:30", "New York", "Japan"</li>
-                <li>Shows both current local time and target timezone time side-by-side</li>
-                <li>Meeting scheduler shows what time a specific hour is in multiple zones</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="feature-card-detailed">
-            <div class="feature-header">
-              <span class="feature-icon">💱</span>
-              <h4>Currency Conversion</h4>
-            </div>
-            <p class="feature-description">Convert between 150+ currencies with real-time exchange rates. Supports amounts with currency codes (e.g., "100 USD to EUR") or standalone numbers.</p>
-            <div class="feature-ux">
-              <strong>UX Consideration:</strong>
-              <ul>
-                <li>Real-time rates via API with caching to reduce network calls</li>
-                <li>Smart parsing handles various input formats: "100 USD", "$100", "100 dollars"</li>
-                <li>Shows exchange rate and last updated time for transparency</li>
-                <li>Remembers last used currency pair for faster repeat conversions</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="feature-card-detailed">
-            <div class="feature-header">
-              <span class="feature-icon">🌡️</span>
-              <h4>Temperature Conversion</h4>
-            </div>
-            <p class="feature-description">Convert between Celsius, Fahrenheit, and Kelvin with automatic unit detection.</p>
-            <div class="feature-ux">
-              <strong>UX Consideration:</strong>
-              <ul>
-                <li>Detects temperature units in text (25°C, 77°F) automatically</li>
-                <li>Shows all three scales simultaneously for quick reference</li>
-                <li>Essential for international communication and scientific work</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="feature-card-detailed">
-            <div class="feature-header">
-              <span class="feature-icon">🎨</span>
-              <h4>Design</h4>
-            </div>
-            <p class="feature-description">Convert between design units like pixels, points, ems, rems, and calculate screen dimensions and aspect ratios.</p>
-            <div class="feature-ux">
-              <strong>UX Consideration:</strong>
-              <ul>
-                <li>Converts between px, pt, em, rem for responsive design</li>
-                <li>Parses resolution formats: "1920x1080", "4K", "1080p"</li>
-                <li>Shows physical dimensions, PPI, and aspect ratio</li>
-                <li>Useful for responsive design and device testing</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        
-        <div class="feature-highlight">
-          <h3>Universal Compatibility</h3>
-          <p>
-            Quippy works on <strong>every website</strong> — Gmail, Google Docs, Slack, LinkedIn, Twitter, news sites, documentation, and anywhere else you browse. The extension uses content scripts that inject seamlessly into any page without affecting site functionality. Select any text, and Quippy is ready to help.
-          </p>
-        </div>
-        
-        <div class="feature-highlight">
-          <h3>Privacy & Security by Design</h3>
-          <p>
-            Quippy <strong>doesn't collect any user data</strong>. All conversions happen locally or through secure third-party APIs (Google Translate, Exchange Rate API) using HTTPS. No tracking, no analytics, no storage of your queries or personal information. The extension only requests minimum necessary permissions: "activeTab" to interact with current page and "storage" for user preferences only.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Development -->
-    <section class="project-section development-section">
-      <div class="section-content">
-        <h2>Development & Implementation</h2>
-        <p>
-          With no prior experience in browser extension development, I approached this as a learning opportunity. Using ChatGPT and Claude as coding partners, I translated my Figma designs into functional code. This AI-assisted development process allowed me to focus on UX decisions while learning Chrome Extension APIs, JavaScript patterns, and best practices.
-        </p>
-
-        <div class="dev-approach">
-          <h4>Development Approach</h4>
-          <ul>
-            <li>Started with Chrome Extension Manifest V3 documentation to understand architecture</li>
-            <li>Built a minimal working prototype (one function) to prove the concept</li>
-            <li>Iteratively added features one at a time, testing each thoroughly</li>
-            <li>Used AI assistants to explain unfamiliar concepts and debug issues</li>
-            <li>Followed accessibility guidelines (WCAG 2.1) throughout development</li>
+        <div class="extras-block">
+          <h3>Splash screen &amp; spinner loader animations</h3>
+          <ul class="method-bullets extras-bullets">
+            <li>Designed and animated the app's <strong>splash screen sequence</strong> entirely inside Figma, using prototyping and smart animate rather than a separate motion tool</li>
+            <li>Built a custom <strong>spinner loader animation</strong> the same way, so loading states felt like part of the same product instead of a generic default spinner</li>
+            <li>Both were self-initiated, done purely to make the first few seconds of opening the app feel considered rather than purely functional</li>
           </ul>
         </div>
-        
-        <div class="tech-stack">
-          <h3>Technical Implementation</h3>
-          <div class="tech-list">
-            <div class="tech-item">
-              <strong>Chrome Extension Manifest V3:</strong> Modern extension architecture with improved security and performance
+
+        <div class="extras-video-grid">
+          <div class="extras-video-item">
+            <div class="flow-image-label">Splash screen animation</div>
+            <div class="solution-image-wrapper">
+              <video class="solution-video autoplay-video" controls muted playsinline preload="metadata">
+                <source src="../assets/splashscreens.mov" type="video/quicktime">
+                Video playback of the splash screen animation isn't supported in this browser.
+              </video>
             </div>
-            <div class="tech-item">
-              <strong>Content Scripts:</strong> Injected into every webpage to detect text selection and display Quippy popup without affecting page functionality
-            </div>
-            <div class="tech-item">
-              <strong>Background Service Workers:</strong> Handle API calls, manage state, and coordinate between tabs efficiently
-            </div>
-            <div class="tech-item">
-              <strong>Local Storage:</strong> Stores user preferences (last used currencies, units) and caches API responses for performance
-            </div>
-            <div class="tech-item">
-              <strong>API Integration:</strong> Real-time data via ExchangeRate-API for currencies, Google Translate API for translations, Dictionary API for word definitions
-            </div>
-            <div class="tech-item">
-              <strong>Keyboard Event Handling:</strong> Custom implementation of Ctrl+Shift+Q / Cmd+Shift+Q that doesn't conflict with browser shortcuts
-            </div>
-            <div class="tech-item">
-              <strong>CSS Isolation:</strong> Shadow DOM prevents Quippy's styles from conflicting with host website styles and vice versa
-            </div>
-            <div class="tech-item">
-              <strong>Error Handling:</strong> Graceful fallbacks for network failures, invalid inputs, and API rate limits
+          </div>
+          <div class="extras-video-item">
+            <div class="flow-image-label">Spinner loader animation</div>
+            <div class="solution-image-wrapper">
+              <video class="solution-video autoplay-video" controls muted playsinline preload="metadata">
+                <source src="../assets/spinnerloader.mov" type="video/quicktime">
+                Video playback of the spinner loader animation isn't supported in this browser.
+              </video>
             </div>
           </div>
         </div>
-
-        <div class="design-decision-card">
-          <h4>⚙️ Technical Design Decision: Shadow DOM for Style Isolation</h4>
-          <div class="decision-content">
-            <div class="decision-section">
-              <strong>The Challenge:</strong>
-              <p>When Quippy injects into a webpage, CSS from the host site could interfere with Quippy's design, and vice versa. For example, if a site has a global style like "div { background: red; }", it could break Quippy's interface.</p>
-            </div>
-            <div class="decision-section">
-              <strong>The Solution:</strong>
-              <p>Use Shadow DOM to create an isolated CSS scope. Quippy's HTML and styles live in a shadow root that's protected from external styles. This ensures consistent appearance across all websites while preventing Quippy from accidentally affecting page layouts.</p>
-            </div>
-            <div class="decision-section">
-              <strong>Trade-off:</strong>
-              <p>Shadow DOM adds complexity, but guarantees reliability. Without it, Quippy could look different or broken on every website.</p>
-            </div>
-          </div>
-        </div>
-
       </div>
     </section>
 
-    <!-- Testing & Issues -->
-    <section class="project-section testing-issues-section">
+    <!-- 10 — Key Transformations & Outcome -->
+    <section class="project-section outcomes-section">
       <div class="section-content">
-        <h2>Testing, Issues & Iterations</h2>
-        <p>
-          After implementing each feature, I conducted extensive testing in Chrome's developer mode and then used Quippy daily in my actual workflow across sites I frequent — Gmail, Slack, Google Docs, LinkedIn, news sites, and documentation. This real-world testing was invaluable, revealing UX issues that weren't apparent during controlled development.
-        </p>
+        <span class="section-kicker">Key transformations &amp; outcome</span>
+        <h2>The same four problems, closed</h2>
+        <div class="transform-grid">
+          <div class="transform-item">
+            <p>A reusable design system in place, cutting design time on every screen built after it.</p>
+          </div>
+          <div class="transform-item">
+            <p>Missing features and user groups, including retired athletes and multi-sport coaches, addressed directly.</p>
+          </div>
+          <div class="transform-item">
+            <p>Journeys redesigned around what learners and coaches were actually trying to do, not just individual screens.</p>
+          </div>
+          <div class="transform-item">
+            <p>Critical flows completed, with every missing screen and edge case identified and designed before launch.</p>
+          </div>
+        </div>
 
-        <div class="testing-methodology">
-          <h4>Testing Approach</h4>
-          <ul>
-            <li><strong>Chrome Developer Mode:</strong> Loaded unpacked extension for rapid iteration and debugging</li>
-            <li><strong>Real-World Usage:</strong> Used Quippy as my primary tool for 2 weeks to experience actual pain points</li>
-            <li><strong>Cross-Site Testing:</strong> Verified functionality on 20+ different websites with varying layouts and CSS</li>
-            <li><strong>Edge Case Exploration:</strong> Deliberately tried unusual inputs to test error handling</li>
-            <li><strong>Performance Monitoring:</strong> Tracked load times, API response times, and memory usage</li>
-          </ul>
-        </div>
-        
-        <h3>Critical Issues Discovered & Resolved</h3>
-        <div class="issues-found">
-          <div class="found-issue">
-            <div class="issue-badge">UX Issue</div>
-            <div class="issue-title">Selected Text Workflow Needed Flexibility</div>
-            <div class="issue-description">
-              <strong>Problem:</strong> Users sometimes needed to modify the selected text slightly before running a conversion (e.g., removing extra characters, fixing typos, or adjusting numbers). The initial design locked the input field after selection.
-            </div>
-            <div class="issue-fix">
-              <strong>Solution:</strong> Made the input field pre-filled but fully editable. Users can now tweak the text before processing without re-selecting. This maintains the fast workflow (pre-filled saves time) while adding crucial flexibility.
-            </div>
-            <div class="issue-impact">
-              <strong>Impact:</strong> Reduced frustration for edge cases where selection wasn't perfect, increased utility without compromising speed.
-            </div>
-          </div>
-          
-          <div class="found-issue">
-            <div class="issue-badge">Usability Issue</div>
-            <div class="issue-title">Country Code Confusion in Timezone Feature</div>
-            <div class="issue-description">
-              <strong>Problem:</strong> Timezone feature initially showed country codes (IN, US, GB, JP) instead of country names. User testing revealed this caused confusion — people couldn't quickly scan for their desired timezone.
-            </div>
-            <div class="issue-fix">
-              <strong>Solution:</strong> Switched to displaying full country names ("India" instead of "IN") with optional abbreviations in smaller text. Made timezone dropdown searchable so users can type country names.
-            </div>
-            <div class="issue-impact">
-              <strong>Impact:</strong> Significantly improved scannability and reduced time to find desired timezone. Positive feedback from test users.
-            </div>
-          </div>
-          
-          <div class="found-issue">
-            <div class="issue-badge">Functional Bug</div>
-            <div class="issue-title">Translation vs. Dictionary Mode Conflict</div>
-            <div class="issue-description">
-              <strong>Problem:</strong> When translating to English, users expected word meanings and synonyms (dictionary lookup), not literal translations from other languages. The translation feature couldn't distinguish user intent.
-            </div>
-            <div class="issue-fix">
-              <strong>Solution:</strong> Implemented smart detection: when target language is English AND input is a single word, automatically switch to dictionary mode showing definitions, synonyms, antonyms. Added manual toggle for users who genuinely want translation to English.
-            </div>
-            <div class="issue-impact">
-              <strong>Impact:</strong> Merged two features (translation and dictionary) into one intuitive interface. Users no longer need to switch between functions manually.
-            </div>
-          </div>
-          
-          <div class="found-issue">
-            <div class="issue-badge">Feature Enhancement</div>
-            <div class="issue-title">Limited Dictionary Information</div>
-            <div class="issue-description">
-              <strong>Problem:</strong> Initial dictionary feature showed only basic definitions. Writers and students needed more comprehensive information: synonyms, antonyms, example sentences, parts of speech.
-            </div>
-            <div class="issue-fix">
-              <strong>Solution:</strong> Integrated Free Dictionary API which provides extensive data. Redesigned results layout to show definitions grouped by part of speech, with synonyms/antonyms in expandable sections, and real usage examples.
-            </div>
-            <div class="issue-impact">
-              <strong>Impact:</strong> Transformed dictionary from basic lookup to comprehensive reference tool. Eliminated need to open separate dictionary websites.
-            </div>
-          </div>
-          
-          <div class="found-issue">
-            <div class="issue-badge">Compatibility Issue</div>
-            <div class="issue-title">Keyboard Shortcut Platform Differences</div>
-            <div class="issue-description">
-              <strong>Problem:</strong> Windows uses Ctrl key, Mac uses Cmd key. Initial implementation only worked on Windows. Needed cross-platform compatibility without requiring users to configure shortcuts.
-            </div>
-            <div class="issue-fix">
-              <strong>Solution:</strong> Implemented platform detection using navigator.userAgent. Extension automatically uses Ctrl+Shift+Q on Windows/Linux and Cmd+Shift+Q on Mac. UI displays the correct shortcut for user's platform.
-            </div>
-            <div class="issue-impact">
-              <strong>Impact:</strong> Seamless experience across platforms. Mac users no longer excluded. Zero configuration required.
-            </div>
-          </div>
-          
-          <div class="found-issue">
-            <div class="issue-badge">Format Recognition</div>
-            <div class="issue-title">Timezone Format Parsing Gaps</div>
-            <div class="issue-description">
-              <strong>Problem:</strong> Gmail and calendar apps show timezones in formats like "8:30 PM UTC+5:30" but Quippy didn't recognize this common pattern. Users had to manually retype timezone information.
-            </div>
-            <div class="issue-fix">
-              <strong>Solution:</strong> Enhanced timezone parser to recognize multiple formats: UTC offsets (UTC+5:30), city names (New York), country names (India), timezone abbreviations (PST, IST), and mixed formats from email clients.
-            </div>
-            <div class="issue-impact">
-              <strong>Impact:</strong> Users can now select timezone strings directly from emails and convert them instantly, matching the original workflow inspiration.
-            </div>
-          </div>
-
-          <div class="found-issue">
-            <div class="issue-badge">Performance Issue</div>
-            <div class="issue-title">API Call Overhead for Currency Rates</div>
-            <div class="issue-description">
-              <strong>Problem:</strong> Making API call for every currency conversion created network delays (500-1000ms) and quickly hit rate limits.
-            </div>
-            <div class="issue-fix">
-              <strong>Solution:</strong> Implemented smart caching: fetch all currency rates once per hour and store in local storage. Conversions use cached rates with timestamp displayed. Reduced API calls from hundreds to ~24 per day.
-            </div>
-            <div class="issue-impact">
-              <strong>Impact:</strong> Instant conversions (0ms delay), better user experience, never hit rate limits, reduced server load.
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Final UI Screens -->
-    <section class="project-section final-screens-section">
-      <h2>Final Interface & Key Screens</h2>
-      <p class="screens-intro">Below are key screens showing Quippy in action across different functions and use cases.</p>
-      
-      <div class="screen-gallery">
-        <div class="screen">
-          <h3>Default State & Function Selection</h3>
-          <img src="../assets/q1image.png" alt="Default state showing function selector dropdown and input field">
-          <p class="screen-description">Initial state: dropdown for selecting function, pre-filled input with selected text, clean interface without clutter</p>
-        </div>
-        
-        <div class="screen">
-          <h3>Currency Conversion in Action</h3>
-          <img src="../assets/q2image.png" alt="Currency conversion showing real-time exchange rates">
-          <p class="screen-description">Currency converter with dropdown selectors for source/target currencies, real-time rate display, and copy button</p>
-        </div>
-        
-        <div class="screen">
-          <h3>Timezone Conversion & Meeting Scheduler</h3>
-          <img src="../assets/q3image.png" alt="Timezone conversion showing multiple timezones simultaneously">
-          <p class="screen-description">Timezone display showing current time in source, best meeting times and target zones with full country names for clarity</p>
-        </div>
-        
-        <div class="screen">
-          <h3>Translation & Dictionary Lookup</h3>
-          <video src="../assets/q4vid.mov" class="screen-video" autoplay loop muted playsinline>
-            Your browser does not support the video tag.
-          </video>
-          <p class="screen-description">Smart translation/dictionary mode with auto-detection, showing definitions, synonyms, and example usage</p>
-        </div>
-        
-        <div class="screen">
-          <h3>Unit Conversions (Temperature, Area, Volume)</h3>
-          <video src="../assets/q5vid.mov" class="screen-video" autoplay loop muted playsinline>
-            Your browser does not support the video tag.
-          </video>
-          <p class="screen-description">Consistent unit conversion interface across different measurement types with bidirectional conversion</p>
-        </div>
-        
-        <div class="screen">
-          <h3>Utility Functions (Timer, Calculator)</h3>
-          <video src="../assets/q6vid.mov" class="screen-video" autoplay loop muted playsinline>
-            Your browser does not support the video tag.
-          </video>
-          <p class="screen-description">Additional utility functions maintaining same design language and interaction patterns</p>
-        </div>
-      </div>
-
-    </section>
-
-    <!-- Impact & Metrics -->
-    <section class="project-section impact-section">
-      <div class="section-content">
-        <h2>Launch & Impact</h2>
-        <p>
-          Quippy successfully launched on the Chrome Web Store in November 2024. The extension has been validated through real-world usage and is actively helping users eliminate workflow friction across various professions — designers, developers, writers, marketers, and business professionals.
-        </p>
-
-        <div class="impact-metrics">
-          <h4>Early Metrics & Feedback</h4>
+        <div class="outcome-block">
+          <h3>Measured Results</h3>
           <div class="metrics-grid">
-            <div class="metric-card">
-              <div class="metric-number">14</div>
-              <div class="metric-label">Core Functions</div>
-            </div>
-            <div class="metric-card">
-              <div class="metric-number">0ms</div>
-              <div class="metric-label">Load Time Impact</div>
-            </div>
-            <div class="metric-card">
-              <div class="metric-number">100%</div>
-              <div class="metric-label">Website Compatibility</div>
-            </div>
-            <div class="metric-card">
-              <div class="metric-number">Zero</div>
-              <div class="metric-label">Data Collection</div>
-            </div>
+            <div class="metric-item"><div class="metric-value">96%</div><div class="metric-label">Task completion rate</div></div>
+            <div class="metric-item"><div class="metric-value">40%</div><div class="metric-label">Expected increase in sign-ups</div></div>
+            <div class="metric-item"><div class="metric-value">23%</div><div class="metric-label">Booking conversion improvement</div></div>
+            <div class="metric-item"><div class="metric-value">60%</div><div class="metric-label">Design efficiency gained</div></div>
           </div>
         </div>
-        
-        <h3>What I Learned</h3>
-        <div class="learnings">
-          <div class="learning-item">
-            <strong>Design Systems Enable Speed:</strong> Creating a comprehensive design system in Figma before coding saved countless hours of indecision during development. Having typography, spacing, colors, and components pre-defined meant I could focus on functionality rather than visual decisions.
-          </div>
-          <div class="learning-item">
-            <strong>Real-World Testing is Irreplaceable:</strong> Controlled testing missed issues that only appeared during actual daily use. Using your own product reveals edge cases, workflow interruptions, and opportunities for improvement that you can't predict. I discovered 80% of UX improvements through real-world usage.
-          </div>
-          <div class="learning-item">
-            <strong>AI as Development Partner:</strong> Using ChatGPT and Claude as coding assistants allowed me to build complex functionality despite limited JavaScript experience. The key was asking specific questions, iterating quickly, and maintaining a clear vision of desired UX outcomes.
-          </div>
-          <div class="learning-item">
-            <strong>Simplicity Beats Features:</strong> I initially planned 20+ functions but realized fewer, well-executed features provide more value than many half-baked ones. Focusing on 14 core functions with excellent UX trumps adding marginally useful features.
-          </div>
-          <div class="learning-item">
-            <strong>Platform Constraints Shape Design:</strong> Chrome extension limitations (Shadow DOM, content script permissions, API restrictions) forced creative solutions that ultimately made the product better. Constraints drive innovation.
-          </div>
-          <div class="learning-item">
-            <strong>Context Awareness is Everything:</strong> The most successful features (translation/dictionary toggle, timezone format parsing) succeeded because they understood user context. Good UX anticipates needs rather than requiring explicit instruction.
-          </div>
-        </div>
-        
-        <h3>Future Enhancements</h3>
-        <p>Based on usage patterns and user feedback, I've identified the following roadmap:</p>
-        <div class="future-features">
-          <div class="future-item">
-            <strong>Personalization System:</strong> Remember user preferences for default currencies, units, languages, and frequently used functions for faster access
-          </div>
-          <div class="future-item">
-            <strong>Conversion History:</strong> Local history of recent conversions accessible via shortcut, enabling quick reference without re-converting
-          </div>
-          <div class="future-item">
-            <strong>Dark Mode:</strong> Automatic theme switching based on system preferences with manual override option
-          </div>
-          <div class="future-item">
-            <strong>Custom Themes:</strong> User-defined color schemes and font preferences for personalization
-          </div>
-          <div class="future-item">
-            <strong>Editable Results:</strong> Allow chaining conversions by making result text selectable and convertible
-          </div>
-          <div class="future-item">
-            <strong>Additional Conversions:</strong> Data storage (MB to GB), speed (mph to km/h), pressure, energy based on user requests
-          </div>
-          <div class="future-item">
-            <strong>Offline Mode:</strong> Essential conversions work without internet by including conversion tables locally
-          </div>
-          <div class="future-item">
-            <strong>Multi-Browser Support:</strong> Firefox, Edge, and Safari versions to reach broader audience
-          </div>
-          <div class="future-item">
-            <strong>API for Developers:</strong> Allow other extensions to integrate Quippy's conversion capabilities
-          </div>
-          <div class="future-item">
-            <strong>Keyboard Shortcuts:</strong> Additional shortcuts for power users to directly activate specific functions (e.g., Ctrl+Shift+C for currency)
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- Conclusion -->
-    <section class="project-section conclusion-section">
-      <div class="section-content">
-        <h2>Reflection & Key Takeaways</h2>
-        <p>
-          Building Quippy from initial prototype to live Chrome Web Store product taught me the complete product lifecycle — from identifying a problem through user research, to designing thoughtful solutions, developing functional code, iterating based on testing, and finally launching to real users.
-        </p>
-        <p>
-          This project reinforced that good UX design isn't about adding features — it's about removing friction. Every design decision in Quippy aimed to eliminate one more step, one more click, one more moment of disruption between a user and their goal. The keyboard shortcut, pre-filled input, smart context detection, and universal compatibility all serve this singular purpose: make simple tasks feel effortless.
-        </p>
-        <p>
-          Most importantly, Quippy demonstrates that designers can build real products. With modern AI tools as development partners and a clear user-centered vision, the barrier between "designing" and "building" has never been lower. I use Quippy dozens of times daily, and each time I press Ctrl+Shift+Q instead of opening a new tab, I'm reminded why I built it. When you solve your own problem well, others benefit too.
-        </p>
-
-        <div class="final-cta">
-          <h4>Try Quippy</h4>
-          <p>Available now on the Chrome Web Store. Install it, select any text, press Ctrl+Shift+Q, and experience workflow without friction.</p>
-           <a href="https://chromewebstore.google.com/detail/quippy/bjoncincdhhnaacbohbhpaaneocdmckj" class="cta-button" target="_blank" rel="noopener noreferrer">View on Chrome Web Store →</a>
+        <div class="outcome-block">
+          <h3>Key Learnings</h3>
+          <div class="learning-list">
+            <div class="learning-item"><p><strong>Strategic thinking over execution:</strong> the most impactful work happened in decision-making frameworks, not pixel-pushing. Understanding constraints and trade-offs shaped better outcomes.</p></div>
+            <div class="learning-item"><p><strong>Systems thinking pays dividends:</strong> building the design system upfront saved exponentially more time than it took to create.</p></div>
+            <div class="learning-item"><p><strong>Test assumptions early:</strong> usability testing caught critical issues that would have been expensive to fix post-development.</p></div>
+          </div>
         </div>
       </div>
     </section>
 
   </main>
 
-  <!-- Bottom back link wrapper -->
   <div class="bottom-link-wrapper">
     <a href="../index.html#work" class="footer-back-link">← Back to Work</a>
   </div>
 
-  <!-- Footer -->
   <footer class="site-footer">
     <p>&copy; 2025 Lakshmi Pratap. All rights reserved.</p>
   </footer>
 
-  <script src="project0-enhanced.js"></script>
+  <script src="project1.js?v=6"></script>
 </body>
 </html>

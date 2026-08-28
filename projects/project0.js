@@ -1,4 +1,4 @@
-// project0-enhanced.js - Comprehensive Quippy Extension Portfolio Page
+// project1.js - Redesigned for Story Style with Design Decisions
 
 document.addEventListener('DOMContentLoaded', () => {
   
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const sections = document.querySelectorAll('.project-section');
   
   const observerOptions = {
-    threshold: 0.1,
+    threshold: 0.05,
     rootMargin: '0px 0px -50px 0px'
   };
   
@@ -37,6 +37,15 @@ document.addEventListener('DOMContentLoaded', () => {
     sectionObserver.observe(section);
   });
   
+  setTimeout(() => {
+    const designSection = document.querySelector('.design-decisions-section');
+    if (designSection) {
+      designSection.classList.add('visible');
+      designSection.style.opacity = '1';
+      designSection.style.transform = 'translateY(0)';
+    }
+  }, 100);
+  
   // Smooth scroll for anchor links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -51,17 +60,291 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
   
-  // Parallax effect for hero image/video
-  const heroMedia = document.querySelector('.hero-image');
+  // Video autoplay on scroll — every video in the project (hero excluded, it
+  // already autoplays via the autoplay attribute in HTML). Videos play when
+  // they scroll into view and pause + reset when they scroll out. This
+  // includes the two Additional-stuff-I-did-because-I-wanted-to videos
+  // (splash screen + spinner loader), since they reuse the same
+  // .autoplay-video class as every other video on the page.
+  const videos = document.querySelectorAll('.animation-video, .autoplay-video');
   
-  if (heroMedia) {
+  videos.forEach(video => {
+    video.muted = true; // required for browsers to allow programmatic autoplay
+  });
+  
+  const videoObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const video = entry.target;
+      
+      if (entry.isIntersecting) {
+        video.play().catch(e => console.log('Video autoplay prevented:', e));
+      } else {
+        video.pause();
+        video.currentTime = 0;
+      }
+    });
+  }, { threshold: 0.4 });
+  
+  videos.forEach(video => {
+    videoObserver.observe(video);
+  });
+  
+  // Parallax effect for hero image
+  const heroImage = document.querySelector('.hero-image');
+  
+  if (heroImage) {
     window.addEventListener('scroll', () => {
       const scrolled = window.pageYOffset;
       if (scrolled < window.innerHeight) {
-        heroMedia.style.transform = `translateY(${scrolled * 0.3}px)`;
-        heroMedia.style.opacity = 1 - (scrolled / window.innerHeight) * 0.5;
+        heroImage.style.transform = `translateY(${scrolled * 0.3}px)`;
+        heroImage.style.opacity = 1 - (scrolled / window.innerHeight) * 0.5;
       }
     });
+  }
+  
+  // Add stagger animation to problem items
+  const problemItems = document.querySelectorAll('.problem-item');
+  
+  const problemObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const items = entry.target.querySelectorAll('.problem-item');
+        items.forEach((item, index) => {
+          setTimeout(() => {
+            item.style.opacity = '1';
+            item.style.transform = 'translateY(0)';
+            item.style.transition = 'all 0.5s ease';
+          }, index * 150);
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+  
+  const problemList = document.querySelector('.problem-list');
+  if (problemList) {
+    problemItems.forEach(item => {
+      item.style.opacity = '0';
+      item.style.transform = 'translateY(20px)';
+    });
+    problemObserver.observe(problemList);
+  }
+
+  // Add stagger animation to risk items (Four Problems section)
+  const riskItems = document.querySelectorAll('.risk-item');
+
+  const riskObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const items = entry.target.querySelectorAll('.risk-item');
+        items.forEach((item, index) => {
+          setTimeout(() => {
+            item.style.opacity = '1';
+            item.style.transform = 'translateY(0)';
+            item.style.transition = 'all 0.5s ease';
+          }, index * 150);
+        });
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+  const risksList = document.querySelector('.risks-list');
+  if (risksList) {
+    riskItems.forEach(item => {
+      item.style.opacity = '0';
+      item.style.transform = 'translateY(20px)';
+    });
+    riskObserver.observe(risksList);
+  }
+  
+  // Add stagger animation to approach steps
+  const approachSteps = document.querySelectorAll('.approach-step');
+  
+  const approachObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const steps = entry.target.querySelectorAll('.approach-step');
+        steps.forEach((step, index) => {
+          setTimeout(() => {
+            step.style.opacity = '1';
+            step.style.transform = 'translateY(0)';
+            step.style.transition = 'all 0.5s ease';
+          }, index * 150);
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+  
+  const approachContainer = document.querySelector('.approach-steps');
+  if (approachContainer) {
+    approachSteps.forEach(step => {
+      step.style.opacity = '0';
+      step.style.transform = 'translateY(20px)';
+    });
+    approachObserver.observe(approachContainer);
+  }
+  
+  // Metric counter animation
+  const metricValues = document.querySelectorAll('.metric-value');
+  let hasAnimated = false;
+  
+  const metricObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !hasAnimated) {
+        hasAnimated = true;
+        
+        metricValues.forEach(metric => {
+          const text = metric.textContent;
+          
+          if (text.includes('%')) {
+            const target = parseInt(text);
+            let count = 0;
+            const increment = target / 50;
+            
+            const interval = setInterval(() => {
+              count += increment;
+              if (count >= target) {
+                metric.textContent = text;
+                clearInterval(interval);
+              } else {
+                metric.textContent = Math.floor(count) + '%';
+              }
+            }, 30);
+          }
+        });
+      }
+    });
+  }, { threshold: 0.5 });
+  
+  const metricsGrid = document.querySelector('.metrics-grid');
+  if (metricsGrid) {
+    metricObserver.observe(metricsGrid);
+  }
+  
+  // Design Decision Blocks Animation
+  const decisionBlocks = document.querySelectorAll('.design-decision-block');
+  
+  const decisionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+        entry.target.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+      }
+    });
+  }, { threshold: 0.05 });
+  
+  decisionBlocks.forEach(block => {
+    block.style.opacity = '1';
+    block.style.transform = 'translateY(0)';
+    decisionObserver.observe(block);
+  });
+  
+  // Animate notification categories on scroll
+  const notificationCategories = document.querySelectorAll('.notification-category');
+  
+  const categoryObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const categories = entry.target.parentElement.querySelectorAll('.notification-category');
+        categories.forEach((cat, index) => {
+          setTimeout(() => {
+            cat.style.opacity = '1';
+            cat.style.transform = 'translateY(0)';
+            cat.style.transition = 'all 0.5s ease';
+          }, index * 100);
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+  
+  const notificationGrid = document.querySelector('.notification-categories');
+  if (notificationGrid) {
+    notificationCategories.forEach(cat => {
+      cat.style.opacity = '0';
+      cat.style.transform = 'translateY(20px)';
+    });
+    categoryObserver.observe(notificationGrid);
+  }
+  
+  // Animate final notifications
+  const notificationItems = document.querySelectorAll('.notification-item');
+  
+  const notificationObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const items = entry.target.parentElement.querySelectorAll('.notification-item');
+        items.forEach((item, index) => {
+          setTimeout(() => {
+            item.style.opacity = '1';
+            item.style.transform = 'scale(1)';
+            item.style.transition = 'all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+          }, index * 100);
+        });
+      }
+    });
+  }, { threshold: 0.5 });
+  
+  const finalNotifications = document.querySelector('.final-notifications');
+  if (finalNotifications) {
+    notificationItems.forEach(item => {
+      item.style.opacity = '0';
+      item.style.transform = 'scale(0.8)';
+    });
+    notificationObserver.observe(finalNotifications);
+  }
+  
+  // Animate outcome items
+  const outcomeItems = document.querySelectorAll('.outcome-item');
+  
+  const outcomeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const items = entry.target.querySelectorAll('.outcome-item');
+        items.forEach((item, index) => {
+          setTimeout(() => {
+            item.style.opacity = '1';
+            item.style.transform = 'translateY(0)';
+            item.style.transition = 'all 0.5s ease';
+          }, index * 120);
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+  
+  document.querySelectorAll('.outcome-grid').forEach(grid => {
+    const items = grid.querySelectorAll('.outcome-item');
+    items.forEach(item => {
+      item.style.opacity = '0';
+      item.style.transform = 'translateY(20px)';
+    });
+    outcomeObserver.observe(grid);
+  });
+  
+  // Animate update badges
+  const updateBadges = document.querySelectorAll('.update-badge');
+  
+  const badgeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const badges = entry.target.querySelectorAll('.update-badge');
+        badges.forEach((badge, index) => {
+          setTimeout(() => {
+            badge.style.opacity = '1';
+            badge.style.transform = 'translateY(0)';
+            badge.style.transition = 'all 0.4s ease';
+          }, index * 80);
+        });
+      }
+    });
+  }, { threshold: 0.5 });
+  
+  const contextualUpdates = document.querySelector('.contextual-updates');
+  if (contextualUpdates) {
+    updateBadges.forEach(badge => {
+      badge.style.opacity = '1';
+      badge.style.transform = 'translateY(10px)';
+    });
+    badgeObserver.observe(contextualUpdates);
   }
   
   // Keyboard navigation
@@ -81,243 +364,80 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
   
-  // Add hover effects to images and videos
-  const mediaElements = document.querySelectorAll('.screen img, .screen-video, .userflow-image-wrapper img, .design-system-image img');
+  // Add hover effects to images
+  const images = document.querySelectorAll('.solution-image, .final-image');
   
-  mediaElements.forEach(media => {
-    media.addEventListener('mouseenter', () => {
-      media.style.transform = 'scale(1.02)';
-      media.style.transition = 'transform 0.3s ease';
+  images.forEach(img => {
+    img.addEventListener('mouseenter', () => {
+      img.style.transform = 'scale(1.02)';
+      img.style.transition = 'transform 0.3s ease';
     });
     
-    media.addEventListener('mouseleave', () => {
-      media.style.transform = 'scale(1)';
+    img.addEventListener('mouseleave', () => {
+      img.style.transform = 'scale(1)';
     });
   });
   
-  // Insight cards animation
-  const insightCards = document.querySelectorAll('.insight-card');
+  // Smooth reveal for highlight sections
+  const highlightSections = document.querySelectorAll('.highlight-section');
   
-  insightCards.forEach((card, index) => {
-    const cardObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-            entry.target.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-          }, index * 100);
-        }
-      });
-    }, { threshold: 0.3 });
-    
-    cardObserver.observe(card);
+  const highlightObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'scale(1)';
+        entry.target.style.transition = 'all 0.6s ease';
+      }
+    });
+  }, { threshold: 0.3 });
+  
+  highlightSections.forEach(section => {
+    highlightObserver.observe(section);
   });
   
-  // UX Principle cards animation
-  const uxPrinciples = document.querySelectorAll('.ux-principle');
+  // Add pulse effect to decision icons on scroll
+  const decisionIcons = document.querySelectorAll('.decision-icon');
   
-  uxPrinciples.forEach((card, index) => {
-    const principleObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-            entry.target.style.transition = 'all 0.5s ease';
-          }, index * 80);
-        }
-      });
-    }, { threshold: 0.5 });
-    
-    principleObserver.observe(card);
+  const iconObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.animation = 'pulse 0.6s ease';
+        
+        setTimeout(() => {
+          entry.target.style.animation = '';
+        }, 600);
+      }
+    });
+  }, { threshold: 0.8 });
+  
+  decisionIcons.forEach(icon => {
+    iconObserver.observe(icon);
   });
   
-  // Flow steps animation
-  const flowSteps = document.querySelectorAll('.flow-step');
-  
-  flowSteps.forEach((step, index) => {
-    const stepObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateX(0)';
-            entry.target.style.transition = 'all 0.5s ease';
-          }, index * 100);
-        }
-      });
-    }, { threshold: 0.5 });
+  // Add CSS animation keyframes dynamically
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+    }
     
-    stepObserver.observe(step);
-  });
-  
-  // Feature cards detailed animation
-  const featureCardsDetailed = document.querySelectorAll('.feature-card-detailed');
-  
-  featureCardsDetailed.forEach((card, index) => {
-    const featureObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-            entry.target.style.transition = 'all 0.5s ease';
-          }, index * 60);
-        }
-      });
-    }, { threshold: 0.3 });
-    
-    featureObserver.observe(card);
-  });
-  
-  // Issues found animation
-  const foundIssues = document.querySelectorAll('.found-issue');
-  
-  foundIssues.forEach((issue, index) => {
-    const issueObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-            entry.target.style.transition = 'all 0.5s ease';
-          }, index * 100);
-        }
-      });
-    }, { threshold: 0.3 });
-    
-    issueObserver.observe(issue);
-  });
-  
-  // Learning items animation
-  const learningItems = document.querySelectorAll('.learning-item');
-  
-  learningItems.forEach((item, index) => {
-    const learningObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-            entry.target.style.transition = 'all 0.5s ease';
-          }, index * 80);
-        }
-      });
-    }, { threshold: 0.5 });
-    
-    learningObserver.observe(item);
-  });
-  
-  // Future items animation
-  const futureItems = document.querySelectorAll('.future-item');
-  
-  futureItems.forEach((item, index) => {
-    const futureObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-            entry.target.style.transition = 'all 0.5s ease';
-          }, index * 60);
-        }
-      });
-    }, { threshold: 0.5 });
-    
-    futureObserver.observe(item);
-  });
-  
-  // Metric cards animation
-  const metricCards = document.querySelectorAll('.metric-card');
-  
-  metricCards.forEach((card, index) => {
-    const metricObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'scale(1)';
-            entry.target.style.transition = 'all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)';
-          }, index * 100);
-        }
-      });
-    }, { threshold: 0.5 });
-    
-    metricObserver.observe(card);
-  });
-  
-  // Design decision cards fade in
-  const designDecisionCards = document.querySelectorAll('.design-decision-card');
-  
-  designDecisionCards.forEach((card) => {
-    const decisionObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-          entry.target.style.transition = 'all 0.6s ease';
-        }
-      });
-    }, { threshold: 0.3 });
-    
-    decisionObserver.observe(card);
-  });
-  
-  // IA items animation
-  const iaItems = document.querySelectorAll('.ia-item');
-  
-  iaItems.forEach((item, index) => {
-    const iaObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateX(0)';
-            entry.target.style.transition = 'all 0.5s ease';
-          }, index * 100);
-        }
-      });
-    }, { threshold: 0.5 });
-    
-    iaObserver.observe(item);
-  });
-  
-  // Tech items animation
-  const techItems = document.querySelectorAll('.tech-item');
-  
-  techItems.forEach((item, index) => {
-    const techObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateX(0)';
-            entry.target.style.transition = 'all 0.4s ease';
-          }, index * 60);
-        }
-      });
-    }, { threshold: 0.5 });
-    
-    techObserver.observe(item);
-  });
-  
-  // Design category fade in
-  const designCategories = document.querySelectorAll('.design-category');
-  
-  designCategories.forEach((category) => {
-    const categoryObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-          entry.target.style.transition = 'all 0.6s ease';
-        }
-      });
-    }, { threshold: 0.2 });
-    
-    categoryObserver.observe(category);
-  });
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  `;
+  document.head.appendChild(style);
   
   // Reading time estimator
   const content = document.querySelector('.project-content');
@@ -330,32 +450,72 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log(`📝 Word count: ${wordCount} words`);
   }
   
-  // Live badge pulse animation
-  const liveBadge = document.querySelector('.live-badge');
-  if (liveBadge) {
-    setInterval(() => {
-      liveBadge.style.transform = 'scale(1.05)';
-      setTimeout(() => {
-        liveBadge.style.transform = 'scale(1)';
-      }, 200);
-    }, 3000);
-  }
-  
-  // CTA button hover effect
-  const ctaButton = document.querySelector('.cta-button');
-  if (ctaButton) {
-    ctaButton.addEventListener('mouseenter', () => {
-      ctaButton.style.transform = 'translateY(-4px) scale(1.05)';
-    });
+  // Log design decisions section stats
+  const decisionSections = document.querySelectorAll('.design-decision-block');
+  if (decisionSections.length > 0) {
+    console.log(`🎯 Design decisions documented: ${decisionSections.length}`);
     
-    ctaButton.addEventListener('mouseleave', () => {
-      ctaButton.style.transform = 'translateY(0) scale(1)';
+    decisionSections.forEach((block, index) => {
+      const title = block.querySelector('.decision-title-wrapper h3');
+      if (title) {
+        console.log(`   ${index + 1}. ${title.textContent.trim()}`);
+      }
     });
   }
   
-  console.log('✨ Enhanced Quippy project page loaded');
-  console.log('🎯 Focus: Comprehensive UX/UI case study');
-  console.log('🎨 Status: Live on Chrome Web Store');
-  console.log('📊 Sections: Research, UX Strategy, Design System, Development, Testing, Impact');
+  console.log('✨ Sportscove project page loaded');
+  console.log('🎯 Focus: UX design process, problem-solving, and key design decisions');
   
+});
+
+// Lightbox — click any solution/final/option image, or any element with
+// [data-lightbox-trigger] (e.g. the "view questionnaire" link), to view an
+// enlarged image.
+document.addEventListener('DOMContentLoaded', () => {
+
+  const zoomableImages = document.querySelectorAll('.solution-image, .final-image, .option-card-image');
+  const lightboxLinks = document.querySelectorAll('[data-lightbox-trigger]');
+  if (zoomableImages.length === 0 && lightboxLinks.length === 0) return;
+
+  const overlay = document.createElement('div');
+  overlay.className = 'lightbox-overlay';
+  overlay.innerHTML = '<img src="" alt=""><button class="lightbox-close" aria-label="Close">&times;</button>';
+  document.body.appendChild(overlay);
+
+  const overlayImg = overlay.querySelector('img');
+  const closeBtn = overlay.querySelector('.lightbox-close');
+
+  function openLightbox(src, alt) {
+    overlayImg.src = src;
+    overlayImg.alt = alt || '';
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  zoomableImages.forEach(img => {
+    img.addEventListener('click', () => openLightbox(img.src, img.alt));
+  });
+
+  // Links (e.g. "View the original questionnaire") open their href as an
+  // image in the same lightbox instead of navigating away.
+  lightboxLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      openLightbox(link.href, link.textContent.trim());
+    });
+  });
+
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay || e.target === closeBtn) closeLightbox();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
+  });
+
 });
