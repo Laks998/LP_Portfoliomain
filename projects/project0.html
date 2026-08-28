@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sportscove: Lakshmi Pratap</title>
-  <link rel="stylesheet" href="project0.css?v=66" />
+  <link rel="stylesheet" href="project0.css?v=73" />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="../assets/logo.png">
 </head>
@@ -319,11 +319,11 @@
 
         <div class="method-detail">
           <h3>Learning from the testing that had already been done</h3>
-          <p>The quotes from testing done on the existing design.</p>
+          <p>The quotes from testing done on the existing deisgn.</p>
           <div class="issue-card-grid testing-quotes-grid">
             <div class="issue-card">
               <div class="issue-card-num">Satyanshu Singh</div>
-              <blockquote class="issue-quote">"I don't want to do my self assessemnt now. Can I not just see the coach profile without it?"</blockquote>
+              <blockquote class="issue-quote">"I don't want to do my self assessment now. Can I not just see the coach profile without it?"</blockquote>
             </div>
             <div class="issue-card">
               <div class="issue-card-num">Tanner Smith</div>
@@ -359,15 +359,15 @@
           <p>A structured conversation with the CEO ranked flows by business priority, followed by separate syncs with developers to understand what was realistically buildable inside a three-month window, before committing to a direction.</p>
           <div class="issue-card-grid testing-quotes-grid">
             <div class="issue-card">
-              <div class="issue-card-num">Stakeholder</div>
+              <div class="issue-card-num">CEO</div>
               <blockquote class="issue-quote">"One of the biggest reasons for making this app is to encourage retired people to find a place to share their skills and earn."</blockquote>
             </div>
             <div class="issue-card">
-              <div class="issue-card-num">Stakeholder</div>
+              <div class="issue-card-num">CEO</div>
               <blockquote class="issue-quote">"The coach side was a big part of the product, since this is where coaches would sign up, verify their eligibility, build their profile, and set their prices"</blockquote>
             </div>
             <div class="issue-card">
-              <div class="issue-card-num">Stakeholder</div>
+              <div class="issue-card-num">CEO</div>
               <blockquote class="issue-quote">"We need a system to maintain the design and make sure all screens look like they're part of the same app."</blockquote>
             </div>
             <div class="issue-card">
@@ -427,7 +427,7 @@
                 <h3>Important marketplace complexity hadn't been designed for</h3>
               </div>
             </div>
-            <p class="problem-body">Gaps in the connection between learner and coach workflows, with key information missing across both sides </p>
+            <p class="problem-body">Gaps in the connection between learner and coach workflows, with key information missing across both sides</p>
           </div>
 
         </div>
@@ -644,6 +644,7 @@
                   <div class="search-feature-media">
                     <video class="search-feature-video autoplay-video" controls muted playsinline preload="metadata">
                       <source src="../assets/voicesearching.mp4" type="video/mp4">
+                      Video playback of voice search isn't supported in this browser.
                     </video>
                   </div>
                 </div>
@@ -695,13 +696,17 @@
                     <img src="../assets/card  option 3.png" alt="Coach card option 3 showing Boxing and a truncated Muay Thai tag" class="option-card-image">
                   </div>
                   <div class="option-card-label">Option 2</div>
-                  <p class="option-card-note">The tag truncated with an ellipsis is readable but the looks less polished.</p>
+                  <p class="option-card-note">The tag truncated with an ellipsis is readable but looks less polished.</p>
                 </div>
               </div>
               <div class="exploration-options">
                 <div class="option-item rejected">
                   <h5>Showing every sport</h5>
                   <p>This made the information explicit, but became visually heavy for coaches with several sports or longer sport names, hurting scannability, especially on mobile.</p>
+                </div>
+                <div class="option-item rejected">
+                  <h5>Truncating with an ellipsis</h5>
+                  <p>Kept the card compact, but the truncated tag read as visually unpolished and still didn't communicate how many additional sports a coach taught.</p>
                 </div>
               </div>
             </div>
@@ -931,11 +936,15 @@
         </div>
 
         <!-- 04 / From a form to a resilient flow — the visual payoff of
-             the onboarding section, not another decision-block. -->
-        <div class="design-decision-block onboarding-block resilient-reveal">
+             the onboarding section, styled identically to 01-03. -->
+        <div class="design-decision-block onboarding-block">
 
-          <span class="section-kicker">04 / From a form to a resilient flow</span>
-          <h3 class="resilient-headline">A flow that doesn't fall apart<br>when the happy path ends.</h3>
+          <div class="decision-header">
+            <div class="decision-title-wrapper">
+              <h3>04 / From a form to a resilient flow</h3>
+            </div>
+          </div>
+          <p class="method-lede">The final onboarding flow consolidates every edge case identified through testing into a single, coherent experience rather than treating each one as an isolated fix. Required fields are validated inline, conditional and dependent fields respond automatically to what a coach enters, content limits are enforced as they type, and progress is saved so a coach can leave and return without losing their work. The result is a flow that guides and recovers at every stage, not only along the happy path.</p>
 
           <div class="resilient-capabilities">
             <span class="cap">Required fields</span>
@@ -1020,7 +1029,7 @@
         </div>
 
         <div class="outcome-block">
-          <h3>Measured Results</h3>
+          <h3>Results &amp; projected impact</h3>
           <div class="metrics-grid">
             <div class="metric-item"><div class="metric-value">96%</div><div class="metric-label">Task completion rate</div></div>
             <div class="metric-item"><div class="metric-value">40%</div><div class="metric-label">Expected increase in sign-ups</div></div>
@@ -1050,6 +1059,6 @@
     <p>&copy; 2025 Lakshmi Pratap. All rights reserved.</p>
   </footer>
 
-  <script src="project1.js?v=6"></script>
+  <script src="project1.js?v=7"></script>
 </body>
 </html>
