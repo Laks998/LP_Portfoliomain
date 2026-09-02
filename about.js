@@ -1,4 +1,4 @@
-// about.js - Personal About Page
+// about.js - Personal About Page (fun scrapbook edition)
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -18,9 +18,19 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener('scroll', updateProgressBar);
   updateProgressBar();
 
+  // ========== FUN CARD TAP-TO-REVEAL ==========
+  document.querySelectorAll('.fun-card-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const card = tab.closest('.fun-card');
+      if (!card) return;
+      const isOpen = card.classList.toggle('open');
+      tab.setAttribute('aria-expanded', String(isOpen));
+    });
+  });
+
   // ========== VIDEO PLAYER ==========
   const videoContainer = document.querySelector('.video-container');
-  const video = document.querySelector('.video-container video');
+  const video = videoContainer ? videoContainer.querySelector('video') : null;
   const playOverlay = document.getElementById('playOverlay');
 
   if (videoContainer && video && playOverlay) {
