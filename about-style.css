@@ -237,12 +237,16 @@ body {
   background: #f1efe9;
 }
 
-/* The After Effects clip keeps its full portrait shape instead of being
-   cropped down to match the square photo cards. */
+/* The After Effects clip gets a bit more height than the photo cards
+   so its portrait shape reads clearly, without towering over its
+   neighbors in the grid the way a full 9:16 ratio would. */
 .fun-card-media.video-container {
-  height: auto;
-  aspect-ratio: 9 / 16;
+  height: 360px;
   cursor: pointer;
+}
+
+.fun-card-media.video-container video {
+  object-position: center 18%;
 }
 
 .fun-card-media img,
@@ -580,6 +584,10 @@ body {
     height: 200px;
   }
 
+  .fun-card-media.video-container {
+    height: 280px;
+  }
+
   .note-card {
     padding: 2rem 1.75rem;
   }
@@ -604,5 +612,9 @@ body {
 
   .fun-card-media {
     height: 240px;
+  }
+
+  .fun-card-media.video-container {
+    height: 320px;
   }
 }

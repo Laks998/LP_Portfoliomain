@@ -1,12 +1,12 @@
 :root {
-  --bg: #F3EFE3;
+  --bg: #fbf8f1;
   --card: #E7E3D5;
   --card-deep: #D3CEBB;
   --sage: #DADFA2;
   --sage-deep: #C7D086;
   --ink: #1B1A16;
   --ink-soft: #726E5E;
-  --hero-bg: #141414;
+  --hero-bg: #212121;
   --hero-text: #F1E4E4;
   --coral: #EB676C;
   --white: #FFFFFF;
@@ -424,6 +424,27 @@ a.bento-card:hover .card-arrow svg {
   object-fit: cover;
   filter: grayscale(100%);
   transition: filter 0.8s ease;
+  align-items: bottom;
+}
+
+.card-hero:hover .hero-portrait {
+  filter: grayscale(0%);
+}
+
+/* Illustration variant: fit fully inside, no grayscale, white backing */
+.illustration-bg {
+  background: #ffffff;
+}
+
+.hero-portrait.is-illustration {
+  object-fit: contain;
+  padding: 0rem;
+  filter: none;
+  align-items: bottom;
+}
+
+.card-hero:hover .hero-portrait.is-illustration {
+  filter: none;
 }
 
 .card-hero:hover .hero-portrait {
@@ -597,4 +618,8 @@ a.bento-card:hover .card-arrow svg {
   .back-link { left: var(--gap); top: 20px; }
 
   .site-footer { margin-top: 8px; }
+}
+
+.hero-portrait.is-illustration {
+  filter: none;
 }
