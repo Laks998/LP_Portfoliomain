@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <button class="lightbox-close" aria-label="Close">&times;</button>
       <button class="lightbox-nav lightbox-prev" aria-label="Previous">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d="M15 18L9 12L15 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </button>
       <div class="lightbox-content">
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
       <button class="lightbox-nav lightbox-next" aria-label="Next">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d="M9 18L15 12L9 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </button>
     </div>

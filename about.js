@@ -1,38 +1,22 @@
 // about.js - Personal About Page
 
 document.addEventListener("DOMContentLoaded", () => {
-  
-  // ========== HAMBURGER MENU TOGGLE ==========
-  const hamburger = document.getElementById('hamburger');
-  const sideNav = document.getElementById('sideNav');
-  const navLinks = document.querySelectorAll('.side-nav a');
 
-  if (hamburger && sideNav) {
-    // Toggle hamburger menu
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('active');
-      sideNav.classList.toggle('active');
-      document.body.style.overflow = sideNav.classList.contains('active') ? 'hidden' : '';
-    });
+  // ========== PROGRESS BAR ==========
+  const progressBar = document.querySelector('.read-progress');
 
-    // Close menu when clicking on a link
-    navLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        sideNav.classList.remove('active');
-        document.body.style.overflow = '';
-      });
-    });
+  function updateProgressBar() {
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const scrollableHeight = documentHeight - windowHeight;
+    const scrollPercent = scrollableHeight > 0 ? (scrollTop / scrollableHeight) * 100 : 100;
 
-    // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-      if (!sideNav.contains(e.target) && !hamburger.contains(e.target) && sideNav.classList.contains('active')) {
-        hamburger.classList.remove('active');
-        sideNav.classList.remove('active');
-        document.body.style.overflow = '';
-      }
-    });
+    if (progressBar) progressBar.style.width = `${scrollPercent}%`;
   }
+
+  window.addEventListener('scroll', updateProgressBar);
+  updateProgressBar();
 
   // ========== VIDEO PLAYER ==========
   const videoContainer = document.querySelector('.video-container');
