@@ -6,10 +6,32 @@
 // open and returns to the trigger on close, focus is trapped inside while
 // open, and every zoomable image/link is reachable and activatable by
 // keyboard (Tab + Enter/Space), not just click.
+// Round 3 fix: disabled the browser's native image-drag ghost. Any <img>
+// is draggable by default, so a click that moves even a pixel or two
+// (very easy on a trackpad) spins up the browser's translucent "drag
+// preview" of the image, which looks like the image blurring and sliding
+// away. Setting draggable="false" (plus the CSS -webkit-user-drag
+// fallback in project0.css) turns that off everywhere, not just on the
+// zoomable images.
 
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 document.addEventListener('DOMContentLoaded', () => {
+
+  // Disable native browser image dragging site-wide. The draggable
+  // attribute alone isn't reliably respected in every browser, so this
+  // also blocks the dragstart event directly — that's what actually
+  // stops the browser's translucent "drag preview" ghost from appearing,
+  // regardless of the attribute.
+  document.querySelectorAll('img').forEach(img => {
+    img.setAttribute('draggable', 'false');
+  });
+
+  document.addEventListener('dragstart', (e) => {
+    if (e.target.tagName === 'IMG' || e.target.tagName === 'VIDEO') {
+      e.preventDefault();
+    }
+  });
 
   // Progress bar
   const progressBar = document.querySelector('.read-progress');
@@ -63,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
           video.currentTime = 0;
         }
       });
-    }, { threshold: 0.4 });
+    }, { threshold: 0.15, rootMargin: '0px 0px -10% 0px' });
 
     videos.forEach(video => {
       videoObserver.observe(video);

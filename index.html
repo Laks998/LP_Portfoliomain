@@ -4,151 +4,150 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lakshmi Pratap</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Lakshmi Pratap — Product Designer</title>
+  <link rel="stylesheet" href="style.css?v=10" />
   <link href="https://fonts.googleapis.com/css2?family=Migra&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="assets/logo.png">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
   <link href="https://api.fonts.coollabs.io/css2?family=Satoshi:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 
 <body>
 
-  <!-- Hamburger Button -->
-  <button class="hamburger-btn" id="hamburger">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
+  <!-- BENTO GRID -->
+  <main class="bento-page">
 
-  <!-- Side Nav -->
-  <div class="side-nav" id="sideNav">
-    <a href="#hero" id="logo-link" class="logo-nav">
-      <img src="assets/logo.png" alt="Home Logo" class="logo-image" />
+    <div class="hero-col">
+      <div class="bento-card card-hero">
+        <div class="card-media">
+          <div class="hero-logo">
+            <img src="assets/logo.png" alt="Lakshmi Pratap logo" />
+          </div>
+          <img src="assets/dp.jpg" alt="Lakshmi Pratap" class="hero-portrait" />
+        </div>
+        <div class="hero-caption">
+          <div class="hero-text">
+            <div class="hero-name">Lakshmi Pratap</div>
+            <div class="hero-role">Product Designer</div>
+          </div>
+          <div class="hero-actions">
+            <div class="hero-socials">
+              <a href="https://www.instagram.com/your_username/" target="_blank" class="icon" aria-label="Instagram">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                  <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+                </svg>
+              </a>
+              <a href="https://www.linkedin.com/in/your-profile/" target="_blank" class="icon" aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                  <rect width="4" height="12" x="2" y="9" />
+                  <circle cx="4" cy="4" r="2" />
+                </svg>
+              </a>
+              <a href="mailto:your@email.com" class="icon" aria-label="Email">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" />
+                  <rect x="2" y="4" width="20" height="16" rx="2" />
+                </svg>
+              </a>
+            </div>
+            <a class="resume-btn" href="assets/LakshmiPratap_ProdectDes (1).pdf" target="_blank" rel="noopener noreferrer">Resume</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick links: About Me, Sketchbook, Illustrations — each its own card -->
+      <div class="quicklink-row">
+        <a class="bento-card card-quicklink card-quicklink-noavatar" href="about.html">
+          <span class="quick-link-label">Creative Bits</span>
+          <span class="quick-link-arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg>
+          </span>
+        </a>
+
+        <a class="bento-card card-quicklink" href="projects/project5.html">
+          <span class="quick-link-avatar"><img src="assets/sketch1.JPG" alt="" /></span>
+          <span class="quick-link-label">Sketchbook</span>
+          <span class="quick-link-arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg>
+          </span>
+        </a>
+
+        <a class="bento-card card-quicklink" href="projects/project6.html">
+          <span class="quick-link-avatar"><img src="assets/05project.png" alt="" /></span>
+          <span class="quick-link-label">Illustrations</span>
+          <span class="quick-link-arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg>
+          </span>
+        </a>
+      </div>
+    </div>
+
+    <!-- 2x2 of equal-sized case-study projects -->
+    <a class="bento-card card-project card-sportscove" href="projects/project0.html">
+      <div class="card-media">
+        <img src="assets/sportsdp.png" alt="Sportscove App" class="card-bg" />
+        <span class="card-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg>
+        </span>
+      </div>
+      <div class="card-caption">
+        <h2 class="card-title">Rebuilding a Dual-Sided Marketplace for Launch</h2>
+        <p class="card-sub">Sportscove - Consultcraft - UX+UI</p>
+      </div>
     </a>
-    <a href="#work">Work</a>
-    <a href="story.html">Career Story</a>
-    <a href="about.html">About</a>
-    <a href="assets/LakshmiPratap_ProductDesignCN.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
-  </div>
 
-  <!-- HERO SECTION -->
-  <section id="hero">
-    <div id="lottie-animation"></div>
-
-    <div id="name-label">
-      <div class="name-block">
-        <div class="line">LAKSHMI PRATAP</div>
-        <div class="taglines">
-          <div>UX/PRODUCT DESIGNER</div>
-        </div>
+    <a class="bento-card card-project card-clearisk" href="projects/project2.html">
+      <div class="card-media">
+        <img src="assets/CLEARISK%20DP.png" alt="Clearisk CX Onboarding" class="card-bg" />
+        <span class="card-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg>
+        </span>
       </div>
-    </div>
-
-    <div class="social-icons">
-      <a href="https://www.instagram.com/your_username/" target="_blank" class="icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-          <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-        </svg>
-      </a>
-      <a href="https://www.linkedin.com/in/your-profile/" target="_blank" class="icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-          <rect width="4" height="12" x="2" y="9" />
-          <circle cx="4" cy="4" r="2" />
-        </svg>
-      </a>
-      <a href="mailto:your@email.com" class="icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" />
-          <rect x="2" y="4" width="20" height="16" rx="2" />
-        </svg>
-      </a>
-    </div>
-
-    <div class="scroll-indicator">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M12 5v14M19 12l-7 7-7-7"/>
-      </svg>
-    </div>
-  </section>
-
-  <!-- Projects Section -->
-  <section id="work" class="projects-section">
-    <div class="projects-wrapper">
-      <div class="work-label">WORK</div>
-
-      <div class="projects-inner">
-        <div class="category-nav">
-          <button class="category-btn active" data-category="uxd">Projects</button>
-          <button class="category-btn" data-category="sketchesandillustrations">Sketches & Illustrations</button>
-        </div>
-
-        <div class="project-cards">
-          <div class="project-card category-uxd" data-project="project0">
-            <img src="assets/01project.png" alt="Project 0">
-            <div class="project-info">
-              <h3>Sportscove App - Consultcraft</h3>
-              <p>UX Redesign + Complete UI</p>
-            </div>
-          </div>
-
-          <div class="project-card category-uxd" data-project="project1">
-            <img src="assets/quippymain1.png" alt="Project 1">
-            <div class="project-info">
-              <h3>Quippy - Browser Extension</h3>
-              <p>Micro-Product Design</p>
-            </div>
-          </div>
-
-          <div class="project-card category-uxd" data-project="project2">
-            <img src="assets/02project.jpeg" alt="Project 2">
-            <div class="project-info">
-              <h3>CX Dashboard(SaaS) - Clearisk</h3>
-              <p>Feature Design UX+UI</p>
-            </div>
-          </div>
-
-          <div class="project-card category-uxd" data-project="project4">
-            <img src="assets/covervr2.png" alt="Project 4">
-            <div class="project-info">
-              <h3>VR Environment & Experience - UoN</h3>
-              <p>VR environment & experience design</p>
-            </div>
-          </div>
-
-          <div class="project-card category-sketchesandillustrations" data-project="project5" style="display: none;">
-            <img src="assets/sketch1.JPG" alt="Project 5">
-            <div class="project-info">
-              <h3>Sketchbook</h3>
-              <p>Emotions through my pencil</p>
-            </div>
-          </div>
-
-          <div class="project-card category-sketchesandillustrations" data-project="project6" style="display: none;">
-            <img src="assets/05project.png" alt="Project 6">
-            <div class="project-info">
-              <h3>Illustration</h3>
-              <p>Looking at life funny in 2D</p>
-            </div>
-          </div>
-        </div>
+      <div class="card-caption">
+        <h2 class="card-title">Simplifying Client Onboarding for CX Teams (B2B SaaS)</h2>
+        <p class="card-sub">CX - Clearisk - UX+UI</p>
       </div>
-    </div>
-  </section>
+    </a>
+
+    <a class="bento-card card-project card-quippy" href="projects/project1.html">
+      <div class="card-media">
+        <img src="assets/QUIPPYdp.png" alt="Quippy" class="card-bg" />
+        <span class="card-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg>
+        </span>
+      </div>
+      <div class="card-caption">
+        <h2 class="card-title">A Browser Extension to Make Everyday Text Lookups Instant</h2>
+        <p class="card-sub">Quippy - Self - Product Design</p>
+      </div>
+    </a>
+
+    <a class="bento-card card-project card-vr" href="projects/project4.html">
+      <div class="card-media">
+        <img src="assets/VR DP.png" alt="VR Environment & Experience" class="card-bg" />
+        <span class="card-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg>
+        </span>
+      </div>
+      <div class="card-caption">
+        <h2 class="card-title">VR Experience Designed to Induce Mind-Body Dualism</h2>
+        <p class="card-sub">VR - UoN - XR Design</p>
+      </div>
+    </a>
+
+  </main>
 
   <footer class="site-footer">
-    <p>&copy; 2025 Lakshmi Pratap. All rights reserved.</p>
+    <p class="mini-credit">&copy; 2025 Lakshmi Pratap</p>
   </footer>
 
-  <script src="script.js" defer></script>
+  <script src="script.js?v=10" defer></script>
 </body>
 
 </html>

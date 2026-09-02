@@ -99,9 +99,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const findingCards = document.querySelectorAll('.finding-card');
   
   findingCards.forEach((card, index) => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(30px)';
-    
     const cardObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -121,9 +118,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const resultMetrics = document.querySelectorAll('.result-metric');
   
   resultMetrics.forEach((metric, index) => {
-    metric.style.opacity = '0';
-    metric.style.transform = 'translateY(20px)';
-    
     const metricObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -143,9 +137,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const flowCards = document.querySelectorAll('.flow-card');
   
   flowCards.forEach((card, index) => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(20px)';
-    
     const flowObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -165,9 +156,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const movieCards = document.querySelectorAll('.movie-card');
   
   movieCards.forEach((card, index) => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateX(-30px)';
-    
     const movieObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -187,9 +175,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const takeawayCards = document.querySelectorAll('.takeaway-card');
   
   takeawayCards.forEach((card, index) => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(20px)';
-    
     const takeawayObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -209,9 +194,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const validationCards = document.querySelectorAll('.validation-item');
   
   validationCards.forEach((card, index) => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(20px)';
-    
     const validationObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -231,9 +213,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const frameworkBlocks = document.querySelectorAll('.framework-block');
   
   frameworkBlocks.forEach((block, index) => {
-    block.style.opacity = '0';
-    block.style.transform = 'translateY(20px)';
-    
     const frameworkObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -253,9 +232,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const impactCards = document.querySelectorAll('.impact-card');
   
   impactCards.forEach((card, index) => {
-    card.style.opacity = '0';
-    card.style.transform = 'scale(0.95)';
-    
     const impactObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -321,9 +297,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const challengeItems = document.querySelectorAll('.challenge-item');
   
   challengeItems.forEach((item, index) => {
-    item.style.opacity = '0';
-    item.style.transform = 'translateY(20px)';
-    
     const challengeObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -343,9 +316,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const processStages = document.querySelectorAll('.process-stage');
   
   processStages.forEach((stage, index) => {
-    stage.style.opacity = '0';
-    stage.style.transform = 'translateX(-30px)';
-    
     const processObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -365,9 +335,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const techItems = document.querySelectorAll('.tech-item');
   
   techItems.forEach((item, index) => {
-    item.style.opacity = '0';
-    item.style.transform = 'translateY(30px)';
-    
     const techObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -387,9 +354,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const pilotCards = document.querySelectorAll('.pilot-card');
   
   pilotCards.forEach((card, index) => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(20px)';
-    
     const pilotObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {

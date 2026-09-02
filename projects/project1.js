@@ -353,7 +353,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
   
-  console.log('✨ Enhanced Quippy project page loaded');
+  console.log('✨ Quippy project page loaded');
   console.log('🎯 Focus: Comprehensive UX/UI case study');
   console.log('🎨 Status: Live on Chrome Web Store');
   console.log('📊 Sections: Research, UX Strategy, Design System, Development, Testing, Impact');

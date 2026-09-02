@@ -1,161 +1,78 @@
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("✅ Script loaded!");
 
-  // ========== HAMBURGER MENU TOGGLE ==========
-  const hamburger = document.getElementById('hamburger');
-  const sideNav = document.getElementById('sideNav');
-  const navLinks = document.querySelectorAll('.side-nav a');
+  // ========== MINI LOTTIE PREVIEW (Animation card, index only) ==========
+  const miniLottie = document.getElementById('mini-lottie');
+  if (miniLottie) {
+    if (typeof lottie === 'undefined') {
+      console.error('Lottie library did not load — check that the cdnjs <script> tag in <head> loaded successfully (network/ad-blocker issue?).');
+    } else {
+      const miniAnim = lottie.loadAnimation({
+        container: miniLottie,
+        renderer: 'svg',
+        loop: true,
+        autoplay: true,
+        path: 'assets/data.json'
+      });
+      miniAnim.addEventListener('data_failed', () => {
+        console.error('Lottie: failed to load/parse assets/data.json for the mini preview. If you are opening index.html directly (file://) instead of via a local server, browsers block that fetch — run a local server (e.g. `python3 -m http.server` or VS Code Live Server) and check the Network/Console tab for the real error.');
+      });
+    }
+  }
 
-  if (hamburger && sideNav) {
-    // Toggle hamburger menu
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('active');
-      sideNav.classList.toggle('active');
-      document.body.style.overflow = sideNav.classList.contains('active') ? 'hidden' : '';
+  // ========== FULL LOTTIE (animation.html only) ==========
+  const fullLottie = document.getElementById('full-lottie');
+  if (fullLottie) {
+    if (typeof lottie === 'undefined') {
+      console.error('Lottie library did not load on animation.html.');
+    } else {
+      const fullAnim = lottie.loadAnimation({
+        container: fullLottie,
+        renderer: 'svg',
+        loop: true,
+        autoplay: true,
+        path: 'assets/data.json'
+      });
+      fullAnim.addEventListener('data_failed', () => {
+        console.error('Lottie: failed to load/parse assets/data.json on animation.html.');
+      });
+    }
+  }
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const cards = document.querySelectorAll('.bento-card');
+
+  // ========== STAGGERED ENTRANCE ==========
+  if (!prefersReducedMotion) {
+    cards.forEach((card, index) => {
+      card.style.animationDelay = `${index * 70}ms`;
+      card.classList.add('is-entering');
     });
+  }
 
-    // Close menu when clicking on a link
-    navLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        sideNav.classList.remove('active');
-        document.body.style.overflow = '';
+  // ========== MAGNETIC TILT ON HOVER (desktop, fine pointer only) ==========
+  const supportsHoverTilt = !prefersReducedMotion && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  if (supportsHoverTilt) {
+    const maxTilt = 6; // degrees
+
+    cards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const px = (e.clientX - rect.left) / rect.width;  // 0 -> 1
+        const py = (e.clientY - rect.top) / rect.height;  // 0 -> 1
+        const rotateY = (px - 0.5) * maxTilt * 2;
+        const rotateX = (0.5 - py) * maxTilt * 2;
+        card.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.015) translateY(-4px)`;
+        card.style.setProperty('--mx', `${px * 100}%`);
+        card.style.setProperty('--my', `${py * 100}%`);
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+        card.style.setProperty('--mx', '50%');
+        card.style.setProperty('--my', '50%');
       });
     });
-
-    // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-      if (!sideNav.contains(e.target) && !hamburger.contains(e.target) && sideNav.classList.contains('active')) {
-        hamburger.classList.remove('active');
-        sideNav.classList.remove('active');
-        document.body.style.overflow = '';
-      }
-    });
   }
-
-  // ========== LOTTIE ANIMATION ==========
-  const animationContainer = document.getElementById('lottie-animation');
-  
-  if (animationContainer && typeof lottie !== 'undefined') {
-    lottie.loadAnimation({
-      container: animationContainer,
-      renderer: 'svg',
-      loop: true,
-      autoplay: true,
-      path: 'assets/data.json'
-    });
-  }
-
-  // ========== SCROLL INDICATOR ==========
-  const scrollIndicator = document.querySelector('.scroll-indicator');
-  
-  if (scrollIndicator) {
-    scrollIndicator.addEventListener('click', () => {
-      const workSection = document.querySelector('#work');
-      if (workSection) {
-        workSection.scrollIntoView({ behavior: 'smooth' });
-      }
-    });
-  }
-
-  // ========== NAVIGATION ACTIVE STATE ==========
-  const allNavLinks = document.querySelectorAll(".side-nav a");
-  const currentPath = window.location.pathname;
-
-  // About page case
-  if (currentPath.includes("about.html")) {
-    allNavLinks.forEach(link => {
-      link.classList.remove("active");
-      if (link.getAttribute("href").includes("about")) {
-        link.classList.add("active");
-      }
-    });
-    return;
-  }
-
-  // Story page case
-  if (currentPath.includes("story.html")) {
-    allNavLinks.forEach(link => {
-      link.classList.remove("active");
-      if (link.getAttribute("href").includes("story")) {
-        link.classList.add("active");
-      }
-    });
-    return;
-  }
-
-  // Scroll sections
-  const sections = {
-    hero: document.querySelector("#hero"),
-    work: document.querySelector("#work"),
-  };
-
-  function getActiveSection() {
-    const scrollY = window.scrollY + window.innerHeight / 2;
-    const workTop = sections.work ? sections.work.offsetTop : 0;
-    return scrollY >= workTop ? "work" : "hero";
-  }
-
-  function updateActiveNav() {
-    const activeId = getActiveSection();
-    allNavLinks.forEach(link => {
-      link.classList.remove("active");
-      if (link.getAttribute("href") === `#${activeId}`) {
-        link.classList.add("active");
-      }
-    });
-  }
-
-  if (sections.hero && sections.work) {
-    updateActiveNav();
-    window.addEventListener("scroll", updateActiveNav);
-  }
-
-  // ========== PROJECT CARD CLICK ==========
-  const projectCards = document.querySelectorAll('.project-card');
-
-  // Add staggered fade-in animation
-  projectCards.forEach((card, index) => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(20px)';
-    
-    setTimeout(() => {
-      card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-      card.style.opacity = '1';
-      card.style.transform = 'translateY(0)';
-    }, 100 * index);
-  });
-
-  // Navigate to project page on click
-  projectCards.forEach(card => {
-    card.addEventListener('click', (e) => {
-      e.preventDefault();
-      const projectId = card.getAttribute('data-project');
-      window.location.href = `projects/${projectId}.html`;
-    });
-  });
-
-  // ========== CATEGORY FILTERING ==========
-  const categoryBtns = document.querySelectorAll('.category-btn');
-  const allProjectCards = document.querySelectorAll('.project-card');
-
-  categoryBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const category = btn.dataset.category;
-
-      // Update active button
-      categoryBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      // Show/hide projects based on category
-      allProjectCards.forEach(card => {
-        if (card.classList.contains(`category-${category}`)) {
-          card.style.display = 'flex';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    });
-  });
 
 });

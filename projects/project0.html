@@ -11,7 +11,12 @@
 <body>
 
   <div class="read-progress"></div>
-  <a href="../index.html#work" class="back-link">← Back to Work</a>
+  <a href="../index.html#work" class="back-link">
+    <span class="back-link-arrow" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    </span>
+    <span>Go Back To Home</span>
+  </a>
 
   <main class="project-content">
 
@@ -26,7 +31,7 @@
           <span class="hero-contribution-list">UX audit · Research synthesis · Information architecture · Interaction design · Design system · UI design · Prototyping</span>
         </div>
         <div class="hero-image-wrapper">
-          <img src="../assets/sportscovenewcover.png" alt="Sportscove platform overview" class="hero-image">
+          <img src="../assets/sportsdp.png" alt="Sportscove platform overview" class="hero-image">
         </div>
       </div>
     </section>
@@ -36,7 +41,7 @@
       <div class="section-content">
         <span class="section-kicker">Project overview</span>
         <h2>A startup preparing to launch its first product on a tight deadline</h2>
-        <p><span class="intro-highlight">Sportscove is a sports coaching marketplace connecting learners with coaches across the US, Canada, and India.</span> The product was three months from launch, and needed a <strong>full product and UX audit</strong> to bring an incomplete, pre-launch platform to a <strong>scalable, launch-ready state</strong>.</p>
+        <p><span class="intro-highlight">Sportscove is a sports coaching marketplace connecting learners with coaches across the US, Canada, and India.</span> Three months out from launch, the incomplete platform needed a <strong>full product and UX audit</strong> to become <strong>scalable and launch-ready</strong>.</p>
 
         <div class="project-details">
           <div class="detail-item"><div class="detail-label">Role</div><div class="detail-value">UX/UI Designer</div></div>
@@ -57,39 +62,18 @@
       <div class="section-content">
         <span class="section-kicker">01 — Diagnosing the product</span>
         <h2>Before redesigning the product, I needed to separate what worked from what didn't</h2>
-        <p>The product already had screens and partially designed flows, but it was unclear whether the gaps were isolated issues or symptoms of larger problems. Before introducing new designs, I evaluated the existing experience to understand what was missing, where users were likely to encounter friction, and what needed to change before launch.</p>
+        <p>The product had screens and partial flows already in place, but it wasn't clear whether the gaps were isolated or symptoms of something bigger — so before designing anything new, I audited what existed to find out.</p>
 
         <div class="method-strip">
           <div class="detail-item"><div class="detail-label">Existing research</div><div class="detail-value">Learner + coach interviews</div></div>
-          <div class="detail-item"><div class="detail-label">Product audit</div><div class="detail-value">Screen and flow completeness</div></div>
-          <div class="detail-item"><div class="detail-label">Usability review</div><div class="detail-value">Core journeys + heuristic evaluation</div></div>
-          <div class="detail-item"><div class="detail-label">Competitive review</div><div class="detail-value">Skillest + CoachUp + ADPList</div></div>
+          <div class="detail-item"><div class="detail-label">Product audit</div><div class="detail-value">Screen &amp; flow gaps</div></div>
+          <div class="detail-item"><div class="detail-label">Usability review</div><div class="detail-value">Journeys + heuristics</div></div>
+          <div class="detail-item"><div class="detail-label">Competitive review</div><div class="detail-value">Skillest, CoachUp, ADPList</div></div>
         </div>
-
-        <h3 style="margin-top: 3.5rem;">What the research told us</h3>
-        <div class="stat-strip">
-          <div class="stat-item">
-            <div class="stat-value">80%</div>
-            <div class="stat-label">wanted to explore beyond their primary sport <span class="stat-sample">(4 of 5)</span></div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-value">100%</div>
-            <div class="stat-label">used specific criteria when filtering coaches <span class="stat-sample">(5 of 5)</span></div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-value">80%</div>
-            <div class="stat-label">found the coach profile difficult to scan <span class="stat-sample">(4 of 5)</span></div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-value">75%</div>
-            <div class="stat-label">coaches expected to teach multiple sports <span class="stat-sample">(2 of 5)</span></div>
-          </div>
-        </div>
-        <p>These findings changed three parts of the product: discovery, coach profiles, and the booking journey.</p>
 
         <div class="method-detail research-review-block">
           <h3>What existing research told us</h3>
-          <p>The team had already interviewed learners and coaches shortly before I joined the redesign. With limited time before launch, I used those interviews as a starting point rather than restarting research from scratch.</p>
+          <p>With launch three months out, I used the team's existing learner and coach interviews as a starting point rather than restarting research from scratch.</p>
           <ul class="method-bullets">
             <li>Existing interviews provided <strong>directional insights</strong> but lacked behavioural depth.</li>
             <li>I supplemented them with <strong>product auditing, usability findings, competitive benchmarking, and stakeholder discussions</strong>.</li>
@@ -362,7 +346,7 @@
 
         <div class="method-detail">
           <h3>Learning from the testing that had already been done</h3>
-          <p>One quote from prior testing on the existing design stood out because it points directly at the problem the booking redesign later solves.</p>
+          <p>One quote from prior testing points directly at the problem the booking redesign later solves.</p>
           <div class="issue-card-grid testing-quotes-grid single-quote">
             <div class="issue-card">
               <div class="issue-context">Learners wanted to see a coach before completing a self-assessment</div>
@@ -375,7 +359,7 @@
         <div class="method-detail">
           <h3>Competitive signals</h3>
           <div class="benchmark-block">
-            <p class="method-lede" style="margin-bottom: 1.75rem;"><strong>Skillest</strong> and <strong>CoachUp</strong> were the closest competitors. <strong>ADPList</strong> was also reviewed for its similar mentorship model, even though it isn't sports-specific.</p>
+            <p class="method-lede" style="margin-bottom: 1.75rem;"><strong>Skillest</strong> and <strong>CoachUp</strong> were the closest competitors, with <strong>ADPList</strong> reviewed too for its similar (if not sports-specific) mentorship model.</p>
             <div class="benchmark-split">
               <div class="benchmark-text">
                 <div class="risk-subheading">What I found</div>
@@ -415,7 +399,7 @@
 
         <div class="method-detail">
           <h3>Business constraints</h3>
-          <p>A structured conversation with the CEO ranked flows by business priority, followed by separate syncs with developers to understand what was realistically buildable inside a three-month window, before committing to a direction.</p>
+          <p>I ran a prioritisation session with the CEO to rank flows by business impact, then synced with developers to confirm what was realistically buildable in three months.</p>
           <div class="issue-card-grid testing-quotes-grid single-quote">
             <div class="issue-card">
               <div class="issue-context">Why the design system became the first priority, not an afterthought</div>
@@ -856,13 +840,13 @@
                 <div class="flow-image-item">
                   <div class="flow-image-label">Old</div>
                   <div class="solution-image-wrapper">
-                    <img src="../assets/old coach onboard.png" alt="Old coach onboarding flow: Profile, Verification, Course, Start Coaching" class="solution-image">
+                    <img src="../assets/oldcoachonboard1.png" alt="Old coach onboarding flow: Profile, Verification, Course, Start Coaching" class="solution-image">
                   </div>
                 </div>
                 <div class="flow-image-item">
                   <div class="flow-image-label new">New</div>
                   <div class="solution-image-wrapper">
-                    <img src="../assets/New coach onboard.png" alt="New coach onboarding flow: Pick Sport, Profile, Verification, Course, Schedule, Go Live" class="solution-image">
+                    <img src="../assets/Newcoachonboard1.png" alt="New coach onboarding flow: Pick Sport, Profile, Verification, Course, Schedule, Go Live" class="solution-image">
                   </div>
                 </div>
               </div>
@@ -1148,7 +1132,12 @@
   </main>
 
   <div class="bottom-link-wrapper">
-    <a href="../index.html#work" class="footer-back-link">← Back to Work</a>
+    <a href="../index.html#work" class="footer-back-link">
+      <span class="back-link-arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      </span>
+      <span>Go Back to Home</span>
+    </a>
   </div>
 
   <footer class="site-footer">

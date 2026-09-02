@@ -1,11 +1,19 @@
-/* Layout + theme to match your site */
+/* project5.css - Sketchbook, restyled to match project0's light design system */
+
 :root {
-  --bg: radial-gradient(circle at center, #161515 0%, #2c2a2a 100%);
-  --text: #f1f1f1;
-  --muted: #cfcfcf;
-  --accent: #EB676C;
+  --bg-solid: #ffffff;
+  --bg: #ffffff;
+  --text: #100f0e;
+  --muted: #47423d;
+  --accent: #D03A46;
+  --accent-light: #e0636c;
   --paper: #faf8f2;
-  --shadow: rgba(0,0,0,.35);
+  --shadow: rgba(16, 15, 14, 0.25);
+  --card-bg: #ffffff;
+  --card-border: rgba(16, 15, 14, 0.14);
+  --card-hover-bg: #fbfaf8;
+  --shadow-sm: 0 1px 2px rgba(16, 15, 14, 0.04), 0 4px 14px rgba(16, 15, 14, 0.07);
+  --shadow-md: 0 4px 10px rgba(16, 15, 14, 0.06), 0 12px 28px rgba(16, 15, 14, 0.1);
 }
 
 * { box-sizing: border-box; }
@@ -15,71 +23,97 @@ body {
   margin: 0;
   font-family: 'Space Grotesk', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
   color: var(--text);
-  background: var(--bg);
+  background: var(--bg-solid);
   overflow-x: hidden;
+  font-size: 16px;
+  line-height: 1.65;
+  letter-spacing: 0;
 }
 
-/* BACK LINK - Match project1/project6 */
+/* Back Link */
 .back-link {
   position: absolute;
   top: 50px;
-  left: 270px;
+  left: max(2rem, calc((100vw - 900px) / 2));
   z-index: 100;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
   text-decoration: none;
-  font-weight: bold;
-  color: var(--accent);
-  border: 2px solid var(--accent);
-  padding: 10px 16px;
-  border-radius: 0px;
-  overflow: hidden;
-  background: linear-gradient(to top, var(--accent) 0%, var(--accent) 100%);
-  background-size: 100% 0%;
-  background-repeat: no-repeat;
-  background-position: bottom center;
-  transition: background-size 0.4s ease, color 0.4s ease, transform 0.3s;
+  font-weight: 500;
+  font-size: 0.85rem;
+  color: var(--text);
 }
 
-.back-link:hover {
-  background-size: 100% 100%;
-  color: #000;
-  transform: scale(1.05);
+.back-link-arrow {
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+  transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+.back-link-arrow svg {
+  width: 16px;
+  height: 16px;
+  stroke: var(--text);
+  transition: stroke 0.3s ease, transform 0.3s ease;
+}
+
+.back-link:hover .back-link-arrow,
+.footer-back-link:hover .back-link-arrow {
+  background: var(--accent);
+  border-color: var(--accent);
+  transform: translateX(-3px);
+}
+
+.back-link:hover .back-link-arrow svg,
+.footer-back-link:hover .back-link-arrow svg {
+  stroke: #ffffff;
 }
 
 .project4 {
-  max-width: 1200px;
+  width: 100%;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 0 2rem;
 }
 
-/* HEADER - Match project1/project6 */
+/* HEADER */
 .p4-header {
   text-align: center;
-  padding: 10rem 2rem 4rem;
+  padding: 7rem 2rem 3rem;
 }
 
 .p4-header h1 {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 4rem;
-  font-weight: 300;
-  letter-spacing: 4px;
-  text-transform: lowercase;
-  margin-bottom: 2rem;
+  font-size: 3.1rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+  text-transform: none;
+  margin-bottom: 1.5rem;
   color: var(--text);
-  line-height: 1.1;
+  line-height: 1.15;
   opacity: 0;
-  animation: fadeIn 0.8s ease forwards 0.4s;
+  animation: fadeIn 0.8s ease forwards 0.2s;
 }
 
 .p4-header .sub {
-  font-size: 0.75rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 2rem;
+  font-size: 1.2rem;
+  line-height: 1.65;
+  color: var(--muted);
   font-weight: 400;
+  max-width: 700px;
+  margin: 0 auto;
+  letter-spacing: 0;
   opacity: 0;
-  animation: fadeIn 0.8s ease forwards 0.2s;
+  animation: fadeIn 0.8s ease forwards 0.4s;
 }
 
 @keyframes fadeIn {
@@ -93,7 +127,7 @@ body {
   align-items: center;
   gap: 10px;
   margin-top: 50px;
-  padding-bottom: 6rem;
+  padding-bottom: 2rem;
 }
 
 /* Book */
@@ -112,15 +146,15 @@ body {
   filter: drop-shadow(0 20px 40px var(--shadow));
 }
 
-/* Covers (static background pages) */
+/* Covers (static background pages) — kept as a physical book object, not a UI card */
 .cover {
   position: absolute;
   top: 0; bottom: 0;
   width: 50%;
-  background-color: #e88386;
+  background-color: #6e6d6d;
   background-image:
-    radial-gradient(circle, #2f2f2f 30%, transparent 31%),
-    radial-gradient(circle, #2f2f2f 30%, transparent 31%);
+    radial-gradient(circle, #f9f8f8 30%, transparent 31%),
+    radial-gradient(circle, #ffffff 30%, transparent 31%);
   background-size: 60px 60px, 60px 60px;
   background-position: 0 0, 30px 30px;
   z-index: 0;
@@ -148,7 +182,7 @@ body {
   overflow: hidden;
   background: var(--paper);
   backface-visibility: hidden;
-  border: 1px solid rgba(0,0,0,0.05);
+  border: 1px solid rgba(16, 15, 14, 0.08);
 }
 
 .page.right.front,
@@ -166,8 +200,8 @@ body {
   transform-origin: left center;
   border-radius: 0 8px 8px 0;
   box-shadow:
-    inset 8px 0 16px rgba(0,0,0,.06),
-    0 2px 8px rgba(0,0,0,.08);
+    inset 8px 0 16px rgba(16,15,14,.06),
+    0 2px 8px rgba(16,15,14,.08);
 }
 
 /* LEFT page (back of sheet) */
@@ -176,17 +210,17 @@ body {
   transform-origin: right center;
   border-radius: 8px 0 0 8px;
   box-shadow:
-    inset -8px 0 16px rgba(0,0,0,.06),
-    0 2px 8px rgba(0,0,0,.08);
+    inset -8px 0 16px rgba(16,15,14,.06),
+    0 2px 8px rgba(16,15,14,.08);
   transform: rotateY(180deg);
 }
 
 .sheet.flipping .right.front {
-  box-shadow: inset -40px 0 40px rgba(0,0,0,0.25);
+  box-shadow: inset -40px 0 40px rgba(16,15,14,0.2);
 }
 
 .sheet.flipping .left.back {
-  box-shadow: inset 40px 0 40px rgba(0,0,0,0.25);
+  box-shadow: inset 40px 0 40px rgba(16,15,14,0.2);
 }
 
 /* Images fill page, keep proportion */
@@ -208,26 +242,26 @@ body {
   content: "";
   position: absolute; top: 0; bottom: 0; width: 14px;
   left: -14px;
-  background: linear-gradient(to right, rgba(0,0,0,.18), rgba(0,0,0,0));
+  background: linear-gradient(to right, rgba(16,15,14,.14), rgba(16,15,14,0));
   pointer-events: none;
 }
 
 /* Nav buttons */
 .nav {
   appearance: none;
-  border: none;
   cursor: pointer;
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.1);
-  border: 2px solid rgba(255,255,255,0.3);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  color: var(--text);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0;
+  box-shadow: var(--shadow-sm);
   transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
 }
 
 .nav svg {
@@ -237,6 +271,7 @@ body {
 .nav:hover {
   background: var(--accent);
   border-color: var(--accent);
+  color: #ffffff;
   transform: scale(1.1);
 }
 
@@ -280,32 +315,66 @@ body {
   animation: demoFlip 1.2s ease-in-out 1;
 }
 
+/* Bottom back link, matching the rest of the site */
+.bottom-link-wrapper {
+  position: relative;
+  margin-bottom: 40px;
+  padding-top: 3rem;
+  min-height: 60px;
+  text-align: center;
+}
+
+.footer-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.85rem;
+  color: var(--text);
+}
+
 /* FOOTER - Match other projects */
 .site-footer {
   text-align: center;
-  padding: 2rem 1rem;
-  color: #aaa;
-  font-size: 0.875rem;
-  border-top: 1px solid #333;
-  margin-top: 4rem;
+  padding: 45px 20px;
+  font-size: 0.9rem;
+  color: #8a8682;
+  border-top: 1px solid #e8e5e1;
+  background: rgba(250, 249, 247, 0.6);
 }
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
+  .project4 {
+    padding: 0 1.5rem;
+  }
+
   .back-link {
     top: 20px;
-    left: 20px;
-    padding: 8px 16px;
-    font-size: 0.9rem;
+    left: 1.5rem;
+  }
+
+  .back-link-arrow {
+    width: 34px;
+    height: 34px;
+  }
+
+  .back-link-arrow svg {
+    width: 14px;
+    height: 14px;
   }
 
   .p4-header {
-    padding: 8rem 2rem 3rem;
+    padding: 6.5rem 1.5rem 2.5rem;
   }
 
   .p4-header h1 {
     font-size: 2.5rem;
-    letter-spacing: 2px;
+  }
+
+  .p4-header .sub {
+    font-size: 1rem;
   }
 
   .flipbook-wrap {
@@ -321,12 +390,19 @@ body {
   .book {
     width: min(85vw, 600px);
   }
+
+  .bottom-link-wrapper {
+    margin-bottom: 50px;
+  }
+
+  .site-footer {
+    padding: 30px 20px;
+  }
 }
 
 @media (max-width: 480px) {
   .p4-header h1 {
     font-size: 2rem;
-    letter-spacing: 0.1rem;
   }
 
   .book {
