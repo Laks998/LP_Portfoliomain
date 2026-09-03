@@ -386,8 +386,7 @@ p:last-child {
   grid-template-columns: repeat(4, 1fr);
   gap: 2rem 2rem;
   margin-top: 2.5rem;
-  padding-bottom: 2.5rem;
-  border-bottom: 1px solid var(--card-border);
+  padding-bottom: 1.5rem;
 }
 
 .method-strip .detail-item {
@@ -1330,7 +1329,7 @@ p:last-child {
 }
 
 .method-detail:first-of-type {
-  margin-top: 4.5rem;
+  margin-top: 1.5rem;
 }
 
 .method-detail h3 {

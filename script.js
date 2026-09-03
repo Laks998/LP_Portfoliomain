@@ -93,7 +93,7 @@ function initBouncingBall(prefersReducedMotion) {
 
   let x = Math.random() * (window.innerWidth - radius * 2) + radius;
   let y = Math.random() * (window.innerHeight - radius * 2) + radius;
-  const baseSpeed = 2.0;
+  const baseSpeed = 1.8;
   const angle = Math.random() * Math.PI * 2;
   let vx = Math.cos(angle) * baseSpeed;
   let vy = Math.sin(angle) * baseSpeed;

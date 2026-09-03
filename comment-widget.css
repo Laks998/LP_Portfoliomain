@@ -58,6 +58,41 @@
   }
 }
 
+/* ---------- Hint shown while feedback mode is active — sits above the button ---------- */
+.cw-hint {
+  position: fixed;
+  bottom: 78px;
+  left: 20px;
+  z-index: 999;
+  max-width: 260px;
+  padding: 0.65rem 0.9rem;
+  background: #ffffff;
+  color: #1B1A16;
+  border: 1px solid rgba(27, 26, 22, 0.15);
+  border-radius: 0;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.72rem;
+  line-height: 1.4;
+  box-shadow: 0 8px 20px rgba(27, 26, 22, 0.18);
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.cw-hint.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .cw-hint {
+    left: 14px;
+    bottom: 68px;
+    max-width: calc(100vw - 28px);
+  }
+}
+
 /* ---------- Commentable areas ---------- */
 .commentable {
   position: relative;
@@ -152,11 +187,13 @@
 
 .cw-popover-actions {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.5rem;
 }
 
 .cw-btn {
   flex: 1;
+  min-width: 70px;
   padding: 0.45rem 0.6rem;
   border: none;
   font-family: 'Space Grotesk', sans-serif;
@@ -185,6 +222,17 @@
   background: rgba(27, 26, 22, 0.15);
 }
 
+.cw-btn-danger {
+  background: #ffffff;
+  color: #B23842;
+  border: 1px solid rgba(178, 56, 66, 0.4);
+}
+
+.cw-btn-danger:hover {
+  background: #B23842;
+  color: #ffffff;
+}
+
 .cw-meta {
   font-family: 'Space Mono', monospace;
   font-size: 0.62rem;
@@ -203,4 +251,85 @@
   border: none;
   padding: 0;
   font-family: 'Space Mono', monospace;
+}
+
+/* ==========================================================================
+   Custom modal dialogs — replaces native confirm() / alert() / prompt()
+   for the delete-comment and admin-unlock flows, so those moments stay
+   on-brand instead of dropping into browser chrome.
+   ========================================================================== */
+.cw-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(27, 26, 22, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 20px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.cw-modal-overlay.is-visible {
+  opacity: 1;
+}
+
+.cw-modal {
+  width: 100%;
+  max-width: 320px;
+  background: #ffffff;
+  border: 1px solid rgba(27, 26, 22, 0.15);
+  box-shadow: 0 20px 48px rgba(27, 26, 22, 0.35);
+  padding: 1.6rem;
+  font-family: 'Space Grotesk', sans-serif;
+  transform: translateY(8px) scale(0.98);
+  transition: transform 0.2s ease;
+}
+
+.cw-modal-overlay.is-visible .cw-modal {
+  transform: translateY(0) scale(1);
+}
+
+.cw-modal-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1B1A16;
+  margin-bottom: 0.6rem;
+}
+
+.cw-modal-message {
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: #726E5E;
+  margin: 0 0 1.4rem;
+}
+
+.cw-modal-input {
+  display: block;
+  width: 100%;
+  border: 1px solid rgba(27, 26, 22, 0.2);
+  padding: 0.55rem 0.7rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.85rem;
+  color: #1B1A16;
+  margin-bottom: 1.4rem;
+  box-sizing: border-box;
+}
+
+.cw-modal-input:focus {
+  outline: none;
+  border-color: #EB676C;
+}
+
+.cw-modal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+@media (max-width: 480px) {
+  .cw-modal {
+    padding: 1.4rem;
+  }
 }

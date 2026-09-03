@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="project0.css?v=75" />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="../assets/logo.png">
+  <link rel="stylesheet" href="../comment-widget.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
@@ -18,7 +20,7 @@
     <span>Go Back To Home</span>
   </a>
 
-  <main class="project-content">
+  <main class="project-content commentable" data-project="sportscove">
 
     <!-- Hero -->
     <section class="project-hero-section">
@@ -1145,5 +1147,6 @@
   </footer>
 
   <script src="project1.js?v=9"></script>
+  <script src="../comment-widget.js"></script>
 </body>
 </html>

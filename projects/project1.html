@@ -5,8 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Quippy Browser Extension | Lakshmi Pratap</title>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="project1.css" />
+  <link rel="stylesheet" href="project1.css?v=2" />
   <link rel="icon" type="image/png" href="../assets/logo.png">
+  <link rel="stylesheet" href="../comment-widget.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
@@ -23,13 +25,13 @@
   </a>
 
   <!-- Main content -->
-  <main class="project-content">
+  <main class="project-content commentable" data-project="quippy">
 
     <!-- Hero -->
     <section class="project-hero-section">
       <div class="hero-content">
         <div class="project-meta">Personal Project · October 2024 - Present</div>
-        <h1 class="project-title">Quippy - The Quick Find Tool</h1>
+        <h1 class="project-title">A browser extension to make everyday lookups instant</h1>
         <p class="project-subtitle">A lightweight Chrome extension that brings instant text conversions and lookups to your fingertips. Select any text, press Ctrl+Shift+Q, and get answers without leaving your page</p>
         <div class="live-badge">
           <span class="badge-icon">✓</span>
@@ -963,5 +965,6 @@
   </footer>
 
   <script src="project0-enhanced.js"></script>
+  <script src="../comment-widget.js"></script>
 </body>
 </html>
