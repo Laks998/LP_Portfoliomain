@@ -2446,7 +2446,7 @@ p:last-child {
   height: 20px;
   border-radius: 50%;
   background: var(--accent);
-  color: #000;
+  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;

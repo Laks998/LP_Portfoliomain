@@ -75,4 +75,140 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // ========== BOUNCING BALL — collides with viewport edges, every .bento-card, AND the mouse ==========
+  initBouncingBall(prefersReducedMotion);
+
 });
+
+function initBouncingBall(prefersReducedMotion) {
+  const ball = document.querySelector('.bg-ball');
+  if (!ball) return;
+
+  const radius = 23; // half of the 46px ball
+
+  if (prefersReducedMotion) {
+    ball.classList.add('is-static');
+    return;
+  }
+
+  let x = Math.random() * (window.innerWidth - radius * 2) + radius;
+  let y = Math.random() * (window.innerHeight - radius * 2) + radius;
+  const baseSpeed = 2.0;
+  const angle = Math.random() * Math.PI * 2;
+  let vx = Math.cos(angle) * baseSpeed;
+  let vy = Math.sin(angle) * baseSpeed;
+
+  // ---- mouse tracking ----
+  let mouseX = -9999;
+  let mouseY = -9999;
+  const hasFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  if (hasFinePointer) {
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+    window.addEventListener('mouseleave', () => {
+      mouseX = -9999;
+      mouseY = -9999;
+    });
+  }
+
+  const mouseInfluenceRadius = 150;
+  const mouseForce = 0.9;
+
+  function getObstacleRects() {
+    const cards = document.querySelectorAll('.bento-card');
+    return Array.from(cards).map(el => el.getBoundingClientRect());
+  }
+
+  let obstacles = getObstacleRects();
+
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      obstacles = getObstacleRects();
+      x = Math.min(Math.max(x, radius), window.innerWidth - radius);
+      y = Math.min(Math.max(y, radius), window.innerHeight - radius);
+    }, 150);
+  });
+
+  function resolveRectCollision(rect) {
+    const closestX = Math.max(rect.left, Math.min(x, rect.right));
+    const closestY = Math.max(rect.top, Math.min(y, rect.bottom));
+    const dx = x - closestX;
+    const dy = y - closestY;
+    const distSq = dx * dx + dy * dy;
+
+    if (distSq < radius * radius) {
+      const dist = Math.sqrt(distSq) || 0.001;
+      const nx = dx / dist;
+      const ny = dy / dist;
+
+      const overlap = radius - dist;
+      x += nx * overlap;
+      y += ny * overlap;
+
+      const dot = vx * nx + vy * ny;
+      if (dot < 0) {
+        vx -= 2 * dot * nx;
+        vy -= 2 * dot * ny;
+      }
+    }
+  }
+
+  function applyMouseRepulsion() {
+    const dx = x - mouseX;
+    const dy = y - mouseY;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+
+    if (dist < mouseInfluenceRadius && dist > 0.001) {
+      const strength = (1 - dist / mouseInfluenceRadius) * mouseForce;
+      vx += (dx / dist) * strength;
+      vy += (dy / dist) * strength;
+    }
+  }
+
+  function clampSpeed() {
+    const currentSpeed = Math.hypot(vx, vy);
+    const maxSpeed = baseSpeed * 2.6;
+    const minSpeed = baseSpeed * 0.85;
+
+    if (currentSpeed > maxSpeed) {
+      const scale = maxSpeed / currentSpeed;
+      vx *= scale;
+      vy *= scale;
+    } else if (currentSpeed < minSpeed && currentSpeed > 0) {
+      const scale = minSpeed / currentSpeed;
+      vx *= scale;
+      vy *= scale;
+    }
+  }
+
+  function step() {
+    applyMouseRepulsion();
+    clampSpeed();
+
+    x += vx;
+    y += vy;
+
+    // screen edges
+    if (x - radius <= 0) { x = radius; vx = Math.abs(vx); }
+    if (x + radius >= window.innerWidth) { x = window.innerWidth - radius; vx = -Math.abs(vx); }
+    if (y - radius <= 0) { y = radius; vy = Math.abs(vy); }
+    if (y + radius >= window.innerHeight) { y = window.innerHeight - radius; vy = -Math.abs(vy); }
+
+    // card edges
+    for (const rect of obstacles) {
+      resolveRectCollision(rect);
+    }
+
+    ball.style.transform = `translate(${x - radius}px, ${y - radius}px)`;
+    requestAnimationFrame(step);
+  }
+
+  setInterval(() => { obstacles = getObstacleRects(); }, 1000);
+
+  requestAnimationFrame(step);
+}

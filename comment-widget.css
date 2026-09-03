@@ -1,0 +1,206 @@
+/* ==========================================================================
+   COMMENT WIDGET — toggleable highlight-and-comment feature
+   Drop this file's <link> into any project page. Wrap any image/section you
+   want commentable in: <div class="commentable" data-project="project0">
+   ========================================================================== */
+
+/* ---------- Toggle button (bottom-left, always visible) ---------- */
+.cw-toggle {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.6rem 1rem;
+  background: #1B1A16;
+  color: #ffffff;
+  border: none;
+  border-radius: 999px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(27, 26, 22, 0.25);
+  transition: background 0.25s ease, transform 0.2s ease;
+}
+
+.cw-toggle:hover {
+  transform: translateY(-2px);
+}
+
+.cw-toggle.is-active {
+  background: #EB676C;
+}
+
+.cw-toggle-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  transition: background 0.25s ease;
+}
+
+.cw-toggle.is-active .cw-toggle-dot {
+  background: #ffffff;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+}
+
+@media (max-width: 768px) {
+  .cw-toggle {
+    bottom: 14px;
+    left: 14px;
+    padding: 0.5rem 0.85rem;
+    font-size: 0.7rem;
+  }
+}
+
+/* ---------- Commentable areas ---------- */
+.commentable {
+  position: relative;
+}
+
+.commentable.cw-mode-active {
+  cursor: crosshair;
+}
+
+/* ---------- Pins ---------- */
+.cw-pin {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2px solid #1B1A16;
+  color: #1B1A16;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: 700;
+  cursor: pointer;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(27, 26, 22, 0.3);
+  transition: transform 0.2s ease;
+}
+
+.cw-pin:hover {
+  transform: translate(-50%, -50%) scale(1.15);
+}
+
+.cw-pin.cw-resolved {
+  background: #DADFA2;
+  border-color: #C7D086;
+  opacity: 0.6;
+}
+
+/* ---------- Popover (new comment form + pin detail) ---------- */
+.cw-popover {
+  position: absolute;
+  z-index: 20;
+  width: 240px;
+  background: #ffffff;
+  border: 1px solid rgba(27, 26, 22, 0.15);
+  box-shadow: 0 14px 32px rgba(27, 26, 22, 0.25);
+  padding: 0.85rem;
+  font-family: 'Space Grotesk', sans-serif;
+  transform: translate(-50%, 10px);
+}
+
+.cw-popover-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #726E5E;
+  margin-bottom: 0.4rem;
+}
+
+.cw-popover textarea {
+  width: 100%;
+  min-height: 64px;
+  resize: vertical;
+  border: 1px solid rgba(27, 26, 22, 0.2);
+  padding: 0.5rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.82rem;
+  color: #1B1A16;
+  margin-bottom: 0.6rem;
+  box-sizing: border-box;
+}
+
+.cw-popover p {
+  font-size: 0.82rem;
+  line-height: 1.4;
+  color: #1B1A16;
+  margin: 0 0 0.6rem 0;
+}
+
+/* honeypot field — real users never see or fill this */
+.cw-hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.cw-popover-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.cw-btn {
+  flex: 1;
+  padding: 0.45rem 0.6rem;
+  border: none;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  cursor: pointer;
+}
+
+.cw-btn-primary {
+  background: #EB676C;
+  color: #ffffff;
+}
+
+.cw-btn-primary:hover {
+  background: #1B1A16;
+}
+
+.cw-btn-secondary {
+  background: rgba(27, 26, 22, 0.08);
+  color: #1B1A16;
+}
+
+.cw-btn-secondary:hover {
+  background: rgba(27, 26, 22, 0.15);
+}
+
+.cw-meta {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.62rem;
+  color: #726E5E;
+  margin-top: 0.4rem;
+}
+
+.cw-admin-link {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.65rem;
+  color: #726E5E;
+  text-decoration: underline;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: 'Space Mono', monospace;
+}
