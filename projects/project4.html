@@ -7,6 +7,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="project4.css" />
   <link rel="icon" type="image/png" href="../assets/logo.png">
+  <link rel="stylesheet" href="../comment-widget.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
@@ -23,7 +25,7 @@
   </a>
 
   <!-- Main content -->
-  <main class="project-content">
+  <main class="project-content commentable" data-project="vr-experience">
 
     <!-- Hero -->
     <section class="project-hero-section">
@@ -733,5 +735,6 @@
   </footer>
 
   <script src="project4.js"></script>
+  <script src="../comment-widget.js"></script>
 </body>
 </html>

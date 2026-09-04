@@ -4,19 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CX Portal — Onboarding Review: Lakshmi Pratap</title>
-  <link rel="stylesheet" href="cx-review.css?v=2" />
+  <link rel="stylesheet" href="cx-review.css?v=3" />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="../assets/logo.png">
 </head>
 <body>
 
   <div class="read-progress"></div>
-    <a href="../index.html#work" class="back-link">
-      <span class="back-link-arrow" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-      </span>
-      <span>Go Back To Home</span>
-    </a>
+  <a href="../index.html#work" class="back-link">
+    <span class="back-link-arrow" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    </span>
+    <span>Go Back To Home</span>
+  </a>
 
   <main class="project-content">
 
@@ -25,7 +25,7 @@
       <div class="hero-content">
         <div class="project-meta">CLEARISK · CX PORTAL — ONBOARDING REVIEW · B2B SAAS</div>
         <h1 class="project-title">Improving productivity on a live onboarding review workflow (B2B SaaS)</h1>
-        <p class="project-subtitle">I co-built CX Portal's design system as one of two designers on the product. Months after launch, I sat in on two live reviewer sessions to see how the screen actually held up under daily use — and watched a handful of small habits quietly cost the team time on every single application. This is the story of what I found, and what I changed.</p>
+        <p class="project-subtitle">I co-built CX Portal's design system as one of two designers on the product. Months after launch, I sat in on two live reviewer sessions to see how the screen actually held up under daily use — and found five small frictions quietly costing the team time on every application. Here's what I found, and why each fix works.</p>
         <div class="hero-contribution">
           <span class="hero-contribution-label">My contribution</span>
           <span class="hero-contribution-list">Design system (co-creator) · Workflow observation · Flow diagnosis · Interaction design · UI design</span>
@@ -41,8 +41,8 @@
       <div class="section-content">
         <span class="section-kicker">Project overview</span>
         <h2>A trade-processing platform built to replace a patchwork of tools</h2>
-        <p><span class="intro-highlight">CleaRisk is a derivatives trading platform offering trade processing and client lifecycle management for financial institutions.</span> The team had been running onboarding, back-office work, documents, and agreements across several disconnected tools, so they set out to build one piece of software — CX Portal — to hold client lifecycle management end to end.</p>
-        <p>I joined as one of two UX/UI designers on CX Portal, and spent my first stretch on the product co-building its design system alongside every new screen we shipped: colors, type, a 12-column grid, and a component library covering navigation, buttons, tables, search, and icons. Once the core product was live, my role shifted — from designing new screens to watching how the ones already shipped held up under real, daily use. This case study is about the morning that shift mattered most.</p>
+        <p><span class="intro-highlight">CleaRisk is a derivatives trading platform offering trade processing and client lifecycle management for financial institutions.</span> CX Portal was built to bring onboarding, back-office work, documents, and agreements — previously spread across several disconnected tools — into one product.</p>
+        <p>I joined as one of two UX/UI designers on CX Portal and spent my first stretch co-building its design system alongside every screen we shipped. Once the product was live, my role shifted from designing new screens to watching how the ones already shipped held up under real, daily use. This case study is about the morning that shift mattered most.</p>
 
         <div class="project-details">
           <div class="detail-item"><div class="detail-label">Role</div><div class="detail-value">UX/UI Designer &amp; design system co-creator</div></div>
@@ -52,7 +52,7 @@
 
         <div class="constraint-callout">
           <div class="constraint-label">Scope</div>
-          <p>This screen was already built and shipped, with a real timeline behind it. The brief wasn't "redesign it" — it was work within the existing system to increase productivity and reduce friction for the review team, and add only what was absolutely required. I'm under NDA on this product: everything shown here is rebuilt with placeholder data, real structure and logic, no real client or company information.</p>
+          <p>This screen was already built and shipped. The brief wasn't "redesign it" — it was to reduce friction and improve productivity for the review team within the existing system, and add only what was absolutely required. I'm under NDA on this product: everything shown here is rebuilt with placeholder data, real structure and logic, no real client or company information.</p>
         </div>
 
       </div>
@@ -63,55 +63,17 @@
       <div class="section-content">
         <span class="section-kicker">01 — Two mornings with the review queue</span>
         <h2>I watched two reviewers work through real applications, start to finish</h2>
-        <p>The review screen wasn't broken in any way a heuristic checklist would have caught — nothing crashed, nothing was mislabeled, nothing failed an accessibility scan. So instead of running an audit, I asked to sit in on a screenshare with two of the compliance reviewers who worked this queue every day, and watched them move through a stack of real applications from start to finish. I ran the same watch-and-log pass twice, a week apart, with a different reviewer each time, so I wasn't reading too much into one person's habits, or one unusually messy application.</p>
+        <p>Nothing on the screen was broken in a way a heuristic checklist would catch. So instead of an audit, I sat in on a screenshare with two compliance reviewers and watched them move through a stack of real applications, twice, a week apart, with a different reviewer each time — so I wasn't reading too much into one person's habits.</p>
 
-        <div class="method-detail">
-          <h3>Where this screen sits in the flow</h3>
-          <p>A client application moves through six stages before anyone reviews it. This case study covers the individual-client Review screen — the last stop before an application is approved or sent back. Company and organization clients get a different details page, out of scope for this pass.</p>
-
-          <div class="process-track">
-            <div class="process-track-step">
-              <div class="process-track-marker">1</div>
-              <h3 class="process-track-title">Signup link</h3>
-              <p class="process-track-desc">Client signs in via a sent link.</p>
-            </div>
-            <div class="process-track-step">
-              <div class="process-track-marker">2</div>
-              <h3 class="process-track-title">Pipeline</h3>
-              <p class="process-track-desc">Registered, but hasn't started filling anything in yet.</p>
-            </div>
-            <div class="process-track-step">
-              <div class="process-track-marker">3</div>
-              <h3 class="process-track-title">In-flight</h3>
-              <p class="process-track-desc">Started filling it in, not yet submitted for review.</p>
-            </div>
-            <div class="process-track-step">
-              <div class="process-track-marker">4</div>
-              <h3 class="process-track-title">Submit</h3>
-              <p class="process-track-desc">All sections filled in and submitted.</p>
-            </div>
-            <div class="process-track-step">
-              <div class="process-track-marker">5</div>
-              <h3 class="process-track-title">Review (list)</h3>
-              <p class="process-track-desc">The list of every application waiting to be reviewed.</p>
-            </div>
-            <div class="process-track-step is-current">
-              <div class="process-track-marker">6</div>
-              <h3 class="process-track-title">Application review</h3>
-              <p class="process-track-desc">The screen this case study is about.</p>
-            </div>
-          </div>
-
-          <div class="solution-image-wrapper">
-            <img src="../assets/cxreview-reviewlist.png" alt="Review screen showing a list of completed client applications awaiting approval, with onboarding, compliance, and manager status columns" class="solution-image">
-          </div>
+        <div class="solution-image-wrapper">
+          <img src="../assets/cxreview-reviewlist.png" alt="Review screen showing a list of completed client applications awaiting approval, with onboarding, compliance, and manager status columns" class="solution-image">
         </div>
 
         <div class="method-detail">
           <h3>"Wait — why was this rejected?"</h3>
-          <p>Twenty minutes into the first session, a reviewer picked up an application her colleague had rejected that same morning. She read through it once, then turned to me and asked the question that ended up shaping most of this case study.</p>
+          <p>Twenty minutes in, a reviewer picked up an application her colleague had rejected that morning, read it once, then asked:</p>
           <span class="session-quote">"Wait — why was this rejected?"</span>
-          <p>There was nothing attached to the Reject button to answer her. Applications get reassigned between reviewers constantly, and without a logged reason, that question had nowhere to go except back to whoever made the original call — if they were even still online to ask. I'd already co-built the Timeline component on this exact screen, originally just to log system events: submissions, edits, third-party checks passing or failing. Rather than invent something new, I extended it. Approve and Reject now require a comment before either will fire, and that comment posts to the Timeline with a timestamp and the reviewer's name, right alongside the system events already logged there. The next person to open the case sees the reasoning before anything else on the screen — no Slack thread to dig through, no waiting on whoever made the original call to log back on.</p>
+          <p>Nothing was attached to the Reject button to answer her. This is a review queue, not a single reviewer's inbox — applications get reassigned constantly, so a decision with no reasoning attached doesn't just cost the person who made it, it costs whoever inherits it next. I extended the Timeline component I'd already built on this screen — until now it only logged system events — so Approve and Reject require a comment before they'll fire, and that comment lands in the Timeline with a timestamp and the reviewer's name. The next person opens the case and sees the reasoning first, not last.</p>
           <div class="solution-image-wrapper">
             <img src="../assets/cxreview-fix1-comment.png" alt="Comment field required before Approve or Reject, with the Timeline showing each prior decision and its comment" class="solution-image">
           </div>
@@ -119,9 +81,9 @@
 
         <div class="method-detail">
           <h3>"How do I edit any of these details in case of a mistake?"</h3>
-          <p>An hour later, in the same session, she caught a typo in a field she'd already approved and went looking for a way to fix it. There wasn't one — once a section was approved, the button just read "Approved," the client-facing state locked in, and Reject disabled right alongside it.</p>
+          <p>An hour later, the same reviewer caught a typo in a field she'd already approved and had no way to fix it — once approved, the section locked, and Reject disabled with it.</p>
           <span class="session-quote">"How do I edit any of these details in case of a mistake?"</span>
-          <p>She flagged it to a manager instead — exactly the kind of workaround that shouldn't need to exist for something this small. The fix extended the same Edit control already used everywhere else on the form: clicking it unlocks the fields and logs the change to the Timeline like any other edit. The part that actually mattered was what happens on save — the section drops back to Pending instead of staying marked Approved, so a quiet correction doesn't quietly break the thing the approval was supposed to guarantee.</p>
+          <p>She flagged it to a manager — a workaround that shouldn't exist for something this small. The harder part of this fix wasn't unlocking the field, it was what happens after: I made saving an edit drop the section back to Pending instead of leaving it marked Approved. An approval is a claim that someone checked the section and it was correct — letting an edit happen silently underneath an "Approved" label would have solved her problem while quietly making that claim false for every application it touched.</p>
           <div class="solution-image-wrapper">
             <img src="../assets/cxreview-fix2-editreopen.png" alt="Edited email address logged to the Timeline, with the section moved back to Pending and an 'Approving after email change' prompt shown" class="solution-image">
           </div>
@@ -129,8 +91,8 @@
 
         <div class="method-detail">
           <h3>A popup, on top of a popup</h3>
-          <p>The pattern that showed up most, across both sessions, had nothing to do with a single button. Every time a reviewer tried to cross-check a submitted document against what had been typed into the form, they'd click to open it — and a second popup would appear on top of the first, burying the exact thing they needed to compare it against. They'd close one, glance at the form, reopen the document, and repeat, sometimes three or four times per section. Nobody mentioned it out loud; it had just become part of how the screen worked. I only caught it because I was counting.</p>
-          <p>The fix was to stop stacking popups: the document now renders in a fixed left pane, with the review form staying visible on the right. CX Portal already had a split-panel layout documented in the system for a different screen — I didn't design a new pattern, I applied an existing one to a problem it happened to solve.</p>
+          <p>The pattern that showed up most, across both sessions, wasn't one moment — it was a rhythm. Cross-checking a submitted document against the form meant opening a popup on top of the review popup, so the two things a reviewer needed side by side were never on screen together. Close one, glance at the form, reopen the document, repeat — three or four times per section, often enough that neither reviewer mentioned it out loud. It had just become the cost of doing the job.</p>
+          <p>I moved the document into a fixed left pane with the form staying visible on the right, using a split-panel layout already documented elsewhere in the system. The underlying task — compare two pieces of information — never needs two things to take turns on screen; it needs them both there at once.</p>
           <div class="solution-image-wrapper">
             <img src="../assets/cxreview-fix3-splitview.png" alt="Wireframe showing the document viewer restructured into a fixed left pane, with the review form kept visible in a panel on the right" class="solution-image">
           </div>
@@ -138,8 +100,7 @@
 
         <div class="method-detail">
           <h3>The gap neither session caught</h3>
-          <p>One issue didn't show up in either recording at all. A reviewer mentioned it in passing after the second session had already wrapped: some clients send their documents straight to a broker, who handles onboarding on their behalf, and she'd had no way to add a document for them — the flow only ever assumed it came from the client directly. It wasn't dramatic, but once I checked, it was a real gap rather than an edge case.</p>
-          <p>I added an "Add New" action to the documents table, built from the same table and button components already in the system, so an employee can upload on a client's behalf using the exact same flow as everything else.</p>
+          <p>A reviewer mentioned this one after the second session had wrapped: some clients send documents straight to a broker handling onboarding on their behalf, and she had no way to add a document for them — the flow only ever assumed it came from the client directly. I added an "Add New" action to the documents table, reusing the same table and button components already in the system, so an employee can upload on a client's behalf without a special-case flow.</p>
           <div class="solution-image-wrapper">
             <img src="../assets/cxreview-fix4-adddoc.png" alt="Documentation table with an Add New action, letting an employee upload a document on a client's behalf into the same review table" class="solution-image">
           </div>
@@ -147,8 +108,7 @@
 
         <div class="method-detail">
           <h3>The one I found watching myself back</h3>
-          <p>The last one wasn't in my notes from either session — I noticed it a few days later, reviewing my own recordings. The client's identity, AML score, compliance tier, and the Approve/Reject actions all lived in a header that scrolled away with the rest of the page, so checking a section near the bottom of a long application against the risk context at the top meant scrolling all the way back up, every time.</p>
-          <p>It was the simplest fix of the five: pin the existing header component in place instead of redesigning it. Risk context and the decision itself stay reachable through the entire review, no matter how far down the page a reviewer is.</p>
+          <p>The last one wasn't in either session's notes — I caught it days later, reviewing my own recordings. The client's identity, AML score, compliance tier, and the Approve/Reject actions lived in a header that scrolled away with the page, so checking a late section against the risk context at the top meant scrolling all the way back up, every time. The information that matters most for a decision shouldn't be the thing that's hardest to keep in view while you're making it. I pinned the existing header in place — the simplest fix of the five, and arguably the one with the clearest logic behind it.</p>
           <div class="solution-image-wrapper">
             <img src="../assets/cxreview-fix5-stickyheader.png" alt="Client header pinned in place at the top of the review screen while the sections below it scroll independently" class="solution-image">
           </div>
@@ -162,7 +122,7 @@
       <div class="section-content">
         <span class="section-kicker">02 — Impact</span>
         <h2>What five small fixes added up to</h2>
-        <p>None of these five changes touched CX Portal's visual language, and none of them needed a new pattern for anyone to learn — every one reused a piece of the system I'd already helped build. Individually small, together they removed a steady amount of friction from a workflow the compliance team ran through dozens of times a day. These are directional estimates from flow analysis — a mix of measured and unmeasured usage, not a controlled study, stated plainly rather than dressed up as precise.</p>
+        <p>None of these changes touched CX Portal's visual language, and none needed a new pattern for anyone to learn — each one reused a piece of a system I'd already helped build. Individually small, together they removed a steady amount of friction from a workflow the compliance team ran through dozens of times a day. These are directional estimates from flow analysis, not a controlled study, stated plainly rather than dressed up as precise.</p>
 
         <div class="bridge-table">
           <div class="bridge-header">
@@ -177,7 +137,7 @@
           </div>
           <div class="bridge-row">
             <span>Edit + re-review</span>
-            <span>Turns a previously unsupported error state into a two-click product fix, no manager escalation needed</span>
+            <span>Turns an unsupported error state into a two-click fix, no manager escalation needed</span>
             <span>&nbsp;</span>
           </div>
           <div class="bridge-row">
@@ -192,7 +152,7 @@
           </div>
           <div class="bridge-row">
             <span>Static header</span>
-            <span>Removes a scroll-to-top round trip every time risk context or the approve/reject action is needed</span>
+            <span>Removes a scroll-to-top round trip every time risk context is needed</span>
             <span>&nbsp;</span>
           </div>
         </div>
@@ -208,91 +168,8 @@
         <div class="outcome-block">
           <div class="learning-list">
             <div class="learning-item"><p><strong>Watching a screenshare found problems a heuristic pass wouldn't have.</strong> None of the habits I logged would have shown up on a checklist review — they only became visible by watching two people work through real applications and noticing where they slowed down.</p></div>
-            <div class="learning-item"><p><strong>Some of these problems could have been solved more completely by rethinking the entire flow.</strong> But this was an already-built product with a real timeline behind it — the brief was to fix what was actively costing the team time, not to redesign around it, and co-owning the design system made that constraint easier to work inside rather than around.</p></div>
-            <div class="learning-item"><p><strong>Contrast validation came after the fact, not before it.</strong> WCAG 2.2 ratios are documented in the color system now, but checking against them should have been part of choosing the palette originally, not a pass I ran afterward.</p></div>
-            <div class="learning-item"><p><strong>Design tokens weren't in place yet.</strong> The color and type documentation exists as a reference, but without tokens, keeping implementation in sync with it still depends on someone checking by hand.</p></div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- Appendix — the design system these fixes came from -->
-    <section class="project-section solutions-section">
-      <div class="section-content">
-        <span class="section-kicker">Appendix — the toolkit I was already working with</span>
-        <h2>Every fix above reused a piece of a system I'd co-built</h2>
-        <p>By the time I ran these sessions, my co-designer and I had already spent months building CX Portal's design system alongside every feature we shipped — colors, type, a 12-column grid, and a component library covering navigation, buttons, tables, search, and icons. That history is why none of the fixes above needed a blank page: each one just reached further into a kit that already existed.</p>
-
-        <div class="method-detail">
-          <div class="ds-ref-label">Colors</div>
-          <h3>Primary, secondary, and semantic color styles</h3>
-          <p>We built a purposeful set of neutral, brand, and semantic colors as the starting point for every screen, and added WCAG 2.2 contrast ratios to the system itself so accessibility was something we could design against, not just check for afterward.</p>
-          <div class="solution-image-wrapper">
-            <img src="../assets/cxreview-ds-colors.png" alt="CX Portal color system documentation: base, grey, primary, secondary, error, warning, success, and information color ramps with hex values" class="solution-image">
-          </div>
-        </div>
-
-        <div class="method-detail">
-          <div class="ds-ref-label">Typography</div>
-          <h3>A single typeface, scaled and weighted for hierarchy</h3>
-          <p>We picked Roboto for legibility and its familiarity on SaaS products, then built out sizes from 12 to 34px across Display, Header, Title, Headline, Body, and Caption styles, each in four weights — Regular, Medium, Semibold, and Bold — so hierarchy and prioritization stayed under control without a second typeface to manage.</p>
-          <div class="solution-image-wrapper">
-            <img src="../assets/cxreview-ds-typography.png" alt="Typography scale documentation showing Roboto at Display, Header, Title, and Headline sizes across four weights" class="solution-image">
-          </div>
-        </div>
-
-        <div class="method-detail">
-          <div class="ds-ref-label">Grids &amp; spaces</div>
-          <h3>A 12-column grid with an 8px spacing rhythm</h3>
-          <p>The layout grid excludes the side nav, runs 32px outer margins with 24px gutters, and keeps every screen visually consistent against every other one. Spacing throughout is built from multiples of 8px, with 4px used in a handful of tighter spots like icon-to-label gaps.</p>
-          <div class="solution-image-wrapper">
-            <img src="../assets/cxreview-ds-grids.png" alt="Grid and spacing documentation showing the 12-column layout with 32px margins and 24px gutters, and an 8px spacing breakdown of the client header" class="solution-image">
-          </div>
-        </div>
-
-        <div class="method-detail">
-          <div class="ds-ref-label">Side nav</div>
-          <h3>One component, three states</h3>
-          <p>The side nav appears on every screen in the product, so we built it once as a single component with inactive, active, and notification states, instead of letting each page invent its own version.</p>
-          <div class="solution-image-wrapper">
-            <img src="../assets/cxreview-ds-sidenav.png" alt="Side nav component documentation showing inactive, active, and notification states with icon and spacing specifications" class="solution-image">
-          </div>
-        </div>
-
-        <div class="method-detail">
-          <div class="ds-ref-label">CTA / buttons</div>
-          <h3>Sized and stated for every use case</h3>
-          <p>The button component covers three sizes — L, M, and S — with variants for state, type, and icon position, so every Approve, Reject, and secondary action across the product pulls from the same set instead of a one-off style built for that screen alone.</p>
-          <div class="solution-image-wrapper">
-            <img src="../assets/cxreview-ds-buttons.png" alt="Button component documentation showing primary, secondary, tertiary, and disabled variants across three sizes and multiple states" class="solution-image">
-          </div>
-        </div>
-
-        <div class="method-detail">
-          <div class="ds-ref-label">Tables</div>
-          <h3>Zebra-striped, since most of the product is data</h3>
-          <p>Most CX Portal screens show data as tables, so this became one of the most heavily used components in the whole system. Rows alternate color to help a reviewer scan a long table and keep their place across dozens of applications without losing their row.</p>
-          <div class="solution-image-wrapper">
-            <img src="../assets/cxreview-ds-tables.png" alt="Table component documentation showing zebra-striped rows applied to the Review list, next to the underlying table structure" class="solution-image">
-          </div>
-        </div>
-
-        <div class="method-detail">
-          <div class="ds-ref-label">Search, filter &amp; pagination</div>
-          <h3>Built to scale with the number of filters a table needs</h3>
-          <p>The search bar supports a variable number of filters depending on the table it sits above, and pagination exists as separate variants for the two table sizes in the product, so a reviewer can jump to a specific page instead of only stepping forward and back one at a time.</p>
-          <div class="solution-image-wrapper">
-            <img src="../assets/cxreview-ds-searchpagination.png" alt="Search and filter bar documentation with a variable number of filter fields, alongside pagination variants for two table sizes" class="solution-image">
-          </div>
-        </div>
-
-        <div class="method-detail">
-          <div class="ds-ref-label">Icons</div>
-          <h3>Consistent size and line weight, no filled icons</h3>
-          <p>Every icon sits in a 24x24px frame at a 1.5px line weight. We dropped filled icons entirely — the rest of the product was already visually heavy with tables and data, so outlined icons kept the interface from feeling more crowded than it needed to. Active and inactive states are told apart by color and background instead of icon style.</p>
-          <div class="solution-image-wrapper">
-            <img src="../assets/cxreview-ds-icons.png" alt="Icon documentation showing a 24x24px frame at 1.5px line weight, next to the full outlined icon set used in the side nav" class="solution-image">
+            <div class="learning-item"><p><strong>This wasn't a redesign, and that constraint shaped every decision.</strong> The brief was to fix what was actively costing the team time, not rethink the flow — co-owning the design system made that constraint something to work inside rather than around.</p></div>
+            <div class="learning-item"><p><strong>Contrast validation came after the fact, not before it.</strong> WCAG 2.2 ratios are documented in the color system now, but checking against them should have been part of choosing the palette originally.</p></div>
           </div>
         </div>
 

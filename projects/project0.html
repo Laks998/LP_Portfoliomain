@@ -348,12 +348,27 @@
 
         <div class="method-detail">
           <h3>Learning from the testing that had already been done</h3>
-          <p>One quote from prior testing points directly at the problem the booking redesign later solves.</p>
-          <div class="issue-card-grid testing-quotes-grid single-quote">
+          <p>Four quotes from prior testing on the existing design point directly at the problems the redesign later solves.</p>
+          <div class="issue-card-grid testing-quotes-grid">
             <div class="issue-card">
               <div class="issue-context">Learners wanted to see a coach before completing a self-assessment</div>
               <div class="issue-card-num">Satyanshu Singh</div>
               <blockquote class="issue-quote">"I don't want to do my self assessment now. Can I not just see the coach profile without it?"</blockquote>
+            </div>
+            <div class="issue-card">
+              <div class="issue-context">The coach profile felt really cluttered and hard to scan</div>
+              <div class="issue-card-num">Tanner Smith</div>
+              <blockquote class="issue-quote">"The coach profile has way too many things that I really don't know where to look"</blockquote>
+            </div>
+            <div class="issue-card">
+              <div class="issue-context">The unsurity with indivual and group sessions </div>
+              <div class="issue-card-num">Priya Malhotra</div>
+              <blockquote class="issue-quote">"Is group session and individual session the same thing taught but in group and 1 on 1?"</blockquote>
+            </div>
+            <div class="issue-card">
+              <div class="issue-context">The booking filter existed as a button with no screen behind it</div>
+              <div class="issue-card-num">Devraj Oberoi</div>
+              <blockquote class="issue-quote">"I tapped filter expecting to narrow things down by price or rating, and nothing happened. I just gave up and scrolled."</blockquote>
             </div>
           </div>
         </div>
@@ -402,11 +417,26 @@
         <div class="method-detail">
           <h3>Business constraints</h3>
           <p>I ran a prioritisation session with the CEO to rank flows by business impact, then synced with developers to confirm what was realistically buildable in three months.</p>
-          <div class="issue-card-grid testing-quotes-grid single-quote">
+          <div class="issue-card-grid testing-quotes-grid">
+            <div class="issue-card">
+              <div class="issue-context">Why the platform's mission shaped who came first</div>
+              <div class="issue-card-num">CEO</div>
+              <blockquote class="issue-quote">"One of the biggest reasons for making this app is to encourage retired people to find a place to share their skills and earn."</blockquote>
+            </div>
+            <div class="issue-card">
+              <div class="issue-context">Why coach-side flows got equal priority to learner-side flows</div>
+              <div class="issue-card-num">CEO</div>
+              <blockquote class="issue-quote">"The coach side was a big part of the product, since this is where coaches would sign up, verify their eligibility, build their profile, and set their prices"</blockquote>
+            </div>
             <div class="issue-card">
               <div class="issue-context">Why the design system became the first priority, not an afterthought</div>
               <div class="issue-card-num">CEO</div>
               <blockquote class="issue-quote">"We need a system to maintain the design and make sure all screens look like they're part of the same app."</blockquote>
+            </div>
+            <div class="issue-card">
+              <div class="issue-context">Why the system needed to be developer-facing too, not just visual</div>
+              <div class="issue-card-num">Developer</div>
+              <blockquote class="issue-quote">"A design system could be helpful so that the button sizes, component spacings, colours and styles used can be easily executed."</blockquote>
             </div>
           </div>
           <p style="margin-top: 1.5rem;">This made the design system a product priority rather than a visual cleanup exercise.</p>
@@ -656,6 +686,29 @@
                 <div class="flow-image-label new">New</div>
                 <div class="solution-image-wrapper">
                   <img src="../assets/Coachprofilenew.png" alt="New coach profile" class="solution-image">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="key-screen-item">
+            <h4>Sessions screen</h4>
+            <p class="key-screen-note">During testing, <strong>60%</strong> of learners weren't sure what actually separated a group session from an individual session — the two options sounded confusingly similar rather than genuinely different.</p>
+            <p class="key-screen-note">I reworked the sessions screen so that distinction is <strong>clear at a glance</strong>, instead of something a learner had to guess at.</p>
+            <div class="onboarding-flow-images">
+              <div class="flow-image-item">
+                <div class="flow-image-label">Old</div>
+                <div class="solution-image-wrapper">
+                  <img src="../assets/oldsessions.png" alt="Old sessions screen (placeholder)" class="solution-image">
+                </div>
+              </div>
+              <div class="flow-image-item">
+                <div class="flow-image-label new">New</div>
+                <div class="solution-image-wrapper" style="aspect-ratio: 9 / 19.5; overflow: hidden;">
+                  <video class="solution-video autoplay-video" style="height: 100%; object-fit: cover;" controls muted playsinline preload="metadata">
+                    <source src="../assets/newsessions.mp4" type="video/mp4">
+                    Video playback of the new sessions screen isn't supported in this browser.
+                  </video>
                 </div>
               </div>
             </div>
