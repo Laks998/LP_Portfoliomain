@@ -62,35 +62,35 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Video autoplay on scroll — skipped entirely when reduced motion is
-  // requested; controls remain available so videos can still be played
-  // manually.
-  const videos = document.querySelectorAll('.animation-video, .autoplay-video');
+  // Scroll-triggered video autoplay — no play button shown; each video plays
+  // automatically once it's in view and pauses once it scrolls back out.
+  // Autoplaying video must be muted for browsers to allow it, so these play
+  // silently and loop. Users with prefers-reduced-motion keep native controls
+  // and no autoplay, so nothing moves on the page without their action.
+  const inlineVideos = document.querySelectorAll('.autoplay-video');
 
-  videos.forEach(video => {
-    video.muted = true; // required for browsers to allow programmatic autoplay
+  inlineVideos.forEach(video => {
+    video.removeAttribute('controls');
+    video.muted = true;
+    video.loop = true;
+    video.playsInline = true;
   });
 
-  if (!prefersReducedMotion) {
-    const videoObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        const video = entry.target;
-
-        if (entry.isIntersecting) {
-          video.play().catch(() => {
-            // Autoplay can be blocked by the browser; controls remain available.
-          });
-        } else {
-          video.pause();
-          video.currentTime = 0;
-        }
-      });
-    }, { threshold: 0.15, rootMargin: '0px 0px -10% 0px' });
-
-    videos.forEach(video => {
-      videoObserver.observe(video);
+  const videoObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const video = entry.target;
+      if (entry.isIntersecting) {
+        video.play().catch(() => {
+          // Autoplay can be blocked in some browsers/contexts; failing
+          // silently is fine here since nothing else depends on it.
+        });
+      } else {
+        video.pause();
+      }
     });
-  }
+  }, { threshold: 0.5 });
+
+  inlineVideos.forEach(video => videoObserver.observe(video));
 
   // Stagger animation for the Four Problems section
   if (!prefersReducedMotion) {

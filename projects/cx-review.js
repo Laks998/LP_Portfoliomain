@@ -1,8 +1,8 @@
 // cx-review.js - CleaRisk CX Portal: Onboarding Review
-// Same behaviors as project1.js (Sportscove), trimmed of the video-autoplay
-// and stagger-reveal logic since this page is image-only: progress bar,
-// native image-drag-ghost prevention, smooth anchor scroll, and an
-// accessible lightbox for the screenshots.
+// Same behaviors as project1.js (Sportscove), trimmed of the stagger-reveal
+// logic: progress bar, native image-drag-ghost prevention, smooth anchor
+// scroll, an accessible lightbox for the screenshots, and scroll-triggered
+// video autoplay (no visible play button — playback follows scroll position).
 
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -47,6 +47,108 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+});
+
+// Scroll-triggered video autoplay — no play button shown; each video plays
+// automatically once it's in view and pauses once it scrolls back out.
+// Autoplaying video must be muted for browsers to allow it, so these play
+// silently and loop. Users with prefers-reduced-motion keep native controls
+// and no autoplay, so nothing moves on the page without their action.
+document.addEventListener('DOMContentLoaded', () => {
+
+  const inlineVideos = document.querySelectorAll('.solution-video');
+  if (inlineVideos.length === 0) return;
+
+  if (prefersReducedMotion) {
+    inlineVideos.forEach(video => {
+      video.setAttribute('controls', '');
+    });
+    return;
+  }
+
+  inlineVideos.forEach(video => {
+    video.removeAttribute('controls');
+    video.muted = true;
+    video.loop = true;
+    video.playsInline = true;
+  });
+
+  const videoObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const video = entry.target;
+      if (entry.isIntersecting) {
+        video.play().catch(() => {
+          // Autoplay can be blocked in some browsers/contexts; failing
+          // silently is fine here since nothing else depends on it.
+        });
+      } else {
+        video.pause();
+      }
+    });
+  }, { threshold: 0.5 });
+
+  inlineVideos.forEach(video => videoObserver.observe(video));
+
+});
+
+// Time-cost stat rings — each ring's fill sweeps from empty to full while
+// its number counts up from 0 to the case's own minute value, the first
+// time the card scrolls into view. Reduced-motion users just see the
+// finished ring and number, no animation.
+document.addEventListener('DOMContentLoaded', () => {
+
+  const rings = document.querySelectorAll('.stat-ring');
+  if (rings.length === 0) return;
+
+  const RADIUS = 34;
+  const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
+  const DURATION = 1400; // ms
+
+  rings.forEach(ring => {
+    const fillCircle = ring.querySelector('.stat-ring-fill');
+    fillCircle.style.strokeDasharray = `${CIRCUMFERENCE}`;
+    fillCircle.style.strokeDashoffset = `${CIRCUMFERENCE}`;
+  });
+
+  if (prefersReducedMotion) {
+    rings.forEach(ring => {
+      const target = parseFloat(ring.dataset.minutes) || 0;
+      ring.querySelector('.stat-ring-fill').style.strokeDashoffset = '0';
+      ring.querySelector('.stat-ring-number').textContent = target;
+    });
+    return;
+  }
+
+  const animated = new WeakSet();
+
+  const ringObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting || animated.has(entry.target)) return;
+      animated.add(entry.target);
+
+      const ring = entry.target;
+      const target = parseFloat(ring.dataset.minutes) || 0;
+      const fillCircle = ring.querySelector('.stat-ring-fill');
+      const numberEl = ring.querySelector('.stat-ring-number');
+
+      fillCircle.style.strokeDashoffset = '0';
+
+      const startTime = performance.now();
+
+      function tick(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / DURATION, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        numberEl.textContent = Math.round(eased * target);
+        if (progress < 1) requestAnimationFrame(tick);
+      }
+
+      requestAnimationFrame(tick);
+    });
+  }, { threshold: 0.4 });
+
+  rings.forEach(ring => ringObserver.observe(ring));
 
 });
 

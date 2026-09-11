@@ -48,34 +48,16 @@ a, button, .bento-card, .icon, .resume-btn {
   inset: 0;
   overflow: hidden;
   background: var(--bg);
-  pointer-events: none;
+  /* auto (not none): the mosaic canvas needs pointer events to track the
+     cursor. Cards still get hover/click normally — they paint on top of
+     this layer, so the browser hit-tests them first wherever they cover it. */
+  pointer-events: auto;
   z-index: 0;
 }
 
-.bg-grid {
+.bg-mosaic {
   position: absolute;
-  inset: -60px;
-  background-image: radial-gradient(rgba(68, 68, 68, 0.16) 1.4px, transparent 1.4px);
-  background-size: 24px 24px;
-}
-
-.bg-ball {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  border: 2px solid #EB676C;
-  background: transparent;
-  will-change: transform;
-  transform: translate(-100px, -100px); /* off-screen until JS positions it */
-}
-
-.bg-ball.is-static {
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  inset: 0;
 }
 
 /* ========== VIBE-CODING NOTE ========== */
@@ -200,10 +182,38 @@ a, button, .bento-card, .icon, .resume-btn {
 .hero-col    { grid-column: 1; grid-row: 1 / span 2; display: flex; flex-direction: column; gap: var(--gap); min-height: 0; }
 .card-hero   { flex: 1 1 auto; min-height: 0; }
 .quicklink-row { flex: 0 0 auto; }
-.card-sportscove { grid-column: 2; grid-row: 1; }
-.card-clearisk    { grid-column: 2; grid-row: 2; }
-.card-quippy      { grid-column: 3; grid-row: 1; }
-.card-vr          { grid-column: 3; grid-row: 2; }
+
+/* ========== PROJECT CAROUSEL — rotating focus-shift grid ========== */
+/* Occupies the same two columns/rows the 4 project cards used to fill,
+   but internally splits into a large "main" slot + 3 stacked small slots.
+   script.js swaps each card's data-slot every few seconds and uses a
+   FLIP transform animation to slide/scale cards between slots. */
+.project-carousel {
+  grid-column: 2 / span 2;
+  grid-row: 1 / span 2;
+  display: grid;
+  grid-template-columns: 1.75fr 1fr;
+  grid-template-rows: repeat(3, 1fr);
+  gap: var(--gap);
+  min-height: 0;
+}
+
+.project-carousel .card-project[data-slot="main"]   { grid-column: 1; grid-row: 1 / span 3; }
+.project-carousel .card-project[data-slot="top"]    { grid-column: 2; grid-row: 1; }
+.project-carousel .card-project[data-slot="mid"]    { grid-column: 2; grid-row: 2; }
+.project-carousel .card-project[data-slot="bottom"] { grid-column: 2; grid-row: 3; }
+
+/* Only the featured (main) card shows its caption, matching the reference
+   animation where the small stacked cards are image-only. */
+.project-carousel .card-project .card-caption { display: none; }
+.project-carousel .card-project[data-slot="main"] .card-caption { display: block; }
+
+/* While a rotation is running, ignore the hover-tilt transform and
+   pointer events so the FLIP transform isn't fought over. */
+.project-carousel .card-project.is-rotating {
+  pointer-events: none;
+  z-index: 3;
+}
 
 /* ========== CARD BASE ========== */
 .bento-card {
@@ -418,37 +428,51 @@ a.bento-card:hover .card-media .card-bg {
   margin: 0.4rem 0 0 0;
 }
 
-.card-arrow {
+/* Only the featured (main) project card shows a "View" pill — the small
+   side cards are promoted by clicking them, not a direct link, so they
+   don't carry a view/navigate affordance. */
+.card-view-btn {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  right: 14px;
+  bottom: 14px;
   z-index: 1;
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
+  display: none;
+  align-items: center;
+  gap: 6px;
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
   background: var(--white);
   color: var(--ink);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transform: translate(-50%, -50%);
+  box-shadow: 0 6px 16px rgba(27, 26, 22, 0.16);
   transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.3s ease, color 0.3s ease;
 }
 
-.card-arrow svg {
-  width: 16px;
-  height: 16px;
+.project-carousel .card-project[data-slot="main"] .card-view-btn {
+  display: inline-flex;
+}
+
+.card-view-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.card-view-btn svg {
+  width: 14px;
+  height: 14px;
   transition: transform 0.35s ease;
 }
 
-a.bento-card:hover .card-arrow {
-  transform: translate(-50%, -50%) scale(1.15) rotate(45deg);
+a.bento-card:hover .card-view-btn {
+  transform: scale(1.06) translateY(-2px);
   background: var(--coral);
   color: var(--white);
 }
 
-a.bento-card:hover .card-arrow svg {
-  transform: rotate(-45deg);
+a.bento-card:hover .card-view-btn svg {
+  transform: rotate(45deg);
 }
 
 /* ========== QUOTE CARD ========== */
@@ -698,7 +722,7 @@ a.bento-card:hover .card-arrow svg {
   .bento-card,
   .card-bg,
   .hero-portrait,
-  .card-arrow {
+  .card-view-btn {
     transition: none !important;
     animation: none !important;
   }
@@ -732,6 +756,23 @@ a.bento-card:hover .card-arrow svg {
   }
 
   .quicklink-row { flex-direction: column; min-height: 0; gap: 10px; }
+
+  /* Carousel becomes a plain stacked list on mobile — no rotation, all captions visible */
+  .project-carousel {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+  }
+
+  .project-carousel .card-project {
+    grid-column: unset !important;
+    grid-row: unset !important;
+    min-height: 220px;
+  }
+
+  .project-carousel .card-project .card-caption {
+    display: block !important;
+  }
 
   .card-project { min-height: 220px; }
 

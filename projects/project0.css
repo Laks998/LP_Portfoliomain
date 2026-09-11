@@ -18,8 +18,6 @@
   --danger: #B23842;
   --danger-border: rgba(178, 56, 66, 0.35);
   --danger-bg: rgba(178, 56, 66, 0.09);
-  --shadow-sm: 0 1px 2px rgba(16, 15, 14, 0.04), 0 4px 14px rgba(16, 15, 14, 0.07);
-  --shadow-md: 0 4px 10px rgba(16, 15, 14, 0.06), 0 12px 28px rgba(16, 15, 14, 0.1);
 }
 
 * {
@@ -28,10 +26,6 @@
   box-sizing: border-box;
 }
 
-/* CSS-side fallback for the native browser image-drag ghost (see
-   project1.js for the primary draggable="false" fix). -webkit-user-drag
-   covers Chrome/Safari/Edge before the JS attaches; Firefox has no CSS
-   equivalent and relies on the JS attribute. */
 img {
   -webkit-user-drag: none;
   user-select: none;
@@ -62,7 +56,6 @@ body {
   }
 }
 
-/* Progress Bar */
 .read-progress {
   position: fixed;
   top: 0;
@@ -74,7 +67,6 @@ body {
   transition: width 0.1s ease;
 }
 
-/* Back Link */
 .back-link {
   position: absolute;
   top: 50px;
@@ -99,7 +91,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: var(--shadow-sm);
   transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
 }
 
@@ -120,7 +111,6 @@ body {
   stroke: #ffffff;
 }
 
-/* Main Content */
 .project-content {
   width: 100%;
   max-width: 1100px;
@@ -128,7 +118,6 @@ body {
   padding: 0 2rem;
 }
 
-/* Sections */
 .project-section {
   padding: 5.5rem 0;
 }
@@ -138,7 +127,6 @@ body {
   margin: 0 auto;
 }
 
-/* Hero Section */
 .project-hero-section {
   min-height: auto;
   display: flex;
@@ -188,8 +176,6 @@ body {
   letter-spacing: 0;
 }
 
-/* ===== Hero contribution line — "what I personally did," stated
-   plainly right under the subtitle, before any other section content. ===== */
 .hero-contribution {
   display: flex;
   flex-direction: column;
@@ -221,7 +207,6 @@ body {
   margin-left: auto;
   margin-right: auto;
   border-radius: 0;
-  box-shadow: 0 10px 40px rgba(20, 18, 16, 0.1);
   overflow: hidden;
   transition: none !important;
   animation: none !important;
@@ -238,7 +223,6 @@ body {
   transform: none !important;
 }
 
-/* Typography */
 h2 {
   font-size: 2.1rem;
   font-weight: 700;
@@ -300,7 +284,6 @@ p:last-child {
   color: var(--accent);
 }
 
-/* Context Section */
 .context-section {
   position: relative;
   z-index: 2;
@@ -344,7 +327,6 @@ p:last-child {
   line-height: 1.55;
 }
 
-/* ===== Constraint callout ===== */
 .constraint-callout {
   display: flex;
   align-items: baseline;
@@ -380,7 +362,6 @@ p:last-child {
   }
 }
 
-/* ===== Research method strip ===== */
 .method-strip {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -399,11 +380,6 @@ p:last-child {
   }
 }
 
-/* ===== Four Problems — flattened editorial treatment =====
-   Deliberately lighter than the design-decision cards below: no card
-   background/border, just a numbered label and a bottom rule. Problems
-   are diagnosis; cards are reserved for solutions and outcomes, so the
-   two read as visually distinct categories. */
 .risks-section .risks-intro {
   margin-bottom: 3rem;
   font-size: 1.05rem;
@@ -431,13 +407,11 @@ p:last-child {
   margin-bottom: 1rem;
 }
 
-/* ===== Finding → implication → design response bridge table ===== */
 .bridge-table {
   margin-top: 3rem;
   border: 1px solid var(--card-border);
   border-radius: 0;
   overflow: hidden;
-  box-shadow: var(--shadow-sm);
 }
 
 .bridge-header,
@@ -495,8 +469,6 @@ p:last-child {
   }
 }
 
-
-/* Solutions Section */
 .solution-block {
   margin-bottom: 3rem;
 }
@@ -563,13 +535,10 @@ p:last-child {
   text-align: center;
 }
 
-/* Hover zoom moved from JS to CSS (with reduced-motion opt-out below);
-   focus-visible covers keyboard users tabbing to a zoomable image. */
 .solution-image {
   width: 100%;
   max-width: 100%;
   border-radius: 0;
-  box-shadow: 0 10px 40px rgba(20, 18, 16, 0.1);
   transition: transform 0.3s ease;
 }
 
@@ -612,7 +581,6 @@ p:last-child {
   width: 100%;
 }
 
-/* ===== Small, captioned option comparison row (rejected explorations) ===== */
 .option-cards-row {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -634,7 +602,6 @@ p:last-child {
   width: 100%;
   max-width: 170px;
   border-radius: 0;
-  box-shadow: 0 8px 24px rgba(20, 18, 16, 0.12);
   border: 1px solid var(--card-border);
   cursor: zoom-in;
 }
@@ -738,7 +705,6 @@ p:last-child {
   margin-bottom: 2.25rem;
 }
 
-
 .key-insight {
   color: var(--text);
   font-weight: 500;
@@ -755,10 +721,8 @@ p:last-child {
   border-radius: 0;
   padding: 2.25rem;
   margin: 2.75rem 0;
-  box-shadow: var(--shadow-sm);
   transition: all 0.3s ease;
 }
-
 
 .criteria-list {
   display: flex;
@@ -776,14 +740,12 @@ p:last-child {
   font-size: 0.95rem;
   line-height: 1.6;
   color: var(--muted);
-  box-shadow: var(--shadow-sm);
 }
 
 .criteria-item strong {
   color: var(--text);
   font-weight: 500;
 }
-
 
 .exploration-options {
   display: flex;
@@ -797,7 +759,6 @@ p:last-child {
   border-radius: 0;
   background: var(--card-bg);
   border: 1px solid var(--card-border);
-  box-shadow: var(--shadow-sm);
 }
 
 .option-item.rejected {
@@ -818,7 +779,6 @@ p:last-child {
   line-height: 1.6;
 }
 
-
 .flow-comparison {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -828,7 +788,6 @@ p:last-child {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: 0;
-  box-shadow: var(--shadow-sm);
 }
 
 .flow-before, .flow-after {
@@ -853,8 +812,6 @@ p:last-child {
   color: var(--muted);
 }
 
-
-/* Outcomes Section */
 .outcome-block {
   margin-bottom: 2.5rem;
 }
@@ -868,7 +825,6 @@ p:last-child {
   margin-bottom: 1.5rem;
 }
 
-/* ===== Outcome cards ===== */
 .outcome-cards {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -881,7 +837,6 @@ p:last-child {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: 0;
-  box-shadow: var(--shadow-sm);
   transition: all 0.3s ease;
 }
 
@@ -889,7 +844,6 @@ p:last-child {
   background: var(--card-hover-bg);
   border-color: var(--accent);
   transform: translateY(-3px);
-  box-shadow: var(--shadow-md);
 }
 
 .outcome-card-num {
@@ -924,7 +878,6 @@ p:last-child {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: 0;
-  box-shadow: var(--shadow-sm);
 }
 
 .learning-item p {
@@ -939,8 +892,6 @@ p:last-child {
   font-weight: 500;
 }
 
-
-/* Bottom Link Wrapper */
 .bottom-link-wrapper {
   position: relative;
   margin-bottom: 40px;
@@ -969,7 +920,6 @@ p:last-child {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: var(--shadow-sm);
   transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
 }
 
@@ -990,7 +940,6 @@ p:last-child {
   stroke: #ffffff;
 }
 
-/* Site Footer */
 .site-footer {
   text-align: center;
   padding: 45px 20px;
@@ -1000,7 +949,6 @@ p:last-child {
   background: rgba(250, 249, 247, 0.6);
 }
 
-/* Responsive Design */
 @media (max-width: 1024px) {
   .outcome-cards {
     grid-template-columns: 1fr 1fr;
@@ -1133,12 +1081,10 @@ p:last-child {
     gap: 2.25rem;
   }
 
-
   .risks-list {
     grid-template-columns: 1fr;
     gap: 1.75rem;
   }
-
 
   .solution-images-grid {
     grid-template-columns: 1fr;
@@ -1148,7 +1094,6 @@ p:last-child {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
-
 
   .solution-improvements {
     padding: 1.75rem 2rem;
@@ -1169,7 +1114,6 @@ p:last-child {
     gap: 1.25rem;
   }
 
-
   .decision-title-wrapper h3 {
     font-size: 1.25rem;
   }
@@ -1177,7 +1121,6 @@ p:last-child {
   .hero-decision .decision-title-wrapper h3 {
     font-size: 1.35rem;
   }
-
 
   .bottom-link-wrapper {
     text-align: center;
@@ -1265,12 +1208,9 @@ p:last-child {
     grid-template-columns: 1fr;
   }
 
-
   .flow-callouts {
     grid-template-columns: 1fr;
   }
-
-
 }
 
 @media (max-width: 480px) {
@@ -1321,7 +1261,6 @@ p:last-child {
   }
 }
 
-/* ===== Research & Diagnosis method blocks ===== */
 .method-detail {
   margin-top: 4.5rem;
   padding-top: 3rem;
@@ -1344,8 +1283,6 @@ p:last-child {
   color: var(--muted);
 }
 
-
-/* ===== Method detail: side-by-side text + image ===== */
 .method-split {
   display: flex;
   gap: 2.75rem;
@@ -1378,7 +1315,6 @@ p:last-child {
   border: 1px solid var(--card-border);
 }
 
-/* ===== Booking flow layout ===== */
 .booking-flow-layout {
   display: flex;
   flex-direction: column;
@@ -1406,7 +1342,6 @@ p:last-child {
 .booking-flow-row .solution-video {
   height: 100%;
   object-fit: cover;
-  box-shadow: var(--shadow-md);
 }
 
 .booking-flow-userflow {
@@ -1484,8 +1419,6 @@ p:last-child {
   }
 }
 
-
-/* ===== Key screens redesigned ===== */
 .key-screens-block .key-screen-item {
   margin-top: 7rem;
 }
@@ -1633,7 +1566,6 @@ p:last-child {
   color: var(--muted);
 }
 
-/* ===== Competitive benchmarking ===== */
 .benchmark-block {
   margin-top: 0.5rem;
 }
@@ -1667,7 +1599,6 @@ p:last-child {
   max-width: 100%;
 }
 
-/* ===== Competitor pattern → Sportscove opportunity table ===== */
 .opportunity-table {
   display: flex;
   flex-direction: column;
@@ -1686,7 +1617,6 @@ p:last-child {
   padding: 1rem 1.4rem;
   font-size: 0.86rem;
   line-height: 1.5;
-  box-shadow: var(--shadow-sm);
 }
 
 .opp-from {
@@ -1718,7 +1648,6 @@ p:last-child {
   }
 }
 
-/* ===== Search features grid ===== */
 .search-features-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1757,7 +1686,6 @@ p:last-child {
   display: block;
   border-radius: 0;
   border: 1px solid var(--card-border);
-  box-shadow: var(--shadow-sm);
 }
 
 .search-feature-desc {
@@ -1766,7 +1694,6 @@ p:last-child {
   color: var(--muted);
 }
 
-/* ===== Field-behavior pairs ===== */
 .field-behaviors-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -1831,7 +1758,6 @@ p:last-child {
   }
 }
 
-/* ===== Resilient-flow reveal ===== */
 .resilient-capabilities {
   display: flex;
   flex-wrap: wrap;
@@ -1893,7 +1819,6 @@ p:last-child {
   }
 }
 
-/* ===== Beyond the core flows (extras section) ===== */
 .extras-section .section-content > p {
   margin-bottom: 3rem;
   font-size: 1.05rem;
@@ -1954,8 +1879,6 @@ p:last-child {
   }
 }
 
-
-/* ===== Lightbox — accessible dialog ===== */
 .solution-image,
 .option-card-image {
   cursor: zoom-in;
@@ -1984,7 +1907,6 @@ p:last-child {
   max-width: 90vw;
   max-height: 88vh;
   border-radius: 0;
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
   cursor: zoom-out;
   transform: scale(0.96);
   transition: transform 0.25s ease;
@@ -2029,7 +1951,6 @@ p:last-child {
   }
 }
 
-/* ===== Four Problems cards — tag + heading only now; card chrome removed above ===== */
 .problem-head {
   display: flex;
   gap: 1.25rem;
@@ -2077,8 +1998,6 @@ p:last-child {
   margin-bottom: 0;
 }
 
-
-/* ===== Research review block ===== */
 .research-review-block p {
   margin-bottom: 1.5rem;
 }
@@ -2296,7 +2215,6 @@ p:last-child {
   margin: 1.75rem 0 0.9rem;
 }
 
-/* ===== Journey path — alternating vertical spine timeline ===== */
 .journey-columns {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -2374,7 +2292,6 @@ p:last-child {
   border: 1px solid var(--card-border);
   border-radius: 0;
   padding: 0.35rem 0.65rem;
-  box-shadow: var(--shadow-sm);
   transition: all 0.3s ease;
 }
 
@@ -2407,7 +2324,6 @@ p:last-child {
   color: var(--text);
 }
 
-/* ===== Process track ===== */
 .process-track {
   position: relative;
   display: flex;
@@ -2472,7 +2388,6 @@ p:last-child {
   max-width: 200px;
 }
 
-/* ===== Research gap / product-question callout ===== */
 .research-gap-callout {
   background: var(--decision-bg);
   border: 1px solid var(--decision-border);
@@ -2497,7 +2412,6 @@ p:last-child {
   font-weight: 500;
 }
 
-/* ===== Merged multi-sport logic section ===== */
 .merged-logic-section .solution-image-wrapper {
   margin: 0;
 }
@@ -2541,7 +2455,6 @@ p:last-child {
   }
 }
 
-/* ===== Section reveal — click-to-open wrapper for whole content blocks ===== */
 .research-review-block .section-reveal,
 .section-reveal {
   margin-top: 2rem;
@@ -2563,7 +2476,6 @@ p:last-child {
   cursor: pointer;
   list-style: none;
   width: 100%;
-  box-shadow: none;
   transition: background 0.2s ease;
 }
 
@@ -2604,10 +2516,6 @@ p:last-child {
   margin-top: 1.5rem;
 }
 
-/* =====================================================================
-   Coach Onboarding section
-   ===================================================================== */
-
 .onboarding-block {
   margin-bottom: 5.5rem;
 }
@@ -2616,14 +2524,12 @@ p:last-child {
   margin-bottom: 0;
 }
 
-
 .onboarding-block .solution-image-wrapper {
   max-width: 480px;
   margin-left: auto;
   margin-right: auto;
 }
 
-/* ----- Old vs new flow comparison (side-by-side images) ----- */
 .onboarding-flow-images {
   display: flex;
   gap: clamp(2rem, 8vw, 12rem);
@@ -2655,7 +2561,6 @@ p:last-child {
   color: var(--accent);
 }
 
-
 .flow-callouts {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -2674,7 +2579,6 @@ p:last-child {
   padding: 0.9rem 1rem;
   font-size: 0.8rem;
   text-align: center;
-  box-shadow: var(--shadow-sm);
 }
 
 .callout-before {
@@ -2691,7 +2595,6 @@ p:last-child {
   font-weight: 500;
 }
 
-/* ----- Testing quotes grid ----- */
 .issue-card-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -2712,7 +2615,6 @@ p:last-child {
   display: flex;
   flex-direction: column;
   gap: 0.9rem;
-  box-shadow: var(--shadow-sm);
   transition: all 0.3s ease;
 }
 
@@ -2720,7 +2622,6 @@ p:last-child {
   border-color: var(--accent);
   background: var(--card-hover-bg);
   transform: translateY(-3px);
-  box-shadow: var(--shadow-md);
 }
 
 .issue-context {
@@ -2779,6 +2680,4 @@ p:last-child {
   .flow-callouts {
     grid-template-columns: 1fr;
   }
-
-
 }

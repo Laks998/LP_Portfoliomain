@@ -1,17 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CX Onboarding | Lakshmi Pratap</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CX Portal — Onboarding Review: Lakshmi Pratap</title>
+  <link rel="stylesheet" href="cx-review.css?v=15" />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="placeholder.css" />
   <link rel="icon" type="image/png" href="../assets/logo.png">
+  <link rel="stylesheet" href="../comment-widget.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/2.44.0/iconfont/tabler-icons.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    .outcome-cards {
+      gap: 12px !important;
+    }
+    .outcome-card {
+      padding: 18px 20px !important;
+    }
+    .outcome-card h4 {
+      font-size: 15px !important;
+      margin: 0 0 6px !important;
+      line-height: 1.3 !important;
+    }
+    .outcome-card p {
+      font-size: 13px !important;
+      line-height: 1.45 !important;
+      margin: 0 !important;
+    }
+    .outcome-card:has(.outcome-card-stat) {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      gap: 20px !important;
+    }
+    .outcome-card-text {
+      flex: 1 1 auto !important;
+      min-width: 0 !important;
+    }
+    .outcome-card-stat {
+      margin-top: 0 !important;
+      padding-top: 0 !important;
+      border-top: none !important;
+      flex-shrink: 0 !important;
+      gap: 10px !important;
+    }
+    .stat-ring {
+      width: 56px !important;
+      height: 56px !important;
+    }
+    .stat-ring-number {
+      font-size: 16px !important;
+    }
+    .stat-ring-unit {
+      font-size: 9px !important;
+    }
+    .stat-ring-caption {
+      font-size: 12px !important;
+    }
+    .outcome-card-tag {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 6px !important;
+      font-size: 11px !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.5px !important;
+      text-transform: uppercase !important;
+      color: var(--accent) !important;
+      background: var(--decision-bg) !important;
+      border: 1px solid var(--decision-border) !important;
+      border-radius: 0 !important;
+      padding: 4px 10px !important;
+      margin-top: 10px !important;
+    }
+
+    /* version-compare-item reuses .solution-image-wrapper, which carries
+       a 5rem top/bottom margin in the base stylesheet (meant for full
+       standalone screenshots). Nested two levels inside .decision-content,
+       it was never touched by the child-selector overrides above — that
+       untouched 5rem margin was the real source of the extra gap above
+       and below the Version 1 / Ver 2 / Final version row. Everything
+       else in this section now falls back to the base design system
+       rhythm (.decision-content's own 2rem gap), same as the rest of
+       the page. */
+    .solutions-section .version-compare-item .solution-image-wrapper {
+      margin: 0 !important;
+    }
+  </style>
 </head>
 <body>
 
   <div class="read-progress"></div>
-
   <a href="../index.html#work" class="back-link">
     <span class="back-link-arrow" aria-hidden="true">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
@@ -19,27 +97,431 @@
     <span>Go Back To Home</span>
   </a>
 
-  <main class="project-content">
+  <main class="project-content commentable" data-project="cx-review">
 
     <!-- Hero -->
     <section class="project-hero-section">
       <div class="hero-content">
-        <div class="project-meta">CLEARISK | CX ONBOARDING</div>
-        <h1 class="project-title">CX Onboarding</h1>
-        <p class="project-subtitle">A client onboarding review experience designed for Clearisk's CX Portal</p>
+        <div class="project-meta">CLEARISK · CX PORTAL — ONBOARDING REVIEW · B2B SAAS</div>
+        <h1 class="project-title">Improving productivity on a live onboarding review workflow (B2B SaaS)</h1>
+        <p class="project-subtitle">I co-built CX Portal's design system as one of two designers on the product. Months after launch, I sat in on two live reviewer sessions to see how the screen actually held up under daily use — and found five small frictions quietly costing the team time on every application. Here's what I found, and why each fix works.</p>
+        <div class="hero-contribution">
+          <span class="hero-contribution-label">My contribution</span>
+          <span class="hero-contribution-list">Design system (co-creator) · Workflow observation · Flow diagnosis · Interaction design · UI design</span>
+        </div>
         <div class="hero-image-wrapper">
-          <img src="../assets/CLEARISK DP.png" alt="Clearisk CX Onboarding" class="hero-image">
+          <img src="../assets/CLEARISK DP.png" alt="CX Portal review screen showing a client's onboarding application, with an approve/reject comment field and a Timeline audit trail" class="hero-image">
         </div>
       </div>
     </section>
 
-    <!-- NDA Notice -->
-    <section class="project-section nda-section">
+    <!-- Overview -->
+    <section class="project-section context-section">
       <div class="section-content">
-        <div class="nda-callout">
-          <div class="nda-label">Under NDA</div>
-          <p>This project was completed under a non-disclosure agreement with Clearisk, so the full case study, including screens, flows, and research, can't be shared publicly here. Get in touch directly if you'd like to walk through the work in more detail.</p>
+        <span class="section-kicker">Project overview</span>
+        <h2>A trade-processing platform built to replace a patchwork of tools</h2>
+        <p><span class="intro-highlight">CleaRisk is a derivatives trading platform offering trade processing and client lifecycle management for financial institutions.</span> CX Portal brings onboarding, back-office work, documents, and agreements into one product — replacing a patchwork of disconnected tools.</p>
+        <p>I joined as one of two UX/UI designers, co-building the design system alongside every screen we shipped. Once live, my role shifted from designing new screens to watching how shipped ones held up under real, daily use — this case study is about the morning that shift mattered most.</p>
+
+        <div class="project-details">
+          <div class="detail-item"><div class="detail-label">Role</div><div class="detail-value">UX/UI Designer &amp; design system co-creator</div></div>
+          <div class="detail-item"><div class="detail-label">Focus</div><div class="detail-value">The client review screen inside Onboarding</div></div>
+          <div class="detail-item"><div class="detail-label">Constraint</div><div class="detail-value">Already shipped — not a redesign</div></div>
         </div>
+
+        <div class="constraint-callout">
+          <div class="constraint-label">Scope</div>
+          <p>This screen was already built and shipped. The brief wasn't "redesign it" — it was to reduce friction and improve productivity for the review team within the existing system, and add only what was absolutely required. I'm under NDA on this product: everything shown here is rebuilt with placeholder data, real structure and logic, no real client or company information.</p>
+        </div>
+
+        <div class="risk-subheading" style="margin-top: 2.75rem;">Also worked on,</div>
+        <div class="other-work-grid">
+          <div class="other-work-card">
+            <h4>Documents</h4>
+            <p>Added and manage documents for clients, inside the client portal.</p>
+          </div>
+          <div class="other-work-card">
+            <h4>Subscriptions</h4>
+            <p>Designed the subscriptions feature end to end.</p>
+          </div>
+          <div class="other-work-card">
+            <h4>Roles &amp; Permissions</h4>
+            <p>Redesigned Admin's Roles &amp; Permissions — new features, role-based visibility and access, and other customisations.</p>
+          </div>
+          <div class="other-work-card">
+            <h4>CX Dashboard</h4>
+            <p>Built from scratch, research to design — a role-based dashboard for daily task management, cutting reliance on email and Slack.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 01 — The story -->
+    <section class="project-section research-section">
+      <div class="section-content">
+        <h2>I watched two reviewers work through real applications, start to finish</h2>
+        <p>Nothing on the screen was broken in a way a heuristic checklist would catch. So instead of an audit, I sat in on a screenshare with two compliance reviewers, twice, a week apart, each with a different reviewer — so I wasn't reading too much into one person's habits.</p>
+
+        <div class="solution-image-wrapper">
+          <video class="solution-video size-compact" src="../assets/mainvidclearisk.mp4" controls playsinline aria-label="Review screen showing a list of completed client applications awaiting approval, with onboarding, compliance, and manager status columns"></video>
+        </div>
+
+        <div class="method-detail">
+          <span class="section-kicker">Issue 1</span>
+          <h3>A rejected application carried no record of why — and that cost the team time downstream</h3>
+          <p class="centered-quote">"This application was rejected yesterday. Why was this rejected?"</p>
+
+          <div class="cost-time-block">
+            <div class="cost-time-video">
+              <video class="solution-video" src="../assets/clearisktimelineoldvid.mp4" controls playsinline aria-label="Review page showing the queue of applications worked through by Compliance and the Operations Manager"></video>
+            </div>
+            <div class="cost-time-text">
+              <div class="risk-subheading">Review page users</div>
+              <ul class="method-bullets spaced-list">
+                <li><strong>Compliance</strong> — 2 reviewers, depending on availability, for individual sections.</li>
+                <li><strong>Manager</strong> — for the main application.</li>
+              </ul>
+            </div>
+          </div>
+
+          <h4 class="section-subhead">Review page logic</h4>
+          <p class="section-subhead-note">How the six review sections map to reviewer roles, and how their individual decisions roll up into one approve or reject outcome on the application.</p>
+          <div class="solution-image-wrapper">
+            <img src="../assets/rejectionlogic.png" alt="Diagram of the review page's logic: six sections reviewed independently by Compliance and the Operations Manager, rolling up into a single approve or reject decision on the main application" class="solution-image no-shadow size-compact">
+          </div>
+
+          <h4 class="section-subhead">Current flow with friction</h4>
+          <p class="section-subhead-note">What happens today when a single section gets rejected: the whole application fails, with no reason passed to whoever picks it up next.</p>
+          <div class="solution-image-wrapper">
+            <img src="../assets/rejectionflow.png" alt="Current rejection flow: a single rejected section rejects the whole application with no reason attached, sending it back into the queue for a different role to investigate" class="solution-image no-shadow">
+          </div>
+
+          <div class="risk-subheading">Where this actually cost time</div>
+          <div class="outcome-cards">
+            <div class="outcome-card">
+              <div class="outcome-card-text">
+                <h4>Reassigned mid-review</h4>
+                <p>A colleague inherits an already-rejected case with nothing explaining why.</p>
+                </div>
+              <div class="outcome-card-stat" role="img" aria-label="Approximately 15 minutes lost per case">
+                <div class="stat-ring" data-minutes="15" aria-hidden="true">
+                  <svg viewBox="0 0 80 80">
+                    <circle class="stat-ring-track" cx="40" cy="40" r="34"></circle>
+                    <circle class="stat-ring-fill" cx="40" cy="40" r="34"></circle>
+                  </svg>
+                  <div class="stat-ring-center">
+                    <span class="stat-ring-number">0</span>
+                    <span class="stat-ring-unit">min</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="outcome-card">
+              <div class="outcome-card-text">
+                <h4>Escalated days later</h4>
+                <p>A manager asks about last week's rejection, and the reviewer has to reconstruct it from memory.</p>
+                </div>
+              <div class="outcome-card-stat" role="img" aria-label="Approximately 20 minutes lost per case">
+                <div class="stat-ring" data-minutes="20" aria-hidden="true">
+                  <svg viewBox="0 0 80 80">
+                    <circle class="stat-ring-track" cx="40" cy="40" r="34"></circle>
+                    <circle class="stat-ring-fill" cx="40" cy="40" r="34"></circle>
+                  </svg>
+                  <div class="stat-ring-center">
+                    <span class="stat-ring-number">0</span>
+                    <span class="stat-ring-unit">min</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="outcome-card">
+              <div class="outcome-card-text">
+                <h4>Tracing the rejection</h4>
+                <p>Whoever investigates opens and checks every section themselves to find which one failed.</p>
+                </div>
+              <div class="outcome-card-stat" role="img" aria-label="Approximately 10 minutes lost per case">
+                <div class="stat-ring" data-minutes="10" aria-hidden="true">
+                  <svg viewBox="0 0 80 80">
+                    <circle class="stat-ring-track" cx="40" cy="40" r="34"></circle>
+                    <circle class="stat-ring-fill" cx="40" cy="40" r="34"></circle>
+                  </svg>
+                  <div class="stat-ring-center">
+                    <span class="stat-ring-number">0</span>
+                    <span class="stat-ring-unit">min</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="outcome-card">
+              <div class="outcome-card-text">
+                <h4>Redundant re-checks</h4>
+                <p>With no reason attached, a section sometimes gets rechecked just to be sure.</p>
+                </div>
+              <div class="outcome-card-stat" role="img" aria-label="Approximately 5 minutes lost per case">
+                <div class="stat-ring" data-minutes="5" aria-hidden="true">
+                  <svg viewBox="0 0 80 80">
+                    <circle class="stat-ring-track" cx="40" cy="40" r="34"></circle>
+                    <circle class="stat-ring-fill" cx="40" cy="40" r="34"></circle>
+                  </svg>
+                  <div class="stat-ring-center">
+                    <span class="stat-ring-number">0</span>
+                    <span class="stat-ring-unit">min</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="constraint-callout">
+            <div class="constraint-label">Per day</div>
+            <p>Roughly <strong>6–8 applications</strong> move through this loop on a typical day. At an average of <strong>~13 minutes lost per case</strong> across these four scenarios, that adds up to <strong>about 1.5 hours of reviewer time daily</strong> — time a comment trail removes almost entirely. (Estimate from flow analysis, not a timed study.)</p>
+          </div>
+        </div>
+
+        <div class="method-detail">
+          <span class="section-kicker">Issue 2</span>
+          <h3>Fixing a section after review meant going to a developer</h3>
+          <p>An hour later, she caught a typo in an already-approved field — but approved sections locked, with no way to fix it.</p>
+          <span class="session-quote">"How do I edit any of these details in case of a mistake?"</span>
+
+          <div class="solution-image-wrapper">
+            <img src="../assets/approvedscreen.png" alt="Diagram comparing the two cases that both currently require a backend developer fix: a rejected section resubmitted with corrected information, and an accidentally approved section caught after the fact" class="solution-image no-shadow size-compact">
+          </div>
+
+          <p>Once I looked closer, this wasn't a one-off. It came up in two different situations, and both were handled the same way — quietly, outside the app, by a developer.</p>
+
+          <div class="other-work-grid">
+            <div class="other-work-card">
+              <h4>Case 1 — client resubmits after rejection</h4>
+              <div class="solution-image-wrapper">
+                <img src="../assets/case1flow.png" alt="Rejected section with the client's resubmitted, corrected information" class="solution-image">
+              </div>
+              <p>A section gets rejected, the client sends back the corrected information, and it needs to go in. There's no way to update it from the review screen, so the change is made directly in the backend by a developer.</p>
+            </div>
+            <div class="other-work-card">
+              <h4>Case 2 — Error caught after approval</h4>
+              <div class="solution-image-wrapper">
+                <img src="../assets/case2flow.png" alt="Section marked Approved by mistake, with no in-app way to reopen it" class="solution-image">
+              </div>
+              <p>A section gets approved by mistake, and someone catches it after the fact. Same dead end: nothing in the app can reopen it, so a developer corrects it directly in the backend instead.</p>
+            </div>
+          </div>
+
+
+          <div class="risk-subheading">Where this actually cost the team</div>
+          <div class="outcome-cards">
+            <div class="outcome-card">
+              <h4>Blocked on engineering</h4>
+              <p>The application can't move forward until a developer has time to make the fix — sometimes a day or more, for something the reviewer could've corrected in seconds.</p>
+              <div class="outcome-card-tag"><i class="ti ti-clock-pause" style="font-size: 12px;" aria-hidden="true"></i>Delay</div>
+            </div>
+            <div class="outcome-card">
+              <h4>No trail of the change</h4>
+              <p>Once the fix lands, nothing on screen shows a correction was ever made — or what it replaced.</p>
+              <div class="outcome-card-tag"><i class="ti ti-file-off" style="font-size: 12px;" aria-hidden="true"></i>No record</div>
+            </div>
+            <div class="outcome-card">
+              <h4>Second-guessing what's real</h4>
+              <p>When a detail doesn't match what someone remembers reviewing, there's no way to tell whether it was a backend fix or an actual error — so it gets re-checked just in case.</p>
+              <div class="outcome-card-tag"><i class="ti ti-help-circle" style="font-size: 12px;" aria-hidden="true"></i>Confusion</div>
+            </div>
+            <div class="outcome-card">
+              <h4>Review logic gets bypassed</h4>
+              <p>A backend edit skips whatever checks the review screen normally enforces, so an incorrect fix could go in without anyone catching it.</p>
+              <div class="outcome-card-tag"><i class="ti ti-alert-triangle" style="font-size: 12px;" aria-hidden="true"></i>Unchecked risk</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="method-detail">
+          <span class="section-kicker">Issue 3</span>
+          <h3>The PDF viewer opened as a popup over the review popup, so cross-checking meant switching back and forth</h3>
+          <p>Each application section opens in its own review popup. When that section has a PDF attached, clicking it opens the PDF viewer as a second popup, layered directly on top of the first. To cross-reference something in the PDF against a field on the review form, the reviewer has to keep switching between the two — closing the PDF to see the form, reopening it to check the PDF again, back and forth for as long as the comparison takes.</p>
+
+          <div class="risk-subheading">Where this actually cost the team</div>
+          <div class="outcome-cards">
+            <div class="outcome-card">
+              <h4>Lost train of thought</h4>
+              <p>Every switch breaks whatever the reviewer was mid-way through checking, so they have to re-orient before continuing.</p>
+              <div class="outcome-card-tag"><i class="ti ti-player-pause" style="font-size: 12px;" aria-hidden="true"></i>Interruption</div>
+            </div>
+            <div class="outcome-card">
+              <h4>Repeated three or four times</h4>
+              <p>The same close-reopen motion isn't a one-off — it repeats for nearly every PDF, on nearly every section.</p>
+              <div class="outcome-card-tag"><i class="ti ti-repeat" style="font-size: 12px;" aria-hidden="true"></i>Repetition</div>
+            </div>
+            <div class="outcome-card">
+              <h4>Comparing from memory</h4>
+              <p>With the PDF and the form never on screen together, small mismatches between the two are easy to miss.</p>
+              <div class="outcome-card-tag"><i class="ti ti-alert-circle" style="font-size: 12px;" aria-hidden="true"></i>Error risk</div>
+            </div>
+            <div class="outcome-card">
+              <h4>Read as normal, not broken</h4>
+              <p>Reviewers had stopped noticing it as friction — it had just become how checking a PDF worked.</p>
+              <div class="outcome-card-tag"><i class="ti ti-eye-off" style="font-size: 12px;" aria-hidden="true"></i>Normalized</div>
+            </div>
+          </div>
+
+          <p>I moved the PDF viewer out of the popup stack entirely: it now opens into a fixed left pane, with the review form staying visible on the right, using an existing split-panel pattern. Comparing two things shouldn't mean taking turns looking at them.</p>
+          <div class="solution-image-wrapper">
+            <img src="../assets/cxreview-fix3-splitview.png" alt="Wireframe showing the PDF viewer restructured into a fixed left pane, with the review form kept visible in a panel on the right" class="solution-image">
+          </div>
+        </div>
+
+        <div class="method-detail">
+          <span class="section-kicker">Issue 4</span>
+          <h3>The gap neither session caught</h3>
+          <p>Some clients route documents through a broker instead of sending them directly — a case the flow never accounted for, so reviewers had no way to add a document on the client's behalf. I added an "Add New" action to the documents table, reusing existing components, so an employee can upload for a client without a special-case flow.</p>
+          <div class="solution-image-wrapper">
+            <img src="../assets/cxreview-fix4-adddoc.png" alt="Documentation table with an Add New action, letting an employee upload a document on a client's behalf into the same review table" class="solution-image">
+          </div>
+        </div>
+
+        <div class="method-detail">
+          <span class="section-kicker">Issue 5</span>
+          <h3>The one I found watching myself back</h3>
+          <p>I caught this one days later, reviewing my own session recordings. Client identity, AML score, compliance tier, and the Approve/Reject actions all lived in a header that scrolled away — checking risk context meant scrolling back up every time. I pinned it in place. Simplest fix of the five, clearest logic behind it.</p>
+          <div class="solution-image-wrapper">
+            <img src="../assets/cxreview-fix5-stickyheader.png" alt="Client header pinned in place at the top of the review screen while the sections below it scroll independently" class="solution-image">
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 02 — What I built -->
+    <section class="project-section solutions-section">
+      <div class="section-content">
+        <span class="section-kicker">02 — What I built</span>
+        <h2>Turning what I saw into pieces of the existing system</h2>
+        <p>Each fix below reuses a component or pattern already documented in CX Portal's design system — nothing here needed a new visual language.</p>
+
+        <div class="design-decision-block">
+          <div class="decision-header">
+            <div class="decision-title-wrapper">
+              <span class="decision-eyebrow">Fix 01</span>
+              <h3>Introducing a Timeline feature</h3>
+              <p class="decision-subtitle">Every Approve/Reject now requires a comment, surfaced with a timestamp so any handoff carries its reasoning</p>
+            </div>
+          </div>
+          <div class="decision-content">
+            <div class="version-compare-row" style="display: flex; align-items: flex-start; flex-wrap: wrap; gap: 1.5rem;">
+              <div class="version-compare-item" style="flex: 0 0 auto; max-width: 100%;">
+                <div class="solution-image-wrapper" style="display: inline-block;">
+                  <img src="../assets/timeline-v1.png" alt="Timeline feature, version 1 exploration" class="solution-image no-shadow" style="height: 120px; width: auto; max-width: 100%; display: block;">
+                </div>
+                <p style="text-align: center; font-size: 0.8rem; color: var(--text-secondary, #6b6b6b); margin: 0.5rem 0 0; letter-spacing: 0.02em;">Version 1</p>
+              </div>
+              <div class="version-compare-item" style="flex: 0 0 auto; max-width: 100%;">
+                <div class="solution-image-wrapper" style="display: inline-block;">
+                  <img src="../assets/timeline-v2.png" alt="Timeline feature, version 2 exploration" class="solution-image no-shadow" style="height: 120px; width: auto; max-width: 100%; display: block;">
+                </div>
+                <p style="text-align: center; font-size: 0.8rem; color: var(--text-secondary, #6b6b6b); margin: 0.5rem 0 0; letter-spacing: 0.02em;">Ver 2</p>
+              </div>
+              <div class="version-compare-item" style="flex: 0 0 auto; max-width: 100%;">
+                <div class="solution-image-wrapper" style="display: inline-block;">
+                  <img src="../assets/timeline-final.png" alt="Timeline feature, version 2 exploration" class="solution-image no-shadow" style="height: 120px; width: auto; max-width: 100%; display: block;">
+                </div>
+                <p style="text-align: center; font-size: 0.8rem; color: var(--text-secondary, #6b6b6b); margin: 0.5rem 0 0; letter-spacing: 0.02em;">Final version</p>
+              </div>
+            </div>
+
+            <div class="onboarding-flow-images">
+              <div class="flow-image-item is-compact">
+                <div class="solution-image-wrapper">
+                  <img src="../assets/Timeline.png" alt="Timeline entry logged after a section is approved or rejected" class="solution-image">
+                </div>
+              </div>
+              <div class="flow-image-item">
+                <div class="solution-image-wrapper">
+                  <img src="../assets/timelineparts.png" alt="Timeline entry showing the comment, timestamp, and reviewer name" class="solution-image">
+                </div>
+              </div>
+            </div>
+
+            <p class="section-subhead-note">How a comment moves once it's submitted: logged against the section first, then rolled up into the main application's own Timeline.</p>
+            <div class="solution-image-wrapper">
+              <img src="../assets/timelinesolflow.png" alt="Diagram of the Timeline's logic: a section-level comment is logged first, then rolls up into the main application's Timeline" class="solution-image no-shadow size-compact">
+            </div>
+
+            <h4 class="section-subhead">Where the Timeline appears</h4>
+            <p class="section-subhead-note">The Timeline sits wherever someone would actually need it: the moment they open an application, so they can see everything that's happened on it, with the time and details — and again inside a section, so whoever's reviewing it can check what's already been done there.</p>
+
+            <div class="cost-time-block">
+              <div class="cost-time-video">
+                <video class="solution-video no-shadow" src="../assets/Timeline-newvid.mp4" controls playsinline aria-label="Timeline shown both inside the section review pop-up and on the main application page"></video>
+              </div>
+              <div class="cost-time-text">
+                <div class="risk-subheading">Timeline locations</div>
+                <ul class="method-bullets spaced-list">
+                  <li><strong>In the review pop-up</strong> — logged against the section as it's approved or rejected.</li>
+                  <li><strong>On the main application</strong> — outside the pop-up, rolled up for the application as a whole.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 03 — Impact -->
+    <section class="project-section">
+      <div class="section-content">
+        <span class="section-kicker">03 — Impact</span>
+        <h2>What five small fixes added up to</h2>
+        <p>None of these changes touched CX Portal's visual language — each reused a piece of the system I'd already helped build. Individually small, together they removed steady friction from a workflow the compliance team ran dozens of times a day. Impact figures below are directional estimates from flow analysis, not a controlled study.</p>
+
+        <div class="bridge-table">
+          <div class="bridge-header">
+            <span>Fix</span>
+            <span>Productivity impact</span>
+            <span>&nbsp;</span>
+          </div>
+          <div class="bridge-row">
+            <span>Comment log</span>
+            <span>Removes roughly one out-of-system message (Slack or email) per reassigned application</span>
+            <span>&nbsp;</span>
+          </div>
+          <div class="bridge-row">
+            <span>Edit + re-review</span>
+            <span>Turns an unsupported error state into a two-click fix, no manager escalation needed</span>
+            <span>&nbsp;</span>
+          </div>
+          <div class="bridge-row">
+            <span>Split document view</span>
+            <span>Cuts roughly three open/close popup cycles per section down to a single persistent view</span>
+            <span>&nbsp;</span>
+          </div>
+          <div class="bridge-row">
+            <span>Employee upload</span>
+            <span>Replaces a problem that used to need backend support with a simple employee upload</span>
+            <span>&nbsp;</span>
+          </div>
+          <div class="bridge-row">
+            <span>Static header</span>
+            <span>Removes a scroll-to-top round trip every time risk context is needed</span>
+            <span>&nbsp;</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 — Reflection -->
+    <section class="project-section outcomes-section">
+      <div class="section-content">
+        <span class="section-kicker">04 — Reflection</span>
+        <h2>What I'd do differently with more room</h2>
+
+        <div class="outcome-block">
+          <div class="learning-list">
+            <div class="learning-item"><p><strong>Watching a screenshare found problems a heuristic pass wouldn't have.</strong> None of these would've shown up on a checklist — they only became visible by watching two people work and noticing where they slowed down.</p></div>
+            <div class="learning-item"><p><strong>This wasn't a redesign, and that constraint shaped every decision.</strong> The brief was to fix what was costing time, not rethink the flow — co-owning the design system made that easy to work inside rather than around.</p></div>
+            <div class="learning-item"><p><strong>Contrast validation came after the fact, not before it.</strong> WCAG 2.2 ratios are documented in the color system now — checking them should've been part of choosing the palette originally.</p></div>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -58,6 +540,7 @@
     <p>&copy; 2025 Lakshmi Pratap. All rights reserved.</p>
   </footer>
 
-  <script src="placeholder.js"></script>
+  <script src="cx-review.js?v=1"></script>
+  <script src="../comment-widget.js"></script>
 </body>
 </html>

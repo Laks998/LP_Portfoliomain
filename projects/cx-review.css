@@ -100,7 +100,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: var(--shadow-sm);
   transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
 }
 
@@ -220,7 +219,6 @@ body {
   margin-left: auto;
   margin-right: auto;
   border-radius: 0;
-  box-shadow: 0 10px 40px rgba(20, 18, 16, 0.1);
   overflow: hidden;
   transition: none !important;
   animation: none !important;
@@ -433,7 +431,6 @@ p:last-child {
   border: 1px solid var(--card-border);
   border-radius: 0;
   overflow: hidden;
-  box-shadow: var(--shadow-sm);
 }
 
 .bridge-header,
@@ -554,7 +551,7 @@ p:last-child {
 }
 
 .solution-image-wrapper {
-  margin: 3rem 0;
+  margin: 5rem 0;
   text-align: center;
 }
 
@@ -562,7 +559,6 @@ p:last-child {
   width: 100%;
   max-width: 100%;
   border-radius: 0;
-  box-shadow: 0 10px 40px rgba(20, 18, 16, 0.1);
   transition: transform 0.3s ease;
   cursor: zoom-in;
 }
@@ -586,6 +582,14 @@ p:last-child {
   .solution-image:focus-visible {
     transform: none;
   }
+}
+
+.solution-video {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  border-radius: 0;
+  background: #100f0e;
 }
 
 .solution-images-grid {
@@ -654,9 +658,7 @@ p:last-child {
 }
 
 .decision-content {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+  display: block;
 }
 
 .decision-section {
@@ -729,13 +731,13 @@ p:last-child {
 
 /* Method detail (used for design-system reference subsections) */
 .method-detail {
-  margin-top: 4.5rem;
-  padding-top: 3rem;
+  margin-top: 6.5rem;
+  padding-top: 4rem;
   border-top: 1px solid var(--card-border);
 }
 
 .method-detail:first-of-type {
-  margin-top: 4.5rem;
+  margin-top: 6.5rem;
 }
 
 .method-detail h3 {
@@ -776,7 +778,6 @@ p:last-child {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: 0;
-  box-shadow: var(--shadow-sm);
   transition: all 0.3s ease;
 }
 
@@ -784,7 +785,6 @@ p:last-child {
   background: var(--card-hover-bg);
   border-color: var(--accent);
   transform: translateY(-3px);
-  box-shadow: var(--shadow-md);
 }
 
 .outcome-card-num {
@@ -807,6 +807,85 @@ p:last-child {
   color: var(--muted);
 }
 
+.outcome-card-stat {
+  margin-top: 1.1rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--card-border);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.outcome-card-tag {
+  margin-top: 1.1rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--card-border);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.stat-ring {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  flex-shrink: 0;
+}
+
+.stat-ring svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+  overflow: visible;
+}
+
+.stat-ring-track {
+  fill: none;
+  stroke: var(--card-border);
+  stroke-width: 6;
+}
+
+.stat-ring-fill {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 6;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.stat-ring-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.stat-ring-number {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.stat-ring-unit {
+  font-size: 0.6rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 0.15rem;
+}
+
+.stat-ring-caption {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1.4;
+}
+
 .learning-list {
   display: flex;
   flex-direction: column;
@@ -819,7 +898,6 @@ p:last-child {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: 0;
-  box-shadow: var(--shadow-sm);
 }
 
 .learning-item p {
@@ -863,7 +941,6 @@ p:last-child {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: var(--shadow-sm);
   transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
 }
 
@@ -918,7 +995,6 @@ p:last-child {
   max-width: 90vw;
   max-height: 88vh;
   border-radius: 0;
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
   cursor: zoom-out;
   transform: scale(0.96);
   transition: transform 0.25s ease;
@@ -1262,4 +1338,719 @@ p:last-child {
   font-weight: 700;
   color: var(--muted);
   margin-bottom: 0.5rem;
+}
+
+/* Also-worked-on mini grid — three small boxes near the top summarizing
+   adjacent feature work, deliberately light on text: a heading and one
+   line each, nothing more. */
+.other-work-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin: 1.25rem 0 3rem;
+}
+
+.other-work-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-top: 3px solid var(--accent);
+  padding: 1.5rem;
+}
+
+.other-work-card h4 {
+  font-size: 0.9rem;
+  margin-bottom: 0.6rem;
+  color: var(--text);
+}
+
+.other-work-card p {
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--muted);
+  margin-bottom: 0;
+}
+
+.other-work-card .solution-image-wrapper {
+  margin: 1rem 0 1.25rem;
+}
+
+@media (max-width: 768px) {
+  .other-work-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Media placeholder — a clearly labeled dashed-border slot standing in
+   for an image or video not yet added, so the page reads intentionally
+   rather than showing a broken image icon. The type label says what's
+   needed; the description says exactly what it should show. */
+.media-placeholder {
+  border: 1.5px dashed var(--card-border);
+  background: var(--card-hover-bg);
+  padding: 2.5rem 2rem;
+  text-align: center;
+  margin: 2.25rem 0;
+}
+
+.media-placeholder-type {
+  display: block;
+  font-size: 0.7rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+
+.media-placeholder-desc {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--muted);
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* Inline flow diagram — real SVG, not a placeholder, so it stays
+   crisp and theme-consistent (colors reference the same CSS
+   variables as the rest of the page). */
+.flow-diagram-wrapper {
+  margin: 2.5rem 0;
+  max-width: 620px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.flow-diagram {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Spaced-list — a looser-gap variant of .method-bullets for lists
+   where each point needs more room to breathe. */
+.method-bullets.spaced-list {
+  gap: 1.1rem;
+}
+
+/* Centered quote — a single overheard line set apart and centered,
+   distinct from .session-quote which is left-border/inline within
+   a paragraph flow. */
+.centered-quote {
+  text-align: center;
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--text);
+  max-width: 560px;
+  margin: 1.5rem auto 3.5rem;
+  line-height: 1.6;
+}
+
+/* Section tag list — compact pills naming the individual review
+   sections, so a six-item list reads as a scan, not a sentence. */
+.section-tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 0 0 2rem;
+}
+
+.section-tag {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  padding: 0.45rem 0.95rem;
+  font-size: 0.82rem;
+  color: var(--text);
+  border-radius: 0;
+}
+
+/* Old vs New image comparison — same pattern used on the Sportscove
+   case study for Home screen / Coaches list / Coach profile, ported
+   here so solutions built out later can use real before/after images. */
+.onboarding-flow-images {
+  display: flex;
+  gap: clamp(2rem, 8vw, 12rem);
+  justify-content: center;
+  align-items: center;
+  margin: 2.5rem 0;
+}
+
+.flow-image-item {
+  flex: 0 1 340px;
+  min-width: 0;
+}
+
+.flow-image-item.is-compact {
+  flex-basis: 280px;
+}
+
+.flow-image-item .solution-image-wrapper {
+  margin: 0;
+  max-width: 340px;
+}
+
+.flow-image-label {
+  text-align: center;
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+
+.flow-image-label.new {
+  color: var(--accent);
+}
+
+@media (max-width: 768px) {
+  .onboarding-flow-images {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .flow-image-item {
+    flex: none;
+    width: 100%;
+    max-width: 340px;
+  }
+}
+
+/* Small caption above a paired/grid image, used when two screenshots
+   need a one-line label but aren't an old/new comparison */
+.mini-image-label {
+  font-size: 0.72rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--muted);
+  margin-bottom: 0.75rem;
+}
+
+/* Cost-time block — bullets on the left, a single "old screen" video
+   slot fit on the right, so the list of frictions and its visual
+   evidence sit side by side instead of stacked. Video gets more of
+   the row than the text (1.8fr vs 1fr) and is now vertically centered
+   against the text column instead of top-aligned. */
+.cost-time-block {
+  display: flex;
+  gap: 2.5rem;
+  align-items: center;
+  margin: 2.25rem 0;
+}
+
+.cost-time-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.cost-time-text .risk-subheading {
+  margin-top: 0;
+}
+
+.cost-time-video {
+  flex: 1.8;
+  min-width: 0;
+}
+
+.cost-time-video .mini-image-label {
+  text-align: left;
+}
+
+@media (max-width: 768px) {
+  .cost-time-block {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+/* Flat image modifiers — for images that sit next to each other as
+   plain diagrams rather than polished UI screenshots, so they don't
+   carry the drop-shadow that .solution-image uses for real screens. */
+.solution-image.no-shadow {
+  box-shadow: none;
+}
+
+.size-compact {
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.solution-image-wrapper:has(.size-compact) {
+  margin: 2rem 0;
+}
+
+/* Sub-headings for a labeled diagram sitting under a main Issue
+   heading (e.g. "Review page logic") — deliberately smaller than
+   h3 so they read as a caption for what follows, not a new topic. */
+.section-subhead {
+  font-size: 1.02rem;
+  font-weight: 700;
+  letter-spacing: -0.1px;
+  color: var(--text);
+  margin-top: 2.75rem;
+  margin-bottom: 0.6rem;
+}
+
+.section-subhead-note {
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: var(--muted);
+  margin-bottom: 3rem;
+}
+
+/* =====================================================================
+   Moved in from the page's inline <style> block (was in the HTML head).
+   These compact the default outcome-card so it can carry either a
+   stat-ring (time-cost cards, Issue 1) or a tag (Issues 2-4), and
+   fix the version-compare image row further down. Declared after the
+   base .outcome-card / .outcome-cards rules above, so no !important
+   is needed — later same-specificity rules win in the cascade.
+   ===================================================================== */
+
+.outcome-cards {
+  gap: 12px;
+}
+
+.outcome-card {
+  padding: 18px 20px;
+}
+
+.outcome-card h4 {
+  font-size: 15px;
+  margin: 0 0 6px;
+  line-height: 1.3;
+}
+
+.outcome-card p {
+  font-size: 13px;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.outcome-card:has(.outcome-card-stat) {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.outcome-card-text {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.outcome-card-stat {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+  flex-shrink: 0;
+  gap: 10px;
+}
+
+.stat-ring {
+  width: 56px;
+  height: 56px;
+}
+
+.stat-ring-number {
+  font-size: 16px;
+}
+
+.stat-ring-unit {
+  font-size: 9px;
+}
+
+.stat-ring-caption {
+  font-size: 12px;
+}
+
+.outcome-card-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--decision-bg);
+  border: 1px solid var(--decision-border);
+  border-radius: 0;
+  padding: 4px 10px;
+  margin-top: 10px;
+}
+
+.outcome-card-tag i {
+  font-size: 12px;
+}
+
+/* Timeline version-compare row (Fix 01) — was three inline-styled
+   divs; now a real component. .version-compare-item .solution-image-
+   wrapper is two classes deep, so it naturally out-specifies the base
+   .solution-image-wrapper (5rem top/bottom margin meant for full
+   standalone screenshots) without needing !important — it collapses
+   down to margin: 0 instead, same rhythm as the rest of Fix 01. */
+.version-compare-row {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.version-compare-item {
+  flex: 0 0 auto;
+  max-width: 100%;
+}
+
+.version-compare-item .solution-image-wrapper {
+  display: inline-block;
+  margin: 0;
+}
+
+.version-compare-item .solution-image {
+  height: 120px;
+  width: auto;
+  max-width: 100%;
+  display: block;
+}
+
+/* Shared caption style for a single line of small centered text under
+   a media item — used under the version-compare images and the PDF
+   before/after videos. */
+.media-caption {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin: 0.5rem 0 0;
+  letter-spacing: 0.02em;
+}
+
+/* =====================================================================
+   Mobile responsiveness pass — targeted tweaks for the components
+   added above, layered on top of the base system's existing 768px /
+   480px breakpoints rather than replacing them.
+   ===================================================================== */
+
+@media (max-width: 768px) {
+  .method-detail {
+    margin-top: 4rem;
+    padding-top: 2.5rem;
+  }
+
+  .method-detail:first-of-type {
+    margin-top: 4rem;
+  }
+
+  .section-subhead {
+    margin-top: 2rem;
+  }
+
+  .section-subhead-note {
+    margin-bottom: 2rem;
+  }
+
+  .centered-quote {
+    font-size: 1rem;
+    margin: 1.25rem auto 2.5rem;
+  }
+
+  .version-compare-item .solution-image {
+    height: 96px;
+  }
+
+  .outcome-card-tag {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .outcome-card:has(.outcome-card-stat) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .stat-ring {
+    width: 48px;
+    height: 48px;
+  }
+
+  .stat-ring-number {
+    font-size: 14px;
+  }
+
+  .version-compare-row {
+    gap: 1rem;
+  }
+
+  .version-compare-item .solution-image {
+    height: 78px;
+  }
+
+  .other-work-card {
+    padding: 1.25rem;
+  }
+
+  .session-quote,
+  .centered-quote {
+    font-size: 0.95rem;
+  }
+
+  .risk-subheading {
+    margin-top: 1.75rem;
+  }
+}
+
+/* =====================================================================
+   Fix 02 case-study visuals — lightweight step-flow, two-column
+   compare, and mini-timeline components used to show the "first
+   attempt" interaction, the recorded-vs-actual mismatch that caused
+   it to fail, the two use-case scenarios, and the final state logic,
+   without relying on real screenshots for every beat.
+   ===================================================================== */
+
+.flow-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 2.25rem 0;
+}
+
+.flow-step {
+  border: 1px solid var(--card-border);
+  background: var(--card-bg);
+  padding: 0.85rem 1.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text);
+  text-align: center;
+}
+
+.flow-step.is-accent {
+  border-color: var(--accent);
+  background: var(--decision-bg);
+  color: var(--accent);
+}
+
+.flow-arrow {
+  font-size: 1.1rem;
+  color: var(--muted);
+  flex-shrink: 0;
+}
+
+.flow-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 1.5rem 0;
+}
+
+.flow-column .flow-step {
+  width: 100%;
+  max-width: 260px;
+}
+
+.flow-arrow-down {
+  font-size: 0.78rem;
+  letter-spacing: 0.3px;
+  color: var(--muted);
+}
+
+.compare-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem;
+  margin: 2.25rem 0;
+}
+
+.compare-grid.is-boxed {
+  padding: 1.75rem;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  gap: 2rem;
+}
+
+.compare-col-label {
+  font-size: 0.7rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--muted);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.compare-col-caption {
+  font-size: 0.82rem;
+  color: var(--muted);
+  text-align: center;
+  margin-top: 0.75rem;
+  margin-bottom: 0;
+  line-height: 1.5;
+}
+
+.timeline-mini {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.timeline-mini li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  font-size: 0.85rem;
+}
+
+.timeline-mini-time {
+  color: var(--muted);
+  width: 68px;
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.timeline-mini-icon {
+  width: 18px;
+  flex-shrink: 0;
+  font-weight: 700;
+  text-align: center;
+}
+
+.timeline-mini-icon.success { color: var(--success); }
+.timeline-mini-icon.danger { color: var(--danger); }
+.timeline-mini-icon.edit { color: var(--accent); }
+.timeline-mini-icon.pending { color: var(--muted); }
+
+.timeline-mini-text {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.timeline-mini-sub {
+  display: block;
+  color: var(--muted);
+  font-weight: 400;
+  font-size: 0.78rem;
+  margin-top: 0.15rem;
+}
+
+@media (max-width: 768px) {
+  .compare-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .compare-grid.is-boxed {
+    padding: 1.5rem;
+  }
+
+  .flow-step {
+    padding: 0.7rem 1.1rem;
+    font-size: 0.8rem;
+  }
+
+  .flow-row {
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .flow-row {
+    flex-direction: column;
+  }
+
+  .flow-arrow {
+    transform: rotate(90deg);
+  }
+
+  .timeline-mini-time {
+    width: 58px;
+    font-size: 0.78rem;
+  }
+}
+
+/* Diagram frame — bordered card wrapping a single static diagram
+   image (used for the Fix 02 timeline comparisons), same visual
+   weight as .compare-grid.is-boxed but for one image instead of
+   live two-column markup. */
+.diagram-frame {
+  border: 1px solid var(--card-border);
+  background: var(--card-bg);
+  padding: 1.75rem;
+  margin: 2.25rem 0;
+}
+
+.diagram-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .diagram-frame {
+    padding: 1.25rem;
+  }
+}
+
+/* Impact checklist — green boxed chips at the end of each Fix, each
+   one a short sentence confirming a specific pain point (named in
+   that Issue's outcome-card-tags) is resolved, with a checkmark
+   inside the box. */
+.impact-check {
+  margin-top: 3rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--card-border);
+}
+
+.impact-check-label {
+  display: block;
+  font-size: 0.7rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+
+.impact-check-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.impact-check-item {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  background: var(--success-bg);
+  border: 1px solid var(--success-border);
+  color: var(--text);
+  padding: 0.75rem 1rem;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  flex: 1 1 240px;
+  max-width: 320px;
+}
+
+.impact-check-tick {
+  color: var(--success);
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.45;
+  flex-shrink: 0;
+}
+
+@media (max-width: 480px) {
+  .impact-check-item {
+    flex: 1 1 100%;
+    max-width: 100%;
+    font-size: 0.8rem;
+  }
 }
