@@ -775,15 +775,16 @@ p:last-child {
 
 .outcome-card {
   padding: 1.75rem;
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
+  background: var(--danger-bg);
+  border: 1px solid var(--danger-border);
+  border-left: 3px solid var(--danger);
   border-radius: 0;
   transition: all 0.3s ease;
 }
 
 .outcome-card:hover {
-  background: var(--card-hover-bg);
-  border-color: var(--accent);
+  background: rgba(178, 56, 66, 0.14);
+  border-color: var(--danger);
   transform: translateY(-3px);
 }
 
@@ -1999,58 +2000,84 @@ p:last-child {
   }
 }
 
-/* Impact checklist — green boxed chips at the end of each Fix, each
-   one a short sentence confirming a specific pain point (named in
-   that Issue's outcome-card-tags) is resolved, with a checkmark
-   inside the box. */
-.impact-check {
+/* =====================================================================
+   Impact cards — the Solution-side counterpart to .outcome-card,
+   deliberately mirroring its size and structure (grid, padding,
+   left accent border) so a Fix's wins read with the same visual
+   weight as the Issue's costs above it, just in green instead of red.
+   ===================================================================== */
+.impact-subheading {
+  font-size: 0.78rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--success);
+  font-weight: 700;
   margin-top: 3rem;
+  margin-bottom: 1rem;
   padding-top: 1.75rem;
   border-top: 1px solid var(--card-border);
 }
 
-.impact-check-label {
-  display: block;
-  font-size: 0.7rem;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  font-weight: 700;
-  color: var(--muted);
-  margin-bottom: 1rem;
+.impact-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
 }
 
-.impact-check-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-}
-
-.impact-check-item {
-  display: inline-flex;
-  align-items: flex-start;
-  gap: 0.6rem;
+.impact-card {
+  padding: 1.25rem 1.5rem;
   background: var(--success-bg);
   border: 1px solid var(--success-border);
-  color: var(--text);
-  padding: 0.75rem 1rem;
-  font-size: 0.82rem;
-  line-height: 1.45;
-  flex: 1 1 240px;
-  max-width: 320px;
+  border-left: 3px solid var(--success);
+  border-radius: 0;
+  transition: all 0.3s ease;
 }
 
-.impact-check-tick {
+.impact-card:hover {
+  background: rgba(38, 140, 80, 0.14);
+  border-color: var(--success);
+  transform: translateY(-3px);
+}
+
+.impact-card h4 {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  margin-bottom: 0.6rem;
+  color: var(--text);
+}
+
+.impact-tick {
   color: var(--success);
-  font-size: 0.9rem;
   font-weight: 700;
-  line-height: 1.45;
   flex-shrink: 0;
 }
 
+.impact-card p {
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--muted);
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .impact-cards {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+}
+
 @media (max-width: 480px) {
-  .impact-check-item {
-    flex: 1 1 100%;
-    max-width: 100%;
-    font-size: 0.8rem;
+  .impact-card {
+    padding: 1.1rem 1.25rem;
+  }
+
+  .impact-card h4 {
+    font-size: 0.9rem;
+  }
+
+  .impact-card p {
+    font-size: 0.82rem;
   }
 }
