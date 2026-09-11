@@ -2081,3 +2081,27 @@ p:last-child {
     font-size: 0.82rem;
   }
 }
+
+/* Boxed section kickers — "01 — Issues" and "02 — Solutions" get a
+   colored badge treatment instead of plain text, so the two halves
+   of the case study announce themselves at a glance (red for the
+   problem, green for the fix), matching the outcome-card /
+   impact-card color language used throughout each section. */
+.section-kicker.is-issue,
+.section-kicker.is-solution {
+  display: inline-block;
+  padding: 0.4rem 0.9rem;
+  margin-bottom: 1.75rem;
+}
+
+.section-kicker.is-issue {
+  background: var(--danger-bg);
+  border: 1px solid var(--danger-border);
+  color: var(--danger);
+}
+
+.section-kicker.is-solution {
+  background: var(--success-bg);
+  border: 1px solid var(--success-border);
+  color: var(--success);
+}
