@@ -40,6 +40,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // ========== MOBILE QUICKLINKS COLLAPSE ==========
+  // "Creative Bits" / "Sketchbook" / "Illustrations" collapse behind a
+  // toggle on mobile. The row is visible by default in CSS; JS is what
+  // collapses it — so if this button/id pair is ever missing from the
+  // page (e.g. only style.css got updated, not index.html), the row just
+  // stays visible instead of disappearing with no way to open it.
+  const quicklinksToggle = document.getElementById('quicklinksToggle');
+  const quicklinkRow = document.getElementById('quicklinkRow');
+  if (quicklinksToggle && quicklinkRow) {
+    quicklinkRow.classList.add('is-collapsed');
+    quicklinksToggle.setAttribute('aria-expanded', 'false');
+    quicklinksToggle.addEventListener('click', () => {
+      const isCollapsed = quicklinkRow.classList.toggle('is-collapsed');
+      quicklinksToggle.setAttribute('aria-expanded', String(!isCollapsed));
+    });
+  }
+
   // ========== MAGNETIC TILT ON HOVER (desktop, fine pointer only) ==========
   // Project-carousel cards are excluded: they're driven by the carousel's
   // own transform (translate + scale) and fighting that with a tilt

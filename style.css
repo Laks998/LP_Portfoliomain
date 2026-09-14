@@ -42,24 +42,6 @@ a, button, .bento-card, .icon, .resume-btn {
   cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M3 2 L3 19 L7.5 15 L10 21.5 L12.5 20.5 L10 14.5 L16 14.5 Z' fill='%231B1A16' stroke='white' stroke-width='1.3' stroke-linejoin='round'/%3E%3C/svg%3E") 3 2, pointer;
 }
 
-/* ========== ANIMATED BACKGROUND SCENE — light, ball bounces off card edges + mouse (JS-driven) ========== */
-.bg-scene {
-  position: fixed;
-  inset: 0;
-  overflow: hidden;
-  background: var(--bg);
-  /* auto (not none): the mosaic canvas needs pointer events to track the
-     cursor. Cards still get hover/click normally — they paint on top of
-     this layer, so the browser hit-tests them first wherever they cover it. */
-  pointer-events: auto;
-  z-index: 0;
-}
-
-.bg-mosaic {
-  position: absolute;
-  inset: 0;
-}
-
 /* ========== VIBE-CODING NOTE ========== */
 .vibe-note {
   position: fixed;
@@ -365,6 +347,14 @@ a.bento-card:hover {
 
 .card-quicklink:hover .quick-link-arrow svg {
   transform: rotate(-45deg);
+}
+
+/* ========== MOBILE QUICKLINKS TOGGLE ========== */
+/* Hidden entirely on desktop — the quick links already show as their own
+   row of cards there. Only shown (and given the collapse behavior) inside
+   the mobile media query below. */
+.quicklinks-toggle {
+  display: none;
 }
 
 /* ========== PROJECT CARDS — inset image thumbnail, centered arrow, plain caption below ========== */
@@ -755,7 +745,55 @@ a.bento-card:hover .card-view-btn svg {
     justify-content: space-between;
   }
 
-  .quicklink-row { flex-direction: column; min-height: 0; gap: 10px; }
+  /* Quick links (Creative Bits / Sketchbook / Illustrations) are secondary
+     on mobile — collapsed behind a toggle by default so the main photo
+     card and the project cards are what you scroll straight into. */
+  .quicklinks-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0.9rem 1.1rem;
+    background: var(--white);
+    border: 1px solid rgba(27, 26, 22, 0.08);
+    border-radius: var(--radius);
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--ink);
+  }
+
+  .quicklinks-toggle-chevron {
+    width: 16px;
+    height: 16px;
+    flex: 0 0 auto;
+    transition: transform 0.3s ease;
+  }
+
+  .quicklinks-toggle[aria-expanded="true"] .quicklinks-toggle-chevron {
+    transform: rotate(180deg);
+  }
+
+  .quicklink-row {
+    flex-direction: column;
+    gap: 10px;
+    min-height: 0;
+    max-height: 600px;
+    opacity: 1;
+    overflow: visible;
+    pointer-events: auto;
+    transition: max-height 0.4s ease, opacity 0.3s ease, margin-top 0.3s ease;
+  }
+
+  .quicklink-row.is-collapsed {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    pointer-events: none;
+    margin-top: 0;
+  }
 
   /* Carousel becomes a plain stacked list on mobile — no rotation, all captions visible */
   .project-carousel {

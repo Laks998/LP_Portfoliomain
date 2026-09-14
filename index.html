@@ -27,11 +27,7 @@
 
 <body>
 
-  <!-- <div class="bg-scene" aria-hidden="true">
-    <div id="bgMosaic" class="bg-mosaic"></div>
-  </div>
-
-  <div class="vibe-note" aria-label="Site note">
+  <!-- <div class="vibe-note" aria-label="Site note">
     <svg class="vibe-note-circle" viewBox="0 0 200 200" aria-hidden="true">
       <path d="M101,14 C137,9 176,34 183,74 C190,115 168,156 129,179 C90,202 44,190 21,154 C-2,118 8,69 41,38 C61,19 81,17 101,14 Z" />
       <path d="M103,19 C141,17 173,41 179,77 C185,113 163,149 126,171 C89,193 49,181 26,149 C3,117 13,73 43,43 C63,23 83,19 103,19 Z" />
@@ -86,8 +82,16 @@
         </div>
       </div>
 
+      <!-- Mobile-only toggle: reveals the quick-link row below it. Hidden
+           entirely on desktop via CSS, where the quick links already show
+           as their own row of cards. -->
+      <button class="quicklinks-toggle" id="quicklinksToggle" type="button" aria-expanded="false" aria-controls="quicklinkRow">
+        <span>More of my work</span>
+        <svg class="quicklinks-toggle-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+      </button>
+
       <!-- Quick links: About Me, Sketchbook, Illustrations — each its own card -->
-      <div class="quicklink-row">
+      <div class="quicklink-row" id="quicklinkRow">
         <a class="bento-card card-quicklink card-quicklink-noavatar" href="about.html">
           <span class="quick-link-label">Creative Bits</span>
           <span class="quick-link-arrow" aria-hidden="true">
@@ -181,7 +185,6 @@
   </footer>
 
   <script src="script.js?v=13" defer></script>
-  <script type="module" src="character-waves-mount.js?v=1"></script>
 </body>
 
 </html>

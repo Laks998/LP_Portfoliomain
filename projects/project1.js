@@ -1,42 +1,38 @@
-// project0-enhanced.js - Comprehensive Quippy Extension Portfolio Page
+// project1.js - Quippy, using the same interaction patterns as the CX Portal
+// case study (cx-review.js): progress bar, native image-drag-ghost
+// prevention, smooth anchor scroll, scroll-triggered video autoplay (no
+// visible play button), and an accessible lightbox for screenshots.
+
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 document.addEventListener('DOMContentLoaded', () => {
-  
+
+  // Disable native browser image dragging site-wide.
+  document.querySelectorAll('img').forEach(img => {
+    img.setAttribute('draggable', 'false');
+  });
+
+  document.addEventListener('dragstart', (e) => {
+    if (e.target.tagName === 'IMG') {
+      e.preventDefault();
+    }
+  });
+
   // Progress bar
   const progressBar = document.querySelector('.read-progress');
-  
+
   function updateProgressBar() {
     const windowHeight = window.innerHeight;
     const documentHeight = document.documentElement.scrollHeight;
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     const scrollPercent = (scrollTop / (documentHeight - windowHeight)) * 100;
-    
+
     progressBar.style.width = `${scrollPercent}%`;
   }
-  
+
   window.addEventListener('scroll', updateProgressBar);
   updateProgressBar();
-  
-  // Section reveal animations
-  const sections = document.querySelectorAll('.project-section');
-  
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-  };
-  
-  const sectionObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, observerOptions);
-  
-  sections.forEach(section => {
-    sectionObserver.observe(section);
-  });
-  
+
   // Smooth scroll for anchor links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -44,318 +40,143 @@ document.addEventListener('DOMContentLoaded', () => {
       const target = document.querySelector(this.getAttribute('href'));
       if (target) {
         target.scrollIntoView({
-          behavior: 'smooth',
+          behavior: prefersReducedMotion ? 'auto' : 'smooth',
           block: 'start'
         });
       }
     });
   });
-  
-  // Parallax effect for hero image/video
-  const heroMedia = document.querySelector('.hero-image');
-  
-  if (heroMedia) {
-    window.addEventListener('scroll', () => {
-      const scrolled = window.pageYOffset;
-      if (scrolled < window.innerHeight) {
-        heroMedia.style.transform = `translateY(${scrolled * 0.3}px)`;
-        heroMedia.style.opacity = 1 - (scrolled / window.innerHeight) * 0.5;
-      }
-    });
-  }
-  
-  // Keyboard navigation
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowDown' || e.key === 'PageDown') {
-      e.preventDefault();
-      window.scrollBy({ top: window.innerHeight * 0.8, behavior: 'smooth' });
-    } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
-      e.preventDefault();
-      window.scrollBy({ top: -window.innerHeight * 0.8, behavior: 'smooth' });
-    } else if (e.key === 'Home') {
-      e.preventDefault();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else if (e.key === 'End') {
-      e.preventDefault();
-      window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' });
-    }
-  });
-  
-  // Add hover effects to images and videos
-  const mediaElements = document.querySelectorAll('.screen img, .screen-video, .userflow-image-wrapper img, .design-system-image img');
-  
-  mediaElements.forEach(media => {
-    media.addEventListener('mouseenter', () => {
-      media.style.transform = 'scale(1.02)';
-      media.style.transition = 'transform 0.3s ease';
-    });
-    
-    media.addEventListener('mouseleave', () => {
-      media.style.transform = 'scale(1)';
-    });
-  });
-  
-  // Insight cards animation
-  const insightCards = document.querySelectorAll('.insight-card');
-  
-  insightCards.forEach((card, index) => {
-    const cardObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-            entry.target.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-          }, index * 100);
-        }
-      });
-    }, { threshold: 0.3 });
-    
-    cardObserver.observe(card);
-  });
-  
-  // UX Principle cards animation
-  const uxPrinciples = document.querySelectorAll('.ux-principle');
-  
-  uxPrinciples.forEach((card, index) => {
-    const principleObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-            entry.target.style.transition = 'all 0.5s ease';
-          }, index * 80);
-        }
-      });
-    }, { threshold: 0.5 });
-    
-    principleObserver.observe(card);
-  });
-  
-  // Flow steps animation
-  const flowSteps = document.querySelectorAll('.flow-step');
-  
-  flowSteps.forEach((step, index) => {
-    const stepObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateX(0)';
-            entry.target.style.transition = 'all 0.5s ease';
-          }, index * 100);
-        }
-      });
-    }, { threshold: 0.5 });
-    
-    stepObserver.observe(step);
-  });
-  
-  // Feature cards detailed animation
-  const featureCardsDetailed = document.querySelectorAll('.feature-card-detailed');
-  
-  featureCardsDetailed.forEach((card, index) => {
-    const featureObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-            entry.target.style.transition = 'all 0.5s ease';
-          }, index * 60);
-        }
-      });
-    }, { threshold: 0.3 });
-    
-    featureObserver.observe(card);
-  });
-  
-  // Issues found animation
-  const foundIssues = document.querySelectorAll('.found-issue');
-  
-  foundIssues.forEach((issue, index) => {
-    const issueObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-            entry.target.style.transition = 'all 0.5s ease';
-          }, index * 100);
-        }
-      });
-    }, { threshold: 0.3 });
-    
-    issueObserver.observe(issue);
-  });
-  
-  // Learning items animation
-  const learningItems = document.querySelectorAll('.learning-item');
-  
-  learningItems.forEach((item, index) => {
-    const learningObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-            entry.target.style.transition = 'all 0.5s ease';
-          }, index * 80);
-        }
-      });
-    }, { threshold: 0.5 });
-    
-    learningObserver.observe(item);
-  });
-  
-  // Future items animation
-  const futureItems = document.querySelectorAll('.future-item');
-  
-  futureItems.forEach((item, index) => {
-    const futureObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-            entry.target.style.transition = 'all 0.5s ease';
-          }, index * 60);
-        }
-      });
-    }, { threshold: 0.5 });
-    
-    futureObserver.observe(item);
-  });
-  
-  // Metric cards animation
-  const metricCards = document.querySelectorAll('.metric-card');
-  
-  metricCards.forEach((card, index) => {
-    const metricObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'scale(1)';
-            entry.target.style.transition = 'all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)';
-          }, index * 100);
-        }
-      });
-    }, { threshold: 0.5 });
-    
-    metricObserver.observe(card);
-  });
-  
-  // Design decision cards fade in
-  const designDecisionCards = document.querySelectorAll('.design-decision-card');
-  
-  designDecisionCards.forEach((card) => {
-    const decisionObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-          entry.target.style.transition = 'all 0.6s ease';
-        }
-      });
-    }, { threshold: 0.3 });
-    
-    decisionObserver.observe(card);
-  });
-  
-  // IA items animation
-  const iaItems = document.querySelectorAll('.ia-item');
-  
-  iaItems.forEach((item, index) => {
-    const iaObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateX(0)';
-            entry.target.style.transition = 'all 0.5s ease';
-          }, index * 100);
-        }
-      });
-    }, { threshold: 0.5 });
-    
-    iaObserver.observe(item);
-  });
-  
-  // Tech items animation
-  const techItems = document.querySelectorAll('.tech-item');
-  
-  techItems.forEach((item, index) => {
-    const techObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateX(0)';
-            entry.target.style.transition = 'all 0.4s ease';
-          }, index * 60);
-        }
-      });
-    }, { threshold: 0.5 });
-    
-    techObserver.observe(item);
-  });
-  
-  // Design category fade in
-  const designCategories = document.querySelectorAll('.design-category');
-  
-  designCategories.forEach((category) => {
-    const categoryObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-          entry.target.style.transition = 'all 0.6s ease';
-        }
-      });
-    }, { threshold: 0.2 });
-    
-    categoryObserver.observe(category);
-  });
-  
-  // Reading time estimator
-  const content = document.querySelector('.project-content');
-  if (content) {
-    const text = content.innerText;
-    const wordCount = text.trim().split(/\s+/).length;
-    const readingTime = Math.ceil(wordCount / 200);
-    
-    console.log(`📖 Estimated reading time: ${readingTime} minutes`);
-    console.log(`📝 Word count: ${wordCount} words`);
-  }
-  
-  // Live badge pulse animation
+
+  // Live badge gentle pulse
   const liveBadge = document.querySelector('.live-badge');
-  if (liveBadge) {
+  if (liveBadge && !prefersReducedMotion) {
     setInterval(() => {
+      liveBadge.style.transition = 'transform 0.2s ease';
       liveBadge.style.transform = 'scale(1.05)';
       setTimeout(() => {
         liveBadge.style.transform = 'scale(1)';
       }, 200);
     }, 3000);
   }
-  
-  // CTA button hover effect
-  const ctaButton = document.querySelector('.cta-button');
-  if (ctaButton) {
-    ctaButton.addEventListener('mouseenter', () => {
-      ctaButton.style.transform = 'translateY(-4px) scale(1.05)';
+
+});
+
+// Scroll-triggered video autoplay — no play button shown; each video plays
+// automatically once it's in view and pauses once it scrolls back out.
+// Autoplaying video must be muted for browsers to allow it, so these play
+// silently and loop. Users with prefers-reduced-motion keep native controls
+// and no autoplay, so nothing moves on the page without their action.
+document.addEventListener('DOMContentLoaded', () => {
+
+  const inlineVideos = document.querySelectorAll('.solution-video, .hero-image[autoplay]');
+  if (inlineVideos.length === 0) return;
+
+  if (prefersReducedMotion) {
+    inlineVideos.forEach(video => {
+      video.removeAttribute('autoplay');
+      video.setAttribute('controls', '');
     });
-    
-    ctaButton.addEventListener('mouseleave', () => {
-      ctaButton.style.transform = 'translateY(0) scale(1)';
-    });
+    return;
   }
-  
-  console.log('✨ Quippy project page loaded');
-  console.log('🎯 Focus: Comprehensive UX/UI case study');
-  console.log('🎨 Status: Live on Chrome Web Store');
-  console.log('📊 Sections: Research, UX Strategy, Design System, Development, Testing, Impact');
-  
+
+  inlineVideos.forEach(video => {
+    if (video.classList.contains('solution-video')) {
+      video.removeAttribute('controls');
+    }
+    video.muted = true;
+    video.loop = true;
+    video.playsInline = true;
+  });
+
+  const videoObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const video = entry.target;
+      if (entry.isIntersecting) {
+        video.play().catch(() => {
+          // Autoplay can be blocked in some browsers/contexts; failing
+          // silently is fine here since nothing else depends on it.
+        });
+      } else {
+        video.pause();
+      }
+    });
+  }, { threshold: 0.5 });
+
+  inlineVideos.forEach(video => videoObserver.observe(video));
+
+});
+
+// Accessible lightbox — click, or Tab + Enter/Space, on any solution image
+// to view an enlarged version.
+document.addEventListener('DOMContentLoaded', () => {
+
+  const zoomableImages = document.querySelectorAll('.solution-image');
+  if (zoomableImages.length === 0) return;
+
+  zoomableImages.forEach(img => {
+    if (!img.hasAttribute('tabindex')) img.setAttribute('tabindex', '0');
+    img.setAttribute('role', 'button');
+    if (!img.hasAttribute('aria-label')) {
+      img.setAttribute('aria-label', `Enlarge image: ${img.alt || 'view larger'}`);
+    }
+  });
+
+  const overlay = document.createElement('div');
+  overlay.className = 'lightbox-overlay';
+  overlay.setAttribute('role', 'dialog');
+  overlay.setAttribute('aria-modal', 'true');
+  overlay.setAttribute('aria-label', 'Enlarged image viewer');
+  overlay.innerHTML = '<img src="" alt=""><button class="lightbox-close" aria-label="Close enlarged image">&times;</button>';
+  document.body.appendChild(overlay);
+
+  const overlayImg = overlay.querySelector('img');
+  const closeBtn = overlay.querySelector('.lightbox-close');
+  let lastFocusedElement = null;
+
+  function openLightbox(src, alt, triggerEl) {
+    lastFocusedElement = triggerEl || document.activeElement;
+    overlayImg.src = src;
+    overlayImg.alt = alt || '';
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+  }
+
+  function closeLightbox() {
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+    if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
+      lastFocusedElement.focus();
+    }
+    lastFocusedElement = null;
+  }
+
+  zoomableImages.forEach(img => {
+    img.addEventListener('click', () => openLightbox(img.src, img.alt, img));
+    img.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+        e.preventDefault();
+        openLightbox(img.src, img.alt, img);
+      }
+    });
+  });
+
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay || e.target === closeBtn) closeLightbox();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (!overlay.classList.contains('active')) return;
+
+    if (e.key === 'Escape') {
+      closeLightbox();
+      return;
+    }
+
+    if (e.key === 'Tab') {
+      e.preventDefault();
+      closeBtn.focus();
+    }
+  });
+
 });
