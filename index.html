@@ -5,58 +5,65 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lakshmi Pratap — Product Designer</title>
-  <link rel="stylesheet" href="style.css?v=13" />
-  <link href="https://fonts.googleapis.com/css2?family=Migra&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/png" href="assets/logo.png">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
-  <link href="https://api.fonts.coollabs.io/css2?family=Satoshi:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <meta name="description" content="Lakshmi Pratap — Product Designer based in Toronto, Canada. B2B SaaS and marketplace product work. Pick what matters and see where it shows up." />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Lakshmi Pratap — Product Designer" />
+  <meta property="og:description" content="Product Designer in Toronto, Canada. Pick what matters and see exactly where it shows up in my work." />
+  <meta property="og:image" content="https://lakshmipratap.com/assets/og-card.png" />
+  <meta property="og:url" content="https://lakshmipratap.com" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Lakshmi Pratap — Product Designer" />
+  <meta name="twitter:image" content="https://lakshmipratap.com/assets/og-card.png" />
+
+  <link rel="stylesheet" href="style.css?v=21" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <script type="importmap">
-  {
-    "imports": {
-      "react": "https://esm.sh/react@18.3.1",
-      "react/jsx-runtime": "https://esm.sh/react@18.3.1/jsx-runtime",
-      "react-dom/client": "https://esm.sh/react-dom@18.3.1/client"
-    }
-  }
-  </script>
+  <link rel="icon" type="image/png" href="assets/logo.png">
 </head>
 
 <body>
 
-  <!-- <div class="vibe-note" aria-label="Site note">
-    <svg class="vibe-note-circle" viewBox="0 0 200 200" aria-hidden="true">
-      <path d="M101,14 C137,9 176,34 183,74 C190,115 168,156 129,179 C90,202 44,190 21,154 C-2,118 8,69 41,38 C61,19 81,17 101,14 Z" />
-      <path d="M103,19 C141,17 173,41 179,77 C185,113 163,149 126,171 C89,193 49,181 26,149 C3,117 13,73 43,43 C63,23 83,19 103,19 Z" />
-    </svg>
-    <div class="vibe-note-inner">
-      <span class="vibe-line">Hi, I'm still revamping this<br>site. Please excuse the<br>visual inconsistencies</span>
-      <span class="vibe-line">I'm vibe-coding it and<br>I'm trying to fix it<br>ASAP</span>
-    </div>
-  </div>-->
+  <a class="skip-link" href="#work">Skip to work</a>
 
-  <!-- BENTO GRID -->
-  <main class="bento-page">
+  <!-- ========== HERO — full viewport height ========== -->
+  <section class="hero">
 
-    <div class="hero-col">
-      <div class="bento-card card-hero">
-        <div class="card-media illustration-bg">
-          <div class="hero-logo">
-            <img src="assets/logo.png" alt="Lakshmi Pratap logo" />
-          </div>
-          <img src="assets/hello.svg" alt="Lakshmi Pratap waving" class="hero-portrait is-illustration" />
+    <nav class="hero-nav" aria-label="Primary">
+      <a class="hero-brand" href="index.html">Lakshmi Pratap</a>
+      <div class="hero-nav-links">
+        <a href="#work">Work</a>
+        <a href="about.html">About Me</a>
+        <a class="hero-resume" href="assets/LakshmiPratap_ProdectDes (1).pdf" target="_blank" rel="noopener noreferrer">Resume</a>
+      </div>
+    </nav>
+
+    <div class="hero-main">
+      <div class="hero-grid">
+
+        <div class="hero-left">
+          <h1 class="hero-name">
+            <span class="hero-name-word">Lakshmi</span>
+            <span class="hero-name-word hero-name-word-2">Pratap</span>
+          </h1>
+          <p class="hero-role">Product Designer</p>
+          <p class="hero-meta">Exp: 2 years &nbsp;·&nbsp; Toronto, Canada</p>
+          <p class="hero-edu">MSc in HCI &nbsp;·&nbsp; B.Arch</p>
         </div>
-        <div class="hero-caption">
-          <div class="hero-text">
-            <div class="hero-name">Lakshmi Pratap</div>
-            <div class="hero-role">Product Designer</div>
-          </div>
-          <div class="hero-actions">
-            <div class="hero-socials">
-              <a href="https://www.instagram.com/your_username/" target="_blank" class="icon" aria-label="Instagram">
+
+        <div class="hero-photo-frame">
+          <!-- Placeholder — replace src with a real photo. Using the
+               existing illustration here only so the layout isn't empty;
+               it is not part of the intended final design. -->
+          <img class="hero-photo" src="assets/hello.svg" alt="Portrait of Lakshmi Pratap" />
+        </div>
+
+        <div class="hero-right">
+          <p class="hero-quote">&ldquo;I work so that you have less figuring out and more just using it.&rdquo;</p>
+
+          <p class="hero-also">
+            Also me:
+             <a href="https://www.instagram.com/your_username/" target="_blank" class="icon" aria-label="Instagram">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
                   <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
@@ -76,115 +83,123 @@
                   <rect x="2" y="4" width="20" height="16" rx="2" />
                 </svg>
               </a>
-            </div>
-            <a class="resume-btn" href="assets/LakshmiPratap_ProdectDes (1).pdf" target="_blank" rel="noopener noreferrer">Resume</a>
+          </p>
+
+          <div class="hero-extra">
+            <span class="hero-extra-label">I also have a</span>
+            <a class="hero-extra-link" href="projects/project5.html"><span class="avatar-dot" aria-hidden="true"></span>Sketchbook</a>
+            <span class="hero-extra-amp" aria-hidden="true">&amp;</span>
+            <a class="hero-extra-link" href="projects/project6.html"><span class="avatar-dot" aria-hidden="true"></span>Illustrations</a>
           </div>
         </div>
-      </div>
 
-      <!-- Mobile-only toggle: reveals the quick-link row below it. Hidden
-           entirely on desktop via CSS, where the quick links already show
-           as their own row of cards. -->
-      <button class="quicklinks-toggle" id="quicklinksToggle" type="button" aria-expanded="false" aria-controls="quicklinkRow">
-        <span>More of my work</span>
-        <svg class="quicklinks-toggle-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
-      </button>
-
-      <!-- Quick links: About Me, Sketchbook, Illustrations — each its own card -->
-      <div class="quicklink-row" id="quicklinkRow">
-        <a class="bento-card card-quicklink card-quicklink-noavatar" href="about.html">
-          <span class="quick-link-label">Creative Bits</span>
-          <span class="quick-link-arrow" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg>
-          </span>
-        </a>
-
-        <a class="bento-card card-quicklink" href="projects/project5.html">
-          <span class="quick-link-avatar"><img src="assets/sketch1.JPG" alt="" /></span>
-          <span class="quick-link-label">Sketchbook</span>
-          <span class="quick-link-arrow" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg>
-          </span>
-        </a>
-
-        <a class="bento-card card-quicklink" href="projects/project6.html">
-          <span class="quick-link-avatar"><img src="assets/05project.png" alt="" /></span>
-          <span class="quick-link-label">Illustrations</span>
-          <span class="quick-link-arrow" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg>
-          </span>
-        </a>
       </div>
     </div>
 
-    <!-- Project carousel: cards rotate through main/top/mid/bottom slots (see script.js) -->
-    <div class="project-carousel" id="projectCarousel">
+    <a class="scroll-hint" href="#work" aria-label="Scroll to work">↓</a>
+  </section>
 
-      <a class="bento-card card-project" data-project="sportscove" href="projects/project0.html">
-        <div class="card-media">
-          <img src="assets/sportsdp.png" alt="Sportscove App" class="card-bg" />
-          <span class="card-view-btn" aria-hidden="true">
-            <span class="card-view-label">View</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg>
-          </span>
-        </div>
-        <div class="card-caption">
-          <h2 class="card-title">Rebuilding a Dual-Sided Marketplace for Launch</h2>
-          <p class="card-sub">Sportscove - Consultcraft - UX+UI</p>
-        </div>
-      </a>
+  <!-- ========== WORK — its own full section below the hero ========== -->
+  <main>
+    <section class="work" id="work">
+      <h2>Work</h2>
 
-      <a class="bento-card card-project" data-project="clearisk" href="projects/cx-review.html">
-        <div class="card-media">
-          <img src="assets/CLEARISK%20DP.png" alt="Clearisk CX Onboarding" class="card-bg" />
-          <span class="card-view-btn" aria-hidden="true">
-            <span class="card-view-label">View</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg>
-          </span>
-        </div>
-        <div class="card-caption">
-          <h2 class="card-title">Improving productivity in the onboarding review workflow</h2>
-          <p class="card-sub">CX(B2B SaaS) - Clearisk - UX+UI</p>
-        </div>
-      </a>
+      <div class="work-layout">
 
-      <a class="bento-card card-project" data-project="quippy" href="projects/project1.html">
-        <div class="card-media">
-          <img src="assets/QUIPPYdp.png" alt="Quippy" class="card-bg" />
-          <span class="card-view-btn" aria-hidden="true">
-            <span class="card-view-label">View</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg>
-          </span>
-        </div>
-        <div class="card-caption">
-          <h2 class="card-title">A Browser Extension to Make Everyday Text Lookups Instant</h2>
-          <p class="card-sub">Quippy - Self - Product Design</p>
-        </div>
-      </a>
+        <div class="keywords-panel">
+          <p class="keywords-intro">Please don't waste your time, I got you.</p>
 
-      <a class="bento-card card-project" data-project="vr" href="projects/project4.html">
-        <div class="card-media">
-          <img src="assets/VR DP.png" alt="VR Environment & Experience" class="card-bg" />
-          <span class="card-view-btn" aria-hidden="true">
-            <span class="card-view-label">View</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg>
-          </span>
-        </div>
-        <div class="card-caption">
-          <h2 class="card-title">VR Experience Designed to Induce Mind-Body Dualism</h2>
-          <p class="card-sub">VR - UoN - XR Design</p>
-        </div>
-      </a>
+          <div class="chip-group" id="chipGroup" hidden>
+            <!-- Populated by script.js from CAPABILITIES, so the chip set
+                 and evidence data can never drift apart. -->
+          </div>
 
-    </div>
+          <div class="requirements-field">
+            <label for="jdInput">Or tell me what you're looking for</label>
+            <textarea id="jdInput" rows="3" placeholder="Paste a few lines from the job posting, or just describe what you need…"></textarea>
+            <button type="button" class="btn-match" id="buildFromJd">Match my needs</button>
+          </div>
 
+          <p class="keywords-status" id="boardStatus" aria-live="polite">Nothing selected yet — pick what matters to you.</p>
+        </div>
+
+        <ol class="project-cards" id="projectCards">
+
+          <li class="project-card" data-project="clearisk">
+            <div class="project-thumb"><img src="assets/CLEARISK%20DP.png" alt="Clearisk CX onboarding review workflow" loading="lazy" /></div>
+            <div class="project-body">
+              <div class="project-card-head">
+                <h3>Improving productivity in the onboarding review workflow</h3>
+                <span class="project-match-label" hidden></span>
+              </div>
+              <ul class="capability-strip">
+                <li>B2B SaaS</li>
+                <li>Complex Workflows</li>
+              </ul>
+              <p class="project-proves">CX Portal, Clearisk</p>
+              <a class="project-link" href="projects/cx-review.html">View project →</a>
+            </div>
+          </li>
+
+          <li class="project-card" data-project="sportscove">
+            <div class="project-thumb"><img src="assets/sportsdp.png" alt="Sportscove app screens" loading="lazy" /></div>
+            <div class="project-body">
+              <div class="project-card-head">
+                <h3>Redesigning a dual-sided sports app to a successful launch</h3>
+                <span class="project-match-label" hidden></span>
+              </div>
+              <ul class="capability-strip">
+                <li>Marketplace</li>
+                <li>0→1</li>
+              </ul>
+              <p class="project-proves">Sportscove App, Consultcraft</p>
+              <a class="project-link" href="projects/project0.html">View project →</a>
+            </div>
+          </li>
+
+          <li class="project-card" data-project="quippy">
+            <div class="project-thumb"><img src="assets/QUIPPYdp.png" alt="Quippy browser extension" loading="lazy" /></div>
+            <div class="project-body">
+              <div class="project-card-head">
+                <h3>A browser extension to make your text look-ups instant</h3>
+                <span class="project-match-label" hidden></span>
+              </div>
+              <ul class="capability-strip">
+                <li>Independent</li>
+                <li>0→1</li>
+              </ul>
+              <p class="project-proves">Quippy (Chrome, Firefox)</p>
+              <a class="project-link" href="projects/project1.html">View project →</a>
+            </div>
+          </li>
+
+          <li class="project-card project-card-light" data-project="vr">
+            <div class="project-thumb"><img src="assets/VR DP.png" alt="VR environment and experience" loading="lazy" /></div>
+            <div class="project-body">
+              <div class="project-card-head">
+                <h3>Inducing mind-body dualism using Virtual Reality</h3>
+                <span class="project-match-label" hidden></span>
+              </div>
+              <ul class="capability-strip">
+                <li>Research</li>
+                <li>Prototyping</li>
+              </ul>
+              <p class="project-proves">Reearch, University of Nottingham</p>
+              <a class="project-link" href="projects/project4.html">View project →</a>
+            </div>
+          </li>
+
+        </ol>
+      </div>
+    </section>
   </main>
 
-  <footer class="site-footer">
-    <p class="mini-credit">&copy; 2025 Lakshmi Pratap</p>
+  <footer class="fun-footer">
+    <p class="fun-quote">Somewhere between architecture and pixels, this happened.</p>
+    <p class="fun-credit">Designed by Lakshmi Pratap · Built with Claude Code</p>
   </footer>
 
-  <script src="script.js?v=13" defer></script>
+  <script src="script.js?v=21" defer></script>
 </body>
 
 </html>
