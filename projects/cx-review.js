@@ -226,3 +226,44 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 });
+
+// Side navigation — highlights whichever section(s) are currently
+// crossing the vertical center of the viewport. A parent link (e.g.
+// Issues) and its matching sub-link (e.g. Issue 2) can be active at
+// the same time, since the sub-section sits inside the parent one.
+// Reuses the same href="#id" links the smooth-scroll handler above
+// already makes clickable, so this only needs to handle highlighting.
+document.addEventListener('DOMContentLoaded', () => {
+
+  const sideNavLinks = document.querySelectorAll('.side-nav-link, .side-nav-sublink');
+  if (sideNavLinks.length === 0) return;
+
+  const sections = Array.from(sideNavLinks)
+    .map(link => document.querySelector(link.getAttribute('href')))
+    .filter(Boolean);
+
+  if (sections.length === 0) return;
+
+  const activeIds = new Set();
+
+  const updateActiveLinks = () => {
+    sideNavLinks.forEach(link => {
+      const id = link.getAttribute('href').slice(1);
+      link.classList.toggle('is-active', activeIds.has(id));
+    });
+  };
+
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        activeIds.add(entry.target.id);
+      } else {
+        activeIds.delete(entry.target.id);
+      }
+    });
+    updateActiveLinks();
+  }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+
+  sections.forEach(section => sectionObserver.observe(section));
+
+});

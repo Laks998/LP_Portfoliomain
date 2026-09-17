@@ -1,562 +1,512 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>V-Ed App | Lakshmi Pratap</title>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="project3.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>V-Ed App — Lakshmi Pratap</title>
+  <link rel="stylesheet" href="project3.css?v=4" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="../assets/logo.png">
 </head>
-
 <body>
-  
-  <!-- Progress bar -->
+
   <div class="read-progress"></div>
+  <a href="../index.html#work" class="back-link">
+    <span class="back-link-arrow" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    </span>
+    <span>Go Back To Home</span>
+  </a>
 
-  <!-- Back link -->
-  <a href="../index.html#work" class="back-link">← Back to Work</a>
+  <nav class="side-nav" aria-label="Section navigation">
+    <div class="side-nav-item">
+      <a href="#overview" class="side-nav-link"><span class="side-nav-num">01</span><span class="side-nav-label">Overview</span></a>
+    </div>
+    <div class="side-nav-item">
+      <a href="#background" class="side-nav-link"><span class="side-nav-num">02</span><span class="side-nav-label">Background</span></a>
+      <div class="side-nav-sublist">
+        <a href="#issues" class="side-nav-sublink"><span class="side-nav-sublink-num">1</span>Issues I hit</a>
+        <a href="#process" class="side-nav-sublink"><span class="side-nav-sublink-num">2</span>Design process</a>
+      </div>
+    </div>
+    <div class="side-nav-item">
+      <a href="#research" class="side-nav-link"><span class="side-nav-num">03</span><span class="side-nav-label">Research</span></a>
+      <div class="side-nav-sublist">
+        <a href="#secondary-research" class="side-nav-sublink"><span class="side-nav-sublink-num">1</span>Secondary research</a>
+        <a href="#problem-statement" class="side-nav-sublink"><span class="side-nav-sublink-num">2</span>Problem statement</a>
+      </div>
+    </div>
+    <div class="side-nav-item">
+      <a href="#virtual-volunteering" class="side-nav-link"><span class="side-nav-num">04</span><span class="side-nav-label">Ideas</span></a>
+      <div class="side-nav-sublist">
+        <a href="#virtual-volunteering" class="side-nav-sublink"><span class="side-nav-sublink-num">1</span>Virtual volunteering</a>
+        <a href="#solutions" class="side-nav-sublink"><span class="side-nav-sublink-num">2</span>Solution ideas</a>
+      </div>
+    </div>
+    <div class="side-nav-item">
+      <a href="#user-study" class="side-nav-link"><span class="side-nav-num">05</span><span class="side-nav-label">Primary research</span></a>
+      <div class="side-nav-sublist">
+        <a href="#user-study" class="side-nav-sublink"><span class="side-nav-sublink-num">1</span>User study</a>
+        <a href="#interviews" class="side-nav-sublink"><span class="side-nav-sublink-num">2</span>Interviews</a>
+        <a href="#analysis" class="side-nav-sublink"><span class="side-nav-sublink-num">3</span>Analysis</a>
+      </div>
+    </div>
+    <div class="side-nav-item">
+      <a href="#journey" class="side-nav-link"><span class="side-nav-num">06</span><span class="side-nav-label">User journey</span></a>
+    </div>
+    <div class="side-nav-item">
+      <a href="#user-flow" class="side-nav-link"><span class="side-nav-num">07</span><span class="side-nav-label">User flow</span></a>
+    </div>
+    <div class="side-nav-item">
+      <a href="#wireframes" class="side-nav-link"><span class="side-nav-num">08</span><span class="side-nav-label">Design</span></a>
+      <div class="side-nav-sublist">
+        <a href="#wireframes" class="side-nav-sublink"><span class="side-nav-sublink-num">1</span>Wireframes &amp; UI</a>
+        <a href="#screens" class="side-nav-sublink"><span class="side-nav-sublink-num">2</span>Final screens</a>
+        <a href="#testing" class="side-nav-sublink"><span class="side-nav-sublink-num">3</span>Testing</a>
+      </div>
+    </div>
+    <div class="side-nav-item">
+      <a href="#conclusion" class="side-nav-link"><span class="side-nav-num">09</span><span class="side-nav-label">Conclusion</span></a>
+    </div>
+  </nav>
 
-  <!-- Main content -->
-  <main class="project-content">
+  <main class="project-content" data-project="v-ed">
 
     <!-- Hero -->
     <section class="project-hero-section">
       <div class="hero-content">
-        <div class="project-meta">Personal Project · 4 Weeks</div>
+        <div class="project-meta">PERSONAL PROJECT · 4 WEEKS</div>
         <h1 class="project-title">V-Ed App</h1>
-        <p class="project-subtitle">A volunteering app connecting volunteers and NGOs to bridge the educational gap for underprivileged children</p>
+        <p class="project-subtitle">A volunteering app connecting volunteers and NGOs, to bridge the educational gap for underprivileged children.</p>
         <div class="hero-image-wrapper">
-          <img src="../assets/03project.jpg" alt="V-Ed App overview" class="hero-image">
+          <img src="../assets/03project.jpg" alt="V-Ed App overview screen" class="hero-image">
         </div>
       </div>
     </section>
 
     <!-- Overview -->
-    <section class="project-section overview-section">
+    <section class="project-section context-section" id="overview">
       <div class="section-content">
-        <h2>Project Vision</h2>
-        <p>
-          The goal of this app is to create an education platform that connects volunteers to teach, with NGOs 
-          in need of teachers, as well as to promote volunteering by making the app simple, accessible, and fun.
-        </p>
+        <span class="section-kicker">Project vision</span>
+        <h2>An education platform built to make volunteering easy</h2>
+        <p>The goal of this app is to create an education platform that connects volunteers to teach, with NGOs in need of teachers, as well as to promote volunteering by making the app simple, accessible, and fun.</p>
+
         <div class="project-details">
-          <div class="detail-item">
-            <div class="detail-label">Role</div>
-            <div class="detail-value">UX Research, UX Design, UI Design, Prototyping</div>
-          </div>
-          <div class="detail-item">
-            <div class="detail-label">Timeline</div>
-            <div class="detail-value">4 Weeks</div>
-          </div>
-          <div class="detail-item">
-            <div class="detail-label">Project Type</div>
-            <div class="detail-value">Personal Case Study</div>
-          </div>
-          <div class="detail-item">
-            <div class="detail-label">Platform</div>
-            <div class="detail-value">Mobile Application (iOS & Android)</div>
-          </div>
+          <div class="detail-item"><div class="detail-label">Role</div><div class="detail-value">UX Research, UX Design, UI Design, Prototyping</div></div>
+          <div class="detail-item"><div class="detail-label">Timeline</div><div class="detail-value">4 weeks</div></div>
+          <div class="detail-item"><div class="detail-label">Platform</div><div class="detail-value">Mobile application (iOS &amp; Android)</div></div>
         </div>
       </div>
     </section>
 
     <!-- Background -->
-    <section class="project-section background-section">
+    <section class="project-section" id="background">
       <div class="section-content">
-        <h2>A Little Background</h2>
-        <p>
-          After finishing my architecture degree, I changed my career path to UX/UI design and have been working 
-          from home since 2021 due to the Pandemic. Since I had free time outside of work and on weekends, I wanted 
-          to volunteer to teach because I enjoyed my experience volunteering for AIESEC to teach kids when I was in 
-          college. So, naturally, I began looking for volunteering organisations to teach online in order to sign up 
-          for one, and I expected a lot of options and an easy process — but to my surprise, I could not find any 
-          until I found one through a friend on Instagram.
-        </p>
-      </div>
-    </section>
+        <span class="section-kicker">A little background</span>
+        <h2>A little background</h2>
+        <p>After finishing my architecture degree, I changed my career path to UX/UI design and have been working from home since 2021 due to the pandemic. Since I had free time outside of work and on weekends, I wanted to volunteer to teach because I enjoyed my experience volunteering for AIESEC to teach kids when I was in college. So, naturally, I began looking for volunteering organizations to teach online in order to sign up for one, and I expected a lot of options and an easy process — but to my surprise, I could not find any until I found one through a friend on Instagram.</p>
 
-    <!-- Issues -->
-    <section class="project-section issues-section">
-      <div class="section-content">
-        <h2>Issues I Encountered</h2>
-        <div class="issue-list">
-          <div class="issue-item">
-            <div class="issue-marker">01</div>
-            <div class="issue-content">
-              <p>The websites showed 'Current cohorts full, needs to wait another month or few more months to join'</p>
+        <div class="method-detail" id="issues" style="margin-top: 4rem;">
+          <span class="section-kicker">Issues I encountered</span>
+          <h3>Issues I encountered</h3>
+          <div class="issue-list">
+            <div class="issue-item">
+              <div class="issue-marker">01</div>
+              <div class="issue-content"><p>The websites showed "Current cohort full, needs to wait another month or few more months to join."</p></div>
+            </div>
+            <div class="issue-item">
+              <div class="issue-marker">02</div>
+              <div class="issue-content"><p>Complicated sign-up processes that discouraged sign-ups.</p></div>
+            </div>
+            <div class="issue-item">
+              <div class="issue-marker">03</div>
+              <div class="issue-content"><p>No responses after filling out forms.</p></div>
+            </div>
+            <div class="issue-item">
+              <div class="issue-marker">04</div>
+              <div class="issue-content"><p>Non-functional or broken websites.</p></div>
+            </div>
+            <div class="issue-item">
+              <div class="issue-marker">05</div>
+              <div class="issue-content"><p>Websites that weren't catchy and hence, were not making people want to sign up.</p></div>
+            </div>
+            <div class="issue-item">
+              <div class="issue-marker">06</div>
+              <div class="issue-content"><p>Volunteers often did not know job details until after signup.</p></div>
             </div>
           </div>
-          <div class="issue-item">
-            <div class="issue-marker">02</div>
-            <div class="issue-content">
-              <p>Complicated signup processes that discouraged sign-ups</p>
-            </div>
-          </div>
-          <div class="issue-item">
-            <div class="issue-marker">03</div>
-            <div class="issue-content">
-              <p>No responses after filling out forms</p>
-            </div>
-          </div>
-          <div class="issue-item">
-            <div class="issue-marker">04</div>
-            <div class="issue-content">
-              <p>Non-functional or broken websites</p>
-            </div>
-          </div>
-          <div class="issue-item">
-            <div class="issue-marker">05</div>
-            <div class="issue-content">
-              <p>Websites that weren't catchy and hence, were not making people want to sign up</p>
-            </div>
-          </div>
-          <div class="issue-item">
-            <div class="issue-marker">06</div>
-            <div class="issue-content">
-              <p>Volunteers often did not know job details until after signup</p>
-            </div>
-          </div>
-        </div>
-        <p class="insight-text">
-          This means that there must be more graduates, students, homemakers and working professionals like me who 
-          want to volunteer to teach but couldn't find a good platform that is simple and engaging. This also means 
-          that maybe a kid could have got a good teacher but couldn't because of the lack of accessibility and motivation.
-        </p>
-      </div>
-    </section>
 
-    <!-- Design Process -->
-    <section class="project-section process-overview-section">
-      <div class="section-content">
-        <h2>Design Process</h2>
-        <p>
-          My approach followed a user-centered methodology to address the volunteering gap within the given timeline.
-        </p>
-      </div>
-      
-      <div class="process-flow">
-        <div class="process-stage">
-          <div class="stage-number">01</div>
-          <div class="stage-content">
-            <h3>Problem Statement</h3>
-            <div class="stage-activities">
-              <span class="activity">Issue identification</span>
-              <span class="activity">Context research</span>
-            </div>
-          </div>
-          <div class="stage-arrow">→</div>
+          
         </div>
 
-        <div class="process-stage">
-          <div class="stage-number">02</div>
-          <div class="stage-content">
-            <h3>Secondary Research</h3>
-            <div class="stage-activities">
-              <span class="activity">Market analysis</span>
-              <span class="activity">Domain learning</span>
-              <span class="activity">Competitor research</span>
-            </div>
-          </div>
-          <div class="stage-arrow">→</div>
-        </div>
+        <div class="method-detail" id="process">
+          <span class="section-kicker">Design process</span>
+          <h3>Design process</h3>
+          <p>My approach followed a user-centered methodology to address the volunteering gap within the given timeline.</p>
 
-        <div class="process-stage">
-          <div class="stage-number">03</div>
-          <div class="stage-content">
-            <h3>Primary Research</h3>
-            <div class="stage-activities">
-              <span class="activity">User interviews</span>
-              <span class="activity">NGO insights</span>
-              <span class="activity">Volunteer insights</span>
+          <div class="process-track">
+            <div class="process-track-step">
+              <div class="process-track-marker">01</div>
+              <h5 class="process-track-title">Problem Statement</h5>
+              <p class="process-track-desc">Issue identification, context research</p>
             </div>
-          </div>
-          <div class="stage-arrow">→</div>
-        </div>
-
-        <div class="process-stage">
-          <div class="stage-number">04</div>
-          <div class="stage-content">
-            <h3>Research Analysis</h3>
-            <div class="stage-activities">
-              <span class="activity">Synthesis</span>
-              <span class="activity">Problem prioritization</span>
-              <span class="activity">Solution ideation</span>
+            <div class="process-track-step">
+              <div class="process-track-marker">02</div>
+              <h5 class="process-track-title">Secondary Research</h5>
+              <p class="process-track-desc">Market analysis, domain learning, competitor research</p>
             </div>
-          </div>
-          <div class="stage-arrow">→</div>
-        </div>
-
-        <div class="process-stage">
-          <div class="stage-number">05</div>
-          <div class="stage-content">
-            <h3>Design & Test</h3>
-            <div class="stage-activities">
-              <span class="activity">Wireframing</span>
-              <span class="activity">UI design</span>
-              <span class="activity">Usability testing</span>
-              <span class="activity">Iteration</span>
+            <div class="process-track-step">
+              <div class="process-track-marker">03</div>
+              <h5 class="process-track-title">Primary Research</h5>
+              <p class="process-track-desc">User interviews, NGO insights, volunteer insights</p>
+            </div>
+            <div class="process-track-step">
+              <div class="process-track-marker">04</div>
+              <h5 class="process-track-title">Research Analysis</h5>
+              <p class="process-track-desc">Synthesis, problem prioritization, solution ideation</p>
+            </div>
+            <div class="process-track-step">
+              <div class="process-track-marker">05</div>
+              <h5 class="process-track-title">Design &amp; Test</h5>
+              <p class="process-track-desc">Wireframing, UI design, usability testing, iteration</p>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Secondary Research -->
-    <section class="project-section research-section">
+    <!-- Research -->
+    <section class="project-section research-section" id="research">
       <div class="section-content">
-        <h2>Looking Around to Find the Need for a Solution</h2>
-        <p>
-          While the economy of India has appeared to have boomed over the last 25 years, most growth has been in 
-          urban areas where large multinational corporations base their software development headquarters. In spite 
-          of all this, by the government estimate, out of 200 million children in the age group of 6 to 14 in India, 
-          around 59 million do not attend school. Of the rest, who are currently in school, four out of every 10 
-          children beginning to attend school will drop out before completing their primary school education.
-        </p>
-        <p>
-          A study in 2002 found that these conditions in India are partially due to educational poverty, defined as 
-          the deprivation of basic education and literacy. Only 6% of the income from poor households is invested in 
-          education and health, while the majority is spent on other necessities such as food and fuel.
-        </p>
-        <p>
-          In an article by India Today, there is some light on why education is still a distant dream, for many 
-          underprivileged children in the country. According to the report, one of the primary reasons is an 
-          "extreme shortage of qualified and dedicated teachers."
-        </p>
-      </div>
-    </section>
+        <span class="section-kicker">Research</span>
+        <h2>Looking around to find the need for a solution</h2>
 
-    <!-- Problem Statements -->
-    <section class="project-section problem-statements-section">
-      <div class="section-content">
-        <h2>Problem Statement</h2>
-        <div class="statement-wrapper">
-          <h3>For Volunteers</h3>
-          <div class="statement-image">
-            <img src="../assets/volunteer1.png" alt="Volunteer problem statement">
+        <div class="method-detail" id="secondary-research" style="margin-top: 0; padding-top: 0; border-top: none;">
+          <p>While the economy of India has appeared to have boomed over the last 25 years, most growth has been in urban areas where large multinational corporations base their software development headquarters. In spite of all this, by the government estimate, out of 200 million children in the age group of 6 to 14 in India, around 59 million do not attend school. Of the rest, who are currently in school, four out of every 10 children beginning to attend school will drop out before completing their primary school education.</p>
+
+          <div class="stat-box">
+            <div class="stat-box-number">59M</div>
+            <div class="stat-box-text">children aged 6–14 in India do not attend school, by government estimate — and 4 in 10 of those who do start will drop out before finishing primary school.</div>
           </div>
+
+          <p>A study in 2002 found that these conditions in India are partially due to educational poverty, defined as the deprivation of basic education and literacy. Only 6% of the income from poor households is invested in education and health, while the majority is spent on other necessities such as food and fuel.</p>
+          <p>In an article by India Today, there is some light on why education is still a distant dream for many underprivileged children in the country. According to the report, one of the primary reasons is an extreme shortage of qualified and dedicated teachers.</p>
         </div>
-        <div class="statement-wrapper">
-          <h3>For NGOs</h3>
-          <div class="statement-image">
-            <img src="../assets/ngo1.png" alt="NGO problem statement">
+
+        <div class="method-detail" id="problem-statement">
+          <span class="section-kicker">Problem statement</span>
+          <h3>Problem statement</h3>
+          <div>
+            <div class="statement-wrapper">
+              <h4>For Volunteers</h4>
+              <div class="statement-image">
+                <img src="../assets/volunteer1.png" alt="Volunteer problem statement">
+              </div>
+            </div>
+            <div class="statement-wrapper">
+              <h4>For NGOs</h4>
+              <div class="statement-image">
+                <img src="../assets/ngo1.png" alt="NGO problem statement">
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Virtual Volunteering -->
-    <section class="project-section virtual-section">
+    <!-- Virtual Volunteering & Solutions -->
+    <section class="project-section" id="virtual-volunteering">
       <div class="section-content">
         <div class="writing-image-wrapper">
-          <img src="../assets/writing.png" alt="Virtual volunteering concept">
+          <img src="../assets/writing.png" alt="Virtual volunteering concept: bringing volunteering organisations to people in their comfort">
         </div>
-      </div>
-    </section>
 
-    <!-- Benefits Section -->
-    <section class="project-section benefits-section">
-      <div class="section-content">
-        <h2>Virtual Volunteering</h2>
+        <span class="section-kicker">Virtual volunteering</span>
+        <h2>Virtual volunteering</h2>
+
         <div class="benefits-image-wrapper">
           <img src="../assets/image1.png" alt="Virtual volunteering benefits">
         </div>
-        <p>
-          Despite the fact that the pandemic caused a decline in volunteers owing to a variety of personal factors, 
-          it also gave rise to a new normal, remote, or virtual presence in different sectors. People have been 
-          participating in remote activities due to the multiple advantages, whether they are at job, school, or even 
-          volunteering.
-        </p>
-        <div class="benefits-grid">
-          <div class="benefits-column">
-            <h3>For Volunteers</h3>
-            <div class="benefit-list">
-              <div class="benefit-item">More time to volunteer</div>
-              <div class="benefit-item">Flexibility in scheduling, location, and level of involvement</div>
-              <div class="benefit-item">A unique outlet for skills or passions that aren't met by physical volunteering</div>
-              <div class="benefit-item">More positions for disabled or very remote volunteers</div>
-              <div class="benefit-item">Fulfilling education or career volunteer milestones</div>
-            </div>
+
+        <p>Despite the fact that the pandemic caused a decline in volunteers owing to a variety of personal factors, it also gave rise to a new normal — remote, or virtual, presence in different sectors. People have been participating in remote activities due to the multiple advantages, whether they are at job, school, or even volunteering.</p>
+
+        <div class="compare-grid is-boxed">
+          <div>
+            <div class="compare-col-label">For Volunteers</div>
+            <ul class="method-bullets spaced-list">
+              <li>More time to volunteer</li>
+              <li>Flexibility in scheduling, location, and level of involvement</li>
+              <li>A unique outlet for skills or passions that aren't met by physical volunteering</li>
+              <li>More positions for disabled or very remote volunteers</li>
+              <li>Fulfilling education or career volunteer milestones</li>
+            </ul>
           </div>
-          <div class="benefits-column">
-            <h3>For NGOs</h3>
-            <div class="benefit-list">
-              <div class="benefit-item">Increased access to more qualified volunteers</div>
-              <div class="benefit-item">More ways to save money on operating costs</div>
-              <div class="benefit-item">An easier way to access more data for your organization</div>
-              <div class="benefit-item">Professional-level communications, branding, and outreach</div>
-            </div>
+          <div>
+            <div class="compare-col-label">For NGOs</div>
+            <ul class="method-bullets spaced-list">
+              <li>Increased access to more qualified volunteers</li>
+              <li>More ways to save money on operating costs</li>
+              <li>An easier way to access more data for your organization</li>
+              <li>Professional-level communications, branding, and outreach</li>
+            </ul>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- Solution Ideas -->
-    <section class="project-section solutions-section">
-      <div class="section-content">
-        <h2>Solutions That Can Change Some Lives</h2>
-        <p>
-          I devised potential solutions to the problems that I could deduce from the assumptions. However, these 
-          would have to be validated later through qualitative and quantitative analysis.
-        </p>
-        <div class="solution-list">
-          <div class="solution-item">An app that connects numerous NGOs and volunteers where the volunteers can view the opportunities posted by NGOs and decide based on their skill set and preference</div>
-          <div class="solution-item">Volunteers can sign up and select subjects and other preferences</div>
-          <div class="solution-item">To determine eligibility, a basic test could be made compulsory to complete the profile and to start volunteering for any organisation</div>
-          <div class="solution-item">Volunteer organisations with requirements and keywords for easy discovery</div>
-          <div class="solution-item">Option to upload live as well as pre-recorded classes for volunteer time flexibility</div>
-          <div class="solution-item">Few small brain training games for volunteers on different topics to keep them entertained as well as help in personal knowledge enhancement</div>
-          <div class="solution-item">Community networking to stay connected with other volunteers and activities</div>
-          <div class="solution-item">Rewards for volunteers with certificates based on completing a certain number of sessions</div>
-        </div>
-      </div>
-    </section>
+        <div class="method-detail" id="solutions">
+          <span class="section-kicker">Solutions that can change some lives</span>
+          <h3>Solutions that can change some lives</h3>
+          <p>I devised potential solutions to the problems that I could deduce from the assumptions. However, these would have to be validated later through qualitative and quantitative analysis.</p>
 
-    <!-- Note -->
-    <section class="project-section note-section">
-      <div class="section-content">
-        <div class="note-box">
-          <h3>Note</h3>
-          <p>Due to time constraints, I have designed the experience and interface for the volunteers' part of the app only.</p>
-          <p>Now, there are way more aspects to consider for this area itself but I have done a very surface-level study as of now and have come up with this solution. Although, I am sure developing this idea will help a lot of children break out of the poverty cycle that is running in their families for years.</p>
-        </div>
-      </div>
-    </section>
+          <ul class="method-bullets spaced-list">
+            <li>An app that connects numerous NGOs and volunteers, where volunteers can view opportunities posted by NGOs and decide based on their skill set and preference</li>
+            <li>Volunteers can sign up and select subjects and other preferences</li>
+            <li>To determine eligibility, a basic test could be made compulsory to complete the profile and to start volunteering for any organization</li>
+            <li>Volunteer organizations with requirements and keywords for easy discovery</li>
+            <li>Option to upload live as well as pre-recorded classes for volunteer time flexibility</li>
+            <li>A few small brain-training games for volunteers on different topics, to keep them entertained as well as help in personal knowledge enhancement</li>
+            <li>Community networking to stay connected with other volunteers and activities</li>
+            <li>Rewards for volunteers with certificates based on completing a certain number of sessions</li>
+          </ul>
 
-    <!-- User Study -->
-    <section class="project-section user-study-section">
-      <div class="section-content">
-        <h2>User Study</h2>
-        <p>
-          This particular app would require a user study on three potential user groups: NGO, non-volunteer and volunteer.
-        </p>
-        <div class="user-study-image">
-          <img src="../assets/large-image.png" alt="User study breakdown">
+          <div class="constraint-callout">
+            <div class="constraint-label">Note</div>
+            <p>Due to time constraints, I designed the experience and interface for the volunteers' part of the app only. There are way more aspects to consider for this area itself, and I've done a very surface-level study as of now — but I'm sure developing this idea further would help a lot of children break out of the poverty cycle that's run in their families for years.</p>
+          </div>
         </div>
+
       </div>
     </section>
 
     <!-- Primary Research -->
-    <section class="project-section interviews-section">
+    <section class="project-section" id="user-study">
       <div class="section-content">
-        <h2>User Interviews</h2>
-        <p>
-          I interviewed a manager and leader at U&I (the NGO I volunteer with), several current volunteers, and a 
-          few non-volunteers to understand motivations, blockers and pain points.
-        </p>
-        
-        <div class="insights-grid">
-          <div class="insight-card">
-            <h3>NGO Insights</h3>
-            <div class="insight-list">
-              <div class="insight-point">Recruiting volunteers is hard — outreach is mostly through college campaigns which are limited and require permissions</div>
-              <div class="insight-point">Volunteers often leave due to time constraints or long recruitment processes</div>
-              <div class="insight-point">Lack of motivating factors or recognition reduces volunteer retention</div>
+        <span class="section-kicker">User study</span>
+        <h2>User study</h2>
+        <p>This particular app would require a user study on three potential user groups: NGO, non-volunteer, and volunteer.</p>
+
+        <div class="user-study-image">
+          <img src="../assets/large-image.png" alt="User study breakdown">
+        </div>
+
+        <div class="method-detail" id="interviews">
+          <span class="section-kicker">User interviews</span>
+          <h3>User interviews</h3>
+          <p>I interviewed a manager and leader at U&amp;I (the NGO I volunteer with), several current volunteers, and a few non-volunteers to understand motivations, blockers, and pain points.</p>
+
+          <div class="other-work-grid">
+            <div class="other-work-card">
+              <h4>NGO Insights</h4>
+              <span class="session-quote">"Recruiting volunteers is hard — most of our outreach is through college campaigns, and that takes permissions and time."</span>
+              <p>Recruiting volunteers is hard — outreach is mostly through college campaigns, which are limited and require permissions. Volunteers often leave due to time constraints or long recruitment processes, and a lack of motivating factors or recognition reduces volunteer retention.</p>
             </div>
-          </div>
-          
-          <div class="insight-card">
-            <h3>Volunteer Insights</h3>
-            <div class="insight-list">
-              <div class="insight-point">Most volunteers found opportunities through friends or social media stories</div>
-              <div class="insight-point">Many enjoyed remote teaching because it removed travel friction and still felt rewarding</div>
-              <div class="insight-point">Long sign-up processes almost made some volunteers give up</div>
+            <div class="other-work-card">
+              <h4>Volunteer Insights</h4>
+              <span class="session-quote">"The sign-up process was so long, I almost gave up before I even started."</span>
+              <p>Most volunteers found opportunities through friends or social media stories. Many enjoyed remote teaching because it removed travel friction and still felt rewarding, though long sign-up processes almost made some volunteers give up.</p>
             </div>
-          </div>
-          
-          <div class="insight-card">
-            <h3>Non-Volunteer Insights</h3>
-            <div class="insight-list">
-              <div class="insight-point">Many are not comfortable with technology or don't know where to look for volunteering roles</div>
-              <div class="insight-point">Time commitment is a major concern — short, flexible opportunities are more attractive</div>
-              <div class="insight-point">Some would volunteer only if the commitment was small or better recognized</div>
+            <div class="other-work-card">
+              <h4>Non-Volunteer Insights</h4>
+              <span class="session-quote">"I just don't know where to look — if it were quick and flexible, I'd sign up."</span>
+              <p>Many aren't comfortable with technology or don't know where to look for volunteering roles. Time commitment is a major concern — short, flexible opportunities are more attractive, and some would volunteer only if the commitment was small or better recognized.</p>
             </div>
           </div>
         </div>
+
+        <div class="method-detail" id="analysis">
+          <span class="section-kicker">Research analysis &amp; solutions</span>
+          <h3>Research analysis &amp; solutions</h3>
+          <p>Synthesizing secondary and primary research revealed clear opportunity areas: reduce onboarding friction, provide clear status updates, offer flexible class formats, and create motivating recognition for volunteers.</p>
+
+          <div class="compare-grid is-boxed">
+            <div>
+              <div class="compare-col-label">Key problems to solve</div>
+              <ul class="method-bullets spaced-list">
+                <li>Long/complex sign-up causing drop-offs</li>
+                <li>No clear feedback or status after application</li>
+                <li>Restricted discovery of opportunities</li>
+                <li>Low recognition and motivation for volunteers</li>
+              </ul>
+            </div>
+            <div>
+              <div class="compare-col-label">Proposed solutions</div>
+              <ul class="method-bullets spaced-list">
+                <li>An app that aggregates NGO opportunities and lets volunteers filter by subject, timing, and preferences</li>
+                <li>Allow volunteers to upload live and pre-recorded classes to support flexible volunteering</li>
+                <li>Introduce a basic eligibility/test step to ensure minimal preparedness and simplify matching</li>
+                <li>Implement community features and gamified micro-tasks to keep volunteers engaged</li>
+                <li>Provide rewards and certificates after completing a certain number of sessions to improve retention</li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- Research Analysis -->
-    <section class="project-section analysis-section">
+    <!-- User Journey -->
+    <section class="project-section" id="journey">
       <div class="section-content">
-        <h2>Research Analysis & Solutions</h2>
-        <p>
-          Synthesising secondary and primary research revealed clear opportunity areas: reduce onboarding friction, 
-          provide clear status updates, offer flexible class formats, and create motivating recognition for volunteers.
-        </p>
-        
-        <h3>Key Problems to Solve</h3>
-        <div class="key-problems">
-          <div class="problem-card">Long/complex sign-up causing drop-offs</div>
-          <div class="problem-card">No clear feedback/status after application</div>
-          <div class="problem-card">Restricted discovery of opportunities</div>
-          <div class="problem-card">Low recognition and motivation for volunteers</div>
+        <span class="section-kicker">User journey</span>
+        <h2>What the journey looks like end to end</h2>
+        <p>Before moving into wireframes, I mapped the journey the research and proposed solutions pointed to — from a volunteer's first moment of intent, through sign-up, matching, and teaching, to the recognition that keeps them coming back.</p>
+
+        <div class="diagram-image-wrapper">
+          <img src="../assets/journeymapvolunteer.png" alt="User journey map from discovery through sign-up, matching, teaching, and recognition">
         </div>
-        
-        <h3>Proposed Solutions</h3>
-        <div class="proposed-solution-list">
-          <div class="proposed-item">Create an app that aggregates NGO opportunities and lets volunteers filter by subject, timing and preferences</div>
-          <div class="proposed-item">Allow volunteers to upload live and pre-recorded classes to support flexible volunteering</div>
-          <div class="proposed-item">Introduce a basic eligibility/test step to ensure minimal preparedness and simplify matching</div>
-          <div class="proposed-item">Implement community features and gamified micro-tasks or games to keep volunteers engaged</div>
-          <div class="proposed-item">Provide rewards and certificates after completing a certain number of sessions to improve retention</div>
-        </div>
+
+        <p>Mapping it this way made the priority order clearer: the first two stages — discovery and sign-up — were exactly where my own attempt to volunteer had broken down, which is why the wireframes below put the most weight there.</p>
       </div>
     </section>
 
-    <!-- Design Decisions -->
-    <section class="project-section design-decisions-section">
+    <!-- User Flow -->
+    <section class="project-section" id="user-flow">
       <div class="section-content">
-        <h2>Wireframes & Final UI</h2>
-        <p>
-          I produced hand-sketched wireframes and iterated multiple times to determine content hierarchy, card layout 
-          types, and a thumb-friendly tab bar. The final interface uses clear card patterns for opportunities, an 
-          accessible tab bar (3–5 primary items), and an onboarding flow that reduces friction.
-        </p>
-        
-        <h3>Design Decisions</h3>
-        <div class="decision-grid">
-          <div class="decision-item">
-            <h4>Content Priority & Placement</h4>
-            <p>High-priority content is placed for quick scanning</p>
-          </div>
-          <div class="decision-item">
-            <h4>Thumb Zone</h4>
-            <p>Main CTAs and navigation are within easy reach on mobile</p>
-          </div>
-          <div class="decision-item">
-            <h4>Cards</h4>
-            <p>Different card types for opportunity lists, matches and classes with clear CTA hierarchy</p>
-          </div>
-          <div class="decision-item">
-            <h4>Tab Bar</h4>
-            <p>Limited to 3–5 items to reduce cognitive load</p>
-          </div>
+        <span class="section-kicker">User flow</span>
+        <h2>Sign-up &amp; application flow</h2>
+        <p>The flow below is the one the wireframes were actually built against — sign-up through to an applied, trackable status, with the matching decision made explicit instead of silent.</p>
+
+        <div class="diagram-image-wrapper">
+          <img src="../assets/volunteeruserflow.png" alt="Sign-up and application user flow, including the matched/pending decision branch">
         </div>
-        
-        <div class="visual-info">
-          <p><strong>Color Palette:</strong> Vibrant yet subtle to keep the app lively but professional</p>
-          <p><strong>Typeface:</strong> Helvetica for clarity and neutral readability</p>
-        </div>
+
+        <p>The important shift from the original problem is the "Matched?" step: instead of a silent gap between applying and hearing back, the status is always visible on both branches — which is exactly what the usability testing feedback below asked for.</p>
       </div>
     </section>
 
-    <!-- Final Screens -->
-    <section class="project-section final-screens-section">
-      <h2>Final Screens</h2>
-      
-      <div class="screen-gallery">
-        <div class="screen">
-          <h3>Login & Sign Up</h3>
-          <img src="../assets/FS1.png" alt="Login and Sign Up screens">
-        </div>
-        
-        <div class="screen">
-          <h3>Home</h3>
-          <img src="../assets/FS2.png" alt="Home screen">
-        </div>
-        
-        <div class="screen">
-          <h3>Opportunities</h3>
-          <img src="../assets/FS3.png" alt="Opportunities screen">
-        </div>
-        
-        <div class="screen">
-          <h3>Opportunity Details</h3>
-          <img src="../assets/FS4.png" alt="Opportunity details screen">
-        </div>
-        
-        <div class="screen">
-          <h3>Games</h3>
-          <img src="../assets/FSG.png" alt="Games screen">
-        </div>
-        
-        <div class="screen">
-          <h3>Donate & Community</h3>
-          <img src="../assets/FS5.png" alt="Donate and Community screens">
-        </div>
-        
-        <div class="screen">
-          <h3>Notifications</h3>
-          <img src="../assets/FS6.png" alt="Notification screen">
-        </div>
-        
-        <div class="screen">
-          <h3>Classes</h3>
-          <img src="../assets/FS7.png" alt="Classes screen 1">
-          <img src="../assets/FS8.png" alt="Classes screen 2">
-        </div>
-        
-        <div class="screen">
-          <h3>Messages & Profile</h3>
-          <img src="../assets/FS9.png" alt="Messages and Profile screens">
-        </div>
-      </div>
-    </section>
-
-    <!-- Testing -->
-    <section class="project-section testing-section">
+    <!-- Design -->
+    <section class="project-section" id="wireframes">
       <div class="section-content">
-        <h2>Testing & Refining</h2>
-        <p>
-          I ran usability tests with three participants who completed key tasks (apply for an opportunity, view status, 
-          cancel an upcoming session). Key feedback and changes:
-        </p>
-        
-        <div class="feedback-list">
-          <div class="feedback-item">
-            <div class="feedback-quote">"After applying, we don't know where the status of the application will be seen"</div>
-            <div class="feedback-action">→ Added a clear "Status / Classes" pathway and a button next to Applied to take the user to the Classes screen</div>
+        <span class="section-kicker">Wireframes &amp; final UI</span>
+        <h2>Wireframes &amp; final UI</h2>
+        <p>I produced hand-sketched wireframes and iterated multiple times to determine content hierarchy, card layout types, and a thumb-friendly tab bar. The final interface uses clear card patterns for opportunities, an accessible tab bar (3–5 primary items), and an onboarding flow that reduces friction.</p>
+
+        <div class="diagram-image-wrapper">
+          <img src="../assets/wireframevol.png" alt="Hand-sketched wireframes for the volunteer sign-up and opportunity flows">
+        </div>
+
+        <h4 class="section-subhead">Design decisions</h4>
+        <ul class="method-bullets spaced-list">
+          <li><strong>Content priority &amp; placement:</strong> high-priority content is placed for quick scanning.</li>
+          <li><strong>Thumb zone:</strong> main CTAs and navigation are within easy reach on mobile.</li>
+          <li><strong>Cards:</strong> different card types for opportunity lists, matches, and classes, with clear CTA hierarchy.</li>
+          <li><strong>Tab bar:</strong> limited to 3–5 items to reduce cognitive load.</li>
+        </ul>
+
+        <div class="constraint-callout">
+          <div class="constraint-label">Visual direction</div>
+          <p><strong>Color palette:</strong> vibrant yet subtle, to keep the app lively but professional. <strong>Typeface:</strong> Helvetica, for clarity and neutral readability.</p>
+        </div>
+
+        <div class="method-detail" id="screens">
+          <span class="section-kicker">Final screens</span>
+          <h3>Final screens</h3>
+
+          <h4 class="section-subhead">Login &amp; Sign Up</h4>
+          <div class="screen">
+            <img src="../assets/FS2.png" alt="Login and Sign Up screens">
           </div>
-          
-          <div class="feedback-item">
-            <div class="feedback-quote">"How will I know if I am cancelling the next class or the entire job?"</div>
-            <div class="feedback-action">→ Changed copy to confirm: "Are you sure you want to cancel the upcoming class?"</div>
+
+          <h4 class="section-subhead">Home</h4>
+          <div class="screen">
+            <img src="../assets/FS1.png" alt="Home screen">
           </div>
-          
-          <div class="feedback-item">
-            <div class="feedback-quote">"The matches option should be first so that we know if there are any matches first..."</div>
-            <div class="feedback-action">→ Moved Matches to be the default landing content so users see matches first</div>
+
+          <h4 class="section-subhead">Opportunities</h4>
+          <div class="screen">
+            <img src="../assets/FS3.png" alt="Opportunities screen">
+          </div>
+
+          <h4 class="section-subhead">Opportunity Details</h4>
+          <div class="screen">
+            <img src="../assets/FS4.png" alt="Opportunity details screen">
+          </div>
+
+          <h4 class="section-subhead">Games</h4>
+          <div class="screen">
+            <img src="../assets/FS5.png" alt="Games screen">
+          </div>
+
+          <h4 class="section-subhead">Donate &amp; Community</h4>
+          <div class="screen">
+            <img src="../assets/FS6.png" alt="Donate and Community screens">
+          </div>
+
+          <h4 class="section-subhead">Notifications</h4>
+          <div class="screen">
+            <img src="../assets/FS7.png" alt="Notification screen">
+          </div>
+
+          <h4 class="section-subhead">Classes</h4>
+          <div class="screen">
+            <img src="../assets/FS8.png" alt="Classes screen, view 2">
+          </div>
+
+          <h4 class="section-subhead" style="margin-top: 3rem;">Messages &amp; Profile</h4>
+          <div class="screen">
+            <img src="../assets/FSG.png" alt="Messages and Profile screens">
           </div>
         </div>
-        
-        <p>
-          After these refinements the flows were clearer and users felt more confident applying and managing their 
-          volunteer commitments.
-        </p>
+
+        <div class="method-detail" id="testing">
+          <span class="section-kicker">Testing &amp; refining</span>
+          <h3>Testing &amp; refining</h3>
+          <p>I ran usability tests with three participants who completed key tasks (apply for an opportunity, view status, cancel an upcoming session). Key feedback and changes:</p>
+
+          <div class="learning-list">
+            <div class="learning-item">
+              <span class="session-quote">"After applying, we don't know where the status of the application will be seen."</span>
+              <p>→ Added a clear "Status / Classes" pathway and a button next to Applied to take the user to the Classes screen.</p>
+              <div class="learning-item-image">
+                <img src="../assets/itr1.png" alt="Status pathway shown after applying">
+              </div>
+            </div>
+            <div class="learning-item">
+              <span class="session-quote">"How will I know if I am cancelling the next class or the entire job?"</span>
+              <p>→ Changed copy to confirm: "Are you sure you want to cancel the upcoming class?"</p>
+              <div class="learning-item-image">
+                <img src="../assets/itr2.png" alt="Updated cancellation confirmation copy">
+              </div>
+            </div>
+            <div class="learning-item">
+              <span class="session-quote">"The matches option should be first so that we know if there are any matches first..."</span>
+              <p>→ Moved Matches to be the default landing content so users see matches first.</p>
+              <div class="learning-item-image">
+                <img src="../assets/itr3.png" alt="Matches shown as the default landing content">
+              </div>
+            </div>
+          </div>
+
+          <p>After these refinements the flows were clearer, and users felt more confident applying and managing their volunteer commitments.</p>
+        </div>
       </div>
     </section>
 
     <!-- Conclusion -->
-    <section class="project-section conclusion-section">
+    <section class="project-section outcomes-section" id="conclusion">
       <div class="section-content">
-        <h2>Notes & Next Steps</h2>
-        <p>
-          There are many additional product and research directions (NGO-facing workflows, admin dashboards, 
-          offline/low-bandwidth support, partnerships with colleges and corporates). This case study focused on an 
-          MVP for volunteer onboarding, matching, and flexible class delivery.
-        </p>
-        
+        <span class="section-kicker">Notes &amp; next steps</span>
+        <h2>Notes &amp; next steps</h2>
+        <p>There are many additional product and research directions — NGO-facing workflows, admin dashboards, offline/low-bandwidth support, partnerships with colleges and corporates. This case study focused on an MVP for volunteer onboarding, matching, and flexible class delivery.</p>
+
         <h3>Summary</h3>
-        <p>
-          The proposed V-Ed platform reduces friction, improves discoverability and recognition for volunteers, and 
-          adds flexible mechanisms (live + recorded classes) so more people can contribute to education access.
-        </p>
+        <p>The proposed V-Ed platform reduces friction, improves discoverability and recognition for volunteers, and adds flexible mechanisms (live + recorded classes) so more people can contribute to education access.</p>
       </div>
     </section>
 
   </main>
 
-  <!-- Bottom back link wrapper -->
   <div class="bottom-link-wrapper">
-    <a href="../index.html#work" class="footer-back-link">← Back to Work</a>
+    <a href="../index.html#work" class="footer-back-link">
+      <span class="back-link-arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      </span>
+      <span>Go Back to Home</span>
+    </a>
   </div>
 
-  <!-- Footer -->
   <footer class="site-footer">
     <p>&copy; 2025 Lakshmi Pratap. All rights reserved.</p>
   </footer>
 
-  <script src="project3.js"></script>
+  <script src="project3.js?v=1"></script>
 </body>
 </html>

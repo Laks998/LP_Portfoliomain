@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Quippy Browser Extension | Lakshmi Pratap</title>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="project1.css?v=3" />
+  <link rel="stylesheet" href="project1.css?v=4" />
   <link rel="icon" type="image/png" href="../assets/logo.png">
   <link rel="stylesheet" href="../comment-widget.css" />
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -21,6 +21,30 @@
     </span>
     <span>Go Back To Home</span>
   </a>
+
+  <nav class="side-nav" aria-label="Section navigation">
+    <div class="side-nav-item">
+      <a href="#overview" class="side-nav-link"><span class="side-nav-num">01</span><span class="side-nav-label">Overview</span></a>
+    </div>
+    <div class="side-nav-item">
+      <a href="#origin" class="side-nav-link"><span class="side-nav-num">02</span><span class="side-nav-label">Origin story</span></a>
+    </div>
+    <div class="side-nav-item">
+      <a href="#solutions" class="side-nav-link"><span class="side-nav-num">03</span><span class="side-nav-label">Solutions</span></a>
+      <div class="side-nav-sublist">
+        <a href="#decision-1" class="side-nav-sublink"><span class="side-nav-sublink-num">1</span>Keyboard-first</a>
+        <a href="#decision-2" class="side-nav-sublink"><span class="side-nav-sublink-num">2</span>Design system</a>
+        <a href="#decision-3" class="side-nav-sublink"><span class="side-nav-sublink-num">3</span>Shadow DOM</a>
+        <a href="#decision-4" class="side-nav-sublink"><span class="side-nav-sublink-num">4</span>14 functions</a>
+      </div>
+    </div>
+    <div class="side-nav-item">
+      <a href="#impact" class="side-nav-link"><span class="side-nav-num">04</span><span class="side-nav-label">Impact</span></a>
+    </div>
+    <div class="side-nav-item">
+      <a href="#reflection" class="side-nav-link"><span class="side-nav-num">05</span><span class="side-nav-label">Reflection</span></a>
+    </div>
+  </nav>
 
   <main class="project-content commentable" data-project="quippy">
 
@@ -47,7 +71,7 @@
     </section>
 
     <!-- Overview -->
-    <section class="project-section context-section">
+    <section class="project-section context-section" id="overview">
       <div class="section-content">
         <span class="section-kicker">Project overview</span>
         <h2>Solving my own tab-switching problem</h2>
@@ -77,7 +101,7 @@
     </section>
 
     <!-- 01 — Origin story -->
-    <section class="project-section">
+    <section class="project-section" id="origin">
       <div class="section-content">
         <span class="section-kicker">01 — Origin story</span>
         <h2>It started as a five-minute fix at a hackathon</h2>
@@ -105,13 +129,13 @@
     </section>
 
     <!-- 02 — Solutions -->
-    <section class="project-section solutions-section">
+    <section class="project-section solutions-section" id="solutions">
       <div class="section-content">
         <span class="section-kicker is-solution">02 — Solutions</span>
         <h2>Built around zero friction, not more features</h2>
         <p>Research pointed to one principle: zero friction, universal access, instant results. Every decision below aimed to make Quippy feel like part of the browser, not a separate tool to learn.</p>
 
-        <div class="design-decision-block">
+        <div class="design-decision-block" id="decision-1">
           <div class="decision-header">
             <div class="decision-title-wrapper">
               <span class="decision-eyebrow">Design decision 01</span>
@@ -124,7 +148,7 @@
           </div>
         </div>
 
-        <div class="design-decision-block">
+        <div class="design-decision-block" id="decision-2">
           <div class="decision-header">
             <div class="decision-title-wrapper">
               <span class="decision-eyebrow">Design decision 02</span>
@@ -151,7 +175,7 @@
           </div>
         </div>
 
-        <div class="design-decision-block">
+        <div class="design-decision-block" id="decision-3">
           <div class="decision-header">
             <div class="decision-title-wrapper">
               <span class="decision-eyebrow">Design decision 03</span>
@@ -164,7 +188,7 @@
           </div>
         </div>
 
-        <div class="design-decision-block">
+        <div class="design-decision-block" id="decision-4">
           <div class="decision-header">
             <div class="decision-title-wrapper">
               <span class="decision-eyebrow">Design decision 04</span>
@@ -238,7 +262,7 @@
     </section>
 
     <!-- 03 — Impact -->
-    <section class="project-section">
+    <section class="project-section" id="impact">
       <div class="section-content">
         <span class="section-kicker">03 — Impact</span>
         <h2>Removing friction, not adding features</h2>
@@ -289,7 +313,7 @@
     </section>
 
     <!-- 04 — Reflection -->
-    <section class="project-section">
+    <section class="project-section" id="reflection">
       <div class="section-content">
         <span class="section-kicker">04 — Reflection</span>
         <h2>What building and shipping it taught me</h2>
@@ -324,7 +348,7 @@
     <p>&copy; 2025 Lakshmi Pratap. All rights reserved.</p>
   </footer>
 
-  <script src="project1.js?v=3"></script>
+  <script src="project1.js?v=4"></script>
   <script src="../comment-widget.js"></script>
 </body>
 </html>

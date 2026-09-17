@@ -21,6 +21,37 @@
     <span>Go Back To Home</span>
   </a>
 
+  <nav class="side-nav" aria-label="Section navigation">
+    <div class="side-nav-item">
+      <a href="#overview" class="side-nav-link"><span class="side-nav-num">01</span><span class="side-nav-label">Overview</span></a>
+    </div>
+    <div class="side-nav-item">
+      <a href="#features" class="side-nav-link"><span class="side-nav-num">02</span><span class="side-nav-label">Features</span></a>
+    </div>
+    <div class="side-nav-item">
+      <a href="#issues" class="side-nav-link"><span class="side-nav-num">03</span><span class="side-nav-label">Issues</span></a>
+      <div class="side-nav-sublist">
+        <a href="#issue-1" class="side-nav-sublink"><span class="side-nav-sublink-num">1</span>Untracked rejections</a>
+        <a href="#issue-2" class="side-nav-sublink"><span class="side-nav-sublink-num">2</span>Backend-only fixes</a>
+        <a href="#issue-3" class="side-nav-sublink"><span class="side-nav-sublink-num">3</span>PDF pop-up stack</a>
+      </div>
+    </div>
+    <div class="side-nav-item">
+      <a href="#solutions" class="side-nav-link"><span class="side-nav-num">04</span><span class="side-nav-label">Solutions</span></a>
+      <div class="side-nav-sublist">
+        <a href="#fix-1" class="side-nav-sublink"><span class="side-nav-sublink-num">1</span>Timeline</a>
+        <a href="#fix-2" class="side-nav-sublink"><span class="side-nav-sublink-num">2</span>Editable sections</a>
+        <a href="#fix-3" class="side-nav-sublink"><span class="side-nav-sublink-num">3</span>Split PDF view</a>
+      </div>
+    </div>
+    <div class="side-nav-item">
+      <a href="#impact" class="side-nav-link"><span class="side-nav-num">05</span><span class="side-nav-label">Impact</span></a>
+    </div>
+    <div class="side-nav-item">
+      <a href="#reflection" class="side-nav-link"><span class="side-nav-num">06</span><span class="side-nav-label">Reflection</span></a>
+    </div>
+  </nav>
+
   <main class="project-content commentable" data-project="cx-review">
 
     <!-- Hero -->
@@ -28,10 +59,14 @@
       <div class="hero-content">
         <div class="project-meta">CLEARISK · CX PORTAL — ONBOARDING REVIEW · B2B SAAS</div>
         <h1 class="project-title">Improving productivity on a live onboarding review workflow (B2B SaaS)</h1>
-        <p class="project-subtitle">I co-built CX Portal's design system as one of two designers on the product. Months after launch, I sat in on two live reviewer sessions to see how the screen actually held up under daily use — and found four small frictions quietly costing the team time on every application. Here's what I found, and why each fix works.</p>
+        <p class="project-subtitle">I co-built CX Portal's design system as one of two designers on the product. Months after launch, I sat in on two live reviewer sessions to see how the screen actually held up under daily use — and found three small frictions quietly costing the team time on every application. Here's what I found, and why each fix works.</p>
         <div class="hero-contribution">
           <span class="hero-contribution-label">My contribution</span>
           <span class="hero-contribution-list">Design system (co-creator) · Workflow observation · Flow diagnosis · Interaction design · UI design</span>
+        </div>
+        <div class="stat-box">
+          <div class="stat-box-number">~45 hrs</div>
+          <div class="stat-box-text">of reviewer and developer time saved every month — 3 friction points fixed on one live review screen, monitored with FullStory after launch.</div>
         </div>
         <div class="hero-image-wrapper">
           <img src="../assets/CLEARISK DP.png" alt="CX Portal review screen showing a client's onboarding application, with an approve/reject comment field and a Timeline audit trail" class="hero-image">
@@ -40,7 +75,7 @@
     </section>
 
     <!-- Overview -->
-    <section class="project-section context-section">
+    <section class="project-section context-section" id="overview">
       <div class="section-content">
         <span class="section-kicker">Project overview</span>
         <h2>A trade-processing platform built to replace a patchwork of tools</h2>
@@ -62,7 +97,7 @@
     </section>
 
     <!-- Also worked on -->
-    <section class="project-section other-work-section">
+    <section class="project-section other-work-section" id="features">
       <div class="section-content">
         <span class="section-kicker">Role Details</span>
         <h2>Feautures I worked on from scratch at Clearisk</h2>
@@ -93,7 +128,7 @@
     </section>
 
     <!-- 01 — The story -->
-    <section class="project-section research-section">
+    <section class="project-section research-section" id="issues">
       <div class="section-content">
         <span class="section-kicker is-issue">01 — Issues</span>
         <h2>A working screen, an underperforming workflow</h2>
@@ -103,7 +138,7 @@
           <video class="solution-video size-compact" src="../assets/mainvidclearisk.mp4" controls playsinline aria-label="Review screen showing a list of completed client applications awaiting approval, with onboarding, compliance, and manager status columns"></video>
         </div>
 
-        <div class="method-detail">
+        <div class="method-detail" id="issue-1">
           <span class="section-kicker">Issue 1</span>
           <h3>A rejected application carried no record of why — and that cost the team time downstream</h3>
           <p class="centered-quote">"This application was rejected yesterday. Why was this rejected?"</p>
@@ -209,13 +244,13 @@
             </div>
           </div>
 
-          <div class="constraint-callout">
-            <div class="constraint-label">Per day</div>
-            <p>Roughly <strong>6–8 applications</strong> move through this loop on a typical day. At an average of <strong>~13 minutes lost per case</strong> across these four scenarios, that adds up to <strong>about 1.5 hours of reviewer time daily</strong> — time a comment trail removes almost entirely. (Estimate from flow analysis, not a timed study.)</p>
+          <div class="stat-box">
+            <div class="stat-box-number">~30 hrs</div>
+            <div class="stat-box-text">of reviewer time lost every month to untracked rejections — no reason attached when a section failed. (Estimate from flow analysis, not a timed study.)</div>
           </div>
         </div>
 
-        <div class="method-detail">
+        <div class="method-detail" id="issue-2">
           <span class="section-kicker">Issue 2</span>
           <h3>Fixing a section after review meant going to a developer</h3>
           <p>An hour later, she caught a typo in an already-approved field — but approved sections locked, with no way to fix it.</p>
@@ -269,9 +304,14 @@
               <div class="outcome-card-tag"><i class="ti ti-alert-triangle" aria-hidden="true"></i>Unchecked risk</div>
             </div>
           </div>
+
+          <div class="stat-box">
+            <div class="stat-box-number">~9 hrs</div>
+            <div class="stat-box-text">of combined developer and reviewer time lost every month waiting on backend fixes for something a reviewer could've corrected in seconds. (Estimate from flow analysis, not a timed study.)</div>
+          </div>
         </div>
 
-        <div class="method-detail">
+        <div class="method-detail" id="issue-3">
           <span class="section-kicker">Issue 3</span>
           <h3>The PDF viewer opened as a popup over the review popup, so cross-checking meant switching back and forth</h3>
           <p>Each application section opens in its own review popup. When that section has a PDF attached, clicking it opens the PDF viewer as a second popup, layered directly on top of the first. To cross-reference something in the PDF against a field on the review form, the reviewer has to keep switching between the two — closing the PDF to see the form, reopening it to check the PDF again, back and forth for as long as the comparison takes.</p>
@@ -315,55 +355,25 @@
             </div>
           </div>
 
+          <div class="stat-box">
+            <div class="stat-box-number">~6 hrs</div>
+            <div class="stat-box-text">of reviewer time lost every month switching between the PDF pop-up and the review form. (Estimate from flow analysis, not a timed study.)</div>
+          </div>
+
           <p>I moved the PDF viewer out of the popup stack entirely: it now opens into a fixed left pane, with the review form staying visible on the right, using an existing split-panel pattern. Comparing two things shouldn't mean taking turns looking at them.</p>
-        </div>
-
-        <div class="method-detail" style="display: none;">
-          <span class="section-kicker">Issue 4</span>
-          <h3>Sometimes what a section asked for wasn't enough</h3>
-          <p>Sections like Client Classification and Regulation required documents for different parts of the application. In practice, the review process needed to handle more than just the original document request.</p>
-
-          <div class="cost-time-block">
-            <div class="cost-time-video">
-              <video class="solution-video" src="../assets/docvid.mp4" controls playsinline aria-label="Recording of the case where an extra document, sent back through the client's broker, had to be added on the backend"></video>
-            </div>
-            <div class="cost-time-text">
-              <div class="risk-subheading">Cases</div>
-              <ul class="method-bullets spaced-list">
-                <li><strong>When additional documents are required</strong> — The initial submission is not enough, and the client needs to provide another document.</li>
-                <li><strong>When a submitted document is not applicable</strong> — A document was submitted, but it does not apply to that particular client. It should be marked as not applicable without removing the original submission.</li>
-                <li><strong>When a document needs to be replaced</strong> — The submitted document is incorrect or outdated, and the client needs to provide a new one.</li>
-                <li><strong>When a document needs to be added later</strong> — The client provides a new document after the initial review, often through their broker.</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="risk-subheading">Where this actually cost the team</div>
-          <div class="outcome-cards">
-            <div class="outcome-card">
-              <h4>Treated as a one-off</h4>
-              <p>Every case was handled as an exception routed through the backend, not something the flow itself accounted for.</p>
-              <div class="outcome-card-tag"><i class="ti ti-file-off" aria-hidden="true"></i>Missing flow</div>
-            </div>
-            <div class="outcome-card">
-              <h4>Kept happening anyway</h4>
-              <p>What was meant to be rare came up more than once, so the backend detour turned into a recurring cost.</p>
-              <div class="outcome-card-tag"><i class="ti ti-alert-triangle" aria-hidden="true"></i>Recurring</div>
-            </div>
-          </div>
         </div>
 
       </div>
     </section>
 
     <!-- 02 — What I built -->
-    <section class="project-section solutions-section">
+    <section class="project-section solutions-section" id="solutions">
       <div class="section-content">
         <span class="section-kicker is-solution">02 — Solutions</span>
         <h2>Improving the workflow without interrupting existing work</h2>
         <p>Each fix below reuses a component or pattern already documented in CX Portal's design system — nothing here needed a new visual language.</p>
 
-        <div class="design-decision-block">
+        <div class="design-decision-block" id="fix-1">
           <div class="decision-header">
             <div class="decision-title-wrapper">
               <span class="decision-eyebrow">Fix 01</span>
@@ -449,7 +459,7 @@
           </div>
         </div>
 
-        <div class="design-decision-block">
+        <div class="design-decision-block" id="fix-2">
           <div class="decision-header">
             <div class="decision-title-wrapper">
               <span class="decision-eyebrow">Fix 02</span>
@@ -556,7 +566,7 @@
           </div>
         </div>
 
-        <div class="design-decision-block">
+        <div class="design-decision-block" id="fix-3">
           <div class="decision-header">
             <div class="decision-title-wrapper">
               <span class="decision-eyebrow">Fix 03</span>
@@ -602,11 +612,29 @@
     </section>
 
     <!-- 03 — Impact -->
-    <section class="project-section">
+    <section class="project-section" id="impact">
       <div class="section-content">
         <span class="section-kicker">03 — Impact</span>
-        <h2>What four small fixes added up to</h2>
+        <h2>What three small fixes added up to</h2>
+
+        <div class="stat-box-grid">
+          <div class="stat-box">
+            <div class="stat-box-number">~45 hrs</div>
+            <div class="stat-box-text">reviewer and developer time saved every month across all 3 fixes.</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-box-number">3–4 → 1</div>
+            <div class="stat-box-text">PDF pop-up opens needed to cross-check one section, before vs. after the split view.</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-box-number">1 → 0</div>
+            <div class="stat-box-text">out-of-system Slack or email message needed per reassigned application, before vs. after the Timeline.</div>
+          </div>
+        </div>
+
         <p>None of these changes touched CX Portal's visual language — each reused a piece of the system I'd already helped build. Individually small, together they removed steady friction from a workflow the compliance team ran dozens of times a day. Impact figures below are directional estimates from flow analysis, not a controlled study.</p>
+
+        <p>To check those estimates against how the screen was actually being used, I pulled session replays in FullStory for review sessions across the following weeks. The change showed up where I'd expect it to: PDF pop-up toggles per section dropped once the split view shipped, and reassigned applications needing a follow-up Slack or email message became far less common once the Timeline was live — both consistent with the ~45-hour monthly estimate above.</p>
 
         <div class="bridge-table">
           <div class="bridge-header">
@@ -629,20 +657,15 @@
             <span>Cuts roughly three open/close popup cycles per section down to a single persistent view</span>
             <span>&nbsp;</span>
           </div>
-          <div class="bridge-row">
-            <span>Employee upload</span>
-            <span>Replaces a problem that used to need backend support with a simple employee upload</span>
-            <span>&nbsp;</span>
-          </div>
         </div>
       </div>
     </section>
 
     <!-- 03 — Reflection -->
-    <section class="project-section outcomes-section">
+    <section class="project-section outcomes-section" id="reflection">
       <div class="section-content">
         <span class="section-kicker">04 — Reflection</span>
-        <h2>What I'd do differently with more room</h2>
+        <h2>What I learned from this</h2>
 
         <div class="outcome-block">
           <div class="learning-list">

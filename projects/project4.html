@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>VR Experience Design | Lakshmi Pratap</title>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="project4.css" />
+  <link rel="stylesheet" href="project4.css?v=2" />
   <link rel="icon" type="image/png" href="../assets/logo.png">
   <link rel="stylesheet" href="../comment-widget.css" />
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -24,6 +24,46 @@
     <span>Go Back To Home</span>
   </a>
 
+  <!-- Side navigation -->
+  <nav class="side-nav" aria-label="Section navigation">
+    <div class="side-nav-item">
+      <a href="#overview" class="side-nav-link"><span class="side-nav-num">01</span><span class="side-nav-label">Overview</span></a>
+    </div>
+    <div class="side-nav-item">
+      <a href="#challenge" class="side-nav-link"><span class="side-nav-num">02</span><span class="side-nav-label">Challenge</span></a>
+    </div>
+    <div class="side-nav-item">
+      <a href="#process" class="side-nav-link"><span class="side-nav-num">03</span><span class="side-nav-label">Process</span></a>
+    </div>
+    <div class="side-nav-item">
+      <a href="#foundation" class="side-nav-link"><span class="side-nav-num">04</span><span class="side-nav-label">Foundation</span></a>
+    </div>
+    <div class="side-nav-item">
+      <a href="#research" class="side-nav-link"><span class="side-nav-num">05</span><span class="side-nav-label">Research</span></a>
+    </div>
+    <div class="side-nav-item">
+      <a href="#requirements" class="side-nav-link"><span class="side-nav-num">06</span><span class="side-nav-label">Requirements</span></a>
+    </div>
+    <div class="side-nav-item">
+      <a href="#design" class="side-nav-link"><span class="side-nav-num">07</span><span class="side-nav-label">Design</span></a>
+    </div>
+    <div class="side-nav-item">
+      <a href="#implementation" class="side-nav-link"><span class="side-nav-num">08</span><span class="side-nav-label">Build</span></a>
+    </div>
+    <div class="side-nav-item">
+      <a href="#testing" class="side-nav-link"><span class="side-nav-num">09</span><span class="side-nav-label">Testing</span></a>
+    </div>
+    <div class="side-nav-item">
+      <a href="#framework" class="side-nav-link"><span class="side-nav-num">10</span><span class="side-nav-label">Framework</span></a>
+    </div>
+    <div class="side-nav-item">
+      <a href="#impact" class="side-nav-link"><span class="side-nav-num">11</span><span class="side-nav-label">Impact</span></a>
+    </div>
+    <div class="side-nav-item">
+      <a href="#reflection" class="side-nav-link"><span class="side-nav-num">12</span><span class="side-nav-label">Reflection</span></a>
+    </div>
+  </nav>
+
   <!-- Main content -->
   <main class="project-content commentable" data-project="vr-experience">
 
@@ -40,7 +80,7 @@
     </section>
 
     <!-- Overview -->
-    <section class="project-section overview-section">
+    <section class="project-section overview-section" id="overview">
       <div class="section-content">
         <h2>Project Overview</h2>
         <p>
@@ -68,7 +108,7 @@
     </section>
 
     <!-- Design Challenge -->
-    <section class="project-section challenge-section">
+    <section class="project-section challenge-section" id="challenge">
       <div class="section-content">
         <h2>The Design Challenge</h2>
         <p>
@@ -104,7 +144,7 @@
     </section>
 
     <!-- Design Process -->
-    <section class="project-section process-section">
+    <section class="project-section process-section" id="process">
       <div class="section-content">
         <h2>Design Process</h2>
         <p>A comprehensive UX approach combining research, design, development, and validation</p>
@@ -166,7 +206,7 @@
     </section>
 
     <!-- Background Research -->
-    <section class="project-section background-section">
+    <section class="project-section background-section" id="foundation">
       <div class="section-content">
         <h2>Research Foundation</h2>
         <p>
@@ -238,9 +278,10 @@
     </section>
 
     <!-- User Research -->
-    <section class="project-section research-section">
+    <section class="project-section research-section" id="research">
       <div class="section-content">
         <h2>Primary User Research</h2>
+        <a href="../assets/vr-interview-transcript.pdf" class="doc-link" target="_blank" rel="noopener noreferrer">View the complete interview document →</a>
         <p>
           Ran semi-structured interviews with 8 participants to understand what creates immersive VR experiences and what triggers strong emotional responses.
         </p>
@@ -321,7 +362,7 @@
     </section>
 
     <!-- Design Requirements -->
-    <section class="project-section requirements-section">
+    <section class="project-section requirements-section" id="requirements">
       <div class="section-content">
         <h2>Translating Research to Design Requirements</h2>
         <p>Synthesized research findings into concrete, actionable design specifications</p>
@@ -375,7 +416,7 @@
     </section>
 
     <!-- Experience Design -->
-    <section class="project-section design-section">
+    <section class="project-section design-section" id="design">
       <div class="section-content">
         <h2>Experience Design Solution</h2>
         <p>
@@ -450,7 +491,7 @@
     </section>
 
     <!-- Technical Implementation -->
-    <section class="project-section implementation-section">
+    <section class="project-section implementation-section" id="implementation">
       <div class="section-content">
         <h2>Technical Implementation</h2>
         <p>
@@ -494,7 +535,7 @@
     </section>
 
     <!-- User Testing -->
-    <section class="project-section testing-section">
+    <section class="project-section testing-section" id="testing">
       <div class="section-content">
         <h2>User Testing & Iteration</h2>
         <p>
@@ -591,7 +632,7 @@
     </section>
 
     <!-- Design Framework -->
-    <section class="project-section framework-section">
+    <section class="project-section framework-section" id="framework">
       <div class="section-content">
         <h2>Reusable Design Framework</h2>
         <p>
@@ -650,7 +691,7 @@
     </section>
 
     <!-- Impact -->
-    <section class="project-section impact-section">
+    <section class="project-section impact-section" id="impact">
       <div class="section-content">
         <h2>Real-World Applications</h2>
         <p>This framework applies wherever emotional VR experiences matter</p>
@@ -680,7 +721,7 @@
     </section>
 
     <!-- Reflection -->
-    <section class="project-section reflection-section">
+    <section class="project-section reflection-section" id="reflection">
       <div class="section-content">
         <h2>Key Takeaways</h2>
         
@@ -734,7 +775,7 @@
     <p>&copy; 2025 Lakshmi Pratap. All rights reserved.</p>
   </footer>
 
-  <script src="project4.js"></script>
+  <script src="project4.js?v=2"></script>
   <script src="../comment-widget.js"></script>
 </body>
 </html>

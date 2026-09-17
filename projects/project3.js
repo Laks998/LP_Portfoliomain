@@ -1,42 +1,40 @@
-// project3.js - Redesigned to match project2 style
+// project3.js - V-Ed App case study
+// Same shared behaviors as the CX Portal Onboarding Review page: progress
+// bar, native image-drag-ghost prevention, smooth anchor scroll, an
+// accessible lightbox for screenshots, scroll-triggered video autoplay
+// (harmless no-op here since this page has no video), and side-nav
+// section highlighting.
+
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 document.addEventListener('DOMContentLoaded', () => {
-  
+
+  // Disable native browser image dragging site-wide.
+  document.querySelectorAll('img').forEach(img => {
+    img.setAttribute('draggable', 'false');
+  });
+
+  document.addEventListener('dragstart', (e) => {
+    if (e.target.tagName === 'IMG') {
+      e.preventDefault();
+    }
+  });
+
   // Progress bar
   const progressBar = document.querySelector('.read-progress');
-  
+
   function updateProgressBar() {
     const windowHeight = window.innerHeight;
     const documentHeight = document.documentElement.scrollHeight;
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     const scrollPercent = (scrollTop / (documentHeight - windowHeight)) * 100;
-    
+
     progressBar.style.width = `${scrollPercent}%`;
   }
-  
+
   window.addEventListener('scroll', updateProgressBar);
   updateProgressBar();
-  
-  // Section reveal animations
-  const sections = document.querySelectorAll('.project-section');
-  
-  const observerOptions = {
-    threshold: 0.2,
-    rootMargin: '0px 0px -100px 0px'
-  };
-  
-  const sectionObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, observerOptions);
-  
-  sections.forEach(section => {
-    sectionObserver.observe(section);
-  });
-  
+
   // Smooth scroll for anchor links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -44,135 +42,160 @@ document.addEventListener('DOMContentLoaded', () => {
       const target = document.querySelector(this.getAttribute('href'));
       if (target) {
         target.scrollIntoView({
-          behavior: 'smooth',
+          behavior: prefersReducedMotion ? 'auto' : 'smooth',
           block: 'start'
         });
       }
     });
   });
-  
-  // Parallax effect for hero image
-  const heroImage = document.querySelector('.hero-image');
-  
-  if (heroImage) {
-    window.addEventListener('scroll', () => {
-      const scrolled = window.pageYOffset;
-      if (scrolled < window.innerHeight) {
-        heroImage.style.transform = `translateY(${scrolled * 0.3}px)`;
-        heroImage.style.opacity = 1 - (scrolled / window.innerHeight) * 0.5;
+
+});
+
+// Scroll-triggered video autoplay — kept for parity with the shared system;
+// simply does nothing if the page has no .solution-video elements.
+document.addEventListener('DOMContentLoaded', () => {
+
+  const inlineVideos = document.querySelectorAll('.solution-video');
+  if (inlineVideos.length === 0) return;
+
+  if (prefersReducedMotion) {
+    inlineVideos.forEach(video => {
+      video.setAttribute('controls', '');
+    });
+    return;
+  }
+
+  inlineVideos.forEach(video => {
+    video.removeAttribute('controls');
+    video.muted = true;
+    video.loop = true;
+    video.playsInline = true;
+  });
+
+  const videoObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const video = entry.target;
+      if (entry.isIntersecting) {
+        video.play().catch(() => {});
+      } else {
+        video.pause();
       }
     });
-  }
-  
-  // Keyboard navigation
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowDown' || e.key === 'PageDown') {
-      e.preventDefault();
-      window.scrollBy({ top: window.innerHeight * 0.8, behavior: 'smooth' });
-    } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
-      e.preventDefault();
-      window.scrollBy({ top: -window.innerHeight * 0.8, behavior: 'smooth' });
-    } else if (e.key === 'Home') {
-      e.preventDefault();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else if (e.key === 'End') {
-      e.preventDefault();
-      window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' });
+  }, { threshold: 0.5 });
+
+  inlineVideos.forEach(video => videoObserver.observe(video));
+
+});
+
+// Accessible lightbox — click, or Tab + Enter/Space, on any solution image
+// to view an enlarged version.
+document.addEventListener('DOMContentLoaded', () => {
+
+  const zoomableImages = document.querySelectorAll('.solution-image');
+  if (zoomableImages.length === 0) return;
+
+  zoomableImages.forEach(img => {
+    if (!img.hasAttribute('tabindex')) img.setAttribute('tabindex', '0');
+    img.setAttribute('role', 'button');
+    if (!img.hasAttribute('aria-label')) {
+      img.setAttribute('aria-label', `Enlarge image: ${img.alt || 'view larger'}`);
     }
   });
-  
-  // Add hover effects to images
-  const images = document.querySelectorAll('.screen-image img, .statement-image img, .user-study-image img');
-  
-  images.forEach(img => {
-    img.addEventListener('mouseenter', () => {
-      img.style.transform = 'scale(1.02)';
-      img.style.transition = 'transform 0.3s ease';
-    });
-    
-    img.addEventListener('mouseleave', () => {
-      img.style.transform = 'scale(1)';
-    });
-  });
-  
-  // Insight cards animation
-  const insightCards = document.querySelectorAll('.insight-card');
-  
-  insightCards.forEach((card, index) => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(30px)';
-    
-    const cardObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-            entry.target.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-          }, index * 100);
-        }
-      });
-    }, { threshold: 0.3 });
-    
-    cardObserver.observe(card);
-  });
-  
-  // Problem cards animation
-  const problemCards = document.querySelectorAll('.problem-card');
-  
-  problemCards.forEach((card, index) => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(20px)';
-    
-    const problemObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-            entry.target.style.transition = 'all 0.5s ease';
-          }, index * 80);
-        }
-      });
-    }, { threshold: 0.5 });
-    
-    problemObserver.observe(card);
-  });
-  
-  // Decision items animation
-  const decisionItems = document.querySelectorAll('.decision-item');
-  
-  decisionItems.forEach((item, index) => {
-    item.style.opacity = '0';
-    item.style.transform = 'translateY(20px)';
-    
-    const decisionObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-            entry.target.style.transition = 'all 0.5s ease';
-          }, index * 80);
-        }
-      });
-    }, { threshold: 0.5 });
-    
-    decisionObserver.observe(item);
-  });
-  
-  // Reading time estimator
-  const content = document.querySelector('.project-content');
-  if (content) {
-    const text = content.innerText;
-    const wordCount = text.trim().split(/\s+/).length;
-    const readingTime = Math.ceil(wordCount / 200);
-    
-    console.log(`📖 Estimated reading time: ${readingTime} minutes`);
-    console.log(`📝 Word count: ${wordCount} words`);
+
+  const overlay = document.createElement('div');
+  overlay.className = 'lightbox-overlay';
+  overlay.setAttribute('role', 'dialog');
+  overlay.setAttribute('aria-modal', 'true');
+  overlay.setAttribute('aria-label', 'Enlarged image viewer');
+  overlay.innerHTML = '<img src="" alt=""><button class="lightbox-close" aria-label="Close enlarged image">&times;</button>';
+  document.body.appendChild(overlay);
+
+  const overlayImg = overlay.querySelector('img');
+  const closeBtn = overlay.querySelector('.lightbox-close');
+  let lastFocusedElement = null;
+
+  function openLightbox(src, alt, triggerEl) {
+    lastFocusedElement = triggerEl || document.activeElement;
+    overlayImg.src = src;
+    overlayImg.alt = alt || '';
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
   }
-  
-  console.log('✨ V-Ed App project page loaded');
-  console.log('🎯 Focus: Volunteering platform for education');
-  
+
+  function closeLightbox() {
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+    if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
+      lastFocusedElement.focus();
+    }
+    lastFocusedElement = null;
+  }
+
+  zoomableImages.forEach(img => {
+    img.addEventListener('click', () => openLightbox(img.src, img.alt, img));
+    img.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+        e.preventDefault();
+        openLightbox(img.src, img.alt, img);
+      }
+    });
+  });
+
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay || e.target === closeBtn) closeLightbox();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (!overlay.classList.contains('active')) return;
+
+    if (e.key === 'Escape') {
+      closeLightbox();
+      return;
+    }
+
+    if (e.key === 'Tab') {
+      e.preventDefault();
+      closeBtn.focus();
+    }
+  });
+
+});
+
+// Side navigation — highlights whichever section(s) are currently
+// crossing the vertical center of the viewport. A parent link and its
+// matching sub-link can be active at the same time.
+document.addEventListener('DOMContentLoaded', () => {
+
+  const sideNavLinks = document.querySelectorAll('.side-nav-link, .side-nav-sublink');
+  if (sideNavLinks.length === 0) return;
+
+  const sections = Array.from(sideNavLinks)
+    .map(link => document.querySelector(link.getAttribute('href')))
+    .filter(Boolean);
+
+  if (sections.length === 0) return;
+
+  const activeIds = new Set();
+
+  const updateActiveLinks = () => {
+    sideNavLinks.forEach(link => {
+      const id = link.getAttribute('href').slice(1);
+      link.classList.toggle('is-active', activeIds.has(id));
+    });
+  };
+
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        activeIds.add(entry.target.id);
+      } else {
+        activeIds.delete(entry.target.id);
+      }
+    });
+    updateActiveLinks();
+  }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+
+  sections.forEach(section => sectionObserver.observe(section));
+
 });

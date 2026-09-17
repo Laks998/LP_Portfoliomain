@@ -16,7 +16,7 @@
   <meta name="twitter:title" content="Lakshmi Pratap — Product Designer" />
   <meta name="twitter:image" content="https://lakshmipratap.com/assets/og-card.png" />
 
-  <link rel="stylesheet" href="style.css?v=21" />
+  <link rel="stylesheet" href="style.css?v=29" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="assets/logo.png">
@@ -27,24 +27,45 @@
   <a class="skip-link" href="#work">Skip to work</a>
 
   <!-- ========== HERO — full viewport height ========== -->
-  <section class="hero">
+  <section class="hero" id="top" data-nav-label="Home">
 
-    <nav class="hero-nav" aria-label="Primary">
-      <a class="hero-brand" href="index.html">Lakshmi Pratap</a>
-      <div class="hero-nav-links">
+    <nav class="hero-nav" id="heroNav" aria-label="Primary">
+      <a class="hero-brand" href="index.html" aria-label="Lakshmi Pratap — home">
+        <img class="logo-img" src="assets/logo.png" alt="Lakshmi Pratap" />
+      </a>
+
+      <div class="hero-nav-links" id="heroNavLinks">
         <a href="#work">Work</a>
         <a href="about.html">About Me</a>
+        <a href="projects/project5.html">Sketches</a>
+        <a href="projects/project6.html">Illustrations</a>
         <a class="hero-resume" href="assets/LakshmiPratap_ProdectDes (1).pdf" target="_blank" rel="noopener noreferrer">Resume</a>
       </div>
+
+      <!-- Shown only once scrolled past the hero (desktop): current
+           section name + dots. Hovering the pill reveals the full
+           links above instead. -->
+      <div class="nav-compact" id="navCompact" aria-hidden="true">
+        <span class="nav-compact-label" id="navCompactLabel">Home</span>
+        <span class="nav-compact-dots" id="navCompactDots"></span>
+      </div>
+
+      <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="heroNavLinks" aria-label="Toggle navigation menu">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
     </nav>
+
+    <div class="nav-scrim" id="navScrim"></div>
 
     <div class="hero-main">
       <div class="hero-grid">
 
         <div class="hero-left">
           <h1 class="hero-name">
-            <span class="hero-name-word">Lakshmi</span>
-            <span class="hero-name-word hero-name-word-2">Pratap</span>
+            <span class="hero-name-word">LAKSHMI</span>
+            <span class="hero-name-word hero-name-word-2">PRATAP</span>
           </h1>
           <p class="hero-role">Product Designer</p>
           <p class="hero-meta">Exp: 2 years &nbsp;·&nbsp; Toronto, Canada</p>
@@ -84,13 +105,6 @@
                 </svg>
               </a>
           </p>
-
-          <div class="hero-extra">
-            <span class="hero-extra-label">I also have a</span>
-            <a class="hero-extra-link" href="projects/project5.html"><span class="avatar-dot" aria-hidden="true"></span>Sketchbook</a>
-            <span class="hero-extra-amp" aria-hidden="true">&amp;</span>
-            <a class="hero-extra-link" href="projects/project6.html"><span class="avatar-dot" aria-hidden="true"></span>Illustrations</a>
-          </div>
         </div>
 
       </div>
@@ -101,29 +115,37 @@
 
   <!-- ========== WORK — its own full section below the hero ========== -->
   <main>
-    <section class="work" id="work">
+    <section class="work" id="work" data-nav-label="Work">
       <h2>Work</h2>
 
-      <div class="work-layout">
+      <div class="work-filterbar">
+        <p class="work-filterbar-prompt">Let me help you filter my projects based on your requirements. Can you try?</p>
 
-        <div class="keywords-panel">
-          <p class="keywords-intro">Please don't waste your time, I got you.</p>
-
-          <div class="chip-group" id="chipGroup" hidden>
-            <!-- Populated by script.js from CAPABILITIES, so the chip set
-                 and evidence data can never drift apart. -->
-          </div>
-
-          <div class="requirements-field">
-            <label for="jdInput">Or tell me what you're looking for</label>
-            <textarea id="jdInput" rows="3" placeholder="Paste a few lines from the job posting, or just describe what you need…"></textarea>
-            <button type="button" class="btn-match" id="buildFromJd">Match my needs</button>
-          </div>
-
-          <p class="keywords-status" id="boardStatus" aria-live="polite">Nothing selected yet — pick what matters to you.</p>
+        <div class="work-search">
+          <svg class="work-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="7" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+          <input type="text" id="jdInput" placeholder="Paste a role, requirement, or what you're looking for…" />
+          <button type="button" class="work-search-btn" id="buildFromJd" aria-label="Match my needs">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
+            </svg>
+          </button>
         </div>
+      </div>
 
-        <ol class="project-cards" id="projectCards">
+      <div class="chip-row-wrap">
+        <div class="chip-row" id="chipGroup" hidden>
+          <!-- Populated by script.js from CAPABILITIES, so the chip set
+               and evidence data can never drift apart. -->
+        </div>
+      </div>
+
+      <p class="keywords-status" id="boardStatus" aria-live="polite">Nothing selected yet — pick what matters to you.</p>
+
+      <ol class="project-cards" id="projectCards">
 
           <li class="project-card" data-project="clearisk">
             <div class="project-thumb"><img src="assets/CLEARISK%20DP.png" alt="Clearisk CX onboarding review workflow" loading="lazy" /></div>
@@ -184,13 +206,40 @@
                 <li>Research</li>
                 <li>Prototyping</li>
               </ul>
-              <p class="project-proves">Reearch, University of Nottingham</p>
+              <p class="project-proves">Research, University of Nottingham</p>
               <a class="project-link" href="projects/project4.html">View project →</a>
             </div>
           </li>
 
+          <li class="project-card project-card-other">
+            <div class="project-other">
+              <h3 class="project-other-label">Other Projects</h3>
+              <ul class="project-other-list">
+                <li class="project-mini" data-tags="Mobile App, 0→1, Independent">
+                  <a class="project-mini-link" href="projects/project3.html">
+                    <div class="project-mini-thumb"><img src="assets/VedDP.png" alt="V-Ed App" loading="lazy" /></div>
+                    <div class="project-mini-body">
+                      <h4>Connecting volunteers and NGOs — while giving both a reason to keep coming back</h4>
+                      <p>V-Ed App</p>
+                      <span class="project-mini-view">View project →</span>
+                    </div>
+                  </a>
+                </li>
+                <li class="project-mini" data-tags="Mobile App, Research">
+                  <a class="project-mini-link" href="https://www.behance.net/gallery/130372587/Case-study-HOMEDELO-Redesign" target="_blank" rel="noopener noreferrer">
+                    <div class="project-mini-thumb"><img src="assets/homedelo.png" alt="HOMEDELO App" loading="lazy" /></div>
+                    <div class="project-mini-body">
+                      <h4>A food delivery app redesigned to retain existing users and win new ones.</h4>
+                      <p>HomeDelo</p>
+                      <span class="project-mini-view">View project →</span>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+
         </ol>
-      </div>
     </section>
   </main>
 
@@ -199,7 +248,7 @@
     <p class="fun-credit">Designed by Lakshmi Pratap · Built with Claude Code</p>
   </footer>
 
-  <script src="script.js?v=21" defer></script>
+  <script src="script.js?v=28" defer></script>
 </body>
 
 </html>

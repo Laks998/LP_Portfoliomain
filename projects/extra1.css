@@ -1,0 +1,329 @@
+/* =============================================================
+   HERO — single-viewport, matched to reference composition.
+   Depends on :root tokens in style.css (--bg, --surface, --text,
+   --muted, --accent, --radius, --shadow-*). Load after style.css.
+   ============================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&display=swap');
+
+.hero {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 1.5rem var(--outer-pad) 1.5rem;
+}
+
+/* ---------- nav row ---------- */
+.hero-nav {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  flex: 0 0 auto;
+  opacity: 0;
+  animation: heroFade 0.5s ease forwards;
+}
+.logo-mark {
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  display: block;
+  object-fit: cover;
+  background: var(--accent);
+}
+.hero-nav-links {
+  grid-column: 2;
+  justify-self: center;
+  display: flex; align-items: center; gap: 0.6rem;
+  flex-wrap: wrap;
+}
+.nav-pill {
+  font-family: 'Big Shoulders Display', 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--text);
+  background: #fff;
+  border: 1.5px solid var(--text);
+  border-radius: 999px;
+  padding: 0.5rem 1.1rem;
+  appearance: none;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease, transform 0.15s ease;
+}
+.nav-pill:hover, .nav-pill:focus-visible {
+  background: var(--text);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+/* ---------- main stage ---------- */
+.hero-main {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(150px, 200px) minmax(220px, 340px) 1fr 56px;
+  grid-template-rows: 1fr auto;
+  grid-template-areas:
+    "tagline persona intro   icons"
+    "loc     persona intro   icons";
+  align-items: center;
+  gap: 0.5rem 1.5rem;
+  padding-top: 1rem;
+}
+
+.hero-tagline {
+  grid-area: tagline;
+  font-size: clamp(0.8rem, 1.6vh, 0.95rem);
+  line-height: 1.45;
+  color: var(--text);
+  align-self: start;
+  margin-top: 2vh;
+  opacity: 0;
+  animation: heroRise 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+}
+.hero-tagline .accent { color: var(--accent); font-weight: 600; }
+
+.hero-location {
+  grid-area: loc;
+  display: flex; align-items: center; gap: 0.4rem;
+  font-family: 'Big Shoulders Display', 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: clamp(0.85rem, 1.8vh, 1rem);
+  color: var(--text);
+  align-self: end;
+  opacity: 0;
+  animation: heroRise 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.55s forwards;
+}
+.hero-location svg { width: 17px; height: 17px; flex: 0 0 auto; }
+
+/* ---------- persona ---------- */
+.persona-wrap {
+  grid-area: persona;
+  justify-self: center;
+  align-self: end;
+  position: relative;
+  height: min(60vh, 62vw, 560px);
+  opacity: 0;
+  animation: heroPersonaIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+}
+.persona-parallax { will-change: transform; height: 100%; }
+.persona-float { height: 100%; animation: personaBreathe 6s ease-in-out 1s infinite; }
+.persona-img {
+  display: block;
+  height: 100%;
+  width: auto;
+  max-width: none;
+  filter: drop-shadow(0 18px 26px rgba(17, 17, 17, 0.16));
+}
+.persona-ground {
+  position: absolute;
+  left: 50%; bottom: -4px;
+  transform: translateX(-50%);
+  width: 58%; height: 12px;
+  background: radial-gradient(ellipse at center, rgba(17,17,17,0.13), transparent 72%);
+  filter: blur(1px);
+}
+
+/* ---------- intro / name block ---------- */
+.intro-text {
+  grid-area: intro;
+  opacity: 0;
+  animation: heroRise 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+}
+.intro-hi {
+  font-family: 'Big Shoulders Display', 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.3rem, 4vh, 2.1rem);
+  margin: 0 0 -0.4rem;
+}
+.intro-name {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 0.86;
+  letter-spacing: -1px;
+  font-size: clamp(2.6rem, 9.5vh, 6rem);
+  margin: 0;
+  color: var(--text);
+}
+.intro-role {
+  font-family: 'Big Shoulders Display', 'Space Grotesk', sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.2rem, 3.6vh, 1.9rem);
+  color: var(--accent);
+  margin: 0.6rem 0 0;
+}
+
+@keyframes heroFade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes heroRise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes heroPersonaIn { from { opacity: 0; transform: scale(0.94) translateY(10px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+@keyframes personaBreathe { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+
+/* ---------- side icons ---------- */
+.hero-icons {
+  grid-area: icons;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5vh 0;
+  position: relative;
+}
+.hero-icon-btn {
+  appearance: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--text);
+  padding: 0.4rem;
+  display: inline-flex;
+  position: relative;
+  opacity: 0;
+  animation: heroRise 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: var(--enter-delay, 0.3s);
+  transition: color 0.2s ease, transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.hero-icon-btn svg { width: 30px; height: 30px; }
+.hero-icon-btn:hover, .hero-icon-btn:focus-visible {
+  color: var(--accent);
+  transform: translateY(-2px) scale(1.06);
+}
+.hero-icon-btn[aria-pressed="true"],
+.hero-icon-btn[aria-expanded="true"] { color: var(--accent); }
+
+.audio-bar { transform-origin: center; transition: transform 0.2s ease; }
+.hero-icon-btn[aria-pressed="true"] .audio-bar { animation: audioPulse 0.9s ease-in-out infinite; }
+.audio-bar:nth-child(1) { animation-delay: 0s; }
+.audio-bar:nth-child(2) { animation-delay: 0.15s; }
+.audio-bar:nth-child(3) { animation-delay: 0.3s; }
+.audio-bar:nth-child(4) { animation-delay: 0.1s; }
+.audio-bar:nth-child(5) { animation-delay: 0.25s; }
+@keyframes audioPulse { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(1.9); } }
+
+.icon-tooltip {
+  position: absolute;
+  right: calc(100% + 0.6rem);
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--text);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.4rem 0.6rem;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 30;
+}
+.icon-tooltip.is-visible { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .persona-float { animation: none; }
+  .persona-parallax { transform: none !important; }
+  .hero-icon-btn[aria-pressed="true"] .audio-bar { animation: none; }
+}
+
+/* ---------- tools radial (icon 3) — mobile default: static wrapped list ---------- */
+.tools-radial {
+  display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 0.45rem;
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 0.5rem);
+  width: max(160px, 40vw);
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.3s ease, opacity 0.25s ease;
+}
+.tools-radial.is-open { max-height: 220px; opacity: 1; }
+.tool-node {
+  display: flex; align-items: center; gap: 0.4rem;
+  background: #fff;
+  box-shadow: var(--shadow-sm);
+  border-radius: 999px;
+  padding: 0.35rem 0.65rem 0.35rem 0.35rem;
+  font-size: 0.7rem; font-weight: 700;
+  color: var(--text);
+  text-decoration: none;
+  transition: box-shadow 0.2s ease;
+}
+.tool-node:hover, .tool-node:focus-visible { box-shadow: var(--shadow-md); }
+.tool-mark {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--surface);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.6rem; font-weight: 700; color: var(--accent);
+  flex: 0 0 auto;
+}
+
+@media (min-width: 720px) {
+  .tools-radial {
+    display: block;
+    position: absolute;
+    top: 0; left: 0;
+    right: auto; bottom: auto;
+    width: auto;
+    max-height: none;
+    overflow: visible;
+    pointer-events: none;
+  }
+  .tools-radial.is-open { opacity: 1; }
+  .tool-node {
+    position: absolute;
+    top: 0; left: 0;
+    pointer-events: auto;
+    opacity: 0;
+    transform: translate(calc(-100% + var(--tx, 0px)), calc(-50% + var(--ty, 0px))) scale(0.4);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease, box-shadow 0.2s ease;
+    transition-delay: var(--node-delay, 0s);
+  }
+  .tools-radial.is-open .tool-node {
+    opacity: 1;
+    transform: translate(calc(-100% + var(--tx, 0px)), calc(-50% + var(--ty, 0px))) scale(1);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tool-node { transition: opacity 0.15s ease !important; }
+  .tools-radial.is-open .tool-node { transform: translate(calc(-100% + var(--tx, 0px)), calc(-50% + var(--ty, 0px))) scale(1) !important; }
+}
+
+/* =============================================================
+   RESPONSIVE
+   ============================================================= */
+@media (max-width: 719px) {
+  .hero-nav { grid-template-columns: auto 1fr; }
+  .hero-nav-links { grid-column: 1 / -1; justify-self: start; margin-top: 0.75rem; }
+  .hero-main {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto auto;
+    grid-template-areas:
+      "persona"
+      "intro"
+      "tagline"
+      "icons"
+      "loc";
+    justify-items: center;
+    text-align: center;
+    gap: 0.9rem;
+    padding-top: 0.5rem;
+  }
+  .persona-wrap { height: min(34vh, 300px); align-self: center; }
+  .intro-name { font-size: clamp(2.4rem, 12vw, 3.4rem); }
+  .intro-hi { font-size: clamp(1.1rem, 5vw, 1.4rem); }
+  .intro-role { font-size: clamp(1rem, 4.5vw, 1.3rem); }
+  .hero-tagline { text-align: center; margin-top: 0; }
+  .hero-location { justify-content: center; }
+  .hero-icons { flex-direction: row; height: auto; width: 100%; justify-content: center; gap: 1.75rem; }
+}
+
+@media (min-width: 900px) {
+  .hero-main { grid-template-columns: minmax(170px, 220px) minmax(260px, 380px) 1fr 60px; }
+}

@@ -1247,3 +1247,162 @@ p:last-child {
     font-size: 2rem;
   }
 }
+
+/* =====================================================================
+   Interview document link — sits right under the "Primary User
+   Research" heading, same visual language as Sportscove's
+   questionnaire link (accent-colored, underlined, opens in a new
+   tab since it's a downloadable document, not part of the page flow).
+   ===================================================================== */
+.doc-link {
+  display: inline-block;
+  color: var(--accent);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 2px;
+  margin: 0 0 1.75rem;
+  transition: opacity 0.2s ease;
+}
+
+.doc-link:hover {
+  opacity: 0.7;
+}
+
+/* =====================================================================
+   Side navigation — numbered main items pinned to the left margin.
+   Same pattern as the CX Portal, Sportscove, and Quippy case studies.
+   This page has 12 top-level sections (more than any of the others),
+   so the nav is capped at 90vh with its own hidden scrollbar rather
+   than running off a shorter screen. No sub-items here — with 12
+   main entries already, a second nesting level would make the list
+   unreadable, so every entry links straight to its section.
+   ===================================================================== */
+.side-nav {
+  position: fixed;
+  top: 50%;
+  left: 2.5rem;
+  transform: translateY(-50%);
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  gap: 1.05rem;
+  max-height: 90vh;
+  overflow-y: auto;
+  scrollbar-width: none;
+  padding: 0.5rem 0;
+}
+
+.side-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.side-nav-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.side-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.1px;
+  transition: color 0.25s ease;
+}
+
+.side-nav-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 21px;
+  height: 21px;
+  border-radius: 50%;
+  border: 1.5px solid var(--card-border);
+  font-size: 0.58rem;
+  font-weight: 700;
+  color: var(--muted);
+  flex-shrink: 0;
+  transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+
+.side-nav-link:hover,
+.side-nav-link.is-active {
+  color: var(--accent);
+}
+
+.side-nav-link:hover .side-nav-num,
+.side-nav-link.is-active .side-nav-num {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+}
+
+/* Below 1200px there's no gutter left for a vertical sidebar, so it
+   becomes a compact, horizontally scrollable row of number-only
+   badges pinned to the top instead of disappearing. */
+@media (max-width: 1200px) {
+  .side-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    transform: none;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.6rem;
+    max-height: none;
+    overflow-x: auto;
+    overflow-y: visible;
+    -webkit-overflow-scrolling: touch;
+    background: var(--bg-solid);
+    border-bottom: 1px solid var(--card-border);
+    padding: 0.6rem 1rem;
+    z-index: 95;
+    mask-image: linear-gradient(to right, transparent, black 20px, black calc(100% - 20px), transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 20px, black calc(100% - 20px), transparent);
+  }
+
+  .side-nav::after {
+    content: "";
+    flex-shrink: 0;
+    width: 1rem;
+  }
+
+  .side-nav-item {
+    flex-shrink: 0;
+  }
+
+  .side-nav-label {
+    display: none;
+  }
+
+  .side-nav-num {
+    width: 24px;
+    height: 24px;
+    font-size: 0.6rem;
+  }
+
+  .back-link {
+    top: 64px;
+  }
+}
+
+@media (max-width: 480px) {
+  .side-nav {
+    gap: 0.45rem;
+    padding: 0.55rem 0.75rem;
+  }
+
+  .side-nav-num {
+    width: 21px;
+    height: 21px;
+    font-size: 0.56rem;
+  }
+}

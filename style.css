@@ -83,24 +83,125 @@ a { color: inherit; }
   flex-direction: column;
   max-width: var(--content-max);
   margin: 0 auto;
-  padding: 1.5rem var(--outer-pad) 2rem;
+  padding: 5rem var(--outer-pad) 2rem;
 }
 
+/* ========== NAV ==========
+   Mobile: a plain flat bar — logo on one side, menu icon on the
+   other, no card/shadow. Tapping the icon opens a small rounded
+   card under the toggle, with a low-opacity black scrim dimming
+   the rest of the page behind it.
+   Desktop (900px+): the bar becomes a floating pill with the links
+   inline; past the hero it shrinks to "current section + dots" and
+   expands again on hover. */
+
 .hero-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 300;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
-  flex: 0 0 auto;
+  gap: 0.75rem;
+  padding: 1.1rem var(--outer-pad);
+  background: none;
+  box-shadow: none;
   opacity: 0;
   animation: heroFade 0.6s ease forwards;
 }
-.hero-brand { font-weight: 700; font-size: 1rem; text-decoration: none; color: var(--text); }
-.hero-nav-links { display: flex; align-items: center; gap: 1.75rem; font-size: 0.85rem; font-weight: 600; }
+
+.hero-brand { display: inline-flex; align-items: center; text-decoration: none; color: var(--text); flex: 0 0 auto; }
+.logo-img { display: block; height: 30px; width: auto; }
+
+/* ---- Menu toggle (hamburger ↔ close) ---- */
+.nav-toggle {
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 2;
+  transition: background 0.2s ease;
+}
+.nav-toggle:hover { background: var(--surface); }
+.nav-toggle-bar {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--text);
+  transition: transform 0.25s ease, opacity 0.2s ease;
+}
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ---- Low-opacity scrim behind the popover (sits between the page
+   and the nav — the nav's own z-index of 300 keeps the card and
+   toggle painting above it, unlike before). ---- */
+.nav-scrim {
+  position: fixed;
+  inset: 0;
+  background: rgba(17, 17, 17, 0.32);
+  z-index: 250;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+}
+.nav-scrim.is-open {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease;
+}
+
+/* ---- Nav links: a small rounded card under the toggle on mobile,
+   an inline row on desktop ---- */
+.hero-nav-links {
+  position: fixed;
+  top: 4.5rem;
+  right: var(--outer-pad);
+  left: auto;
+  bottom: auto;
+  width: auto;
+  min-width: 190px;
+  max-width: 240px;
+  background: var(--bg);
+  border-radius: 20px;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.1rem;
+  padding: 1.4rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  box-shadow: 0 18px 40px rgba(17, 17, 17, 0.18);
+  transform-origin: top right;
+  transform: scale(0.92) translateY(-6px);
+  opacity: 0;
+  visibility: hidden;
+  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.22s ease, visibility 0s linear 0.22s;
+}
+.hero-nav-links.is-open {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+  visibility: visible;
+  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.22s ease;
+}
+
 .hero-nav-links a:not(.hero-resume) {
   position: relative;
   text-decoration: none;
-  color: var(--muted);
+  color: var(--text);
   padding-bottom: 2px;
   transition: color 0.2s ease;
 }
@@ -110,22 +211,45 @@ a { color: inherit; }
   left: 0; right: 100%;
   bottom: 0;
   height: 1.5px;
-  background: var(--text);
+  background: var(--accent);
   transition: right 0.25s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.hero-nav-links a:not(.hero-resume):hover { color: var(--text); }
+.hero-nav-links a:not(.hero-resume):hover { color: var(--accent-dark); }
 .hero-nav-links a:not(.hero-resume):hover::after { right: 0; }
 .hero-resume {
   text-decoration: none;
   color: #fff;
   background: var(--accent);
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1.05rem;
   border-radius: var(--radius);
   font-weight: 700;
+  font-size: 0.85rem;
   display: inline-block;
   transition: background 0.2s ease, transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 .hero-resume:hover { background: var(--accent-dark); transform: translateY(-2px) rotate(-1deg); }
+
+/* ---- Compact indicator (desktop only, shown past the hero) ---- */
+.nav-compact {
+  display: none;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.nav-compact-dots { display: flex; align-items: center; gap: 0.4rem; }
+.nav-compact-dots .dot {
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--muted);
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.nav-compact-dots .dot:hover { background: var(--text); }
+.nav-compact-dots .dot.is-active { background: var(--accent); transform: scale(1.35); }
 
 /* Single flex:1 child — this is the only place that grows to fill the
    viewport, avoiding the nested flex:1-inside-flex:1 sizing conflict
@@ -151,7 +275,7 @@ a { color: inherit; }
 
 .hero-name {
   font-size: clamp(2.6rem, 8.5vw, 3.8rem);
-  font-weight: 700;
+  font-weight: 800;
   line-height: 1.02;
   letter-spacing: -1px;
   margin: 0;
@@ -171,7 +295,7 @@ a { color: inherit; }
 .hero-name-word:hover { color: var(--accent); transform: translateY(-4px); }
 .hero-name-word-2 { animation-delay: 0.14s; }
 
-.hero-role { font-size: 1.1rem; font-weight: 700; margin: 0; }
+.hero-role { font-size: 1.1rem; font-weight: 700; margin: 0; color: var(--accent-dark) }
 .hero-meta { font-size: 0.9rem; color: var(--muted); margin: 0; }
 .hero-edu { font-size: 0.85rem; font-weight: 600; color: var(--muted); margin: 0; }
 
@@ -199,14 +323,6 @@ a { color: inherit; }
 .hero-also a { display: inline-flex; color: var(--text); transition: color 0.2s ease; }
 .hero-also a:hover { color: var(--accent-dark); }
 .hero-also a:hover svg { transform: rotate(14deg) scale(1.12); }
-
-.hero-extra { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0.5rem; font-size: 0.85rem; }
-.hero-extra-label { color: var(--muted); }
-.hero-extra-link { display: inline-flex; align-items: center; gap: 0.45rem; text-decoration: none; color: var(--text); font-weight: 600; transition: color 0.2s ease, transform 0.2s ease; }
-.hero-extra-link:hover { color: var(--accent-dark); transform: translateY(-2px); }
-.avatar-dot { width: 20px; height: 20px; border-radius: 50%; background: var(--surface); box-shadow: inset 0 0 0 1.5px rgba(17,17,17,0.12); transition: background 0.25s ease, box-shadow 0.25s ease; }
-.hero-extra-link:hover .avatar-dot { background: var(--accent); box-shadow: inset 0 0 0 1.5px var(--accent); }
-.hero-extra-amp { color: var(--muted); }
 
 .hero-photo-frame {
   justify-self: center;
@@ -260,80 +376,118 @@ a { color: inherit; }
   margin: 0 0 1.75rem;
 }
 
-.work-layout { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
-
-/* ---- Keywords panel ---- */
-.keywords-panel {
-  background: var(--surface);
-  border-radius: var(--radius);
-  padding: 1.5rem;
+/* ---- Filter bar: CTA text + a search-styled requirements input ---- */
+.work-filterbar {
   display: flex;
   flex-direction: column;
-  gap: 1.1rem;
-  align-self: start;
+  gap: 1rem;
+  margin-bottom: 2.25rem;
 }
 
-.keywords-intro { font-size: 0.95rem; font-weight: 600; margin: 0; }
+.work-filterbar-prompt {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text);
+}
 
-.chip-group { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.work-search {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #fff;
+  border: 1.5px solid rgba(17, 17, 17, 0.12);
+  border-radius: 999px;
+  padding: 0.55rem 0.55rem 0.55rem 1.1rem;
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.work-search:focus-within { border-color: var(--accent); box-shadow: var(--shadow-md); }
+
+.work-search-icon { width: 18px; height: 18px; color: var(--muted); flex: 0 0 auto; }
+
+.work-search input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: none;
+  font-family: inherit;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+.work-search input::placeholder { color: var(--muted); }
+.work-search input:focus-visible { outline: none; box-shadow: none; }
+
+.work-search-btn {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.18s ease, transform 0.15s ease;
+}
+.work-search-btn svg { width: 16px; height: 16px; }
+.work-search-btn:hover { background: var(--accent-dark); }
+.work-search-btn:active { transform: scale(0.92); }
+
+/* ---- Capability chip row (horizontally scrollable) ----
+   overflow-x:auto also clips the y-axis, so the row needs its own
+   padding on every side or each chip's shadow gets cropped flat. */
+.chip-row-wrap { position: relative; margin: 0 -0.3rem 1.5rem; }
+.chip-row {
+  display: flex;
+  gap: 0.6rem;
+  overflow-x: auto;
+  padding: 0.6rem 0.3rem 0.9rem;
+  scrollbar-width: none;
+}
+.chip-row::-webkit-scrollbar { display: none; }
+.chip-row-wrap::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0; bottom: 0;
+  width: 36px;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0), var(--bg));
+  pointer-events: none;
+}
 
 .chip {
   appearance: none;
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
   font-family: inherit;
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   font-weight: 600;
-  color: var(--text);
+  color: var(--muted);
   background: #fff;
-  border: none;
-  border-radius: var(--radius);
+  border: 1.5px solid transparent;
+  border-radius: 999px;
   box-shadow: var(--shadow-sm);
-  padding: 0.55rem 0.9rem;
+  padding: 0.55rem 0.95rem;
   cursor: pointer;
-  min-height: 44px;
-  transition: background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease, transform 0.12s ease;
+  white-space: nowrap;
+  min-height: 40px;
+  transition: background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, transform 0.12s ease;
 }
-.chip:hover { box-shadow: var(--shadow-md); }
-.chip:active { transform: scale(0.95); }
-.chip[aria-pressed="true"] { background: var(--text); color: #fff; }
+.chip-icon { display: inline-flex; flex: 0 0 auto; width: 16px; height: 16px; }
+.chip-icon svg { display: block; width: 100%; height: 100%; }
+.chip:hover { box-shadow: var(--shadow-md); color: var(--text); }
+.chip:active { transform: scale(0.96); }
+.chip[aria-pressed="true"] { color: var(--text); background: var(--surface); border-color: var(--accent); }
 
-.requirements-field { display: flex; flex-direction: column; gap: 0.5rem; }
-.requirements-field label { font-size: 0.78rem; font-weight: 700; color: var(--muted); }
-.requirements-field textarea {
-  font-family: inherit;
-  font-size: 0.85rem;
-  color: var(--text);
-  background: #fff;
-  border: none;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-sm);
-  padding: 0.65rem 0.75rem;
-  resize: vertical;
-}
-.requirements-field textarea:focus-visible { box-shadow: var(--shadow-md), 0 0 0 2px var(--accent); }
-
-.btn-match {
-  align-self: flex-start;
-  appearance: none;
-  font-family: inherit;
-  font-size: 0.78rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  color: #fff;
-  background: var(--accent);
-  border: none;
-  border-radius: var(--radius);
-  padding: 0.55rem 1rem;
-  min-height: 44px;
-  cursor: pointer;
-  transition: background 0.18s ease;
-}
-.btn-match:hover { background: var(--accent-dark); }
-
-.keywords-status { font-size: 0.85rem; font-weight: 600; color: var(--accent-dark); margin: 0; }
+.keywords-status { font-size: 0.85rem; font-weight: 600; color: var(--accent-dark); margin: 0 0 2.5rem; }
 
 /* ---- Project cards ---- */
-.project-cards { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr; gap: 1.1rem; }
+.project-cards { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr; gap: 1.4rem; }
 
 .project-card {
   display: flex;
@@ -370,6 +524,57 @@ a { color: inherit; }
 .project-link { display: inline-block; font-size: 0.85rem; font-weight: 700; text-decoration: none; color: var(--text); transition: color 0.2s ease; }
 .project-link:hover { color: var(--accent-dark); }
 
+/* ---- "Other Projects" panel: sits beside the 2x2 grid (not in
+   place of a card), tinted to read as a distinct, secondary area.
+   It spans both grid rows on desktop (see the 900px block below) so
+   its scrollable list naturally gets the combined height of the two
+   rows next to it. ---- */
+.project-card-other { background: var(--surface); box-shadow: none; }
+.project-card-other:hover { transform: none; box-shadow: none; }
+
+.project-other {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 1.25rem 1.25rem 1rem;
+}
+.project-other-label { font-size: 0.95rem; font-weight: 700; margin: 0 0 0.75rem; flex: 0 0 auto; text-align: center; }
+.project-other-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+.project-mini + .project-mini { margin-top: 0.9rem; }
+
+.project-mini-link {
+  display: block;
+  background: #fff;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  text-decoration: none;
+  color: inherit;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.project-mini-link:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+
+.project-mini-thumb { aspect-ratio: 16 / 10; background: var(--surface); overflow: hidden; }
+.project-mini-thumb img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+.project-mini-body { padding: 0.75rem 0.85rem 0.9rem; }
+.project-mini-body h4 { margin: 0 0 0.3rem; font-size: 0.85rem; font-weight: 700; color: var(--text); }
+.project-mini-body p { margin: 0 0 0.5rem; font-size: 0.72rem; line-height: 1.4; color: var(--muted); }
+.project-mini-view { font-size: 0.72rem; font-weight: 700; color: var(--text); transition: color 0.2s ease; }
+.project-mini-link:hover .project-mini-view { color: var(--accent-dark); }
+
+/* Highlighted when its tags match the selected keyword chips —
+   reordered to the top of this list, but never affects the ranking
+   of the primary four cards. */
+.project-other-list li.is-match .project-mini-link { box-shadow: 0 0 0 2px var(--accent), var(--shadow-md); }
+
 /* ========== FOOTER ========== */
 .fun-footer { text-align: center; padding-top: 2.5rem; padding-bottom: 3rem; }
 .fun-quote { font-size: 1.1rem; font-weight: 600; margin: 0 0 0.6rem; }
@@ -377,9 +582,10 @@ a { color: inherit; }
 
 /* ========== REDUCED MOTION ========== */
 @media (prefers-reduced-motion: reduce) {
-  .btn-match, .chip, .project-card, .project-thumb img, .project-link,
-  .hero-nav-links a, .hero-resume, .hero-also a, .hero-also svg, .hero-extra-link, .avatar-dot,
-  .hero-name-word, .hero-photo-frame, .hero-photo, .scroll-hint {
+  .chip, .project-card, .project-thumb img, .project-link,
+  .hero-nav-links, .hero-nav-links a, .hero-resume, .hero-also a, .hero-also svg,
+  .hero-name-word, .hero-photo-frame, .hero-photo, .scroll-hint, .nav-toggle-bar,
+  .hero-nav, .nav-compact-dots .dot {
     transition: none !important;
   }
 
@@ -404,6 +610,10 @@ a { color: inherit; }
   .project-cards { grid-template-columns: repeat(2, 1fr); }
 }
 
+@media (min-width: 560px) and (max-width: 899px) {
+  .project-card-other { grid-column: 1 / -1; max-height: 340px; }
+}
+
 @media (min-width: 900px) {
   :root { --outer-pad: 48px; }
 
@@ -421,12 +631,83 @@ a { color: inherit; }
   .hero-quote::before { left: auto; right: 0; transform: none; }
 
   .hero-also { justify-content: flex-end; }
-  .hero-extra { justify-content: flex-end; }
 
   .hero-photo-frame { justify-self: center; width: min(24vw, 320px); }
 
-  .work-layout { grid-template-columns: minmax(240px, 0.85fr) minmax(0, 2fr); gap: 2rem; align-items: start; }
-  .keywords-panel { padding: 1.75rem; }
+  .work-filterbar { flex-direction: row; align-items: center; gap: 1.75rem; }
+  .work-filterbar-prompt { flex: 0 0 auto; max-width: 260px; }
+  .work-search { flex: 1; }
+
+  /* 2x2 for the four real projects, plus a narrower third column for
+     Other Projects spanning both rows. The panel's explicit position
+     is placed first by the grid algorithm, so the four un-positioned
+     cards auto-flow into the remaining two columns — no need to
+     position each of them by hand. */
+  .project-cards { grid-template-columns: repeat(2, 1fr) minmax(220px, 260px); }
+  .project-card-other { grid-column: 3; grid-row: 1 / span 2; max-height: none; }
+
+  /* Nav switches from a mobile drawer to a floating pill with the
+     links inline. Lighter shadow, more breathing room between the
+     logo and the links than the mobile bar needs. */
+  .hero-nav {
+    top: 1rem;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    width: auto;
+    max-width: 680px;
+    gap: 2.25rem;
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 999px;
+    box-shadow: var(--shadow-sm);
+    padding: 0.5rem 0.5rem 0.5rem 1.1rem;
+    transition: max-width 0.4s cubic-bezier(0.22, 1, 0.36, 1), padding 0.3s ease, box-shadow 0.3s ease;
+  }
+  .hero-nav:hover { box-shadow: var(--shadow-md); }
+
+  .nav-scrim { display: none; }
+  .nav-toggle { display: none; }
+
+  .hero-nav-links {
+    position: static;
+    inset: auto;
+    width: auto;
+    min-width: 0;
+    max-width: none;
+    height: auto;
+    border-radius: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.75rem;
+    background: none;
+    box-shadow: none;
+    padding: 0;
+    font-size: 0.85rem;
+    font-weight: 600;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition: opacity 0.25s ease;
+  }
+  .hero-nav-links a:not(.hero-resume)::after { background: var(--text); }
+  .hero-nav-links a:not(.hero-resume):hover { color: var(--text); }
+  .hero-resume { padding: 0.5rem 1rem; font-size: 0.85rem; }
+
+  /* Compact state: once the hero has scrolled out of view, collapse
+     the pill to just the current section + dots. Hovering it brings
+     the full link row back without needing to scroll up. */
+  .hero-nav.is-compact { max-width: 200px; padding: 0.5rem 0.6rem 0.5rem 0.9rem; }
+  .hero-nav.is-compact .hero-brand,
+  .hero-nav.is-compact .hero-nav-links { display: none; }
+  .hero-nav.is-compact .nav-compact { display: flex; }
+
+  .hero-nav.is-compact:hover { max-width: 680px; padding: 0.5rem 0.5rem 0.5rem 1.1rem; }
+  .hero-nav.is-compact:hover .hero-brand { display: inline-flex; }
+  .hero-nav.is-compact:hover .hero-nav-links { display: flex; }
+  .hero-nav.is-compact:hover .nav-compact { display: none; }
 }
 
 @media (min-width: 1200px) {

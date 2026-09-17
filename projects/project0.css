@@ -2765,3 +2765,254 @@ p:last-child {
     grid-template-columns: 1fr;
   }
 }
+
+/* =====================================================================
+   Side navigation — numbered main items pinned to the left margin,
+   with a nested, smaller-numbered sub-list under sections that have
+   distinct named sub-parts (Booking's key screens, Discovery's two
+   decisions, Onboarding's four stages). Ported from the CX Portal
+   case study's side-nav so both projects share the same pattern.
+   Capped at 90vh with its own scroll, since this page has more
+   top-level sections (9) than CX Portal's (6) and could otherwise
+   run off a shorter screen.
+   ===================================================================== */
+.side-nav {
+  position: fixed;
+  top: 50%;
+  left: 2.5rem;
+  transform: translateY(-50%);
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+  max-height: 90vh;
+  overflow-y: auto;
+  scrollbar-width: none;
+  padding: 0.5rem 0;
+}
+
+.side-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.side-nav-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.side-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.1px;
+  transition: color 0.25s ease;
+}
+
+.side-nav-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 23px;
+  height: 23px;
+  border-radius: 50%;
+  border: 1.5px solid var(--card-border);
+  font-size: 0.63rem;
+  font-weight: 700;
+  color: var(--muted);
+  flex-shrink: 0;
+  transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+
+.side-nav-link:hover,
+.side-nav-link.is-active {
+  color: var(--accent);
+}
+
+.side-nav-link:hover .side-nav-num,
+.side-nav-link.is-active .side-nav-num {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+}
+
+.side-nav-sublist {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin: 0.7rem 0 0 11px;
+  padding-left: 0.9rem;
+  border-left: 1.5px solid var(--card-border);
+}
+
+.side-nav-sublink {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+  transition: color 0.25s ease;
+}
+
+.side-nav-sublink-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1.5px solid var(--card-border);
+  font-size: 0.58rem;
+  font-weight: 700;
+  color: var(--muted);
+  flex-shrink: 0;
+  transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+
+.side-nav-sublink:hover,
+.side-nav-sublink.is-active {
+  color: var(--accent);
+}
+
+.side-nav-sublink:hover .side-nav-sublink-num,
+.side-nav-sublink.is-active .side-nav-sublink-num {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+}
+
+/* Below 1200px there's no gutter left for a vertical sidebar, so it
+   becomes a compact row of number-only badges pinned to the top
+   instead of disappearing. Sub-items are dropped here — there isn't
+   room for two nesting levels in one row, and the main section is
+   still one tap away. */
+@media (max-width: 1200px) {
+  .side-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    transform: none;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.7rem;
+    max-height: none;
+    overflow: visible;
+    background: var(--bg-solid);
+    border-bottom: 1px solid var(--card-border);
+    padding: 0.65rem 1rem;
+    z-index: 95;
+  }
+
+  .side-nav-item {
+    flex-shrink: 0;
+  }
+
+  .side-nav-label {
+    display: none;
+  }
+
+  .side-nav-num {
+    width: 24px;
+    height: 24px;
+    font-size: 0.62rem;
+  }
+
+  .side-nav-sublist {
+    display: none;
+  }
+
+  .back-link {
+    top: 64px;
+  }
+}
+
+@media (max-width: 480px) {
+  .side-nav {
+    gap: 0.45rem;
+    padding: 0.55rem 0.6rem;
+  }
+
+  .side-nav-num {
+    width: 21px;
+    height: 21px;
+    font-size: 0.56rem;
+  }
+}
+
+/* =====================================================================
+   Stat box — a single large number in an unfilled, bordered box with
+   generous padding and one short supporting line underneath. Used in
+   the Outcome section for the design-system and booking-flow impact
+   figures. Ported from the CX Portal case study so both projects use
+   the same pattern for headline numbers.
+   ===================================================================== */
+.stat-box {
+  border: 1px solid var(--card-border);
+  background: transparent;
+  padding: 2.25rem 2rem;
+  margin: 1.75rem auto;
+  max-width: 520px;
+  text-align: center;
+}
+
+.stat-box-number {
+  font-size: 2.6rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+  line-height: 1;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+
+.stat-box-text {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--muted);
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+.stat-box-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin: 2.5rem 0;
+}
+
+.stat-box-grid .stat-box {
+  margin: 0;
+  max-width: 100%;
+}
+
+@media (max-width: 768px) {
+  .stat-box {
+    padding: 1.75rem 1.5rem;
+    margin: 1.5rem auto;
+  }
+
+  .stat-box-number {
+    font-size: 2.1rem;
+  }
+
+  .stat-box-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .stat-box-number {
+    font-size: 1.9rem;
+  }
+
+  .stat-box-text {
+    font-size: 0.82rem;
+  }
+}

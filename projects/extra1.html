@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lakshmi Pratap — Product Designer</title>
+  <meta name="description" content="Lakshmi Pratap — Product Designer based in Toronto, Canada. B2B SaaS and marketplace product work. Pick what matters and see where it shows up." />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Lakshmi Pratap — Product Designer" />
+  <meta property="og:description" content="Product Designer in Toronto, Canada. Pick what matters and see exactly where it shows up in my work." />
+  <meta property="og:image" content="https://lakshmipratap.com/assets/og-card.png" />
+  <meta property="og:url" content="https://lakshmipratap.com" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Lakshmi Pratap — Product Designer" />
+  <meta name="twitter:image" content="https://lakshmipratap.com/assets/og-card.png" />
+
+  <link rel="stylesheet" href="style.css?v=21" />
+  <link rel="stylesheet" href="hero.css?v=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="assets/logo.png">
+</head>
+
+<body>
+
+  <a class="skip-link" href="#work">Skip to work</a>
+
+  <!-- ========== HERO — interactive designer's workspace ========== -->
+  <section class="hero">
+
+    <nav class="hero-nav" aria-label="Primary">
+      <a class="hero-brand" href="index.html">Lakshmi Pratap</a>
+      <div class="hero-nav-links">
+        <a href="#work">Work</a>
+        <a href="about.html">About Me</a>
+        <button type="button" id="navProcess">Process</button>
+        <a href="mailto:your@email.com">Contact</a>
+        <a class="hero-resume" href="assets/LakshmiPratap_ProdectDes (1).pdf" target="_blank" rel="noopener noreferrer">Resume</a>
+      </div>
+    </nav>
+
+    <div class="hero-main">
+      <div class="workspace-canvas" id="workspaceCanvas">
+
+        <div class="intro-text">
+          <p class="intro-eyebrow">Product Designer &nbsp;·&nbsp; Toronto</p>
+          <h1 class="intro-title">Hi, I'm Lakshmi.<br />I design with <span class="intro-accent">less figuring out</span>, more using.</h1>
+        </div>
+
+        <div class="persona-wrap">
+          <div class="persona-parallax" id="personaParallax">
+            <div class="persona-float">
+              <!-- Swap this src to replace the persona — see the notes at
+                   the end of the delivery summary for exact steps. -->
+              <img class="persona-img" src="assets/persona.png" alt="Illustrated 3D-style portrait of Lakshmi, arms crossed, smiling" />
+            </div>
+          </div>
+          <div class="persona-ground" aria-hidden="true"></div>
+        </div>
+
+        <button type="button" class="float-obj obj-process" id="processTrigger"
+                style="--enter-delay:0.3s" aria-haspopup="dialog" aria-expanded="false">
+          <span class="process-chip">
+            <span class="process-chip-title">My Process</span>
+            <span class="process-chip-steps">Problem → Research → Design → Build</span>
+          </span>
+        </button>
+
+        <button type="button" class="float-obj obj-sketchbook" id="sketchbookTrigger"
+                style="--enter-delay:0.45s" aria-haspopup="dialog" aria-expanded="false">
+          <span class="sketchbook-tab">
+            <span>Sketchbook</span>
+          </span>
+        </button>
+
+        <div class="obj-tools" id="toolsWrap" style="--enter-delay:0.55s">
+          <button type="button" class="float-obj" id="toolsTrigger" style="animation-delay:0.55s" aria-expanded="false" aria-controls="toolsRadial">
+            <span class="tools-chip"><span class="tools-chip-plus">+</span> Tools</span>
+          </button>
+          <div class="tools-radial" id="toolsRadial" role="group" aria-label="Tools I use"></div>
+        </div>
+
+        <button type="button" class="float-obj obj-illustrations" id="illusTrigger"
+                style="--enter-delay:0.4s" aria-haspopup="dialog" aria-expanded="false">
+          <span class="illus-frame" aria-hidden="true">
+            <svg viewBox="0 0 110 84" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.4">
+              <circle cx="38" cy="34" r="14" stroke="#D03A46" />
+              <path d="M20 66c6-14 18-20 30-20s24 6 30 20" stroke="#111" />
+              <path d="M62 20c8 2 16 8 18 18" stroke="#111" />
+            </svg>
+          </span>
+          <span class="illus-caption">Things I make when I'm not designing products</span>
+        </button>
+
+        <div class="obj-about" id="aboutWrap" style="--enter-delay:0.6s">
+          <button type="button" class="float-obj" id="aboutTrigger" style="animation-delay:0.6s" aria-haspopup="true" aria-expanded="false" aria-controls="aboutPopover">
+            <span class="about-dot">i</span>
+          </button>
+          <div class="about-popover" id="aboutPopover" hidden>
+            <strong>Lakshmi Pratap</strong>
+            <ul>
+              <li>Product Designer</li>
+              <li>MSc Human-Computer Interaction</li>
+              <li>Accessibility-curious</li>
+              <li>Design + code + motion</li>
+              <li>Toronto, Canada</li>
+            </ul>
+            <div class="about-social">
+              <a href="https://www.instagram.com/your_username/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" x2="17.51" y1="6.5" y2="6.5" /></svg>
+              </a>
+              <a href="https://www.linkedin.com/in/your-profile/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect width="4" height="12" x="2" y="9" /><circle cx="4" cy="4" r="2" /></svg>
+              </a>
+              <a href="mailto:your@email.com" aria-label="Email">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" /><rect x="2" y="4" width="20" height="16" rx="2" /></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <a class="float-obj obj-work" href="#work" style="--enter-delay:0.65s">
+          Selected Work
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+        </a>
+
+      </div>
+    </div>
+
+    <a class="scroll-hint" href="#work" aria-label="Scroll to work">↓</a>
+
+    <!-- ---------- Process overlay ---------- -->
+    <div class="hero-overlay" id="processOverlay" hidden>
+      <div class="hero-overlay-scrim" data-close></div>
+      <div class="hero-overlay-panel" role="dialog" aria-modal="true" aria-labelledby="processHeading" id="processPanel" data-stage="traditional">
+        <button type="button" class="overlay-close" data-close aria-label="Close">✕</button>
+        <div class="process-panel-inner">
+          <div class="process-heading">
+            <h3 id="processHeading">My Design Process</h3>
+            <span class="process-sticker">New</span>
+          </div>
+          <p class="process-caption">The steps didn't change. What I use to get through each one did.</p>
+          <ol class="process-steps" id="processSteps"></ol>
+          <div class="process-actions">
+            <button type="button" class="process-btn primary" id="processEvolveBtn">Show how AI fits in</button>
+            <button type="button" class="process-btn" id="processResetBtn" hidden>Replay</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---------- Sketchbook overlay ---------- -->
+    <div class="hero-overlay" id="sketchbookOverlay" hidden>
+      <div class="hero-overlay-scrim" data-close></div>
+      <div class="hero-overlay-panel" role="dialog" aria-modal="true" aria-labelledby="sketchbookHeading">
+        <button type="button" class="overlay-close" data-close aria-label="Close">✕</button>
+        <div class="sketchbook-panel-inner">
+          <h3 id="sketchbookHeading" class="visually-hidden">Sketchbook</h3>
+          <div class="sketchbook-stage" id="sketchStage"></div>
+          <div class="sketchbook-controls">
+            <button type="button" class="sketch-nav-btn" id="sketchPrev" aria-label="Previous page">←</button>
+            <span class="sketch-indicator" id="sketchIndicator">1 / 6</span>
+            <button type="button" class="sketch-nav-btn" id="sketchNext" aria-label="Next page">→</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---------- Illustration lightbox ---------- -->
+    <div class="hero-overlay" id="illusOverlay" hidden>
+      <div class="hero-overlay-scrim" data-close></div>
+      <div class="hero-overlay-panel" role="dialog" aria-modal="true" aria-labelledby="illusHeading">
+        <button type="button" class="overlay-close" data-close aria-label="Close">✕</button>
+        <div class="illus-lightbox-inner">
+          <h3 id="illusHeading" class="visually-hidden">Illustration preview</h3>
+          <svg class="illus-lightbox-art" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#111" stroke-width="1.4">
+            <circle cx="80" cy="70" r="30" stroke="#D03A46" />
+            <path d="M40 150c14-30 40-44 60-44s46 14 60 44" />
+            <path d="M120 45c16 4 30 16 34 36" />
+            <path d="M60 60c-4 10-4 20 2 28" />
+          </svg>
+          <p class="illus-lightbox-caption">Animation studies &amp; character sketches — a small selection from the full <a href="projects/project6.html">Illustrations</a> page.</p>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ========== WORK — its own full section below the hero ========== -->
+  <main>
+    <section class="work" id="work">
+      <h2>Work</h2>
+
+      <div class="work-layout">
+
+        <div class="keywords-panel">
+          <p class="keywords-intro">Please don't waste your time, I got you.</p>
+
+          <div class="chip-group" id="chipGroup" hidden>
+            <!-- Populated by script.js from CAPABILITIES, so the chip set
+                 and evidence data can never drift apart. -->
+          </div>
+
+          <div class="requirements-field">
+            <label for="jdInput">Or tell me what you're looking for</label>
+            <textarea id="jdInput" rows="3" placeholder="Paste a few lines from the job posting, or just describe what you need…"></textarea>
+            <button type="button" class="btn-match" id="buildFromJd">Match my needs</button>
+          </div>
+
+          <p class="keywords-status" id="boardStatus" aria-live="polite">Nothing selected yet — pick what matters to you.</p>
+        </div>
+
+        <ol class="project-cards" id="projectCards">
+
+          <li class="project-card" data-project="clearisk">
+            <div class="project-thumb"><img src="assets/CLEARISK%20DP.png" alt="Clearisk CX onboarding review workflow" loading="lazy" /></div>
+            <div class="project-body">
+              <div class="project-card-head">
+                <h3>Improving productivity in the onboarding review workflow</h3>
+                <span class="project-match-label" hidden></span>
+              </div>
+              <ul class="capability-strip">
+                <li>B2B SaaS</li>
+                <li>Complex Workflows</li>
+              </ul>
+              <p class="project-proves">CX Portal, Clearisk</p>
+              <a class="project-link" href="projects/cx-review.html">View project →</a>
+            </div>
+          </li>
+
+          <li class="project-card" data-project="sportscove">
+            <div class="project-thumb"><img src="assets/sportsdp.png" alt="Sportscove app screens" loading="lazy" /></div>
+            <div class="project-body">
+              <div class="project-card-head">
+                <h3>Redesigning a dual-sided sports app to a successful launch</h3>
+                <span class="project-match-label" hidden></span>
+              </div>
+              <ul class="capability-strip">
+                <li>Marketplace</li>
+                <li>0→1</li>
+              </ul>
+              <p class="project-proves">Sportscove App, Consultcraft</p>
+              <a class="project-link" href="projects/project0.html">View project →</a>
+            </div>
+          </li>
+
+          <li class="project-card" data-project="quippy">
+            <div class="project-thumb"><img src="assets/QUIPPYdp.png" alt="Quippy browser extension" loading="lazy" /></div>
+            <div class="project-body">
+              <div class="project-card-head">
+                <h3>A browser extension to make your text look-ups instant</h3>
+                <span class="project-match-label" hidden></span>
+              </div>
+              <ul class="capability-strip">
+                <li>Independent</li>
+                <li>0→1</li>
+              </ul>
+              <p class="project-proves">Quippy (Chrome, Firefox)</p>
+              <a class="project-link" href="projects/project1.html">View project →</a>
+            </div>
+          </li>
+
+          <li class="project-card project-card-light" data-project="vr">
+            <div class="project-thumb"><img src="assets/VR DP.png" alt="VR environment and experience" loading="lazy" /></div>
+            <div class="project-body">
+              <div class="project-card-head">
+                <h3>Inducing mind-body dualism using Virtual Reality</h3>
+                <span class="project-match-label" hidden></span>
+              </div>
+              <ul class="capability-strip">
+                <li>Research</li>
+                <li>Prototyping</li>
+              </ul>
+              <p class="project-proves">Reearch, University of Nottingham</p>
+              <a class="project-link" href="projects/project4.html">View project →</a>
+            </div>
+          </li>
+
+        </ol>
+      </div>
+    </section>
+  </main>
+
+  <footer class="fun-footer">
+    <p class="fun-quote">Somewhere between architecture and pixels, this happened.</p>
+    <p class="fun-credit">Designed by Lakshmi Pratap · Built with Claude Code</p>
+  </footer>
+
+  <script src="script.js?v=21" defer></script>
+  <script src="hero.js?v=1" defer></script>
+</body>
+
+</html>

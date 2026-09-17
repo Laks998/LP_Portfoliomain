@@ -385,3 +385,44 @@ document.addEventListener('DOMContentLoaded', () => {
   console.log('🎯 Research → Design → Build → Test → Framework');
   
 });
+
+// Side navigation — highlights whichever section is currently crossing
+// the vertical center of the viewport. Reuses the same href="#id"
+// links the smooth-scroll handler above already makes clickable, so
+// this only needs to handle highlighting. Same pattern as the CX
+// Portal, Sportscove, and Quippy case studies (no sub-links here,
+// since this page's nav has no nested sub-items).
+document.addEventListener('DOMContentLoaded', () => {
+
+  const sideNavLinks = document.querySelectorAll('.side-nav-link');
+  if (sideNavLinks.length === 0) return;
+
+  const sections = Array.from(sideNavLinks)
+    .map(link => document.querySelector(link.getAttribute('href')))
+    .filter(Boolean);
+
+  if (sections.length === 0) return;
+
+  const activeIds = new Set();
+
+  const updateActiveLinks = () => {
+    sideNavLinks.forEach(link => {
+      const id = link.getAttribute('href').slice(1);
+      link.classList.toggle('is-active', activeIds.has(id));
+    });
+  };
+
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        activeIds.add(entry.target.id);
+      } else {
+        activeIds.delete(entry.target.id);
+      }
+    });
+    updateActiveLinks();
+  }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+
+  sections.forEach(section => sectionObserver.observe(section));
+
+});

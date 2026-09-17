@@ -13,6 +13,8 @@
 // away. Setting draggable="false" (plus the CSS -webkit-user-drag
 // fallback in project0.css) turns that off everywhere, not just on the
 // zoomable images.
+// Round 4: added a side-nav active-state tracker (see bottom of file),
+// matching the one built for the CX Portal case study.
 
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -232,5 +234,47 @@ document.addEventListener('DOMContentLoaded', () => {
       closeBtn.focus();
     }
   });
+
+});
+
+// Side navigation — highlights whichever section(s) are currently
+// crossing the vertical center of the viewport. A parent link (e.g.
+// Booking) and its matching sub-link (e.g. Coach profile) can be
+// active at the same time, since the sub-section sits inside the
+// parent one. Reuses the same href="#id" links the smooth-scroll
+// handler above already makes clickable, so this only needs to
+// handle highlighting.
+document.addEventListener('DOMContentLoaded', () => {
+
+  const sideNavLinks = document.querySelectorAll('.side-nav-link, .side-nav-sublink');
+  if (sideNavLinks.length === 0) return;
+
+  const sections = Array.from(sideNavLinks)
+    .map(link => document.querySelector(link.getAttribute('href')))
+    .filter(Boolean);
+
+  if (sections.length === 0) return;
+
+  const activeIds = new Set();
+
+  const updateActiveLinks = () => {
+    sideNavLinks.forEach(link => {
+      const id = link.getAttribute('href').slice(1);
+      link.classList.toggle('is-active', activeIds.has(id));
+    });
+  };
+
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        activeIds.add(entry.target.id);
+      } else {
+        activeIds.delete(entry.target.id);
+      }
+    });
+    updateActiveLinks();
+  }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+
+  sections.forEach(section => sectionObserver.observe(section));
 
 });
