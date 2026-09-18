@@ -16,9 +16,9 @@
   <meta name="twitter:title" content="Lakshmi Pratap — Product Designer" />
   <meta name="twitter:image" content="https://lakshmipratap.com/assets/og-card.png" />
 
-  <link rel="stylesheet" href="style.css?v=29" />
+  <link rel="stylesheet" href="style.css?v=55" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Bodoni+Moda:ital,opsz,wght@1,6..96,400..900&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="assets/logo.png">
 </head>
 
@@ -37,7 +37,7 @@
       <div class="hero-nav-links" id="heroNavLinks">
         <a href="#work">Work</a>
         <a href="about.html">About Me</a>
-        <a href="projects/project5.html">Sketches</a>
+        <a href="#sketchbook">Sketchbook</a>
         <a href="projects/project6.html">Illustrations</a>
         <a class="hero-resume" href="assets/LakshmiPratap_ProdectDes (1).pdf" target="_blank" rel="noopener noreferrer">Resume</a>
       </div>
@@ -63,9 +63,9 @@
       <div class="hero-grid">
 
         <div class="hero-left">
-          <h1 class="hero-name">
-            <span class="hero-name-word">LAKSHMI</span>
-            <span class="hero-name-word hero-name-word-2">PRATAP</span>
+          <h1 class="hero-name" aria-label="Lakshmi Pratap">
+            <span class="hero-name-word" aria-hidden="true"><span class="hero-letter" style="--i:0">L</span><span class="hero-letter" style="--i:1">A</span><span class="hero-letter" style="--i:2">K</span><span class="hero-letter" style="--i:3">S</span><span class="hero-letter" style="--i:4">H</span><span class="hero-letter" style="--i:5">M</span><span class="hero-letter" style="--i:6">I</span></span>
+            <span class="hero-name-word" aria-hidden="true"><span class="hero-letter" style="--i:7">P</span><span class="hero-letter" style="--i:8">R</span><span class="hero-letter" style="--i:9">A</span><span class="hero-letter" style="--i:10">T</span><span class="hero-letter" style="--i:11">A</span><span class="hero-letter" style="--i:12">P</span></span>
           </h1>
           <p class="hero-role">Product Designer</p>
           <p class="hero-meta">Toronto, Canada</p>
@@ -73,32 +73,29 @@
         </div>
 
         <div class="hero-photo-frame">
-          <!-- Placeholder — replace src with a real photo. Using the
-               existing illustration here only so the layout isn't empty;
-               it is not part of the intended final design. -->
-          <img class="hero-photo" src="assets/hello.svg" alt="Portrait of Lakshmi Pratap" />
+          <img class="hero-photo" src="assets/Mainphoto.png" alt="Portrait of Lakshmi Pratap" />
         </div>
 
         <div class="hero-right">
-          <p class="hero-quote">&ldquo;I work so that you have less figuring out and more just using it.&rdquo;</p>
+          <p class="hero-quote">&ldquo;I work so that you have less <span class="hero-quote-em">figuring out</span> and more just <span class="hero-quote-em">using</span> it.&rdquo;</p>
 
           <p class="hero-also">
             Also me:
-             <a href="https://www.instagram.com/your_username/" target="_blank" class="icon" aria-label="Instagram">
+             <a href="https://www.instagram.com/lakshmi_pratap/" target="_blank" rel="noopener noreferrer" class="icon" aria-label="Instagram">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
                   <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
                   <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
                 </svg>
               </a>
-              <a href="https://www.linkedin.com/in/your-profile/" target="_blank" class="icon" aria-label="LinkedIn">
+              <a href="https://www.linkedin.com/in/lakshmi-pratap/" target="_blank" rel="noopener noreferrer" class="icon" aria-label="LinkedIn">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
                   <rect width="4" height="12" x="2" y="9" />
                   <circle cx="4" cy="4" r="2" />
                 </svg>
               </a>
-              <a href="mailto:your@email.com" class="icon" aria-label="Email">
+              <a href="mailto:lakshmipwork@gmail.com" class="icon" aria-label="Email">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" />
                   <rect x="2" y="4" width="20" height="16" rx="2" />
@@ -110,30 +107,34 @@
       </div>
     </div>
 
-    <a class="scroll-hint" href="#work" aria-label="Scroll to work">↓</a>
+    <a class="scroll-hint" href="#tools" aria-label="Scroll to tools">↓</a>
   </section>
 
   <!-- ========== WORK — its own full section below the hero ========== -->
   <main>
+    <!-- ========== TOOLS — sits between the hero and Work ========== -->
+    <section class="tools" id="tools" data-nav-label="Tools">
+      <div class="section-head">
+        <h2>Tools</h2>
+        <p class="section-sub">My current set of tools I use and the ones I have used for the projects.</p>
+      </div>
+
+      <ul class="tool-balls" id="toolBalls" aria-label="Tools I use">
+        <li class="tool-ball"><span class="tool-ball-spin"><img src="assets/figma.svg" alt="Figma" draggable="false" /></span><span class="tool-tip" aria-hidden="true"><span class="tool-tip-box">Figma</span></span></li>
+        <li class="tool-ball"><span class="tool-ball-spin"><img src="assets/miro.svg" alt="Miro" draggable="false" /></span><span class="tool-tip" aria-hidden="true"><span class="tool-tip-box">Miro</span></span></li>
+        <li class="tool-ball"><span class="tool-ball-spin"><img src="assets/zeplin.svg" alt="Zeplin" draggable="false" /></span><span class="tool-tip" aria-hidden="true"><span class="tool-tip-box">Zeplin</span></span></li>
+        <li class="tool-ball"><span class="tool-ball-spin"><img src="assets/jira.svg" alt="Jira" draggable="false" /></span><span class="tool-tip" aria-hidden="true"><span class="tool-tip-box">Jira</span></span></li>
+        <li class="tool-ball"><span class="tool-ball-spin"><img src="assets/claude.svg" alt="Claude" draggable="false" /></span><span class="tool-tip" aria-hidden="true"><span class="tool-tip-box">Claude</span></span></li>
+        <li class="tool-ball"><span class="tool-ball-spin"><img src="assets/chatgpt.svg" alt="ChatGPT" draggable="false" /></span><span class="tool-tip" aria-hidden="true"><span class="tool-tip-box">ChatGPT</span></span></li>
+        <li class="tool-ball"><span class="tool-ball-spin"><img src="assets/uxpilot.svg" alt="UX Pilot" draggable="false" /></span><span class="tool-tip" aria-hidden="true"><span class="tool-tip-box">UX Pilot</span></span></li>
+        <li class="tool-ball"><span class="tool-ball-spin"><img src="assets/manus.svg" alt="Manus AI" draggable="false" /></span><span class="tool-tip" aria-hidden="true"><span class="tool-tip-box">Manus AI</span></span></li>
+      </ul>
+    </section>
+
     <section class="work" id="work" data-nav-label="Work">
-      <h2>Work</h2>
-
-      <div class="work-filterbar">
-        <p class="work-filterbar-prompt">Let me help you filter my projects based on your requirements. Can you try?</p>
-
-        <div class="work-search">
-          <svg class="work-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="11" cy="11" r="7" />
-            <line x1="21" y1="21" x2="16.65" y2="16.65" />
-          </svg>
-          <input type="text" id="jdInput" placeholder="Paste a role, requirement, or what you're looking for…" />
-          <button type="button" class="work-search-btn" id="buildFromJd" aria-label="Match my needs">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <line x1="5" y1="12" x2="19" y2="12" />
-              <polyline points="12 5 19 12 12 19" />
-            </svg>
-          </button>
-        </div>
+      <div class="section-head">
+        <h2>Work</h2>
+        <p class="section-sub">A collection of my chosen work for you to filter and view.</p>
       </div>
 
       <div class="chip-row-wrap">
@@ -143,7 +144,7 @@
         </div>
       </div>
 
-      <p class="keywords-status" id="boardStatus" aria-live="polite">Nothing selected yet — pick what matters to you.</p>
+      <p class="keywords-status" id="boardStatus" aria-live="polite"></p>
 
       <ol class="project-cards" id="projectCards">
 
@@ -241,14 +242,202 @@
 
         </ol>
     </section>
+
+    <!-- ========== ABOUT ME — between Work and Sketchbook ========== -->
+    <section class="about" id="about" data-nav-label="About Me">
+      <div class="section-head">
+        <h2>About Me</h2>
+        <p class="section-sub">A little about the person behind the work.</p>
+      </div>
+
+      <div class="about-layout">
+        <!-- Three photos stacked; the top one peels from its bottom-right corner.
+             All the peel drawing is done by initPeel() in script.js. -->
+        <div class="about-photo" id="peel" role="group" aria-label="Photos of Lakshmi Pratap. Peel the top photo to see the next one.">
+          <svg class="peel-svg" viewBox="0 0 480 600" aria-hidden="true" focusable="false">
+            <defs>
+              <clipPath id="peelClip"><polygon id="peelPage" points="0,0 480,0 480,600 0,600" /></clipPath>
+              <linearGradient id="peelGrad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="480" y2="600">
+                <stop offset="0" stop-color="#cbc5c5" />
+                <stop offset="0.2" stop-color="#f1eded" />
+                <stop offset="1" stop-color="#ffffff" />
+              </linearGradient>
+              <filter id="peelShadow" filterUnits="userSpaceOnUse" x="-60" y="-60" width="600" height="720">
+                <feDropShadow dx="-3" dy="-4" stdDeviation="6" flood-color="#111111" flood-opacity="0.35" />
+              </filter>
+            </defs>
+            <!-- bottom → top: Me0 is the photo you see first -->
+            <g class="peel-layers">
+              <image href="assets/Me3.jpeg" x="0" y="0" width="480" height="600" preserveAspectRatio="xMidYMid slice" />
+  
+  
+              <image href="assets/Me2.jpeg" x="0" y="0" width="480" height="600" preserveAspectRatio="xMidYMid slice" clip-path="url(#peelClip)" />
+            </g>
+            <polygon class="peel-flap" points="" fill="url(#peelGrad)" filter="url(#peelShadow)" />
+          </svg>
+          <button type="button" class="peel-hotspot" aria-label="Peel the top photo"></button>
+        </div>
+
+        <div class="about-text">
+          <p>I started out studying <span class="about-term" data-img="assets/architecture" tabindex="0">architecture</span>, spent a few years figuring out what I actually wanted to design, and eventually found my way to UX. I did my Master’s in <span class="about-term" data-img="assets/hci" tabindex="0">Human-Computer Interaction</span> in the UK, and now I spend my time thinking about how to make complicated things feel a little simpler. These days, I am also learning more about accessibility in design, because good experiences should work for more people.</p>
+          <p>Outside of design, I do <span class="about-term" data-img="assets/embroidery" tabindex="0">embroidery</span>, <span class="about-term" data-img="assets/rockclimbing" tabindex="0">rock climbing</span>, and a little <span class="about-term" data-img="assets/spanish" tabindex="0">Spanish</span>. I have three <span class="about-term" data-img="assets/dogs" tabindex="0">dogs</span> at home, occasionally touch <span class="about-term" data-img="assets/grass" tabindex="0">grass</span>, and am still getting reacquainted with <span class="about-term" data-img="assets/snow" tabindex="0">snow</span>. Basically, I like making things, learning things, and occasionally remembering that screens are not the whole world.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== GALLERY — photos and videos drifting left to right, under About ==========
+         Add your own files as <li class="gallery-item"> entries below, once each.
+         script.js repeats them automatically so the loop never has a gap, and the
+         drifting stops while the pointer is over the strip.
+         A video looks like:
+         <li class="gallery-item"><video src="assets/your-video.mp4" muted loop playsinline autoplay preload="metadata"></video></li>
+         While there are no items the strip is hidden. -->
+    <section class="gallery" id="gallery" aria-label="Photos and videos">
+      <ul class="gallery-track" id="galleryTrack">
+        <!-- Add your gallery items here, e.g.
+        <li class="gallery-item"><img src="assets/your-photo.jpg" alt="" /></li> -->
+      </ul>
+    </section>
+
+    <!-- ========== SKETCHBOOK — sits under Work ========== -->
+    <section class="sketchbook" id="sketchbook" data-nav-label="Sketchbook">
+      <div class="section-head">
+        <h2>Sketchbook</h2>
+        <p class="section-sub">The different emotions through my pencil</p>
+      </div>
+
+      <div class="sb-layout">
+        <p class="sb-note">&ldquo;I will always be fascinated by the fact that faces speak, and expressions are languages.&rdquo;</p>
+
+        <div class="sb-wrap">
+          <div class="sb-book" id="sbBook" role="region" aria-label="Sketchbook. Drag the pages or use the arrow keys to flip.">
+            <div class="sb-sheets">
+
+              <!-- Sheet 1 -->
+              <div class="sb-sheet" data-sheet="1">
+                <div class="sb-page right front hint">
+                  <img src="assets/sketch1.JPG" alt="Sketch 1" loading="lazy" />
+                </div>
+                <div class="sb-page left back">
+                  <img src="assets/sketch2.JPG" alt="Sketch 2" loading="lazy" />
+                </div>
+              </div>
+
+              <!-- Sheet 2 -->
+              <div class="sb-sheet" data-sheet="2">
+                <div class="sb-page right front">
+                  <img src="assets/sketch3.JPG" alt="Sketch 3" loading="lazy" />
+                </div>
+                <div class="sb-page left back">
+                  <img src="assets/sketch4.JPG" alt="Sketch 4" loading="lazy" />
+                </div>
+              </div>
+
+              <!-- Sheet 3 -->
+              <div class="sb-sheet" data-sheet="3">
+                <div class="sb-page right front">
+                  <img src="assets/sketch5.jpeg" alt="Sketch 5" loading="lazy" />
+                </div>
+                <div class="sb-page left back">
+                  <img src="assets/sketch6.JPG" alt="Sketch 6" loading="lazy" />
+                </div>
+              </div>
+
+              <!-- Sheet 4 -->
+              <div class="sb-sheet" data-sheet="4">
+                <div class="sb-page right front">
+                  <img src="assets/sketch7.JPG" alt="Sketch 7" loading="lazy" />
+                </div>
+                <div class="sb-page left back">
+                  <img src="assets/sketch8.JPG" alt="Sketch 8" loading="lazy" />
+                </div>
+              </div>
+
+              <!-- Sheet 5 -->
+              <div class="sb-sheet" data-sheet="5">
+                <div class="sb-page right front">
+                  <img src="assets/sketch9.JPG" alt="Sketch 9" loading="lazy" />
+                </div>
+                <div class="sb-page left back">
+                  <img src="assets/sketch10.JPG" alt="Sketch 10" loading="lazy" />
+                </div>
+              </div>
+
+              <!-- Sheet 6 -->
+              <div class="sb-sheet" data-sheet="6">
+                <div class="sb-page right front">
+                  <img src="assets/sketch11.JPG" alt="Sketch 11" loading="lazy" />
+                </div>
+                <div class="sb-page left back">
+                  <img src="assets/sketch12.JPG" alt="Sketch 12" loading="lazy" />
+                </div>
+              </div>
+
+              <!-- Sheet 7 -->
+              <div class="sb-sheet" data-sheet="7">
+                <div class="sb-page right front">
+                  <img src="assets/sketch13.JPG" alt="Sketch 13" loading="lazy" />
+                </div>
+                <div class="sb-page left back">
+                  <img src="assets/sketch14.JPG" alt="Sketch 14" loading="lazy" />
+                </div>
+              </div>
+
+              <!-- Sheet 8 -->
+              <div class="sb-sheet" data-sheet="8">
+                <div class="sb-page right front">
+                  <img src="assets/sketch15.JPG" alt="Sketch 15" loading="lazy" />
+                </div>
+                <div class="sb-page left back">
+                  <img src="assets/sketch16.JPG" alt="Sketch 16" loading="lazy" />
+                </div>
+              </div>
+
+              <!-- Covers -->
+              <div class="sb-cover sb-cover-left" aria-hidden="true"></div>
+              <div class="sb-cover sb-cover-right" aria-hidden="true"></div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== ILLUSTRATIONS — drifting gallery, after Sketchbook ==========
+         Eight placeholder slots below (assets/illustration-01.jpg ... 08.jpg). To fill a slot,
+         either save your image over that file name (a .jpg), or change the src to your own file.
+         Delete a slot by removing its <li> line; add one by copying a line. Each image is listed
+         once; script.js repeats them so the loop never has a gap. They drift left to right and
+         hovering the strip pauses it. Portrait images (4:5) fit best. -->
+    <section class="illustrations" id="illustrations" data-nav-label="Illustrations">
+      <div class="illustrations-head">
+        <div class="section-head">
+          <h2>Illustrations</h2>
+          <p class="section-sub">A selection of my illustrations.</p>
+        </div>
+      </div>
+
+      <div class="gallery" role="group" aria-label="Illustrations">
+        <ul class="gallery-track">
+          <li class="gallery-item"><img src="assets/illus1.jpg" alt="Illustration 1" /></li>
+          <li class="gallery-item"><img src="assets/illus2.jpg" alt="Illustration 2" /></li>
+          <li class="gallery-item"><img src="assets/illus3.jpg" alt="Illustration 3" /></li>
+          <li class="gallery-item"><img src="assets/illus4.png" alt="Illustration 4" /></li>
+          <li class="gallery-item"><img src="assets/illus5.jpg" alt="Illustration 5" /></li>
+          <li class="gallery-item"><img src="assets/illus6.jpg" alt="Illustration 6" /></li>
+          <li class="gallery-item"><img src="assets/illus7.png" alt="Illustration 7" /></li>
+        </ul>
+      </div>
+    </section>
   </main>
 
   <footer class="fun-footer">
     <p class="fun-quote">Somewhere between architecture and pixels, this happened.</p>
+    <a class="say-hi" href="mailto:lakshmipwork@gmail.com">Want to say Hi?</a>
     <p class="fun-credit">Designed by Lakshmi Pratap · Built with Claude Code</p>
   </footer>
 
-  <script src="script.js?v=28" defer></script>
+  <script src="script.js?v=36" defer></script>
 </body>
 
 </html>
