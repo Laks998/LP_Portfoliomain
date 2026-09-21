@@ -18,7 +18,7 @@
 
   <link rel="stylesheet" href="style.css?v=55" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Bodoni+Moda:ital,opsz,wght@1,6..96,400..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@400..800&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="assets/logo.png">
 </head>
 
@@ -251,31 +251,8 @@
       </div>
 
       <div class="about-layout">
-        <!-- Three photos stacked; the top one peels from its bottom-right corner.
-             All the peel drawing is done by initPeel() in script.js. -->
-        <div class="about-photo" id="peel" role="group" aria-label="Photos of Lakshmi Pratap. Peel the top photo to see the next one.">
-          <svg class="peel-svg" viewBox="0 0 480 600" aria-hidden="true" focusable="false">
-            <defs>
-              <clipPath id="peelClip"><polygon id="peelPage" points="0,0 480,0 480,600 0,600" /></clipPath>
-              <linearGradient id="peelGrad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="480" y2="600">
-                <stop offset="0" stop-color="#cbc5c5" />
-                <stop offset="0.2" stop-color="#f1eded" />
-                <stop offset="1" stop-color="#ffffff" />
-              </linearGradient>
-              <filter id="peelShadow" filterUnits="userSpaceOnUse" x="-60" y="-60" width="600" height="720">
-                <feDropShadow dx="-3" dy="-4" stdDeviation="6" flood-color="#111111" flood-opacity="0.35" />
-              </filter>
-            </defs>
-            <!-- bottom → top: Me0 is the photo you see first -->
-            <g class="peel-layers">
-              <image href="assets/Me3.jpeg" x="0" y="0" width="480" height="600" preserveAspectRatio="xMidYMid slice" />
-  
-  
-              <image href="assets/Me2.jpeg" x="0" y="0" width="480" height="600" preserveAspectRatio="xMidYMid slice" clip-path="url(#peelClip)" />
-            </g>
-            <polygon class="peel-flap" points="" fill="url(#peelGrad)" filter="url(#peelShadow)" />
-          </svg>
-          <button type="button" class="peel-hotspot" aria-label="Peel the top photo"></button>
+        <div class="about-photo" id="peel">
+          <img class="about-photo-img" src="assets/Me2.jpeg" alt="Portrait of Lakshmi Pratap" />
         </div>
 
         <div class="about-text">

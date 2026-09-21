@@ -1,8 +1,8 @@
 // script.js — mobile nav toggle, the capability filter for the
 // project grid, a simple keyword-matched "requirements" text field,
 // the drag-to-flip sketchbook under Work, the tool balls that roll in
-// when the Tools section first scrolls into view, and the peelable
-// photo stack, the drifting gallery and the hoverable words in About.
+// when the Tools section first scrolls into view, and the
+// drifting gallery and the hoverable words in About.
 // Nothing here gates content that isn't already visible without JS —
 // chips just add filtering on top of four project cards that are
 // already fully populated in the HTML.
@@ -65,7 +65,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initBoard();
   initSketchbook();
   initTools();
-  initPeel();
   initGallery();
   initAboutTerms();
 });
@@ -598,206 +597,6 @@ function initTools() {
   }, { threshold: 0.5, rootMargin: '0px 0px -8% 0px' });
 
   io.observe(section);
-}
-
-// ---- About: a stack of photos you can peel ---------------------------
-// The top photo is peeled from its bottom-right corner C. Drag the corner
-// to a point P and the paper folds along the perpendicular bisector of C→P:
-//   keep  = the part of the photo still lying flat
-//   flap  = the folded-over part, reflected across the fold (shown as the
-//           paper's blank back, shaded darker at the crease)
-// Pure geometry, in the SVG's own units (viewBox), so it scales with the image.
-function peelGeometry(P, W, H) {
-  const C = { x: W, y: H };
-  const rect = [{ x: 0, y: 0 }, { x: W, y: 0 }, { x: W, y: H }, { x: 0, y: H }];
-  const dx = C.x - P.x, dy = C.y - P.y;
-  const len = Math.hypot(dx, dy);
-  if (len < 0.5) return { keep: rect, flap: [], M: C, len: 0 };
-
-  const n = { x: dx / len, y: dy / len };                 // points from P toward C
-  const M = { x: (C.x + P.x) / 2, y: (C.y + P.y) / 2 };   // a point on the fold
-  const side = (v) => (v.x - M.x) * n.x + (v.y - M.y) * n.y; // > 0 on the corner's side
-
-  // Sutherland–Hodgman clip of the photo's rectangle against one side of the fold.
-  const clip = (poly, sign) => {
-    const out = [];
-    for (let i = 0; i < poly.length; i++) {
-      const a = poly[i], b = poly[(i + 1) % poly.length];
-      const da = sign * side(a), db = sign * side(b);
-      if (da >= 0) out.push(a);
-      if ((da >= 0) !== (db >= 0)) {
-        const t = da / (da - db);
-        out.push({ x: a.x + (b.x - a.x) * t, y: a.y + (b.y - a.y) * t });
-      }
-    }
-    return out;
-  };
-
-  const keep = clip(rect, -1);
-  const flap = clip(rect, 1).map((v) => {
-    const s = side(v);
-    return { x: v.x - 2 * s * n.x, y: v.y - 2 * s * n.y };
-  });
-  return { keep, flap, M, len };
-}
-
-function initPeel() {
-  const wrap = document.getElementById('peel');
-  if (!wrap) return;
-  const svg = wrap.querySelector('.peel-svg');
-  const hotspot = wrap.querySelector('.peel-hotspot');
-  const layers = svg && svg.querySelector('.peel-layers');
-  const pagePoly = svg && svg.querySelector('#peelPage');
-  const flapPoly = svg && svg.querySelector('.peel-flap');
-  const grad = svg && svg.querySelector('#peelGrad');
-  if (!svg || !hotspot || !layers || !pagePoly || !flapPoly || !grad) return;
-
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const vb = svg.viewBox.baseVal;
-  const W = vb.width, H = vb.height;
-  const DIAG = Math.hypot(W, H);
-  const REST = W * 0.075;   // size of the little curled corner at rest
-  const HOVER = W * 0.13;   // ...and when the pointer is over it
-  const curl = (a) => ({ x: W - a, y: H - a });
-  const pts = (poly) => poly.map((v) => `${v.x.toFixed(2)},${v.y.toFixed(2)}`).join(' ');
-
-  // Crop every photo like CSS "cover", biased toward the top so faces stay in frame.
-  Array.from(layers.children).forEach((img) => {
-    const probe = new Image();
-    probe.onload = () => {
-      const s = Math.max(W / probe.naturalWidth, H / probe.naturalHeight);
-      const w = probe.naturalWidth * s, h = probe.naturalHeight * s;
-      img.setAttribute('preserveAspectRatio', 'none');
-      img.setAttribute('width', w);
-      img.setAttribute('height', h);
-      img.setAttribute('x', (W - w) / 2);
-      img.setAttribute('y', (H - h) * 0.2);
-    };
-    probe.src = img.getAttribute('href');
-  });
-
-  let P = curl(REST);
-  let raf = 0;
-  let busy = false;      // a peel-away is running
-  let dragging = false;
-  let queued = false;    // a drag render is already scheduled
-
-  function render() {
-    const g = peelGeometry(P, W, H);
-    pagePoly.setAttribute('points', pts(g.keep));
-    flapPoly.setAttribute('points', pts(g.flap));
-    // Shade the back of the paper from the crease (dark) to the tip (light).
-    grad.setAttribute('x1', g.M.x); grad.setAttribute('y1', g.M.y);
-    grad.setAttribute('x2', P.x);   grad.setAttribute('y2', P.y);
-  }
-
-  const easeOut = (t) => 1 - Math.pow(1 - t, 3);
-  const easeInOut = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
-  const easeOutBack = (t) => { const c = 1.6; return 1 + (c + 1) * Math.pow(t - 1, 3) + c * Math.pow(t - 1, 2); };
-
-  function tweenTo(to, ms, ease, done) {
-    cancelAnimationFrame(raf);
-    const from = { x: P.x, y: P.y };
-    const dur = reduceMotion ? 0 : ms;
-    const t0 = performance.now();
-    (function step(now) {
-      const t = dur ? Math.min(1, (now - t0) / dur) : 1;
-      const k = (ease || easeOut)(t);
-      P = { x: from.x + (to.x - from.x) * k, y: from.y + (to.y - from.y) * k };
-      render();
-      if (t < 1) raf = requestAnimationFrame(step);
-      else if (done) done();
-    })(t0);
-  }
-
-  // The peeled photo goes to the bottom of the pile, so the stack cycles
-  // and every photo can be peeled again.
-  function cycle() {
-    const imgs = Array.from(layers.children);          // bottom → top
-    const top = imgs[imgs.length - 1];
-    top.removeAttribute('clip-path');
-    layers.insertBefore(top, imgs[0]);
-    layers.lastElementChild.setAttribute('clip-path', 'url(#peelClip)');
-    P = curl(2);
-    render();
-    tweenTo(curl(REST), 320, easeOutBack, () => { busy = false; });
-  }
-
-  function peelAway() {
-    if (busy) return;
-    busy = true;
-    tweenTo({ x: -W, y: -H }, 560, easeInOut, cycle);
-  }
-
-  // -- pointer: grab the corner and drag --
-  let startP = null, startPt = null, moved = false;
-
-  function toSvg(e) {
-    const r = svg.getBoundingClientRect();
-    const k = W / r.width;
-    return { x: (e.clientX - r.left) * k, y: (e.clientY - r.top) * k };
-  }
-
-  hotspot.addEventListener('pointerenter', (e) => {
-    if (busy || dragging || e.pointerType === 'touch') return;
-    tweenTo(curl(HOVER), 240, easeOut);
-  });
-  hotspot.addEventListener('pointerleave', (e) => {
-    if (busy || dragging || e.pointerType === 'touch') return;
-    tweenTo(curl(REST), 280, easeOut);
-  });
-
-  hotspot.addEventListener('pointerdown', (e) => {
-    if (busy || (e.pointerType === 'mouse' && e.button !== 0)) return;
-    e.preventDefault();
-    cancelAnimationFrame(raf);
-    dragging = true;
-    moved = false;
-    startP = { x: P.x, y: P.y };
-    startPt = toSvg(e);
-    try { hotspot.setPointerCapture(e.pointerId); } catch (err) { /* ignore */ }
-  });
-
-  hotspot.addEventListener('pointermove', (e) => {
-    if (!dragging) return;
-    const pt = toSvg(e);
-    if (Math.hypot(pt.x - startPt.x, pt.y - startPt.y) > 5) moved = true;
-    P = {
-      x: Math.min(W - 6, Math.max(0, startP.x + pt.x - startPt.x)),
-      y: Math.min(H - 6, Math.max(0, startP.y + pt.y - startPt.y))
-    };
-    if (!queued) { queued = true; requestAnimationFrame(() => { queued = false; render(); }); }
-  });
-
-  function release(e) {
-    if (!dragging) return;
-    dragging = false;
-    cancelAnimationFrame(raf);
-    raf = 0;
-    const progress = Math.hypot(W - P.x, H - P.y) / DIAG;
-    if (e.type === 'pointerup' && (!moved || progress > 0.4)) peelAway();   // tap, or pulled far enough
-    else tweenTo(curl(REST), 380, easeOutBack);                             // let go early: it settles back
-  }
-  hotspot.addEventListener('pointerup', release);
-  hotspot.addEventListener('pointercancel', release);
-
-  // Keyboard: Enter / Space on the focused corner peels the photo.
-  hotspot.addEventListener('click', (e) => { if (e.detail === 0) peelAway(); });
-
-  // One-time nudge when the photos first scroll into view.
-  if (!reduceMotion && 'IntersectionObserver' in window) {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        io.disconnect();
-        if (busy || dragging) return;
-        tweenTo(curl(W * 0.17), 520, easeOut, () => { if (!busy && !dragging) tweenTo(curl(REST), 560, easeOutBack); });
-      });
-    }, { threshold: 0.6 });
-    io.observe(wrap);
-  }
-
-  render();
 }
 
 // ---- Galleries (About, Illustrations): drift left to right, pause on hover ------

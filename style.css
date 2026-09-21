@@ -14,7 +14,7 @@
   --accent: #D03A46;
   --accent-dark: #D03A46;
 
-  --font-display: 'Bodoni Moda', Didot, Georgia, serif;
+  --font-display: 'Syne', Didot, Georgia, serif;
 
   --shadow-sm: 0 2px 14px rgba(17, 17, 17, 0.07);
   --shadow-md: 0 16px 36px rgba(17, 17, 17, 0.13);
@@ -185,7 +185,6 @@ a { color: inherit; }
   gap: 1.1rem;
   padding: 1.4rem 1.5rem;
   font-family: var(--font-display);
-  font-style: italic;
   font-size: 1.15rem;
   font-weight: 600;
   box-shadow: 0 18px 40px rgba(17, 17, 17, 0.18);
@@ -239,7 +238,6 @@ a { color: inherit; }
   align-items: center;
   gap: 0.65rem;
   font-family: var(--font-display);
-  font-style: italic;
   font-size: 0.95rem;
   font-weight: 600;
   white-space: nowrap;
@@ -281,9 +279,8 @@ a { color: inherit; }
 
 .hero-name {
   font-family: var(--font-display);
-  font-style: italic;
-  font-size: clamp(3rem, 13vw, 4.5rem);
-  font-weight: 800;
+  font-size: clamp(2.7rem, 11.5vw, 4rem);
+  font-weight: 650;
   line-height: 1.05;
   letter-spacing: -0.02em;
   margin: 0;
@@ -315,7 +312,6 @@ a { color: inherit; }
 
 .hero-quote {
   font-family: var(--font-display);
-  font-style: italic;
   font-size: 1.15rem;
   font-weight: 500;
   line-height: 1.5;
@@ -504,7 +500,6 @@ a { color: inherit; }
 .sketchbook h2,
 .illustrations h2 {
   font-family: var(--font-display);
-  font-style: italic;
   font-size: clamp(1.9rem, 4.6vw, 2.5rem);
   font-weight: 600;
   line-height: 1.2;
@@ -678,7 +673,7 @@ a { color: inherit; }
    It spans both grid rows on desktop (see the 900px block below) so
    its scrollable list naturally gets the combined height of the two
    rows next to it. ---- */
-.project-card-other { background: var(--surface); box-shadow: none; }
+.project-card-other { background: #f4f4f4; box-shadow: none; }
 .project-card-other:hover { transform: none; box-shadow: none; }
 
 .project-other {
@@ -725,7 +720,7 @@ a { color: inherit; }
 .project-other-list li.is-match .project-mini-link { box-shadow: 0 0 0 2px var(--accent), var(--shadow-md); }
 
 /* ========== ABOUT ME ==========
-   A stack of peelable portrait photos (4:5) on the left; text on the right, centred in the free space and
+   A single portrait photo (4:5) on the left; text on the right, centred in the free space and
    vertically centred on the image. */
 .about { padding-top: 1rem; padding-bottom: 3.5rem; }
 
@@ -750,26 +745,13 @@ a { color: inherit; }
   box-shadow: var(--shadow-md);
 }
 
-/* Peelable stack. The SVG (drawn by initPeel in script.js) fills the frame;
-   an invisible button over the bottom-right corner is the grab area.
-   touch-action: none applies only to that corner, so the rest of the photo
-   still scrolls the page normally on touch screens. */
-.peel-svg { display: block; width: 100%; height: 100%; }
-
-.peel-hotspot {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  width: 38%;
-  height: 30%;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  cursor: grab;
-  touch-action: none;
+.about-photo-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
 }
-.peel-hotspot:active { cursor: grabbing; }
-.peel-hotspot:focus-visible { outline: 2px solid var(--accent); outline-offset: -3px; box-shadow: none; }
 
 @media (min-width: 900px) {
   .about-layout {
@@ -787,7 +769,6 @@ a { color: inherit; }
    On hover a small photo follows the cursor (built by initAboutTerms). */
 .about-term {
   font-family: var(--font-display);
-  font-style: italic;
   font-weight: 600;
   font-size: 1.08em;
   color: var(--accent);
@@ -929,7 +910,6 @@ a { color: inherit; }
   margin: 0;
   max-width: 34ch;
   font-family: var(--font-display);
-  font-style: italic;
   font-size: 1rem;
   font-weight: 500;
   line-height: 1.6;
@@ -1049,7 +1029,7 @@ a { color: inherit; }
 
 /* ========== FOOTER ========== */
 .fun-footer { text-align: center; padding-top: 2.5rem; padding-bottom: 3rem; }
-.fun-quote { font-family: var(--font-display); font-style: italic; font-size: 1.15rem; font-weight: 500; line-height: 1.5; margin: 0 0 0.6rem; }
+.fun-quote { font-family: var(--font-display); font-size: 1.15rem; font-weight: 500; line-height: 1.5; margin: 0 0 0.6rem; }
 /* "Want to say Hi?" — mailto button under the footer quote */
 .say-hi {
   display: inline-block;
@@ -1059,7 +1039,6 @@ a { color: inherit; }
   color: #fff;
   border-radius: var(--radius);
   font-family: var(--font-display);
-  font-style: italic;
   font-weight: 600;
   font-size: 1.1rem;
   line-height: 1.2;
@@ -1118,7 +1097,7 @@ a { color: inherit; }
   .hero-left { text-align: left; align-items: flex-start; }
   .hero-right { text-align: right; align-items: flex-end; }
 
-  .hero-name { justify-content: flex-start; font-size: clamp(3rem, 5.2vw, 5.25rem); }
+  .hero-name { justify-content: flex-start; font-size: clamp(2.7rem, 4.6vw, 4.6rem); }
 
   .hero-quote { margin: 1rem 0 0 auto; }
   .hero-quote::before { left: auto; right: 0; transform: none; }
