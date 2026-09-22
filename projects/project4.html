@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>VR Experience Design | Lakshmi Pratap</title>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="project4.css?v=2" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="project4.css?v=5" />
   <link rel="icon" type="image/png" href="../assets/logo.png">
   <link rel="stylesheet" href="../comment-widget.css" />
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -24,42 +24,51 @@
     <span>Go Back To Home</span>
   </a>
 
-  <!-- Side navigation -->
+  <!-- Side nav: a small floating card. Collapsed it shows just the
+       section numbers; hovering it (or tabbing into it) opens it up to
+       show the section names. -->
   <nav class="side-nav" aria-label="Section navigation">
-    <div class="side-nav-item">
+    <div class="side-nav-head" aria-hidden="true">
+      <span class="side-nav-head-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h10M4 18h13"/></svg>
+      </span>
+      <span class="side-nav-head-label">On this page</span>
+    </div>
+
+    <div class="side-nav-item" style="--i:0">
       <a href="#overview" class="side-nav-link"><span class="side-nav-num">01</span><span class="side-nav-label">Overview</span></a>
     </div>
-    <div class="side-nav-item">
+    <div class="side-nav-item" style="--i:1">
       <a href="#challenge" class="side-nav-link"><span class="side-nav-num">02</span><span class="side-nav-label">Challenge</span></a>
     </div>
-    <div class="side-nav-item">
+    <div class="side-nav-item" style="--i:2">
       <a href="#process" class="side-nav-link"><span class="side-nav-num">03</span><span class="side-nav-label">Process</span></a>
     </div>
-    <div class="side-nav-item">
+    <div class="side-nav-item" style="--i:3">
       <a href="#foundation" class="side-nav-link"><span class="side-nav-num">04</span><span class="side-nav-label">Foundation</span></a>
     </div>
-    <div class="side-nav-item">
+    <div class="side-nav-item" style="--i:4">
       <a href="#research" class="side-nav-link"><span class="side-nav-num">05</span><span class="side-nav-label">Research</span></a>
     </div>
-    <div class="side-nav-item">
+    <div class="side-nav-item" style="--i:5">
       <a href="#requirements" class="side-nav-link"><span class="side-nav-num">06</span><span class="side-nav-label">Requirements</span></a>
     </div>
-    <div class="side-nav-item">
+    <div class="side-nav-item" style="--i:6">
       <a href="#design" class="side-nav-link"><span class="side-nav-num">07</span><span class="side-nav-label">Design</span></a>
     </div>
-    <div class="side-nav-item">
+    <div class="side-nav-item" style="--i:7">
       <a href="#implementation" class="side-nav-link"><span class="side-nav-num">08</span><span class="side-nav-label">Build</span></a>
     </div>
-    <div class="side-nav-item">
+    <div class="side-nav-item" style="--i:8">
       <a href="#testing" class="side-nav-link"><span class="side-nav-num">09</span><span class="side-nav-label">Testing</span></a>
     </div>
-    <div class="side-nav-item">
+    <div class="side-nav-item" style="--i:9">
       <a href="#framework" class="side-nav-link"><span class="side-nav-num">10</span><span class="side-nav-label">Framework</span></a>
     </div>
-    <div class="side-nav-item">
+    <div class="side-nav-item" style="--i:10">
       <a href="#impact" class="side-nav-link"><span class="side-nav-num">11</span><span class="side-nav-label">Impact</span></a>
     </div>
-    <div class="side-nav-item">
+    <div class="side-nav-item" style="--i:11">
       <a href="#reflection" class="side-nav-link"><span class="side-nav-num">12</span><span class="side-nav-label">Reflection</span></a>
     </div>
   </nav>
@@ -770,12 +779,20 @@
     </a>
   </div>
 
+  <button type="button" class="to-top" aria-label="Back to top">
+    <svg class="to-top-ring" viewBox="0 0 52 52" aria-hidden="true">
+      <circle class="to-top-ring-track" cx="26" cy="26" r="24"></circle>
+      <circle class="to-top-ring-fill" cx="26" cy="26" r="24"></circle>
+    </svg>
+    <svg class="to-top-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </button>
+
   <!-- Footer -->
   <footer class="site-footer">
     <p>&copy; 2025 Lakshmi Pratap. All rights reserved.</p>
   </footer>
 
-  <script src="project4.js?v=2"></script>
+  <script src="project4.js?v=3"></script>
   <script src="../comment-widget.js"></script>
 </body>
 </html>

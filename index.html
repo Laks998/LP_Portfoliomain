@@ -16,9 +16,9 @@
   <meta name="twitter:title" content="Lakshmi Pratap — Product Designer" />
   <meta name="twitter:image" content="https://lakshmipratap.com/assets/og-card.png" />
 
-  <link rel="stylesheet" href="style.css?v=64" />
+  <link rel="stylesheet" href="style.css?v=95" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Sora:wght@400..800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="assets/logo.png">
 </head>
 
@@ -27,16 +27,15 @@
   <a class="skip-link" href="#work">Skip to work</a>
 
   <!-- ========== HERO — full viewport height ==========
-       Opens on: "HI, I'M" / LAKSHMI / PRATAP / quote, all sitting
-       together, touching, around a hairline-thin photo slot. After a
-       pause, LAKSHMI eases up and PRATAP+quote ease down by equal
-       amounts while the photo unfolds open between them. Once the
-       photo has fully unfolded, the social icons bounce in one by
-       one and land at its bottom-right corner (see .hero-photo-social
-       / heroIconBounce in style.css).
-       All timing lives in style.css (see heroTopWord / heroBottomWord
-       / heroPhotoUnfold / heroIconBounce). -->
-  <section class="hero" id="top" data-nav-label="Home">
+       Opens on: "HI, I'M" / LAKSHMI / PRATAP, all sitting together,
+       touching, around a hairline-thin photo slot. After a pause,
+       LAKSHMI eases up and PRATAP eases down by equal amounts while
+       the photo unfolds open between them. The moment it's full size it
+       zoops down to a tiny dot and pops back out as a small circle,
+       sliding left. The quote flips up word by word beside it, and
+       the social icons bounce in below
+       (see initHeroPhotoMini in script.js). -->
+  <section class="hero" id="top" data-nav-label="">
 
     <nav class="hero-nav" id="heroNav" aria-label="Primary">
       <a class="hero-brand" href="index.html" aria-label="Lakshmi Pratap — home">
@@ -44,18 +43,22 @@
       </a>
 
       <div class="hero-nav-links" id="heroNavLinks">
-        <a href="#work">Work</a>
         <a href="#about">About me</a>
+        <a href="#work">Work</a>
         <a href="#sketchbook">Sketchbook</a>
         <!-- Illustrations nav link temporarily removed along with the section below. -->
-        <a class="hero-resume" href="assets/LakshmiPratap_ProdectDes (1).pdf" target="_blank" rel="noopener noreferrer">Resume</a>
+        <a class="hero-resume" href="assets/LakshmiPratap_ProdectDes (1).pdf" target="_blank" rel="noopener noreferrer">
+          Resume
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" /></svg>
+        </a>
       </div>
 
-      <!-- Shown only once scrolled past the hero (desktop): current
-           section name + dots. Hovering the pill reveals the full
-           links above instead. -->
+      <!-- Shown once the page is scrolled (desktop): current section
+           name + dots. The hero and Tools count as "home", so there
+           the label is empty and no dot is lit. Hovering the pill
+           reveals the full links above instead. -->
       <div class="nav-compact" id="navCompact" aria-hidden="true">
-        <span class="nav-compact-label" id="navCompactLabel">Home</span>
+        <span class="nav-compact-label" id="navCompactLabel"></span>
         <span class="nav-compact-dots" id="navCompactDots"></span>
       </div>
 
@@ -73,46 +76,63 @@
 
         <p class="hero-hi">Hi, I&rsquo;m</p>
 
-        <h1 class="hero-name" aria-label="Lakshmi Pratap">
+        <h1 class="hero-name" id="heroName" aria-label="Lakshmi Pratap">
           <span class="hero-name-word" aria-hidden="true"><span class="hero-name-word-inner">Lakshmi</span></span>
 
           <!-- Starts as a thin line, sitting flush between the two (still
-               collapsed-together) names, then opens as they split apart -->
-          <span class="hero-photo-wrap">
-            <span class="hero-photo-slot">
-              <img class="hero-photo" src="assets/Mainphoto.png" alt="Portrait of Lakshmi Pratap" />
+               collapsed-together) names, then opens as they split apart.
+               .hero-photo-wrap reserves the layout box; .hero-photo-inner
+               is the layer that slides left once the photo turns into a
+               circle — see initHeroPhotoMini in script.js. -->
+          <span class="hero-photo-wrap" id="heroPhotoWrap">
+            <span class="hero-photo-inner" id="heroPhotoInner">
+              <span class="hero-photo-slot">
+                <img class="hero-photo" src="assets/Mainphoto.png" alt="Portrait of Lakshmi Pratap" />
+              </span>
+              <!-- Once the photo is a circle: a small pulsing green
+                   "online" dot, and a tooltip on the left on hover. -->
+              <!-- Invisible round hover area, a bit bigger than the circle
+                   (so it covers the pulse too): hovering anywhere on it
+                   shows the tooltip. -->
+              <span class="hero-photo-hit" aria-hidden="true"></span>
+              <span class="hero-online" aria-hidden="true"></span>
+              <span class="hero-hire-tip" aria-hidden="true">please hire me, thanks!</span>
             </span>
 
-            <!-- Social links: bounce in one by one once the photo has
-                 fully unfolded, landing at its bottom-right corner. -->
-            <span class="hero-photo-social">
-              <a href="https://www.instagram.com/lakshmi_pratap/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                  <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-                </svg>
-              </a>
-              <a href="https://www.linkedin.com/in/lakshmi-pratap/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-                  <rect width="4" height="12" x="2" y="9" />
-                  <circle cx="4" cy="4" r="2" />
-                </svg>
-              </a>
-              <a href="mailto:lakshmipwork@gmail.com" aria-label="Email">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" />
-                  <rect x="2" y="4" width="20" height="16" rx="2" />
-                </svg>
-              </a>
+            <!-- Flips up word by word once the photo has settled into its circle. -->
+            <span class="hero-quote-callout" id="heroQuoteCallout" aria-hidden="true">
+              <p class="hero-quote">&ldquo;A <span class="hero-quote-em">UX/Product Designer</span> who shapes your product around what your <span class="hero-quote-em">users actually need</span> to help <span class="hero-quote-em">your business grow</span>&rdquo;</p>
             </span>
           </span>
 
+          <!-- Social links: take up no space during the intro (so the
+               gaps above and below the photo stay equal), then open up
+               as the photo shrinks and bounce in last. -->
+          <div class="hero-social-below" id="heroSocialBelow">
+            <a href="https://www.instagram.com/lakshmi_pratap/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+              </svg>
+            </a>
+            <a href="https://www.linkedin.com/in/lakshmi-pratap/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                <rect width="4" height="12" x="2" y="9" />
+                <circle cx="4" cy="4" r="2" />
+              </svg>
+            </a>
+            <a href="mailto:lakshmipwork@gmail.com" aria-label="Email">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" />
+                <rect x="2" y="4" width="20" height="16" rx="2" />
+              </svg>
+            </a>
+          </div>
+
           <span class="hero-name-word" aria-hidden="true"><span class="hero-name-word-inner">Pratap</span></span>
         </h1>
-
-        <p class="hero-quote">&ldquo;A <span class="hero-quote-em">UX/Product Designer</span> who shapes your product around what your <span class="hero-quote-em">users actually need</span> to help <span class="hero-quote-em">your business grow</span> &rdquo;</p>
 
       </div>
     </div>
@@ -123,7 +143,7 @@
   <!-- ========== WORK — its own full section below the hero ========== -->
   <main>
     <!-- ========== TOOLS — sits between the hero and Work ========== -->
-    <section class="tools" id="tools" data-nav-label="Tools">
+    <section class="tools" id="tools" data-nav-label="">
       <div class="section-head">
         <h2>Tools</h2>
         <p class="section-sub">My current set of tools I use and the ones I have used for the projects.</p>
@@ -414,12 +434,41 @@
   </main>
 
   <footer class="fun-footer">
-    <p class="fun-quote">Somewhere between architecture and pixels, this happened.</p>
-    <a class="say-hi" href="mailto:lakshmipwork@gmail.com">Want to say Hi?</a>
+
+    <a class="footer-cta" href="mailto:lakshmipwork@gmail.com">
+      <span class="footer-cta-line">Let&rsquo;s talk</span>
+      <span class="footer-cta-line">work</span>
+    </a>
+
+    <p class="footer-email"><a href="mailto:lakshmipwork@gmail.com">lakshmipwork@gmail.com</a></p>
+
+    <div class="footer-social">
+      <a href="https://www.instagram.com/lakshmi_pratap/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+          <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+        </svg>
+      </a>
+      <a href="https://www.linkedin.com/in/lakshmi-pratap/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+          <rect width="4" height="12" x="2" y="9" />
+          <circle cx="4" cy="4" r="2" />
+        </svg>
+      </a>
+      <a href="mailto:lakshmipwork@gmail.com" aria-label="Email">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" />
+          <rect x="2" y="4" width="20" height="16" rx="2" />
+        </svg>
+      </a>
+    </div>
+
     <p class="fun-credit">Designed by Lakshmi Pratap · Built with Claude Code</p>
   </footer>
 
-  <script src="script.js?v=45" defer></script>
+  <script src="script.js?v=55" defer></script>
 </body>
 
 </html>

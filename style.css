@@ -2,42 +2,58 @@
    Lakshmi Pratap — portfolio styles
    White bg, black/grey text, red accent.
 
-   HERO SEQUENCE (all CSS, no JS — driven off one 1.8s timeline shared
-   by .hero-name-word:first-child/:last-child, .hero-quote and
-   .hero-photo-slot, see heroTopWord/heroBottomWord/heroPhotoUnfold)
-   1. 0 – ~0.14s  "HI, I'M" / LAKSHMI / PRATAP / quote fade in already
-                  touching, flush against the (still hairline-thin,
-                  near-invisible) photo slot's centreline.
-   2. ~0.14 – 0.83s Pause — everything holds in that collapsed, centred
-                  position.
-   3. 0.83s – 1.8s LAKSHMI eases up and PRATAP+quote ease down by equal
+   HERO SEQUENCE
+   Stages 1–3 are pure CSS, driven off one 1.8s timeline shared by
+   .hero-name-word:first-child/:last-child and .hero-photo-slot (see
+   heroTopWord/heroBottomWord/heroPhotoUnfold). Stages 4–6 are
+   JS-timed class swaps (initHeroPhotoMini in script.js).
+   1. 0 – ~0.14s  "HI, I'M" / LAKSHMI / PRATAP fade in already
+                  touching at the photo slot's centreline.
+   2. ~0.14 – 0.83s Pause.
+   3. 0.83s – 1.8s LAKSHMI eases up and PRATAP eases down by equal
                   amounts (--split-d) while the photo unfolds open
-                  between them (clip-path), all in lockstep — quick,
-                  so the photo visibly springs open fast rather than
-                  easing open slowly.
-   4. ~1.9s+      Once the photo has fully unfolded, the social icons
-                  bounce in one at a time — as if tossed up from
-                  below — and land stacked at the photo's bottom-right
-                  corner (see .hero-photo-social / heroIconBounce).
+                  between them (clip-path).
+   4. ~1.85s      .is-mini — right as the photo reaches full size it
+                  zoops down to a tiny dot and springs back out to the
+                  circle's size while sliding left (heroPhotoZoop). The
+                  icon row opens up at the same moment, so PRATAP only
+                  moves once.
+   5. +0.6s       .is-shown — the quote flips up word by word.
+   6. +0.75s      Social icons bounce in below.
 
-   Knobs: --photo-h/--photo-gap/--split-d (on .hero-stack), and the
-   percentage breakpoints (8% / 46%) inside the three keyframes above.
+   Knobs: --photo-h/--photo-gap/--split-d, --mini-gap/--icons-gap,
+   --mini-size/--mini-shift
+   and --quote-gap (all on .hero-stack), plus the timing constants
+   at the top of initHeroPhotoMini.
    ============================================================= */
 
 :root {
   --bg: #FFFFFF;
   --surface: #fbf6f6;
-  --text: #111111;
+  --text: #2e2e2e;
   --muted: #6E6E6E;
   --accent: #D03A46;
   --accent-dark: #D03A46;
 
-  --font-display: 'Sora', Didot, Georgia, serif;
+  /* Two fonts only: Space Grotesk for body and nav text, Bricolage
+     Grotesque for every heading and big display type.
+     To go back to Big Shoulders: swap the line below for
+     'Big Shoulders Display', and swap the Google Fonts link in index.html. */
+  --font-body: 'Space Grotesk', sans-serif;
+  --font-heading: 'Bricolage Grotesque', sans-serif;
+  --ring-accent: #8CA37C;
+  /* "Online" green for the status dot on the hero photo. */
+  --online: #2DBE6C;
 
   --shadow-sm: 0 2px 14px rgba(17, 17, 17, 0.07);
   --shadow-md: 0 16px 36px rgba(17, 17, 17, 0.13);
 
   --radius: 6px;
+  /* Corner radii, matched to the floating nav/side-nav cards (18px):
+     big cards 18px, cards nested inside them 12px, small tags 6px. */
+  --radius-lg: 18px;
+  --radius-md: 12px;
+  --radius-sm: 6px;
   --content-max: 1400px;
   --outer-pad: 20px;
 }
@@ -53,7 +69,7 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -111,9 +127,9 @@ a { color: inherit; }
    other, no card/shadow. Tapping the icon opens a small rounded
    card under the toggle, with a low-opacity black scrim dimming
    the rest of the page behind it.
-   Desktop (900px+): the bar becomes a floating pill with the links
-   inline; past the hero it shrinks to "current section + dots" and
-   expands again on hover. */
+   Desktop (900px+): the links sit inline at the top of the page; as
+   soon as the page is scrolled at all it becomes the floating pill
+   ("current section + dots"), which expands again on hover. */
 
 .hero-nav {
   position: fixed;
@@ -165,9 +181,7 @@ a { color: inherit; }
 .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(2) { opacity: 0; }
 .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-/* ---- Low-opacity scrim behind the popover (sits between the page
-   and the nav — the nav's own z-index of 300 keeps the card and
-   toggle painting above it, unlike before). ---- */
+/* ---- Low-opacity scrim behind the popover ---- */
 .nav-scrim {
   position: fixed;
   inset: 0;
@@ -202,7 +216,7 @@ a { color: inherit; }
   align-items: flex-start;
   gap: 1.1rem;
   padding: 1.4rem 1.5rem;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-body);
   font-size: 1.15rem;
   font-weight: 600;
   box-shadow: 0 18px 40px rgba(17, 17, 17, 0.18);
@@ -238,29 +252,31 @@ a { color: inherit; }
 .hero-nav-links a:not(.hero-resume):hover { color: var(--accent-dark); }
 .hero-nav-links a:not(.hero-resume):hover::after { right: 0; }
 .hero-resume {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
   text-decoration: none;
-  color: #fff;
-  background: var(--accent);
-  padding: 0.5rem 1.05rem;
-  border-radius: var(--radius);
+  color: var(--text);
   font-weight: 600;
   font-size: 1rem;
-  display: inline-block;
-  transition: background 0.2s ease, transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: color 0.2s ease, transform 0.2s ease;
 }
-.hero-resume:hover { background: var(--accent-dark); transform: translateY(-2px) rotate(-1deg); }
+.hero-resume svg { flex: none; transition: transform 0.2s ease; }
+.hero-resume:hover { color: var(--accent); }
+.hero-resume:hover svg { transform: translateY(2px); }
 
 /* ---- Compact indicator (desktop only, shown past the hero) ---- */
 .nav-compact {
   display: none;
   align-items: center;
   gap: 0.65rem;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 0.95rem;
+  font-weight: 700;
   white-space: nowrap;
 }
-.nav-compact-label { letter-spacing: 0.02em; }
+.nav-compact-label { text-transform: uppercase; letter-spacing: 0.04em; }
+/* Hero and Tools: no section name, just the logo and dots. */
+.nav-compact-label:empty { display: none; }
 .nav-compact-dots { display: flex; align-items: center; gap: 0.4rem; }
 .nav-compact-dots .dot {
   display: block;
@@ -274,31 +290,34 @@ a { color: inherit; }
 .nav-compact-dots .dot:hover { background: var(--text); }
 .nav-compact-dots .dot.is-active { background: var(--accent); transform: scale(1.35); }
 
-/* ---- Hero body ----
-   Anchored to the TOP of the hero (not vertically centred). The photo
-   slot reserves its FULL final size from the very start (no layout
-   reflow), so LAKSHMI/PRATAP/quote sit at their true final positions
-   in the document the whole time — they just start visually shifted
-   with a transform to sit flush together at the slot's centreline,
-   then ease back to translateY(0), i.e. their natural spot. That's
-   what makes the two halves split apart symmetrically. This is the
-   only flex:1 child, so the scroll hint always sits at the bottom. */
+/* ---- Hero body ---- */
 .hero-main {
   flex: 1;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  /* Centred, so when the photo shrinks both halves of the name close
+     in on the middle and the whole block re-centres as one. */
+  align-items: center;
   min-height: 0;
-  padding-top: clamp(0.5rem, 5svh, 3.5rem);
 }
 
 .hero-stack {
-  --photo-h: clamp(300px, 46svh, 520px);
+  --photo-h: clamp(320px, 48svh, 580px);
   --photo-w: calc(var(--photo-h) * 0.82);
   --photo-gap: clamp(0.6rem, 1.6svh, 1.1rem);
   /* How far LAKSHMI/PRATAP travel: from touching at the slot's centreline
      out to their natural final spot (half the photo + the gap). */
   --split-d: calc(var(--photo-h) / 2 + var(--photo-gap));
+  /* Once the photo is a circle: the space above the circle+quote group
+     (below Lakshmi) and below the icons (above Pratap) — kept equal. */
+  --mini-gap: clamp(1.9rem, 4.2svh, 2.9rem);
+  /* Space between the circle+quote group and the icons. */
+  --icons-gap: 0.6rem;
+  --mini-size: clamp(96px, 11vw, 150px);
+  /* Mobile: the quote sits under the circle, so the circle stays centred. */
+  --mini-shift: 0px;
+  /* Space between the circle's edge and the quote. */
+  --quote-gap: 28px;
 
   width: 100%;
   display: flex;
@@ -307,9 +326,7 @@ a { color: inherit; }
   text-align: center;
 }
 
-/* "HI, I'M" — very small, one line. Travels with LAKSHMI: same
-   keyframes (heroTopWord) as the word itself, so the two move as a
-   rigid group instead of "Hi, I'm" staying pinned at the top. */
+/* "HI, I'M" — travels with LAKSHMI (same keyframes). */
 .hero-hi {
   margin: 0 0 0.7rem;
   font-size: clamp(1.2rem, 2.4vw, 1.65rem);
@@ -327,61 +344,277 @@ a { color: inherit; }
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: var(--font-display);
-  font-size: clamp(2.1rem, min(6.5vw, 6.5svh), 3.8rem);
+  font-family: var(--font-heading);
+  font-size: clamp(3.5rem, 12.5vw, 8.75rem);
   font-weight: 800;
-  line-height: 0.92;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
+  line-height: 0.88;
+  letter-spacing: -0.035em;
+  /* Sentence case: "Lakshmi" / "Pratap", exactly as written in the HTML. */
+  text-transform: none;
 }
 
+/* text-box trims each word's box to exactly its capital letters, so
+   the empty band below LAKSHMI and the empty band above PRATAP are
+   both zero — the gaps either side of the photo come out equal. */
 .hero-name-word {
   display: block;
   white-space: nowrap;
   opacity: 0;
+  text-box: trim-both cap alphabetic;
 }
-/* LAKSHMI starts sitting flush against the slot's centreline (shifted
-   down by --split-d), PRATAP starts flush against it from below
-   (shifted up by --split-d) — so at rest the two words touch, with
-   the still-collapsed photo line hidden between them. Both ease back
-   to translateY(0), their true position, in lockstep with the photo. */
 .hero-name-word:first-child { animation: heroTopWord 1.8s cubic-bezier(0.65, 0, 0.2, 1) forwards; }
 .hero-name-word:last-child  { animation: heroBottomWord 1.8s cubic-bezier(0.65, 0, 0.2, 1) forwards; }
 
-/* Hover lift lives on this inner span instead of .hero-name-word itself,
-   so it doesn't fight the split animation's own hold on `transform`. */
-/* Solid, filled lettering. Hover recolors the fill. */
+/* Hover lift lives on this inner span so it doesn't fight the split
+   animation's own hold on `transform`. */
 .hero-name-word-inner {
   display: inline-block;
   cursor: default;
   color: var(--text);
+  text-box: trim-both cap alphabetic;
   transition: color 0.25s ease, transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
-.hero-name-word-inner:hover { color: var(--accent); transform: translateY(-4px); }
+.hero-name-word-inner:hover { color: var(--text); transform: translateY(-4px); }
+/* "Pratap" sits in the accent colour; hovering flips it to black. */
+.hero-name-word:last-child .hero-name-word-inner { color: var(--text); }
+.hero-name-word:last-child .hero-name-word-inner:hover { color: var(--text); }
 
-/* The photo slot: reserves its full final size in the layout from the
-   very start (so nothing reflows), sitting flush between LAKSHMI and
-   PRATAP while they're still collapsed together. It stays a near-
-   invisible hairline for the first ~46% of the timeline — the pause —
-   then unfolds open via clip-path in lockstep with the two words
-   easing apart, so the photo looks like it's revealed by the split
-   rather than growing independently. */
+/* The photo's layout box. Reserves the full photo size from the start
+   (nothing reflows during the unfold), then shrinks to the circle's
+   size on .is-mini so LAKSHMI and PRATAP close in around it. The
+   visible photo (.hero-photo-slot) is sized separately, so it can
+   zoop and bounce without dragging the words around with it. */
 .hero-photo-wrap {
   position: relative;
   display: block;
   flex: 0 0 auto;
   margin: var(--photo-gap) 0;
+  width: var(--photo-w);
+  height: var(--photo-h);
+  transition:
+    width 0.6s cubic-bezier(0.65, 0, 0.35, 1) 0.1s,
+    height 0.6s cubic-bezier(0.65, 0, 0.35, 1) 0.1s,
+    margin 0.6s cubic-bezier(0.65, 0, 0.35, 1) 0.1s;
+}
+.hero-photo-wrap.is-mini {
+  width: var(--mini-size);
+  height: var(--mini-size);
+  margin: var(--mini-gap) 0 0;
+}
+
+/* Mobile: the quote sits below the circle, so once it's shown the
+   wrap claims extra bottom space to push PRATAP clear of it. */
+@media (max-width: 639px) {
+  .hero-photo-wrap {
+    transition:
+      width 0.6s cubic-bezier(0.65, 0, 0.35, 1) 0.1s,
+      height 0.6s cubic-bezier(0.65, 0, 0.35, 1) 0.1s,
+      margin 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  /* Room for the quote, which sits under the circle on phones. */
+  .hero-photo-wrap.is-shown {
+    margin-bottom: calc(var(--quote-gap) + var(--quote-h, 120px));
+  }
+}
+
+/* The layer that slides left, in step with the shrink. */
+.hero-photo-inner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+}
+.hero-photo-wrap.is-mini .hero-photo-inner {
+  transform: translateX(var(--mini-shift));
 }
 
 .hero-photo-slot {
   position: relative;
   display: block;
+  flex: none;
   width: var(--photo-w);
   height: var(--photo-h);
   overflow: hidden;
   border-radius: 0;
   opacity: 0;
+  box-shadow: 0 0 0 0 transparent;
   animation: heroPhotoUnfold 1.8s cubic-bezier(0.65, 0, 0.2, 1) forwards;
+}
+
+/* Resting circle. Swapping to heroPhotoZoop replaces the unfold
+   animation, so opacity/clip-path are set here explicitly. The photo
+   inside is swapped for a sharp, pre-shrunk copy (see sharpenHeroPhoto
+   in script.js) so it doesn't turn jagged at this small size. */
+.hero-photo-wrap.is-mini .hero-photo-slot {
+  width: var(--mini-size);
+  height: var(--mini-size);
+  border-radius: 50%;
+  opacity: 1;
+  clip-path: none !important;
+  animation: heroPhotoZoop 0.75s linear both;
+}
+
+/* Zoop: the full photo sucks down fast into a tiny dot, then springs
+   straight back out to the circle's size, overshooting a touch before
+   it settles. */
+@keyframes heroPhotoZoop {
+  0% {
+    width: var(--photo-w); height: var(--photo-h);
+    border-radius: 0;
+    animation-timing-function: cubic-bezier(0.6, 0, 0.9, 0.5);
+  }
+  38% {
+    width: calc(var(--mini-size) * 0.12); height: calc(var(--mini-size) * 0.12);
+    border-radius: 50%;
+    animation-timing-function: cubic-bezier(0.2, 0.9, 0.3, 1);
+  }
+  74% {
+    width: calc(var(--mini-size) * 1.14); height: calc(var(--mini-size) * 1.14);
+    border-radius: 50%;
+    animation-timing-function: ease-in-out;
+  }
+  100% {
+    width: var(--mini-size); height: var(--mini-size);
+    border-radius: 50%;
+  }
+}
+
+/* ---- "Online" dot + hire-me tooltip on the round photo ----
+   Both only show once the photo has settled into its circle (a beat
+   after .is-mini). */
+
+/* A small green status dot sitting on the circle's edge, bottom-right
+   (at 45°: half the circle's size x 0.707 from the centre), with a white
+   border so it reads cleanly against the photo, and a soft pulse. */
+.hero-online {
+  --dot: clamp(16px, calc(var(--mini-size) * 0.15), 22px);
+  position: absolute;
+  left: calc(50% + var(--mini-size) * 0.3536);
+  top: calc(50% + var(--mini-size) * 0.3536);
+  z-index: 4;
+  width: var(--dot);
+  height: var(--dot);
+  transform: translate(-50%, -50%) scale(0);
+  border-radius: 50%;
+  background: var(--online);
+  box-shadow: 0 0 0 3px var(--bg);
+  pointer-events: none;
+  transition: transform 0.45s cubic-bezier(0.34, 1.7, 0.5, 1);
+}
+.hero-photo-wrap.is-mini .hero-online {
+  transform: translate(-50%, -50%) scale(1);
+  transition-delay: 0.75s;
+}
+.hero-online::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.hero-photo-wrap.is-mini .hero-online::after {
+  animation: heroOnlinePulse 1.8s ease-out 1.2s infinite;
+}
+@keyframes heroOnlinePulse {
+  0%   { box-shadow: 0 0 0 0 rgba(45, 190, 108, 0.6); }
+  100% { box-shadow: 0 0 0 10px rgba(45, 190, 108, 0); }
+}
+
+/* Hover area: round, centred on the photo, 44px wider than it so the
+   tooltip shows anywhere over the photo, its edge or the pulse. Only
+   switched on once the photo is a circle. */
+.hero-photo-hit {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 5;
+  width: calc(var(--mini-size) + 44px);
+  height: calc(var(--mini-size) + 44px);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.hero-photo-wrap.is-mini .hero-photo-hit { pointer-events: auto; }
+
+/* White bubble to the LEFT of the circle, vertically centred on it,
+   with a small pointer on its right aimed at the photo. */
+.hero-hire-tip {
+  position: absolute;
+  right: calc(50% + (var(--mini-size) * 0.5) + 14px);
+  top: 50%;
+  z-index: 6;
+  transform: translate(8px, -50%) scale(0.94);
+  transform-origin: 100% 50%;
+  padding: 0.5rem 0.85rem;
+  border-radius: 10px;
+  background: #fff;
+  color: var(--text);
+  border: 1px solid rgba(17, 17, 17, 0.08);
+  /* Reset what it would otherwise inherit from the big heading. */
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: normal;
+  text-transform: none;
+  white-space: nowrap;
+  box-shadow: 0 10px 28px rgba(17, 17, 17, 0.12);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.hero-hire-tip::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  border-top: 1px solid rgba(17, 17, 17, 0.08);
+  border-right: 1px solid rgba(17, 17, 17, 0.08);
+  border-radius: 0 2px 0 0;
+  transform: translate(-6px, -50%) rotate(45deg);
+}
+.hero-photo-wrap.is-mini .hero-photo-hit:hover ~ .hero-hire-tip {
+  opacity: 1;
+  transform: translate(0, -50%) scale(1);
+}
+/* Keep the photo's little hover zoom, now that the hover area sits on top. */
+.hero-photo-inner:has(.hero-photo-hit:hover) .hero-photo { transform: scale(1.05); }
+
+/* Phones: the circle is centred with no room on its left, so the
+   bubble sits above it instead, pointer aimed down. */
+@media (max-width: 639px) {
+  .hero-hire-tip {
+    right: auto;
+    left: 50%;
+    top: auto;
+    bottom: calc(50% + (var(--mini-size) * 0.5) + 12px);
+    transform: translate(-50%, 6px) scale(0.94);
+    transform-origin: 50% 100%;
+  }
+  .hero-hire-tip::after {
+    top: 100%;
+    left: 50%;
+    border-top: none;
+    border-left: none;
+    border-right: 1px solid rgba(17, 17, 17, 0.08);
+    border-bottom: 1px solid rgba(17, 17, 17, 0.08);
+    border-radius: 0 0 2px 0;
+    transform: translate(-50%, -6px) rotate(45deg);
+  }
+  .hero-photo-wrap.is-mini .hero-photo-hit:hover ~ .hero-hire-tip {
+    transform: translate(-50%, 0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-online { transition: none; }
+  .hero-photo-wrap.is-mini .hero-online::after { animation: none; }
+  .hero-hire-tip { transition: opacity 0.2s ease; }
 }
 
 .hero-photo {
@@ -394,113 +627,144 @@ a { color: inherit; }
 }
 .hero-photo-slot:hover .hero-photo { transform: scale(1.05); }
 
-/* Social icons: land at the photo's bottom-right corner. No backing
-   panel — just the icons themselves, each in its own small round
-   chip. Every icon is invisible and parked below its resting spot
-   until the photo has fully unfolded (1.8s), then it's tossed up
-   into place one at a time — an overshoot past its landing point
-   followed by a couple of decaying bounces reads as something
-   dropped in and settled, rather than a plain slide or fade. */
-.hero-photo-social {
-  position: absolute;
-  right: 10px;
-  bottom: 10px;
-  z-index: 2;
+/* Social icons: a centred row below the photo+quote group. Takes up
+   no height during the intro (so it can't push PRATAP further from
+   the photo than LAKSHMI is), then opens up in the same beat as the
+   photo shrinking, so PRATAP only moves once. The icons themselves
+   bounce in later, when initHeroPhotoMini adds .is-shown. */
+.hero-social-below {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
+  justify-content: center;
+  gap: 1.1rem;
+  height: 0;
+  margin: 0;
+  transition:
+    height 0.6s cubic-bezier(0.65, 0, 0.35, 1) 0.1s,
+    margin 0.6s cubic-bezier(0.65, 0, 0.35, 1) 0.1s;
+}
+.hero-photo-wrap.is-mini + .hero-social-below {
+  height: 24px;
+  margin: var(--icons-gap) 0 var(--mini-gap);
 }
 
-.hero-photo-social a {
+.hero-social-below a {
   display: inline-flex;
   color: var(--text);
-  filter: drop-shadow(0 1px 4px rgba(255, 255, 255, 0.65));
   opacity: 0;
-  transform: translateY(90px) scale(0.5);
-  animation: heroIconBounce 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  transform: translateY(28px) scale(0.5);
   transition: color 0.2s ease;
 }
-.hero-photo-social a:nth-child(1) { animation-delay: 1.9s; }
-.hero-photo-social a:nth-child(2) { animation-delay: 2.08s; }
-.hero-photo-social a:nth-child(3) { animation-delay: 2.26s; }
-.hero-photo-social a:hover { color: var(--accent); }
+.hero-social-below.is-shown a {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  animation: heroIconBounce 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.hero-social-below.is-shown a:nth-child(1) { animation-delay: 0s; }
+.hero-social-below.is-shown a:nth-child(2) { animation-delay: 0.14s; }
+.hero-social-below.is-shown a:nth-child(3) { animation-delay: 0.28s; }
+.hero-social-below a:hover { color: var(--accent); }
 
-.hero-photo-social svg { width: 22px; height: 22px; transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.2s ease; }
-.hero-photo-social a:hover svg { transform: rotate(14deg) scale(1.12); }
-.hero-photo-social a:hover svg { transform: rotate(14deg) scale(1.12); }
+.hero-social-below svg { width: 24px; height: 24px; transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.2s ease; }
+.hero-social-below a:hover svg { transform: rotate(14deg) scale(1.12); }
 
 @keyframes heroIconBounce {
-  0%   { opacity: 0; transform: translateY(90px) scale(0.5); }
+  0%   { opacity: 0; transform: translateY(28px) scale(0.5); }
   8%   { opacity: 1; }
-  45%  { opacity: 1; transform: translateY(-14px) scale(1.06); }
-  65%  { transform: translateY(5px) scale(0.98); }
-  82%  { transform: translateY(-3px) scale(1.01); }
+  45%  { opacity: 1; transform: translateY(-10px) scale(1.06); }
+  65%  { transform: translateY(4px) scale(0.98); }
+  82%  { transform: translateY(-2px) scale(1.01); }
   100% { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-photo-social a {
+  .hero-social-below a {
     animation: none !important;
     opacity: 1;
     transform: none;
   }
 }
 
-/* The quote box is PRATAP's travel companion for POSITION: same
-   keyframes, same duration, so it holds its natural distance below
-   PRATAP the whole time and the two move as one rigid group. Its
-   TEXT is a separate story — script.js's initHeroQuoteTypewriter()
-   empties it up front and types the quote back in, letter by letter,
-   only once the photo has fully opened and the social icons have
-   landed. Every letter starts black; once typing finishes, the
-   .is-typed → .is-revealed handoff below lets the "prominent" words
-   ease into the accent colour and grows the underline. */
-.hero-quote {
-  position: relative;
-  max-width: 44ch;
-  margin: 1rem auto 0;
-  padding-top: 1rem;
-  font-family: var(--font-display);
-  font-size: clamp(0.9rem, 1.3vw, 1.02rem);
-  font-weight: 500;
-  line-height: 1.55;
-  opacity: 0;
-  animation: heroBottomWord 1.8s cubic-bezier(0.65, 0, 0.2, 1) forwards;
-}
-.hero-quote-em {
-  color: var(--text);
-  transition: color 0.5s ease;
-}
-.hero-quote.is-revealed .hero-quote-em { color: var(--accent); }
-
-.hero-quote::before {
-  content: '';
+/* The quote. Mobile-first it sits BELOW the circle; from 640px up it
+   moves to the RIGHT of it. The container just switches on — each
+   word (split into .hero-quote-word by script.js) flips up from
+   lying flat, one after another, with a little overshoot. */
+.hero-quote-callout {
   position: absolute;
-  top: 0; left: 50%;
-  transform: translateX(-50%);
-  width: 0; height: 2px;
-  background: var(--accent);
-  transition: width 0.6s ease;
+  z-index: 3;
+  width: min(280px, 68vw);
+  left: 50%;
+  top: calc(50% + (var(--mini-size) * 0.5) + var(--quote-gap));
+  transform: translate(-50%, 0);
+  opacity: 0;
+  pointer-events: none;
+  text-align: center;
+  /* Reset what it would otherwise inherit by sitting inside the
+     uppercase, heavy-weight <h1>. */
+  text-transform: none;
+  font-weight: 400;
+  letter-spacing: normal;
+  transition: opacity 0.15s ease;
 }
-.hero-quote.is-revealed::before { width: 32px; }
+.hero-photo-wrap.is-shown .hero-quote-callout {
+  opacity: 1;
+}
 
-/* Each letter of the quote (see initHeroQuoteTypewriter in script.js)
-   starts hidden and switches on in place — the paragraph's full,
-   final text is already laid out underneath, so nothing reflows or
-   re-centres as letters appear. */
-.hero-quote .qc { opacity: 0; transition: opacity 0.08s ease; }
-.hero-quote .qc.is-on { opacity: 1; }
+.hero-quote-callout .hero-quote {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--text);
+}
+.hero-quote-em { color: var(--accent); font-weight: 400; }
 
-.hero-quote-cursor {
+.hero-quote-word {
   display: inline-block;
-  width: 1.5px;
-  height: 0.95em;
-  margin-left: 1px;
-  background: var(--text);
-  vertical-align: text-bottom;
-  animation: heroCursorBlink 0.85s step-end infinite;
+  opacity: 0;
+  transform-origin: 50% 100%;
+  transform: perspective(400px) rotateX(-95deg) translateY(0.3em);
+  transition:
+    transform 0.7s cubic-bezier(0.34, 1.7, 0.5, 1),
+    opacity 0.25s ease;
+  transition-delay: calc(var(--i, 0) * 45ms);
 }
-@keyframes heroCursorBlink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+.hero-photo-wrap.is-shown .hero-quote-word {
+  opacity: 1;
+  transform: perspective(400px) rotateX(0deg) translateY(0);
+}
+
+@media (min-width: 640px) {
+  /* Circle + gap + quote are treated as one group and centred on the
+     page: the circle moves left by exactly half of (gap + quote
+     width), so the group's midpoint lands on the page's midpoint.
+     The icon row below is centred on the page too, so it sits right
+     under the middle of the group. */
+  .hero-stack {
+    --quote-gap: clamp(32px, 3vw, 44px);
+    /* Wide enough for the quote to sit on two lines on laptop/desktop
+       screens. The circle moves further left to match, automatically. */
+    --quote-w: min(660px, 60vw);
+    /* --quote-fit is the width the text actually uses (measured by
+       script.js), so the group is centred on what you see, not on the
+       quote's empty box. */
+    --mini-shift: calc(-1 * (var(--quote-gap) + var(--quote-fit, var(--quote-w))) / 2);
+  }
+  .hero-quote-callout {
+    width: var(--quote-w);
+    left: calc(50% + var(--mini-shift) + (var(--mini-size) * 0.5) + var(--quote-gap));
+    /* Vertically centred on the circle (the wrap is the circle's size). */
+    top: 50%;
+    text-align: left;
+    text-wrap: balance;
+    transform: translate(0, -50%);
+  }
+  .hero-photo-wrap.is-shown .hero-quote-callout {
+    transform: translate(0, -50%);
+  }
+}
+
 
 .scroll-hint {
   flex: 0 0 auto;
@@ -510,7 +774,7 @@ a { color: inherit; }
   text-decoration: none;
   font-size: 1.1rem;
   opacity: 0;
-  animation: heroFade 0.7s ease 3.8s forwards, bob 2s ease-in-out 3.8s infinite;
+  animation: heroFade 0.7s ease 3s forwards, bob 2s ease-in-out 3s infinite;
   transition: color 0.2s ease, transform 0.2s ease;
 }
 .scroll-hint:hover { color: var(--accent-dark); transform: scale(1.15); }
@@ -519,10 +783,8 @@ a { color: inherit; }
 @keyframes heroFade { from { opacity: 0; } to { opacity: 1; } }
 @keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
 
-/* Quick fade in (0–8%), then a hold at the collapsed/touching position
-   (8–46%) — the pause — then ease out to translateY(0) (46–100%), each
-   word travelling half the gap in opposite directions so they split
-   symmetrically. */
+/* Quick fade in (0–8%), hold at the collapsed/touching position
+   (8–46%), then ease out to translateY(0) (46–100%). */
 @keyframes heroTopWord {
   0%   { opacity: 0; transform: translateY(var(--split-d)); }
   8%   { opacity: 1; transform: translateY(var(--split-d)); }
@@ -536,15 +798,12 @@ a { color: inherit; }
   100% { opacity: 1; transform: translateY(0); }
 }
 
-/* The photo: nothing at all through the fade-in and the pause (no
-   hairline showing between LAKSHMI and PRATAP), then it unfolds open
-   via clip-path exactly as the split begins, over the same window the
-   words use to move apart, so it reads as one gesture. */
+/* The photo unfolds open via clip-path exactly as the split begins. */
 @keyframes heroPhotoUnfold {
-  0%     { opacity: 0; clip-path: inset(calc(50% - 1px) 0 calc(50% - 1px) 0); box-shadow: 0 16px 36px rgba(17, 17, 17, 0); }
+  0%     { opacity: 0; clip-path: inset(calc(50% - 1px) 0 calc(50% - 1px) 0); }
   45.9%  { opacity: 0; clip-path: inset(calc(50% - 1px) 0 calc(50% - 1px) 0); }
   46%    { opacity: 1; clip-path: inset(calc(50% - 1px) 0 calc(50% - 1px) 0); }
-  100%   { opacity: 1; clip-path: inset(0 0 0 0); box-shadow: 0 16px 36px rgba(17, 17, 17, 0.13); }
+  100%   { opacity: 1; clip-path: inset(0 0 0 0); }
 }
 
 /* ========== TOOLS ==========
@@ -573,7 +832,6 @@ a { color: inherit; }
   width: var(--size);
   height: var(--size);
   border-radius: 50%;
-  /* Flat white coin: solid fill, hairline edge, a light lift off the page. */
   background: #ffffff;
   border: 1px solid rgba(17, 17, 17, 0.07);
   box-shadow: var(--shadow-sm);
@@ -600,8 +858,7 @@ a { color: inherit; }
 .tools.is-armed .tool-ball { transform: translateX(var(--from)); will-change: transform; }
 .tools.is-armed .tool-ball-spin { transform: rotate(0deg); will-change: transform; }
 
-/* Playing: roll to rest. Slide and spin share one duration/easing, so the
-   ball turns in step with the distance it covers and stops upright. */
+/* Playing: roll to rest. */
 .tools.is-armed.is-playing .tool-ball {
   transform: translateX(0);
   transition: transform 2.2s cubic-bezier(0.22, 0.8, 0.28, 1) var(--delay, 0s);
@@ -611,10 +868,7 @@ a { color: inherit; }
   transition: transform 2.2s cubic-bezier(0.22, 0.8, 0.28, 1) var(--delay, 0s);
 }
 
-/* Name tag: a small dark box that fades in above the coin on hover and
-   then hovers there, bobbing gently. The wrapper handles position and
-   fade; the box inside does the bobbing, so the two transforms never
-   fight. It lives outside the spinning layer, so it never rotates. */
+/* Name tag above the coin on hover. */
 .tool-ball:hover { z-index: 5; }
 
 .tool-tip {
@@ -663,17 +917,15 @@ a { color: inherit; }
 .about h2,
 .sketchbook h2,
 .illustrations h2 {
-  font-family: var(--font-display);
-  font-size: clamp(1.9rem, 4.6vw, 2.5rem);
-  font-weight: 600;
-  line-height: 1.2;
+  font-family: var(--font-heading);
+  font-size: clamp(2.1rem, 5vw, 2.85rem);
+  font-weight: 700;
+  line-height: 1.1;
   text-transform: uppercase;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.01em;
   margin: 0;
 }
 
-/* Heading + subheading sit side by side, sharing a baseline;
-   the subheading wraps underneath on narrow screens. */
 .section-head {
   display: flex;
   flex-wrap: wrap;
@@ -683,7 +935,7 @@ a { color: inherit; }
 }
 .section-sub { margin: 0; font-size: 0.95rem; line-height: 1.5; color: var(--muted); }
 
-/* ---- Filter bar: CTA text + a search-styled requirements input ---- */
+/* ---- Filter bar ---- */
 .work-filterbar {
   display: flex;
   flex-direction: column;
@@ -744,9 +996,7 @@ a { color: inherit; }
 .work-search-btn:hover { background: var(--accent-dark); }
 .work-search-btn:active { transform: scale(0.92); }
 
-/* ---- Capability chip row (horizontally scrollable) ----
-   overflow-x:auto also clips the y-axis, so the row needs its own
-   padding on every side or each chip's shadow gets cropped flat. */
+/* ---- Capability chip row (horizontally scrollable) ---- */
 .chip-row-wrap { position: relative; margin: 0 -0.3rem 1.5rem; }
 .chip-row {
   display: flex;
@@ -801,42 +1051,53 @@ a { color: inherit; }
   display: flex;
   flex-direction: column;
   background: #fff;
-  border-radius: 0;
+  border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
   overflow: hidden;
-  transition: box-shadow 0.25s ease, opacity 0.25s ease, transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: box-shadow 0.25s ease, opacity 0.6s ease, transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .project-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
 .project-card.is-limited { opacity: 0.45; }
 .project-card.is-limited:hover { transform: none; box-shadow: var(--shadow-sm); }
 .project-card.is-best-match { box-shadow: 0 0 0 2px var(--accent), var(--shadow-md); }
 
+/* Staggered fade-up entrance (see initCardsReveal in script.js). */
+.project-cards.will-reveal .project-card {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: none;
+}
+.project-cards.will-reveal.is-in .project-card {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--stagger, 0s);
+}
+.project-cards.will-reveal .project-card.is-limited { opacity: 0.45; }
+.project-cards.will-reveal.is-in .project-card:hover { transform: translateY(-3px); }
+
 .project-thumb { aspect-ratio: 16 / 10; background: var(--surface); overflow: hidden; }
 .project-thumb img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1); }
 .project-card:hover .project-thumb img { transform: scale(1.05); }
 
 .project-body { padding: 1.1rem 1.25rem 1.25rem; }
-.project-card-head { display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem; }
-.project-card-head h3 { font-size: 1.05rem; font-weight: 700; margin: 0; }
+.project-card-head { display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.6rem; }
+.project-card-head h3 { font-family: var(--font-heading); font-size: 1.45rem; font-weight: 700; line-height: 1.15; letter-spacing: -0.015em; margin: 0; }
 
 .project-match-label {
   font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
-  color: #fff; background: var(--accent); padding: 0.18rem 0.5rem; border-radius: 3px;
+  color: #fff; background: var(--accent); padding: 0.18rem 0.5rem; border-radius: var(--radius-sm);
 }
 
 .capability-strip { list-style: none; margin: 0 0 0.7rem; padding: 0; display: flex; flex-wrap: wrap; gap: 0.4rem; }
-.capability-strip li { font-size: 0.68rem; font-weight: 600; color: var(--muted); background: var(--surface); border-radius: 3px; padding: 0.2rem 0.5rem; }
+.capability-strip li { font-size: 0.68rem; font-weight: 600; color: var(--muted); background: var(--surface); border-radius: var(--radius-sm); padding: 0.2rem 0.5rem; }
 
 .project-proves { font-size: 0.88rem; line-height: 1.4; color: var(--muted); margin: 0 0 0.75rem; }
 
 .project-link { display: inline-block; font-size: 0.85rem; font-weight: 700; text-decoration: none; color: var(--text); transition: color 0.2s ease; }
 .project-link:hover { color: var(--accent-dark); }
 
-/* ---- "Other Projects" panel: sits beside the 2x2 grid (not in
-   place of a card), tinted to read as a distinct, secondary area.
-   It spans both grid rows on desktop (see the 900px block below) so
-   its scrollable list naturally gets the combined height of the two
-   rows next to it. ---- */
+/* ---- "Other Projects" panel ---- */
 .project-card-other { background: #f4f4f4; box-shadow: none; }
 .project-card-other:hover { transform: none; box-shadow: none; }
 
@@ -846,7 +1107,7 @@ a { color: inherit; }
   height: 100%;
   padding: 1.25rem 1.25rem 1rem;
 }
-.project-other-label { font-size: 0.95rem; font-weight: 700; margin: 0 0 0.75rem; flex: 0 0 auto; text-align: center; }
+.project-other-label { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.01em; margin: 0 0 0.75rem; flex: 0 0 auto; text-align: center; }
 .project-other-list {
   list-style: none;
   margin: 0;
@@ -860,7 +1121,7 @@ a { color: inherit; }
 .project-mini-link {
   display: block;
   background: #fff;
-  border-radius: 0;
+  border-radius: var(--radius-md);
   overflow: hidden;
   box-shadow: var(--shadow-sm);
   text-decoration: none;
@@ -873,19 +1134,14 @@ a { color: inherit; }
 .project-mini-thumb img { display: block; width: 100%; height: 100%; object-fit: cover; }
 
 .project-mini-body { padding: 0.75rem 0.85rem 0.9rem; }
-.project-mini-body h4 { margin: 0 0 0.3rem; font-size: 0.85rem; font-weight: 700; color: var(--text); }
+.project-mini-body h4 { margin: 0 0 0.3rem; font-family: var(--font-heading); font-size: 0.95rem; font-weight: 700; line-height: 1.2; color: var(--text); }
 .project-mini-body p { margin: 0 0 0.5rem; font-size: 0.72rem; line-height: 1.4; color: var(--muted); }
 .project-mini-view { font-size: 0.72rem; font-weight: 700; color: var(--text); transition: color 0.2s ease; }
 .project-mini-link:hover .project-mini-view { color: var(--accent-dark); }
 
-/* Highlighted when its tags match the selected keyword chips —
-   reordered to the top of this list, but never affects the ranking
-   of the primary four cards. */
 .project-other-list li.is-match .project-mini-link { box-shadow: 0 0 0 2px var(--accent), var(--shadow-md); }
 
-/* ========== ABOUT ME ==========
-   Text only (the portrait photo was removed) — centred in the
-   section at every width. */
+/* ========== ABOUT ME ========== */
 .about { padding-top: 1rem; padding-bottom: 5.5rem; }
 .about .section-head { margin-bottom: 3.25rem; }
 
@@ -901,13 +1157,9 @@ a { color: inherit; }
 .about-text p { margin: 0 0 1rem; }
 .about-text p:last-child { margin-bottom: 0; }
 
-/* Hoverable words in the About text: set in the display face and accent
-   colour with a dotted underline, so they read as "something happens here".
-   On hover a small photo follows the cursor (built by initAboutTerms). */
 .about-term {
-  font-family: var(--font-display);
+  font-family: var(--font-body);
   font-weight: 600;
-  font-size: 1.08em;
   color: var(--accent);
   text-decoration: underline dotted;
   text-decoration-thickness: 1.5px;
@@ -930,6 +1182,7 @@ a { color: inherit; }
 .hover-pic-card {
   padding: 6px;
   background: #fff;
+  border-radius: var(--radius-md);
   box-shadow: var(--shadow-md);
   opacity: 0;
   transform: scale(0.9) rotate(-3deg);
@@ -938,6 +1191,7 @@ a { color: inherit; }
 .hover-pic.is-visible .hover-pic-card { opacity: 1; transform: scale(1) rotate(-3deg); }
 .hover-pic img {
   display: block;
+  border-radius: var(--radius-sm);
   width: auto;
   height: auto;
   max-width: 170px;
@@ -947,9 +1201,6 @@ a { color: inherit; }
   .hover-pic-card { transition: none; }
 }
 
-/* One-time intro: every word's photo pops up above it for a moment when the
-   text first scrolls into view, so people know the words are hoverable.
-   Positioned in page coordinates, so it stays with the text if you scroll. */
 .about-pop {
   position: absolute;
   z-index: 350;
@@ -959,6 +1210,7 @@ a { color: inherit; }
 .about-pop-card {
   padding: 4px;
   background: #fff;
+  border-radius: var(--radius-md);
   box-shadow: var(--shadow-md);
   transform-origin: 50% 100%;
   opacity: 0;
@@ -967,6 +1219,7 @@ a { color: inherit; }
 }
 .about-pop img {
   display: block;
+  border-radius: 8px;
   width: auto;
   height: auto;
   max-width: 110px;
@@ -983,14 +1236,9 @@ a { color: inherit; }
   .about-pop-card { animation: none; opacity: 1; transform: rotate(-3deg); }
 }
 
-/* ========== GALLERY ==========
-   A full-width strip of portrait photos and videos drifting left to right.
-   script.js repeats the items so the loop is seamless and sets the speed;
-   hovering the strip pauses it. Without JS (or with reduced motion) it is a
-   plain strip you can scroll sideways. */
+/* ========== GALLERY ========== */
 .gallery { overflow-x: auto; padding: 1.25rem 0 3.5rem; scrollbar-width: thin; }
 .gallery.is-moving { overflow: hidden; }
-/* Nothing in it yet: don't leave an empty gap on the page. */
 .gallery:not(:has(.gallery-item)) { display: none; }
 
 .gallery-track {
@@ -1010,6 +1258,7 @@ a { color: inherit; }
   height: clamp(260px, 30vw, 380px);
   aspect-ratio: 4 / 5;
   overflow: hidden;
+  border-radius: var(--radius-lg);
   background: var(--surface);
   box-shadow: var(--shadow-sm);
 }
@@ -1021,8 +1270,6 @@ a { color: inherit; }
   object-fit: cover;
 }
 
-/* Moves right: the track starts one full set to the left and slides to 0,
-   where the picture is identical, so it loops without a jump. */
 .gallery.is-moving .gallery-track {
   animation: galleryRight var(--gallery-dur, 60s) linear infinite;
   will-change: transform;
@@ -1033,20 +1280,15 @@ a { color: inherit; }
   to   { transform: translateX(0); }
 }
 
-/* ========== SKETCHBOOK ==========
-   Flipbook that lives under Work. Class names are prefixed `sb-` so
-   nothing here can collide with the rest of the page. The book is
-   drag-to-flip (mouse + touch) and arrow-key friendly; the hint flip
-   plays once, the first time it scrolls into view. */
+/* ========== SKETCHBOOK ========== */
 .sketchbook { padding-top: 1rem; padding-bottom: 3.5rem; }
 
-/* Small screens: quote, then the book, stacked under the heading. */
 .sb-layout { display: flex; flex-direction: column; gap: 2.25rem; }
 
 .sb-note {
   margin: 0;
   max-width: 34ch;
-  font-family: var(--font-display);
+  font-family: var(--font-body);
   font-size: 1rem;
   font-weight: 500;
   line-height: 1.6;
@@ -1054,8 +1296,6 @@ a { color: inherit; }
 
 .sb-wrap { display: flex; justify-content: center; }
 
-/* Wide screens: quote on the left, vertically centred on the book's
-   height and horizontally centred in the free space; book pinned to the right with a generous gap between them. */
 @media (min-width: 900px) {
   .sb-layout {
     display: grid;
@@ -1064,7 +1304,6 @@ a { color: inherit; }
     align-items: center;
   }
   .sb-wrap { justify-content: flex-end; }
-  /* Centre the quote in the empty space beside the book, not flush to the left edge. */
   .sb-note { justify-self: center; text-align: center; }
 }
 
@@ -1072,14 +1311,12 @@ a { color: inherit; }
   width: min(100%, 600px);
   perspective: 1800px;
   cursor: grab;
-  /* Let the browser keep vertical page scrolling; horizontal drags come to us. */
   touch-action: pan-y;
   user-select: none;
   -webkit-user-select: none;
 }
 .sb-book:active { cursor: grabbing; }
 
-/* Landscape notebook, roughly 3:2 */
 .sb-sheets {
   position: relative;
   width: 100%;
@@ -1088,7 +1325,6 @@ a { color: inherit; }
   filter: drop-shadow(0 16px 30px rgba(17, 17, 17, 0.16));
 }
 
-/* Covers: the static pages behind the flipping sheets */
 .sb-cover {
   position: absolute;
   top: 0; bottom: 0;
@@ -1104,7 +1340,6 @@ a { color: inherit; }
 .sb-cover-left  { left: 0;  border-radius: 8px 0 0 8px; }
 .sb-cover-right { right: 0; border-radius: 0 8px 8px 0; opacity: 0; }
 
-/* Each sheet is one folio: sketch on the front (right), sketch on the back (left) */
 .sb-sheet {
   position: absolute;
   inset: 0;
@@ -1156,7 +1391,6 @@ a { color: inherit; }
   -webkit-user-select: none;
 }
 
-/* One-time nudge on the first page, added by script.js when the book scrolls into view */
 .sb-page.hint.animate-flip { animation: sbDemoFlip 1.2s ease-in-out 1; }
 @keyframes sbDemoFlip {
   0%   { transform: rotateY(0deg); }
@@ -1165,62 +1399,111 @@ a { color: inherit; }
 }
 
 /* ========== FOOTER ========== */
-.fun-footer { text-align: center; padding-top: 2.5rem; padding-bottom: 3rem; }
-.fun-quote { font-family: var(--font-display); font-size: 1.15rem; font-weight: 500; line-height: 1.5; margin: 0 0 0.6rem; }
-/* "Want to say Hi?" — mailto button under the footer quote */
-.say-hi {
-  display: inline-block;
-  margin: 0.9rem 0 1.6rem;
-  padding: 0.75rem 1.6rem;
-  background: var(--accent);
-  color: #fff;
-  border-radius: var(--radius);
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 1.1rem;
-  line-height: 1.2;
-  text-decoration: none;
-  transition: background 0.2s ease, transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+.fun-footer {
+  text-align: center;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
 }
-.say-hi:hover { background: var(--accent-dark); transform: translateY(-2px) rotate(-1deg); box-shadow: var(--shadow-md); }
-@media (prefers-reduced-motion: reduce) { .say-hi { transition: none; } .say-hi:hover { transform: none; } }
+.fun-quote { font-family: var(--font-body); font-size: 1.15rem; font-weight: 500; line-height: 1.5; margin: 0 0 1.8rem; }
+
+.footer-cta {
+  display: block;
+  text-decoration: none;
+  color: var(--text);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 0.94;
+  letter-spacing: -0.02em;
+  margin: 0 auto;
+}
+.footer-cta-line {
+  display: block;
+  font-size: clamp(3rem, 11vw, 8rem);
+  transition: color 0.25s ease, transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.footer-cta-line:last-child { color: var(--accent); }
+.footer-cta:hover .footer-cta-line:first-child { transform: translateX(0.04em); }
+.footer-cta:hover .footer-cta-line:last-child { transform: translateX(-0.04em); color: var(--accent-dark); }
+@media (prefers-reduced-motion: reduce) {
+  .footer-cta-line { transition: none; }
+  .footer-cta:hover .footer-cta-line { transform: none; }
+}
+
+.footer-email { margin: 1.4rem 0 0; }
+.footer-email a {
+  font-size: 0.95rem;
+  color: var(--muted);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.footer-email a:hover { color: var(--text); border-color: var(--text); }
+
+.footer-social {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.4rem;
+  margin: 2.2rem 0 2.2rem;
+}
+.footer-social a {
+  display: inline-flex;
+  color: var(--text);
+  transition: color 0.2s ease, transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.footer-social svg { width: 20px; height: 20px; }
+.footer-social a:hover { color: var(--accent); transform: translateY(-2px); }
+@media (prefers-reduced-motion: reduce) { .footer-social a { transition: none; } .footer-social a:hover { transform: none; } }
 
 .fun-credit { font-size: 0.8rem; color: var(--muted); margin: 0; }
 
 /* ========== REDUCED MOTION ==========
    No sequence: the hero shows its final composition straight away
-   (LAKSHMI, photo, PRATAP, quote, details). */
+   (circle, quote, icons). */
 @media (prefers-reduced-motion: reduce) {
   .chip, .project-card, .project-thumb img, .project-link,
-  .hero-nav-links, .hero-nav-links a, .hero-resume, .hero-photo-social a, .hero-photo-social svg,
+  .hero-nav-links, .hero-nav-links a, .hero-resume, .hero-social-below, .hero-social-below a, .hero-social-below svg,
   .hero-name-word-inner, .hero-photo, .scroll-hint, .nav-toggle-bar,
-  .hero-nav, .nav-compact-dots .dot, .sb-sheet {
+  .hero-nav, .nav-compact-dots .dot, .sb-sheet,
+  .hero-photo-inner, .hero-photo-slot, .hero-quote-callout, .hero-quote-word, .hero-photo-wrap,
+  .hero-name-word:first-child, .hero-name-word:last-child {
     transition: none !important;
   }
 
-  /* The nav keeps its own transform (it is centred with translateX on desktop). */
+  .project-cards.will-reveal .project-card {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
   .hero-nav {
     animation: none !important;
     opacity: 1 !important;
   }
 
-  .hero-hi, .hero-name-word, .hero-quote, .scroll-hint {
+  .hero-hi, .scroll-hint {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
+  }
+
+  .hero-name-word {
+    animation: none !important;
+    opacity: 1 !important;
   }
 
   .hero-photo-slot {
     animation: none !important;
     opacity: 1;
     clip-path: none;
-    box-shadow: var(--shadow-md);
+  }
+
+  .hero-social-below a {
+    opacity: 1 !important;
+    transform: none !important;
   }
 
   .sb-page.hint.animate-flip { animation: none !important; }
-
-  .hero-quote::before { animation: none !important; width: 32px; }
-  .hero-quote-em { color: var(--accent) !important; }
 }
 
 /* =============================================================
@@ -1243,34 +1526,30 @@ a { color: inherit; }
   .work-filterbar-prompt { flex: 0 0 auto; max-width: 260px; }
   .work-search { flex: 1; }
 
-  /* 2x2 for the four real projects, plus a narrower third column for
-     Other Projects spanning both rows. The panel's explicit position
-     is placed first by the grid algorithm, so the four un-positioned
-     cards auto-flow into the remaining two columns — no need to
-     position each of them by hand. */
   .project-cards { grid-template-columns: repeat(2, 1fr) minmax(220px, 260px); }
   .project-card-other { grid-column: 3; grid-row: 1 / span 2; max-height: none; }
 
-  /* Nav switches from a mobile drawer to a floating pill with the
-     links inline. Lighter shadow, more breathing room between the
-     logo and the links than the mobile bar needs. */
   .hero-nav {
-    top: 1rem;
-    left: 50%;
-    right: auto;
-    transform: translateX(-50%);
+    top: 1.75rem;
+    left: 0;
+    right: 0;
+    transform: none;
     width: auto;
-    max-width: 780px;
-    gap: 2.25rem;
-    background: rgba(255, 255, 255, 0.88);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-radius: 999px;
-    box-shadow: var(--shadow-sm);
-    padding: 0.5rem 0.5rem 0.5rem 1.1rem;
-    transition: max-width 0.4s cubic-bezier(0.22, 1, 0.36, 1), padding 0.3s ease, box-shadow 0.3s ease;
+    max-width: none;
+    justify-content: center;
+    gap: 3rem;
+    background: none;
+    box-shadow: none;
+    padding: 0 var(--outer-pad);
+    transition: padding 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
   }
-  .hero-nav:hover { box-shadow: var(--shadow-md); }
+  .hero-nav .hero-brand {
+    display: inline-flex;
+    position: absolute;
+    left: var(--outer-pad);
+    top: 50%;
+    transform: translateY(-50%);
+  }
 
   .nav-scrim { display: none; }
   .nav-toggle { display: none; }
@@ -1286,12 +1565,14 @@ a { color: inherit; }
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 1.75rem;
+    gap: 2.25rem;
     background: none;
     box-shadow: none;
     padding: 0;
-    font-size: 1rem;
-    font-weight: 600;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
     opacity: 1;
     visibility: visible;
     transform: none;
@@ -1299,18 +1580,36 @@ a { color: inherit; }
   }
   .hero-nav-links a:not(.hero-resume)::after { background: var(--text); }
   .hero-nav-links a:not(.hero-resume):hover { color: var(--text); }
-  .hero-resume { padding: 0.5rem 1rem; font-size: 0.95rem; }
+  .hero-resume { font-size: 0.95rem; }
+  .hero-resume svg { width: 13px; height: 13px; }
 
-  /* Compact state: once the hero has scrolled out of view, collapse
-     the pill to just the current section + dots. Hovering it brings
-     the full link row back without needing to scroll up. */
-  .hero-nav.is-compact { max-width: 200px; padding: 0.5rem 0.6rem 0.5rem 0.9rem; }
-  .hero-nav.is-compact .hero-brand,
+  .hero-nav.is-compact {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    justify-content: flex-start;
+    /* Hugs whatever it holds: logo, section name and dots. */
+    width: max-content;
+    max-width: calc(100vw - 2 * var(--outer-pad));
+    gap: 1rem;
+    padding: 0.5rem 0.6rem 0.5rem 0.9rem;
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 999px;
+    box-shadow: var(--shadow-sm);
+    transition: padding 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+  }
+  .hero-nav.is-compact .hero-brand {
+    display: inline-flex;
+    position: static;
+    transform: none;
+  }
+  .hero-nav.is-compact:hover { box-shadow: var(--shadow-md); }
   .hero-nav.is-compact .hero-nav-links { display: none; }
   .hero-nav.is-compact .nav-compact { display: flex; }
 
-  .hero-nav.is-compact:hover { max-width: 780px; padding: 0.5rem 0.5rem 0.5rem 1.1rem; }
-  .hero-nav.is-compact:hover .hero-brand { display: inline-flex; }
+  .hero-nav.is-compact:hover { gap: 2rem; padding: 0.5rem 1.1rem 0.5rem 1.1rem; }
   .hero-nav.is-compact:hover .hero-nav-links { display: flex; }
   .hero-nav.is-compact:hover .nav-compact { display: none; }
 }

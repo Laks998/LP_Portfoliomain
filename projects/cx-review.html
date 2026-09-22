@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CX Portal — Onboarding Review: Lakshmi Pratap</title>
-  <link rel="stylesheet" href="cx-review.css?v=16" />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="cx-review.css?v=22" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="../assets/logo.png">
   <link rel="stylesheet" href="../comment-widget.css" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/2.44.0/iconfont/tabler-icons.min.css" rel="stylesheet">
@@ -21,33 +21,47 @@
     <span>Go Back To Home</span>
   </a>
 
+  <!-- Side nav: a small floating card. Collapsed it shows just the
+       section numbers; hovering it (or tabbing into it) opens it up to
+       show the names and the sub-sections. -->
   <nav class="side-nav" aria-label="Section navigation">
-    <div class="side-nav-item">
+    <div class="side-nav-head" aria-hidden="true">
+      <span class="side-nav-head-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h10M4 18h13"/></svg>
+      </span>
+      <span class="side-nav-head-label">On this page</span>
+    </div>
+
+    <div class="side-nav-item" style="--i:0">
       <a href="#overview" class="side-nav-link"><span class="side-nav-num">01</span><span class="side-nav-label">Overview</span></a>
     </div>
-    <div class="side-nav-item">
+    <div class="side-nav-item" style="--i:1">
       <a href="#features" class="side-nav-link"><span class="side-nav-num">02</span><span class="side-nav-label">Features</span></a>
     </div>
-    <div class="side-nav-item">
+    <div class="side-nav-item" style="--i:2">
       <a href="#issues" class="side-nav-link"><span class="side-nav-num">03</span><span class="side-nav-label">Issues</span></a>
       <div class="side-nav-sublist">
-        <a href="#issue-1" class="side-nav-sublink"><span class="side-nav-sublink-num">1</span>Untracked rejections</a>
-        <a href="#issue-2" class="side-nav-sublink"><span class="side-nav-sublink-num">2</span>Backend-only fixes</a>
-        <a href="#issue-3" class="side-nav-sublink"><span class="side-nav-sublink-num">3</span>PDF pop-up stack</a>
+        <div class="side-nav-sublist-inner">
+          <a href="#issue-1" class="side-nav-sublink"><span class="side-nav-sublink-num">1</span>Rejection reasons</a>
+          <a href="#issue-2" class="side-nav-sublink"><span class="side-nav-sublink-num">2</span>Locked edits</a>
+          <a href="#issue-3" class="side-nav-sublink"><span class="side-nav-sublink-num">3</span>Stacked PDFs</a>
+        </div>
       </div>
     </div>
-    <div class="side-nav-item">
+    <div class="side-nav-item" style="--i:3">
       <a href="#solutions" class="side-nav-link"><span class="side-nav-num">04</span><span class="side-nav-label">Solutions</span></a>
       <div class="side-nav-sublist">
-        <a href="#fix-1" class="side-nav-sublink"><span class="side-nav-sublink-num">1</span>Timeline</a>
-        <a href="#fix-2" class="side-nav-sublink"><span class="side-nav-sublink-num">2</span>Editable sections</a>
-        <a href="#fix-3" class="side-nav-sublink"><span class="side-nav-sublink-num">3</span>Split PDF view</a>
+        <div class="side-nav-sublist-inner">
+          <a href="#fix-1" class="side-nav-sublink"><span class="side-nav-sublink-num">1</span>Timeline</a>
+          <a href="#fix-2" class="side-nav-sublink"><span class="side-nav-sublink-num">2</span>Edit flow</a>
+          <a href="#fix-3" class="side-nav-sublink"><span class="side-nav-sublink-num">3</span>Side-by-side PDF</a>
+        </div>
       </div>
     </div>
-    <div class="side-nav-item">
+    <div class="side-nav-item" style="--i:4">
       <a href="#impact" class="side-nav-link"><span class="side-nav-num">05</span><span class="side-nav-label">Impact</span></a>
     </div>
-    <div class="side-nav-item">
+    <div class="side-nav-item" style="--i:5">
       <a href="#reflection" class="side-nav-link"><span class="side-nav-num">06</span><span class="side-nav-label">Reflection</span></a>
     </div>
   </nav>
@@ -690,11 +704,19 @@
     </a>
   </div>
 
+  <button type="button" class="to-top" aria-label="Back to top">
+    <svg class="to-top-ring" viewBox="0 0 52 52" aria-hidden="true">
+      <circle class="to-top-ring-track" cx="26" cy="26" r="24"></circle>
+      <circle class="to-top-ring-fill" cx="26" cy="26" r="24"></circle>
+    </svg>
+    <svg class="to-top-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </button>
+
   <footer class="site-footer">
     <p>&copy; 2025 Lakshmi Pratap. All rights reserved.</p>
   </footer>
 
-  <script src="cx-review.js?v=1"></script>
+  <script src="cx-review.js?v=3"></script>
   <script src="../comment-widget.js"></script>
 </body>
 </html>

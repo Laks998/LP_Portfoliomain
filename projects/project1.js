@@ -224,3 +224,37 @@ document.addEventListener('DOMContentLoaded', () => {
   sections.forEach(section => sectionObserver.observe(section));
 
 });
+// Back to top — shows once you're past the first screen; clicking it
+// scrolls smoothly back up. The ring around it fills with reading
+// progress.
+document.addEventListener('DOMContentLoaded', () => {
+
+  const btn = document.querySelector('.to-top');
+  if (!btn) return;
+  const fill = btn.querySelector('.to-top-ring-fill');
+  const C = 2 * Math.PI * 24;
+  if (fill) {
+    fill.style.strokeDasharray = `${C}`;
+    fill.style.strokeDashoffset = `${C}`;
+  }
+
+  let ticking = false;
+  const update = () => {
+    ticking = false;
+    const y = window.scrollY;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    btn.classList.toggle('is-visible', y > window.innerHeight * 0.8);
+    if (fill && max > 0) fill.style.strokeDashoffset = `${C * (1 - Math.min(y / max, 1))}`;
+  };
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) { ticking = true; requestAnimationFrame(update); }
+  }, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+
+  btn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+  });
+
+});

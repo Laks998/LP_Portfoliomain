@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Quippy Browser Extension | Lakshmi Pratap</title>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="project1.css?v=4" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="project1.css?v=7" />
   <link rel="icon" type="image/png" href="../assets/logo.png">
   <link rel="stylesheet" href="../comment-widget.css" />
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -22,26 +22,38 @@
     <span>Go Back To Home</span>
   </a>
 
+  <!-- Side nav: a small floating card. Collapsed it shows just the
+       section numbers; hovering it (or tabbing into it) opens it up to
+       show the names and the sub-sections. -->
   <nav class="side-nav" aria-label="Section navigation">
-    <div class="side-nav-item">
+    <div class="side-nav-head" aria-hidden="true">
+      <span class="side-nav-head-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h10M4 18h13"/></svg>
+      </span>
+      <span class="side-nav-head-label">On this page</span>
+    </div>
+
+    <div class="side-nav-item" style="--i:0">
       <a href="#overview" class="side-nav-link"><span class="side-nav-num">01</span><span class="side-nav-label">Overview</span></a>
     </div>
-    <div class="side-nav-item">
+    <div class="side-nav-item" style="--i:1">
       <a href="#origin" class="side-nav-link"><span class="side-nav-num">02</span><span class="side-nav-label">Origin story</span></a>
     </div>
-    <div class="side-nav-item">
+    <div class="side-nav-item" style="--i:2">
       <a href="#solutions" class="side-nav-link"><span class="side-nav-num">03</span><span class="side-nav-label">Solutions</span></a>
       <div class="side-nav-sublist">
-        <a href="#decision-1" class="side-nav-sublink"><span class="side-nav-sublink-num">1</span>Keyboard-first</a>
-        <a href="#decision-2" class="side-nav-sublink"><span class="side-nav-sublink-num">2</span>Design system</a>
-        <a href="#decision-3" class="side-nav-sublink"><span class="side-nav-sublink-num">3</span>Shadow DOM</a>
-        <a href="#decision-4" class="side-nav-sublink"><span class="side-nav-sublink-num">4</span>14 functions</a>
+        <div class="side-nav-sublist-inner">
+          <a href="#decision-1" class="side-nav-sublink"><span class="side-nav-sublink-num">1</span>Keyboard-first</a>
+          <a href="#decision-2" class="side-nav-sublink"><span class="side-nav-sublink-num">2</span>Design system</a>
+          <a href="#decision-3" class="side-nav-sublink"><span class="side-nav-sublink-num">3</span>Shadow DOM</a>
+          <a href="#decision-4" class="side-nav-sublink"><span class="side-nav-sublink-num">4</span>14 functions</a>
+        </div>
       </div>
     </div>
-    <div class="side-nav-item">
+    <div class="side-nav-item" style="--i:3">
       <a href="#impact" class="side-nav-link"><span class="side-nav-num">04</span><span class="side-nav-label">Impact</span></a>
     </div>
-    <div class="side-nav-item">
+    <div class="side-nav-item" style="--i:4">
       <a href="#reflection" class="side-nav-link"><span class="side-nav-num">05</span><span class="side-nav-label">Reflection</span></a>
     </div>
   </nav>
@@ -344,11 +356,19 @@
     </a>
   </div>
 
+  <button type="button" class="to-top" aria-label="Back to top">
+    <svg class="to-top-ring" viewBox="0 0 52 52" aria-hidden="true">
+      <circle class="to-top-ring-track" cx="26" cy="26" r="24"></circle>
+      <circle class="to-top-ring-fill" cx="26" cy="26" r="24"></circle>
+    </svg>
+    <svg class="to-top-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </button>
+
   <footer class="site-footer">
     <p>&copy; 2025 Lakshmi Pratap. All rights reserved.</p>
   </footer>
 
-  <script src="project1.js?v=4"></script>
+  <script src="project1.js?v=5"></script>
   <script src="../comment-widget.js"></script>
 </body>
 </html>

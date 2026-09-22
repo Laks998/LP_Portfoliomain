@@ -23,6 +23,11 @@
   --danger-bg: rgba(178, 56, 66, 0.09);
   --shadow-sm: 0 1px 2px rgba(16, 15, 14, 0.04), 0 4px 14px rgba(16, 15, 14, 0.07);
   --shadow-md: 0 4px 10px rgba(16, 15, 14, 0.06), 0 12px 28px rgba(16, 15, 14, 0.1);
+
+  /* Same two fonts as the landing page: Space Grotesk for body text,
+     Bricolage Grotesque for every heading and big number. */
+  --font-body: 'Space Grotesk', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Bricolage Grotesque', 'Space Grotesk', sans-serif;
 }
 
 * {
@@ -46,7 +51,7 @@ html, body {
 
 body {
   margin: 0;
-  font-family: 'Space Grotesk', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-family: var(--font-body);
   color: var(--text);
   background: var(--bg-solid);
   overflow-x: hidden;
@@ -227,6 +232,11 @@ body {
 }
 
 /* Typography */
+h1, h2, h3, h4, h5,
+.metric-strip-number {
+  font-family: var(--font-heading);
+}
+
 h2 {
   font-size: 2.1rem;
   font-weight: 700;
@@ -339,7 +349,6 @@ p:last-child {
   gap: 1.25rem;
   background: var(--decision-bg);
   border: 1px solid var(--decision-border);
-  border-left: 3px solid var(--accent);
   border-radius: 0;
   padding: 1.5rem 1.75rem;
   margin-top: 2.5rem;
@@ -600,7 +609,6 @@ p:last-child {
   padding: 18px 20px;
   background: var(--danger-bg);
   border: 1px solid var(--danger-border);
-  border-left: 3px solid var(--danger);
   border-radius: 0;
   transition: all 0.3s ease;
 }
@@ -661,7 +669,6 @@ p:last-child {
   padding: 1.25rem 1.5rem;
   background: var(--success-bg);
   border: 1px solid var(--success-border);
-  border-left: 3px solid var(--success);
   border-radius: 0;
   transition: all 0.3s ease;
 }
@@ -1256,7 +1263,6 @@ p:last-child {
   padding: 2.5rem;
   background: var(--decision-bg);
   border: 1px solid var(--decision-border);
-  border-left: 3px solid var(--accent);
   border-radius: 0;
   text-align: center;
 }
@@ -1294,151 +1300,306 @@ p:last-child {
 }
 
 /* =====================================================================
-   Side navigation — numbered main items pinned to the left margin,
-   with a nested sub-list under Solutions for its four named design
-   decisions. Same pattern as the CX Portal and Sportscove case
-   studies, so all three read consistently.
+   Side navigation
+   Desktop (1321px+): a small floating card on the left. Collapsed, it
+   shows only the section numbers. Hovering it (or tabbing into it with
+   the keyboard) widens the card and the names slide in one after
+   another, while the Issues/Solutions sub-lists roll open underneath.
+   Below 1321px (no room in the margin for the open card without it
+   covering the text): a slim bar across the top with just the numbers.
    ===================================================================== */
-.side-nav {
-  position: fixed;
-  top: 50%;
-  left: 2.5rem;
-  transform: translateY(-50%);
-  z-index: 90;
-  display: flex;
-  flex-direction: column;
-  gap: 1.6rem;
-}
-
-.side-nav-item {
-  display: flex;
-  flex-direction: column;
-}
 
 .side-nav-link {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
   text-decoration: none;
   color: var(--muted);
-  font-size: 0.95rem;
-  font-weight: 700;
-  letter-spacing: 0.1px;
-  transition: color 0.25s ease;
 }
 
 .side-nav-num {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
-  border: 1.5px solid var(--card-border);
-  font-size: 0.65rem;
-  font-weight: 700;
+  border: 1px solid var(--card-border);
+  font-size: 0.64rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
   color: var(--muted);
   flex-shrink: 0;
   transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
 }
 
-.side-nav-link:hover,
-.side-nav-link.is-active {
-  color: var(--accent);
+.side-nav-link:hover .side-nav-num {
+  border-color: rgba(16, 15, 14, 0.35);
+  color: var(--text);
 }
 
-.side-nav-link:hover .side-nav-num,
 .side-nav-link.is-active .side-nav-num {
   background: var(--accent);
   border-color: var(--accent);
   color: #ffffff;
 }
 
-.side-nav-sublist {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-  margin: 0.75rem 0 0 12px;
-  padding-left: 0.9rem;
-  border-left: 1.5px solid var(--card-border);
+@media (min-width: 1321px) {
+  .side-nav {
+    --nav-closed: 54px;
+    /* Open width fits the empty margin beside the 900px text column,
+       leaving at least ~10px of air before the content. */
+    --nav-open: clamp(184px, calc((100vw - 900px) / 2 - 2.5rem), 208px);
+    --ease-open: cubic-bezier(0.22, 1, 0.36, 1);
+
+    position: fixed;
+    /* Centred on the screen whether closed or open: as the sub-lists
+       roll open it grows evenly up and down, staying centred the whole
+       way through the animation. */
+    top: 50%;
+    transform: translateY(-50%);
+    left: 1rem;
+    z-index: 90;
+    width: var(--nav-closed);
+    max-height: calc(100vh - 1.5rem);
+    padding: 0.6rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(16, 15, 14, 0.08);
+    border-radius: 18px;
+    box-shadow: var(--shadow-sm);
+    transition:
+      width 0.55s var(--ease-open),
+      box-shadow 0.4s ease,
+      border-radius 0.55s var(--ease-open);
+  }
+
+  /* Open: hover, or keyboard focus inside it (not mouse clicks, so it
+     doesn't stay stuck open after you click a link and move away). */
+  .side-nav:hover,
+  .side-nav:has(:focus-visible) {
+    width: var(--nav-open);
+    border-radius: 20px;
+    box-shadow: var(--shadow-md);
+    overflow-y: auto;
+    scrollbar-width: none;
+  }
+
+  /* Header row: a small list icon, and "On this page" when open. */
+  .side-nav-head {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.35rem 0.4rem 0.7rem;
+    margin-bottom: 0.3rem;
+    border-bottom: 1px solid rgba(16, 15, 14, 0.07);
+    white-space: nowrap;
+    color: var(--muted);
+  }
+
+  .side-nav-head-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    flex-shrink: 0;
+  }
+
+  .side-nav-head-icon svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .side-nav-head-label {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .side-nav-item {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .side-nav-link {
+    gap: 0.7rem;
+    padding: 0.45rem 0.4rem;
+    border-radius: 11px;
+    font-size: 0.86rem;
+    font-weight: 400;
+    white-space: nowrap;
+    transition: background 0.25s ease, color 0.25s ease;
+  }
+
+  .side-nav-link:hover {
+    background: rgba(16, 15, 14, 0.04);
+    color: var(--text);
+  }
+
+  .side-nav-link.is-active {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .side-nav:hover .side-nav-link.is-active,
+  .side-nav:has(:focus-visible) .side-nav-link.is-active {
+    background: rgba(16, 15, 14, 0.05);
+  }
+
+  /* Labels: hidden and nudged left while closed; slide in one after
+     another (--i on each item) when the card opens. Closing hides them
+     all at once, quickly, before the card narrows. */
+  .side-nav-label,
+  .side-nav-head-label {
+    opacity: 0;
+    transform: translateX(-10px);
+    filter: blur(3px);
+    transition:
+      opacity 0.18s ease,
+      transform 0.25s ease,
+      filter 0.18s ease;
+  }
+
+  .side-nav:hover .side-nav-label,
+  .side-nav:hover .side-nav-head-label,
+  .side-nav:has(:focus-visible) .side-nav-label,
+  .side-nav:has(:focus-visible) .side-nav-head-label {
+    opacity: 1;
+    transform: translateX(0);
+    filter: blur(0);
+    transition:
+      opacity 0.4s ease,
+      transform 0.55s var(--ease-open),
+      filter 0.4s ease;
+    transition-delay: calc(0.08s + var(--i, 0) * 0.045s);
+  }
+
+  /* Sub-lists (Issues, Solutions): closed = zero height; open = they
+     roll down to their natural height. */
+  .side-nav-sublist {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.45s var(--ease-open);
+  }
+
+  .side-nav:hover .side-nav-sublist,
+  .side-nav:has(:focus-visible) .side-nav-sublist {
+    grid-template-rows: 1fr;
+    transition-delay: 0.1s;
+  }
+
+  .side-nav-sublist-inner {
+    min-height: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    /* Thin guide line down the left, lined up under the number circle. */
+    margin-left: calc(0.4rem + 12px);
+    padding-left: 0.6rem;
+    border-left: 1px solid rgba(16, 15, 14, 0.12);
+  }
+
+  .side-nav-sublink {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.36rem 0.5rem;
+    border-radius: 9px;
+    text-decoration: none;
+    white-space: nowrap;
+    color: var(--muted);
+    font-size: 0.78rem;
+    font-weight: 400;
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity 0.15s ease, transform 0.2s ease, background 0.25s ease, color 0.25s ease;
+  }
+
+  .side-nav-sublist-inner .side-nav-sublink:first-child { margin-top: 0.2rem; }
+  .side-nav-sublist-inner .side-nav-sublink:last-child { margin-bottom: 0.35rem; }
+
+  .side-nav:hover .side-nav-sublink,
+  .side-nav:has(:focus-visible) .side-nav-sublink {
+    opacity: 1;
+    transform: translateY(0);
+    transition:
+      opacity 0.35s ease 0.2s,
+      transform 0.45s var(--ease-open) 0.2s,
+      background 0.25s ease,
+      color 0.25s ease;
+  }
+
+  .side-nav-sublink:hover {
+    background: rgba(16, 15, 14, 0.04);
+    color: var(--text);
+  }
+
+  .side-nav-sublink.is-active {
+    background: rgba(16, 15, 14, 0.06);
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .side-nav-sublink-num {
+    font-size: 0.7rem;
+    font-variant-numeric: tabular-nums;
+    color: rgba(16, 15, 14, 0.4);
+    width: 0.7rem;
+    flex-shrink: 0;
+  }
+
+  .side-nav-sublink.is-active .side-nav-sublink-num {
+    color: var(--accent);
+  }
 }
 
-.side-nav-sublink {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  text-decoration: none;
-  color: var(--muted);
-  font-size: 0.78rem;
-  font-weight: 600;
-  transition: color 0.25s ease;
+/* Reduced motion: the card still opens on hover, just without the
+   sliding and fading. */
+@media (min-width: 1321px) and (prefers-reduced-motion: reduce) {
+  .side-nav,
+  .side-nav *,
+  .side-nav:hover *,
+  .side-nav:has(:focus-visible) * {
+    transition: none !important;
+  }
 }
 
-.side-nav-sublink-num {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 17px;
-  height: 17px;
-  border-radius: 50%;
-  border: 1.5px solid var(--card-border);
-  font-size: 0.6rem;
-  font-weight: 700;
-  color: var(--muted);
-  flex-shrink: 0;
-  transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
-}
-
-.side-nav-sublink:hover,
-.side-nav-sublink.is-active {
-  color: var(--accent);
-}
-
-.side-nav-sublink:hover .side-nav-sublink-num,
-.side-nav-sublink.is-active .side-nav-sublink-num {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #ffffff;
-}
-
-/* Below 1200px there's no gutter left for a vertical sidebar, so it
-   becomes a compact row of number-only badges pinned to the top
-   instead of disappearing. Sub-items are dropped here — there isn't
-   room for two nesting levels in one row, and the main section is
-   still one tap away. */
-@media (max-width: 1200px) {
+/* Below 1321px there's no room in the margin, so it becomes a slim bar
+   across the top with just the numbers. */
+@media (max-width: 1320px) {
   .side-nav {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    transform: none;
+    z-index: 95;
+    display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     gap: 0.9rem;
-    background: var(--bg-solid);
-    border-bottom: 1px solid var(--card-border);
     padding: 0.65rem 1rem;
-    z-index: 95;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(16, 15, 14, 0.08);
+  }
+
+  .side-nav-head,
+  .side-nav-label,
+  .side-nav-sublist {
+    display: none;
   }
 
   .side-nav-item {
     flex-shrink: 0;
-  }
-
-  .side-nav-label {
-    display: none;
-  }
-
-  .side-nav-num {
-    width: 26px;
-    height: 26px;
-    font-size: 0.68rem;
-  }
-
-  .side-nav-sublist {
-    display: none;
   }
 
   .back-link {
@@ -1453,8 +1614,222 @@ p:last-child {
   }
 
   .side-nav-num {
-    width: 23px;
-    height: 23px;
+    width: 24px;
+    height: 24px;
     font-size: 0.62rem;
   }
+}
+
+/* =====================================================================
+   Back to top — a round button in the bottom-right corner. It slides
+   up into view once you've scrolled past the first screen, and its
+   ring fills as you read, so it also shows how far through you are.
+   ===================================================================== */
+.to-top {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  z-index: 95;
+  width: 52px;
+  height: 52px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: var(--shadow-sm);
+  color: var(--text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(16px) scale(0.85);
+  transition:
+    opacity 0.3s ease,
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.3s ease,
+    visibility 0s linear 0.45s;
+}
+
+.to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+  transition:
+    opacity 0.3s ease,
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.3s ease;
+}
+
+.to-top:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.to-top:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.to-top-ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.to-top-ring circle {
+  fill: none;
+  stroke-width: 2;
+}
+
+.to-top-ring-track {
+  stroke: rgba(16, 15, 14, 0.08);
+}
+
+.to-top-ring-fill {
+  stroke: var(--accent);
+  stroke-linecap: round;
+}
+
+.to-top-arrow {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.to-top:hover .to-top-arrow {
+  transform: translateY(-3px);
+}
+
+@media (max-width: 768px) {
+  .to-top {
+    right: 1rem;
+    bottom: 1rem;
+    width: 46px;
+    height: 46px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .to-top,
+  .to-top.is-visible,
+  .to-top-arrow {
+    transition: none;
+    transform: none;
+  }
+}
+
+/* While the side nav is open it sits above everything else pinned to
+   the screen, including the feedback button in the bottom-left corner.
+   Closed, it drops back to its normal layer (so image lightboxes and
+   the like still cover it). */
+@media (min-width: 1321px) {
+  .side-nav:hover,
+  .side-nav:has(:focus-visible) {
+    z-index: 100000;
+  }
+}
+
+/* =====================================================================
+   Rounded corners, matched to the floating side nav (18px) and the
+   landing page: big cards 18px, images and cards nested inside them
+   12px, small tags and callout strips 6px. Selectors that don't exist
+   on this page are simply ignored.
+   ===================================================================== */
+:root {
+  --radius-lg: 18px;
+  --radius-md: 12px;
+  --radius-sm: 6px;
+}
+
+/* Big cards and panels */
+.learning-item,
+.outcome-card,
+.impact-card,
+.other-work-card,
+.stat-box,
+.constraint-callout,
+.bridge-table,
+.compare-grid.is-boxed,
+.diagram-frame,
+.highlight-section,
+.issue-card,
+.criteria-item,
+.option-item,
+.flow-comparison,
+.research-gap-callout,
+.final-cta,
+.challenge-item,
+.concept-explanation,
+.movie-card,
+.research-methodology .method-detail,
+.finding-card,
+.requirement-category,
+.flow-card,
+.tech-item,
+.tech-decision-card,
+.pilot-card,
+.result-metric,
+.validation-item,
+.framework-block,
+.takeaway-card {
+  border-radius: var(--radius-lg);
+}
+
+/* Images, videos and cards nested inside other cards */
+.hero-image-wrapper,
+.hero-image,
+.solution-image,
+.solution-video,
+.method-split-video .solution-image,
+.option-card-image,
+.search-feature-image,
+.search-feature-video,
+.lightbox-overlay img,
+.movie-poster,
+.flow-image img,
+.concept-image,
+.unity-showcase img,
+.statement-image img,
+.writing-image-wrapper img,
+.diagram-image-wrapper img,
+.benefits-image-wrapper img,
+.user-study-image img,
+.learning-item-image img,
+.screen img,
+.flow-before,
+.flow-after,
+.opportunity-row,
+.feature-chip,
+.section-reveal > summary,
+.research-review-block .section-reveal > summary {
+  border-radius: var(--radius-md);
+}
+
+/* Small tags, pills and callout strips */
+.decision-eyebrow,
+.outcome-card-tag,
+.section-tag,
+.section-kicker.is-issue,
+.section-kicker.is-solution,
+.userflow-points li,
+.journey-item-inner,
+.live-badge,
+.cta-button,
+.activity,
+.app-tag,
+.trigger,
+.flow-step,
+.flow-callout,
+.research-review-block .question-why,
+.user-quote,
+.design-insight,
+.design-implication,
+.design-rationale {
+  border-radius: var(--radius-sm);
 }

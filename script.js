@@ -63,92 +63,196 @@ const KEYWORDS = {
 document.addEventListener('DOMContentLoaded', () => {
   initNav();
   initBoard();
-  initHeroQuoteTypewriter();
+  initHeroPhotoMini();
+  initCardsReveal();
   initSketchbook();
   initTools();
   initGallery();
   initAboutTerms();
 });
 
-// ---- Hero quote: typewriter reveal ---------------------------------
-// The quote is invisible at first and only starts typing once the
-// photo has fully unfolded and the last social icon has bounced into
-// place (see the hero timings in style.css: 1.8s + the icon delays).
-//
-// The whole quote — every character, in its final rich markup, with
-// the accent-colour spans already in place — is built into the DOM
-// up front with each letter individually hidden (opacity: 0). That
-// locks in the paragraph's true final layout (line wraps and all)
-// from the very first frame, so revealing letters never changes the
-// text's size or shape — which matters because the quote is centred:
-// growing the text length a keystroke at a time (the old approach)
-// re-centred the whole line on every letter, so it visibly grew
-// outward from the middle instead of reading left to right. Now each
-// letter just switches on in place, in order, with a blinking cursor
-// that moves along right after it — real typing, ending exactly where
-// the quote actually sits.
-function initHeroQuoteTypewriter() {
-  const quoteEl = document.querySelector('.hero-quote');
-  if (!quoteEl) return;
+// ---- Project cards: staggered fade-up on scroll, once ---------------
+// Each card starts a touch lower and transparent (.will-reveal, set in
+// CSS); once the row scrolls into view we stamp a small --stagger delay
+// onto each card and flip .is-in, which lets the transitions in CSS run.
+// Plays once, then gets out of the way — hover motion after that is
+// plain CSS, untouched by this.
+function initCardsReveal() {
+  const row = document.getElementById('projectCards');
+  if (!row) return;
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!('IntersectionObserver' in window)) return;
 
-  // Read the quote's real, authored content (so nothing about the
-  // actual words lives twice) before rebuilding it.
-  const segments = Array.from(quoteEl.childNodes).map((node) => ({
-    text: node.textContent,
-    em: node.nodeType === Node.ELEMENT_NODE && node.classList.contains('hero-quote-em'),
-  }));
-  const fullText = segments.map((s) => s.text).join('');
-  if (!fullText.trim()) return;
+  const cards = Array.from(row.children);
+  if (!cards.length) return;
 
-  const START_DELAY = 3200; // just after the last social icon lands (~3.1s)
-  const CHAR_MS = 55;       // slower, readable typing pace
-  const END_HOLD_MS = 650;  // how long the cursor blinks at the end before it goes
-
-  quoteEl.textContent = '';
-
-  // Build the final markup now, letter by letter wrapped in spans
-  // (each starts hidden), preserving which letters sit inside an
-  // accent-coloured (.hero-quote-em) run.
-  const charSpans = [];
-  segments.forEach((seg) => {
-    const host = seg.em ? document.createElement('span') : null;
-    if (host) {
-      host.className = 'hero-quote-em';
-      quoteEl.appendChild(host);
-    }
-    Array.from(seg.text).forEach((ch) => {
-      const c = document.createElement('span');
-      c.className = 'qc';
-      c.textContent = ch;
-      (host || quoteEl).appendChild(c);
-      charSpans.push(c);
-    });
+  cards.forEach((card, i) => {
+    card.style.setProperty('--stagger', `${i * 70}ms`);
   });
 
-  const cursor = document.createElement('span');
-  cursor.className = 'hero-quote-cursor';
-  cursor.setAttribute('aria-hidden', 'true');
-  // Not inserted yet — it only appears right as typing starts, not
-  // during the wait beforehand.
+  row.classList.add('will-reveal');
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        row.classList.add('is-in');
+        io.disconnect();
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -10% 0px' });
+
+  io.observe(row);
+}
+
+// ---- Hero photo: zoop into a circle, then the quote flips up --------
+// Runs once, after the main hero sequence (split + unfold, pure CSS)
+// has played out:
+//   .is-mini   right as the photo reaches full size, it zoops down to a
+//              tiny dot and springs back out to the circle's size
+//              (heroPhotoZoop in style.css). The icon row opens up at
+//              the same moment so PRATAP only moves once.
+//   .is-shown  the quote flips up word by word beside the circle.
+//   icons      bounce in last, under the circle + quote.
+function initHeroPhotoMini() {
+  const wrap = document.getElementById('heroPhotoWrap');
+  if (!wrap) return;
+
+  const socialBelow = document.getElementById('heroSocialBelow');
+  const callout = document.getElementById('heroQuoteCallout');
+  const quote = callout ? callout.querySelector('.hero-quote') : null;
+  if (quote) splitQuoteWords(quote);
+
+  // Measure how wide the wrapped quote really is (its longest line), so
+  // CSS can centre circle + gap + text on the screen. offsetLeft/Width
+  // ignore the flip transforms, so this works before the words show.
+  const stack = wrap.closest('.hero-stack');
+  const fitQuote = () => {
+    if (!quote || !stack) return;
+    const words = quote.querySelectorAll('.hero-quote-word');
+    if (!words.length) return;
+    let right = 0;
+    words.forEach((w) => { right = Math.max(right, w.offsetLeft + w.offsetWidth); });
+    stack.style.setProperty('--quote-fit', `${Math.ceil(right)}px`);
+    // Its height too: on phones the quote sits under the circle and the
+    // space it takes is reserved from this.
+    stack.style.setProperty('--quote-h', `${Math.ceil(quote.offsetHeight)}px`);
+  };
+  fitQuote();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitQuote);
+  let fitTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(fitTimer);
+    fitTimer = setTimeout(fitQuote, 100);
+  });
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion) {
+    // No sequence: this IS the resting state, applied straight away.
+    wrap.classList.add('is-mini', 'is-shown');
+    sharpenHeroPhoto(wrap);
+    if (socialBelow) socialBelow.classList.add('is-shown');
+    return;
+  }
+
+  const SHRINK_DELAY = 1850; // the moment the photo finishes unfolding (1.8s)
+  const QUOTE_AT = 600;      // ms after the zoop starts — as the circle springs to size
+  const ICONS_GAP = 750;     // after the quote starts flipping up
 
   setTimeout(() => {
-    quoteEl.insertBefore(cursor, quoteEl.firstChild);
-    let i = 0;
-    const typer = setInterval(() => {
-      const span = charSpans[i];
-      span.classList.add('is-on');
-      span.insertAdjacentElement('afterend', cursor);
-      i += 1;
-      if (i >= charSpans.length) {
-        clearInterval(typer);
-        setTimeout(() => {
-          cursor.remove();
-          quoteEl.classList.add('is-revealed');
-        }, END_HOLD_MS);
+    wrap.classList.add('is-mini');
+    sharpenHeroPhoto(wrap);
+    setTimeout(() => {
+      wrap.classList.add('is-shown');
+      setTimeout(() => {
+        if (socialBelow) socialBelow.classList.add('is-shown');
+      }, ICONS_GAP);
+    }, QUOTE_AT);
+  }, SHRINK_DELAY);
+}
+
+// Browsers shrink a big photo into a small circle with a quick, rough
+// resample, which makes it look jagged/pixelated. This redraws the
+// photo once, halving it step by step on a canvas (a much cleaner
+// resample), down to about twice the circle's size on screen, and
+// swaps that in. Same framing, just sharper. If anything goes wrong
+// (e.g. opened as a local file, where canvas export is blocked), the
+// original photo simply stays.
+function sharpenHeroPhoto(wrap) {
+  const img = wrap.querySelector('.hero-photo');
+  if (!img || img.dataset.sharpened) return;
+  img.dataset.sharpened = '1';
+
+  const run = () => {
+    try {
+      const nw = img.naturalWidth, nh = img.naturalHeight;
+      if (!nw || !nh) return;
+      const circle = parseFloat(getComputedStyle(wrap.closest('.hero-stack')).getPropertyValue('--mini-size')) ||
+        wrap.getBoundingClientRect().width || 150;
+      const dpr = Math.min(window.devicePixelRatio || 1, 3);
+      // The photo covers a square, so its shorter side has to fill the circle.
+      const targetShort = Math.ceil(Math.max(circle, 150) * dpr * 2);
+      if (Math.min(nw, nh) <= targetShort * 1.5) return; // already small enough to scale cleanly
+
+      const scale = targetShort / Math.min(nw, nh);
+      const tw = Math.round(nw * scale), th = Math.round(nh * scale);
+
+      let src = img, w = nw, h = nh;
+      while (w / 2 > tw) {
+        w = Math.round(w / 2); h = Math.round(h / 2);
+        const c = document.createElement('canvas');
+        c.width = w; c.height = h;
+        const ctx = c.getContext('2d');
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = 'high';
+        ctx.drawImage(src, 0, 0, w, h);
+        src = c;
       }
-    }, CHAR_MS);
-  }, START_DELAY);
+      const out = document.createElement('canvas');
+      out.width = tw; out.height = th;
+      const octx = out.getContext('2d');
+      octx.imageSmoothingEnabled = true;
+      octx.imageSmoothingQuality = 'high';
+      octx.drawImage(src, 0, 0, tw, th);
+
+      const url = out.toDataURL('image/jpeg', 0.92);
+      const probe = new Image();
+      probe.src = url;
+      (probe.decode ? probe.decode() : Promise.resolve()).then(() => { img.src = url; }).catch(() => {});
+    } catch (e) { /* keep the original photo */ }
+  };
+
+  if (img.complete && img.naturalWidth) run();
+  else img.addEventListener('load', run, { once: true });
+}
+
+// Wraps every word of the quote in its own span (keeping the red
+// highlighted phrases intact) so each one can flip up in turn. --i is
+// the word's position, which CSS turns into a stagger delay.
+function splitQuoteWords(el) {
+  let i = 0;
+  const walk = (node) => {
+    Array.from(node.childNodes).forEach((child) => {
+      if (child.nodeType === Node.TEXT_NODE) {
+        const frag = document.createDocumentFragment();
+        child.textContent.split(/(\s+)/).forEach((part) => {
+          if (!part) return;
+          if (/^\s+$/.test(part)) {
+            frag.appendChild(document.createTextNode(part));
+            return;
+          }
+          const word = document.createElement('span');
+          word.className = 'hero-quote-word';
+          word.style.setProperty('--i', i++);
+          word.textContent = part;
+          frag.appendChild(word);
+        });
+        node.replaceChild(frag, child);
+      } else if (child.nodeType === Node.ELEMENT_NODE) {
+        walk(child);
+      }
+    });
+  };
+  walk(el);
 }
 
 // ---- Nav: mobile overlay + desktop compact-on-scroll ---------------
@@ -199,7 +303,6 @@ function initNav() {
   // ---- Desktop compact state (dots + current section, past the hero) ----
   const compactLabelEl = document.getElementById('navCompactLabel');
   const dotsEl = document.getElementById('navCompactDots');
-  const heroEl = document.getElementById('top');
   const sections = Array.from(document.querySelectorAll('[data-nav-label]'));
 
   if (dotsEl) {
@@ -214,25 +317,33 @@ function initNav() {
     });
   }
 
-  if (heroEl && 'IntersectionObserver' in window) {
-    const heroObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        nav.classList.toggle('is-compact', !entry.isIntersecting);
-      });
-    }, { rootMargin: '-72px 0px 0px 0px' });
-    heroObserver.observe(heroEl);
-  }
+  // Floating pill the moment the page moves at all, back to the full
+  // row only when scrolled right back to the top.
+  let navTicking = false;
+  const updateCompact = () => {
+    navTicking = false;
+    nav.classList.toggle('is-compact', window.scrollY > 4);
+  };
+  window.addEventListener('scroll', () => {
+    if (!navTicking) {
+      navTicking = true;
+      requestAnimationFrame(updateCompact);
+    }
+  }, { passive: true });
+  updateCompact();
 
   if (sections.length && compactLabelEl && 'IntersectionObserver' in window) {
+    // The hero and Tools have an empty label: they count as "home", so
+    // the pill shows no section name and no lit dot until Work.
     const sectionObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
-        const label = entry.target.dataset.navLabel;
-        if (!label) return;
+        const label = entry.target.dataset.navLabel || '';
+        const hash = `#${entry.target.id}`;
         compactLabelEl.textContent = label;
         if (dotsEl) {
           dotsEl.querySelectorAll('.dot').forEach((dot) => {
-            dot.classList.toggle('is-active', dot.title === label);
+            dot.classList.toggle('is-active', !!label && dot.getAttribute('href') === hash);
           });
         }
       });
