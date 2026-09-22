@@ -16,9 +16,9 @@
   <meta name="twitter:title" content="Lakshmi Pratap — Product Designer" />
   <meta name="twitter:image" content="https://lakshmipratap.com/assets/og-card.png" />
 
-  <link rel="stylesheet" href="style.css?v=55" />
+  <link rel="stylesheet" href="style.css?v=61" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@400..800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Sora:wght@400..800&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="assets/logo.png">
 </head>
 
@@ -26,7 +26,16 @@
 
   <a class="skip-link" href="#work">Skip to work</a>
 
-  <!-- ========== HERO — full viewport height ========== -->
+  <!-- ========== HERO — full viewport height ==========
+       Opens on: "HI, I'M" / LAKSHMI / PRATAP / quote, all sitting
+       together, touching, around a hairline-thin photo slot. After a
+       pause, LAKSHMI eases up and PRATAP+quote ease down by equal
+       amounts while the photo unfolds open between them. Once the
+       photo has fully unfolded, the social icons bounce in one by
+       one and land at its bottom-right corner (see .hero-photo-social
+       / heroIconBounce in style.css).
+       All timing lives in style.css (see heroTopWord / heroBottomWord
+       / heroPhotoUnfold / heroIconBounce). -->
   <section class="hero" id="top" data-nav-label="Home">
 
     <nav class="hero-nav" id="heroNav" aria-label="Primary">
@@ -36,9 +45,9 @@
 
       <div class="hero-nav-links" id="heroNavLinks">
         <a href="#work">Work</a>
-        <a href="#about">About Me</a>
+        <a href="#about">About me</a>
         <a href="#sketchbook">Sketchbook</a>
-        <a href="#illustrations">Illustrations</a>
+        <!-- Illustrations nav link temporarily removed along with the section below. -->
         <a class="hero-resume" href="assets/LakshmiPratap_ProdectDes (1).pdf" target="_blank" rel="noopener noreferrer">Resume</a>
       </div>
 
@@ -60,49 +69,50 @@
     <div class="nav-scrim" id="navScrim"></div>
 
     <div class="hero-main">
-      <div class="hero-grid">
+      <div class="hero-stack">
 
-        <div class="hero-left">
-          <h1 class="hero-name" aria-label="Lakshmi Pratap">
-            <span class="hero-name-word" aria-hidden="true"><span class="hero-letter" style="--i:0">L</span><span class="hero-letter" style="--i:1">A</span><span class="hero-letter" style="--i:2">K</span><span class="hero-letter" style="--i:3">S</span><span class="hero-letter" style="--i:4">H</span><span class="hero-letter" style="--i:5">M</span><span class="hero-letter" style="--i:6">I</span></span>
-            <span class="hero-name-word" aria-hidden="true"><span class="hero-letter" style="--i:7">P</span><span class="hero-letter" style="--i:8">R</span><span class="hero-letter" style="--i:9">A</span><span class="hero-letter" style="--i:10">T</span><span class="hero-letter" style="--i:11">A</span><span class="hero-letter" style="--i:12">P</span></span>
-          </h1>
-          <p class="hero-role">UX / Product Designer</p>
-          <p class="hero-meta">Toronto, Canada</p>
-          <p class="hero-edu">MSc in HCI &nbsp;·&nbsp; B.Arch</p>
-        </div>
+        <p class="hero-hi">Hi, I&rsquo;m</p>
 
-        <div class="hero-photo-frame">
-          <img class="hero-photo" src="assets/Mainphoto.png" alt="Portrait of Lakshmi Pratap" />
-        </div>
+        <h1 class="hero-name" aria-label="Lakshmi Pratap">
+          <span class="hero-name-word" aria-hidden="true"><span class="hero-name-word-inner">Lakshmi</span></span>
 
-        <div class="hero-right">
-          <p class="hero-quote">&ldquo;I work so that you have less <span class="hero-quote-em">figuring out</span> and more just <span class="hero-quote-em">using</span> it.&rdquo;</p>
+          <!-- Starts as a thin line, sitting flush between the two (still
+               collapsed-together) names, then opens as they split apart -->
+          <span class="hero-photo-wrap">
+            <span class="hero-photo-slot">
+              <img class="hero-photo" src="assets/Mainphoto.png" alt="Portrait of Lakshmi Pratap" />
+            </span>
 
-          <p class="hero-also">
-            Also me:
-             <a href="https://www.instagram.com/lakshmi_pratap/" target="_blank" rel="noopener noreferrer" class="icon" aria-label="Instagram">
+            <!-- Social links: bounce in one by one once the photo has
+                 fully unfolded, landing at its bottom-right corner. -->
+            <span class="hero-photo-social">
+              <a href="https://www.instagram.com/lakshmi_pratap/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
                   <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
                   <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
                 </svg>
               </a>
-              <a href="https://www.linkedin.com/in/lakshmi-pratap/" target="_blank" rel="noopener noreferrer" class="icon" aria-label="LinkedIn">
+              <a href="https://www.linkedin.com/in/lakshmi-pratap/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
                   <rect width="4" height="12" x="2" y="9" />
                   <circle cx="4" cy="4" r="2" />
                 </svg>
               </a>
-              <a href="mailto:lakshmipwork@gmail.com" class="icon" aria-label="Email">
+              <a href="mailto:lakshmipwork@gmail.com" aria-label="Email">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" />
                   <rect x="2" y="4" width="20" height="16" rx="2" />
                 </svg>
               </a>
-          </p>
-        </div>
+            </span>
+          </span>
+
+          <span class="hero-name-word" aria-hidden="true"><span class="hero-name-word-inner">Pratap</span></span>
+        </h1>
+
+        <p class="hero-quote">&ldquo;A <span class="hero-quote-em">UX/Product Designer</span> who shapes your product around what your <span class="hero-quote-em">users actually need</span> to help <span class="hero-quote-em">your business grow</span> &rdquo;</p>
 
       </div>
     </div>
@@ -244,20 +254,16 @@
     </section>
 
     <!-- ========== ABOUT ME — between Work and Sketchbook ========== -->
-    <section class="about" id="about" data-nav-label="About Me">
+    <section class="about" id="about" data-nav-label="About me">
       <div class="section-head">
         <h2>About Me</h2>
         <p class="section-sub">A little about the person behind the work.</p>
       </div>
 
       <div class="about-layout">
-        <div class="about-photo" id="peel">
-          <img class="about-photo-img" src="assets/Me2.jpeg" alt="Portrait of Lakshmi Pratap" />
-        </div>
-
         <div class="about-text">
           <p>I started out studying <span class="about-term" data-img="assets/architecture" tabindex="0">architecture</span>, spent a few years figuring out what I actually wanted to design, and eventually found my way to UX. I did my Master’s in <span class="about-term" data-img="assets/hci" tabindex="0">Human-Computer Interaction</span> in the UK, and now I spend my time thinking about how to make complicated things feel a little simpler. These days, I am also learning more about accessibility in design, because good experiences should work for more people.</p>
-          <p>Outside of design, I do <span class="about-term" data-img="assets/embroidery" tabindex="0">embroidery</span>, <span class="about-term" data-img="assets/rockclimbing" tabindex="0">rock climbing</span>, and a little <span class="about-term" data-img="assets/spanish" tabindex="0">Spanish</span>. I have three <span class="about-term" data-img="assets/dogs" tabindex="0">dogs</span> at home, occasionally touch <span class="about-term" data-img="assets/grass" tabindex="0">grass</span>, and am still getting reacquainted with <span class="about-term" data-img="assets/snow" tabindex="0">snow</span>. Basically, I like making things, learning things, and occasionally remembering that screens are not the whole world.</p>
+          <p>Outside of design, I do <span class="about-term" data-img="assets/embroidery" tabindex="0">embroidery</span>, <span class="about-term" data-img="assets/rockclimbing" tabindex="0">rock climbing</span>, a bit of <span class="about-term" data-img="assets/illus1" tabindex="0">illustration</span>, and a little <span class="about-term" data-img="assets/spanish" tabindex="0">Spanish</span>. I have three <span class="about-term" data-img="assets/dogs" tabindex="0">dogs</span> at home, occasionally touch <span class="about-term" data-img="assets/grass" tabindex="0">grass</span>, and am still getting reacquainted with <span class="about-term" data-img="assets/snow" tabindex="0">snow</span>. Basically, I like making things, learning things, and occasionally remembering that screens are not the whole world.</p>
         </div>
       </div>
     </section>
@@ -380,12 +386,10 @@
       </div>
     </section>
 
-    <!-- ========== ILLUSTRATIONS — drifting gallery, after Sketchbook ==========
-         Eight placeholder slots below (assets/illustration-01.jpg ... 08.jpg). To fill a slot,
-         either save your image over that file name (a .jpg), or change the src to your own file.
-         Delete a slot by removing its <li> line; add one by copying a line. Each image is listed
-         once; script.js repeats them so the loop never has a gap. They drift left to right and
-         hovering the strip pauses it. Portrait images (4:5) fit best. -->
+    <!-- ========== ILLUSTRATIONS — temporarily removed ==========
+         Section (and its nav link, above) commented out for now. To
+         bring it back: uncomment this block and restore the
+         "Illustrations" link in .hero-nav-links.
     <section class="illustrations" id="illustrations" data-nav-label="Illustrations">
       <div class="illustrations-head">
         <div class="section-head">
@@ -406,6 +410,7 @@
         </ul>
       </div>
     </section>
+    -->
   </main>
 
   <footer class="fun-footer">
@@ -414,7 +419,7 @@
     <p class="fun-credit">Designed by Lakshmi Pratap · Built with Claude Code</p>
   </footer>
 
-  <script src="script.js?v=36" defer></script>
+  <script src="script.js?v=42" defer></script>
 </body>
 
 </html>

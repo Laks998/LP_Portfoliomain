@@ -63,11 +63,218 @@ const KEYWORDS = {
 document.addEventListener('DOMContentLoaded', () => {
   initNav();
   initBoard();
+  initCardReveal();
+  initHeroQuoteTypewriter();
   initSketchbook();
   initTools();
   initGallery();
   initAboutTerms();
 });
+
+// ---- Hero quote: typewriter reveal ---------------------------------
+// The quote is invisible at first — script empties it the instant the
+// page loads — and only starts typing, letter by letter, once the
+// photo has fully unfolded and the last social icon has bounced into
+// place (see the hero timings in style.css: 3.4s + the icon delays).
+// Every letter appears in plain black to start; once the whole quote
+// has been typed, the rich markup (with its accent-colour spans) is
+// swapped back in — still black for a beat — and then the
+// "is-revealed" class lets the accent colour and the underline ease
+// in together.
+function initHeroQuoteTypewriter() {
+  const quoteEl = document.querySelector('.hero-quote');
+  if (!quoteEl) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  // Read the quote's real, authored content (so nothing about the
+  // actual words lives twice) before clearing it.
+  const segments = Array.from(quoteEl.childNodes).map((node) => ({
+    text: node.textContent,
+    em: node.nodeType === Node.ELEMENT_NODE && node.classList.contains('hero-quote-em'),
+  }));
+  const fullText = segments.map((s) => s.text).join('');
+  if (!fullText.trim()) return;
+
+  quoteEl.textContent = '';
+
+  const START_DELAY = 4800; // just after the last social icon lands (~4.7s)
+  const CHAR_MS = 26;
+
+  function renderRich() {
+    quoteEl.textContent = '';
+    segments.forEach((seg) => {
+      if (seg.em) {
+        const span = document.createElement('span');
+        span.className = 'hero-quote-em';
+        span.textContent = seg.text;
+        quoteEl.appendChild(span);
+      } else {
+        quoteEl.appendChild(document.createTextNode(seg.text));
+      }
+    });
+  }
+
+  setTimeout(() => {
+    let i = 0;
+    const typer = setInterval(() => {
+      i += 1;
+      quoteEl.textContent = fullText.slice(0, i);
+      if (i >= fullText.length) {
+        clearInterval(typer);
+        renderRich();
+        setTimeout(() => quoteEl.classList.add('is-revealed'), 200);
+      }
+    }, CHAR_MS);
+  }, START_DELAY);
+}
+
+// ---- Project cards: "deck" reveal ----------------------------------
+// The four real project cards sit stacked one behind another in the
+// middle of the area they occupy (measured live, so it works whether
+// the grid is 1 column or 2) as their DEFAULT resting state — set the
+// moment the page loads, before there's any reason to scroll — then,
+// once you actually scroll them into view, they hold for a beat and
+// spring apart to their real grid spots with a little overshoot. The
+// Other Projects panel's second mini card does the same "stacked by
+// default, slides down from under the first" move on the same clock.
+// Scrolling away re-stacks everything so it's ready to replay.
+function initCardReveal() {
+  const cardsList = document.getElementById('projectCards');
+  if (!cardsList) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!('IntersectionObserver' in window)) return;
+
+  const mainCards = Array.from(cardsList.querySelectorAll('.project-card[data-project]'));
+  const otherList = document.querySelector('.project-other-list');
+  const miniItems = otherList ? Array.from(otherList.querySelectorAll('.project-mini')) : [];
+  if (!mainCards.length) return;
+
+  const HOLD_MS = 900;     // beat between scrolling into view and springing apart
+  const FLY_MS = 1000;     // each card's own spring-apart duration
+  const STAGGER_MS = 140;  // gap between each card's spring start
+  const EASE_SPRING = 'cubic-bezier(0.34, 1.56, 0.64, 1)'; // overshoots then settles — a bounce, not a hard stop
+
+  let state = 'stacked';   // 'stacked' | 'holding' | 'flying' | 'settled'
+  let token = 0;           // invalidates in-flight timers when state changes underneath them
+  let holdTimer = null;
+  let cleanupTimer = null;
+
+  function clearTimers() {
+    if (holdTimer) clearTimeout(holdTimer);
+    if (cleanupTimer) clearTimeout(cleanupTimer);
+    holdTimer = null;
+    cleanupTimer = null;
+  }
+
+  // Snap every card to transform:none, measure its real resting rect,
+  // work out the shared centre point of all four, then jump them
+  // there instantly (transition: none) — this is both the initial
+  // default look and the "reset" used every time the section scrolls
+  // out of view again.
+  function stack() {
+    mainCards.forEach((card) => {
+      card.style.transition = 'none';
+      card.style.transform = 'none';
+    });
+    const rects = mainCards.map((card) => card.getBoundingClientRect());
+    const cx = rects.reduce((sum, r) => sum + r.left + r.width / 2, 0) / rects.length;
+    const cy = rects.reduce((sum, r) => sum + r.top + r.height / 2, 0) / rects.length;
+
+    mainCards.forEach((card, i) => {
+      const r = rects[i];
+      const dx = cx - (r.left + r.width / 2);
+      const dy = cy - (r.top + r.height / 2);
+      const fan = (i - (mainCards.length - 1) / 2) * 5; // slight fanned rotation
+      card.style.zIndex = String(10 + (mainCards.length - i));
+      card.style.transform = `translate(${dx}px, ${dy}px) rotate(${fan}deg) scale(0.9)`;
+    });
+
+    if (miniItems[1]) {
+      miniItems[1].style.transition = 'none';
+      miniItems[1].style.transform = 'none';
+      const firstRect = miniItems[0].getBoundingClientRect();
+      const secondRect = miniItems[1].getBoundingClientRect();
+      miniItems[1].style.zIndex = '1';
+      miniItems[1].style.transform = `translateY(${firstRect.top - secondRect.top}px)`;
+    }
+
+    // Force layout so the instant (transition: none) jump above is
+    // actually applied before anything switches transitions back on.
+    void cardsList.offsetHeight;
+    state = 'stacked';
+  }
+
+  function fly() {
+    state = 'flying';
+    mainCards.forEach((card, i) => {
+      card.style.transition = `transform ${FLY_MS}ms ${EASE_SPRING} ${i * STAGGER_MS}ms`;
+      card.style.transform = 'translate(0, 0) rotate(0deg) scale(1)';
+    });
+    if (miniItems[1]) {
+      miniItems[1].style.transition = `transform ${FLY_MS}ms ${EASE_SPRING} ${mainCards.length * STAGGER_MS}ms`;
+      miniItems[1].style.transform = 'translateY(0)';
+    }
+  }
+
+  function cleanup() {
+    mainCards.concat(miniItems).forEach((el) => {
+      el.style.transition = '';
+      el.style.transform = '';
+      el.style.zIndex = '';
+    });
+    state = 'settled';
+  }
+
+  function play() {
+    if (state !== 'stacked') return;
+    const myToken = ++token;
+    state = 'holding';
+    holdTimer = setTimeout(() => {
+      if (myToken !== token) return;
+      fly();
+      cleanupTimer = setTimeout(() => {
+        if (myToken === token) cleanup();
+      }, FLY_MS + mainCards.length * STAGGER_MS + 250);
+    }, HOLD_MS);
+  }
+
+  function reset() {
+    token += 1; // invalidate any pending hold/fly from this cycle
+    clearTimers();
+    stack();
+  }
+
+  // Default state: stacked, from the very first paint — well before
+  // there's any reason to scroll this far down the page.
+  stack();
+  // Fonts/images can nudge card heights slightly after this first
+  // pass, and the 1↔2 column layout changes at 560px; re-measure
+  // whenever that's a possibility, as long as nothing has played yet.
+  window.addEventListener('load', () => { if (state === 'stacked') stack(); });
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    if (state !== 'stacked') return;
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(stack, 150);
+  });
+
+  // Watch the card grid itself (not the whole Work section, which
+  // also includes the heading and chip row above it), and require it
+  // to be well inside the viewport before triggering — otherwise the
+  // reveal starts while the Tools section above is still on screen.
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        play();
+      } else if (state !== 'stacked') {
+        // Scrolled away before, during, or after the reveal: re-stack
+        // so re-entering plays it again from the same default look.
+        reset();
+      }
+    });
+  }, { threshold: 0, rootMargin: '0px 0px -35% 0px' });
+  io.observe(cardsList);
+}
 
 // ---- Nav: mobile overlay + desktop compact-on-scroll ---------------
 function initNav() {
