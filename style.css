@@ -2,18 +2,20 @@
    Lakshmi Pratap — portfolio styles
    White bg, black/grey text, red accent.
 
-   HERO SEQUENCE (all CSS, no JS — driven off one 3.4s timeline shared
+   HERO SEQUENCE (all CSS, no JS — driven off one 1.8s timeline shared
    by .hero-name-word:first-child/:last-child, .hero-quote and
    .hero-photo-slot, see heroTopWord/heroBottomWord/heroPhotoUnfold)
-   1. 0 – ~0.3s   "HI, I'M" / LAKSHMI / PRATAP / quote fade in already
+   1. 0 – ~0.14s  "HI, I'M" / LAKSHMI / PRATAP / quote fade in already
                   touching, flush against the (still hairline-thin,
                   near-invisible) photo slot's centreline.
-   2. ~0.3 – 1.6s Pause — everything holds in that collapsed, centred
+   2. ~0.14 – 0.83s Pause — everything holds in that collapsed, centred
                   position.
-   3. 1.6s – 3.4s LAKSHMI eases up and PRATAP+quote ease down by equal
+   3. 0.83s – 1.8s LAKSHMI eases up and PRATAP+quote ease down by equal
                   amounts (--split-d) while the photo unfolds open
-                  between them (clip-path), all in lockstep.
-   4. ~3.5s+      Once the photo has fully unfolded, the social icons
+                  between them (clip-path), all in lockstep — quick,
+                  so the photo visibly springs open fast rather than
+                  easing open slowly.
+   4. ~1.9s+      Once the photo has fully unfolded, the social icons
                   bounce in one at a time — as if tossed up from
                   below — and land stacked at the photo's bottom-right
                   corner (see .hero-photo-social / heroIconBounce).
@@ -316,7 +318,7 @@ a { color: inherit; }
   white-space: nowrap;
   color: var(--text);
   opacity: 0;
-  animation: heroTopWord 3.4s cubic-bezier(0.65, 0, 0.2, 1) forwards;
+  animation: heroTopWord 1.8s cubic-bezier(0.65, 0, 0.2, 1) forwards;
 }
 
 /* LAKSHMI / photo slot / PRATAP, stacked in one column */
@@ -343,8 +345,8 @@ a { color: inherit; }
    (shifted up by --split-d) — so at rest the two words touch, with
    the still-collapsed photo line hidden between them. Both ease back
    to translateY(0), their true position, in lockstep with the photo. */
-.hero-name-word:first-child { animation: heroTopWord 3.4s cubic-bezier(0.65, 0, 0.2, 1) forwards; }
-.hero-name-word:last-child  { animation: heroBottomWord 3.4s cubic-bezier(0.65, 0, 0.2, 1) forwards; }
+.hero-name-word:first-child { animation: heroTopWord 1.8s cubic-bezier(0.65, 0, 0.2, 1) forwards; }
+.hero-name-word:last-child  { animation: heroBottomWord 1.8s cubic-bezier(0.65, 0, 0.2, 1) forwards; }
 
 /* Hover lift lives on this inner span instead of .hero-name-word itself,
    so it doesn't fight the split animation's own hold on `transform`. */
@@ -379,7 +381,7 @@ a { color: inherit; }
   overflow: hidden;
   border-radius: 0;
   opacity: 0;
-  animation: heroPhotoUnfold 3.4s cubic-bezier(0.65, 0, 0.2, 1) forwards;
+  animation: heroPhotoUnfold 1.8s cubic-bezier(0.65, 0, 0.2, 1) forwards;
 }
 
 .hero-photo {
@@ -395,7 +397,7 @@ a { color: inherit; }
 /* Social icons: land at the photo's bottom-right corner. No backing
    panel — just the icons themselves, each in its own small round
    chip. Every icon is invisible and parked below its resting spot
-   until the photo has fully unfolded (3.4s), then it's tossed up
+   until the photo has fully unfolded (1.8s), then it's tossed up
    into place one at a time — an overshoot past its landing point
    followed by a couple of decaying bounces reads as something
    dropped in and settled, rather than a plain slide or fade. */
@@ -418,9 +420,9 @@ a { color: inherit; }
   animation: heroIconBounce 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   transition: color 0.2s ease;
 }
-.hero-photo-social a:nth-child(1) { animation-delay: 3.5s; }
-.hero-photo-social a:nth-child(2) { animation-delay: 3.68s; }
-.hero-photo-social a:nth-child(3) { animation-delay: 3.86s; }
+.hero-photo-social a:nth-child(1) { animation-delay: 1.9s; }
+.hero-photo-social a:nth-child(2) { animation-delay: 2.08s; }
+.hero-photo-social a:nth-child(3) { animation-delay: 2.26s; }
 .hero-photo-social a:hover { color: var(--accent); }
 
 .hero-photo-social svg { width: 22px; height: 22px; transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.2s ease; }
@@ -463,7 +465,7 @@ a { color: inherit; }
   font-weight: 500;
   line-height: 1.55;
   opacity: 0;
-  animation: heroBottomWord 3.4s cubic-bezier(0.65, 0, 0.2, 1) forwards;
+  animation: heroBottomWord 1.8s cubic-bezier(0.65, 0, 0.2, 1) forwards;
 }
 .hero-quote-em {
   color: var(--text);
@@ -481,6 +483,24 @@ a { color: inherit; }
   transition: width 0.6s ease;
 }
 .hero-quote.is-revealed::before { width: 32px; }
+
+/* Each letter of the quote (see initHeroQuoteTypewriter in script.js)
+   starts hidden and switches on in place — the paragraph's full,
+   final text is already laid out underneath, so nothing reflows or
+   re-centres as letters appear. */
+.hero-quote .qc { opacity: 0; transition: opacity 0.08s ease; }
+.hero-quote .qc.is-on { opacity: 1; }
+
+.hero-quote-cursor {
+  display: inline-block;
+  width: 1.5px;
+  height: 0.95em;
+  margin-left: 1px;
+  background: var(--text);
+  vertical-align: text-bottom;
+  animation: heroCursorBlink 0.85s step-end infinite;
+}
+@keyframes heroCursorBlink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
 
 .scroll-hint {
   flex: 0 0 auto;
@@ -777,14 +797,6 @@ a { color: inherit; }
 /* ---- Project cards ---- */
 .project-cards { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr; gap: 1.4rem; }
 
-/* Scroll-in reveal: script.js's initCardReveal() drives this entirely
-   with measured, inline transforms (a FLIP-style technique) rather
-   than fixed CSS keyframes, because "stack all four in the middle"
-   needs each card's real on-screen position — which depends on the
-   live grid layout (1 column on mobile, 2 up from 560px) — not a
-   value that can be hard-coded here. It replays every time the card
-   grid scrolls into view (including after a reload), not just once. */
-
 .project-card {
   display: flex;
   flex-direction: column;
@@ -844,11 +856,6 @@ a { color: inherit; }
   overflow-y: auto;
 }
 .project-mini + .project-mini { margin-top: 0.9rem; }
-
-/* Reveal for the second mini project (it slides down from under the
-   first, in step with the main grid's fan-out) is driven by
-   initCardReveal() in script.js with measured inline transforms — see
-   the note above .project-card. */
 
 .project-mini-link {
   display: block;
