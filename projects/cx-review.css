@@ -2719,3 +2719,75 @@ p:last-child {
 .design-rationale {
   border-radius: var(--radius-sm);
 }
+/* =====================================================================
+   Fix 02 — Timeline screenshots sized to match the Timeline image in
+   Fix 01 (the .flow-image-item.is-compact one, 280px wide).
+   ===================================================================== */
+.solution-image-wrapper.timeline-shot-wrap {
+  margin: 0;
+}
+
+.solution-image.timeline-shot {
+  display: block;
+  width: 100%;
+  max-width: 280px;
+  margin: 0 auto;
+}
+
+/* =====================================================================
+   Fix 02 — "New logic": video on the left, flow diagram on the right.
+   The diagram column is stretched to the video's height and the image
+   fills that height, so both sit at exactly the same height.
+   ===================================================================== */
+.split-media {
+  display: grid;
+  grid-template-columns: 1.8fr 0.7fr;
+  column-gap: 2.5rem;
+  align-items: stretch;
+  margin: 2.25rem 0;
+}
+
+.split-media-main .solution-video {
+  display: block;
+}
+
+.split-media-side {
+  position: relative;
+  min-height: 0;
+}
+
+.split-media-side .solution-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 0;
+}
+
+.split-media-caption {
+  grid-column: 2;
+  margin-top: 0.75rem;
+}
+
+@media (max-width: 768px) {
+  .split-media {
+    grid-template-columns: 1fr;
+    row-gap: 1.5rem;
+  }
+
+  .split-media-side {
+    position: static;
+  }
+
+  .split-media-side .solution-image {
+    position: static;
+    height: auto;
+    max-height: 420px;
+  }
+
+  .split-media-caption {
+    grid-column: 1;
+    margin-top: 0;
+  }
+}
