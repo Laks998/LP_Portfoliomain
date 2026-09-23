@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CX Portal — Onboarding Review: Lakshmi Pratap</title>
-  <link rel="stylesheet" href="cx-review.css?v=22" />
+  <link rel="stylesheet" href="cx-review.css?v=24" />
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="../assets/logo.png">
   <link rel="stylesheet" href="../comment-widget.css" />
@@ -32,13 +32,13 @@
       <span class="side-nav-head-label">On this page</span>
     </div>
 
-    <div class="side-nav-item" style="--i:0">
+    <div class="side-nav-item">
       <a href="#overview" class="side-nav-link"><span class="side-nav-num">01</span><span class="side-nav-label">Overview</span></a>
     </div>
-    <div class="side-nav-item" style="--i:1">
+    <div class="side-nav-item">
       <a href="#features" class="side-nav-link"><span class="side-nav-num">02</span><span class="side-nav-label">Features</span></a>
     </div>
-    <div class="side-nav-item" style="--i:2">
+    <div class="side-nav-item">
       <a href="#issues" class="side-nav-link"><span class="side-nav-num">03</span><span class="side-nav-label">Issues</span></a>
       <div class="side-nav-sublist">
         <div class="side-nav-sublist-inner">
@@ -48,7 +48,7 @@
         </div>
       </div>
     </div>
-    <div class="side-nav-item" style="--i:3">
+    <div class="side-nav-item">
       <a href="#solutions" class="side-nav-link"><span class="side-nav-num">04</span><span class="side-nav-label">Solutions</span></a>
       <div class="side-nav-sublist">
         <div class="side-nav-sublist-inner">
@@ -58,10 +58,10 @@
         </div>
       </div>
     </div>
-    <div class="side-nav-item" style="--i:4">
+    <div class="side-nav-item">
       <a href="#impact" class="side-nav-link"><span class="side-nav-num">05</span><span class="side-nav-label">Impact</span></a>
     </div>
-    <div class="side-nav-item" style="--i:5">
+    <div class="side-nav-item">
       <a href="#reflection" class="side-nav-link"><span class="side-nav-num">06</span><span class="side-nav-label">Reflection</span></a>
     </div>
   </nav>
@@ -345,8 +345,8 @@
             </div>
           </div>
 
-          <div class="risk-subheading" style="margin-top: 3.5rem;">Where this actually cost the team</div>
-          <div class="outcome-cards" style="margin-bottom: 2.75rem;">
+          <div class="risk-subheading mt-3-5">Where this actually cost the team</div>
+          <div class="outcome-cards mb-2-75">
             <div class="outcome-card">
               <h4>Lost train of thought</h4>
               <p>Every switch breaks whatever the reviewer was mid-way through checking, so they have to re-orient before continuing.</p>
@@ -490,45 +490,45 @@
                 <video class="solution-video" src="../assets/iterationedit1.mp4" controls playsinline aria-label="Editing a field directly inside the review pop-up, with Approve/Reject appearing once a change is made"></video>
               </div>
               <div class="cost-time-text">
-                <div class="risk-subheading" style="margin-top: 0;">Made the text fields editable anytime</div>
-                <p style="margin-bottom: 1.5rem; font-size: 0.9rem; line-height: 1.65;">The review pop-up's text fields were made editable, and the disabled Approved button changed to Approve / Reject the moment a field was changed. So the flow became: change the text in the field, add a comment about the change, then Approve or Reject.</p>
-                <div class="risk-subheading" style="margin-top: 0;">Why</div>
-                <p style="font-size: 0.9rem; line-height: 1.65; margin-bottom: 0;">It didn't need any major changes, and took very little developer time to build.</p>
+                <div class="risk-subheading mt-0">Made the text fields editable anytime</div>
+                <p class="mb-1-5 text-note">The review pop-up's text fields were made editable, and the disabled Approved button changed to Approve / Reject the moment a field was changed. So the flow became: change the text in the field, add a comment about the change, then Approve or Reject.</p>
+                <div class="risk-subheading mt-0">Why</div>
+                <p class="text-note mb-0">It didn't need any major changes, and took very little developer time to build.</p>
               </div>
             </div>
 
-            <h4 class="section-subhead" style="margin-top: 4rem;">It tested clean, then broke in practice</h4>
+            <h4 class="section-subhead mt-4">It tested clean, then broke in practice</h4>
             <p class="section-subhead-note">The first iteration was discussed with the team and tested — no issues turned up. But once it went live and real applications started moving through it over the following days, problems started showing up.</p>
 
-            <h4 class="section-subhead" style="margin-top: 4rem;">Reasons for failure</h4>
+            <h4 class="section-subhead mt-4">Reasons for failure</h4>
 
             <div class="cost-time-block">
               <div class="cost-time-video">
-                <div class="solution-image-wrapper" style="margin: 0;">
-                  <img src="../assets/Timelineedit.png" alt="Timeline entry showing an approval message with the edit folded into it, rather than called out on its own" class="solution-image no-shadow" style="max-width: 200px; margin: 0 auto; display: block;">
+                <div class="solution-image-wrapper m-0">
+                  <img src="../assets/Timelineedit.png" alt="Timeline entry showing an approval message with the edit folded into it, rather than called out on its own" class="solution-image no-shadow mw-200 block-center">
                 </div>
               </div>
               <div class="cost-time-text">
-                <div class="risk-subheading" style="margin-top: 0;">The edit had no focus of its own</div>
-                <p style="font-size: 0.9rem; line-height: 1.65; margin-bottom: 0;">The Timeline logged a message saying the section was approved, with the edit folded into that same message. Since nothing set the edit apart, it just read as a normal approval — and the edit itself went unnoticed.</p>
+                <div class="risk-subheading mt-0">The edit had no focus of its own</div>
+                <p class="text-note mb-0">The Timeline logged a message saying the section was approved, with the edit folded into that same message. Since nothing set the edit apart, it just read as a normal approval — and the edit itself went unnoticed.</p>
               </div>
             </div>
 
-            <div class="cost-time-block" style="margin-top: 2.5rem;">
+            <div class="cost-time-block mt-2-5">
               <div class="cost-time-video">
-                <div class="solution-image-wrapper" style="margin: 0;">
-                  <video class="solution-video" src="../assets/iterationedit1reason.mp4" controls playsinline aria-label="Recording of a change getting approved immediately, with no second check from anyone else on the team" style="max-width: 420px; margin: 0 auto; display: block;"></video>
+                <div class="solution-image-wrapper m-0">
+                  <video class="solution-video mw-420 block-center" src="../assets/iterationedit1reason.mp4" controls playsinline aria-label="Recording of a change getting approved immediately, with no second check from anyone else on the team"></video>
                 </div>
               </div>
               <div class="cost-time-text">
-                <div class="risk-subheading" style="margin-top: 0;">Edits skipped a second look</div>
-                <p style="font-size: 0.9rem; line-height: 1.65; margin-bottom: 0;">With more than one person working on the same application, a change was approved right away, so it never got rechecked. And if a section was rejected for two separate reasons and someone fixed only one of them, there was no way to update just that part — leaving it unclear whether the section should now be approved or rejected.</p>
+                <div class="risk-subheading mt-0">Edits skipped a second look</div>
+                <p class="text-note mb-0">With more than one person working on the same application, a change was approved right away, so it never got rechecked. And if a section was rejected for two separate reasons and someone fixed only one of them, there was no way to update just that part — leaving it unclear whether the section should now be approved or rejected.</p>
               </div>
             </div>
 
-            <p class="section-subhead-note" style="margin-top: 2.5rem;">There was a need for a different solution.</p>
+            <p class="section-subhead-note mt-2-5">There was a need for a different solution.</p>
 
-            <h4 class="section-subhead" style="margin-top: 4rem;">New design addressing the issues found</h4>
+            <h4 class="section-subhead mt-4">New design addressing the issues found</h4>
             <p class="section-subhead-note">A new Edit button was added next to the Review button, opening its own separate pop-up.</p>
 
             <div class="cost-time-block">
@@ -536,24 +536,24 @@
                 <video class="solution-video" src="../assets/iterationedit2.mp4" controls playsinline aria-label="Using the new Edit button, which opens a separate pop-up from Review"></video>
               </div>
               <div class="cost-time-text">
-                <div class="risk-subheading" style="margin-top: 0; text-align: center;">New logic</div>
-                <div class="solution-image-wrapper" style="margin: 0.5rem 0 0;">
-                  <img src="../assets/Flowedit.png" alt="Diagram of the new Edit versus Review logic" class="solution-image no-shadow" style="max-height: 380px; width: auto; max-width: 100%; margin: 0 auto; display: block; object-fit: contain;">
+                <div class="risk-subheading mt-0 text-center">New logic</div>
+                <div class="solution-image-wrapper m-top-half">
+                  <img src="../assets/Flowedit.png" alt="Diagram of the new Edit versus Review logic" class="solution-image no-shadow img-contain-380 block-center">
                 </div>
               </div>
             </div>
 
-            <p class="section-subhead-note" style="margin-top: 2.5rem;">Edit now opens as its own pop-up, separate from Review. Editing a pending section saves the change and keeps it pending. Editing a section that's already been approved or rejected saves the change too, but sends the section back to Pending — so it gets a second look before it's approved or rejected again.</p>
+            <p class="section-subhead-note mt-2-5">Edit now opens as its own pop-up, separate from Review. Editing a pending section saves the change and keeps it pending. Editing a section that's already been approved or rejected saves the change too, but sends the section back to Pending — so it gets a second look before it's approved or rejected again.</p>
 
-            <div class="cost-time-block" style="margin-top: 2.5rem;">
+            <div class="cost-time-block mt-2-5">
               <div class="cost-time-video">
-                <div class="solution-image-wrapper" style="margin: 0;">
-                  <img src="../assets/Timelineedit2.png" alt="New Timeline entry showing Edited as its own logged action, separate from Approve or Reject" class="solution-image no-shadow" style="max-width: 200px; margin: 0 auto; display: block;">
+                <div class="solution-image-wrapper m-0">
+                  <img src="../assets/Timelineedit2.png" alt="New Timeline entry showing Edited as its own logged action, separate from Approve or Reject" class="solution-image no-shadow mw-200 block-center">
                 </div>
               </div>
               <div class="cost-time-text">
-                <div class="risk-subheading" style="margin-top: 0;">New timeline</div>
-                <p style="font-size: 0.9rem; line-height: 1.65; margin-bottom: 0;">The Timeline now logs "Edited" as its own action, instead of folding the change into an Approve or Reject entry.</p>
+                <div class="risk-subheading mt-0">New timeline</div>
+                <p class="text-note mb-0">The Timeline now logs "Edited" as its own action, instead of folding the change into an Approve or Reject entry.</p>
               </div>
             </div>
 
@@ -591,12 +591,12 @@
           <div class="decision-content">
             <div class="cost-time-block">
               <div class="cost-time-video">
-                <div class="solution-image-wrapper" style="margin: 0;">
+                <div class="solution-image-wrapper m-0">
                   <img src="../assets/pdfviewnew.png" alt="Review pop-up with the PDF viewer docked in a side panel next to the section's fields, instead of opening as a separate pop-up on top" class="solution-image no-shadow">
                 </div>
               </div>
               <div class="cost-time-text">
-                <p style="font-size: 0.9rem; line-height: 1.65; margin-bottom: 0;">The PDF used to open as its own pop-up, stacked directly on top of the review pop-up — so checking it meant closing one to see the other. Now it opens inside the review pop-up itself, docked in a panel beside the section's fields. The document and the details it's being checked against sit on screen together, so the reviewer can compare them without ever losing sight of either.</p>
+                <p class="text-note mb-0">The PDF used to open as its own pop-up, stacked directly on top of the review pop-up — so checking it meant closing one to see the other. Now it opens inside the review pop-up itself, docked in a panel beside the section's fields. The document and the details it's being checked against sit on screen together, so the reviewer can compare them without ever losing sight of either.</p>
               </div>
             </div>
 
@@ -716,7 +716,7 @@
     <p>&copy; 2025 Lakshmi Pratap. All rights reserved.</p>
   </footer>
 
-  <script src="cx-review.js?v=3"></script>
+  <script src="cx-review.js?v=5"></script>
   <script src="../comment-widget.js"></script>
 </body>
 </html>
