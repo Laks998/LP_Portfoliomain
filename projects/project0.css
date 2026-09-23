@@ -3377,3 +3377,15 @@ p:last-child {
 .design-rationale {
   border-radius: var(--radius-sm);
 }
+/* =====================================================================
+   Key screens: videos in the Old/New pairs (e.g. the new Sessions
+   screen) sized exactly like the images beside them — same fixed
+   height, width follows the video's own proportions — so they sit
+   side by side instead of spilling out over the old screen.
+   ===================================================================== */
+.key-screens-block .flow-image-item .solution-image-wrapper .solution-video {
+  width: auto;
+  height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
