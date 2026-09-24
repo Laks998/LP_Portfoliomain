@@ -35,7 +35,9 @@
 
 // Back to top — the round button in the bottom-right corner. Shows once
 // you're past the first screen, its ring fills as you read, and clicking
-// it scrolls smoothly back to the top.
+// it scrolls smoothly back to the top. Listens for scrolling anywhere on
+// the page (capture), so it still works if the page scrolls inside a
+// container instead of the window.
 (function () {
   var btn = document.querySelector('.to-top');
   if (!btn || btn.dataset.ready) return;
@@ -44,20 +46,33 @@
   var fill = btn.querySelector('.to-top-ring-fill');
   var C = 2 * Math.PI * 24;
   if (fill) { fill.style.strokeDasharray = C; fill.style.strokeDashoffset = C; }
+  var scroller = null;
+  function getScroller() {
+    var el = document.scrollingElement || document.documentElement;
+    if (el.scrollTop > 0) return el;
+    if (document.body.scrollTop > 0) return document.body;
+    return scroller || el;
+  }
   var ticking = false;
   function update() {
     ticking = false;
-    var y = window.scrollY || window.pageYOffset;
-    var max = document.documentElement.scrollHeight - window.innerHeight;
+    var el = getScroller();
+    var y = el.scrollTop || window.scrollY || 0;
+    var max = el.scrollHeight - el.clientHeight;
     btn.classList.toggle('is-visible', y > window.innerHeight * 0.8);
     if (fill && max > 0) fill.style.strokeDashoffset = C * (1 - Math.min(y / max, 1));
   }
-  window.addEventListener('scroll', function () {
+  document.addEventListener('scroll', function (e) {
+    var t = e.target;
+    if (t && t !== document && t.scrollHeight > t.clientHeight + 200 && t.clientHeight > window.innerHeight * 0.6) scroller = t;
     if (!ticking) { ticking = true; requestAnimationFrame(update); }
-  }, { passive: true });
+  }, { passive: true, capture: true });
   window.addEventListener('resize', update);
+  window.addEventListener('load', update);
   update();
   btn.addEventListener('click', function () {
-    window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+    var opts = { top: 0, behavior: reduce ? 'auto' : 'smooth' };
+    window.scrollTo(opts);
+    if (scroller && scroller.scrollTo) scroller.scrollTo(opts);
   });
 })();

@@ -3379,13 +3379,29 @@ p:last-child {
 }
 /* =====================================================================
    Key screens: videos in the Old/New pairs (e.g. the new Sessions
-   screen) sized exactly like the images beside them — same fixed
-   height, width follows the video's own proportions — so they sit
-   side by side instead of spilling out over the old screen.
+   screen) sized exactly like the images beside them. The height is set
+   in pixels (not 100%) because a percentage height on a video doesn't
+   hold when the browser works out how wide the column should be — the
+   video fell back to its full recorded size and spilled over the old
+   screen. Heights match the image wrappers at every breakpoint.
    ===================================================================== */
-.key-screens-block .flow-image-item .solution-image-wrapper .solution-video {
+.key-screens-block .onboarding-flow-images .key-screen-video {
+  display: block;
   width: auto;
-  height: 100%;
+  height: 480px;
   max-width: 100%;
   object-fit: contain;
+  border: 1px solid var(--card-border);
+}
+
+@media (max-width: 900px) {
+  .key-screens-block .onboarding-flow-images .key-screen-video {
+    height: 380px;
+  }
+}
+
+@media (max-width: 480px) {
+  .key-screens-block .onboarding-flow-images .key-screen-video {
+    height: 300px;
+  }
 }
