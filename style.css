@@ -713,12 +713,15 @@ a { color: inherit; }
 .hero-quote-callout .hero-quote {
   margin: 0;
   font-family: var(--font-body);
-  font-size: clamp(1rem, 1.6vw, 1.2rem);
+  font-size: clamp(0.95rem, 1.45vw, 1.1rem);
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 2;
   color: var(--text);
 }
-.hero-quote-em { color: var(--accent); font-weight: 400; }
+/* Key phrases in the quote: bold, in the normal text colour. Only the
+   role ("UX/Product Designer") is picked out in the accent colour. */
+.hero-quote-em { color: var(--text); font-weight: 700; }
+.hero-quote-em.hero-quote-role { color: var(--accent); }
 
 .hero-quote-word {
   display: inline-block;
