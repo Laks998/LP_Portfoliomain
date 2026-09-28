@@ -2791,3 +2791,202 @@ p:last-child {
     margin-top: 0;
   }
 }
+/* =====================================================================
+   Next project — a pill tucked into the right edge of the screen.
+   Resting, only the left half of the red arrow circle peeks out, so it
+   reads like the edge of a button sitting just off-screen. Hover (or
+   keyboard focus, or a first tap on touch screens) slides the whole
+   pill out and the project name fades in beside the arrow.
+   ===================================================================== */
+.next-project {
+  --np-circle: 52px;
+  --np-pad: 7px;
+  /* How much of the pill shows while tucked away: the padding plus
+     half the circle. */
+  --np-peek: calc(var(--np-pad) + var(--np-circle) / 2);
+  --np-ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  position: fixed;
+  top: 50%;
+  right: 0;
+  z-index: 95;
+  transform: translate(calc(100% - var(--np-peek)), -50%);
+  transition: transform 0.6s var(--np-ease);
+}
+
+.next-project-link {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: var(--np-pad) 30px var(--np-pad) var(--np-pad);
+  border-radius: 999px 0 0 999px;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(16, 15, 14, 0.08);
+  border-right: none;
+  box-shadow: var(--shadow-sm);
+  text-decoration: none;
+  color: var(--text);
+  transition: box-shadow 0.4s ease, border-radius 0.4s ease;
+}
+
+.next-project-circle {
+  position: relative;
+  flex-shrink: 0;
+  width: var(--np-circle);
+  height: var(--np-circle);
+  border-radius: 50%;
+  background: var(--accent);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Resting, the arrow sits in the visible half of the circle so it
+   isn't cut off by the screen edge. */
+.next-project-arrow {
+  width: 20px;
+  height: 20px;
+  transform: translateX(-9px);
+  transition: transform 0.5s var(--np-ease);
+}
+
+.next-project-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(12px);
+  transition: opacity 0.25s ease, transform 0.5s var(--np-ease);
+}
+
+.next-project-label {
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.next-project-title {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--text);
+}
+
+.next-project-sub {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+/* Open state */
+.next-project:hover,
+.next-project:focus-within,
+.next-project.is-open {
+  transform: translate(0, -50%);
+}
+
+.next-project:hover .next-project-link,
+.next-project:focus-within .next-project-link,
+.next-project.is-open .next-project-link {
+  box-shadow: var(--shadow-md);
+}
+
+.next-project:hover .next-project-text,
+.next-project:focus-within .next-project-text,
+.next-project.is-open .next-project-text {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 0.35s ease 0.12s, transform 0.5s var(--np-ease) 0.08s;
+}
+
+.next-project:hover .next-project-arrow,
+.next-project:focus-within .next-project-arrow,
+.next-project.is-open .next-project-arrow {
+  transform: translateX(0);
+}
+
+/* Once it's open, hovering the pill itself nudges the arrow forward,
+   the same "go" gesture as the back links on the left. */
+.next-project-link:hover .next-project-arrow {
+  transform: translateX(4px);
+}
+
+.next-project-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* A quiet nudge every few seconds while it's tucked away, so the half
+   circle reads as something you can pull out rather than a stray
+   shape. Stops as soon as it's opened. */
+@keyframes next-project-nudge {
+  0%, 84%, 100% { transform: translate(calc(100% - var(--np-peek)), -50%); }
+  89%           { transform: translate(calc(100% - var(--np-peek) - 10px), -50%); }
+  94%           { transform: translate(calc(100% - var(--np-peek) - 3px), -50%); }
+}
+
+.next-project:not(:hover):not(:focus-within):not(.is-open) {
+  animation: next-project-nudge 6s ease-in-out 3s infinite;
+}
+
+@media (max-width: 768px) {
+  .next-project {
+    --np-circle: 44px;
+    --np-pad: 6px;
+    /* Sits lower on small screens, clear of the text but above the
+       back-to-top button. */
+    top: auto;
+    bottom: 5.5rem;
+    transform: translate(calc(100% - var(--np-peek)), 0);
+  }
+
+  .next-project:hover,
+  .next-project:focus-within,
+  .next-project.is-open {
+    transform: translate(0, 0);
+  }
+
+  @keyframes next-project-nudge-mobile {
+    0%, 84%, 100% { transform: translate(calc(100% - var(--np-peek)), 0); }
+    89%           { transform: translate(calc(100% - var(--np-peek) - 10px), 0); }
+    94%           { transform: translate(calc(100% - var(--np-peek) - 3px), 0); }
+  }
+
+  .next-project:not(:hover):not(:focus-within):not(.is-open) {
+    animation-name: next-project-nudge-mobile;
+  }
+
+  .next-project-arrow {
+    width: 18px;
+    height: 18px;
+    transform: translateX(-8px);
+  }
+
+  .next-project-link {
+    gap: 12px;
+    padding-right: 20px;
+  }
+
+  .next-project-title {
+    font-size: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .next-project,
+  .next-project-arrow,
+  .next-project-text {
+    transition: none;
+  }
+
+  .next-project:not(:hover):not(:focus-within):not(.is-open) {
+    animation: none;
+  }
+}

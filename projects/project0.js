@@ -233,3 +233,28 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 });
+// Next project — the half-hidden pill on the right edge. Mouse and
+// keyboard open it through CSS (:hover / :focus-within). Touch screens
+// have no hover, so there the first tap slides it out and a second tap
+// follows the link; tapping anywhere else tucks it away again.
+(function () {
+  var wrap = document.querySelector('.next-project');
+  if (!wrap) return;
+  var link = wrap.querySelector('.next-project-link');
+  var noHover = window.matchMedia('(hover: none)');
+
+  link.addEventListener('click', function (e) {
+    if (noHover.matches && !wrap.classList.contains('is-open')) {
+      e.preventDefault();
+      wrap.classList.add('is-open');
+    }
+  });
+
+  document.addEventListener('click', function (e) {
+    if (!wrap.contains(e.target)) wrap.classList.remove('is-open');
+  });
+
+  window.addEventListener('scroll', function () {
+    wrap.classList.remove('is-open');
+  }, { passive: true });
+})();

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sportscove: Lakshmi Pratap</title>
-  <link rel="stylesheet" href="project0.css?v=86" />
+  <link rel="stylesheet" href="project0.css?v=87" />
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="../assets/logo.png">
   <link rel="stylesheet" href="../comment-widget.css" />
@@ -1232,11 +1232,28 @@
     <svg class="to-top-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
   </button>
 
+  <!-- Next project: a tab tucked into the right edge of the screen.
+       Collapsed, only half of the arrow circle peeks out. Hover (or
+       keyboard focus, or a first tap on touch screens) slides the whole
+       pill out to show which project is next. -->
+  <aside class="next-project" aria-label="Next project">
+    <a href="../projects/project1.html" class="next-project-link">
+      <span class="next-project-circle" aria-hidden="true">
+        <svg class="next-project-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </span>
+      <span class="next-project-text">
+        <span class="next-project-label">View next project</span>
+        <span class="next-project-title">Quippy</span>
+        <span class="next-project-sub">Chrome extension</span>
+      </span>
+    </a>
+  </aside>
+
   <footer class="site-footer">
     <p>&copy; 2025 Lakshmi Pratap. All rights reserved.</p>
   </footer>
 
-  <script src="project0.js?v=1"></script>
+  <script src="project0.js?v=2"></script>
   <script src="../comment-widget.js"></script>
 </body>
 </html>
