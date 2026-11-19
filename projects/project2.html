@@ -1,492 +1,1355 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Clearisk Dashboard | Lakshmi Pratap</title>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="project2.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CX Dashboard: Lakshmi Pratap</title>
+  <link rel="stylesheet" href="project2.css?v=5" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="../assets/logo.png">
+  <link rel="stylesheet" href="../comment-widget.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/2.44.0/iconfont/tabler-icons.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
-
 <body>
-  
-  <!-- Progress bar -->
+
+  <!--
+    HOW TO REPLACE A MEDIA SLOT
+    Every slot is marked with a comment like <!- - IMG-09-INTERVIEW-TABLE - ->.
+    Replace the <div class="media-placeholder"> under it with:
+      <img src="../assets/your-file.png" alt="Describe the image" class="solution-image">
+    Any .solution-image opens in the lightbox on click, so tables and maps stay zoomable.
+  -->
+
   <div class="read-progress"></div>
+  <a href="../index.html#work" class="back-link">
+    <span class="back-link-arrow" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    </span>
+    <span>Go Back To Home</span>
+  </a>
 
-  <!-- Back link -->
-  <a href="../index.html#work" class="back-link">← Back to Work</a>
+  <nav class="side-nav" aria-label="Section navigation">
+    <div class="side-nav-head" aria-hidden="true">
+      <span class="side-nav-head-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h10M4 18h13"/></svg>
+      </span>
+      <span class="side-nav-head-label">On this page</span>
+    </div>
 
-  <!-- Main content -->
-  <main class="project-content">
+    <div class="side-nav-item">
+      <a href="#overview" class="side-nav-link"><span class="side-nav-num">01</span><span class="side-nav-label">Overview</span></a>
+    </div>
+    <div class="side-nav-item">
+      <a href="#problem" class="side-nav-link"><span class="side-nav-num">02</span><span class="side-nav-label">The problem</span></a>
+    </div>
+    <div class="side-nav-item">
+      <a href="#workflow" class="side-nav-link"><span class="side-nav-num">03</span><span class="side-nav-label">The workflow</span></a>
+    </div>
+    <div class="side-nav-item">
+      <a href="#research-group" class="side-nav-link"><span class="side-nav-num">04</span><span class="side-nav-label">Research</span></a>
+      <div class="side-nav-sublist">
+        <div class="side-nav-sublist-inner">
+          <a href="#process" class="side-nav-sublink"><span class="side-nav-sublink-num">1</span>Process</a>
+          <a href="#research" class="side-nav-sublink"><span class="side-nav-sublink-num">2</span>Research</a>
+          <a href="#interviews" class="side-nav-sublink"><span class="side-nav-sublink-num">3</span>Interviews</a>
+          <a href="#findings" class="side-nav-sublink"><span class="side-nav-sublink-num">4</span>What I heard</a>
+          <a href="#persona" class="side-nav-sublink"><span class="side-nav-sublink-num">5</span>Persona</a>
+          <a href="#affinity" class="side-nav-sublink"><span class="side-nav-sublink-num">6</span>Affinity map</a>
+        </div>
+      </div>
+    </div>
+    <div class="side-nav-item">
+      <a href="#structure-group" class="side-nav-link"><span class="side-nav-num">05</span><span class="side-nav-label">Structure</span></a>
+      <div class="side-nav-sublist">
+        <div class="side-nav-sublist-inner">
+          <a href="#ia" class="side-nav-sublink"><span class="side-nav-sublink-num">1</span>Information architecture</a>
+          <a href="#user-flow" class="side-nav-sublink"><span class="side-nav-sublink-num">2</span>User flow</a>
+        </div>
+      </div>
+    </div>
+    <div class="side-nav-item">
+      <a href="#exploration-group" class="side-nav-link"><span class="side-nav-num">06</span><span class="side-nav-label">Exploration</span></a>
+      <div class="side-nav-sublist">
+        <div class="side-nav-sublist-inner">
+          <a href="#wireframes" class="side-nav-sublink"><span class="side-nav-sublink-num">1</span>Wireframes</a>
+          <a href="#concepts" class="side-nav-sublink"><span class="side-nav-sublink-num">2</span>Concepts</a>
+        </div>
+      </div>
+    </div>
+    <div class="side-nav-item">
+      <a href="#solution-group" class="side-nav-link"><span class="side-nav-num">07</span><span class="side-nav-label">Solution</span></a>
+      <div class="side-nav-sublist">
+        <div class="side-nav-sublist-inner">
+          <a href="#final" class="side-nav-sublink"><span class="side-nav-sublink-num">1</span>Final design</a>
+          <a href="#action" class="side-nav-sublink"><span class="side-nav-sublink-num">2</span>Dashboard to action</a>
+          <a href="#prototype" class="side-nav-sublink"><span class="side-nav-sublink-num">3</span>Prototype</a>
+        </div>
+      </div>
+    </div>
+    <div class="side-nav-item">
+      <a href="#outcome-group" class="side-nav-link"><span class="side-nav-num">08</span><span class="side-nav-label">Outcome</span></a>
+      <div class="side-nav-sublist">
+        <div class="side-nav-sublist-inner">
+          <a href="#before-after" class="side-nav-sublink"><span class="side-nav-sublink-num">1</span>Before and after</a>
+          <a href="#impact" class="side-nav-sublink"><span class="side-nav-sublink-num">2</span>Impact</a>
+          <a href="#reflection" class="side-nav-sublink"><span class="side-nav-sublink-num">3</span>Reflection</a>
+        </div>
+      </div>
+    </div>
+  </nav>
 
-    <!-- Hero -->
+  <main class="project-content commentable" data-project="cx-dashboard">
+
+    <!-- ============================== HERO ============================== -->
     <section class="project-hero-section">
       <div class="hero-content">
-        <div class="project-meta">November 2021 - October 2022 · Clearisk</div>
-        <h1 class="project-title">CX Dashboard</h1>
-        <p class="project-subtitle">Designing a role-based custom dashboard for a B2B fintech platform—creating personalized experiences for six different user types</p>
-        <div class="hero-image-wrapper">
-          <img src="../assets/02project.jpeg" alt="CX Dashboard overview" class="hero-image">
+        <div class="project-meta">CLEARISK · CX DASHBOARD · B2B SAAS</div>
+        <h1 class="project-title">Bringing the CX team's daily work into one place</h1>
+        <p class="project-subtitle">Every working day for the CX team started the same way: emails, Slack, calls, then checking pipeline, pending, in-review and rejected applications across different parts of the CX Portal. I designed a role-based CX Dashboard from the ground up so the team had one place to see their tasks for the day, how much work was left, what needed action and who was available to work with.</p>
+        <div class="hero-contribution">
+          <span class="hero-contribution-label">My contribution</span>
+          <span class="hero-contribution-list">Research · User interviews · Workflow analysis · Qualitative synthesis · Information architecture · User flows · Wireframing · Interaction design · UI design · Prototyping</span>
         </div>
+
+        <!-- IMG-01-HERO-DASHBOARD
+             Live HTML/CSS rebuild of the CX Dashboard (representative data, NDA).
+             The same dashboard is cloned by project2.js into the Final Design section,
+             and its panels into the feature rows. To use a screenshot instead, replace
+             this whole figure with <img src="../assets/your-file.png" alt="CX Dashboard" class="hero-image">. -->
+        <figure class="hero-dashboard bleed" data-dash-source>
+          <div class="cxd-frame">
+            <div class="cxd cxd-scope">
+
+              <aside class="cxd-side" aria-label="CX Portal navigation">
+                <div class="cxd-logo"><i class="ti ti-box" aria-hidden="true"></i></div>
+                <a class="cxd-nav is-active"><i class="ti ti-home" aria-hidden="true"></i>Home</a>
+                <a class="cxd-nav"><i class="ti ti-user-circle" aria-hidden="true"></i>Active Clients</a>
+                <a class="cxd-nav"><i class="ti ti-list-details" aria-hidden="true"></i>Onboarding</a>
+                <a class="cxd-nav"><i class="ti ti-building-bank" aria-hidden="true"></i>Banking</a>
+                <a class="cxd-nav"><i class="ti ti-chart-bar" aria-hidden="true"></i>Trading</a>
+                <a class="cxd-nav"><i class="ti ti-chart-pie" aria-hidden="true"></i>Analytics</a>
+                <a class="cxd-nav"><i class="ti ti-id-badge-2" aria-hidden="true"></i>Service Request</a>
+              </aside>
+
+              <div class="cxd-body">
+                <header class="cxd-top">
+                  <span class="cxd-brand">CX Portal</span>
+                  <div class="cxd-top-right">
+                    <span class="cxd-bell"><i class="ti ti-bell" aria-hidden="true"></i><span class="cxd-bell-dot">3</span></span>
+                    <span class="cxd-user">Lillian Wayne · Compliance <span class="cxd-avatar">LW</span></span>
+                  </div>
+                </header>
+
+                <div class="cxd-tabs"><span class="is-active">Dashboard</span><span>Updates</span></div>
+
+                <div class="cxd-main">
+                  <div class="cxd-greet">
+                    <div>
+                      <h3 class="cxd-h1">Good morning, Lillian</h3>
+                      <p class="cxd-sub">Here's everything on your plate today.</p>
+                    </div>
+                    <div class="cxd-search"><i class="ti ti-search" aria-hidden="true"></i>Search clients, applications</div>
+                  </div>
+
+                  <!-- Panel: today's progress -->
+                  <section class="cxd-card cxd-progress" data-panel="progress">
+                    <div class="cxd-progress-left">
+                      <span class="cxd-label">Today's progress</span>
+                      <div class="cxd-progress-figure"><strong>9</strong> of 24 tasks done</div>
+                      <div class="cxd-bar"><span class="cxd-bar-fill"></span></div>
+                      <span class="cxd-left-note"><b>15 left</b> · 3 new since you logged in</span>
+                    </div>
+                    <div class="cxd-stages">
+                      <div class="cxd-stage"><span class="cxd-stage-dot is-pipeline"></span><span class="cxd-stage-name">Pipeline</span><span class="cxd-stage-num">12</span></div>
+                      <div class="cxd-stage"><span class="cxd-stage-dot is-pending"></span><span class="cxd-stage-name">Pending</span><span class="cxd-stage-num">13</span></div>
+                      <div class="cxd-stage"><span class="cxd-stage-dot is-review"></span><span class="cxd-stage-name">In review</span><span class="cxd-stage-num">8</span></div>
+                      <div class="cxd-stage"><span class="cxd-stage-dot is-rejected"></span><span class="cxd-stage-name">Rejected</span><span class="cxd-stage-num">3</span></div>
+                      <div class="cxd-stage is-done"><span class="cxd-stage-dot is-done"></span><span class="cxd-stage-name">Completed today</span><span class="cxd-stage-num">9</span></div>
+                    </div>
+                  </section>
+
+                  <div class="cxd-row">
+                    <!-- Panel: action required + new tasks -->
+                    <section class="cxd-card cxd-actions" data-panel="actions">
+                      <div class="cxd-card-head">
+                        <h4>Action required</h4>
+                        <div class="cxd-pills"><span class="is-on">All (5)</span><span>New (1)</span><span>Rejected (2)</span></div>
+                      </div>
+                      <div class="cxd-table">
+                        <div class="cxd-tr cxd-th">
+                          <span>Client</span>
+                          <span class="cxd-th-steps">Onb · Comp · Mgr</span>
+                          <span>Waiting on</span>
+                          <span>Created</span>
+                          <span></span>
+                        </div>
+
+                        <div class="cxd-tr is-new">
+                          <span class="cxd-client"><b>John Smith</b><small>Individual · R00-Retail</small></span>
+                          <span class="cxd-steps"><i class="is-approved" title="Onboarding approved">Onb</i><i class="is-pending" title="Compliance pending">Comp</i><i class="is-pending" title="Manager pending">Mgr</i></span>
+                          <span class="cxd-wait"><b class="is-you">You</b><small>Compliance review</small><i class="cxd-tag is-new">New</i></span>
+                          <span class="cxd-date">01-12-2020</span>
+                          <span class="cxd-link">Review</span>
+                        </div>
+
+                        <div class="cxd-tr is-new">
+                          <span class="cxd-client"><b>Vandelay Industries</b><small>Corporate · C00-Corp</small></span>
+                          <span class="cxd-steps"><i class="is-approved" title="Onboarding approved">Onb</i><i class="is-pending" title="Compliance pending">Comp</i><i class="is-none" title="Manager not assigned">Mgr</i></span>
+                          <span class="cxd-wait"><b>Lisa Su</b><small>Compliance review</small><i class="cxd-tag is-cover">On leave</i></span>
+                          <span class="cxd-date">02-08-2020</span>
+                          <span class="cxd-link">Review</span>
+                        </div>
+
+                        <div class="cxd-tr">
+                          <span class="cxd-client"><b>Acme Corporation</b><small>Corporate · C00-Corp</small></span>
+                          <span class="cxd-steps"><i class="is-approved" title="Onboarding approved">Onb</i><i class="is-rejected" title="Compliance rejected">Comp</i><i class="is-none" title="Manager not assigned">Mgr</i></span>
+                          <span class="cxd-wait"><b class="is-rejected">Rejected</b><small>at Compliance</small><i class="cxd-tag is-new">Resubmitted</i></span>
+                          <span class="cxd-date">23-05-2020</span>
+                          <span class="cxd-link">Review</span>
+                        </div>
+
+                        <div class="cxd-tr">
+                          <span class="cxd-client"><b>Robert Patt</b><small>Individual · R00-Retail</small></span>
+                          <span class="cxd-steps"><i class="is-approved" title="Onboarding approved">Onb</i><i class="is-rejected" title="Compliance rejected">Comp</i><i class="is-none" title="Manager not assigned">Mgr</i></span>
+                          <span class="cxd-wait"><b class="is-rejected">Rejected</b><small>at Compliance</small></span>
+                          <span class="cxd-date">23-05-2020</span>
+                          <span class="cxd-link">Review</span>
+                        </div>
+
+                        <div class="cxd-tr">
+                          <span class="cxd-client"><b>Pendant Publishing</b><small>Corporate · C00-Corp</small></span>
+                          <span class="cxd-steps"><i class="is-approved" title="Onboarding approved">Onb</i><i class="is-approved" title="Compliance approved">Comp</i><i class="is-pending" title="Manager pending">Mgr</i></span>
+                          <span class="cxd-wait"><b>Roy Kent</b><small>Manager review</small></span>
+                          <span class="cxd-date">14-06-2020</span>
+                          <span class="cxd-link">Review</span>
+                        </div>
+                      </div>
+                      <div class="cxd-key">
+                        <span><i class="is-approved"></i>Approved</span>
+                        <span><i class="is-pending"></i>Pending</span>
+                        <span><i class="is-rejected"></i>Rejected</span>
+                        <span><i class="is-none"></i>Not assigned</span>
+                      </div>
+                    </section>
+
+                    <!-- Panel: team availability -->
+                    <section class="cxd-card cxd-team" data-panel="team">
+                      <div class="cxd-card-head">
+                        <h4>Team today</h4>
+                        <span class="cxd-muted">3 of 4 in</span>
+                      </div>
+                      <ul class="cxd-people">
+                        <li><span class="cxd-av is-a">RK</span><span class="cxd-person"><b>Roy Kent</b><small>Manager</small></span><span class="cxd-status is-in">In today</span></li>
+                        <li class="is-away"><span class="cxd-av is-b">LS</span><span class="cxd-person"><b>Lisa Su</b><small>Compliance</small></span><span class="cxd-status is-out">On leave</span></li>
+                        <li class="cxd-cover"><i class="ti ti-arrows-exchange" aria-hidden="true"></i><span>2 of Lisa Su's applications need cover</span><span class="cxd-btn">Reassign</span></li>
+                        <li><span class="cxd-av is-c">JJ</span><span class="cxd-person"><b>Jason John</b><small>Onboarding</small></span><span class="cxd-status is-in">In today</span></li>
+                        <li><span class="cxd-av is-d">RP</span><span class="cxd-person"><b>Rita Payne</b><small>Onboarding</small></span><span class="cxd-status is-in">In today</span></li>
+                      </ul>
+                    </section>
+                  </div>
+
+                  <div class="cxd-row">
+                    <!-- Panel: activity and completed work -->
+                    <section class="cxd-card cxd-activity" data-panel="activity">
+                      <div class="cxd-card-head">
+                        <h4>Activity</h4>
+                        <div class="cxd-pills"><span class="is-on">Today</span><span>Week</span><span>Month</span></div>
+                      </div>
+                      <ul class="cxd-feed">
+                        <li><span class="cxd-feed-icon is-done"><i class="ti ti-check" aria-hidden="true"></i></span><span>Compliance review for <b>Pendant Publishing</b> approved by you</span><time>10:42</time></li>
+                        <li><span class="cxd-feed-icon is-done"><i class="ti ti-check" aria-hidden="true"></i></span><span>Application for <b>Kramerica Ltd</b> completed by Roy Kent</span><time>10:15</time></li>
+                        <li><span class="cxd-feed-icon is-new"><i class="ti ti-plus" aria-hidden="true"></i></span><span>New task assigned to you: <b>John Smith</b></span><time>09:58</time></li>
+                        <li><span class="cxd-feed-icon is-cover"><i class="ti ti-arrows-exchange" aria-hidden="true"></i></span><span><b>Vandelay Industries</b> needs cover while Lisa Su is on leave</span><time>09:40</time></li>
+                        <li><span class="cxd-feed-icon"><i class="ti ti-message" aria-hidden="true"></i></span><span><b>Acme Corporation</b> resubmitted after rejection</span><time>09:12</time></li>
+                      </ul>
+                    </section>
+
+                    <!-- Panel: overview by request type -->
+                    <section class="cxd-card cxd-overview" data-panel="overview">
+                      <div class="cxd-card-head">
+                        <h4>Overview</h4>
+                        <div class="cxd-pills"><span class="is-on">SSI</span><span>Withdrawal</span></div>
+                      </div>
+                      <div class="cxd-donut-row">
+                        <div class="cxd-donut"><span><b>39</b>Requests</span></div>
+                        <ul class="cxd-legend">
+                          <li><i class="is-pending"></i>Pending <b>13</b></li>
+                          <li><i class="is-approved"></i>Approved <b>26</b></li>
+                        </ul>
+                      </div>
+                    </section>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <figcaption class="illustrative-note">
+            <i class="ti ti-info-circle" aria-hidden="true"></i>
+            CX Dashboard rebuilt for this case study. Names and figures are representative (NDA).
+          </figcaption>
+        </figure>
       </div>
     </section>
 
-    <!-- Context -->
-    <section class="project-section context-section">
+    <!-- ============================== OVERVIEW ============================== -->
+    <section class="project-section context-section" id="overview">
       <div class="section-content">
-        <h2>Context</h2>
-        <p>
-          Clearisk is a derivative trading platform offering comprehensive trade processing and client management 
-          solutions. Founded by seasoned F&O professionals with over 25 years of experience, Clearisk provides 
-          features including data input, setup & processing, reporting & analytics, reconciliation, client management, 
-          and integrations—essentially a "broker in a box."
-        </p>
+        <span class="section-kicker">Project overview</span>
+        <h2>About Clearisk</h2>
+        <p><span class="intro-highlight">Clearisk is a B2B platform supporting financial institutions and their operational workflows.</span> The CX Portal was used to support customer onboarding and the work involved in reviewing and progressing applications.</p>
+        <p>As the product and operational workflows grew, there was an opportunity to give the CX team a dedicated place to understand and manage their work.</p>
+
         <div class="project-details">
-          <div class="detail-item">
-            <div class="detail-label">Role</div>
-            <div class="detail-value">UX Designer (solo)</div>
-          </div>
-          <div class="detail-item">
-            <div class="detail-label">Timeline</div>
-            <div class="detail-value">11 months</div>
-          </div>
-          <div class="detail-item">
-            <div class="detail-label">Platform</div>
-            <div class="detail-value">B2B Web Application</div>
-          </div>
-          <div class="detail-item">
-            <div class="detail-label">User Roles</div>
-            <div class="detail-value">6 different stakeholder types</div>
-          </div>
+          <div class="detail-item"><div class="detail-label">Role</div><div class="detail-value">UX/UI Designer</div></div>
+          <div class="detail-item"><div class="detail-label">Scope</div><div class="detail-value">Research → UX → UI → Prototype</div></div>
+          <div class="detail-item"><div class="detail-label">Project type</div><div class="detail-value">0 → 1 feature · B2B SaaS / CX Portal</div></div>
         </div>
+
+        <div class="constraint-callout">
+          <div class="constraint-label">Project focus</div>
+          <p>Designing a CX Dashboard that gives users a clearer overview of their work and a direct path into the actions that require attention.</p>
+        </div>
+
+        <div class="constraint-callout">
+          <div class="constraint-label">NDA</div>
+          <p>Clearisk is under NDA. Workflow illustrations on this page are recreated with representative information. Messages shown in them are illustrative, not screenshots or verbatim user quotes.</p>
+        </div>
+
+        <!-- IMG-02-PRODUCT-ECOSYSTEM (built in HTML/CSS) -->
+        <figure class="eco-diagram reveal" data-slot="IMG-02-PRODUCT-ECOSYSTEM">
+          <div class="eco-level eco-level--root">Clearisk</div>
+          <span class="eco-arrow draw-line" aria-hidden="true"></span>
+          <div class="eco-level eco-level--portal">CX Portal</div>
+          <span class="eco-arrow draw-line" aria-hidden="true"></span>
+          <div class="eco-level eco-level--team">CX Team</div>
+          <span class="eco-branch" aria-hidden="true"></span>
+          <div class="eco-leaves seq">
+            <span class="eco-leaf">Applications</span>
+            <span class="eco-leaf">Onboarding</span>
+            <span class="eco-leaf">Client work</span>
+          </div>
+        </figure>
       </div>
     </section>
 
-    <!-- My Role -->
-    <section class="project-section role-section">
+    <!-- ============================== 02 PROBLEM ============================== -->
+    <section class="project-section" id="problem">
       <div class="section-content">
-        <h2>My Role</h2>
-        <p>
-          I joined Clearisk as a UX/UI designer in November 2021 when their applications (CX Portal and Client Portal) 
-          were in early stages. While a basic design system existed, most features were still in development. The dashboard 
-          hadn't been created yet.
-        </p>
-        <p>
-          After having team members and potential users from partner companies try different features, we quickly realized 
-          the need and importance of a centralized dashboard.
-        </p>
-        <p>
-          As the solo designer, I was responsible for:
-        </p>
-        <div class="responsibility-list">
-          <div class="responsibility-item">Identifying needs and gathering requirements</div>
-          <div class="responsibility-item">Conducting user interviews</div>
-          <div class="responsibility-item">Creating user flows and information architecture</div>
-          <div class="responsibility-item">Designing for six different user roles</div>
+        <span class="section-kicker is-issue"><span class="kicker-num">02</span> / The problem</span>
+        <h2 class="display-heading">The work was in the product.<br><span class="muted-line">The workflow wasn't.</span></h2>
+        <p class="reveal">The CX Portal held the applications, but not the day around them. When the team started work, they first went through emails, Slack and calls, then checked pipeline, pending, in-review and rejected applications in different parts of the portal.</p>
+        <p class="reveal">There was no single place to see what their tasks were for the day, how much was left, what needed action, or who they needed to work with to move an application forward.</p>
+        <p class="lede reveal">The work lived in the product. Knowing where to start did not.</p>
+      </div>
+
+      <!-- ANIMATION-01-FRAGMENTED-WORKFLOW (built in HTML/CSS/SVG) -->
+      <figure class="frag-anim bleed" data-frag-anim>
+        <div class="frag-anim-head">
+          <span class="frag-anim-state frag-anim-state--before">Before · starting the day across tools</span>
+          <span class="frag-anim-state frag-anim-state--after">After · one place to start the day</span>
+          <button type="button" class="frag-replay" data-frag-replay aria-label="Replay the workflow animation">
+            <i class="ti ti-refresh" aria-hidden="true"></i><span>Replay</span>
+          </button>
         </div>
+
+        <div class="frag-stage" aria-hidden="true">
+          <svg class="frag-lines frag-lines--h" viewBox="0 0 100 60" preserveAspectRatio="none">
+            <polyline class="frag-path" points="7,16 21.33,44 35.67,16 50,44 64.33,16 78.67,44 93,16" pathLength="1" />
+          </svg>
+          <svg class="frag-lines frag-lines--v" viewBox="0 0 60 100" preserveAspectRatio="none">
+            <polyline class="frag-path" points="16,8 44,22 16,36 44,50 16,64 44,78 16,92" pathLength="1" />
+          </svg>
+
+          <div class="frag-node is-outside"><i class="ti ti-mail"></i><span>Email</span></div>
+          <div class="frag-node is-outside"><i class="ti ti-brand-slack"></i><span>Slack</span></div>
+          <div class="frag-node is-outside"><i class="ti ti-phone"></i><span>Calls</span></div>
+          <div class="frag-node is-portal"><i class="ti ti-arrows-right"></i><span>Pipeline</span></div>
+          <div class="frag-node is-portal"><i class="ti ti-clock"></i><span>Pending</span></div>
+          <div class="frag-node is-portal"><i class="ti ti-eye-check"></i><span>In review</span></div>
+          <div class="frag-node is-portal"><i class="ti ti-circle-x"></i><span>Rejected</span></div>
+
+          <div class="frag-dashboard">
+            <div class="mini-dash">
+              <div class="mini-block">
+                <span class="mini-label">Tasks today · work left</span>
+                <span class="mini-track"><span></span></span>
+              </div>
+              <div class="mini-dash-body">
+                <div class="mini-block">
+                  <span class="mini-label">Action required</span>
+                  <span class="mini-line is-new"></span><span class="mini-line"></span><span class="mini-line"></span>
+                </div>
+                <div class="mini-block">
+                  <span class="mini-label">Team today</span>
+                  <span class="mini-person"><i class="is-in"></i><span></span></span>
+                  <span class="mini-person"><i class="is-out"></i><span></span></span>
+                  <span class="mini-person"><i class="is-in"></i><span></span></span>
+                </div>
+              </div>
+              <div class="mini-block mini-done">
+                <span class="mini-label">Completed</span>
+                <span class="mini-check"><i></i><span></span></span>
+                <span class="mini-check"><i></i><span></span></span>
+              </div>
+            </div>
+            <div class="frag-dashboard-label">CX DASHBOARD</div>
+          </div>
+        </div>
+
+        <figcaption class="illustrative-note">
+          <i class="ti ti-info-circle" aria-hidden="true"></i>
+          Illustrative reconstruction of the workflow based on research and workflow analysis.
+        </figcaption>
+      </figure>
+
+      <!-- IMG-03-FRAGMENTED-WORK-ILLUSTRATION (built in HTML/CSS/SVG) -->
+      <figure class="frag-board bleed reveal" data-slot="IMG-03-FRAGMENTED-WORK">
+        <svg class="frag-board-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+          <line x1="50" y1="50" x2="18" y2="18" />
+          <line x1="50" y1="50" x2="82" y2="18" />
+          <line x1="50" y1="50" x2="18" y2="82" />
+          <line x1="50" y1="50" x2="82" y2="82" />
+        </svg>
+
+        <div class="tool-card tool-email">
+          <div class="tool-card-head"><i class="ti ti-mail" aria-hidden="true"></i>Email</div>
+          <p class="tool-bubble">A new application has been assigned to you.</p>
+          <span class="tool-tag">Representative</span>
+        </div>
+        <div class="tool-card tool-slack">
+          <div class="tool-card-head"><i class="ti ti-brand-slack" aria-hidden="true"></i>Slack</div>
+          <p class="tool-bubble">Is the reviewer in today?</p>
+          <span class="tool-tag">Representative</span>
+        </div>
+        <div class="tool-card tool-portal">
+          <div class="tool-card-head"><i class="ti ti-app-window" aria-hidden="true"></i>CX Portal</div>
+          <div class="tool-portal-tabs">
+            <span>Pipeline</span><span>Pending</span><span>In review</span><span>Rejected</span>
+          </div>
+          <p class="tool-note">Each checked in a different part of the portal</p>
+        </div>
+        <div class="tool-card tool-notes">
+          <div class="tool-card-head"><i class="ti ti-mail-forward" aria-hidden="true"></i>Email follow-up</div>
+          <p class="tool-bubble">Has this one been approved yet?</p>
+          <span class="tool-tag">Representative</span>
+        </div>
+        <div class="tool-card tool-call">
+          <div class="tool-card-head"><i class="ti ti-phone" aria-hidden="true"></i>Call</div>
+          <p class="tool-bubble">They're on leave. Can you pick up this review?</p>
+          <span class="tool-tag">Representative</span>
+        </div>
+
+        <figcaption class="illustrative-note">
+          <i class="ti ti-info-circle" aria-hidden="true"></i>
+          Simplified illustrative reconstruction. Not actual screenshots or verbatim messages.
+        </figcaption>
+      </figure>
+
+      <div class="section-content">
+        <h3 class="sub-display reveal">A typical start to the day</h3>
+
+        <!-- IMG-04-BEFORE-WORKFLOW (built in HTML/CSS)
+             Adjust node labels to match your supplied flow diagram if it differs. -->
+        <figure class="snake-flow reveal" data-slot="IMG-04-BEFORE-WORKFLOW">
+          <ol class="snake-flow-list seq">
+            <li class="snake-node arr-r">Start of day</li>
+            <li class="snake-node arr-r is-outside">Check email<span class="snake-tag">Outside the portal</span></li>
+            <li class="snake-node arr-r is-outside">Check Slack<span class="snake-tag">Outside the portal</span></li>
+            <li class="snake-node arr-d is-outside">Calls<span class="snake-tag">Outside the portal</span></li>
+            <li class="snake-node arr-l is-portal">Pipeline applications</li>
+            <li class="snake-node arr-l is-portal">Pending applications</li>
+            <li class="snake-node arr-l is-portal">Applications in review</li>
+            <li class="snake-node is-portal">Rejected applications</li>
+          </ol>
+          <div class="flow-legend">
+            <span class="legend-item"><span class="legend-swatch is-portal"></span>Inside the CX Portal</span>
+            <span class="legend-item"><span class="legend-swatch is-outside"></span>Outside the product</span>
+          </div>
+        </figure>
+
+        <blockquote class="pull-callout reveal">
+          <p>The problem was not that information was missing.</p>
+          <p class="pull-callout-strong">It was spread across tools and screens, so the team had to piece their day together before they could start on it.</p>
+        </blockquote>
       </div>
     </section>
 
-    <!-- Other Features -->
-    <section class="project-section other-features-section">
+    <!-- ============================== 03 HOW IT WORKS ============================== -->
+    <section class="project-section" id="workflow">
       <div class="section-content">
-        <h2>Other Features I Worked On</h2>
-        <p>
-          Before focusing on the dashboard, I designed several core features for the Clearisk platform. 
-          These experiences helped me understand the product ecosystem and user workflows deeply, which 
-          became invaluable context for the dashboard design.
-        </p>
-        <div class="features-grid">
-          <div class="feature-card">
-            <div class="feature-icon">01</div>
-            <h3 class="feature-title">Onboarding</h3>
-            <p class="feature-desc">Streamlined the account setup flow - Client + CX</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">02</div>
-            <h3 class="feature-title">Subscriptions</h3>
-            <p class="feature-desc">Subscription management system</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">03</div>
-            <h3 class="feature-title">Documents & Agreements</h3>
-            <p class="feature-desc">Digital contract management & workflows</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">04</div>
-            <h3 class="feature-title">Client Portal</h3>
-            <p class="feature-desc">Self-service portal for individual clients and client companies to manage their accounts</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">05</div>
-            <h3 class="feature-title">Roles & Permissions</h3>
-            <p class="feature-desc">Admin portal for access control and permission management feature</p>
-          </div>
+        <span class="section-kicker"><span class="kicker-num">03</span> / Understanding the work</span>
+        <h2>Before designing the dashboard, I needed to understand how the CX team actually worked.</h2>
+        <p class="reveal">Rather than starting with a collection of dashboard widgets, I first mapped the existing workflow. The goal was to understand:</p>
+
+        <ul class="question-list seq reveal">
+          <li>What happens when an application enters the workflow?</li>
+          <li>What information does the CX team need at each stage?</li>
+          <li>Where does work move outside the product?</li>
+          <li>What requires follow-up?</li>
+          <li>How do users know what needs attention?</li>
+          <li>What information do they need before taking action?</li>
+        </ul>
+      </div>
+
+      <!-- IMG-05-EXISTING-CX-PROCESS -->
+      <figure class="artifact bleed reveal">
+        <div class="media-placeholder is-wide" data-slot="IMG-05-EXISTING-CX-PROCESS">
+          <span class="media-placeholder-type">IMG 05 · Existing CX process</span>
+          <span class="media-placeholder-desc">Your existing process / flow diagram. Large and readable.</span>
         </div>
+        <figcaption class="artifact-caption"><span class="artifact-why">Why it matters</span>Mapping the current process first meant the dashboard would be shaped by the work itself, not by a list of possible widgets.</figcaption>
+      </figure>
+
+      <div class="section-content">
+        <h3 class="sub-display reveal">Where the workflow breaks</h3>
+
+        <!-- IMG-06-WORKFLOW-EXTERNAL-TOOLS (built in SVG)
+             Structure is conceptual. Edit labels to follow your supplied workflow artifact. -->
+        <figure class="branch-diagram reveal" data-slot="IMG-06-WORKFLOW-EXTERNAL-TOOLS">
+          <svg viewBox="0 0 640 560" role="img" aria-labelledby="branchTitle">
+            <title id="branchTitle">Workflow showing a question leaving the CX Portal through Slack or email before returning to the portal for action</title>
+            <rect class="bd-zone" x="150" y="12" width="340" height="232" rx="14" />
+            <text class="bd-zone-label" x="166" y="38">INSIDE CX PORTAL</text>
+            <rect class="bd-zone is-outside" x="20" y="272" width="600" height="104" rx="14" />
+            <text class="bd-zone-label is-outside" x="36" y="298">OUTSIDE THE PRODUCT</text>
+            <rect class="bd-zone" x="150" y="404" width="340" height="144" rx="14" />
+            <text class="bd-zone-label" x="166" y="430">BACK IN CX PORTAL</text>
+
+            <path class="bd-line draw" d="M320 92 V118" pathLength="1" />
+            <path class="bd-line draw" d="M320 162 V188" pathLength="1" />
+            <path class="bd-line draw is-outside" d="M300 232 C 260 270, 200 280, 180 304" pathLength="1" />
+            <path class="bd-line draw is-outside" d="M340 232 C 380 270, 440 280, 460 304" pathLength="1" />
+            <path class="bd-line draw is-outside" d="M180 348 C 200 380, 270 400, 300 452" pathLength="1" />
+            <path class="bd-line draw is-outside" d="M460 348 C 440 380, 370 400, 340 452" pathLength="1" />
+            <path class="bd-line draw" d="M320 496 V506" pathLength="1" />
+
+            <g class="bd-node"><rect x="230" y="52" width="180" height="40" rx="8" /><text x="320" y="77">Application</text></g>
+            <g class="bd-node"><rect x="230" y="122" width="180" height="40" rx="8" /><text x="320" y="147">Review</text></g>
+            <g class="bd-node is-accent"><rect x="210" y="192" width="220" height="40" rx="8" /><text x="320" y="217">Question / follow-up</text></g>
+            <g class="bd-node is-outside"><rect x="100" y="306" width="160" height="42" rx="8" /><text x="180" y="332">Slack</text></g>
+            <g class="bd-node is-outside"><rect x="380" y="306" width="160" height="42" rx="8" /><text x="460" y="332">Email</text></g>
+            <g class="bd-node"><rect x="230" y="452" width="180" height="40" rx="8" /><text x="320" y="477">CX Portal</text></g>
+            <g class="bd-node is-dark"><rect x="230" y="506" width="180" height="34" rx="8" /><text x="320" y="528">Action</text></g>
+          </svg>
+        </figure>
+
+        <p class="reveal">The product was only one part of the workflow.</p>
+        <p class="lede reveal">Understanding the surrounding coordination became important to understanding what the dashboard needed to solve.</p>
       </div>
     </section>
 
-    <!-- Design Process Overview -->
-    <section class="project-section design-process-overview">
-      <div class="section-content">
-        <h2>Dashboard - Design Process</h2>
-        <p>
-          My approach to designing the dashboard followed a user-centered methodology, ensuring each decision 
-          was backed by research and validated with real users.
-        </p>
-      </div>
-      
-      <div class="process-flow">
-        <div class="process-stage">
-          <div class="stage-number">01</div>
-          <div class="stage-content">
-            <h3>Discover</h3>
-            <div class="stage-activities">
-              <span class="activity">Stakeholder interviews</span>
-              <span class="activity">Product understanding</span>
-              <span class="activity">Competitor research</span>
-              <span class="activity">Domain learning</span>
+    <!-- ============================== RESEARCH GROUP ============================== -->
+    <div class="section-group" id="research-group">
+
+      <!-- 04 PROCESS -->
+      <section class="project-section" id="process">
+        <div class="section-content">
+          <span class="section-kicker"><span class="kicker-num">04</span> / Process</span>
+          <h2>From understanding the workflow to designing the dashboard</h2>
+
+          <ol class="process-strip seq reveal" aria-label="Design process">
+            <li><span class="process-num">01</span>Research</li>
+            <li><span class="process-num">02</span>Synthesis</li>
+            <li><span class="process-num">03</span>Information architecture</li>
+            <li><span class="process-num">04</span>User flows</li>
+            <li><span class="process-num">05</span>Wireframes</li>
+            <li><span class="process-num">06</span>UI design</li>
+            <li><span class="process-num">07</span>Iteration / prototype</li>
+          </ol>
+        </div>
+
+        <!-- IMG-07-DESIGN-PROCESS -->
+        <figure class="artifact bleed reveal">
+          <div class="media-placeholder is-wide" data-slot="IMG-07-DESIGN-PROCESS">
+            <span class="media-placeholder-type">IMG 07 · Design process</span>
+            <span class="media-placeholder-desc">Your existing design process diagram.</span>
+          </div>
+        </figure>
+
+        <div class="section-content">
+          <p class="reveal">I worked from the existing workflow outward.</p>
+          <p class="reveal">Research helped me understand the team's needs and behaviours. I then translated those patterns into an information architecture and user flows before exploring the dashboard visually.</p>
+        </div>
+      </section>
+
+      <!-- 05 RESEARCH -->
+      <section class="project-section" id="research">
+        <div class="section-content">
+          <span class="section-kicker"><span class="kicker-num">05</span> / Research</span>
+          <h2 class="display-heading">I started with the people doing the work.</h2>
+          <p class="reveal">The first stage was understanding the CX team's day-to-day work and the information they relied on to manage applications.</p>
+          <p class="reveal">I used research and interviews to understand how users currently navigated their work, what information they checked repeatedly and where coordination happened outside the product.</p>
+        </div>
+
+        <!-- IMG-08-RESEARCH-OVERVIEW -->
+        <figure class="artifact bleed reveal">
+          <div class="media-placeholder is-wide" data-slot="IMG-08-RESEARCH-OVERVIEW">
+            <span class="media-placeholder-type">IMG 08 · Research overview</span>
+            <span class="media-placeholder-desc">Your research method / overview visual. Methods: [PLACEHOLDER]</span>
+          </div>
+        </figure>
+
+        <div class="section-content">
+          <div class="risk-subheading">Research questions</div>
+          <ol class="rq-grid seq reveal">
+            <li><span class="rq-num">Q1</span>What does a typical CX workflow look like?</li>
+            <li><span class="rq-num">Q2</span>What information needs to be visible immediately?</li>
+            <li><span class="rq-num">Q3</span>What causes users to leave the product?</li>
+            <li><span class="rq-num">Q4</span>What tasks require follow-up?</li>
+            <li><span class="rq-num">Q5</span>How do users understand application status?</li>
+            <li><span class="rq-num">Q6</span>What would make a dashboard genuinely useful during the working day?</li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- 06 INTERVIEWS -->
+      <section class="project-section" id="interviews">
+        <div class="section-content">
+          <span class="section-kicker"><span class="kicker-num">06</span> / Interviews</span>
+          <h2>Listening to the people behind the workflow</h2>
+          <p class="reveal">I used interviews to understand the workflow from the perspective of the people using it.</p>
+          <p class="reveal">Rather than asking only what users wanted on a dashboard, I focused on what they were trying to accomplish, where they encountered friction and how they currently kept track of work.</p>
+        </div>
+
+        <!-- IMG-09-INTERVIEW-TABLE -->
+        <figure class="artifact bleed reveal">
+          <div class="media-placeholder is-table" data-slot="IMG-09-INTERVIEW-TABLE">
+            <span class="media-placeholder-type">IMG 09 · Interview table</span>
+            <span class="media-placeholder-desc">Your existing interview table, unedited. Click to zoom once replaced.</span>
+          </div>
+          <figcaption class="artifact-caption"><span class="artifact-why">Why it matters</span>This is the raw record the rest of the project traces back to. Every theme, requirement and layout decision that follows started here.</figcaption>
+        </figure>
+
+        <div class="section-content">
+          <h3 class="sub-display reveal">From individual responses to recurring patterns</h3>
+          <p class="reveal">The interview responses were then analysed to identify recurring behaviours, needs and friction points.</p>
+        </div>
+
+        <!-- IMG-10-QUALITATIVE-RESEARCH-TABLE -->
+        <figure class="artifact bleed reveal">
+          <div class="media-placeholder is-table" data-slot="IMG-10-QUALITATIVE-RESEARCH-TABLE">
+            <span class="media-placeholder-type">IMG 10 · Qualitative research table</span>
+            <span class="media-placeholder-desc">Your existing qualitative research table. Large and readable.</span>
+          </div>
+          <figcaption class="artifact-caption"><span class="artifact-why">Why it matters</span>Coding responses side by side separated what one person mentioned from what came up across the team.</figcaption>
+        </figure>
+      </section>
+
+      <!-- 07 WHAT I HEARD -->
+      <section class="project-section" id="findings">
+        <div class="section-content">
+          <span class="section-kicker"><span class="kicker-num">07</span> / Synthesis</span>
+          <h2>The research pointed toward a few recurring needs.</h2>
+
+          <!-- CONTENT SLOT: RESEARCH FINDINGS. Replace with the actual themes from your qualitative research table. -->
+          <div class="theme-cards seq">
+            <article class="theme-card">
+              <span class="theme-num">01</span>
+              <h3>[ADD ACTUAL RESEARCH THEME]</h3>
+              <p>[Short explanation based on the research]</p>
+            </article>
+            <article class="theme-card">
+              <span class="theme-num">02</span>
+              <h3>[ADD ACTUAL RESEARCH THEME]</h3>
+              <p>[Short explanation based on the research]</p>
+            </article>
+            <article class="theme-card">
+              <span class="theme-num">03</span>
+              <h3>[ADD ACTUAL RESEARCH THEME]</h3>
+              <p>[Short explanation based on the research]</p>
+            </article>
+            <article class="theme-card">
+              <span class="theme-num">04</span>
+              <h3>[ADD ACTUAL RESEARCH THEME]</h3>
+              <p>[Short explanation based on the research]</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 08 PERSONA -->
+      <section class="project-section" id="persona">
+        <div class="section-content">
+          <span class="section-kicker"><span class="kicker-num">08</span> / User</span>
+          <h2 class="display-heading">Who are we designing for?</h2>
+          <p class="reveal">The research was translated into a persona representing the needs, behaviours and frustrations of the CX user.</p>
+        </div>
+
+        <!-- IMG-11-PERSONA -->
+        <figure class="artifact bleed reveal">
+          <div class="media-placeholder is-wide" data-slot="IMG-11-PERSONA">
+            <span class="media-placeholder-type">IMG 11 · Persona</span>
+            <span class="media-placeholder-desc">Your actual persona, unedited. Displayed large.</span>
+          </div>
+          <figcaption class="artifact-caption"><span class="artifact-why">Why it matters</span>The persona kept every later decision tied to one working context instead of an imagined average user.</figcaption>
+        </figure>
+
+        <div class="section-content">
+          <p class="lede reveal">The persona helped keep the dashboard focused on the user's working context rather than turning it into a generic analytics dashboard.</p>
+
+          <!-- IMG-12-PERSONA-TO-DESIGN-NEEDS (built in HTML/CSS) -->
+          <figure class="funnel reveal" data-slot="IMG-12-PERSONA-TO-DESIGN-NEEDS">
+            <div class="funnel-step is-dark">Persona</div>
+            <span class="funnel-arrow" aria-hidden="true"></span>
+            <div class="funnel-split seq">
+              <span>Goals</span>
+              <span>Pain points</span>
+              <span>Behaviours</span>
+            </div>
+            <span class="funnel-arrow" aria-hidden="true"></span>
+            <div class="funnel-step">Design needs</div>
+            <span class="funnel-arrow" aria-hidden="true"></span>
+            <div class="funnel-step is-accent">Dashboard requirements</div>
+          </figure>
+        </div>
+      </section>
+
+      <!-- 09 AFFINITY MAP -->
+      <section class="project-section" id="affinity">
+        <div class="section-content">
+          <span class="section-kicker"><span class="kicker-num">09</span> / Synthesis</span>
+          <h2>Finding patterns across the research</h2>
+          <p class="reveal">I grouped observations from the research into themes to understand which problems were isolated and which patterns appeared repeatedly.</p>
+          <p class="reveal">This helped move from individual comments to broader design requirements.</p>
+        </div>
+
+        <!-- IMG-13-FULL-AFFINITY-MAP -->
+        <figure class="artifact bleed reveal">
+          <div class="media-placeholder is-map" data-slot="IMG-13-FULL-AFFINITY-MAP">
+            <span class="media-placeholder-type">IMG 13 · Full affinity map</span>
+            <span class="media-placeholder-desc">Your full affinity map. Click to zoom once replaced.</span>
+          </div>
+          <figcaption class="artifact-caption"><span class="artifact-why">Why it matters</span>Clustering made the repeated patterns visible, which is what turned scattered observations into requirements.</figcaption>
+        </figure>
+
+        <div class="section-content">
+          <h3 class="sub-display reveal">From observations to design requirements</h3>
+
+          <!-- IMG-14-AFFINITY-THEMES (built in HTML/CSS). Replace bracketed text with actual clusters. -->
+          <figure class="trace-table reveal" data-slot="IMG-14-AFFINITY-THEMES">
+            <div class="trace-head" aria-hidden="true">
+              <span>Cluster</span><span>Insight</span><span>Design requirement</span>
+            </div>
+            <div class="trace-rows seq">
+              <div class="trace-row">
+                <span class="trace-cell">[ACTUAL CLUSTER]</span>
+                <span class="trace-cell">[ACTUAL INSIGHT]</span>
+                <span class="trace-cell is-req">[DESIGN REQUIREMENT]</span>
+              </div>
+              <div class="trace-row">
+                <span class="trace-cell">[ACTUAL CLUSTER]</span>
+                <span class="trace-cell">[ACTUAL INSIGHT]</span>
+                <span class="trace-cell is-req">[DESIGN REQUIREMENT]</span>
+              </div>
+              <div class="trace-row">
+                <span class="trace-cell">[ACTUAL CLUSTER]</span>
+                <span class="trace-cell">[ACTUAL INSIGHT]</span>
+                <span class="trace-cell is-req">[DESIGN REQUIREMENT]</span>
+              </div>
+            </div>
+          </figure>
+
+          <div class="transition-block reveal">
+            <p>The affinity map helped translate the research into a clearer question:</p>
+            <p class="transition-question">What does the CX team need to see when they first enter the product?</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ============================== STRUCTURE GROUP ============================== -->
+    <div class="section-group" id="structure-group">
+
+      <!-- 10 INFORMATION ARCHITECTURE -->
+      <section class="project-section" id="ia">
+        <div class="section-content">
+          <span class="section-kicker"><span class="kicker-num">10</span> / Structure</span>
+          <h2 class="display-heading">Turning research into structure</h2>
+          <p class="reveal">The dashboard needed to make the user's work easier to understand before asking them to navigate deeper into the product.</p>
+          <p class="reveal">I used the research findings to define the information architecture and decide what belonged at the dashboard level versus inside an individual application.</p>
+        </div>
+
+        <!-- IMG-15-INFORMATION-ARCHITECTURE -->
+        <figure class="artifact bleed reveal">
+          <div class="media-placeholder is-wide" data-slot="IMG-15-INFORMATION-ARCHITECTURE">
+            <span class="media-placeholder-type">IMG 15 · Information architecture</span>
+            <span class="media-placeholder-desc">Your existing IA diagram. Large and readable.</span>
+          </div>
+          <figcaption class="artifact-caption"><span class="artifact-why">Why it matters</span>The IA drew the line between what belongs on the dashboard and what belongs inside an application.</figcaption>
+        </figure>
+
+        <div class="section-content">
+          <h3 class="sub-display reveal">The dashboard needed to answer three questions</h3>
+          <div class="three-questions seq">
+            <div class="tq-card"><span class="tq-num">01</span><span class="tq-text">What needs my attention?</span></div>
+            <div class="tq-card"><span class="tq-num">02</span><span class="tq-text">Where does my work stand?</span></div>
+            <div class="tq-card"><span class="tq-num">03</span><span class="tq-text">What should I do next?</span></div>
+          </div>
+          <p class="lede reveal">These questions became the basis for the dashboard hierarchy.</p>
+
+          <div class="risk-subheading">What the dashboard needed to show</div>
+          <div class="needs-grid seq">
+            <div class="need-item"><i class="ti ti-list-check" aria-hidden="true"></i><div><h4>Tasks for the day</h4><p>Everything assigned to the user, in one place, as soon as they log in.</p><span class="need-where"><i class="ti ti-arrow-right" aria-hidden="true"></i>Today's progress</span></div></div>
+            <div class="need-item"><i class="ti ti-progress" aria-hidden="true"></i><div><h4>Work left</h4><p>How much is still pending at any point in the day.</p><span class="need-where"><i class="ti ti-arrow-right" aria-hidden="true"></i>Today's progress</span></div></div>
+            <div class="need-item"><i class="ti ti-bell-ringing" aria-hidden="true"></i><div><h4>Actions to take</h4><p>Applications waiting on the user, with a direct way in.</p><span class="need-where"><i class="ti ti-arrow-right" aria-hidden="true"></i>Action required</span></div></div>
+            <div class="need-item"><i class="ti ti-sparkles" aria-hidden="true"></i><div><h4>Newly assigned tasks</h4><p>New work surfaced as it arrives, without an email to announce it.</p><span class="need-where"><i class="ti ti-arrow-right" aria-hidden="true"></i>Action required · New</span></div></div>
+            <div class="need-item"><i class="ti ti-users" aria-hidden="true"></i><div><h4>Who's in the workflow</h4><p>The people the user needs to work with to review and progress an application.</p><span class="need-where"><i class="ti ti-arrow-right" aria-hidden="true"></i>Team today</span></div></div>
+            <div class="need-item"><i class="ti ti-calendar-off" aria-hidden="true"></i><div><h4>Who's present or on leave</h4><p>So if someone in a role is off, another person can pick up their applications.</p><span class="need-where"><i class="ti ti-arrow-right" aria-hidden="true"></i>Team today · Reassign</span></div></div>
+            <div class="need-item"><i class="ti ti-circle-check" aria-hidden="true"></i><div><h4>Completed work</h4><p>A clear sign when applications are finished, so progress is visible.</p><span class="need-where"><i class="ti ti-arrow-right" aria-hidden="true"></i>Activity · Completed</span></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 11 USER FLOW -->
+      <section class="project-section" id="user-flow">
+        <div class="section-content">
+          <span class="section-kicker"><span class="kicker-num">11</span> / User flow</span>
+          <h2>Designing the path from overview to action</h2>
+          <p class="reveal">Once the information architecture was established, I mapped the key flow through the dashboard.</p>
+          <p class="reveal">The goal was to create a clear path from seeing a piece of work to taking action on it.</p>
+        </div>
+
+        <!-- IMG-16-PRIMARY-USER-FLOW -->
+        <figure class="artifact bleed reveal">
+          <div class="media-placeholder is-wide" data-slot="IMG-16-PRIMARY-USER-FLOW">
+            <span class="media-placeholder-type">IMG 16 · Primary user flow</span>
+            <span class="media-placeholder-desc">Your existing user-flow diagram.</span>
+          </div>
+        </figure>
+
+        <div class="section-content">
+          <h3 class="sub-display reveal">The core interaction</h3>
+
+          <!-- CORE INTERACTION FLOW (built in HTML/CSS, animated). Swap labels for your flow terminology. -->
+          <figure class="core-flow" data-core-flow>
+            <div class="core-flow-track" aria-hidden="true"><span class="core-flow-fill"></span></div>
+            <ol class="core-flow-steps">
+              <li><span class="core-dot"></span>Dashboard</li>
+              <li><span class="core-dot"></span>See task / action required</li>
+              <li><span class="core-dot"></span>Open application</li>
+              <li><span class="core-dot"></span>Review</li>
+              <li><span class="core-dot"></span>Approve / reject</li>
+              <li><span class="core-dot"></span>Marked complete</li>
+            </ol>
+          </figure>
+        </div>
+
+        <!-- IMG-17-DETAILED-USER-FLOW -->
+        <figure class="artifact bleed reveal">
+          <div class="media-placeholder is-map" data-slot="IMG-17-DETAILED-USER-FLOW">
+            <span class="media-placeholder-type">IMG 17 · Detailed user flow</span>
+            <span class="media-placeholder-desc">Full existing flow diagram. Large enough to inspect.</span>
+          </div>
+          <figcaption class="artifact-caption"><span class="artifact-why">Why it matters</span>The full flow shows every branch the simplified path above leaves out, so edge cases were designed for, not discovered later.</figcaption>
+        </figure>
+      </section>
+    </div>
+
+    <!-- ============================== EXPLORATION GROUP ============================== -->
+    <div class="section-group" id="exploration-group">
+
+      <!-- 12 WIREFRAMES -->
+      <section class="project-section" id="wireframes">
+        <div class="section-content">
+          <span class="section-kicker"><span class="kicker-num">12</span> / Exploration</span>
+          <h2 class="display-heading">Before visual polish, I tested the structure.</h2>
+          <p class="reveal">I moved into low-fidelity wireframes to explore hierarchy, information density and how different pieces of information could work together.</p>
+          <p class="reveal">At this stage, the focus was not on colour or visual polish. It was about answering:</p>
+
+          <ul class="question-list is-compact seq reveal">
+            <li>What should users see first?</li>
+            <li>What deserves the most attention?</li>
+            <li>How much information is useful at a glance?</li>
+            <li>How should users move from overview information into actual work?</li>
+          </ul>
+        </div>
+
+        <div class="wire-stack bleed">
+          <!-- IMG-18-WIREFRAME-01 -->
+          <figure class="wire-item reveal">
+            <div class="media-placeholder is-wide" data-slot="IMG-18-WIREFRAME-01">
+              <span class="media-placeholder-type">IMG 18 · Wireframe 01</span>
+              <span class="media-placeholder-desc">First wireframe.</span>
+            </div>
+            <figcaption class="media-caption">Early exploration of the dashboard structure.</figcaption>
+          </figure>
+          <!-- IMG-19-WIREFRAME-02 -->
+          <figure class="wire-item reveal">
+            <div class="media-placeholder is-wide" data-slot="IMG-19-WIREFRAME-02">
+              <span class="media-placeholder-type">IMG 19 · Wireframe 02</span>
+              <span class="media-placeholder-desc">Second wireframe.</span>
+            </div>
+            <figcaption class="media-caption">Exploring the relationship between overview information and actionable work.</figcaption>
+          </figure>
+          <!-- IMG-20-WIREFRAME-03 -->
+          <figure class="wire-item reveal">
+            <div class="media-placeholder is-wide" data-slot="IMG-20-WIREFRAME-03">
+              <span class="media-placeholder-type">IMG 20 · Wireframe 03</span>
+              <span class="media-placeholder-desc">Third wireframe.</span>
+            </div>
+            <figcaption class="media-caption">Refining hierarchy and information density.</figcaption>
+          </figure>
+        </div>
+
+        <!-- IMG-21-WIREFRAME-COMPARISON -->
+        <figure class="wire-compare bleed reveal" data-slot="IMG-21-WIREFRAME-COMPARISON">
+          <div class="wire-compare-row seq">
+            <div class="wire-compare-item">
+              <span class="wire-compare-label">01 · Early</span>
+              <div class="media-placeholder is-thumb" data-slot="IMG-21A-WIREFRAME-EARLY"><span class="media-placeholder-type">IMG 21A</span></div>
+            </div>
+            <div class="wire-compare-item">
+              <span class="wire-compare-label">02 · Iteration</span>
+              <div class="media-placeholder is-thumb" data-slot="IMG-21B-WIREFRAME-ITERATION"><span class="media-placeholder-type">IMG 21B</span></div>
+            </div>
+            <div class="wire-compare-item">
+              <span class="wire-compare-label">03 · Refined</span>
+              <div class="media-placeholder is-thumb" data-slot="IMG-21C-WIREFRAME-REFINED"><span class="media-placeholder-type">IMG 21C</span></div>
+            </div>
+            <div class="wire-compare-item">
+              <span class="wire-compare-label is-final">04 · Final structure</span>
+              <div class="media-placeholder is-thumb" data-slot="IMG-21D-WIREFRAME-FINAL"><span class="media-placeholder-type">IMG 21D</span></div>
             </div>
           </div>
-          <div class="stage-arrow">→</div>
-        </div>
+          <figcaption class="media-caption">Wireframes in chronological order.</figcaption>
+        </figure>
 
-        <div class="process-stage">
-          <div class="stage-number">02</div>
-          <div class="stage-content">
-            <h3>Research</h3>
-            <div class="stage-activities">
-              <span class="activity">User interviews (5 participants)</span>
-              <span class="activity">Role mapping</span>
-              <span class="activity">Workflow analysis</span>
-              <span class="activity">Pain point identification</span>
+        <div class="section-content">
+          <h3 class="sub-display reveal">What changed through iteration</h3>
+
+          <!-- Fill these from the actual changes visible in your wireframes. Add or remove blocks as needed. -->
+          <div class="change-block reveal">
+            <div class="change-col">
+              <span class="change-label">Before</span>
+              <div class="media-placeholder is-thumb" data-slot="IMG-21E-CHANGE-01-BEFORE"><span class="media-placeholder-type">Before image</span></div>
+            </div>
+            <div class="change-col">
+              <span class="change-label">What I changed</span>
+              <p>[PLACEHOLDER]</p>
+            </div>
+            <div class="change-col">
+              <span class="change-label is-accent">Why</span>
+              <p>[PLACEHOLDER]</p>
             </div>
           </div>
-          <div class="stage-arrow">→</div>
-        </div>
 
-        <div class="process-stage">
-          <div class="stage-number">03</div>
-          <div class="stage-content">
-            <h3>Synthesize</h3>
-            <div class="stage-activities">
-              <span class="activity">Persona creation</span>
-              <span class="activity">Empathy mapping</span>
-              <span class="activity">Information architecture</span>
-              <span class="activity">User needs prioritization</span>
+          <div class="change-block reveal">
+            <div class="change-col">
+              <span class="change-label">Before</span>
+              <div class="media-placeholder is-thumb" data-slot="IMG-21F-CHANGE-02-BEFORE"><span class="media-placeholder-type">Before image</span></div>
             </div>
-          </div>
-          <div class="stage-arrow">→</div>
-        </div>
-
-        <div class="process-stage">
-          <div class="stage-number">04</div>
-          <div class="stage-content">
-            <h3>Design</h3>
-            <div class="stage-activities">
-              <span class="activity">Wireframing</span>
-              <span class="activity">Layout design (Z-pattern)</span>
-              <span class="activity">Role-based customization</span>
-              <span class="activity">Visual design</span>
+            <div class="change-col">
+              <span class="change-label">What I changed</span>
+              <p>[PLACEHOLDER]</p>
             </div>
-          </div>
-          <div class="stage-arrow">→</div>
-        </div>
-
-        <div class="process-stage">
-          <div class="stage-number">05</div>
-          <div class="stage-content">
-            <h3>Validate</h3>
-            <div class="stage-activities">
-              <span class="activity">Prototype testing</span>
-              <span class="activity">Feedback collection</span>
-              <span class="activity">Iteration</span>
-              <span class="activity">Final refinement</span>
+            <div class="change-col">
+              <span class="change-label is-accent">Why</span>
+              <p>[PLACEHOLDER]</p>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Problem -->
-    <section class="project-section problem-section">
-      <div class="section-content">
-        <h2>The Problem</h2>
-        <p>
-          Users were relying heavily on external tools like email and Slack to manage their work. There was no centralized 
-          place to get an overview of tasks, priorities, or pending work.
-        </p>
-        <div class="problem-list">
-          <div class="problem-item">
-            <div class="problem-number">01</div>
-            <div class="problem-content">
-              <h3>Low Application Engagement</h3>
-              <p>Heavy reliance on email, Slack, and other platforms instead of the main application</p>
+      <!-- 13 CONCEPT EXPLORATION -->
+      <section class="project-section" id="concepts">
+        <div class="section-content">
+          <span class="section-kicker"><span class="kicker-num">13</span> / Concept exploration</span>
+          <h2>Exploring how the dashboard could come together</h2>
+          <p class="reveal">Once the structure was established, I explored different ways of presenting the information while keeping the hierarchy focused on the user's work.</p>
+        </div>
+
+        <div class="concept-pair bleed">
+          <!-- IMG-22-EARLY-DASHBOARD-CONCEPT -->
+          <figure class="reveal">
+            <div class="media-placeholder is-wide" data-slot="IMG-22-EARLY-DASHBOARD-CONCEPT">
+              <span class="media-placeholder-type">IMG 22 · Initial screen</span>
+              <span class="media-placeholder-desc">The first dashboard screen: Overview, Action Required, Activity Timeline and Team.</span>
             </div>
-          </div>
-          <div class="problem-item">
-            <div class="problem-number">02</div>
-            <div class="problem-content">
-              <h3>No Overview or Prioritization</h3>
-              <p>Employees couldn't plan their day or prioritize tasks at the beginning of each workday</p>
+            <figcaption class="media-caption">Concept A · the initial screen</figcaption>
+          </figure>
+          <!-- IMG-23-SECOND-DASHBOARD-CONCEPT -->
+          <figure class="reveal">
+            <div class="media-placeholder is-wide" data-slot="IMG-23-SECOND-DASHBOARD-CONCEPT">
+              <span class="media-placeholder-type">IMG 23 · Concept B</span>
+              <span class="media-placeholder-desc">Second concept.</span>
             </div>
+            <figcaption class="media-caption">Concept B</figcaption>
+          </figure>
+        </div>
+
+        <div class="section-content">
+          <h3 class="sub-display reveal">The initial screen</h3>
+          <p class="reveal">The first version set out the four things the team needed to see when they logged in.</p>
+          <div class="anatomy-grid seq">
+            <div class="anatomy-item"><span class="anatomy-num">01</span><h4>Overview</h4><p>Total, pending and approved requests, split by request type (SSI and Withdrawal).</p></div>
+            <div class="anatomy-item"><span class="anatomy-num">02</span><h4>Action Required</h4><p>Requests waiting on the user, with client, request type, date and a direct Review link.</p></div>
+            <div class="anatomy-item"><span class="anatomy-num">03</span><h4>Activity Timeline</h4><p>Submissions, approvals and comments as they happen, filterable by day, week or month.</p></div>
+            <div class="anatomy-item"><span class="anatomy-num">04</span><h4>Team</h4><p>Who in the workflow is on leave today, with their role, so work can be picked up by someone else.</p></div>
           </div>
-          <div class="problem-item">
-            <div class="problem-number">03</div>
-            <div class="problem-content">
-              <h3>Information Overload Risk</h3>
-              <p>Different roles needed customized data without being overwhelmed by irrelevant information</p>
+        </div>
+
+        <!-- IMG-24-CHOSEN-DIRECTION -->
+        <figure class="artifact bleed reveal chosen">
+          <span class="chosen-tag">Chosen direction</span>
+          <div class="media-placeholder is-hero" data-slot="IMG-24-CHOSEN-DIRECTION">
+            <span class="media-placeholder-type">IMG 24 · Chosen direction</span>
+            <span class="media-placeholder-desc">The concept taken forward.</span>
+          </div>
+        </figure>
+
+        <!-- IMG-25-CONCEPT-COMPARISON -->
+        <figure class="concept-compare bleed reveal" data-slot="IMG-25-CONCEPT-COMPARISON">
+          <div class="concept-compare-row">
+            <div class="media-placeholder is-thumb" data-slot="IMG-25A-CONCEPT-A"><span class="media-placeholder-type">Concept A</span></div>
+            <div class="media-placeholder is-thumb" data-slot="IMG-25B-CONCEPT-B"><span class="media-placeholder-type">Concept B</span></div>
+            <div class="media-placeholder is-thumb is-chosen" data-slot="IMG-25C-CHOSEN"><span class="media-placeholder-type">Chosen</span></div>
+          </div>
+        </figure>
+
+        <div class="section-content">
+          <!-- Trade-offs visible in the work. Do not cite testing unless real evidence exists. -->
+          <div class="tradeoff-table reveal" role="table" aria-label="Concept trade-offs">
+            <div class="tradeoff-row tradeoff-head" role="row">
+              <span role="columnheader">Trade-off</span>
+              <span role="columnheader">Concept A</span>
+              <span role="columnheader">Concept B</span>
+              <span role="columnheader">Chosen</span>
             </div>
+            <div class="tradeoff-row" role="row"><span role="rowheader">Hierarchy</span><span role="cell">[PLACEHOLDER]</span><span role="cell">[PLACEHOLDER]</span><span role="cell">[PLACEHOLDER]</span></div>
+            <div class="tradeoff-row" role="row"><span role="rowheader">Information density</span><span role="cell">[PLACEHOLDER]</span><span role="cell">[PLACEHOLDER]</span><span role="cell">[PLACEHOLDER]</span></div>
+            <div class="tradeoff-row" role="row"><span role="rowheader">Prioritisation</span><span role="cell">[PLACEHOLDER]</span><span role="cell">[PLACEHOLDER]</span><span role="cell">[PLACEHOLDER]</span></div>
+            <div class="tradeoff-row" role="row"><span role="rowheader">Navigation</span><span role="cell">[PLACEHOLDER]</span><span role="cell">[PLACEHOLDER]</span><span role="cell">[PLACEHOLDER]</span></div>
+            <div class="tradeoff-row" role="row"><span role="rowheader">Visual clarity</span><span role="cell">[PLACEHOLDER]</span><span role="cell">[PLACEHOLDER]</span><span role="cell">[PLACEHOLDER]</span></div>
           </div>
-          <div class="problem-item">
-            <div class="problem-number">04</div>
-            <div class="problem-content">
-              <h3>Inefficient Navigation</h3>
-              <p>No quick access to areas requiring attention—users had to navigate through multiple menus</p>
+        </div>
+      </section>
+    </div>
+
+    <!-- ============================== SOLUTION GROUP ============================== -->
+    <div class="section-group" id="solution-group">
+
+      <!-- 14 FINAL DESIGN -->
+      <section class="project-section final-section" id="final">
+        <div class="section-content">
+          <span class="section-kicker is-solution"><span class="kicker-num">14</span> / Solution</span>
+          <h2 class="display-heading">A dashboard built around the work that needs attention</h2>
+          <p class="lede reveal">The final dashboard brings the most relevant information into one place, allowing CX users to understand their workload before opening individual applications.</p>
+        </div>
+
+        <!-- IMG-26-FINAL-DASHBOARD-FULL-VIEW -->
+        <figure class="final-hero reveal">
+          <div class="cxd-frame" data-dash-clone></div>
+          <figcaption class="illustrative-note">
+            <i class="ti ti-info-circle" aria-hidden="true"></i>
+            Representative data (NDA).
+          </figcaption>
+        </figure>
+
+        <div class="feature-rows">
+          <!-- IMG-27-DASHBOARD-OVERVIEW -->
+          <article class="feature-row reveal">
+            <div class="feature-media">
+              <div class="cxd-solo cxd-scope" data-slot="IMG-27-DASHBOARD-OVERVIEW" data-clone-panel="progress"></div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Approach -->
-    <section class="project-section approach-section">
-      <div class="section-content">
-        <h2>My Approach</h2>
-        <p>
-          I started by deeply understanding the product, the different user roles, and their workflows.
-        </p>
-        <div class="approach-steps">
-          <div class="approach-step">
-            <div class="step-marker">01</div>
-            <div class="step-content">
-              <h3>Product Understanding</h3>
-              <p>Asked the internal team about different user groups, their connectivity/flow, and intersection points. Researched the domain and competitors online</p>
+            <div class="feature-text">
+              <span class="feature-num">01</span>
+              <h3>How much work is left</h3>
+              <p>A single progress bar shows how many of today's tasks are done and how many are left. Below it, every stage the team used to check separately (pipeline, pending, in review, rejected) sits in one row, next to what has been completed today.</p>
             </div>
-          </div>
-          <div class="approach-step">
-            <div class="step-marker">02</div>
-            <div class="step-content">
-              <h3>User Research</h3>
-              <p>Identified six major stakeholder roles and mapped their responsibilities, permissions, and workflows</p>
+          </article>
+
+          <!-- IMG-28-TASK-ACTION-AREA -->
+          <article class="feature-row is-flipped reveal">
+            <div class="feature-media">
+              <div class="cxd-solo cxd-scope" data-slot="IMG-28-TASK-ACTION-AREA" data-clone-panel="actions"></div>
             </div>
-          </div>
-          <div class="approach-step">
-            <div class="step-marker">03</div>
-            <div class="step-content">
-              <h3>User Interviews</h3>
-              <p>Conducted semi-structured interviews with one user from each major role (5 participants, 20 mins each, 10 open-ended questions)</p>
+            <div class="feature-text">
+              <span class="feature-num">02</span>
+              <h3>Actions and new tasks</h3>
+              <p>The full onboarding table had seven columns. On the dashboard, each row answers three questions instead: whose application is it, where is it in Onboarding, Compliance and Manager review, and who is it waiting on right now. New tasks, resubmissions and work that needs cover are tagged, and each row leads straight into the review.</p>
             </div>
-          </div>
-          <div class="approach-step">
-            <div class="step-marker">04</div>
-            <div class="step-content">
-              <h3>Analysis & Synthesis</h3>
-              <p>Created personas, empathy maps, and information architecture to understand user needs and pain points</p>
+          </article>
+
+          <!-- IMG-29-APPLICATION-LIST -->
+          <article class="feature-row reveal">
+            <div class="feature-media">
+              <div class="cxd-solo cxd-scope" data-slot="IMG-29-ACTIVITY-TIMELINE" data-clone-panel="activity"></div>
             </div>
-          </div>
-          <div class="approach-step">
-            <div class="step-marker">05</div>
-            <div class="step-content">
-              <h3>Design & Iteration</h3>
-              <p>Designed role-specific dashboards and the current workflow connectivity using iterations based on feedback</p>
+            <div class="feature-text">
+              <span class="feature-num">03</span>
+              <h3>Seeing work get done</h3>
+              <p>The activity feed records what has been completed, approved, assigned and reassigned through the day. Finished work gets a clear tick instead of quietly leaving the queue.</p>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
+          </article>
 
-    <!-- User Roles -->
-    <section class="project-section roles-section">
-      <div class="section-content">
-        <h2>Understanding the Users</h2>
-        <p>
-          The major stakeholders fall under six categories, each with distinct roles and permissions:
-        </p>
-        <div class="roles-grid">
-          <div class="role-item">
-            <div class="role-number">01</div>
-            <div class="role-name">Manager</div>
-          </div>
-          <div class="role-item">
-            <div class="role-number">02</div>
-            <div class="role-name">System Admin</div>
-          </div>
-          <div class="role-item">
-            <div class="role-number">03</div>
-            <div class="role-name">Treasury</div>
-          </div>
-          <div class="role-item">
-            <div class="role-number">04</div>
-            <div class="role-name">Compliance</div>
-          </div>
-          <div class="role-item">
-            <div class="role-number">05</div>
-            <div class="role-name">Partner Admin</div>
-          </div>
-          <div class="role-item">
-            <div class="role-number">06</div>
-            <div class="role-name">TPRS Admin</div>
-          </div>
+          <!-- IMG-30-DATA-VISUALISATION -->
+          <article class="feature-row is-flipped reveal">
+            <div class="feature-media">
+              <div class="cxd-solo cxd-scope" data-slot="IMG-30-TEAM-AVAILABILITY" data-clone-panel="team"></div>
+            </div>
+            <div class="feature-text">
+              <span class="feature-num">04</span>
+              <h3>Who's in, who's out</h3>
+              <p>Everyone who is part of the user's workflow, and whether they are present or on leave. If someone in a role is off, the user knows straight away who needs to pick up their applications.</p>
+            </div>
+          </article>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Role Cards - Single Image -->
-    <section class="project-section carousel-section">
-      <div class="section-content">
-        <h3>Detailed Role Breakdown</h3>
-        <p>Each role has specific responsibilities, access permissions, and dashboard requirements:</p>
-        <div class="single-image-wrapper">
-          <img src="../assets/rolestable.png" alt="Detailed role breakdown table" class="single-image">
+      <!-- 15 FROM DASHBOARD TO ACTION -->
+      <section class="project-section" id="action">
+        <div class="section-content">
+          <span class="section-kicker"><span class="kicker-num">15</span> / Interaction</span>
+          <h2 class="display-heading">The dashboard is only useful if it leads somewhere.</h2>
+          <p class="reveal">The goal was not to create another page for users to look at.</p>
+          <p class="lede reveal">The dashboard needed to create a clear path into the actual work.</p>
         </div>
-      </div>
-    </section>
 
-    <!-- Interview Results - Single Image -->
-    <section class="project-section interview-section">
-      <div class="section-content">
-        <h2>Interview Insights</h2>
-        <p>
-          Responses from different roles revealed common patterns and role-specific needs:
-        </p>
-        <div class="single-image-wrapper">
-          <img src="../assets/interviewanalysis.png" alt="Interview insights table" class="single-image">
-        </div>
-      </div>
-    </section>
+        <!-- IMG-31-DASHBOARD-TO-APPLICATION -->
+        <figure class="screen-link bleed reveal" data-slot="IMG-31-DASHBOARD-TO-APPLICATION">
+          <div class="screen-link-item">
+            <span class="screen-link-label">Dashboard</span>
+            <div class="cxd-frame" data-slot="IMG-31A-DASHBOARD" data-dash-clone></div>
+          </div>
+          <div class="screen-link-arrow" aria-hidden="true">
+            <svg viewBox="0 0 80 24"><path class="draw" d="M2 12 H74" pathLength="1" /><path class="draw" d="M66 4 L76 12 L66 20" pathLength="1" /></svg>
+          </div>
+          <div class="screen-link-item">
+            <span class="screen-link-label">Application</span>
+            <div class="media-placeholder is-wide" data-slot="IMG-31B-APPLICATION"><span class="media-placeholder-type">IMG 31B · Application</span></div>
+          </div>
+        </figure>
 
-    <!-- Persona -->
-    <section class="project-section persona-section">
-      <div class="section-content">
-        <h2>Persona</h2>
-        <p>
-          I created personas based on the interview of the different roles with their key characteristics, goals, 
-          frustrations and motivations to understand the users and their feelings towards the feature.
-        </p>
-        <div class="persona-image-wrapper">
-          <img src="../assets/persona.png" alt="User personas" class="persona-image">
-        </div>
-      </div>
-    </section>
+        <!-- IMG-32-APPLICATION-ACTION -->
+        <figure class="artifact bleed reveal">
+          <div class="media-placeholder is-wide" data-slot="IMG-32-APPLICATION-ACTION">
+            <span class="media-placeholder-type">IMG 32 · Application / action</span>
+            <span class="media-placeholder-desc">The application screen and the action the user takes.</span>
+          </div>
+        </figure>
 
-    <!-- Empathy Mapping -->
-    <section class="project-section empathy-section">
-      <div class="section-content">
-        <h2>Empathy Mapping</h2>
-        <div class="empathy-image-wrapper">
-          <img src="../assets/empathy.png" alt="Empathy maps" class="empathy-image">
+        <div class="section-content">
+          <div class="path-chips reveal" aria-label="Overview to context to action">
+            <span>Overview</span><i class="ti ti-arrow-right" aria-hidden="true"></i>
+            <span>Context</span><i class="ti ti-arrow-right" aria-hidden="true"></i>
+            <span class="is-accent">Action</span>
+          </div>
+          <p class="reveal">The interaction moves from overview to context to action, rather than requiring users to reconstruct what needs attention before entering the application.</p>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Information Architecture -->
-    <section class="project-section ia-section">
-      <div class="section-content">
-        <h2>Information Architecture</h2>
-        <p>
-          I created a combined IA for all the roles to understand the different sections required and what sections 
-          are common and what needs to be customised. Also, to know what the customisations should be.
-        </p>
-        <div class="ia-image-wrapper">
-          <img src="../assets/infoarch.png" alt="Information architecture" class="ia-image">
+      <!-- 16 PROTOTYPE -->
+      <section class="project-section" id="prototype">
+        <div class="section-content">
+          <span class="section-kicker"><span class="kicker-num">16</span> / Prototype</span>
+          <h2>Bringing the workflow together</h2>
         </div>
-      </div>
-    </section>
 
-    <!-- Z-Pattern -->
-    <section class="project-section zpattern-section">
-      <div class="section-content">
-        <h2>Zoning/Placement of Sections – Z-Pattern</h2>
-        <p>
-          The Z-pattern is the visual route of a human eye when viewing content on a page. People scan from the top 
-          left to the top right, forming an imaginary horizontal line. Next, down and to the left side of the visible 
-          page, in an imaginary diagonal line and then to the right.
-        </p>
-        <div class="z-pattern-list">
-          <div class="z-item">
-            <span class="z-label">Top Left:</span>
-            <span class="z-value">Overview</span>
+        <!-- VIDEO-01-PROTOTYPE
+             To add the video, put this inside .video-slot (before the button):
+             <video src="../assets/your-prototype.mp4" poster="../assets/your-poster.png" playsinline preload="metadata"></video>
+             The play button then plays it. -->
+        <figure class="video-slot bleed reveal" data-slot="VIDEO-01-PROTOTYPE" data-video-slot>
+          <div class="video-poster">
+            <span class="media-placeholder-type">VIDEO 01 · Prototype</span>
+            <span class="media-placeholder-desc">Prototype walkthrough. Poster image and video to be added.</span>
           </div>
-          <div class="z-item">
-            <span class="z-label">Top Right:</span>
-            <span class="z-value">Applications requiring action</span>
-          </div>
-          <div class="z-item">
-            <span class="z-label">Bottom Left:</span>
-            <span class="z-value">Activity timeline</span>
-          </div>
-          <div class="z-item">
-            <span class="z-label">Bottom Right:</span>
-            <span class="z-value">Team attendance</span>
-          </div>
-        </div>
-        <div class="zpattern-image-wrapper">
-          <img src="../assets/zpattern.png" alt="Z-pattern layout" class="zpattern-image">
-        </div>
-      </div>
-    </section>
+          <button type="button" class="video-play" aria-label="Play prototype video">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+          </button>
+          <span class="video-status" aria-live="polite"></span>
+        </figure>
 
-    <!-- Final Design -->
-    <section class="project-section final-section">
-      <div class="section-content">
-        <h2>Final Design</h2>
-        <p>
-          The final dashboard screens after considering all points from UX research and user requirements. Each role 
-          gets a customized view showing only relevant information and quick access to their most important tasks.
-        </p>
-        <div class="final-image-wrapper">
-          <img src="../assets/dashboardfinal.png" alt="Final dashboard screens" class="final-image">
+        <div class="section-content">
+          <ol class="mini-flow seq" aria-label="Prototype flow">
+            <li>Log in to the dashboard</li>
+            <li>See tasks for the day</li>
+            <li>Open application</li>
+            <li>Review</li>
+            <li>Approve / reject</li>
+            <li>Back to the dashboard, marked complete</li>
+          </ol>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
 
-    <!-- Learnings -->
-    <section class="project-section learnings-section">
-      <div class="section-content">
-        <h2>Key Learnings</h2>
-        <div class="learning-list">
-          <div class="learning-item">
-            <p>
-              <strong>Role-based design is complex:</strong> Designing for six different user types required careful 
-              balance between consistency and customization.
-            </p>
+    <!-- ============================== OUTCOME GROUP ============================== -->
+    <div class="section-group" id="outcome-group">
+
+      <!-- 17 BEFORE / AFTER -->
+      <section class="project-section" id="before-after">
+        <div class="section-content">
+          <span class="section-kicker"><span class="kicker-num">17</span> / Outcome</span>
+          <h2>From fragmented coordination to a clearer starting point</h2>
+        </div>
+
+        <!-- IMG-33-BEFORE-AFTER-WORKFLOW (built in HTML/CSS) -->
+        <figure class="before-after bleed" data-slot="IMG-33-BEFORE-AFTER-WORKFLOW" data-before-after>
+          <div class="ba-panel ba-before">
+            <span class="ba-label">Before</span>
+            <ol class="ba-list">
+              <li class="is-outside">Email</li>
+              <li class="is-outside">Slack</li>
+              <li class="is-outside">Calls</li>
+              <li>Pipeline</li>
+              <li>Pending</li>
+              <li>In review</li>
+              <li>Rejected</li>
+            </ol>
           </div>
-          <div class="learning-item">
-            <p>
-              <strong>User interviews are invaluable:</strong> Direct conversations with users from each role revealed 
-              needs that weren't obvious from stakeholder requirements alone.
-            </p>
+
+          <div class="ba-divider" aria-hidden="true"><i class="ti ti-arrow-right"></i></div>
+
+          <div class="ba-panel ba-after">
+            <span class="ba-label is-accent">After</span>
+            <ol class="ba-list">
+              <li class="is-dashboard">CX Dashboard</li>
+              <li>Tasks for the day</li>
+              <li>Work left</li>
+              <li>Team availability</li>
+              <li class="is-action">Action</li>
+            </ol>
           </div>
-          <div class="learning-item">
-            <p>
-              <strong>Domain knowledge matters:</strong> Understanding fintech and trading workflows was essential to 
-              designing an effective dashboard.
-            </p>
-          </div>
-          <div class="learning-item">
-            <p>
-              <strong>Information hierarchy is critical:</strong> Users needed to see the most important information 
-              first without being overwhelmed by everything else.
-            </p>
+        </figure>
+
+        <div class="section-content">
+          <p class="reveal">The dashboard did not replace the CX Portal, email or Slack.</p>
+          <p class="lede reveal">It gave the team one place to start the day and come back to: what's assigned, what's left, what needs action and who's around to help.</p>
+        </div>
+      </section>
+
+      <!-- 18 IMPACT -->
+      <section class="project-section" id="impact">
+        <div class="section-content">
+          <span class="section-kicker is-solution"><span class="kicker-num">18</span> / Impact</span>
+          <h2>What changed</h2>
+
+          <div class="impact-grid seq">
+            <article class="impact-tile">
+              <span class="impact-tile-num">01</span>
+              <h3>One place to start the day</h3>
+              <p>Tasks for the day are in one place, instead of pieced together from email, Slack, calls and separate parts of the portal.</p>
+            </article>
+            <article class="impact-tile">
+              <span class="impact-tile-num">02</span>
+              <h3>Work left, at any point</h3>
+              <p>Users can see how much is still pending and what needs action at any time of day.</p>
+            </article>
+            <article class="impact-tile">
+              <span class="impact-tile-num">03</span>
+              <h3>Coverage when someone is away</h3>
+              <p>Showing who is present or on leave makes it clear when an application needs someone else to pick it up.</p>
+            </article>
+            <article class="impact-tile">
+              <span class="impact-tile-num">04</span>
+              <h3>Progress you can see</h3>
+              <p>New tasks and completed applications are visible as they happen, so finished work does not go unnoticed.</p>
+            </article>
           </div>
         </div>
+      </section>
+
+      <!-- 19 REFLECTION -->
+      <section class="project-section" id="reflection">
+        <div class="section-content">
+          <span class="section-kicker"><span class="kicker-num">19</span> / Reflection</span>
+          <h2>What I learned</h2>
+
+          <div class="reflect-list">
+            <article class="reflect-item reveal">
+              <h3>A dashboard is not a collection of widgets.</h3>
+              <div class="reflect-body">
+                <p>The most useful question was not "What information can we show?"</p>
+                <p>It was: <strong>"What does the user need to understand before they can decide what to do?"</strong></p>
+              </div>
+            </article>
+            <article class="reflect-item reveal">
+              <h3>The surrounding workflow matters.</h3>
+              <div class="reflect-body">
+                <p>Looking only at the CX Portal would have missed part of the problem.</p>
+                <p>The work also happened around the product through communication, follow-ups and coordination.</p>
+              </div>
+            </article>
+            <article class="reflect-item reveal">
+              <h3>Structure comes before polish.</h3>
+              <div class="reflect-body">
+                <p>The most important design decisions happened before the final UI: understanding the workflow, synthesising the research, defining the information architecture and deciding what deserved priority.</p>
+              </div>
+            </article>
+            <article class="reflect-item reveal">
+              <h3>People are part of the workflow.</h3>
+              <div class="reflect-body">
+                <p>An application can stall because the person who needs to review it is away, not because of anything on screen.</p>
+                <p>Showing who is present or on leave turned out to be as important as showing the applications themselves.</p>
+              </div>
+            </article>
+            <article class="reflect-item reveal">
+              <h3>The goal was not more information.</h3>
+              <div class="reflect-body">
+                <p>The goal was to make the information the team already had easier to understand and act on.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ============================== CLOSING ============================== -->
+    <section class="closing-section">
+      <!-- IMG-34-FINAL-DASHBOARD-DETAIL -->
+      <figure class="bleed reveal">
+        <div class="media-placeholder is-wide is-final" data-slot="IMG-34-FINAL-DASHBOARD-DETAIL">
+          <span class="media-placeholder-type">IMG 34 · Final dashboard detail</span>
+          <span class="media-placeholder-desc">A close crop or detail of the final UI.</span>
+        </div>
+      </figure>
+
+      <div class="closing-mark reveal">
+        <span class="closing-eyebrow">Clearisk</span>
+        <span class="closing-title">CX Dashboard</span>
+        <p class="closing-line">"Bringing daily CX work into one place."</p>
       </div>
     </section>
 
   </main>
 
-  <!-- Bottom back link wrapper -->
   <div class="bottom-link-wrapper">
-    <a href="../index.html#work" class="footer-back-link">← Back to Work</a>
+    <a href="../index.html#work" class="footer-back-link">
+      <span class="back-link-arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      </span>
+      <span>Go Back to Home</span>
+    </a>
   </div>
 
-  <!-- Footer -->
+  <button type="button" class="to-top" aria-label="Back to top">
+    <svg class="to-top-ring" viewBox="0 0 52 52" aria-hidden="true">
+      <circle class="to-top-ring-track" cx="26" cy="26" r="24"></circle>
+      <circle class="to-top-ring-fill" cx="26" cy="26" r="24"></circle>
+    </svg>
+    <svg class="to-top-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </button>
+
+  <!-- Next project: points to the CX Review page. Change href and text if the order differs. -->
+  <aside class="next-project" aria-label="Next project">
+    <a href="cx-review.html" class="next-project-link">
+      <span class="next-project-circle" aria-hidden="true">
+        <svg class="next-project-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </span>
+      <span class="next-project-text">
+        <span class="next-project-label">View next project</span>
+        <span class="next-project-title">CX Portal Review</span>
+        <span class="next-project-sub">Onboarding review workflow</span>
+      </span>
+    </a>
+  </aside>
+
   <footer class="site-footer">
     <p>&copy; 2025 Lakshmi Pratap. All rights reserved.</p>
   </footer>
 
-  <script src="project2.js"></script>
+  <script src="project2.js?v=2"></script>
+  <script src="../comment-widget.js"></script>
 </body>
 </html>
