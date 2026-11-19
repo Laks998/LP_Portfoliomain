@@ -279,3 +279,98 @@ document.addEventListener('DOMContentLoaded', () => {
     wrap.classList.remove('is-open');
   }, { passive: true });
 })();
+// Side nav peek — on laptop widths (1321–1599px) the nav sits collapsed
+// as a column of numbers, which is easy to miss. Each time the reader
+// moves into a new main section, it slides open with the section names
+// (current one highlighted, with its sub-list if it has one) for a
+// couple of seconds, then tucks away. On 1600px and up the CSS keeps
+// it open all the time instead.
+(function () {
+  var nav = document.querySelector('.side-nav');
+  if (!nav || !('MutationObserver' in window)) return;
+  var laptop = window.matchMedia('(min-width: 1321px) and (max-width: 1599px)');
+  var mainLinks = nav.querySelectorAll('.side-nav-link');
+  var current = null;
+  var timer = null;
+  var PEEK_MS = 2200;
+
+  function activeId() {
+    for (var i = 0; i < mainLinks.length; i++) {
+      if (mainLinks[i].classList.contains('is-active')) {
+        return mainLinks[i].getAttribute('href');
+      }
+    }
+    return null;
+  }
+
+  function peek() {
+    nav.classList.add('is-peek');
+    clearTimeout(timer);
+    timer = setTimeout(function () {
+      nav.classList.remove('is-peek');
+    }, PEEK_MS);
+  }
+
+  var observer = new MutationObserver(function () {
+    var id = activeId();
+    if (!id || id === current) return;
+    var first = current === null;
+    current = id;
+    // Don't pop open on page load if the reader starts mid-page.
+    if (first && window.scrollY < 50) return;
+    if (laptop.matches) peek();
+  });
+
+  mainLinks.forEach(function (link) {
+    observer.observe(link, { attributes: true, attributeFilter: ['class'] });
+  });
+})();
+
+// Hero impact card — waits until the card is on screen, then lets the
+// CSS entrance play (rise in, rows fade in) while each number counts to
+// its value (data-count-to; data-count-from if it shouldn't start at 0).
+// Reduced-motion users just see the finished card.
+(function () {
+  var card = document.querySelector('.hero-stat');
+  if (!card) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!('IntersectionObserver' in window)) return;
+
+  var counters = card.querySelectorAll('[data-count-to]');
+
+  card.classList.add('is-pending');
+  counters.forEach(function (el) {
+    el.textContent = el.dataset.countFrom || '0';
+  });
+
+  function run(el, delay) {
+    var from = parseFloat(el.dataset.countFrom) || 0;
+    var to = parseFloat(el.dataset.countTo) || 0;
+    var duration = 1400;
+    var start = null;
+    function tick(now) {
+      if (start === null) start = now + delay;
+      var p = Math.min(Math.max((now - start) / duration, 0), 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(from + (to - from) * eased);
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      observer.disconnect();
+      requestAnimationFrame(function () {
+        card.classList.remove('is-pending');
+        card.classList.add('is-in');
+        counters.forEach(function (el, i) {
+          run(el, 250 + i * 250);
+        });
+      });
+    });
+  }, { threshold: 0.35 });
+
+  observer.observe(card);
+})();

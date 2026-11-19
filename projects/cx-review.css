@@ -2990,3 +2990,1260 @@ p:last-child {
     animation: none;
   }
 }
+
+/* =====================================================================
+   Large screens (1600px and up)
+   The layout above was built for a ~1440px laptop, so on a big monitor
+   it stayed 900px wide and floated in the middle. From 1600px up the
+   content column grows with the screen instead, leaving a fixed margin
+   on each side (wide enough for the side nav to open without covering
+   text), up to a 1600px cap. Type stays the same size, with one small
+   step up at 1920px. Body paragraphs keep a comfortable reading width
+   while images, videos and card grids use the full column.
+   The side nav and the next-project tab stay on the screen edges.
+   Nothing changes below 1600px.
+   ===================================================================== */
+
+@media (min-width: 1600px) {
+  :root {
+    /* Side margin = 1rem offset + the open side nav's width + a 4rem
+       gap, so there's clear space between the nav and the content. */
+    --gutter: calc(13rem * var(--bs) + 5rem);
+    --col: min(calc(100vw - 2 * var(--gutter)), 1600px);
+  }
+
+  .project-content {
+    max-width: none;
+  }
+
+  .section-content,
+  .project-title,
+  .hero-image-wrapper,
+  .hero-image {
+    max-width: var(--col);
+  }
+
+  .back-link {
+    left: calc((100% - var(--col)) / 2);
+  }
+
+  /* Text under headings runs the full width of the content column */
+  .project-subtitle,
+  .hero-contribution {
+    max-width: var(--col);
+  }
+
+  /* Small diagrams get a little more room in the wider column */
+  .size-compact {
+    max-width: 40rem;
+  }
+}
+
+/* Once the column is wide enough, the four-card rows sit in one line
+   instead of a 2×2 block. */
+@media (min-width: 1800px) {
+  .outcome-cards,
+  .impact-cards {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .other-work-grid:not(:has(.solution-image-wrapper)) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Body text steps up a little on big screens (headings stay as they
+   are). --bs is the multiplier: 1.12 from 1600px, 1.2 from 1920px,
+   1.28 from 2400px. Each rule is the original size × --bs. The side
+   nav's text, circles and open width scale with it too. */
+@media (min-width: 1600px) {
+  :root {
+    --bs: 1.12;
+  }
+
+  body {
+    font-size: calc(16px * var(--bs));
+  }
+
+  p {
+    font-size: calc(1rem * var(--bs));
+  }
+
+  .context-section .section-content > p {
+    font-size: calc(1.05rem * var(--bs));
+  }
+
+  .project-subtitle {
+    font-size: calc(1.2rem * var(--bs));
+  }
+
+  .hero-contribution-list {
+    font-size: calc(0.85rem * var(--bs));
+  }
+
+  .detail-value {
+    font-size: calc(0.95rem * var(--bs));
+  }
+
+  .constraint-callout p {
+    font-size: calc(0.92rem * var(--bs));
+  }
+
+  .method-detail p,
+  .section-subhead-note {
+    font-size: calc(0.98rem * var(--bs));
+  }
+
+  .method-bullets li,
+  .bridge-row,
+  .decision-subtitle {
+    font-size: calc(0.85rem * var(--bs));
+  }
+
+  .learning-item p,
+  .session-quote {
+    font-size: calc(1rem * var(--bs));
+  }
+
+  .centered-quote {
+    font-size: calc(1.1rem * var(--bs));
+  }
+
+  .other-work-card p {
+    font-size: calc(0.82rem * var(--bs));
+  }
+
+  .outcome-card h4 {
+    font-size: calc(15px * var(--bs));
+  }
+
+  .outcome-card p {
+    font-size: calc(13px * var(--bs));
+  }
+
+  .impact-card h4 {
+    font-size: calc(0.95rem * var(--bs));
+  }
+
+  .impact-card p {
+    font-size: calc(0.85rem * var(--bs));
+  }
+
+  .other-work-card h4 {
+    font-size: calc(0.9rem * var(--bs));
+  }
+
+  .stat-box-text {
+    font-size: calc(0.88rem * var(--bs));
+  }
+
+  .media-caption {
+    font-size: calc(0.8rem * var(--bs));
+  }
+}
+
+@media (min-width: 1920px) {
+  :root {
+    --bs: 1.2;
+  }
+}
+
+@media (min-width: 2400px) {
+  :root {
+    --bs: 1.28;
+  }
+}
+
+/* Side nav on big screens: text, number circles and the open card
+   width all follow the same --bs multiplier as the body text. */
+@media (min-width: 1600px) {
+  .side-nav {
+    --nav-closed: calc(54px * var(--bs));
+    --nav-open: calc(13rem * var(--bs));
+  }
+
+  .side-nav-num {
+    width: calc(26px * var(--bs));
+    height: calc(26px * var(--bs));
+    font-size: calc(0.64rem * var(--bs));
+  }
+
+  .side-nav-head-icon {
+    width: calc(26px * var(--bs));
+    height: calc(26px * var(--bs));
+  }
+
+  .side-nav-link {
+    font-size: calc(0.86rem * var(--bs));
+  }
+
+  .side-nav-head-label {
+    font-size: calc(0.68rem * var(--bs));
+  }
+
+  .side-nav-sublink {
+    font-size: calc(0.78rem * var(--bs));
+  }
+
+  .side-nav-sublink-num {
+    font-size: calc(0.7rem * var(--bs));
+  }
+
+  .side-nav-sublist-inner {
+    margin-left: calc(0.4rem + 13px * var(--bs));
+  }
+}
+
+/* =====================================================================
+   Hero impact card — floats on the top-right corner of the hero image.
+   Reads in three levels: the headline number, a bar showing which fix
+   saved how much, then a one-line footnote. On load (when it scrolls
+   into view) the card rises in, the number counts up, the bar segments
+   fill one after another and the rows fade in. On tablets and phones
+   (1024px and below) it sits below the image instead of on top.
+   ===================================================================== */
+.hero-image-wrapper {
+  position: relative;
+}
+
+.hero-stat {
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --seg-1: var(--accent);
+  --seg-2: rgba(208, 58, 70, 0.55);
+  --seg-3: rgba(208, 58, 70, 0.28);
+
+  position: absolute;
+  top: 4%;
+  right: 3%;
+  z-index: 2;
+  width: clamp(17rem, 30%, 21rem);
+  padding: 1.4rem 1.5rem 1.25rem;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(16, 15, 14, 0.08);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  transition:
+    opacity 0.7s ease,
+    transform 0.8s var(--ease-out),
+    box-shadow 0.4s ease;
+}
+
+.hero-stat:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(16, 15, 14, 0.08), 0 22px 48px rgba(16, 15, 14, 0.14);
+}
+
+.hero-stat-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.35rem;
+}
+
+.hero-stat-number {
+  display: flex;
+  align-items: baseline;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+.hero-stat-tilde {
+  font-size: 1.9rem;
+  margin-right: 0.05em;
+  opacity: 0.7;
+}
+
+.hero-stat-count {
+  font-size: 3.1rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.hero-stat-unit {
+  font-size: 1.6rem;
+  margin-left: 0.25rem;
+}
+
+.hero-stat-sub {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-top: 0.3rem;
+}
+
+.hero-stat-bar {
+  display: flex;
+  gap: 3px;
+  height: 8px;
+  margin: 1.1rem 0 0.9rem;
+}
+
+.hero-stat-seg {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  transform-origin: left center;
+  transition: transform 0.7s var(--ease-out);
+}
+
+.hero-stat-seg.is-1 { flex: 30; background: var(--seg-1); }
+.hero-stat-seg.is-2 { flex: 9; background: var(--seg-2); }
+.hero-stat-seg.is-3 { flex: 6; background: var(--seg-3); }
+
+.hero-stat-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.hero-stat-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.8rem;
+  line-height: 1.3;
+  color: var(--muted);
+  transition: opacity 0.5s ease, transform 0.6s var(--ease-out);
+}
+
+.hero-stat-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.hero-stat-dot.is-1 { background: var(--seg-1); }
+.hero-stat-dot.is-2 { background: var(--seg-2); }
+.hero-stat-dot.is-3 { background: var(--seg-3); }
+
+.hero-stat-name {
+  flex: 1;
+  min-width: 0;
+}
+
+.hero-stat-val {
+  font-weight: 700;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.hero-stat-foot {
+  margin-top: 0.95rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--card-border);
+  font-size: 0.7rem;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+/* Entrance — the JS adds .is-pending before the card is seen, then
+   swaps it for .is-in. Without JS (or with reduced motion) neither
+   class is added, so everything simply shows in its final state. */
+.hero-stat.is-pending {
+  opacity: 0;
+  transform: translateY(16px) scale(0.97);
+}
+
+.hero-stat.is-pending .hero-stat-seg {
+  transform: scaleX(0);
+}
+
+.hero-stat.is-pending .hero-stat-list li {
+  opacity: 0;
+  transform: translateX(-8px);
+}
+
+.hero-stat.is-in .hero-stat-seg.is-1 { transition-delay: 0.45s; }
+.hero-stat.is-in .hero-stat-seg.is-2 { transition-delay: 0.75s; }
+.hero-stat.is-in .hero-stat-seg.is-3 { transition-delay: 0.95s; }
+
+.hero-stat.is-in .hero-stat-list li:nth-child(1) { transition-delay: 0.55s; }
+.hero-stat.is-in .hero-stat-list li:nth-child(2) { transition-delay: 0.8s; }
+.hero-stat.is-in .hero-stat-list li:nth-child(3) { transition-delay: 1s; }
+
+@media (min-width: 1600px) {
+  .hero-stat {
+    width: clamp(19rem, 28%, 25rem);
+    padding: 1.6rem 1.75rem 1.4rem;
+  }
+
+  .hero-stat-count {
+    font-size: 3.5rem;
+  }
+
+  .hero-stat-sub {
+    font-size: calc(0.95rem * var(--bs));
+  }
+
+  .hero-stat-list li {
+    font-size: calc(0.8rem * var(--bs));
+  }
+
+  .hero-stat-foot {
+    font-size: calc(0.7rem * var(--bs));
+  }
+}
+
+@media (max-width: 1024px) {
+  .hero-image-wrapper {
+    overflow: visible;
+  }
+
+  .hero-stat {
+    position: static;
+    width: auto;
+    max-width: 420px;
+    margin: 1.5rem auto 0;
+    background: var(--card-bg);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: 1px solid var(--card-border);
+    box-shadow: var(--shadow-sm);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-stat,
+  .hero-stat-seg,
+  .hero-stat-list li {
+    transition: none;
+  }
+
+  .hero-stat:hover {
+    transform: none;
+  }
+}
+
+
+/* =====================================================================
+   Big screens — small labels, buttons and media that were still fixed
+   in px. Labels and buttons follow the same --bs multiplier as body
+   text; images and videos are sized as a share of the content column
+   (--col) so they keep the same proportions they have at 1440px.
+   ===================================================================== */
+@media (min-width: 1600px) {
+  /* Go back links */
+  .back-link,
+  .footer-back-link {
+    font-size: calc(0.85rem * var(--bs));
+    gap: calc(12px * var(--bs));
+  }
+
+  .back-link-arrow,
+  .footer-back-link .back-link-arrow {
+    width: calc(38px * var(--bs));
+    height: calc(38px * var(--bs));
+  }
+
+  .back-link-arrow svg,
+  .footer-back-link .back-link-arrow svg {
+    width: calc(16px * var(--bs));
+    height: calc(16px * var(--bs));
+  }
+
+  /* Small uppercase labels */
+  .project-meta,
+  .hero-contribution-label,
+  .detail-label,
+  .constraint-label {
+    font-size: calc(0.75rem * var(--bs));
+  }
+
+  .section-kicker,
+  .risk-subheading,
+  .impact-subheading {
+    font-size: calc(0.78rem * var(--bs));
+  }
+
+  .decision-eyebrow {
+    font-size: calc(0.7rem * var(--bs));
+  }
+
+  .bridge-header,
+  .hero-stat-label {
+    font-size: calc(0.68rem * var(--bs));
+  }
+
+  .outcome-card-tag {
+    font-size: calc(11px * var(--bs));
+  }
+
+  .outcome-card-tag i {
+    font-size: calc(12px * var(--bs));
+  }
+
+  /* Diagrams and screenshots that were capped at 480px (about 53% of
+     the old 900px column) keep that share of the wider column. */
+  .size-compact {
+    max-width: calc(var(--col) * 0.55);
+  }
+
+  /* Timeline version thumbnails: 120px tall at 900px wide */
+  .version-compare-row {
+    gap: calc(var(--col) * 0.027);
+  }
+
+  .version-compare-item .solution-image {
+    height: calc(var(--col) * 0.135);
+  }
+
+  /* Timeline screenshot pair (340px / 280px at 900px wide) */
+  .onboarding-flow-images {
+    gap: calc(var(--col) * 0.09);
+  }
+
+  .flow-image-item {
+    flex-basis: calc(var(--col) * 0.38);
+  }
+
+  .flow-image-item.is-compact {
+    flex-basis: calc(var(--col) * 0.31);
+  }
+
+  .flow-image-item .solution-image-wrapper {
+    max-width: calc(var(--col) * 0.38);
+  }
+
+  .solution-image.timeline-shot {
+    max-width: calc(var(--col) * 0.31);
+  }
+
+  /* Number boxes */
+  .stat-box {
+    max-width: calc(520px * var(--bs));
+  }
+
+  .stat-box-text {
+    max-width: calc(360px * var(--bs));
+  }
+
+  .stat-box-number {
+    font-size: calc(2.6rem * var(--bs));
+  }
+
+  /* Time-cost rings */
+  .stat-ring {
+    width: calc(56px * var(--bs));
+    height: calc(56px * var(--bs));
+  }
+
+  .stat-ring-number {
+    font-size: calc(16px * var(--bs));
+  }
+
+  .stat-ring-unit {
+    font-size: calc(9px * var(--bs));
+  }
+
+  /* Back-to-top and next-project buttons */
+  .to-top {
+    width: calc(52px * var(--bs));
+    height: calc(52px * var(--bs));
+    right: 2rem;
+    bottom: 2rem;
+  }
+
+  .to-top-arrow {
+    width: calc(18px * var(--bs));
+    height: calc(18px * var(--bs));
+  }
+
+  .next-project {
+    --np-circle: calc(52px * var(--bs));
+    --np-pad: calc(7px * var(--bs));
+  }
+
+  .next-project-arrow {
+    width: calc(20px * var(--bs));
+    height: calc(20px * var(--bs));
+    transform: translateX(calc(-9px * var(--bs)));
+  }
+
+  .next-project-label {
+    font-size: calc(0.66rem * var(--bs));
+  }
+
+  .next-project-title {
+    font-size: calc(1.15rem * var(--bs));
+  }
+
+  .next-project-sub {
+    font-size: calc(0.78rem * var(--bs));
+  }
+}
+
+/* =====================================================================
+   Big screens — headings and buttons.
+   --hs scales headings (1.12 / 1.22 / 1.3) and --ui scales the round
+   buttons and back links (1.25 / 1.4 / 1.55), a bit more than body
+   text, since small controls get lost on a large monitor first.
+   ===================================================================== */
+@media (min-width: 1600px) {
+  :root {
+    --hs: 1.12;
+    --ui: 1.25;
+  }
+
+  /* Headings */
+  .project-title {
+    font-size: calc(3.1rem * var(--hs));
+  }
+
+  h2 {
+    font-size: calc(2.1rem * var(--hs));
+  }
+
+  h3 {
+    font-size: calc(1.25rem * var(--hs));
+  }
+
+  h4 {
+    font-size: calc(1rem * var(--hs));
+  }
+
+  .method-detail h3 {
+    font-size: calc(1.35rem * var(--hs));
+  }
+
+  .decision-title-wrapper h3 {
+    font-size: calc(1.4rem * var(--hs));
+  }
+
+  .section-subhead {
+    font-size: calc(1.02rem * var(--hs));
+  }
+
+  .other-work-card h4 {
+    font-size: calc(0.9rem * var(--hs));
+  }
+
+  .outcome-card h4 {
+    font-size: calc(15px * var(--hs));
+  }
+
+  .impact-card h4 {
+    font-size: calc(0.95rem * var(--hs));
+  }
+
+  .hero-stat-count {
+    font-size: calc(3.1rem * var(--hs));
+  }
+
+  /* Go back links */
+  .back-link,
+  .footer-back-link {
+    font-size: calc(0.85rem * var(--ui));
+    gap: calc(12px * var(--ui));
+  }
+
+  .back-link-arrow,
+  .footer-back-link .back-link-arrow {
+    width: calc(38px * var(--ui));
+    height: calc(38px * var(--ui));
+  }
+
+  .back-link-arrow svg,
+  .footer-back-link .back-link-arrow svg {
+    width: calc(16px * var(--ui));
+    height: calc(16px * var(--ui));
+  }
+
+  /* Back to top */
+  .to-top {
+    width: calc(52px * var(--ui));
+    height: calc(52px * var(--ui));
+  }
+
+  .to-top-arrow {
+    width: calc(18px * var(--ui));
+    height: calc(18px * var(--ui));
+  }
+
+  /* Next project */
+  .next-project {
+    --np-circle: calc(52px * var(--ui));
+    --np-pad: calc(7px * var(--ui));
+  }
+
+  .next-project-arrow {
+    width: calc(20px * var(--ui));
+    height: calc(20px * var(--ui));
+    transform: translateX(calc(-9px * var(--ui)));
+  }
+
+  .next-project-label {
+    font-size: calc(0.66rem * var(--ui));
+  }
+
+  .next-project-title {
+    font-size: calc(1.15rem * var(--ui));
+  }
+
+  .next-project-sub {
+    font-size: calc(0.78rem * var(--ui));
+  }
+}
+
+@media (min-width: 1920px) {
+  :root {
+    --hs: 1.22;
+    --ui: 1.4;
+  }
+}
+
+@media (min-width: 2400px) {
+  :root {
+    --hs: 1.3;
+    --ui: 1.55;
+  }
+}
+
+/* =====================================================================
+   Side nav discoverability.
+   Collapsed to just numbers, people weren't noticing it was navigation.
+   - 1600px and up: the side margin is already sized for the open card,
+     so it stays open: names always visible, and the sub-list for the
+     section being read (Issues or Solutions) opens on its own. Hover
+     still opens every sub-list.
+   - 1321–1599px: no room to stay open, so the JS adds .is-peek each
+     time the reader enters a new main section, which slides the card
+     open with its names for a couple of seconds, then tucks it away.
+   ===================================================================== */
+@media (min-width: 1321px) {
+  .side-nav.is-peek {
+    width: var(--nav-open);
+    border-radius: 20px;
+    box-shadow: var(--shadow-md);
+  }
+
+  .side-nav.is-peek .side-nav-label,
+  .side-nav.is-peek .side-nav-head-label {
+    opacity: 1;
+    transform: translateX(0);
+    filter: blur(0);
+    transition:
+      opacity 0.4s ease,
+      transform 0.55s var(--ease-open),
+      filter 0.4s ease;
+    transition-delay: 0.1s;
+  }
+
+  /* While peeking, the current section's sub-list opens too */
+  .side-nav.is-peek .side-nav-item:has(.is-active) .side-nav-sublist {
+    grid-template-rows: 1fr;
+  }
+
+  .side-nav.is-peek .side-nav-item:has(.is-active) .side-nav-sublink {
+    opacity: 1;
+    transform: translateY(0);
+    transition:
+      opacity 0.35s ease 0.2s,
+      transform 0.45s var(--ease-open) 0.2s,
+      background 0.25s ease,
+      color 0.25s ease;
+  }
+}
+
+@media (min-width: 1600px) {
+  .side-nav {
+    width: var(--nav-open);
+    border-radius: 20px;
+  }
+
+  .side-nav .side-nav-label,
+  .side-nav .side-nav-head-label {
+    opacity: 1;
+    transform: translateX(0);
+    filter: blur(0);
+  }
+
+  .side-nav .side-nav-link.is-active {
+    background: rgba(16, 15, 14, 0.05);
+  }
+
+  /* Sub-list of the section currently being read opens on its own */
+  .side-nav-item:has(.is-active) .side-nav-sublist {
+    grid-template-rows: 1fr;
+  }
+
+  .side-nav-item:has(.is-active) .side-nav-sublink {
+    opacity: 1;
+    transform: translateY(0);
+    transition:
+      opacity 0.35s ease 0.15s,
+      transform 0.45s var(--ease-open) 0.15s,
+      background 0.25s ease,
+      color 0.25s ease;
+  }
+}
+
+/* =====================================================================
+   Hero text width — the title, the intro paragraph under it and the
+   "My contribution" block all run the full width of the content column
+   (the same width as the hero image), instead of the narrower 700px
+   cap the intro used to have. Phones and tablets are unchanged.
+   ===================================================================== */
+:root {
+  --col: 900px; /* content width below 1600px; widened above */
+}
+
+@media (min-width: 1600px) {
+  :root {
+    --col: min(calc(100vw - 2 * var(--gutter)), 1600px);
+  }
+}
+
+@media (min-width: 769px) {
+  .project-title,
+  .project-subtitle,
+  .hero-contribution {
+    max-width: var(--col);
+  }
+}
+
+/* =====================================================================
+   Laptop widths (1321–1599px): the column is 900px, but on narrower
+   laptops that left very little room between the open side nav and the
+   content. The column now shrinks a little where needed so there's
+   always about a 4rem gap between the open nav (up to 208px wide,
+   1rem from the edge) and the text.
+   ===================================================================== */
+@media (min-width: 1321px) and (max-width: 1599px) {
+  :root {
+    --col: min(900px, calc(100vw - 2 * (1rem + 208px + 4rem)));
+  }
+
+  .section-content,
+  .project-title,
+  .hero-image-wrapper,
+  .hero-image {
+    max-width: var(--col);
+  }
+
+  .back-link {
+    left: calc((100% - var(--col)) / 2);
+  }
+}
+/* =====================================================================
+   TYPE SCALE — every text size on the page comes from one fixed scale:
+   10 · 12 · 14 · 16 · 18 · 24 · 32 · 40 · 48 · 56 px.
+   Each role picks a step; on phones some headings step down, and on
+   big screens (1600px+) every role steps up one notch. Same scale as
+   the Sportscove case study.
+
+   role       laptop   phone(≤900)   big(1600+)   used for
+   --t-micro    10        10            12        tiny units in rings
+   --t-label    12        12            14        uppercase labels, captions
+   --t-small    14        14            16        card text, bullets, notes
+   --t-body     16        16            18        paragraphs
+   --t-lead     18        16            24        pull quotes
+   --t-h4       16        16            18        card titles
+   --t-h3s      18        18            24        sub-headings in sections
+   --t-h3       24        18            32        issue / fix headings
+   --t-h2       32        24            40        section headings
+   --t-h1       48        32            56        page title
+   --t-stat     40        32            48        big numbers
+   --t-stat-xl  48        40            56        hero impact number
+
+   This block sits after every earlier font-size, so it replaces them.
+   ===================================================================== */
+:root {
+  --t-micro: 10px;
+  --t-label: 12px;
+  --t-small: 14px;
+  --t-body: 16px;
+  --t-lead: 18px;
+  --t-h4: 16px;
+  --t-h3s: 18px;
+  --t-h3: 24px;
+  --t-h2: 32px;
+  --t-h1: 48px;
+  --t-stat: 40px;
+  --t-stat-xl: 48px;
+}
+
+@media (max-width: 900px) {
+  :root {
+    --t-lead: 16px;
+    --t-h3: 18px;
+    --t-h2: 24px;
+    --t-h1: 32px;
+    --t-stat: 32px;
+    --t-stat-xl: 40px;
+  }
+}
+
+@media (min-width: 1600px) {
+  :root {
+    --t-micro: 12px;
+    --t-label: 14px;
+    --t-small: 16px;
+    --t-body: 18px;
+    --t-lead: 24px;
+    --t-h4: 18px;
+    --t-h3s: 24px;
+    --t-h3: 32px;
+    --t-h2: 40px;
+    --t-h1: 56px;
+    --t-stat: 48px;
+    --t-stat-xl: 56px;
+  }
+}
+
+/* ---------- Page title & headings ---------- */
+.project-title { font-size: var(--t-h1); }
+h2 { font-size: var(--t-h2); }
+h3,
+.solution-header h3,
+.decision-title-wrapper h3,
+.method-detail h3,
+.outcome-block h3,
+.hero-stat-tilde,
+.hero-stat-unit { font-size: var(--t-h3); }
+.problem-head h3,
+.decision-section h4,
+.section-subhead,
+.next-project-title { font-size: var(--t-h3s); }
+h4,
+h5,
+.outcome-card h4,
+.other-work-card h4,
+.impact-card h4 { font-size: var(--t-h4); }
+.stat-box-number { font-size: var(--t-stat); }
+.hero-stat-count { font-size: var(--t-stat-xl); }
+.lightbox-close { font-size: 24px; }
+
+/* ---------- Lead ---------- */
+.project-subtitle,
+.centered-quote { font-size: var(--t-lead); }
+
+/* ---------- Body ---------- */
+body,
+p,
+.context-section .section-content > p,
+.risks-section .risks-intro,
+.solution-description p,
+.decision-section p,
+.learning-item p,
+.method-detail p,
+.section-subhead-note,
+.detail-value,
+.session-quote,
+.flow-arrow,
+.hero-stat-sub,
+.stat-ring-number { font-size: var(--t-body); }
+
+/* ---------- Small ---------- */
+.hero-contribution-label,
+.hero-contribution-list,
+.back-link,
+.footer-back-link,
+.site-footer,
+.constraint-callout p,
+.bridge-row,
+.solution-header p,
+.improvement-text,
+.decision-subtitle,
+.method-lede,
+.method-bullets li,
+.outcome-card p,
+.other-work-card p,
+.impact-card p,
+.problem-body,
+.problem-num,
+.process-track-marker,
+.process-track-title,
+.process-track-desc,
+.section-tag,
+.media-placeholder-desc,
+.flow-step,
+.compare-col-caption,
+.timeline-mini li,
+.stat-box-text,
+.hero-stat-list li { font-size: var(--t-small); }
+
+/* ---------- Labels & captions ---------- */
+.project-meta,
+.section-kicker,
+.detail-label,
+.constraint-label,
+.risk-subheading,
+.impact-subheading,
+.bridge-header,
+.improvement-label,
+.decision-eyebrow,
+.outcome-card-num,
+.outcome-card-tag,
+.outcome-card-tag i,
+.problem-tag,
+.flow-image-label,
+.mini-image-label,
+.ds-ref-label,
+.media-placeholder-type,
+.compare-col-label,
+.flow-arrow-down,
+.timeline-mini-sub,
+.timeline-mini-time,
+.media-caption,
+.stat-ring-caption,
+.hero-stat-label,
+.hero-stat-foot,
+.next-project-label,
+.next-project-sub { font-size: var(--t-label); }
+
+/* ---------- Micro ---------- */
+.stat-ring-unit { font-size: var(--t-micro); }
+
+/* =====================================================================
+   Side nav sizes.
+   - Laptops, 1321–1919px (many laptops are wider than 1600px, e.g. a
+     16" MacBook Pro is ~1728px): section names 14px, sub-sections 12px,
+     numbers 10px, 13rem open card.
+   - Monitors, 1920px and up: section names 18px, sub-sections 16px,
+     numbers 14px, 15rem open card (scaled with --bs).
+   The side margin (--gutter) follows the open card's width so there's
+   always a 4rem gap between the nav and the content.
+   ===================================================================== */
+.side-nav-num,
+.side-nav-head-label,
+.side-nav-sublink-num { font-size: var(--t-label); }
+
+@media (min-width: 1321px) and (max-width: 1919px) {
+  .side-nav {
+    --nav-closed: 50px;
+    --nav-open: 13rem;
+    padding: 0.5rem 0.45rem;
+  }
+
+  .side-nav-link {
+    font-size: 14px;
+    gap: 0.6rem;
+    padding: 0.38rem 0.35rem;
+  }
+
+  .side-nav-sublink {
+    font-size: 12px;
+    padding: 0.3rem 0.45rem;
+  }
+
+  .side-nav-num,
+  .side-nav-sublink-num,
+  .side-nav-head-label {
+    font-size: 10px;
+  }
+
+  .side-nav-num,
+  .side-nav-head-icon {
+    width: 26px;
+    height: 26px;
+  }
+
+  .side-nav-head-icon svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .side-nav-sublist-inner {
+    margin-left: calc(0.35rem + 13px);
+  }
+}
+
+@media (min-width: 1321px) and (max-width: 1599px) {
+  :root {
+    --col: min(900px, calc(100vw - 2 * (1rem + 13rem + 4rem)));
+  }
+}
+
+@media (min-width: 1600px) and (max-width: 1919px) {
+  :root {
+    --gutter: calc(1rem + 13rem + 4rem);
+  }
+}
+
+@media (min-width: 1920px) {
+  :root {
+    --gutter: calc(15rem * var(--bs) + 5rem);
+  }
+
+  .side-nav {
+    --nav-closed: calc(58px * var(--bs));
+    --nav-open: calc(15rem * var(--bs));
+    padding: 0.6rem 0.5rem;
+  }
+
+  .side-nav-link {
+    font-size: var(--t-body);
+    gap: 0.7rem;
+    padding: 0.45rem 0.4rem;
+  }
+
+  .side-nav-sublink {
+    font-size: var(--t-small);
+    padding: 0.36rem 0.5rem;
+  }
+
+  .side-nav-num,
+  .side-nav-sublink-num,
+  .side-nav-head-label {
+    font-size: var(--t-label);
+  }
+
+  .side-nav-num,
+  .side-nav-head-icon {
+    width: calc(30px * var(--bs));
+    height: calc(30px * var(--bs));
+  }
+
+  .side-nav-head-icon svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .side-nav-sublist-inner {
+    margin-left: calc(0.4rem + 15px * var(--bs));
+  }
+}
+
+/* =====================================================================
+   Hero facts — "My contribution" and "Constraints" side by side, under
+   the title (the intro paragraph was removed). Left: skills as small
+   tags. Right: three constraints, each with a pill linking to the
+   section where it shows up. Headings centred in their columns; a
+   vertical rule between the columns. On phones (768px and below) they
+   stack with a dashed rule between them.
+   ===================================================================== */
+.hero-facts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: var(--col);
+  margin: 0 auto;
+  padding-top: 2rem;
+  border-top: 1px solid var(--card-border);
+  text-align: left;
+}
+
+.hero-fact {
+  min-width: 0;
+}
+
+.hero-fact:first-child {
+  padding-right: 2.5rem;
+}
+
+.hero-fact + .hero-fact {
+  padding-left: 2.5rem;
+  border-left: 1px solid var(--card-border);
+}
+
+.hero-fact .hero-contribution-label {
+  display: block;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+/* My contribution — tags */
+.fact-tags {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.fact-tags li {
+  font-size: var(--t-small);
+  line-height: 1.3;
+  color: var(--text);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-sm);
+  padding: 0.4rem 0.75rem;
+}
+
+/* Constraints — rows with a stage link */
+.fact-constraints {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.fact-constraints li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.65rem 0;
+  border-top: 1px dashed var(--card-border);
+}
+
+.fact-constraints li:first-child {
+  padding-top: 0;
+  border-top: none;
+}
+
+.fact-text {
+  font-size: var(--t-small);
+  line-height: 1.4;
+  color: var(--text);
+}
+
+.fact-stage {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: var(--t-label);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  text-decoration: none;
+  color: var(--accent);
+  background: var(--decision-bg);
+  border: 1px solid var(--decision-border);
+  border-radius: 999px;
+  padding: 0.25rem 0.65rem;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.fact-stage:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+}
+
+.fact-stage:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (max-width: 768px) {
+  .hero-facts {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-fact:first-child {
+    padding-right: 0;
+  }
+
+  .hero-fact + .hero-fact {
+    padding-left: 0;
+    border-left: none;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px dashed var(--card-border);
+  }
+}

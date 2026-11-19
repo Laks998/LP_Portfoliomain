@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Quippy Browser Extension | Lakshmi Pratap</title>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="project1.css?v=10" />
+  <link rel="stylesheet" href="project1.css?v=12" />
   <link rel="icon" type="image/png" href="../assets/logo.png">
   <link rel="stylesheet" href="../comment-widget.css" />
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -65,19 +65,67 @@
       <div class="hero-content">
         <div class="project-meta">Personal Project · Chrome Extension · Oct 2024 – Present</div>
         <h1 class="project-title">A browser extension to make everyday lookups instant</h1>
-        <p class="project-subtitle">Select any text, press Ctrl+Shift+Q, and get an instant answer — currency, timezones, translations, definitions, and more — without leaving the page.</p>
-        <div class="live-badge">
-          <span class="badge-icon">✓</span>
+        <a href="https://chromewebstore.google.com/detail/quippy/bjoncincdhhnaacbohbhpaaneocdmckj" class="live-badge" target="_blank" rel="noopener noreferrer">
+          <span class="badge-icon" aria-hidden="true">✓</span>
           <span class="badge-text">Live on Chrome Web Store</span>
+          <span class="badge-arrow" aria-hidden="true">↗</span>
+        </a>
+        <div class="hero-facts">
+          <div class="hero-fact">
+            <span class="hero-contribution-label">My contribution</span>
+            <ul class="fact-tags">
+              <li>Product Design</li>
+              <li>UX Research</li>
+              <li>UI Design</li>
+              <li>Frontend Development</li>
+              <li>Testing</li>
+            </ul>
+          </div>
+          <div class="hero-fact">
+            <span class="hero-contribution-label">Constraints</span>
+            <ul class="fact-constraints">
+              <li>
+                <span class="fact-text">Solo build during a career break</span>
+                <a href="#overview" class="fact-stage">01 Overview <span aria-hidden="true">↓</span></a>
+              </li>
+              <li>
+                <span class="fact-text">Has to work on any website without breaking</span>
+                <a href="#decision-3" class="fact-stage">03 Solutions <span aria-hidden="true">↓</span></a>
+              </li>
+              <li>
+                <span class="fact-text">Minimal permissions, no user data</span>
+                <a href="#impact" class="fact-stage">04 Impact <span aria-hidden="true">↓</span></a>
+              </li>
+            </ul>
+          </div>
         </div>
         <div class="hero-image-wrapper">
           <video src="../assets/quipmainvid.mov" class="hero-image" autoplay loop muted playsinline>
             Your browser does not support the video tag.
           </video>
-        </div>
-        <div class="hero-contribution">
-          <span class="hero-contribution-label">My contribution</span>
-          <span class="hero-contribution-list">Product Design · UX Research · UI Design · Frontend Development · Testing</span>
+          <div class="hero-stat" role="group" aria-label="Impact: 14 core functions, no load impact, works on every site tested, and no user data collected">
+            <div class="hero-stat-label">Impact</div>
+            <div class="hero-stat-number">
+              <span class="hero-stat-count" data-count-to="14">14</span>
+            </div>
+            <div class="hero-stat-sub">core functions</div>
+            <div class="hero-stat-caption">All behind one shortcut, Ctrl+Shift+Q</div>
+            <ul class="hero-stat-list">
+              <li>
+                <span class="hero-stat-name">Load impact</span>
+                <span class="hero-stat-val"><span data-count-to="0">0</span>ms</span>
+              </li>
+              <li>
+                <span class="hero-stat-name">Site compatibility</span>
+                <span class="hero-stat-val"><span data-count-to="100">100</span>%</span>
+              </li>
+              <li>
+                <span class="hero-stat-name">Data collected</span>
+                <span class="hero-stat-val">Zero</span>
+              </li>
+            </ul>
+            <div class="hero-stat-foot">Live on the Chrome Web Store since Nov 2024</div>
+          </div>
         </div>
       </div>
     </section>
@@ -385,7 +433,7 @@
     <p>&copy; 2025 Lakshmi Pratap. All rights reserved.</p>
   </footer>
 
-  <script src="project1.js?v=8"></script>
+  <script src="project1.js?v=9"></script>
   <script src="../comment-widget.js"></script>
 </body>
 </html>

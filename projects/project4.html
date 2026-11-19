@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>VR Experience Design | Lakshmi Pratap</title>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="project4.css?v=6" />
+  <link rel="stylesheet" href="project4.css?v=10" />
   <link rel="icon" type="image/png" href="../assets/logo.png">
   <link rel="stylesheet" href="../comment-widget.css" />
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -81,9 +81,60 @@
       <div class="hero-content">
         <div class="project-meta">MSc HCI Dissertation · University of Nottingham · 2024</div>
         <h1 class="project-title">VR Experience and Environment Design to Induce Mind-Body Dualism</h1>
-        <p class="project-subtitle">Designing emotionally immersive VR environments through research-driven UX methodology—from user interviews to tested experience</p>
+        <div class="hero-facts">
+          <div class="hero-fact">
+            <span class="hero-contribution-label">My contribution</span>
+            <ul class="fact-tags">
+              <li>UX Research</li>
+              <li>Experience Design</li>
+              <li>Environment Design</li>
+              <li>VR Development (Unity)</li>
+              <li>User Testing</li>
+            </ul>
+          </div>
+          <div class="hero-fact">
+            <span class="hero-contribution-label">Constraints</span>
+            <ul class="fact-constraints">
+              <li>
+                <span class="fact-text">Solo, 4-month dissertation</span>
+                <a href="#overview" class="fact-stage">01 Overview <span aria-hidden="true">↓</span></a>
+              </li>
+              <li>
+                <span class="fact-text">New to VR development, taught myself Unity</span>
+                <a href="#implementation" class="fact-stage">08 Build <span aria-hidden="true">↓</span></a>
+              </li>
+              <li>
+                <span class="fact-text">Sessions capped at 2–3 minutes for safety</span>
+                <a href="#testing" class="fact-stage">09 Testing <span aria-hidden="true">↓</span></a>
+              </li>
+            </ul>
+          </div>
+        </div>
         <div class="hero-image-wrapper">
           <img src="../assets/VR DP.png" alt="VR Experience Design" class="hero-image">
+          <div class="hero-stat" role="group" aria-label="Impact: 80% of test users reached the target state, 100% reported physical sensations, 13 participants, 2 to 3 minute experience">
+            <div class="hero-stat-label">Impact</div>
+            <div class="hero-stat-number">
+              <span class="hero-stat-count" data-count-to="80">80</span><span class="hero-stat-plus">%</span>
+            </div>
+            <div class="hero-stat-sub">reached the target state</div>
+            <div class="hero-stat-caption">Felt disconnected from their physical surroundings at peak fear</div>
+            <ul class="hero-stat-list">
+              <li>
+                <span class="hero-stat-name">Physical sensations</span>
+                <span class="hero-stat-val"><span data-count-to="100">100</span>%</span>
+              </li>
+              <li>
+                <span class="hero-stat-name">Participants</span>
+                <span class="hero-stat-val"><span data-count-to="13">13</span></span>
+              </li>
+              <li>
+                <span class="hero-stat-name">Experience length</span>
+                <span class="hero-stat-val">2–3 min</span>
+              </li>
+            </ul>
+            <div class="hero-stat-foot">From final testing with 5 users, after a pilot round</div>
+          </div>
         </div>
       </div>
     </section>
@@ -127,15 +178,15 @@
         <div class="challenge-breakdown">
           <div class="challenge-item">
             <h4>The Goal</h4>
-            <p>Design an experience that creates measurable mind-body disconnection through controlled emotional intensity</p>
+            <p>Design an experience that creates <strong>measurable mind-body disconnection</strong> through <strong>controlled emotional intensity</strong></p>
           </div>
           <div class="challenge-item">
             <h4>The Question</h4>
-            <p>What environmental, interaction, and sensory elements are necessary to achieve this level of presence?</p>
+            <p>What <strong>environmental, interaction, and sensory elements</strong> are necessary to achieve this level of <strong>presence</strong>?</p>
           </div>
           <div class="challenge-item">
             <h4>The Approach</h4>
-            <p>Use fear of heights as the emotional trigger, validated through user research and cultural understanding</p>
+            <p>Use <strong>fear of heights</strong> as the emotional trigger, <strong>validated through user research</strong> and cultural understanding</p>
           </div>
         </div>
 
@@ -320,51 +371,93 @@
         <h3>Key Findings: 6 Design-Critical Themes</h3>
         <div class="findings-grid">
           <div class="finding-card">
-            <div class="finding-number">01</div>
-            <h4>Visual Realism Drives Believability</h4>
-            <p>High-quality graphics were consistently essential — users disengage the moment visuals feel artificial.</p>
-            <div class="user-quote">"If the sound doesn't match the visual, I start imagining how the visual should look"</div>
-            <div class="design-implication">Design Implication: Must use photorealistic textures and real-world imagery</div>
+            <div class="finding-head">
+              <span class="finding-number">01</span>
+              <h4>Visual Realism Drives Believability</h4>
+            </div>
+            <blockquote class="finding-quote">
+              <p>If the sound doesn't match the visual, I start imagining how the visual should look</p>
+              <cite>Interview participant</cite>
+            </blockquote>
+            <div class="finding-implication">
+              <span class="finding-implication-label"><span aria-hidden="true">→</span> Design implication</span>
+              <p>Must use photorealistic textures and real-world imagery</p>
+            </div>
           </div>
           
           <div class="finding-card">
-            <div class="finding-number">02</div>
-            <h4>Emotion Amplifies Immersion</h4>
-            <p>Strong emotions — fear, awe, excitement — make users forget their surroundings; intensity tracks directly with presence.</p>
-            <div class="user-quote">"I would wake up feeling like I was being choked... I couldn't move. It was very scary."</div>
-            <div class="design-implication">Design Implication: Use fear of heights as primary emotional trigger</div>
+            <div class="finding-head">
+              <span class="finding-number">02</span>
+              <h4>Emotion Amplifies Immersion</h4>
+            </div>
+            <blockquote class="finding-quote">
+              <p>I would wake up feeling like I was being choked... I couldn't move. It was very scary.</p>
+              <cite>Interview participant</cite>
+            </blockquote>
+            <div class="finding-implication">
+              <span class="finding-implication-label"><span aria-hidden="true">→</span> Design implication</span>
+              <p>Use fear of heights as primary emotional trigger</p>
+            </div>
           </div>
           
           <div class="finding-card">
-            <div class="finding-number">03</div>
-            <h4>External Control Enhances Presence (Counterintuitive)</h4>
-            <p>Moving users without their input increased immersion by closing the cognitive gap between virtual and real.</p>
-            <div class="user-quote">"The entity will correct me to urge my hand in the right direction... that made it more realistic"</div>
-            <div class="design-implication">Design Implication: Remove user control during peak emotional moments</div>
+            <div class="finding-head">
+              <span class="finding-number">03</span>
+              <h4>External Control Enhances Presence (Counterintuitive)</h4>
+            </div>
+            <blockquote class="finding-quote">
+              <p>The entity will correct me to urge my hand in the right direction... that made it more realistic</p>
+              <cite>Interview participant</cite>
+            </blockquote>
+            <div class="finding-implication">
+              <span class="finding-implication-label"><span aria-hidden="true">→</span> Design implication</span>
+              <p>Remove user control during peak emotional moments</p>
+            </div>
           </div>
           
           <div class="finding-card">
-            <div class="finding-number">04</div>
-            <h4>Height Triggers Visceral Response</h4>
-            <p>Vertical space consistently triggered physical sensations, even in users who knew they were safe.</p>
-            <div class="user-quote">"Motion plays a big role in immersion"</div>
-            <div class="design-implication">Design Implication: Design for extreme vertical elevation</div>
+            <div class="finding-head">
+              <span class="finding-number">04</span>
+              <h4>Height Triggers Visceral Response</h4>
+            </div>
+            <blockquote class="finding-quote">
+              <p>Motion plays a big role in immersion</p>
+              <cite>Interview participant</cite>
+            </blockquote>
+            <div class="finding-implication">
+              <span class="finding-implication-label"><span aria-hidden="true">→</span> Design implication</span>
+              <p>Design for extreme vertical elevation</p>
+            </div>
           </div>
           
           <div class="finding-card">
-            <div class="finding-number">05</div>
-            <h4>Audio-Visual Synchronization is Critical</h4>
-            <p>Spatial audio matched precisely to visuals was essential — any mismatch broke immersion instantly.</p>
-            <div class="user-quote">"Gaming, especially with social interaction, can make the experience feel very real"</div>
-            <div class="design-implication">Design Implication: Synchronize spatial audio with all visual elements</div>
+            <div class="finding-head">
+              <span class="finding-number">05</span>
+              <h4>Audio-Visual Synchronization is Critical</h4>
+            </div>
+            <blockquote class="finding-quote">
+              <p>Gaming, especially with social interaction, can make the experience feel very real</p>
+              <cite>Interview participant</cite>
+            </blockquote>
+            <div class="finding-implication">
+              <span class="finding-implication-label"><span aria-hidden="true">→</span> Design implication</span>
+              <p>Synchronize spatial audio with all visual elements</p>
+            </div>
           </div>
           
           <div class="finding-card">
-            <div class="finding-number">06</div>
-            <h4>Real-World Environments Work Best</h4>
-            <p>Users trusted realistic recreations of real places over fantastical environments.</p>
-            <div class="user-quote">"You could recreate real places and give users the feeling of being there. That would be immersive."</div>
-            <div class="design-implication">Design Implication: Use real city panorama for height reveal</div>
+            <div class="finding-head">
+              <span class="finding-number">06</span>
+              <h4>Real-World Environments Work Best</h4>
+            </div>
+            <blockquote class="finding-quote">
+              <p>You could recreate real places and give users the feeling of being there. That would be immersive.</p>
+              <cite>Interview participant</cite>
+            </blockquote>
+            <div class="finding-implication">
+              <span class="finding-implication-label"><span aria-hidden="true">→</span> Design implication</span>
+              <p>Use real city panorama for height reveal</p>
+            </div>
           </div>
         </div>
       </div>
@@ -792,7 +885,7 @@
     <p>&copy; 2025 Lakshmi Pratap. All rights reserved.</p>
   </footer>
 
-  <script src="project4.js?v=5"></script>
+  <script src="project4.js?v=6"></script>
   <script src="../comment-widget.js"></script>
 </body>
 </html>

@@ -2032,3 +2032,772 @@ p:last-child {
     animation: none;
   }
 }
+/* =====================================================================
+   LARGE SCREENS, TYPE SCALE, SIDE NAV, HERO — matching the CX Portal
+   and Sportscove case studies. Everything below sits after the base
+   styles so it wins the cascade. Phones/tablets only pick up the type
+   scale and the hero layout; the rest starts at 1321px or 1600px.
+
+   --col     content column width: 900px on laptops (a little less on
+             narrow laptops, to keep a gap from the side nav); from
+             1600px it grows with the screen, up to 1600px.
+   --gutter  side margin from 1600px = open side nav + a 4rem gap.
+   --bs      side nav / widths multiplier (1.12 / 1.2 / 1.28)
+   --ui      buttons & back links       (1.25 / 1.4 / 1.55)
+             at 1600 / 1920 / 2400px.
+   ===================================================================== */
+
+:root {
+  --col: 900px;
+}
+
+/* ---------- Hero text runs the full content width (769px+) ---------- */
+@media (min-width: 769px) {
+  .project-title {
+    max-width: var(--col);
+  }
+}
+
+/* ---------- Laptops (1321–1599px): keep a 4rem gap from the nav ---------- */
+@media (min-width: 1321px) and (max-width: 1599px) {
+  :root {
+    --col: min(900px, calc(100vw - 2 * (1rem + 13rem + 4rem)));
+  }
+
+  .section-content,
+  .project-title,
+  .hero-image-wrapper,
+  .hero-image {
+    max-width: var(--col);
+  }
+
+  .back-link {
+    left: calc((100% - var(--col)) / 2);
+  }
+}
+
+/* ---------- Big screens: multipliers per tier ---------- */
+@media (min-width: 1600px) {
+  :root {
+    --bs: 1.12;
+    --ui: 1.25;
+    --gutter: calc(1rem + 13rem + 4rem);
+    --col: min(calc(100vw - 2 * var(--gutter)), 1600px);
+  }
+}
+
+@media (min-width: 1920px) {
+  :root {
+    --bs: 1.2;
+    --ui: 1.4;
+    --gutter: calc(15rem * var(--bs) + 5rem);
+  }
+}
+
+@media (min-width: 2400px) {
+  :root {
+    --bs: 1.28;
+    --ui: 1.55;
+  }
+}
+
+@media (min-width: 1600px) {
+
+  /* Layout widths */
+  .project-content {
+    max-width: none;
+  }
+
+  .section-content,
+  .project-title,
+  .hero-image-wrapper,
+  .hero-image {
+    max-width: var(--col);
+  }
+
+  .back-link {
+    left: calc((100% - var(--col)) / 2);
+  }
+
+  /* Media as a share of the column (fixed px at 900px → same fraction) */
+  .size-compact {
+    max-width: calc(var(--col) * 0.47);
+  }
+
+  .onboarding-flow-images {
+    gap: calc(var(--col) * 0.07);
+  }
+
+  .flow-image-item {
+    flex-basis: calc(var(--col) * 0.335);
+  }
+
+  .flow-image-item .solution-image-wrapper {
+    max-width: calc(var(--col) * 0.335);
+  }
+
+  .centered-quote {
+    max-width: calc(var(--col) * 0.62);
+  }
+
+  /* Buttons & back links */
+  .back-link,
+  .footer-back-link {
+    gap: calc(12px * var(--ui));
+  }
+
+  .back-link-arrow,
+  .footer-back-link .back-link-arrow {
+    width: calc(38px * var(--ui));
+    height: calc(38px * var(--ui));
+  }
+
+  .back-link-arrow svg,
+  .footer-back-link .back-link-arrow svg {
+    width: calc(16px * var(--ui));
+    height: calc(16px * var(--ui));
+  }
+
+  .to-top {
+    width: calc(52px * var(--ui));
+    height: calc(52px * var(--ui));
+    right: 2rem;
+    bottom: 2rem;
+  }
+
+  .to-top-arrow {
+    width: calc(18px * var(--ui));
+    height: calc(18px * var(--ui));
+  }
+
+  .next-project {
+    --np-circle: calc(52px * var(--ui));
+    --np-pad: calc(7px * var(--ui));
+  }
+
+  .next-project-arrow {
+    width: calc(20px * var(--ui));
+    height: calc(20px * var(--ui));
+    transform: translateX(calc(-9px * var(--ui)));
+  }
+}
+
+/* Wide enough for the 14 function chips to sit in two rows of seven */
+@media (min-width: 1800px) {
+  .feature-chip-grid {
+    grid-template-columns: repeat(7, 1fr);
+  }
+}
+
+/* =====================================================================
+   TYPE SCALE — every text size comes from one fixed scale:
+   10 · 12 · 14 · 16 · 18 · 24 · 32 · 40 · 48 · 56 px.
+
+   role       laptop   phone(≤900)   big(1600+)   used for
+   --t-micro    10        10            12        tiny tags
+   --t-label    12        12            14        uppercase labels, captions
+   --t-small    14        14            16        card text, bullets, chips
+   --t-body     16        16            18        paragraphs
+   --t-lead     18        16            24        pull quote
+   --t-h4       16        16            18        card titles
+   --t-h3s      18        18            24        sub-headings
+   --t-h3       24        18            32        decision headings, metrics
+   --t-h2       32        24            40        section headings
+   --t-h1       48        32            56        page title
+   --t-stat-xl  48        40            56        hero impact number
+   ===================================================================== */
+:root {
+  --t-micro: 10px;
+  --t-label: 12px;
+  --t-small: 14px;
+  --t-body: 16px;
+  --t-lead: 18px;
+  --t-h4: 16px;
+  --t-h3s: 18px;
+  --t-h3: 24px;
+  --t-h2: 32px;
+  --t-h1: 48px;
+  --t-stat-xl: 48px;
+}
+
+@media (max-width: 900px) {
+  :root {
+    --t-lead: 16px;
+    --t-h3: 18px;
+    --t-h2: 24px;
+    --t-h1: 32px;
+    --t-stat-xl: 40px;
+  }
+}
+
+@media (min-width: 1600px) {
+  :root {
+    --t-micro: 12px;
+    --t-label: 14px;
+    --t-small: 16px;
+    --t-body: 18px;
+    --t-lead: 24px;
+    --t-h4: 18px;
+    --t-h3s: 24px;
+    --t-h3: 32px;
+    --t-h2: 40px;
+    --t-h1: 56px;
+    --t-stat-xl: 56px;
+  }
+}
+
+/* Headings */
+.project-title { font-size: var(--t-h1); }
+h2 { font-size: var(--t-h2); }
+h3,
+.decision-title-wrapper h3,
+.method-detail h3,
+.metric-strip-number { font-size: var(--t-h3); }
+.section-subhead,
+.next-project-title { font-size: var(--t-h3s); }
+h4,
+h5,
+.outcome-card h4,
+.impact-card h4 { font-size: var(--t-h4); }
+.lightbox-close { font-size: 24px; }
+
+/* Lead */
+.centered-quote { font-size: var(--t-lead); }
+
+/* Body */
+body,
+p,
+.context-section .section-content > p,
+.decision-content p,
+.method-detail p,
+.section-subhead-note,
+.learning-item p,
+.detail-value,
+.final-cta p,
+.feature-chip-icon { font-size: var(--t-body); }
+
+/* Small */
+.hero-contribution-label,
+.back-link,
+.footer-back-link,
+.site-footer,
+.constraint-callout p,
+.bridge-row,
+.decision-subtitle,
+.method-bullets li,
+.outcome-card p,
+.impact-card p,
+.badge-icon,
+.badge-text,
+.feature-chip,
+.screen-grid-item h4,
+.screen-grid-item p,
+.cta-button,
+.hero-stat-list li { font-size: var(--t-small); }
+
+/* Labels & captions */
+.project-meta,
+.section-kicker,
+.detail-label,
+.constraint-label,
+.impact-subheading,
+.bridge-header,
+.decision-eyebrow,
+.outcome-card-tag,
+.media-caption,
+.metric-strip-label,
+.final-cta h4,
+.next-project-label,
+.next-project-sub,
+.hero-stat-label,
+.hero-stat-caption,
+.hero-stat-foot { font-size: var(--t-label); }
+
+/* =====================================================================
+   SIDE NAV
+   - 1321–1919px (laptops; many are wider than 1600px): section names
+     14px, sub-sections 12px, numbers 10px, 13rem open card.
+   - 1920px and up (monitors): 18 / 16 / 14px, 15rem open card.
+   - 1600px and up: stays open, with the current section's sub-list
+     showing. 1321–1599px: the JS slides it open (.is-peek) for a
+     couple of seconds each time a new section is reached.
+   ===================================================================== */
+.side-nav-num,
+.side-nav-head-label,
+.side-nav-sublink-num { font-size: var(--t-label); }
+
+@media (min-width: 1321px) and (max-width: 1919px) {
+  .side-nav {
+    --nav-closed: 50px;
+    --nav-open: 13rem;
+    padding: 0.5rem 0.45rem;
+  }
+
+  .side-nav-link {
+    font-size: 14px;
+    gap: 0.6rem;
+    padding: 0.38rem 0.35rem;
+  }
+
+  .side-nav-sublink {
+    font-size: 12px;
+    padding: 0.3rem 0.45rem;
+  }
+
+  .side-nav-num,
+  .side-nav-sublink-num,
+  .side-nav-head-label {
+    font-size: 10px;
+  }
+
+  .side-nav-num,
+  .side-nav-head-icon {
+    width: 26px;
+    height: 26px;
+  }
+
+  .side-nav-head-icon svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .side-nav-sublist-inner {
+    margin-left: calc(0.35rem + 13px);
+  }
+}
+
+@media (min-width: 1920px) {
+  .side-nav {
+    --nav-closed: calc(58px * var(--bs));
+    --nav-open: calc(15rem * var(--bs));
+  }
+
+  .side-nav-link {
+    font-size: var(--t-body);
+  }
+
+  .side-nav-sublink {
+    font-size: var(--t-small);
+  }
+
+  .side-nav-num,
+  .side-nav-head-icon {
+    width: calc(30px * var(--bs));
+    height: calc(30px * var(--bs));
+  }
+
+  .side-nav-sublist-inner {
+    margin-left: calc(0.4rem + 15px * var(--bs));
+  }
+}
+
+@media (min-width: 1321px) {
+  .side-nav.is-peek {
+    width: var(--nav-open);
+    border-radius: 20px;
+    box-shadow: var(--shadow-md);
+  }
+
+  .side-nav.is-peek .side-nav-label,
+  .side-nav.is-peek .side-nav-head-label {
+    opacity: 1;
+    transform: translateX(0);
+    filter: blur(0);
+    transition:
+      opacity 0.4s ease,
+      transform 0.55s var(--ease-open),
+      filter 0.4s ease;
+    transition-delay: 0.1s;
+  }
+
+  .side-nav.is-peek .side-nav-item:has(.is-active) .side-nav-sublist {
+    grid-template-rows: 1fr;
+  }
+
+  .side-nav.is-peek .side-nav-item:has(.is-active) .side-nav-sublink {
+    opacity: 1;
+    transform: translateY(0);
+    transition:
+      opacity 0.35s ease 0.2s,
+      transform 0.45s var(--ease-open) 0.2s,
+      background 0.25s ease,
+      color 0.25s ease;
+  }
+}
+
+@media (min-width: 1600px) {
+  .side-nav {
+    width: var(--nav-open);
+    border-radius: 20px;
+  }
+
+  .side-nav .side-nav-label,
+  .side-nav .side-nav-head-label {
+    opacity: 1;
+    transform: translateX(0);
+    filter: blur(0);
+  }
+
+  .side-nav .side-nav-link.is-active {
+    background: rgba(16, 15, 14, 0.05);
+  }
+
+  .side-nav-item:has(.is-active) .side-nav-sublist {
+    grid-template-rows: 1fr;
+  }
+
+  .side-nav-item:has(.is-active) .side-nav-sublink {
+    opacity: 1;
+    transform: translateY(0);
+    transition:
+      opacity 0.35s ease 0.15s,
+      transform 0.45s var(--ease-open) 0.15s,
+      background 0.25s ease,
+      color 0.25s ease;
+  }
+}
+
+/* =====================================================================
+   HERO FACTS — "My contribution" and "Constraints" side by side under
+   the title and live badge. Left: skills as tags. Right: three
+   constraints, each with a pill linking to where it shows up. Headings
+   centred in their columns. Stacks on phones (768px and below).
+   ===================================================================== */
+.live-badge {
+  margin-bottom: 2.5rem;
+}
+
+.hero-facts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: var(--col);
+  margin: 0 auto;
+  padding-top: 2rem;
+  border-top: 1px solid var(--card-border);
+  text-align: left;
+}
+
+.hero-fact {
+  min-width: 0;
+}
+
+.hero-fact:first-child {
+  padding-right: 2.5rem;
+}
+
+.hero-fact + .hero-fact {
+  padding-left: 2.5rem;
+  border-left: 1px solid var(--card-border);
+}
+
+.hero-fact .hero-contribution-label {
+  display: block;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.fact-tags {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.fact-tags li {
+  font-size: var(--t-small);
+  line-height: 1.3;
+  color: var(--text);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-sm);
+  padding: 0.4rem 0.75rem;
+}
+
+.fact-constraints {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.fact-constraints li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.65rem 0;
+  border-top: 1px dashed var(--card-border);
+}
+
+.fact-constraints li:first-child {
+  padding-top: 0;
+  border-top: none;
+}
+
+.fact-text {
+  font-size: var(--t-small);
+  line-height: 1.4;
+  color: var(--text);
+}
+
+.fact-stage {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: var(--t-label);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  text-decoration: none;
+  color: var(--accent);
+  background: var(--decision-bg);
+  border: 1px solid var(--decision-border);
+  border-radius: 999px;
+  padding: 0.25rem 0.65rem;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.fact-stage:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+}
+
+.fact-stage:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (max-width: 768px) {
+  .hero-facts {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-fact:first-child {
+    padding-right: 0;
+  }
+
+  .hero-fact + .hero-fact {
+    padding-left: 0;
+    border-left: none;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px dashed var(--card-border);
+  }
+}
+
+/* =====================================================================
+   HERO IMPACT CARD — floats on the top-right corner of the hero video,
+   built from the Impact section's numbers: 14 core functions, then
+   load impact / site compatibility / data collected as rows. When it
+   scrolls into view the card rises in, the numbers count up and the
+   rows fade in one after another. On tablets and phones (1024px and
+   below) it sits below the video instead of on top.
+   ===================================================================== */
+.hero-image-wrapper {
+  position: relative;
+}
+
+.hero-stat {
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+
+  position: absolute;
+  top: 4%;
+  right: 3%;
+  z-index: 2;
+  width: clamp(17rem, 30%, 21rem);
+  padding: 1.4rem 1.5rem 1.25rem;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(16, 15, 14, 0.08);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  transition:
+    opacity 0.7s ease,
+    transform 0.8s var(--ease-out),
+    box-shadow 0.4s ease;
+}
+
+.hero-stat:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(16, 15, 14, 0.08), 0 22px 48px rgba(16, 15, 14, 0.14);
+}
+
+.hero-stat-label {
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.35rem;
+}
+
+.hero-stat-number {
+  display: flex;
+  align-items: baseline;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+.hero-stat-count {
+  font-size: var(--t-stat-xl);
+  font-variant-numeric: tabular-nums;
+}
+
+.hero-stat-sub {
+  font-size: var(--t-body);
+  font-weight: 600;
+  color: var(--text);
+  margin-top: 0.3rem;
+}
+
+.hero-stat-caption {
+  line-height: 1.4;
+  color: var(--muted);
+  margin-top: 0.2rem;
+}
+
+.hero-stat-list {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0.85rem 0 0;
+  border-top: 1px solid var(--card-border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.hero-stat-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  line-height: 1.3;
+  color: var(--muted);
+  transition: opacity 0.5s ease, transform 0.6s var(--ease-out);
+}
+
+.hero-stat-name {
+  flex: 1;
+  min-width: 0;
+}
+
+.hero-stat-val {
+  font-family: var(--font-heading);
+  font-size: var(--t-h3s);
+  font-weight: 800;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.hero-stat-foot {
+  margin-top: 0.95rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--card-border);
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+/* Entrance — the JS adds .is-pending before the card is seen, then
+   swaps it for .is-in. Without JS (or with reduced motion) neither
+   class is added, so everything simply shows in its final state. */
+.hero-stat.is-pending {
+  opacity: 0;
+  transform: translateY(16px) scale(0.97);
+}
+
+.hero-stat.is-pending .hero-stat-list li {
+  opacity: 0;
+  transform: translateX(-8px);
+}
+
+.hero-stat.is-in .hero-stat-list li:nth-child(1) { transition-delay: 0.5s; }
+.hero-stat.is-in .hero-stat-list li:nth-child(2) { transition-delay: 0.7s; }
+.hero-stat.is-in .hero-stat-list li:nth-child(3) { transition-delay: 0.9s; }
+
+@media (min-width: 1600px) {
+  .hero-stat {
+    width: clamp(19rem, 28%, 25rem);
+    padding: 1.6rem 1.75rem 1.4rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .hero-image-wrapper {
+    overflow: visible;
+  }
+
+  .hero-stat {
+    position: static;
+    width: auto;
+    max-width: 420px;
+    margin: 1.5rem auto 0;
+    background: var(--card-bg);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: 1px solid var(--card-border);
+    box-shadow: var(--shadow-sm);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-stat,
+  .hero-stat-list li {
+    transition: none;
+  }
+
+  .hero-stat:hover {
+    transform: none;
+  }
+}
+
+/* =====================================================================
+   Live badge as a link — the "Live on Chrome Web Store" pill in the
+   hero opens the Chrome Web Store page (same link as the button at the
+   bottom) in a new tab. A small ↗ arrow and a hover/focus state show
+   it's clickable.
+   ===================================================================== */
+a.live-badge {
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.badge-arrow {
+  font-size: var(--t-small);
+  color: var(--success);
+  transition: transform 0.25s ease;
+}
+
+a.live-badge:hover {
+  background: rgba(38, 140, 80, 0.15);
+  border-color: var(--success);
+  box-shadow: var(--shadow-sm);
+}
+
+a.live-badge:hover .badge-arrow {
+  transform: translate(2px, -2px);
+}
+
+a.live-badge:focus-visible {
+  outline: 2px solid var(--success);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  a.live-badge,
+  .badge-arrow {
+    transition: none;
+  }
+
+  a.live-badge:hover .badge-arrow {
+    transform: none;
+  }
+}

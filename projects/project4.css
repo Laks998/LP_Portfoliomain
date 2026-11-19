@@ -1804,3 +1804,995 @@ p:last-child {
 .design-rationale {
   border-radius: var(--radius-sm);
 }
+/* =====================================================================
+   LARGE SCREENS, TYPE SCALE, SIDE NAV, HERO — matching the CX Portal,
+   Sportscove and Quippy case studies. Everything below sits after the
+   base styles so it wins the cascade. Phones/tablets only pick up the
+   type scale and the hero layout; the rest starts at 1321px or 1600px.
+
+   --col     content column width: 900px on laptops (a little less on
+             narrow laptops, to keep a gap from the side nav); from
+             1600px it grows with the screen, up to 1600px.
+   --gutter  side margin from 1600px = open side nav + a 4rem gap.
+   --bs      side nav / small fixed sizes (1.12 / 1.2 / 1.28)
+   --ui      buttons & back links        (1.25 / 1.4 / 1.55)
+             at 1600 / 1920 / 2400px.
+   ===================================================================== */
+
+:root {
+  --col: 900px;
+}
+
+/* ---------- Hero: title and image share the content width ---------- */
+.hero-image-wrapper {
+  position: relative;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-image {
+  max-width: 100%;
+}
+
+@media (min-width: 769px) {
+  .project-title {
+    max-width: var(--col);
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* ---------- Laptops (1321–1599px): keep a 4rem gap from the nav ---------- */
+@media (min-width: 1321px) and (max-width: 1599px) {
+  :root {
+    --col: min(900px, calc(100vw - 2 * (1rem + 13rem + 4rem)));
+  }
+
+  .section-content,
+  .project-title {
+    max-width: var(--col);
+  }
+
+  .hero-image-wrapper {
+    max-width: min(800px, var(--col));
+  }
+
+  .back-link {
+    left: calc((100% - var(--col)) / 2);
+  }
+}
+
+/* ---------- Big screens: multipliers per tier ---------- */
+@media (min-width: 1600px) {
+  :root {
+    --bs: 1.12;
+    --ui: 1.25;
+    --gutter: calc(1rem + 13rem + 4rem);
+    --col: min(calc(100vw - 2 * var(--gutter)), 1600px);
+  }
+}
+
+@media (min-width: 1920px) {
+  :root {
+    --bs: 1.2;
+    --ui: 1.4;
+    --gutter: calc(15rem * var(--bs) + 5rem);
+  }
+}
+
+@media (min-width: 2400px) {
+  :root {
+    --bs: 1.28;
+    --ui: 1.55;
+  }
+}
+
+@media (min-width: 1600px) {
+
+  /* Layout widths */
+  .project-content {
+    max-width: none;
+  }
+
+  .section-content,
+  .project-title {
+    max-width: var(--col);
+  }
+
+  /* Hero image: 800px of the old 900px column → same share */
+  .hero-image-wrapper {
+    max-width: calc(var(--col) * 0.89);
+  }
+
+  .back-link {
+    left: calc((100% - var(--col)) / 2);
+  }
+
+  /* Media and fixed columns, as a share of the column
+     (fixed px at the original 900px column → same fraction) */
+  .process-flow {
+    max-width: calc(var(--col) * 0.845);
+  }
+
+  .concept-explanation {
+    grid-template-columns: calc(var(--col) * 0.222) 1fr;
+  }
+
+  .concept-image {
+    max-width: calc(var(--col) * 0.222);
+    height: calc(var(--col) * 0.2);
+  }
+
+  .movie-card {
+    grid-template-columns: calc(var(--col) * 0.222) 1fr;
+  }
+
+  .movie-poster {
+    height: calc(var(--col) * 0.311);
+  }
+
+  .flow-card {
+    grid-template-columns: calc(var(--col) * 0.333) 1fr;
+  }
+
+  .flow-image img {
+    height: calc(var(--col) * 0.222);
+  }
+
+  .tech-icon img {
+    max-width: calc(150px * var(--bs));
+  }
+
+  .stage-number {
+    width: calc(50px * var(--bs));
+    height: calc(50px * var(--bs));
+  }
+
+  .process-stage {
+    grid-template-columns: calc(50px * var(--bs)) 1fr;
+  }
+
+  .process-flow::before {
+    left: calc(2rem + 25px * var(--bs));
+  }
+
+  /* Buttons & back links */
+  .back-link,
+  .footer-back-link {
+    gap: calc(12px * var(--ui));
+  }
+
+  .back-link-arrow,
+  .footer-back-link .back-link-arrow {
+    width: calc(38px * var(--ui));
+    height: calc(38px * var(--ui));
+  }
+
+  .back-link-arrow svg,
+  .footer-back-link .back-link-arrow svg {
+    width: calc(16px * var(--ui));
+    height: calc(16px * var(--ui));
+  }
+
+  .to-top {
+    width: calc(52px * var(--ui));
+    height: calc(52px * var(--ui));
+    right: 2rem;
+    bottom: 2rem;
+  }
+
+  .to-top-arrow {
+    width: calc(18px * var(--ui));
+    height: calc(18px * var(--ui));
+  }
+}
+
+/* Once the column is wide enough, card grids spread out into one row
+   (or two rows of three for the six research findings). */
+@media (min-width: 1800px) {
+  .findings-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .impact-grid,
+  .takeaways-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* =====================================================================
+   TYPE SCALE — every text size comes from one fixed scale:
+   10 · 12 · 14 · 16 · 18 · 24 · 32 · 40 · 48 · 56 px.
+
+   role       laptop   phone(≤900)   big(1600+)   used for
+   --t-label    12        12            14        uppercase labels, captions
+   --t-small    14        14            16        tags, quotes, rationale boxes
+   --t-body     16        16            18        paragraphs, list items
+   --t-h4       16        16            18        card titles
+   --t-h3       24        18            32        sub-headings, finding numbers
+   --t-h2       32        24            40        section headings
+   --t-h1       48        32            56        page title
+   --t-stat     40        32            48        result numbers
+   --t-stat-xl  48        40            56        hero impact number, block numbers
+   ===================================================================== */
+:root {
+  --t-micro: 10px;
+  --t-label: 12px;
+  --t-small: 14px;
+  --t-body: 16px;
+  --t-h4: 16px;
+  --t-h3s: 18px;
+  --t-h3: 24px;
+  --t-h2: 32px;
+  --t-h1: 48px;
+  --t-stat: 40px;
+  --t-stat-xl: 48px;
+}
+
+@media (max-width: 900px) {
+  :root {
+    --t-h3: 18px;
+    --t-h2: 24px;
+    --t-h1: 32px;
+    --t-stat: 32px;
+    --t-stat-xl: 40px;
+  }
+}
+
+@media (min-width: 1600px) {
+  :root {
+    --t-micro: 12px;
+    --t-label: 14px;
+    --t-small: 16px;
+    --t-body: 18px;
+    --t-h4: 18px;
+    --t-h3s: 24px;
+    --t-h3: 32px;
+    --t-h2: 40px;
+    --t-h1: 56px;
+    --t-stat: 48px;
+    --t-stat-xl: 56px;
+  }
+}
+
+/* Headings */
+.project-title { font-size: var(--t-h1); }
+h2 { font-size: var(--t-h2); }
+h3,
+.stage-content h3,
+.requirement-category h3,
+.framework-block h3,
+.finding-number { font-size: var(--t-h3); }
+h4,
+.challenge-item h4,
+.movie-details h4,
+.method-detail h4,
+.finding-card h4,
+.flow-content h4,
+.tech-item h4,
+.tech-decision-card h4,
+.pilot-card h4,
+.validation-item h4,
+.impact-card h4,
+.takeaway-card h4 { font-size: var(--t-h4); }
+.metric-number { font-size: var(--t-stat); }
+.block-number { font-size: var(--t-stat-xl); }
+
+/* Body */
+body,
+p,
+.overview-section .section-content > p,
+.research-conclusion,
+.detail-value,
+.movie-details p,
+.goal-item,
+.spec-item,
+.req-item,
+.pilot-item,
+.principle-item,
+.metric-label,
+.takeaway-card p { font-size: var(--t-body); }
+
+/* Small */
+.hero-contribution-label,
+.back-link,
+.footer-back-link,
+.site-footer,
+.doc-link,
+.stage-number,
+.activity,
+.app-tag,
+.trigger,
+.design-insight,
+.user-quote,
+.design-implication,
+.design-rationale,
+.image-caption,
+.pilot-impact,
+.pilot-result,
+.metric-detail,
+.hero-stat-list li { font-size: var(--t-small); }
+
+/* Labels */
+.project-meta,
+.detail-label,
+.hero-stat-label,
+.hero-stat-caption,
+.hero-stat-foot { font-size: var(--t-label); }
+
+/* =====================================================================
+   SIDE NAV
+   - 1321–1919px (laptops; many are wider than 1600px): section names
+     14px, numbers 10px, 13rem open card.
+   - 1920px and up (monitors): 18px names, 14px numbers, 15rem card.
+   - 1600px and up: stays open. 1321–1599px: the JS slides it open
+     (.is-peek) for a couple of seconds each time a new section is
+     reached. This page's nav has 12 sections and no sub-lists.
+   ===================================================================== */
+.side-nav-num,
+.side-nav-head-label { font-size: var(--t-label); }
+
+@media (min-width: 1321px) and (max-width: 1919px) {
+  .side-nav {
+    --nav-closed: 50px;
+    --nav-open: 13rem;
+    padding: 0.5rem 0.45rem;
+  }
+
+  .side-nav-link {
+    font-size: 14px;
+    gap: 0.6rem;
+    padding: 0.38rem 0.35rem;
+  }
+
+  .side-nav-num,
+  .side-nav-head-label {
+    font-size: 10px;
+  }
+
+  .side-nav-num,
+  .side-nav-head-icon {
+    width: 26px;
+    height: 26px;
+  }
+
+  .side-nav-head-icon svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .side-nav {
+    --nav-closed: calc(58px * var(--bs));
+    --nav-open: calc(15rem * var(--bs));
+  }
+
+  .side-nav-link {
+    font-size: var(--t-body);
+  }
+
+  .side-nav-num,
+  .side-nav-head-icon {
+    width: calc(30px * var(--bs));
+    height: calc(30px * var(--bs));
+  }
+}
+
+@media (min-width: 1321px) {
+  .side-nav.is-peek {
+    width: var(--nav-open);
+    border-radius: 20px;
+    box-shadow: var(--shadow-md);
+  }
+
+  .side-nav.is-peek .side-nav-label,
+  .side-nav.is-peek .side-nav-head-label {
+    opacity: 1;
+    transform: translateX(0);
+    filter: blur(0);
+    transition:
+      opacity 0.4s ease,
+      transform 0.55s var(--ease-open),
+      filter 0.4s ease;
+    transition-delay: 0.1s;
+  }
+}
+
+@media (min-width: 1600px) {
+  .side-nav {
+    width: var(--nav-open);
+    border-radius: 20px;
+  }
+
+  .side-nav .side-nav-label,
+  .side-nav .side-nav-head-label {
+    opacity: 1;
+    transform: translateX(0);
+    filter: blur(0);
+  }
+
+  .side-nav .side-nav-link.is-active {
+    background: rgba(16, 15, 14, 0.05);
+  }
+}
+
+/* =====================================================================
+   HERO FACTS — "My contribution" and "Constraints" side by side under
+   the title. Left: skills as tags. Right: three constraints, each with
+   a pill linking to where it shows up. Headings centred in their
+   columns. Stacks on phones (768px and below).
+   ===================================================================== */
+.hero-facts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: var(--col);
+  margin: 0 auto;
+  padding-top: 2rem;
+  border-top: 1px solid var(--card-border);
+  text-align: left;
+}
+
+.hero-fact {
+  min-width: 0;
+}
+
+.hero-fact:first-child {
+  padding-right: 2.5rem;
+}
+
+.hero-fact + .hero-fact {
+  padding-left: 2.5rem;
+  border-left: 1px solid var(--card-border);
+}
+
+.hero-contribution-label {
+  display: block;
+  margin-bottom: 1rem;
+  text-align: center;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.fact-tags {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.fact-tags li {
+  font-size: var(--t-small);
+  line-height: 1.3;
+  color: var(--text);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-sm);
+  padding: 0.4rem 0.75rem;
+}
+
+.fact-constraints {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.fact-constraints li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.65rem 0;
+  border-top: 1px dashed var(--card-border);
+}
+
+.fact-constraints li:first-child {
+  padding-top: 0;
+  border-top: none;
+}
+
+.fact-text {
+  font-size: var(--t-small);
+  line-height: 1.4;
+  color: var(--text);
+}
+
+.fact-stage {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: var(--t-label);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  text-decoration: none;
+  color: var(--accent);
+  background: var(--decision-bg);
+  border: 1px solid var(--decision-border);
+  border-radius: 999px;
+  padding: 0.25rem 0.65rem;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.fact-stage:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+}
+
+.fact-stage:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (max-width: 768px) {
+  .hero-facts {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-fact:first-child {
+    padding-right: 0;
+  }
+
+  .hero-fact + .hero-fact {
+    padding-left: 0;
+    border-left: none;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px dashed var(--card-border);
+  }
+}
+
+/* =====================================================================
+   HERO IMPACT CARD — floats on the top-right corner of the hero image,
+   built from the final testing results: 80% reached the target state,
+   then physical sensations / participants / experience length as rows.
+   When it scrolls into view the card rises in, the numbers count up
+   and the rows fade in one after another. On tablets and phones
+   (1024px and below) it sits below the image instead of on top.
+   ===================================================================== */
+.hero-stat {
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+
+  position: absolute;
+  top: 4%;
+  right: 3%;
+  z-index: 2;
+  width: clamp(17rem, 32%, 21rem);
+  padding: 1.4rem 1.5rem 1.25rem;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(16, 15, 14, 0.08);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  transition:
+    opacity 0.7s ease,
+    transform 0.8s var(--ease-out),
+    box-shadow 0.4s ease;
+}
+
+.hero-stat:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(16, 15, 14, 0.08), 0 22px 48px rgba(16, 15, 14, 0.14);
+}
+
+.hero-stat-label {
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.35rem;
+}
+
+.hero-stat-number {
+  display: flex;
+  align-items: baseline;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+.hero-stat-count {
+  font-size: var(--t-stat-xl);
+  font-variant-numeric: tabular-nums;
+}
+
+.hero-stat-plus {
+  font-size: var(--t-h2);
+  margin-left: 0.05em;
+}
+
+.hero-stat-sub {
+  font-size: var(--t-body);
+  font-weight: 600;
+  color: var(--text);
+  margin-top: 0.3rem;
+}
+
+.hero-stat-caption {
+  line-height: 1.4;
+  color: var(--muted);
+  margin-top: 0.2rem;
+}
+
+.hero-stat-list {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0.85rem 0 0;
+  border-top: 1px solid var(--card-border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.hero-stat-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  line-height: 1.3;
+  color: var(--muted);
+  transition: opacity 0.5s ease, transform 0.6s var(--ease-out);
+}
+
+.hero-stat-name {
+  flex: 1;
+  min-width: 0;
+}
+
+.hero-stat-val {
+  font-family: var(--font-heading);
+  font-size: var(--t-h3s);
+  font-weight: 800;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.hero-stat-foot {
+  margin-top: 0.95rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--card-border);
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+/* Entrance — the JS adds .is-pending before the card is seen, then
+   swaps it for .is-in. Without JS (or with reduced motion) neither
+   class is added, so everything simply shows in its final state. */
+.hero-stat.is-pending {
+  opacity: 0;
+  transform: translateY(16px) scale(0.97);
+}
+
+.hero-stat.is-pending .hero-stat-list li {
+  opacity: 0;
+  transform: translateX(-8px);
+}
+
+.hero-stat.is-in .hero-stat-list li:nth-child(1) { transition-delay: 0.5s; }
+.hero-stat.is-in .hero-stat-list li:nth-child(2) { transition-delay: 0.7s; }
+.hero-stat.is-in .hero-stat-list li:nth-child(3) { transition-delay: 0.9s; }
+
+@media (min-width: 1600px) {
+  .hero-stat {
+    width: clamp(19rem, 28%, 25rem);
+    padding: 1.6rem 1.75rem 1.4rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .hero-stat {
+    position: static;
+    width: auto;
+    max-width: 420px;
+    margin: 1.5rem auto 0;
+    background: var(--card-bg);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: 1px solid var(--card-border);
+    box-shadow: var(--shadow-sm);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-stat,
+  .hero-stat-list li {
+    transition: none;
+  }
+
+  .hero-stat:hover {
+    transform: none;
+  }
+}
+
+/* Challenge cards — key phrases in bold, in the darker text colour, so
+   each card can be skimmed from its highlighted words alone. */
+.challenge-item p strong {
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* =====================================================================
+   8px VERTICAL GRID — every vertical margin, padding and row gap on
+   the page is a multiple of 8px. The rules below override the earlier
+   values that were off-grid (each snapped to the nearest multiple of
+   8; anything between 0 and 8 becomes 8). Horizontal spacing is left
+   as it was, and so are the side nav, back-to-top button and lightbox,
+   which are fixed controls rather than page layout.
+   ===================================================================== */
+
+.back-link {
+  row-gap: 1rem;
+}
+
+h2 {
+  margin-bottom: 3rem;
+}
+
+h4 {
+  margin-bottom: 1.5rem;
+}
+
+.detail-item {
+  row-gap: 1rem;
+}
+
+.app-tag {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.stage-activities {
+  row-gap: 1rem;
+}
+
+.activity {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.design-insight {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.method-specs {
+  row-gap: 1rem;
+}
+
+.design-implication {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.metric-label {
+  margin-bottom: 1rem;
+}
+
+.footer-back-link {
+  row-gap: 1rem;
+}
+
+.site-footer {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+@media (max-width: 768px) {
+  .bottom-link-wrapper {
+    margin-bottom: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .site-footer {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+}
+
+.fact-tags li {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.fact-constraints li {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.fact-stage {
+  row-gap: 0.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.hero-stat {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.hero-stat-label {
+  margin-bottom: 0.5rem;
+}
+
+.hero-stat-sub {
+  margin-top: 0.5rem;
+}
+
+.hero-stat-caption {
+  margin-top: 0.5rem;
+}
+
+.hero-stat-list {
+  padding-top: 1rem;
+  row-gap: 0.5rem;
+}
+
+.hero-stat-list li {
+  row-gap: 1rem;
+}
+
+.hero-stat-foot {
+  margin-top: 1rem;
+  padding-top: 1rem;
+}
+
+@media (min-width: 1600px) {
+  .hero-stat {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+}
+
+/* Process timeline — the intro sentence above it is the last child of
+   its block (so it has no bottom margin) and the timeline had no top
+   margin, which left "Research & Discovery" sitting right under it. */
+.process-flow {
+  margin-top: 3rem;
+}
+
+@media (max-width: 768px) {
+  .process-flow {
+    margin-top: 2rem;
+  }
+}
+
+/* Two values written with "auto" or tied to the link underline, set by
+   hand: the interview-document link's gap below it, and the bottom
+   "Go Back to Home" link's spacing on phones. (The 2px between the
+   document link and its underline is part of the underline itself, so
+   it stays.) */
+.doc-link {
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+  .footer-back-link {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* =====================================================================
+   Key findings cards — rebuilt to scan instead of read:
+   1. number + finding title on one line,
+   2. the participant's words as a real quote (big quotation mark,
+      italic, small credit line underneath),
+   3. the design implication, set off by a divider and an arrow label,
+      pinned to the bottom so the implications line up across a row.
+   The explanatory paragraph was removed. All spacing on the 8px grid,
+   all text sizes on the type scale.
+   ===================================================================== */
+.finding-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.finding-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.finding-head .finding-number {
+  flex-shrink: 0;
+  font-size: var(--t-h4);
+  font-weight: 800;
+  color: var(--accent);
+  opacity: 1;
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.finding-head h4 {
+  margin: 0;
+  color: var(--text);
+  line-height: 1.35;
+}
+
+/* Quote */
+.finding-quote {
+  position: relative;
+  margin: 0;
+  padding: 2rem 0 0;
+}
+
+.finding-quote::before {
+  content: "\201C";
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-family: var(--font-heading);
+  font-size: var(--t-stat-xl);
+  font-weight: 800;
+  line-height: 1;
+  color: var(--accent);
+  opacity: 0.35;
+}
+
+.finding-quote p {
+  margin: 0;
+  font-size: var(--t-body);
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.finding-quote cite {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: var(--t-label);
+  font-style: normal;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.finding-quote cite::before {
+  content: "— ";
+}
+
+/* Design implication */
+.finding-implication {
+  margin-top: auto;
+  padding-top: 0;
+}
+
+.finding-implication::before {
+  content: "";
+  display: block;
+  height: 1px;
+  background: var(--card-border);
+  margin: 1.5rem 0 1rem;
+}
+
+.finding-implication-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: var(--t-label);
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.finding-implication p {
+  margin: 0;
+  font-size: var(--t-small);
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--text);
+}

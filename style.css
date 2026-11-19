@@ -1620,3 +1620,380 @@ a { color: inherit; }
 @media (min-width: 1200px) {
   :root { --outer-pad: 64px; }
 }
+/* =============================================================
+   LARGE SCREENS, TYPE SCALE, CLICKABLE CARDS, 8px GRID
+   Matches the case-study pages. Everything below sits after the
+   base styles so it wins the cascade.
+
+   --content-max  page width incl. side padding: 1400px up to
+                  1599px, then 1760px (1600px+) and 2000px (2400px+),
+                  so the layout grows with the screen instead of
+                  floating in a sea of white.
+   --bs           small fixed sizes (icons, coins, circle, sketchbook)
+                  1.12 / 1.2 / 1.28 at 1600 / 1920 / 2400px.
+   ============================================================= */
+
+:root { --bs: 1; }
+
+@media (min-width: 1600px) {
+  :root {
+    --bs: 1.12;
+    --outer-pad: 80px;
+    --content-max: 1760px;
+  }
+}
+@media (min-width: 1920px) { :root { --bs: 1.2; } }
+@media (min-width: 2400px) {
+  :root {
+    --bs: 1.28;
+    --outer-pad: 96px;
+    --content-max: 2000px;
+  }
+}
+
+@media (min-width: 1600px) {
+  /* Nav */
+  .logo-img { height: calc(30px * var(--bs)); }
+  .hero-resume svg { width: calc(13px * var(--bs)); height: calc(13px * var(--bs)); }
+  .nav-compact-dots .dot { width: calc(6px * var(--bs)); height: calc(6px * var(--bs)); }
+
+  /* Hero: bigger circle, wider quote, bigger icons */
+  .hero-stack {
+    --mini-size: clamp(96px, 9vw, calc(150px * var(--bs)));
+    --quote-w: min(calc(660px * var(--bs)), 60vw);
+  }
+  .hero-social-below svg { width: calc(24px * var(--bs)); height: calc(24px * var(--bs)); }
+  .hero-photo-wrap.is-mini + .hero-social-below { height: calc(24px * var(--bs)); }
+
+  /* Tools */
+  .tool-ball { --size: clamp(52px, 6.5vw, calc(76px * var(--bs))); }
+
+  /* Work */
+  .chip { min-height: calc(40px * var(--bs)); }
+  .chip-icon { width: calc(16px * var(--bs)); height: calc(16px * var(--bs)); }
+  .project-cards {
+    grid-template-columns: repeat(2, 1fr) minmax(calc(220px * var(--bs)), calc(260px * var(--bs)));
+    gap: 2rem;
+  }
+  .project-body { padding: 1.5rem 1.75rem 1.75rem; }
+
+  /* Gallery + sketchbook */
+  .gallery-item { height: clamp(260px, 22vw, calc(380px * var(--bs))); }
+  .sb-book { width: min(100%, calc(600px * var(--bs))); }
+  .sb-layout { grid-template-columns: minmax(260px, 1fr) minmax(0, calc(600px * var(--bs))); }
+
+  /* Display type: same fluid sizes, just a higher ceiling */
+  .hero-name { font-size: clamp(3.5rem, 12.5vw, calc(8.75rem * var(--bs))); }
+  .footer-cta-line { font-size: clamp(3rem, 11vw, calc(8rem * var(--bs))); }
+
+  /* Footer */
+  .footer-social svg { width: calc(20px * var(--bs)); height: calc(20px * var(--bs)); }
+}
+
+/* =============================================================
+   TYPE SCALE — every text size comes from one fixed scale:
+   10 · 12 · 14 · 16 · 18 · 24 · 32 · 40 · 48 · 56 px.
+   The two display pieces, the hero name and the "Let's talk work"
+   footer, stay fluid: they're artwork-sized and scale with the
+   screen on purpose.
+
+   role       laptop   phone(≤900)   big(1600+)
+   --t-micro    10        10            12
+   --t-label    12        12            14
+   --t-small    14        14            16
+   --t-body     16        16            18
+   --t-lead     18        16            24
+   --t-h4       16        16            18
+   --t-h3s      18        18            24
+   --t-h3       24        18            32
+   --t-h1       48        32            56
+   ============================================================= */
+:root {
+  --t-micro: 10px;
+  --t-label: 12px;
+  --t-small: 14px;
+  --t-body: 16px;
+  --t-lead: 18px;
+  --t-h4: 16px;
+  --t-h3s: 18px;
+  --t-h3: 24px;
+  --t-h1: 48px;
+}
+@media (max-width: 900px) {
+  :root {
+    --t-lead: 16px;
+    --t-h3: 18px;
+    --t-h1: 32px;
+  }
+}
+@media (min-width: 1600px) {
+  :root {
+    --t-micro: 12px;
+    --t-label: 14px;
+    --t-small: 16px;
+    --t-body: 18px;
+    --t-lead: 24px;
+    --t-h4: 18px;
+    --t-h3s: 24px;
+    --t-h3: 32px;
+    --t-h1: 56px;
+  }
+}
+
+/* Nav: big tappable links in the phone menu, small caps on desktop */
+.hero-nav-links { font-size: 18px; }
+.hero-resume { font-size: var(--t-body); }
+@media (min-width: 900px) {
+  .hero-nav-links,
+  .hero-resume,
+  .nav-compact { font-size: var(--t-small); }
+}
+
+/* Hero */
+.hero-hi { font-size: var(--t-h3); }
+.hero-quote-callout .hero-quote { font-size: var(--t-lead); }
+.hero-hire-tip { font-size: var(--t-label); }
+.scroll-hint { font-size: var(--t-h3s); }
+
+/* Section headings + subs */
+.work h2,
+.tools h2,
+.about h2,
+.sketchbook h2,
+.illustrations h2 { font-size: var(--t-h1); }
+.section-sub { font-size: var(--t-body); }
+
+/* Tools */
+.tool-tip-box { font-size: var(--t-label); }
+
+/* Work */
+.work-filterbar-prompt,
+.work-search input,
+.chip,
+.keywords-status,
+.project-proves,
+.project-link { font-size: var(--t-small); }
+.project-card-head h3 { font-size: var(--t-h3); }
+.project-match-label { font-size: var(--t-micro); }
+.capability-strip li { font-size: var(--t-label); }
+.project-other-label { font-size: var(--t-h3s); }
+.project-mini-body h4 { font-size: var(--t-h4); }
+.project-mini-body p,
+.project-mini-view { font-size: var(--t-label); }
+
+/* About, sketchbook, footer */
+.about-text { font-size: var(--t-body); }
+.sb-note,
+.fun-quote { font-size: var(--t-lead); }
+.footer-email a { font-size: var(--t-body); }
+.fun-credit { font-size: var(--t-label); }
+
+/* =============================================================
+   CLICKABLE CARDS — the whole project card opens the project, not
+   just "View project →". The link's ::after stretches over the
+   card, so it stays one real link (keyboard and screen readers
+   see a single "View project" link per card). Hovering anywhere
+   on the card turns the link red; keyboard focus rings the card.
+   ============================================================= */
+.project-card[data-project] {
+  position: relative;
+  cursor: pointer;
+}
+.project-card[data-project] .project-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+}
+.project-card[data-project]:hover .project-link { color: var(--accent-dark); }
+.project-card[data-project] .project-link:focus-visible { box-shadow: none; }
+.project-card[data-project]:has(.project-link:focus-visible) {
+  box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent), var(--shadow-md);
+}
+
+/* =============================================================
+   8px VERTICAL GRID — vertical margins, paddings and row gaps
+   snapped to multiples of 8px (nearest; anything between 0 and 8
+   becomes 8). Left alone: horizontal spacing, the hero's tuned
+   intro spacing (all set with clamp/var), the menu-icon bars, and
+   tiny tags/tooltips whose few px of padding are what keep them
+   small.
+   ============================================================= */
+.hero-nav {
+  row-gap: 1rem;
+}
+
+.hero-nav-links {
+  row-gap: 1rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.hero-resume {
+  row-gap: 0.5rem;
+}
+
+.nav-compact {
+  row-gap: 0.5rem;
+}
+
+.nav-compact-dots {
+  row-gap: 0.5rem;
+}
+
+.hero-hi {
+  margin-bottom: 0.5rem;
+}
+
+.hero-social-below {
+  row-gap: 1rem;
+}
+
+.section-head {
+  row-gap: 0.5rem;
+}
+
+.work-filterbar {
+  margin-bottom: 2.5rem;
+}
+
+.work-search {
+  row-gap: 0.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.chip-row {
+  row-gap: 0.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 1rem;
+}
+
+.chip {
+  row-gap: 0.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.project-cards {
+  row-gap: 1.5rem;
+}
+
+.project-body {
+  padding-top: 1rem;
+  padding-bottom: 1.5rem;
+}
+
+.project-card-head {
+  margin-bottom: 0.5rem;
+}
+
+.capability-strip {
+  margin-bottom: 0.5rem;
+  row-gap: 0.5rem;
+}
+
+.project-proves {
+  margin-bottom: 1rem;
+}
+
+.project-other {
+  padding-top: 1.5rem;
+}
+
+.project-other-label {
+  margin-bottom: 1rem;
+}
+
+.project-mini + .project-mini {
+  margin-top: 1rem;
+}
+
+.project-mini-body {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.project-mini-body h4 {
+  margin-bottom: 0.5rem;
+}
+
+.about .section-head {
+  margin-bottom: 3.5rem;
+}
+
+.about-layout {
+  row-gap: 2.5rem;
+}
+
+.gallery {
+  padding-top: 1.5rem;
+}
+
+.sb-layout {
+  row-gap: 2.5rem;
+}
+
+.fun-quote {
+  margin-bottom: 2rem;
+}
+
+.footer-email {
+  margin-top: 1.5rem;
+}
+
+.footer-social {
+  row-gap: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 900px) {
+  .work-filterbar {
+    row-gap: 2rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .hero-nav-links {
+    row-gap: 2.5rem;
+  }
+}
+
+/* =============================================================
+   TOP NAV ON BIG SCREENS — grows with the screen like the buttons
+   and back links on the case-study pages, so it doesn't look tiny
+   next to the giant name. Phones and smaller laptops (under 1600px)
+   keep the original nav size.
+   Links: 14px → 18px (1600px+, larger laptops) → 24px (1920px+)
+   → 32px (2400px+).
+   Logo, resume icon, dots and spacing scale with --ui
+   (1.2 / 1.7 / 1.9 at 1600 / 1920 / 2400px).
+   ============================================================= */
+@media (min-width: 1600px) and (max-width: 1919px) {
+  :root { --ui: 1.2; --t-nav: 18px; }
+}
+@media (min-width: 1920px) {
+  :root { --ui: 1.7; --t-nav: 24px; }
+}
+@media (min-width: 2400px) {
+  :root { --ui: 1.9; --t-nav: 32px; }
+}
+
+@media (min-width: 1600px) {
+  .hero-nav-links,
+  .hero-resume,
+  .nav-compact { font-size: var(--t-nav); }
+
+  .hero-nav-links { gap: calc(2.25rem * var(--ui)); }
+  .hero-nav { top: calc(1.75rem * var(--ui)); }
+  .logo-img { height: calc(30px * var(--ui)); }
+  .hero-resume svg { width: calc(13px * var(--ui)); height: calc(13px * var(--ui)); }
+
+  .hero-nav.is-compact { padding: calc(0.5rem * var(--ui)) calc(0.6rem * var(--ui)) calc(0.5rem * var(--ui)) calc(0.9rem * var(--ui)); gap: calc(1rem * var(--ui)); }
+  .hero-nav.is-compact:hover { padding: calc(0.5rem * var(--ui)) calc(1.1rem * var(--ui)); gap: calc(2rem * var(--ui)); }
+  .nav-compact { gap: calc(0.65rem * var(--ui)); }
+  .nav-compact-dots { gap: calc(0.4rem * var(--ui)); }
+  .nav-compact-dots .dot { width: calc(6px * var(--ui)); height: calc(6px * var(--ui)); }
+}

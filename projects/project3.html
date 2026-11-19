@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>V-Ed App — Lakshmi Pratap</title>
-  <link rel="stylesheet" href="project3.css?v=10" />
+  <link rel="stylesheet" href="project3.css?v=12" />
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="../assets/logo.png">
 </head>
@@ -97,9 +97,56 @@
       <div class="hero-content">
         <div class="project-meta">PERSONAL PROJECT · 4 WEEKS</div>
         <h1 class="project-title">V-Ed App</h1>
-        <p class="project-subtitle">A volunteering app connecting volunteers and NGOs, to bridge the educational gap for underprivileged children.</p>
+        <div class="hero-facts">
+          <div class="hero-fact">
+            <span class="hero-contribution-label">My contribution</span>
+            <ul class="fact-tags">
+              <li>UX Research</li>
+              <li>UX Design</li>
+              <li>UI Design</li>
+              <li>Prototyping</li>
+              <li>Usability Testing</li>
+            </ul>
+          </div>
+          <div class="hero-fact">
+            <span class="hero-contribution-label">Constraints</span>
+            <ul class="fact-constraints">
+              <li>
+                <span class="fact-text">4-week personal project</span>
+                <a href="#overview" class="fact-stage">01 Overview <span aria-hidden="true">↓</span></a>
+              </li>
+              <li>
+                <span class="fact-text">Designed for volunteers only, not NGOs</span>
+                <a href="#solutions" class="fact-stage">04 Ideas <span aria-hidden="true">↓</span></a>
+              </li>
+              <li>
+                <span class="fact-text">Usability tested with 3 participants</span>
+                <a href="#testing" class="fact-stage">08 Design <span aria-hidden="true">↓</span></a>
+              </li>
+            </ul>
+          </div>
+        </div>
         <div class="hero-image-wrapper">
           <img src="../assets/03project.jpg" alt="V-Ed App overview screen" class="hero-image">
+          <div class="hero-stat" role="group" aria-label="Why it matters: 59 million children aged 6 to 14 in India do not attend school; 4 in 10 who start drop out before finishing primary school; poor households invest only 6% of income in education and health">
+            <div class="hero-stat-label">Why it matters</div>
+            <div class="hero-stat-number">
+              <span class="hero-stat-count" data-count-to="59">59</span><span class="hero-stat-plus">M</span>
+            </div>
+            <div class="hero-stat-sub">children not in school</div>
+            <div class="hero-stat-caption">Aged 6–14 in India, by government estimate</div>
+            <ul class="hero-stat-list">
+              <li>
+                <span class="hero-stat-name">Drop out before primary ends</span>
+                <span class="hero-stat-val"><span data-count-to="4">4</span> in 10</span>
+              </li>
+              <li>
+                <span class="hero-stat-name">Poor households' income on education &amp; health</span>
+                <span class="hero-stat-val"><span data-count-to="6">6</span>%</span>
+              </li>
+            </ul>
+            <div class="hero-stat-foot">A key cause: a shortage of qualified teachers</div>
+          </div>
         </div>
       </div>
     </section>
@@ -316,17 +363,26 @@
           <div class="other-work-grid">
             <div class="other-work-card">
               <h4>NGO Insights</h4>
-              <span class="session-quote">"Recruiting volunteers is hard — most of our outreach is through college campaigns, and that takes permissions and time."</span>
+              <blockquote class="insight-quote">
+                <p>Recruiting volunteers is hard — most of our outreach is through college campaigns, and that takes permissions and time.</p>
+                <cite>NGO lead, U&amp;I</cite>
+              </blockquote>
               <p>Recruiting volunteers is hard — outreach is mostly through college campaigns, which are limited and require permissions. Volunteers often leave due to time constraints or long recruitment processes, and a lack of motivating factors or recognition reduces volunteer retention.</p>
             </div>
             <div class="other-work-card">
               <h4>Volunteer Insights</h4>
-              <span class="session-quote">"The sign-up process was so long, I almost gave up before I even started."</span>
+              <blockquote class="insight-quote">
+                <p>The sign-up process was so long, I almost gave up before I even started.</p>
+                <cite>Current volunteer</cite>
+              </blockquote>
               <p>Most volunteers found opportunities through friends or social media stories. Many enjoyed remote teaching because it removed travel friction and still felt rewarding, though long sign-up processes almost made some volunteers give up.</p>
             </div>
             <div class="other-work-card">
               <h4>Non-Volunteer Insights</h4>
-              <span class="session-quote">"I just don't know where to look — if it were quick and flexible, I'd sign up."</span>
+              <blockquote class="insight-quote">
+                <p>I just don't know where to look — if it were quick and flexible, I'd sign up.</p>
+                <cite>Non-volunteer</cite>
+              </blockquote>
               <p>Many aren't comfortable with technology or don't know where to look for volunteering roles. Time commitment is a major concern — short, flexible opportunities are more attractive, and some would volunteer only if the commitment was small or better recognized.</p>
             </div>
           </div>
@@ -473,22 +529,40 @@
 
           <div class="learning-list">
             <div class="learning-item">
-              <span class="session-quote">"After applying, we don't know where the status of the application will be seen."</span>
-              <p>→ Added a clear "Status / Classes" pathway and a button next to Applied to take the user to the Classes screen.</p>
+              <blockquote class="insight-quote">
+                <p>After applying, we don't know where the status of the application will be seen.</p>
+                <cite>Usability test participant</cite>
+              </blockquote>
+              <div class="change-made">
+                <span class="change-made-label"><span aria-hidden="true">→</span> Change made</span>
+                <p>Added a clear "Status / Classes" pathway and a button next to Applied to take the user to the Classes screen.</p>
+              </div>
               <div class="learning-item-image">
                 <img src="../assets/itr1.png" alt="Status pathway shown after applying">
               </div>
             </div>
             <div class="learning-item">
-              <span class="session-quote">"How will I know if I am cancelling the next class or the entire job?"</span>
-              <p>→ Changed copy to confirm: "Are you sure you want to cancel the upcoming class?"</p>
+              <blockquote class="insight-quote">
+                <p>How will I know if I am cancelling the next class or the entire job?</p>
+                <cite>Usability test participant</cite>
+              </blockquote>
+              <div class="change-made">
+                <span class="change-made-label"><span aria-hidden="true">→</span> Change made</span>
+                <p>Changed copy to confirm: "Are you sure you want to cancel the upcoming class?"</p>
+              </div>
               <div class="learning-item-image">
                 <img src="../assets/itr2.png" alt="Updated cancellation confirmation copy">
               </div>
             </div>
             <div class="learning-item">
-              <span class="session-quote">"The matches option should be first so that we know if there are any matches first..."</span>
-              <p>→ Moved Matches to be the default landing content so users see matches first.</p>
+              <blockquote class="insight-quote">
+                <p>The matches option should be first so that we know if there are any matches first...</p>
+                <cite>Usability test participant</cite>
+              </blockquote>
+              <div class="change-made">
+                <span class="change-made-label"><span aria-hidden="true">→</span> Change made</span>
+                <p>Moved Matches to be the default landing content so users see matches first.</p>
+              </div>
               <div class="learning-item-image">
                 <img src="../assets/itr3.png" alt="Matches shown as the default landing content">
               </div>
@@ -535,6 +609,6 @@
     <p>&copy; 2025 Lakshmi Pratap. All rights reserved.</p>
   </footer>
 
-  <script src="project3.js?v=4"></script>
+  <script src="project3.js?v=5"></script>
 </body>
 </html>

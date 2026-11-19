@@ -2125,3 +2125,1149 @@ p:last-child {
 .design-rationale {
   border-radius: var(--radius-sm);
 }
+/* =====================================================================
+   LARGE SCREENS, TYPE SCALE, SIDE NAV, HERO, QUOTES — matching the CX
+   Portal, Sportscove, Quippy and VR case studies. Everything below sits
+   after the base styles so it wins the cascade. Phones/tablets only
+   pick up the type scale, hero layout and quote styles; the rest starts
+   at 1321px or 1600px.
+
+   --col     content column width: 900px on laptops (a little less on
+             narrow laptops, to keep a gap from the side nav); from
+             1600px it grows with the screen, up to 1600px.
+   --gutter  side margin from 1600px = open side nav + a 4rem gap.
+   --bs      side nav / small fixed sizes (1.12 / 1.2 / 1.28)
+   --ui      buttons & back links        (1.25 / 1.4 / 1.55)
+             at 1600 / 1920 / 2400px.
+   ===================================================================== */
+
+:root {
+  --col: 900px;
+}
+
+@media (min-width: 769px) {
+  .project-title {
+    max-width: var(--col);
+  }
+}
+
+/* ---------- Laptops (1321–1599px): keep a 4rem gap from the nav ---------- */
+@media (min-width: 1321px) and (max-width: 1599px) {
+  :root {
+    --col: min(900px, calc(100vw - 2 * (1rem + 13rem + 4rem)));
+  }
+
+  .section-content,
+  .project-title,
+  .hero-image-wrapper,
+  .hero-image {
+    max-width: var(--col);
+  }
+
+  .back-link {
+    left: calc((100% - var(--col)) / 2);
+  }
+}
+
+/* ---------- Big screens: multipliers per tier ---------- */
+@media (min-width: 1600px) {
+  :root {
+    --bs: 1.12;
+    --ui: 1.25;
+    --gutter: calc(1rem + 13rem + 4rem);
+    --col: min(calc(100vw - 2 * var(--gutter)), 1600px);
+  }
+}
+
+@media (min-width: 1920px) {
+  :root {
+    --bs: 1.2;
+    --ui: 1.4;
+    --gutter: calc(15rem * var(--bs) + 5rem);
+  }
+}
+
+@media (min-width: 2400px) {
+  :root {
+    --bs: 1.28;
+    --ui: 1.55;
+  }
+}
+
+@media (min-width: 1600px) {
+
+  /* Layout widths */
+  .project-content {
+    max-width: none;
+  }
+
+  .section-content,
+  .project-title,
+  .hero-image-wrapper,
+  .hero-image {
+    max-width: var(--col);
+  }
+
+  .back-link {
+    left: calc((100% - var(--col)) / 2);
+  }
+
+  /* Media as a share of the column (fixed px at 900px → same fraction).
+     Phone screenshots are capped so they never get taller than most of
+     the screen. */
+  .screen img {
+    height: min(calc(var(--col) * 0.622), 78vh);
+  }
+
+  .learning-item-image img {
+    height: min(calc(var(--col) * 0.356), 48vh);
+  }
+
+  .writing-image-wrapper img {
+    max-width: calc(var(--col) * 0.4);
+  }
+
+  .benefits-image-wrapper img {
+    max-width: calc(var(--col) * 0.667);
+  }
+
+  .user-study-image img {
+    max-width: calc(var(--col) * 0.69);
+  }
+
+  .size-compact {
+    max-width: calc(var(--col) * 0.535);
+  }
+
+  .stat-box {
+    max-width: calc(520px * var(--bs));
+  }
+
+  .stat-box-text {
+    max-width: calc(360px * var(--bs));
+  }
+
+  .issue-item {
+    grid-template-columns: calc(44px * var(--bs)) 1fr;
+  }
+
+  .issue-marker {
+    width: calc(38px * var(--bs));
+    height: calc(38px * var(--bs));
+  }
+
+  .process-track-marker {
+    width: calc(30px * var(--bs));
+    height: calc(30px * var(--bs));
+  }
+
+  /* Buttons & back links */
+  .back-link,
+  .footer-back-link {
+    gap: calc(12px * var(--ui));
+  }
+
+  .back-link-arrow,
+  .footer-back-link .back-link-arrow {
+    width: calc(38px * var(--ui));
+    height: calc(38px * var(--ui));
+  }
+
+  .back-link-arrow svg,
+  .footer-back-link .back-link-arrow svg {
+    width: calc(16px * var(--ui));
+    height: calc(16px * var(--ui));
+  }
+
+  .to-top {
+    width: calc(52px * var(--ui));
+    height: calc(52px * var(--ui));
+    right: 2rem;
+    bottom: 2rem;
+  }
+
+  .to-top-arrow {
+    width: calc(18px * var(--ui));
+    height: calc(18px * var(--ui));
+  }
+}
+
+/* Once the column is wide enough, the three interview insight cards sit
+   in one row. */
+@media (min-width: 1800px) {
+  .other-work-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* =====================================================================
+   TYPE SCALE — every text size comes from one fixed scale:
+   10 · 12 · 14 · 16 · 18 · 24 · 32 · 40 · 48 · 56 px.
+
+   role       laptop   phone(≤900)   big(1600+)   used for
+   --t-micro    10        10            12        tiny tags
+   --t-label    12        12            14        uppercase labels, captions
+   --t-small    14        14            16        card text, bullets, notes
+   --t-body     16        16            18        paragraphs
+   --t-lead     18        16            24        quotes
+   --t-h4       16        16            18        card titles
+   --t-h3s      18        18            24        sub-headings
+   --t-h3       24        18            32        section sub-headings
+   --t-h2       32        24            40        section headings
+   --t-h1       48        32            56        page title
+   --t-stat     40        32            48        big numbers
+   --t-stat-xl  48        40            56        hero card number
+   ===================================================================== */
+:root {
+  --t-micro: 10px;
+  --t-label: 12px;
+  --t-small: 14px;
+  --t-body: 16px;
+  --t-lead: 18px;
+  --t-h4: 16px;
+  --t-h3s: 18px;
+  --t-h3: 24px;
+  --t-h2: 32px;
+  --t-h1: 48px;
+  --t-stat: 40px;
+  --t-stat-xl: 48px;
+}
+
+@media (max-width: 900px) {
+  :root {
+    --t-lead: 16px;
+    --t-h3: 18px;
+    --t-h2: 24px;
+    --t-h1: 32px;
+    --t-stat: 32px;
+    --t-stat-xl: 40px;
+  }
+}
+
+@media (min-width: 1600px) {
+  :root {
+    --t-micro: 12px;
+    --t-label: 14px;
+    --t-small: 16px;
+    --t-body: 18px;
+    --t-lead: 24px;
+    --t-h4: 18px;
+    --t-h3s: 24px;
+    --t-h3: 32px;
+    --t-h2: 40px;
+    --t-h1: 56px;
+    --t-stat: 48px;
+    --t-stat-xl: 56px;
+  }
+}
+
+/* Headings */
+.project-title { font-size: var(--t-h1); }
+h2 { font-size: var(--t-h2); }
+h3,
+.method-detail h3,
+.decision-title-wrapper h3 { font-size: var(--t-h3); }
+.section-subhead { font-size: var(--t-h3s); }
+h4,
+h5,
+.other-work-card h4,
+.outcome-card h4,
+.impact-card h4,
+.process-track-title { font-size: var(--t-h4); }
+.stat-box-number { font-size: var(--t-stat); }
+.lightbox-close { font-size: 24px; }
+
+/* Lead */
+.centered-quote { font-size: var(--t-lead); }
+
+/* Body */
+body,
+p,
+.context-section .section-content > p,
+.method-detail p,
+.section-subhead-note,
+.learning-item p,
+.issue-content p,
+.detail-value { font-size: var(--t-body); }
+
+/* Small */
+.hero-contribution-label,
+.back-link,
+.footer-back-link,
+.site-footer,
+.constraint-callout p,
+.bridge-row,
+.decision-subtitle,
+.method-bullets li,
+.other-work-card p,
+.outcome-card p,
+.impact-card p,
+.stat-box-text,
+.process-track-desc,
+.issue-marker,
+.process-track-marker,
+.hero-stat-list li { font-size: var(--t-small); }
+
+/* Labels & captions */
+.project-meta,
+.section-kicker,
+.detail-label,
+.constraint-label,
+.impact-subheading,
+.bridge-header,
+.decision-eyebrow,
+.outcome-card-tag,
+.compare-col-label,
+.media-caption,
+.hero-stat-label,
+.hero-stat-caption,
+.hero-stat-foot { font-size: var(--t-label); }
+
+/* =====================================================================
+   SIDE NAV
+   - 1321–1919px (laptops; many are wider than 1600px): section names
+     14px, sub-sections 12px, numbers 10px, 13rem open card.
+   - 1920px and up (monitors): 18 / 16 / 14px, 15rem open card.
+   - 1600px and up: stays open, with the current section's sub-list
+     showing. 1321–1599px: the JS slides it open (.is-peek) for a
+     couple of seconds each time a new section is reached.
+   ===================================================================== */
+.side-nav-num,
+.side-nav-head-label,
+.side-nav-sublink-num { font-size: var(--t-label); }
+
+@media (min-width: 1321px) and (max-width: 1919px) {
+  .side-nav {
+    --nav-closed: 50px;
+    --nav-open: 13rem;
+    padding: 0.5rem 0.45rem;
+  }
+
+  .side-nav-link {
+    font-size: 14px;
+    gap: 0.6rem;
+  }
+
+  .side-nav-sublink {
+    font-size: 12px;
+  }
+
+  .side-nav-num,
+  .side-nav-sublink-num,
+  .side-nav-head-label {
+    font-size: 10px;
+  }
+
+  .side-nav-num,
+  .side-nav-head-icon {
+    width: 26px;
+    height: 26px;
+  }
+
+  .side-nav-head-icon svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .side-nav-sublist-inner {
+    margin-left: calc(0.35rem + 13px);
+  }
+}
+
+@media (min-width: 1920px) {
+  .side-nav {
+    --nav-closed: calc(58px * var(--bs));
+    --nav-open: calc(15rem * var(--bs));
+  }
+
+  .side-nav-link {
+    font-size: var(--t-body);
+  }
+
+  .side-nav-sublink {
+    font-size: var(--t-small);
+  }
+
+  .side-nav-num,
+  .side-nav-head-icon {
+    width: calc(30px * var(--bs));
+    height: calc(30px * var(--bs));
+  }
+
+  .side-nav-sublist-inner {
+    margin-left: calc(0.4rem + 15px * var(--bs));
+  }
+}
+
+@media (min-width: 1321px) {
+  .side-nav.is-peek {
+    width: var(--nav-open);
+    border-radius: 20px;
+    box-shadow: var(--shadow-md);
+  }
+
+  .side-nav.is-peek .side-nav-label,
+  .side-nav.is-peek .side-nav-head-label {
+    opacity: 1;
+    transform: translateX(0);
+    filter: blur(0);
+    transition:
+      opacity 0.4s ease,
+      transform 0.55s var(--ease-open),
+      filter 0.4s ease;
+    transition-delay: 0.1s;
+  }
+
+  .side-nav.is-peek .side-nav-item:has(.is-active) .side-nav-sublist {
+    grid-template-rows: 1fr;
+  }
+
+  .side-nav.is-peek .side-nav-item:has(.is-active) .side-nav-sublink {
+    opacity: 1;
+    transform: translateY(0);
+    transition:
+      opacity 0.35s ease 0.2s,
+      transform 0.45s var(--ease-open) 0.2s,
+      background 0.25s ease,
+      color 0.25s ease;
+  }
+}
+
+@media (min-width: 1600px) {
+  .side-nav {
+    width: var(--nav-open);
+    border-radius: 20px;
+  }
+
+  .side-nav .side-nav-label,
+  .side-nav .side-nav-head-label {
+    opacity: 1;
+    transform: translateX(0);
+    filter: blur(0);
+  }
+
+  .side-nav .side-nav-link.is-active {
+    background: rgba(16, 15, 14, 0.05);
+  }
+
+  .side-nav-item:has(.is-active) .side-nav-sublist {
+    grid-template-rows: 1fr;
+  }
+
+  .side-nav-item:has(.is-active) .side-nav-sublink {
+    opacity: 1;
+    transform: translateY(0);
+    transition:
+      opacity 0.35s ease 0.15s,
+      transform 0.45s var(--ease-open) 0.15s,
+      background 0.25s ease,
+      color 0.25s ease;
+  }
+}
+
+/* =====================================================================
+   HERO FACTS — "My contribution" and "Constraints" side by side under
+   the title. Left: skills as tags. Right: three constraints, each with
+   a pill linking to where it shows up. Headings centred in their
+   columns. Stacks on phones (768px and below).
+   ===================================================================== */
+.hero-facts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: var(--col);
+  margin: 0 auto;
+  padding-top: 2rem;
+  border-top: 1px solid var(--card-border);
+  text-align: left;
+}
+
+.hero-fact {
+  min-width: 0;
+}
+
+.hero-fact:first-child {
+  padding-right: 2.5rem;
+}
+
+.hero-fact + .hero-fact {
+  padding-left: 2.5rem;
+  border-left: 1px solid var(--card-border);
+}
+
+.hero-fact .hero-contribution-label {
+  display: block;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.fact-tags {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.fact-tags li {
+  font-size: var(--t-small);
+  line-height: 1.3;
+  color: var(--text);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-sm);
+  padding: 0.5rem 0.75rem;
+}
+
+.fact-constraints {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.fact-constraints li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.5rem 0;
+  border-top: 1px dashed var(--card-border);
+}
+
+.fact-constraints li:first-child {
+  padding-top: 0;
+  border-top: none;
+}
+
+.fact-text {
+  font-size: var(--t-small);
+  line-height: 1.4;
+  color: var(--text);
+}
+
+.fact-stage {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: var(--t-label);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  text-decoration: none;
+  color: var(--accent);
+  background: var(--decision-bg);
+  border: 1px solid var(--decision-border);
+  border-radius: 999px;
+  padding: 0.5rem 0.65rem;
+  line-height: 1;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.fact-stage:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+}
+
+.fact-stage:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (max-width: 768px) {
+  .hero-facts {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-fact:first-child {
+    padding-right: 0;
+  }
+
+  .hero-fact + .hero-fact {
+    padding-left: 0;
+    border-left: none;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px dashed var(--card-border);
+  }
+}
+
+/* =====================================================================
+   HERO CARD — "Why it matters". V-Ed has no measured impact numbers, so
+   the card on the hero image carries the research figures that frame
+   the problem instead: 59M children not in school, then two supporting
+   figures as rows. When it scrolls into view the card rises in, the
+   numbers count up and the rows fade in. On tablets and phones (1024px
+   and below) it sits below the image instead of on top.
+   ===================================================================== */
+.hero-image-wrapper {
+  position: relative;
+}
+
+.hero-stat {
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+
+  position: absolute;
+  top: 4%;
+  right: 3%;
+  z-index: 2;
+  width: clamp(17rem, 32%, 21rem);
+  padding: 1.5rem 1.5rem 1.5rem;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(16, 15, 14, 0.08);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  transition:
+    opacity 0.7s ease,
+    transform 0.8s var(--ease-out),
+    box-shadow 0.4s ease;
+}
+
+.hero-stat-label {
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.hero-stat-number {
+  display: flex;
+  align-items: baseline;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+.hero-stat-count {
+  font-size: var(--t-stat-xl);
+  font-variant-numeric: tabular-nums;
+}
+
+.hero-stat-plus {
+  font-size: var(--t-h2);
+  margin-left: 0.05em;
+}
+
+.hero-stat-sub {
+  font-size: var(--t-body);
+  font-weight: 600;
+  color: var(--text);
+  margin-top: 0.5rem;
+}
+
+.hero-stat-caption {
+  line-height: 1.4;
+  color: var(--muted);
+  margin-top: 0.5rem;
+}
+
+.hero-stat-list {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 1rem 0 0;
+  border-top: 1px solid var(--card-border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.hero-stat-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  line-height: 1.3;
+  color: var(--muted);
+  transition: opacity 0.5s ease, transform 0.6s var(--ease-out);
+}
+
+.hero-stat-name {
+  flex: 1;
+  min-width: 0;
+}
+
+.hero-stat-val {
+  font-family: var(--font-heading);
+  font-size: var(--t-h3s);
+  font-weight: 800;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.hero-stat-foot {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--card-border);
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+.hero-stat.is-pending {
+  opacity: 0;
+  transform: translateY(16px) scale(0.97);
+}
+
+.hero-stat.is-pending .hero-stat-list li {
+  opacity: 0;
+  transform: translateX(-8px);
+}
+
+.hero-stat.is-in .hero-stat-list li:nth-child(1) { transition-delay: 0.5s; }
+.hero-stat.is-in .hero-stat-list li:nth-child(2) { transition-delay: 0.75s; }
+
+@media (min-width: 1600px) {
+  .hero-stat {
+    width: clamp(19rem, 28%, 25rem);
+    padding: 1.5rem 1.75rem 1.5rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .hero-image-wrapper {
+    overflow: visible;
+  }
+
+  .hero-stat {
+    position: static;
+    width: auto;
+    max-width: 420px;
+    margin: 1.5rem auto 0;
+    background: var(--card-bg);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: 1px solid var(--card-border);
+    box-shadow: var(--shadow-sm);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-stat,
+  .hero-stat-list li {
+    transition: none;
+  }
+}
+
+/* =====================================================================
+   QUOTES — interview and usability-test quotes shown as real quotes:
+   a big quotation mark, the words in italics, and a small credit line
+   naming who said it. In the testing cards, the fix that followed sits
+   under a "→ Change made" label so quote and response read as a pair.
+   ===================================================================== */
+.insight-quote {
+  position: relative;
+  margin: 0 0 1rem;
+  padding: 2rem 0 0;
+}
+
+.insight-quote::before {
+  content: "\201C";
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-family: var(--font-heading);
+  font-size: var(--t-stat-xl);
+  font-weight: 800;
+  line-height: 1;
+  color: var(--accent);
+  opacity: 0.35;
+}
+
+.insight-quote p,
+.learning-item .insight-quote p,
+.other-work-card .insight-quote p {
+  margin: 0;
+  font-size: var(--t-body);
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.insight-quote cite {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: var(--t-label);
+  font-style: normal;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.insight-quote cite::before {
+  content: "— ";
+}
+
+.other-work-card .insight-quote {
+  margin-bottom: 1rem;
+}
+
+.other-work-card .insight-quote + p {
+  padding-top: 1rem;
+  border-top: 1px solid var(--card-border);
+}
+
+.change-made {
+  padding-top: 1rem;
+  border-top: 1px solid var(--card-border);
+}
+
+.change-made-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: var(--t-label);
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.change-made p,
+.learning-item .change-made p {
+  margin: 0;
+  font-size: var(--t-small);
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+/* =====================================================================
+   8px VERTICAL GRID — every vertical margin, padding and row gap on
+   the page is a multiple of 8px. The rules below override the earlier
+   values that were off-grid (each snapped to the nearest multiple of
+   8; anything between 0 and 8 becomes 8). Horizontal spacing is left
+   as it was, and so are the side nav, back-to-top button and lightbox,
+   which are fixed controls rather than page layout.
+   ===================================================================== */
+
+.back-link {
+  row-gap: 1rem;
+}
+
+.hero-contribution {
+  row-gap: 0.5rem;
+}
+
+h2 {
+  margin-bottom: 3rem;
+}
+
+h4 {
+  margin-bottom: 1.5rem;
+}
+
+h5 {
+  margin-bottom: 1rem;
+}
+
+.detail-item {
+  row-gap: 1rem;
+}
+
+.constraint-callout {
+  row-gap: 1.5rem;
+}
+
+@media (max-width: 600px) {
+  .constraint-callout {
+    row-gap: 0.5rem;
+  }
+}
+
+.method-strip .detail-item {
+  row-gap: 0.5rem;
+}
+
+.bridge-row {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .bridge-row {
+    row-gap: 0.5rem;
+  }
+}
+
+.solution-images-grid {
+  row-gap: 2.5rem;
+}
+
+.decision-header {
+  margin-bottom: 2.5rem;
+}
+
+.decision-eyebrow {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.method-bullets {
+  row-gap: 0.5rem;
+}
+
+.method-detail h3 {
+  margin-bottom: 2rem;
+}
+
+.method-detail p {
+  margin-bottom: 1rem;
+}
+
+.outcome-cards {
+  row-gap: 1rem;
+}
+
+.outcome-card {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.outcome-card h4 {
+  margin-bottom: 0.5rem;
+}
+
+.outcome-card-tag {
+  row-gap: 0.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.learning-list {
+  row-gap: 2rem;
+}
+
+.learning-item {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.footer-back-link {
+  row-gap: 1rem;
+}
+
+.site-footer {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+@media (max-width: 768px) {
+  .project-details {
+    row-gap: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .decision-header {
+    row-gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .bottom-link-wrapper {
+    margin-bottom: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .site-footer {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+}
+
+.session-quote {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.other-work-card .session-quote {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.other-work-grid {
+  margin-top: 1.5rem;
+}
+
+.other-work-card h4 {
+  margin-bottom: 0.5rem;
+}
+
+.other-work-card .solution-image-wrapper {
+  margin-bottom: 1.5rem;
+}
+
+.method-bullets.spaced-list {
+  row-gap: 1rem;
+}
+
+.issue-list {
+  row-gap: 2rem;
+}
+
+.issue-item {
+  padding-bottom: 2rem;
+}
+
+.section-subhead {
+  margin-top: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.compare-grid {
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.compare-grid.is-boxed {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.impact-subheading {
+  padding-top: 2rem;
+}
+
+.impact-card {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.impact-card h4 {
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .impact-cards {
+    row-gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .impact-card {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+}
+
+.section-kicker.is-issue, .section-kicker.is-solution {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.stat-box {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+
+.stat-box-number {
+  margin-bottom: 1rem;
+}
+
+.stat-box-grid {
+  row-gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .stat-box {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+}
+
+.process-track {
+  padding-top: 0.5rem;
+}
+
+.process-track-marker {
+  margin-bottom: 1rem;
+}
+
+.process-track-title {
+  margin-bottom: 0.5rem;
+}
+
+.fact-stage {
+  row-gap: 0.5rem;
+}
+
+.hero-stat-list li {
+  row-gap: 1rem;
+}
+
+/* Values written with "auto" or "em", set by hand */
+@media (max-width: 768px) {
+  .footer-back-link {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.process-track {
+  padding-top: 0.5rem;
+}
+
+/* =====================================================================
+   FIXES
+   1. The Research section's first block uses mt-0 / pt-0 / bt-none to
+      sit straight under the heading, but those classes were never
+      defined, so it got the full block gap (104px + a divider line).
+      Defined here so the paragraph follows the heading like the other
+      sections.
+   2. Virtual volunteering diagram (writing.png): the drawing sits in
+      the middle of a lot of white space, so it showed up tiny with a
+      big empty gap around it. It's now shown larger inside a wide,
+      short window that crops the empty edges.
+      --writing-zoom  how big the image is drawn (relative to the window)
+      --writing-y     vertical focus (50% = centre); nudge if the
+                      drawing isn't centred in the crop
+   ===================================================================== */
+.mt-0 { margin-top: 0 !important; }
+.pt-0 { padding-top: 0 !important; }
+.bt-none { border-top: none !important; }
+
+.writing-image-wrapper {
+  --writing-zoom: 160%;
+  --writing-y: 50%;
+
+  position: relative;
+  width: min(100%, 560px);
+  aspect-ratio: 2 / 1;
+  margin: 2rem auto 4rem;
+  overflow: hidden;
+}
+
+.writing-image-wrapper img {
+  position: absolute;
+  top: var(--writing-y);
+  left: 50%;
+  width: var(--writing-zoom);
+  max-width: none;
+  height: auto;
+  border-radius: 0;
+  transform: translate(-50%, -50%);
+}
+
+@media (min-width: 1600px) {
+  .writing-image-wrapper {
+    width: min(100%, calc(var(--col) * 0.62));
+  }
+}
+
+@media (max-width: 768px) {
+  .writing-image-wrapper {
+    --writing-zoom: 180%;
+    margin-bottom: 2rem;
+  }
+}
